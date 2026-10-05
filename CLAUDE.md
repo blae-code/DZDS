@@ -63,7 +63,10 @@ This file holds the rules you must follow when working in this repo.
 12. **One system per job** (docs/VEHICLES.md): Expansion keys + towing (MuchCarKey and rope
     towing off), CarCover for tarps (Expansion covers off). **Never enable
     DayZ-Expansion-Animations or the Expansion Bundle**: it breaks DayZ Horse (test enforced).
-13. **Content keyed by map role.** Faction territories, mission placement and GM logic use the
+13. **Economy = vanilla CE** (docs/ECONOMY.md): no traders/currency (Market and ATMs off).
+    Never hand-edit `db/types.xml`; edit `presets/economy.yaml` and run `make economy`, which
+    regenerates it from `db/types.xml.vanilla`. Our own items go in `presets/types_dzds.yaml`.
+14. **Content keyed by map role.** Faction territories, mission placement and GM logic use the
     roles in `maps/_roles.yaml`, so Nasdara (Badlands, 1.30) is a data change. `make maps-check`.
 
 ## Current stage
@@ -87,6 +90,7 @@ make verify-mods      # check every mod ID/title/staleness on the Steam Workshop
 make find-mod Q=...   # search the Workshop
 make maps-check       # map role coverage (nasdara is TODO until release)
 make types            # compile presets/types_dzds.yaml into a CE custom types file
+make economy          # population + campaign-phase loot scaling (PHASE=... to force)
 make fake-rcon / sim / gm-sim   # offline GM loop (three terminals)
 make gm-probe         # one-shot Ollama/prompt check
 scripts/local_server.sh install|mods|start   # optional local dedicated server

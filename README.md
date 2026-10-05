@@ -10,6 +10,7 @@ driven from a local CachyOS rig with a local LLM (Gemma 4 E4B via Ollama/ROCm).
   [`docs/GSP_CHECKLIST.md`](docs/GSP_CHECKLIST.md)
 - **Factions (blueprint, behaviour, recruitment):** [`docs/FACTIONS.md`](docs/FACTIONS.md) · our mod: [`mods/README.md`](mods/README.md)
 - **Living world / faction war design:** [`docs/LIVING_WORLD.md`](docs/LIVING_WORLD.md)
+- **Economy (vanilla, scaled for population and months):** [`docs/ECONOMY.md`](docs/ECONOMY.md)
 - **Vehicles, aircraft, horses, trains:** [`docs/VEHICLES.md`](docs/VEHICLES.md)
 - **Quests tied to the war:** [`docs/QUESTS.md`](docs/QUESTS.md)
 - **Voice, NPCs, immersion without tedium:** [`docs/IMMERSION.md`](docs/IMMERSION.md)
@@ -63,6 +64,7 @@ ollama pull gemma4:e4b       # confirm the exact tag with `ollama list` / ollama
 | Run GM live | `GM_DRY_RUN=0 make gm` |
 | Verify / search mods | `make verify-mods`, `make find-mod Q="..."` |
 | Map role coverage | `make maps-check` |
+| Scale loot for population + campaign phase | `make economy` (`PHASE=landfall` to force) |
 | Build custom loot types | `make types` (list mod classnames: `make mod-types`) |
 | Local test server | `scripts/local_server.sh install \| mods \| start` |
 

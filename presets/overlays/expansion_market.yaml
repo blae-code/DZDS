@@ -1,0 +1,9 @@
+# Expansion-Market is loaded only because Dialogue Framework requires it. The economy stays
+# vanilla scavenging (docs/ECONOMY.md): no traders, no currency, no ATMs.
+root: mission                          # $mission:expansion/settings/MarketSettings.json
+target: expansion/settings/MarketSettings.json
+values:
+  MarketSystemEnabled: false
+  ATMSystemEnabled: false
+  ATMPlayerTransferEnabled: false
+  ATMPartyLockerEnabled: false
