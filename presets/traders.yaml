@@ -12,7 +12,7 @@
 currencies:
   ammo_hard:        # ammunition is the hard currency of the collapse
     items: [Ammo_22, Ammo_9x19, Ammo_545x39, Ammo_762x39, Ammo_556x45]
-    note: per-round value; .22 lowest, 7.62 highest [test: Expansion accepts stackable ammo as currency]
+    note: "per-round value; .22 lowest, 7.62 highest. [test] Expansion accepts stackable ammo as currency"
   un_scrip:
     items: [ExpansionBanknoteHryvnia]   # stand-in for UN aid vouchers until @DZDS adds a voucher item
     note: earned from UN quests; only UN and Settler traders take it
