@@ -32,3 +32,6 @@ build/
 
 # Mod signing keys (the private key must never be committed)
 *.biprivatekey
+
+# @DZDS command queue (transient; consumed by the server)
+server/profiles/DZDS/queue/

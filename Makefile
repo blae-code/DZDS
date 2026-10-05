@@ -84,7 +84,7 @@ diplomacy:
 	$(PY) tools/diplomacy.py
 
 # Everything that should run between restarts, in order, before `make push`.
-prepare-restart: war-turn economy diplomacy patrols front-plan overlays calibrate validate
+prepare-restart: war-turn economy diplomacy patrols front-plan loadouts dzds-profile overlays calibrate validate
 	@echo "Ready: review git diff, then 'make push' and restart from the GSP panel."
 
 .PHONY: war-status war-turn
@@ -104,3 +104,7 @@ loadouts:
 
 loadouts-check:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/loadouts.py check
+
+.PHONY: dzds-profile
+dzds-profile:
+	$(PY) tools/dzds_profile.py

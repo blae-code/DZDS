@@ -16,6 +16,7 @@ import yaml
 from dotenv import load_dotenv
 
 from .adm import AdmEvent, HealthTracker, LocalAdmTailer, SftpAdmTailer, parse_line
+from .dispatch import QueueWriter, load_actions, to_commands
 from .ledger import WarLedger
 from .llm import OllamaGM
 from .rcon import RconClient
@@ -128,6 +129,8 @@ class Orchestrator:
         # advances it between restarts. Recent war events open the first digest of a session.
         self.ledger = WarLedger.load(self.map.get("name", "chernarusplus"))
         self.pending_war_report = self.ledger.recent_events()
+        self.queue = QueueWriter()
+        self.gm_actions = load_actions()
         self.wake = asyncio.Event()
         self.last_pass = 0.0
 
@@ -200,9 +203,12 @@ class Orchestrator:
                 await self.rcon.say_all(payload.narrative_broadcast)
         for action in payload.world_actions:
             xy = resolve_coords(action, self.locations, self.bounds)
-            log.info("ACTION: %s at %s (delay %ss)", action.target, xy, action.delay_seconds)
-            # TODO(phase 3/4): enqueue to the Enforce RestApi command queue on the server.
-            # Until that mod hook exists, actions are logged only.
+            commands = to_commands(action, xy, self.gm_actions)
+            log.info("ACTION: %s at %s (delay %ss) -> %d command(s)", action.target, xy,
+                     action.delay_seconds, len(commands))
+            if commands and not self.cfg["dry_run"]:
+                asyncio.get_running_loop().call_later(
+                    action.delay_seconds, lambda c=commands: asyncio.create_task(self.queue.write(c)))
 
     async def run(self) -> None:
         await self.start_rcon()

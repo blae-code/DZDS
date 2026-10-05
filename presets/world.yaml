@@ -1,0 +1,25 @@
+# @DZDS world layer config (mods/DZDS/Scripts/4_World/DZDS/DZDSWorld.c).
+# tools/dzds_profile.py writes server/profiles/DZDS/settings.json + markers.json from this and
+# the war ledger. Classnames marked null are not chosen yet: pick real objects in-game (VPP
+# object spawner) and fill them in; null entries are skipped, never guessed.
+
+poll_seconds: 10
+
+# Site markers: placed at server start next to every site, showing who holds it.
+markers:
+  offset: [12, 12]          # metres from the site centre (keep markers off roads)
+  by_holder:
+    Peacekeepers: null      # e.g. a UN-flag pole or barrier set
+    Rust: null              # e.g. an industrial barrel stack / warning sign
+    Karkas: null            # e.g. a bone totem / cairn
+    Jackals: null           # e.g. a tyre fire / skull pole
+    Settlers: null          # e.g. a laundry line / settler sign
+    contested: null         # e.g. burnt-out car wreck
+
+# GM world actions (src/gamemaster/schema.py EventTarget) -> objects @DZDS may spawn.
+# Everything listed here becomes the server-side spawn allowlist.
+gm_actions:
+  spawn_heli_crash:   { classnames: [Wreck_Mi8_Crashed], count: 1 }   # [verify] vanilla wreck object
+  spawn_airdrop:      { classnames: [], count: 1 }                    # Airdrop-Upgraded crate classname TBD
+  spawn_hacked_crate: { classnames: [], count: 1 }                    # BS HackedCrate classname TBD
+  spawn_ai_patrol:    { classnames: [], count: 0 }                    # needs Expansion's spawn API: later

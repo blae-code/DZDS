@@ -6,7 +6,7 @@
 |---|---|
 | Custom factions (`Scripts/3_Game/DZDS/Factions/DZDSFactions.c`) | written, not yet compiled |
 | Runtime diplomacy overrides (`DZDSDiplomacy.c`, reads `$profile:DZDS/diplomacy.json`) | written, not yet compiled |
-| GM command queue (spawn on demand from `$profile:` JSON) | planned (docs/LIVING_WORLD.md §6) |
+| World layer (`4_World/DZDS/DZDSWorld.c`): site markers at start + GM command queue (`$profile:DZDS/queue/*.json`, allowlisted spawns) | written, not yet compiled |
 | Radio-only GM audio clips | planned (docs/IMMERSION.md) |
 | Extra telemetry (vehicle crashes, site entries) | planned |
 

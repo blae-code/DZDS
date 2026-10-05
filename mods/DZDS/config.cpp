@@ -23,7 +23,9 @@ class CfgMods
 		type="mod";
 		dependencies[]=
 		{
-			"Game"
+			"Game",
+			"World",
+			"Mission"
 		};
 		class defs
 		{
@@ -33,6 +35,22 @@ class CfgMods
 				files[]=
 				{
 					"DZDS/Scripts/3_Game"
+				};
+			};
+			class worldScriptModule
+			{
+				value="";
+				files[]=
+				{
+					"DZDS/Scripts/4_World"
+				};
+			};
+			class missionScriptModule
+			{
+				value="";
+				files[]=
+				{
+					"DZDS/Scripts/5_Mission"
 				};
 			};
 		};
