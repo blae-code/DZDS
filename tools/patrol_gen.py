@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Generate Expansion AI patrols from faction templates, map roles and site control.
 
-Inputs: presets/factions.yaml (behaviour profiles + patrol_templates + initial_control),
-maps/<map>.yaml (locations, bounds). Later the war ledger replaces initial_control.
+Inputs: presets/factions.yaml (behaviour profiles + patrol_templates), maps/<map>.yaml
+(locations, bounds), and site control from the war ledger (gm_state/war_ledger.json) if it
+exists, otherwise factions.yaml initial_control. Claimed player settlements get Settler patrols.
 
 Output: build/patrols.<map>.json (preview). If the mission's
 expansion/settings/AIPatrolSettings.json exists, its "Patrols" list is replaced (with .bak).
@@ -11,7 +12,8 @@ Field names and sentinels come from Expansion's source (ExpansionAIPatrolBase.c)
   MinDistRadius/MaxDistRadius/DespawnRadius -2 = general setting; DespawnTime -1 = general;
   RespawnTime -1 = never, -2 = general.
 
-Usage: tools/patrol_gen.py [--map chernarusplus] [--interim] [--dry-run]
+Usage: tools/patrol_gen.py [--map chernarusplus] [--interim] [--initial] [--dry-run]
+  --initial  ignore the ledger and use initial_control
   --interim  use Expansion built-in factions (before @DZDS is built)
 """
 from __future__ import annotations
@@ -111,11 +113,12 @@ def sites_for(at: str, faction: str, control: dict) -> list[str]:
     raise ValueError(f"unknown 'at': {at}")
 
 
-def generate(map_name: str, interim: bool = False) -> list[dict]:
+def generate(map_name: str, interim: bool = False, control: dict | None = None,
+             locs: dict | None = None) -> list[dict]:
     factions = load("presets/factions.yaml")
     mp = load(f"maps/{map_name}.yaml")
-    control = factions["initial_control"][map_name]
-    locs, bounds = mp["locations"], mp["bounds"]
+    control = control or factions["initial_control"][map_name]
+    locs, bounds = locs or mp["locations"], mp["bounds"]
     patrols = []
     for name, spec in factions["factions"].items():
         engine = spec["interim_faction"] if interim else spec["custom_faction"]
@@ -147,10 +150,18 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--map", default=os.environ.get("GM_MAP", "chernarusplus"))
     ap.add_argument("--interim", action="store_true")
+    ap.add_argument("--initial", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
 
-    patrols = generate(a.map, a.interim)
+    control = locs = None
+    sys.path.insert(0, str(ROOT / "src"))
+    from gamemaster.ledger import STATE, WarLedger
+    if STATE.exists() and not a.initial:
+        led = WarLedger.load(a.map)
+        control, locs = led.holders(), led.locations()
+        print(f"Using war ledger control (turn {led.s.turn})")
+    patrols = generate(a.map, a.interim, control, locs)
     max_ai = sum(p["NumberOfAIMax"] for p in patrols)
     print(f"{len(patrols)} patrols, up to {max_ai} AI if every one spawned "
           f"(they only spawn near players; docs/LIVING_WORLD.md budget ~60 concurrent)")

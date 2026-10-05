@@ -16,6 +16,7 @@ import yaml
 from dotenv import load_dotenv
 
 from .adm import AdmEvent, HealthTracker, LocalAdmTailer, SftpAdmTailer, parse_line
+from .ledger import WarLedger
 from .llm import OllamaGM
 from .rcon import RconClient
 from .schema import GMPayload, resolve_coords
@@ -123,6 +124,10 @@ class Orchestrator:
                            os.environ.get("OLLAMA_MODEL", cfg.get("model", "gemma4:e4b")),
                            voices=cfg.get("faction_voices"))
         self.rcon: RconClient | None = None
+        # The war ledger: every AI death is recorded against the nearest site; `make war-turn`
+        # advances it between restarts. Recent war events open the first digest of a session.
+        self.ledger = WarLedger.load(self.map.get("name", "chernarusplus"))
+        self.pending_war_report = self.ledger.recent_events()
         self.wake = asyncio.Event()
         self.last_pass = 0.0
 
@@ -151,7 +156,12 @@ class Orchestrator:
     async def telemetry_loop(self) -> None:
         async for line in self.make_tailer().lines():
             ev = parse_line(line)
-            if ev and self.agg.ingest(ev):
+            if not ev:
+                continue
+            if ev.is_ai and ev.kind == "death" and ev.faction:
+                killer = ev.by_faction or ("Players" if ev.by and ev.by.startswith("Player") else None)
+                self.ledger.record_death(ev.faction, killer, ev.pos)
+            if self.agg.ingest(ev):
                 self.wake.set()
 
     async def cognition_loop(self) -> None:
@@ -171,6 +181,11 @@ class Orchestrator:
                 continue
             self.last_pass = time.monotonic()
             digest = self.agg.digest(self.locations)
+            if self.pending_war_report:
+                digest = ("War report since the last session (announce it in-world):\n- "
+                          + "\n- ".join(self.pending_war_report) + "\n" + digest)
+                self.pending_war_report = []
+            self.ledger.save()
             log.debug("Digest:\n%s", digest)
             payload = await self.gm.decide(digest, list(self.locations))
             if payload:
@@ -192,6 +207,7 @@ class Orchestrator:
         try:
             await asyncio.gather(self.telemetry_loop(), self.cognition_loop())
         finally:
+            self.ledger.save()
             if self.rcon:
                 self.rcon.close()
             await self.gm.aclose()

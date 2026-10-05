@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-"""Compile presets/diplomacy.yaml into server/profiles/DZDS/diplomacy.json for @DZDS.
+"""Compile presets/diplomacy.yaml + the war ledger's automatic overrides into
+server/profiles/DZDS/diplomacy.json for @DZDS.
 
-Drops expired entries, translates preset faction names to @DZDS class names, and refuses
+Hand-written entries win over ledger entries for the same direction. Drops expired entries, translates preset faction names to @DZDS class names, and refuses
 unknown factions. Usage: tools/diplomacy.py [--date YYYY-MM-DD] [--dry-run]
 """
 from __future__ import annotations
@@ -42,7 +43,14 @@ def main() -> int:
     today = dt.date.fromisoformat(a.date) if a.date else dt.date.today()
     dip = yaml.safe_load((ROOT / "presets" / "diplomacy.yaml").read_text())
     factions = yaml.safe_load((ROOT / "presets" / "factions.yaml").read_text())["factions"]
-    overrides = compile_overrides(dip, factions, today)
+    manual = list(dip.get("overrides") or [])
+    ledger_file = ROOT / "gm_state" / "war_ledger.json"
+    auto = json.loads(ledger_file.read_text()).get("auto_diplomacy", []) if ledger_file.exists() else []
+    taken = {(e["from"], e["to"]) for e in manual}
+    merged = manual + [e for e in auto if (e["from"], e["to"]) not in taken]
+    if auto:
+        print(f"{len(auto)} override(s) from the war ledger")
+    overrides = compile_overrides({"overrides": merged}, factions, today)
     for o in overrides:
         print(f"  {o['From']} -> {o['To']}: {'friendly' if o['Friendly'] else 'hostile'}")
     print(f"{len(overrides)} active override(s)")

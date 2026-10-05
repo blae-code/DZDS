@@ -95,14 +95,23 @@ def check_deps(mods: list[dict]) -> int:
     enabled = {m["id"] for m in mods if m.get("enabled", True)}
     by_id = {m["id"]: m for m in mods}
     missing: dict[int, list[str]] = {}
+    unchecked: list[str] = []
     for m in mods:
         if not m.get("enabled", True):
             continue
-        for dep in required_items(m["id"]):
+        try:
+            deps = required_items(m["id"])
+        except (urllib.error.URLError, TimeoutError) as e:
+            unchecked.append(f"{m['name']} ({e})")
+            continue
+        for dep in deps:
             if dep not in enabled:
                 missing.setdefault(dep, []).append(m["name"])
+    if unchecked:
+        print(f"Dependencies: {len(unchecked)} mod(s) not checked (Steam rate limit); rerun later "
+              f"to fill the cache:\n  " + "\n  ".join(unchecked))
     if not missing:
-        print("Dependencies: all required Workshop items are enabled.")
+        print("Dependencies: all required Workshop items (of those checked) are enabled.")
         return 0
     titles = fetch(list(missing))
     print("Dependencies NOT enabled in mods.yaml:")

@@ -1,0 +1,53 @@
+# War ledger rules (docs/WAR_LEDGER.md). The ledger (gm_state/war_ledger.json) records what
+# happened in the world and advances one "war turn" per server restart (`make war-turn`).
+# Everything here is tunable; tests pin the behaviour, not the numbers.
+
+site_radius: 600            # metres: an event this close to a named site counts toward it
+min_hours_between_turns: 2  # guard so prepare-restart can be rerun without double-advancing
+
+strength:                   # 0..100 per faction: how much fight it has left
+  start: 60
+  regen_per_turn: 3
+  per_resource_site: 1      # + per resource-producing site held (resources in factions.yaml)
+  loss_per_death: 1         # - per member killed this turn
+
+control:
+  pressure_to_contest: 8    # kills by one side at a held site in one turn -> site contested
+  hold_min_pressure: 5      # contested -> held when one side has >= this ...
+  hold_dominance: 2.0       # ... and >= 2x the runner-up's pressure
+
+offscreen:                  # where no player was involved this turn
+  seed_from_turn: true      # deterministic per turn (reproducible, testable)
+  take_contested_chance: 0.25   # x (strength/100) for the best-placed faction
+  contest_held_chance: 0.10     # x (attacker strength - holder strength)/100, if positive
+
+standing:                   # how each faction regards the players' group (-100..100)
+  start: { Settlers: 50, Peacekeepers: 10, Jackals: -60, Karkas: -40, Rust: -40 }
+  player_kill: -6           # players kill one of faction F -> standing[F]
+  enemy_bonus: 2            # ... and each faction hostile to F gains this
+  decay_per_turn: 2         # drift back toward start each turn
+  thresholds:               # crossing these writes timed diplomacy overrides + a radio event
+    - faction: Peacekeepers
+      below: -30
+      days: 7
+      event: "UN lockdown: Task Force Blue Shield now treats settlers as hostile near its zones"
+      overrides: [{ from: Settlers, to: Peacekeepers, stance: hostile }]
+    - faction: Karkas
+      above: 40
+      days: 14
+      event: "The Karkas grant the settlers passage through the high country"
+      overrides: [{ from: Settlers, to: Karkas, stance: friendly }, { from: Karkas, to: Settlers, stance: friendly }]
+    - faction: Rust
+      above: 40
+      days: 14
+      event: "The Rust Syndicate extends water rights to the settlers"
+      overrides: [{ from: Settlers, to: Rust, stance: friendly }, { from: Rust, to: Settlers, stance: friendly }]
+    - faction: Settlers
+      below: 0
+      days: 7
+      event: "Settler camps no longer trust the players' group"
+      flag: settlers_distrust     # no override; consumed by quests/recruitment design (docs/WAR_LEDGER.md)
+
+# Players fight FOR the Settlers: their kills at a site count as Settler pressure, so clearing
+# a site liberates it for the settlement network.
+players_fight_for: Settlers

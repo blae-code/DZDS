@@ -173,5 +173,5 @@ the style target, and also the first scripts to record as radio clips for the @D
 2. Let Expansion generate example loadouts; author `DZDS_<Faction>` + rank variants.
 3. [test] generated patrols: ground placement of y=0 waypoints, HALT/ROAMING behaviour, budget.
 4. Playtest recruitment: persistence, vehicles, garrisons [test].
-5. War ledger: replace `initial_control` with live control, and write diplomacy events.
+5. ~~War ledger~~ built: live control drives patrols and diplomacy (docs/WAR_LEDGER.md).
 6. Per-player reputation-aware hostility in @DZDS (layer 5), once the Hardline API is read.

@@ -84,7 +84,7 @@ zombies. Custom classes in @DZDS (`mods/DZDS`); tests check `presets/factions.ya
 - Later, with the @DZDS mod (§6): spawn reinforcements and events right away instead of
   waiting for a restart.
 
-### 3c. Campaign: the war ledger (next build step)
+### 3c. Campaign: the war ledger (built: docs/WAR_LEDGER.md)
 A persistent state file on your PC (`gm_state/war_ledger.json`), advanced once per restart:
 
 1. **Read outcomes** of the last cycle from `.ADM`: kills by faction pair and place, which
