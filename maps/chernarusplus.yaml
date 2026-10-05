@@ -1,0 +1,20 @@
+# Named locations for ChernarusPlus. Coordinates are [x, z] on the map plane and are
+# APPROXIMATE town centres. Refine with VPPAdminTools before using for precise spawns.
+# Mission and GM logic reference these names, never raw numbers (CLAUDE.md rule 7).
+name: chernarusplus
+mission: dayzOffline.chernarusplus
+bounds: [0, 0, 15360, 15360]   # xmin, zmin, xmax, zmax
+locations:
+  Chernogorsk:       [6700, 2500]
+  Elektrozavodsk:    [10400, 2200]
+  Balota Airfield:   [4500, 2500]
+  Zelenogorsk:       [2700, 5200]
+  Stary Sobor:       [6100, 7700]
+  Vybor:             [3800, 8900]
+  Northwest Airfield: [4600, 10200]
+  Gorka:             [9500, 8900]
+  Berezino:          [12300, 9500]
+  Krasnostav:        [11200, 12300]
+  Severograd:        [8000, 12700]
+  Novodmitrovsk:     [11500, 14400]
+  Tisy Military:     [1600, 14000]

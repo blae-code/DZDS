@@ -1,0 +1,30 @@
+[project]
+name = "dzds-gamemaster"
+version = "0.1.0"
+description = "Local LLM Game Master + tooling for a DayZ PvE living sandbox"
+requires-python = ">=3.11"
+dependencies = [
+  "asyncssh>=2.14",
+  "httpx>=0.27",
+  "pydantic>=2.6",
+  "python-dotenv>=1.0",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "pytest-asyncio>=0.23"]
+
+[project.scripts]
+dzds-gm = "gamemaster.gm_orchestrator:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "tools"]
+asyncio_mode = "auto"

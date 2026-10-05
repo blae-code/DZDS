@@ -1,0 +1,98 @@
+import asyncio
+
+import pytest
+
+from gamemaster.adm import HealthTracker, parse_line
+from gamemaster.gm_orchestrator import EventAggregator
+from gamemaster.llm import extract_json, strip_thoughts
+from gamemaster.rcon import COMMAND, LOGIN, RconClient, build_packet, parse_packet
+from gamemaster.schema import GMPayload, WorldAction, resolve_coords
+
+
+# ---- RCON ----
+def test_packet_roundtrip():
+    pkt = build_packet(COMMAND, b"\x05players")
+    assert pkt[:2] == b"BE"
+    assert parse_packet(pkt) == (COMMAND, b"\x05players")
+
+
+def test_bad_crc_rejected():
+    pkt = bytearray(build_packet(LOGIN, b"pw"))
+    pkt[-1] ^= 0xFF
+    assert parse_packet(bytes(pkt)) is None
+
+
+async def test_multipart_response_reassembled():
+    c = RconClient("127.0.0.1", 2310, "pw")
+    fut = asyncio.get_running_loop().create_future()
+    c._pending[7] = fut
+    c._on_packet(build_packet(COMMAND, bytes([7, 0, 2, 1]) + b"world"))
+    assert not fut.done()
+    c._on_packet(build_packet(COMMAND, bytes([7, 0, 2, 0]) + b"hello "))
+    assert fut.result() == "hello world"
+
+
+# ---- ADM ----
+HIT = ('14:02:11 | Player "Bob" (id=abc= pos=<6712.3, 301.2, 2510.9>)[HP: 42.5] '
+       'hit by Infected into Torso(12) for 10.1 damage (MeleeInfected)')
+
+
+def test_parse_hit():
+    ev = parse_line(HIT)
+    assert ev.kind == "hit" and ev.player == "Bob" and ev.hp == 42.5
+    assert ev.pos == (6712.3, 2510.9)
+    assert "infected" in ev.tags
+
+
+def test_parse_connect():
+    ev = parse_line('10:00:00 | Player "Alice" is connected (id=xyz=)')
+    assert ev.kind == "connect" and ev.player == "Alice"
+
+
+def test_health_tracker():
+    h = HealthTracker(threshold=40, window=120)
+    assert not h.observe("Bob", 100, now=0)
+    assert not h.observe("Bob", 80, now=10)
+    assert h.observe("Bob", 55, now=20)
+
+
+def test_aggregator_digest():
+    agg = EventAggregator()
+    assert agg.ingest(parse_line('10:00:00 | Player "Bob" is connected (id=x=)'))
+    agg.ingest(parse_line(HIT))
+    d = agg.digest({"Chernogorsk": [6700, 2500], "Berezino": [12300, 9500]})
+    assert "Bob" in d and "near Chernogorsk" in d
+
+
+# ---- LLM output handling ----
+def test_strip_thoughts_and_extract():
+    raw = '<|channel>thought I should drop a crate<channel|>```json\n{"narrative_broadcast": "hi"}\n```'
+    assert "thought" not in strip_thoughts(raw)
+    assert extract_json(raw) == {"narrative_broadcast": "hi"}
+
+
+def test_payload_sanitised():
+    p = GMPayload.model_validate({
+        "narrative_broadcast": "line1\nline2 " + "x" * 500,
+        "world_actions": [
+            {"type": "trigger_event", "target": "spawn_airdrop", "coords": [4512, 10240]},
+            {"type": "trigger_event", "target": "delete_all_bases"},
+        ],
+    })
+    assert "\n" not in p.narrative_broadcast and len(p.narrative_broadcast) <= 200
+    assert [a.target for a in p.world_actions] == ["spawn_airdrop"]
+
+
+def test_resolve_coords_prefers_location_and_clamps():
+    locs = {"Berezino": [12300, 9500]}
+    b = (0, 0, 15360, 15360)
+    assert resolve_coords(WorldAction(target="spawn_airdrop", location="Berezino",
+                                      coords=(1, 1)), locs, b) == (12300, 9500)
+    assert resolve_coords(WorldAction(target="spawn_airdrop", coords=(-50, 99999)),
+                          locs, b) == (0, 15360)
+
+
+@pytest.mark.parametrize("delay", [-1, 5000])
+def test_delay_bounds(delay):
+    with pytest.raises(Exception):
+        WorldAction(target="spawn_airdrop", delay_seconds=delay)

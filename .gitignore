@@ -1,0 +1,28 @@
+# Secrets
+.env
+*.pem
+id_*
+
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+
+# Backups / snapshots
+backups/*
+!backups/.gitkeep
+*.bak
+
+# Server runtime noise (keep configs, drop logs & persistence)
+server/profiles/*.ADM
+server/profiles/*.RPT
+server/profiles/*.log
+server/profiles/**/*.log
+server/profiles/BattlEye/*.log
+server/mpmissions/*/storage_*/
+server/profiles/BattlEye/beserver_x64*.cfg
+
+# GM daemon state
+gm_state/

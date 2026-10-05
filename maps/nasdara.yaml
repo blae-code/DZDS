@@ -1,0 +1,7 @@
+# Nasdara (Badlands) placeholder for spec Phase 5.
+# Fill in bounds, mission name and named locations when the map ships, keeping the SAME
+# location roles (airfields, military, towns) so missions port as a data swap.
+name: nasdara
+mission: TBD
+bounds: [0, 0, 0, 0]   # TODO: set real map extents
+locations: {}

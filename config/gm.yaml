@@ -1,0 +1,7 @@
+# GM daemon tuning. Secrets/hosts live in .env; this file is safe to commit.
+map: chernarusplus            # overridden by GM_MAP; loads maps/<map>.yaml
+model: gemma4:e4b             # overridden by OLLAMA_MODEL
+heartbeat_seconds: 720        # periodic pass (spec: 10–15 min)
+min_seconds_between_passes: 120
+adm_poll_seconds: 5
+run_when_empty: false         # skip LLM passes when nobody is online

@@ -1,0 +1,11 @@
+# Calibration overlay applied by tools/apply_ai_calibration.py onto the mirrored
+# server/profiles/ExpansionMod/Settings/AISettings.json. Only these keys are touched;
+# everything else in the server's file is preserved as-is.
+#
+# Bounds (enforced by the tool, see CLAUDE.md rule 5):
+#   AccuracyMin 0.25–0.32 | AccuracyMax 0.45–0.52 | ThreatDistanceLimit <= 300
+target: ExpansionMod/Settings/AISettings.json
+values:
+  AccuracyMin: 0.28
+  AccuracyMax: 0.48
+  ThreatDistanceLimit: 280.0
