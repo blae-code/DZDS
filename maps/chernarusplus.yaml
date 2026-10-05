@@ -18,6 +18,10 @@ locations:
   Severograd:         [8000, 12700]
   Novodmitrovsk:      [11500, 14400]
   Tisy Military:      [1600, 14000]
+  Green Mountain:     [3700, 5990]     # radio relay tower
+  Altar:              [8130, 9280]     # TV tower on the ridge
+  Black Mountain:     [10280, 12050]   # summit relay
+  Topolka Dam:        [10360, 3600]    # reservoir north of Elektrozavodsk
 roles:
   airfield:      [Northwest Airfield, Balota Airfield, Krasnostav]
   military:      [Tisy Military, Northwest Airfield, Balota Airfield]
@@ -26,3 +30,5 @@ roles:
   industrial:    [Chernogorsk, Elektrozavodsk, Berezino]
   road_junction: [Stary Sobor, Gorka]
   remote:        [Tisy Military, Novodmitrovsk]
+  high_ground:   [Green Mountain, Altar, Black Mountain]
+  water:         [Topolka Dam]

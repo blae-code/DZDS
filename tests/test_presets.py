@@ -16,46 +16,90 @@ def load(rel):
     return yaml.safe_load((ROOT / rel).read_text())
 
 
-# IsFriendly() relations transcribed from Expansion's source (Factions/*.c, 2026-10).
-# "Passive"/"Observers" omitted. Update this if Expansion changes its factions.
+import re
+
+from apply_ai_calibration import PATROL_BOUNDS
+
+DZDS_FACTIONS = ROOT / "mods" / "DZDS" / "Scripts" / "3_Game" / "DZDS" / "Factions" / "DZDSFactions.c"
+
+# Built-in IsFriendly() relations transcribed from Expansion's source (Factions/*.c, 2026-10),
+# for the interim mapping used before @DZDS is built.
 ENGINE_FRIENDLY = {
     "West": {"West", "Civilian"},
     "East": {"East", "Civilian"},
-    "Raiders": {"Raiders"},  # literally IsPassive() only, but never fights its own groups
-    "Civilian": {"West", "East", "Raiders", "Civilian", "Infected"},
-    "Infected": {"Infected"},
+    "Raiders": {"Raiders"},
+    "Civilian": {"West", "East", "Raiders", "Civilian", "Guards", "Mercenaries", "Shamans"},
     "Guards": {"Guards"},
     "Mercenaries": {"Mercenaries"},
+    "Shamans": {"Shamans"},
 }
+BEHAVIOURS = {"HALT", "LOOP", "ALTERNATE", "ONCE", "HALT_OR_LOOP", "HALT_OR_ALTERNATE",
+              "LOOP_OR_ALTERNATE", "ROAMING", "ROAMING_LOCAL"}
+SPEEDS = {"WALK", "JOG", "SPRINT", "RANDOM", "RANDOM_NONSTATIC"}
+STANCES = {"STANDING", "CROUCHED", "PRONE"}
+FORMATIONS = {"Column", "File", "Vee", "Wall", "RANDOM"}
 
 
-def test_faction_stances_match_engine():
+def dzds_relations() -> dict[str, set[str]]:
+    """Parse IsFriendly() in our @DZDS faction source: class -> friendly class names."""
+    src = DZDS_FACTIONS.read_text()
+    rel = {}
+    for m in re.finditer(r"class eAIFaction(DZDS\w+) : eAIFaction\s*\{(.*?)\n\};", src, re.S):
+        body = m.group(2)
+        fn = re.search(r"bool IsFriendly\(.*?\{(.*?)\n\t\}", body, re.S).group(1)
+        rel[m.group(1)] = set(re.findall(r"IsInherited\(eAIFaction(DZDS\w+)\)\) return true", fn))
+    return rel
+
+
+def test_preset_stances_match_dzds_source():
     f = load("presets/factions.yaml")["factions"]
-    engine = {name: spec["engine_faction"] for name, spec in f.items()}
+    rel = dzds_relations()
+    custom = {name: spec["custom_faction"] for name, spec in f.items()}
+    assert {c for c in custom.values() if c} == set(rel), "preset and DZDSFactions.c disagree on factions"
     for name, spec in f.items():
-        if engine[name] is None:  # vanilla Infected: not an Expansion faction
+        if not custom[name]:
             continue
         for other, stance in spec["stance"].items():
-            if engine[other] is None:
-                continue  # zombies attack everyone regardless of faction
-            friendly = engine[other] in ENGINE_FRIENDLY[spec["engine_faction"]]
-            assert (stance == "friendly") == friendly, f"{name} -> {other}: preset says {stance}"
+            if not custom[other]:
+                continue  # vanilla zombies attack everyone regardless of faction
+            friendly = custom[other] in rel[custom[name]]
+            assert (stance in {"friendly", "neutral"}) == friendly, f"{name} -> {other}: preset says {stance}"
 
 
-def test_faction_rules_from_spec():
+def test_blueprint_rules():
     f = load("presets/factions.yaml")["factions"]
-    # Survivors never initiate; the two armies are at war; Raiders hostile to all humans;
-    # Infected are the universal enemy.
-    assert all(v == "friendly" for k, v in f["Survivors"]["stance"].items() if k != "Infected")
-    assert f["CDF"]["stance"]["ChDKZ"] == f["ChDKZ"]["stance"]["CDF"] == "hostile"
-    assert all(v == "hostile" for k, v in f["Raiders"]["stance"].items() if k != "Raiders")
-    for name in ("CDF", "ChDKZ", "Raiders", "Survivors"):
+    tribes = ["Jackals", "Karkas", "Rust"]
+    for a in tribes:                      # three-way blood feud
+        for b in tribes:
+            if a != b:
+                assert f[a]["stance"][b] == "hostile"
+        assert f[a]["stance"]["Settlers"] == "hostile"
+        assert f[a]["stance"]["Peacekeepers"] == "hostile"
+    assert f["Peacekeepers"]["stance"]["Settlers"] == "neutral"   # UN armed neutrality
+    assert f["Settlers"]["recruitable"] and not any(f[t]["recruitable"] for t in tribes)
+    for name in ("Settlers", "Peacekeepers", *tribes):
         assert f[name]["stance"]["Infected"] == "hostile"
 
 
-def test_faction_combat_within_bounds_and_roles_valid():
+def test_interim_factions_exist_in_engine():
+    for name, spec in load("presets/factions.yaml")["factions"].items():
+        if spec["interim_faction"]:
+            assert spec["interim_faction"] in ENGINE_FRIENDLY, name
+
+
+def test_behaviour_profiles_use_real_values_and_bounds():
+    for name, spec in load("presets/factions.yaml")["factions"].items():
+        b = spec.get("behaviour")
+        if not b:
+            continue
+        assert b["Behaviour"] in BEHAVIOURS, name
+        assert b["Speed"] in SPEEDS and b["UnderThreatSpeed"] in SPEEDS, name
+        assert b["DefaultStance"] in STANCES and b["Formation"] in FORMATIONS, name
+        assert check_bounds(b, PATROL_BOUNDS) == [], name
+
+
+def test_roles_and_resources_valid():
     p = load("presets/factions.yaml")
-    assert check_bounds(p["combat"]) == []
     roles = set(load("maps/_roles.yaml")["roles"])
     for name, spec in p["factions"].items():
         assert set(spec.get("holds_roles", [])) <= roles, name

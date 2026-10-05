@@ -45,7 +45,7 @@ def test_clamp_respects_sentinels_and_bounds():
     changes = []
     cal.clamp(data, changes)
     assert data["Patrols"][0] == {"AccuracyMax": 0.52, "AccuracyMin": -1, "ThreatDistanceLimit": 300.0}
-    assert data["Patrols"][1]["AccuracyMin"] == 0.25
+    assert data["Patrols"][1]["AccuracyMin"] == 0.20   # per-patrol floor
     assert len(changes) == 3
 
 

@@ -12,3 +12,5 @@ roles:
   industrial: []
   road_junction: []
   remote: []
+  high_ground: []     # Karkas ridges/canyons
+  water: []           # wells, pumpjacks' water, reservoirs: the most valuable role on an arid map

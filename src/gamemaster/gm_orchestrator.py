@@ -31,8 +31,13 @@ def load_config() -> dict:
     cfg["map"] = yaml.safe_load((ROOT / "maps" / f"{map_name}.yaml").read_text())
     cfg["dry_run"] = os.environ.get("GM_DRY_RUN", "1") != "0"
     factions = yaml.safe_load((ROOT / "presets" / "factions.yaml").read_text())["factions"]
-    cfg["faction_names"] = {spec["engine_faction"]: name for name, spec in factions.items()
-                            if spec.get("engine_faction")}
+    # Logs carry the engine class name: our @DZDS factions (DZDSJackals) or, before @DZDS
+    # is built, the interim built-ins (Raiders). Map both to the in-world display name.
+    cfg["faction_names"] = {}
+    for name, spec in factions.items():
+        for key in ("custom_faction", "interim_faction"):
+            if spec.get(key):
+                cfg["faction_names"][spec[key]] = spec.get("display", name).split(" (")[0]
     return cfg
 
 
@@ -47,7 +52,7 @@ class EventAggregator:
     SIGNIFICANT = {"death", "unconscious", "health_drop", "connect"}
 
     def __init__(self, maxlen: int = 200, faction_names: dict[str, str] | None = None) -> None:
-        self.faction_names = faction_names or {}  # engine faction -> our name (West -> CDF)
+        self.faction_names = faction_names or {}  # engine faction -> display name (DZDSJackals -> The Jackal Cohort)
         self.events: deque[AdmEvent] = deque(maxlen=maxlen)
         self.online: set[str] = set()
         self.last_pos: dict[str, tuple[float, float]] = {}

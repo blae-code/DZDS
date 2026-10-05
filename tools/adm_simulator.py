@@ -29,8 +29,9 @@ ATTACKERS = [
 ]
 
 
-FACTION_PAIRS = [("West", "East"), ("East", "West"), ("Raiders", "Civilian"),
-                 ("Raiders", "West"), ("East", "Raiders")]
+FACTION_PAIRS = [("DZDSJackals", "DZDSKarkas"), ("DZDSKarkas", "DZDSRust"),
+                 ("DZDSRust", "DZDSJackals"), ("DZDSJackals", "DZDSSettlers"),
+                 ("DZDSPeacekeepers", "DZDSJackals"), ("DZDSRust", "DZDSPeacekeepers")]
 
 
 class Sim:

@@ -22,18 +22,23 @@ ROOT = Path(__file__).resolve().parent.parent
 PRESET = ROOT / "presets" / "expansion_ai_calibration.yaml"
 PROFILES = ROOT / "server" / "profiles"
 
-BOUNDS = {
+BOUNDS = {  # global AISettings
     "AccuracyMin": (0.25, 0.32),
     "AccuracyMax": (0.45, 0.52),
     "ThreatDistanceLimit": (0.0, 300.0),
 }
+PATROL_BOUNDS = {  # per-patrol overrides: wider so factions can feel different
+    "AccuracyMin": (0.20, 0.35),
+    "AccuracyMax": (0.35, 0.52),
+    "ThreatDistanceLimit": (0.0, 300.0),
+}
 
 
-def check_bounds(values: dict) -> list[str]:
+def check_bounds(values: dict, bounds: dict = BOUNDS) -> list[str]:
     errs = []
     for key, val in values.items():
-        if key in BOUNDS:
-            lo, hi = BOUNDS[key]
+        if key in bounds:
+            lo, hi = bounds[key]
             if not (lo <= float(val) <= hi):
                 errs.append(f"{key}={val} outside [{lo}, {hi}]")
     if values.get("AccuracyMin", 0) > values.get("AccuracyMax", 1):
@@ -60,8 +65,8 @@ def clamp(node, changes: list) -> None:
     """Pull bounded numeric keys into range wherever they appear; keep 0/negative sentinels ("use global")."""
     if isinstance(node, dict):
         for k, v in node.items():
-            if k in BOUNDS and isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0:
-                lo, hi = BOUNDS[k]
+            if k in PATROL_BOUNDS and isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0:
+                lo, hi = PATROL_BOUNDS[k]
                 new = min(max(v, lo), hi)
                 if new != v:
                     changes.append((k, v, new))

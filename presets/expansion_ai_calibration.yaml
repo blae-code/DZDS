@@ -6,13 +6,19 @@
 #         are only CLAMPED into the spec bounds; negative sentinels (-1 = "use global")
 #         are left alone.
 #
-# Bounds (enforced, CLAUDE.md rule 5): AccuracyMin 0.25–0.32 | AccuracyMax 0.45–0.52 |
-# ThreatDistanceLimit <= 300
+# Bounds (enforced, CLAUDE.md rule 5):
+#   global:      AccuracyMin 0.25–0.32 | AccuracyMax 0.45–0.52 | ThreatDistanceLimit <= 300
+#   per patrol:  AccuracyMin 0.20–0.35 | AccuracyMax 0.35–0.52 | ThreatDistanceLimit <= 300
+#                (wider so factions can differ: settlers spray, Karkas are patient marksmen)
+# Values: Faction Blueprint §4E, keeping only keys that exist in Expansion's AISettings.
 target: ExpansionMod/Settings/AISettings.json
 values:
-  AccuracyMin: 0.28
-  AccuracyMax: 0.48
-  ThreatDistanceLimit: 280.0
+  AccuracyMin: 0.25
+  AccuracyMax: 0.46
+  ThreatDistanceLimit: 260.0
+  DamageMultiplier: 1.0
+  SniperProneDistanceThreshold: 140.0
+  Vaulting: true
   # Put AI hits/kills (with faction="...") into the .ADM so the GM can see the war.
   LogAIHitBy: true
   LogAIKilled: true

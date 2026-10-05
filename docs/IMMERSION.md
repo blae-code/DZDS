@@ -39,7 +39,8 @@ Weak spots:
    |---|---|
    | your group's channel | each other |
    | civil emergency | GM broadcasts: warnings, rumours, war reports |
-   | CDF / ChDKZ channels | **intercepted faction chatter** when their patrols are near |
+   | UN channel | checkpoint advisories, Green Zone notices |
+   | tribal channels | **intercepted Jackal / Karkas / Rust chatter** when their patrols are near |
 5. **Make GM broadcasts actual radio audio** (via the @DZDS mod in LIVING_WORLD §6).
    Today the GM uses RCON `say -1`, which shows as on-screen text for everyone, with no
    radio needed. DayZ can't synthesize speech at runtime, but the mod can ship a **library of
@@ -74,14 +75,16 @@ Weak spots:
 | Doc's Animals (2886393751) | Trophy mounts, skin rugs, more species | Optional: nice for homesteading |
 
 ### Polish we do ourselves (no mods)
-- **Faction loadouts.** Expansion loadout JSONs give each faction a recognisable look: CDF
-  in woodland camo with Western kit, ChDKZ in mixed Soviet gear and armbands, Raiders in
-  civilian clothes with mismatched gear, Survivors in plain civilian clothes. **Identifying friend
+- **Faction loadouts.** Expansion loadout JSONs give each faction a recognisable look (from
+  the Faction Blueprint): UN blue helmets and berets, Rust hi-vis vests and welder masks,
+  Karkas fur hats and ghillie wraps, Jackal gas masks and skull bandanas, Settlers in work
+  and hunting clothes. **Identifying friend
   or foe by uniform is diegetic** and needs no markers.
 - **Loot-on-death per faction** (`LootDropOnDeath`): soldiers drop military scraps, Survivors drop food.
   What you find on a body tells you who fought there.
 - **Patrol behaviour variety**: `Formation`, `Speed`/`UnderThreatSpeed`, `DefaultStance`,
-  `LootingBehaviour` per faction, so CDF move in disciplined files and Raiders straggle.
+  `LootingBehaviour` per faction, so the UN move in disciplined columns and Jackals straggle
+  (profiles in `presets/factions.yaml`, docs/FACTIONS.md §3).
 
 ### Rejected
 TalkingNPC (stale since 2024; trigger-based lines), AI Bandit Voices (only for the AI Bandits

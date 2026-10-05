@@ -1,82 +1,196 @@
-# Living-world faction design (docs/LIVING_WORLD.md), mapped onto Expansion AI's REAL
-# built-in factions.
+# Faction design: the user's Faction Architecture Blueprint (2026-10-05), mapped onto what
+# DayZ Expansion AI actually supports. Full write-up: docs/FACTIONS.md.
 #
-# Facts from the Expansion source (DayZExpansion/AI/Scripts/.../Factions/*.c):
-#   - Factions are compiled script classes. Relations are hard-coded in IsFriendly(); there
-#     is NO JSON faction config (the spec's profiles/ExpansionMod/AI/Factions/ doesn't exist).
-#   - A patrol picks its faction by name ("Faction": "East" in AIPatrolSettings.json).
-#   - Custom factions/relations need a small script mod (planned: @DZDS, see design doc).
-#   - Players can be auto-assigned a faction on connect via AISettings.PlayerFactions.
+# Engine facts (Expansion source):
+#   - Factions are compiled script classes; there are no Faction_*.json files. Ours live in
+#     mods/DZDS/Scripts/3_Game/DZDS/Factions/DZDSFactions.c (@DZDS mod).
+#   - custom_faction: the @DZDS class name used in patrols ("Faction": "DZDSJackals").
+#   - interim_faction: closest Expansion built-in, used until @DZDS is built and signed.
+#   - Stance is the ROW faction's IsFriendly() toward the column. "neutral" = IsFriendly true
+#     but provocation (aiming, hitting, firing) makes them fight: Expansion's threat system.
+#   - Players join DZDSSettlers via AISettings PlayerFactions (presets/overlays/expansion_ai.yaml).
 #
-# `engine_faction` is the Expansion class used; `stance` documents the resulting behaviour
-# (derived from the source, so tests can check our intent matches what the engine does).
-# Stance toward Players depends on the player-alignment option chosen (docs, open decision 1).
+# behaviour: per-patrol AIPatrolSettings fields (names/values from Expansion's source):
+#   Behaviour HALT|LOOP|ALTERNATE|ONCE|HALT_OR_LOOP|HALT_OR_ALTERNATE|LOOP_OR_ALTERNATE|ROAMING|ROAMING_LOCAL
+#   Speed/UnderThreatSpeed WALK|JOG|SPRINT|RANDOM|RANDOM_NONSTATIC   DefaultStance STANDING|CROUCHED|PRONE
+#   Formation Column|File|Vee|Wall|RANDOM   LootingBehaviour flags: DEFAULT|ALL|WEAPONS|FOOD|BANDAGES|CLOTHING|NONE
+# Accuracy per faction must stay inside PATROL bounds (tools/apply_ai_calibration.py):
+#   AccuracyMin 0.20–0.35, AccuracyMax 0.35–0.52, ThreatDistanceLimit <= 300.
 
 factions:
-  CDF:
-    engine_faction: West
-    lore: Chernarus Defence Forces remnant. Disciplined, holds military sites and airfields,
-      escorts fuel and arms between bases. Protects civilians.
-    stance: { CDF: friendly, ChDKZ: hostile, Raiders: hostile, Survivors: friendly, Infected: hostile }
-    loadout: WestLoadout        # Expansion default; replace with a CDF-themed loadout file
-    holds_roles: [military, airfield]
-  ChDKZ:
-    engine_faction: East
-    lore: Insurgent militia holding the industrial east and north. Takes fuel and
-      factories, raids CDF supply. Tolerates civilians.
-    stance: { ChDKZ: friendly, CDF: hostile, Raiders: hostile, Survivors: friendly, Infected: hostile }
-    loadout: EastLoadout
-    holds_roles: [industrial, road_junction]
-  Raiders:
-    engine_faction: Raiders
-    lore: Bandit crews. Hostile to everyone, hunt convoys, survivors and stragglers.
-    stance: { Raiders: friendly, CDF: hostile, ChDKZ: hostile, Survivors: hostile, Infected: hostile }
-    loadout: BanditLoadout
-    holds_roles: [remote]
-  Survivors:
-    engine_faction: Civilian
-    lore: Scavengers and families in the towns. Never start fights; prey for Raiders.
-    stance: { Survivors: friendly, CDF: friendly, ChDKZ: friendly, Raiders: friendly, Infected: hostile }
-    loadout: SurvivorLoadout
-    holds_roles: [inland_town, coastal_town]
+  Settlers:
+    display: Frontier Settlers
+    custom_faction: DZDSSettlers
+    interim_faction: Civilian
+    lore: Displaced civilians, mechanics and survivalists; the core of the player's settlement network.
+    player_standing: allied (players are members)
+    stance: { Settlers: friendly, Peacekeepers: neutral, Jackals: hostile, Karkas: hostile, Rust: hostile, Infected: hostile }
+    recruitable: true
+    behaviour:
+      Behaviour: HALT_OR_LOOP
+      Speed: WALK
+      UnderThreatSpeed: SPRINT
+      DefaultStance: STANDING
+      Formation: File
+      FormationLooseness: 0.4
+      AccuracyMin: 0.22
+      AccuracyMax: 0.38
+      ThreatDistanceLimit: 180.0
+      NoiseInvestigationDistanceLimit: 80.0
+      EnableFlankingOutsideCombat: 0
+      LootingBehaviour: FOOD
+      CanBeLooted: true
+    loadout:
+      apparel: [hiking gear, hunter jackets, work shirts, canvas backpacks, beanies, work boots]
+      weapons: [CR-527, Blaze, Repeater, double-barrel shotgun, 9mm pistols, SG5-K]
+    spawn_archetypes: [rural farmsteads, player base perimeters, roadside transport trucks]
+    holds_roles: [inland_town]
+
+  Peacekeepers:
+    display: UN Peacekeeping Remnants (Task Force Blue Shield)
+    custom_faction: DZDSPeacekeepers
+    interim_faction: Guards
+    lore: Stranded UN mission holding humanitarian Green Zones, radar hubs and airfields.
+    player_standing: armed neutrality (fire only if provoked inside their perimeter)
+    stance: { Peacekeepers: friendly, Settlers: neutral, Jackals: hostile, Karkas: hostile, Rust: hostile, Infected: hostile }
+    recruitable: false   # Guard-type; CanRecruitGuards stays off
+    behaviour:
+      Behaviour: HALT_OR_ALTERNATE
+      Speed: WALK
+      UnderThreatSpeed: JOG
+      DefaultStance: STANDING
+      Formation: Column
+      FormationLooseness: 0.1
+      AccuracyMin: 0.32
+      AccuracyMax: 0.50
+      ThreatDistanceLimit: 260.0
+      NoiseInvestigationDistanceLimit: 150.0
+      EnableFlankingOutsideCombat: 0
+      LootingBehaviour: NONE
+      CanBeLooted: false   # UN gear isn't free loot; keeps them worth respecting
+    loadout:
+      apparel: [UN blue ballistic helmets, blue berets, olive/tan BDUs, combat boots, UN plate carriers]
+      weapons: [M16A2, MP5, FAL, Mosin 91/30 (marksmen), Glock/M9]
+    spawn_archetypes: [road checkpoints, medical field stations, radar relay towers, cargo airfields]
+    holds_roles: [airfield, military]
+
+  Jackals:
+    display: The Jackal Cohort
+    custom_faction: DZDSJackals
+    interim_faction: Raiders
+    lore: Ruthless lowland nomads; highway ambushes and hit-and-run raids on aid convoys.
+    player_standing: hostile
+    stance: { Jackals: friendly, Settlers: hostile, Peacekeepers: hostile, Karkas: hostile, Rust: hostile, Infected: hostile }
+    recruitable: false
+    behaviour:
+      Behaviour: ROAMING
+      Speed: JOG
+      UnderThreatSpeed: SPRINT
+      DefaultStance: STANDING
+      Formation: RANDOM
+      FormationLooseness: 0.9
+      AccuracyMin: 0.24
+      AccuracyMax: 0.40
+      ThreatDistanceLimit: 220.0
+      NoiseInvestigationDistanceLimit: 300.0   # they come to gunfire
+      MaxFlankingDistance: 250.0
+      EnableFlankingOutsideCombat: 1           # push and overwhelm
+      LootingBehaviour: ALL                    # strip bodies
+      CanBeLooted: true
+    loadout:
+      apparel: [mismatched surplus, leather jackets, gas masks, cargo pants, skull bandanas, improvised chest rigs]
+      weapons: [sawn-off shotgun, BK-133, worn SKS, IJ-70, rare low-durability AKM]
+    spawn_archetypes: [dry-wash canyon ambushes, highway pileups, hilltop lookout campfires]
+    holds_roles: [road_junction]
+
+  Karkas:
+    display: Karkas Mountain Clan
+    custom_faction: DZDSKarkas
+    interim_faction: Shamans          # built-in: hostile to all humans, wildlife leaves them alone
+    lore: Isolationist mountain clansmen; see everyone else as invaders. Wildlife ignores them.
+    player_standing: territorial hostile
+    stance: { Karkas: friendly, Settlers: hostile, Peacekeepers: hostile, Jackals: hostile, Rust: hostile, Infected: hostile }
+    recruitable: false
+    behaviour:
+      Behaviour: HALT
+      Speed: WALK
+      UnderThreatSpeed: WALK              # patient; hold the high ground
+      DefaultStance: CROUCHED
+      Formation: Wall
+      FormationLooseness: 0.7
+      AccuracyMin: 0.28
+      AccuracyMax: 0.48
+      ThreatDistanceLimit: 280.0
+      NoiseInvestigationDistanceLimit: 120.0
+      SniperProneDistanceThreshold: 120.0  # go prone for long shots
+      EnableFlankingOutsideCombat: 0
+      LootingBehaviour: WEAPONS
+      CanBeLooted: true
+    loadout:
+      apparel: [ghillie wraps, fur hats, wool sweaters, hunting vests, mountain boots, camo field jackets]
+      weapons: [scoped Mosin, CR-527, Winchester 70, crossbow, revolvers]
+    spawn_archetypes: [ridge overlooks, mountain caves, stone ruins, canyon passes]
+    holds_roles: [high_ground, remote]
+
+  Rust:
+    display: The Rust Syndicate
+    custom_faction: DZDSRust
+    interim_faction: Mercenaries
+    lore: Industrial cartel monopolising wells, pumpjacks, rail yards and refineries.
+    player_standing: hostile (exclusion perimeters)
+    stance: { Rust: friendly, Settlers: hostile, Peacekeepers: hostile, Jackals: hostile, Karkas: hostile, Infected: hostile }
+    recruitable: false
+    behaviour:
+      Behaviour: ALTERNATE                 # walk the perimeter back and forth
+      Speed: WALK
+      UnderThreatSpeed: JOG
+      DefaultStance: STANDING
+      Formation: Wall
+      FormationLooseness: 0.2
+      AccuracyMin: 0.26
+      AccuracyMax: 0.44
+      ThreatDistanceLimit: 240.0
+      NoiseInvestigationDistanceLimit: 150.0
+      EnableFlankingOutsideCombat: 0
+      DamageReceivedMultiplier: 0.9        # plate-armoured enforcers
+      LootingBehaviour: DEFAULT
+      CanBeLooted: true
+    loadout:
+      apparel: [industrial overalls, welder masks, hi-vis armoured vests, hard hats, steel-toe boots]
+      weapons: [Saiga-12, Vaiga, Bizon, modified AK-74, flare guns, wrenches/cleavers]
+    spawn_archetypes: [contested water wells, railway depots, fuel refineries, power substations]
+    holds_roles: [industrial, water]
+
   Infected:
-    engine_faction: null   # vanilla zombies sit OUTSIDE the faction system and attack every
-                           # human; Expansion's "Infected" faction is a human-AI faction, unused
-    lore: Vanilla zombies; the universal enemy.
-    stance: { Infected: friendly, CDF: hostile, ChDKZ: hostile, Raiders: hostile, Survivors: hostile }
+    display: The Infected
+    custom_faction: null   # vanilla zombies, outside the faction system; attack every human
+    interim_faction: null
+    lore: Drawn by unsuppressed gunfire, turning two-way fights into three-way chaos.
+    stance: { Infected: friendly, Settlers: hostile, Peacekeepers: hostile, Jackals: hostile, Karkas: hostile, Rust: hostile }
 
-# Spec mapping: spec "Survivors" = Survivors; spec "Raiders" = Raiders; spec "Guards" is split
-# into CDF and ChDKZ, two mutually hostile armies, which gives the war a front line.
-# Expansion's own "Guards" faction stays reserved for static site defenders if needed.
+# Recruitment (Expansion AI, from source): walk up and "Recruit" (come-here gesture), dismiss,
+# open their inventory to equip them, command menu for formation/follow/goto/hold/get-in/flank.
+recruitment:
+  CanRecruitFriendly: true
+  CanRecruitGuards: false
+  MaxRecruitableAI: 4        # per player; budget-friendly (docs/LIVING_WORLD.md §5)
 
-# ---- Resources: what the war is fought over -------------------------------------------
-# Each resource comes from sites of certain map ROLES (maps/_roles.yaml), so this ports to
-# Nasdara. Holding sites yields income per restart cycle; income buys effects.
+# ---- Resources: what the war is fought over (by map ROLE, so it ports to Nasdara) ---------
 resources:
-  fuel:
-    from_roles: [industrial]
-    effect: convoy frequency and vehicle patrols for the holder
-  arms:
-    from_roles: [military, airfield]
-    effect: better loadouts (accuracy stays inside spec bounds)
-  food:
-    from_roles: [inland_town]
-    effect: reinforcement rate (patrol size / respawn time)
-  medicine:
-    from_roles: [coastal_town]
-    effect: garrison resilience (DamageReceivedMultiplier slightly below 1.0)
+  water:    { from_roles: [water],               effect: settler growth; Rust leverage over everyone }
+  fuel:     { from_roles: [industrial],          effect: convoy frequency and vehicle patrols }
+  arms:     { from_roles: [military, airfield],  effect: better loadouts (accuracy stays in bounds) }
+  food:     { from_roles: [inland_town],         effect: reinforcement rate (patrol size / respawn time) }
+  medicine: { from_roles: [coastal_town],        effect: garrison resilience }
 
-# ---- Initial front line for ChernarusPlus (campaign start) -------------------------------
-# Location names from maps/chernarusplus.yaml. The war ledger evolves this over restarts.
+# ---- Initial front line for ChernarusPlus (location names from maps/chernarusplus.yaml) ---
 initial_control:
   chernarusplus:
-    CDF: [Balota Airfield, Northwest Airfield, Zelenogorsk, Chernogorsk]
-    ChDKZ: [Berezino, Krasnostav, Severograd, Novodmitrovsk, Elektrozavodsk]
-    Raiders: [Tisy Military]
-    contested: [Stary Sobor, Gorka, Vybor]   # no holder; War Zones fight here
+    Peacekeepers: [Balota Airfield, Northwest Airfield, Green Mountain, Zelenogorsk]
+    Rust: [Chernogorsk, Elektrozavodsk, Berezino, Topolka Dam]
+    Karkas: [Black Mountain, Altar, Tisy Military]
+    Jackals: [Gorka]                       # nomads: one camp, mostly roaming roads
+    Settlers: [Vybor, Novodmitrovsk]
+    contested: [Stary Sobor, Severograd, Krasnostav]
 
-# Shared combat calibration (same bounds as presets/expansion_ai_calibration.yaml).
-combat:
-  AccuracyMin: 0.28
-  AccuracyMax: 0.48
-  ThreatDistanceLimit: 280.0
+# Global calibration lives in presets/expansion_ai_calibration.yaml (blueprint §4E values).

@@ -35,12 +35,15 @@ mods() {
   mkdir -p "$SERVER_DIR/keys"
   local missing=0
   while read -r side id folder; do
-    if [[ ! -d "$WORKSHOP/$id" ]]; then
-      echo "NOT SUBSCRIBED  $folder ($id): https://steamcommunity.com/sharedfiles/filedetails/?id=$id"
+    local src="$WORKSHOP/$id"
+    [[ "$id" == 0 ]] && src="$ROOT/build/$folder"   # our own mods: packed into build/@NAME
+    if [[ ! -d "$src" ]]; then
+      if [[ "$id" == 0 ]]; then echo "NOT BUILT       $folder: see mods/README.md"
+      else echo "NOT SUBSCRIBED  $folder ($id): https://steamcommunity.com/sharedfiles/filedetails/?id=$id"; fi
       missing=1; continue
     fi
-    ln -sfn "$WORKSHOP/$id" "$SERVER_DIR/@$id"
-    find "$WORKSHOP/$id" -iname '*.bikey' -exec cp -f {} "$SERVER_DIR/keys/" \;
+    ln -sfn "$src" "$SERVER_DIR/@$id"
+    find "$src" -iname '*.bikey' -exec cp -f {} "$SERVER_DIR/keys/" \;
   done < <("$PY" tools/modstring.py ids)
   echo "Linked mods into $SERVER_DIR as @<workshop id>; keys copied to $SERVER_DIR/keys"
   return $missing

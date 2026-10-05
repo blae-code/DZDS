@@ -133,12 +133,15 @@ def test_digest_tallies_faction_fighting():
 
 
 def test_digest_uses_our_faction_names():
-    agg = EventAggregator(faction_names={"West": "CDF", "East": "ChDKZ"})
+    agg = EventAggregator(faction_names={"West": "The Jackal Cohort", "East": "Karkas Mountain Clan"})
     agg.ingest(parse_line(AI_KILL))
-    assert "CDF killed 1 ChDKZ near Gorka" in agg.digest({"Gorka": [9500, 8900]})
+    assert "The Jackal Cohort killed 1 Karkas Mountain Clan near Gorka" in agg.digest({"Gorka": [9500, 8900]})
 
 
-def test_load_config_maps_factions():
+def test_load_config_maps_custom_and_interim_factions():
     from gamemaster.gm_orchestrator import load_config
     names = load_config()["faction_names"]
-    assert names["West"] == "CDF" and names["East"] == "ChDKZ" and names["Civilian"] == "Survivors"
+    assert names["DZDSJackals"] == names["Raiders"] == "The Jackal Cohort"
+    assert names["DZDSKarkas"] == names["Shamans"] == "Karkas Mountain Clan"
+    assert names["DZDSPeacekeepers"] == names["Guards"] == "UN Peacekeeping Remnants"
+    assert names["DZDSSettlers"] == "Frontier Settlers"

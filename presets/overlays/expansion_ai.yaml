@@ -1,0 +1,12 @@
+# Expansion AI: factions for players and recruitment (docs/FACTIONS.md).
+# PlayerFactions only takes effect once @DZDS is loaded (DZDSSettlers is our custom class);
+# without it Expansion finds no such faction and players stay factionless (hostile to all AI).
+root: profiles
+target: ExpansionMod/Settings/AISettings.json
+values:
+  PlayerFactions: [DZDSSettlers]
+  CanRecruitFriendly: true     # recruit Frontier Settlers
+  CanRecruitGuards: false      # UN peacekeepers are not for hire
+  MaxRecruitableAI: 4
+  LogAIHitBy: true
+  LogAIKilled: true

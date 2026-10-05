@@ -92,6 +92,9 @@ def cmd_keys(args: argparse.Namespace) -> int:
     missing = 0
     collected: list[Path] = []
     for m in ordered(load_mods()):
+        if m.get("local"):
+            print(f"LOCAL    {m['folder']:<40} built from mods/ (key: see mods/README.md)")
+            continue
         mod_dir = workshop / str(m["id"])
         if not mod_dir.is_dir():
             print(f"MISSING  {m['folder']:<40} not downloaded ({mod_dir})")

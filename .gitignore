@@ -29,3 +29,6 @@ gm_state/
 
 # Generated output
 build/
+
+# Mod signing keys (the private key must never be committed)
+*.biprivatekey

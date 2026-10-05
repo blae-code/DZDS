@@ -9,3 +9,5 @@ roles:
   industrial:     { min: 1, purpose: vehicle parts, Raider hideouts }
   road_junction:  { min: 1, purpose: Raider ambushes, convoys }
   remote:         { min: 1, purpose: homestead candidates, quiet heli crash sites }
+  high_ground:    { min: 2, purpose: Karkas ridge holds, marksman overlooks, radio/radar towers }
+  water:          { min: 1, purpose: wells, reservoirs, dams; Rust Syndicate leverage (critical on Nasdara) }

@@ -37,9 +37,11 @@ This file holds the rules you must follow when working in this repo.
    - Apply with `make calibrate`: it sets the global values (and AI kill logging) and clamps
      per-patrol overrides in AIPatrolSettings.json. It refuses values outside these bounds.
    - **Factions are compiled into Expansion, with no JSON config** (the spec's
-     `profiles/ExpansionMod/AI/Factions/` doesn't exist). Our factions map onto built-ins
-     (CDF=West, ChDKZ=East, Raiders, Survivors=Civilian) in `presets/factions.yaml`; tests
-     check them against the engine's real relations. Design: `docs/LIVING_WORLD.md`.
+     `profiles/ExpansionMod/AI/Factions/` doesn't exist). The user's Faction Blueprint
+     (Settlers = players, UN Peacekeepers, Jackals, Karkas, Rust) is implemented as custom
+     classes in our @DZDS mod (`mods/DZDS`), designed in `presets/factions.yaml`; tests check
+     the preset against that source. Per-patrol accuracy may range 0.20–0.35 / 0.35–0.52
+     so factions differ. Design: `docs/FACTIONS.md`.
 6. **Design pillars.** Diegetic only: physical keys, keypads, tarps, tow cables, paper maps,
    radio broadcasts. **No** virtual garages, 3D HUD markers, map fast-travel, supercars,
    or micro-tedium (dipsticks, fuses, lug nuts). Reject or flag mods that violate this.

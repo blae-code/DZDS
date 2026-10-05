@@ -28,17 +28,19 @@ read 2026-10-05) and the Workshop pages of every mod named. Unverified assumptio
 
 ## 2. The factions
 
-| Ours | Engine | Holds (map roles) | Character |
-|---|---|---|---|
-| **CDF** | West | military, airfield | Army remnant; escorts fuel/arms between bases; protects civilians |
-| **ChDKZ** | East | industrial, road_junction | Insurgents holding the industrial east and north; raid CDF supply |
-| **Raiders** | Raiders | remote | Bandits; hostile to all; prey on convoys and Survivors |
-| **Survivors** | Civilian | towns | Never start fights; fill towns with life; get caught in crossfire |
-| Infected | (vanilla) | everywhere | Drawn by gunfire; punish long firefights |
+*Updated 2026-10-05 to the user's Faction Blueprint. Full detail: `docs/FACTIONS.md`.*
 
-Spec mapping: the spec's "Guards" became two armies so the war has a front line; Raiders and
-Survivors are as specified. Encoded in `presets/factions.yaml`; tests check it matches the
-engine's real relations.
+| Faction | Holds (map roles) | Character |
+|---|---|---|
+| **Frontier Settlers** (players) | inland towns, player bases | The player's settlement network; recruitable |
+| **UN Peacekeepers** | airfields, military, towers | Armed neutrality; defend Green Zones |
+| **Jackal Cohort** | road junctions (nomadic) | Highway raiders; push and flank |
+| **Karkas Clan** | high ground, remote | Patient mountain marksmen; wildlife ignores them |
+| **Rust Syndicate** | industry, water | Cartel guarding wells, fuel, rail |
+| Infected | everywhere | Drawn by gunfire; punish long firefights |
+
+The three tribes fight each other (blood feud), the UN fight the tribes, and everyone fights
+zombies. Custom classes in @DZDS (`mods/DZDS`); tests check `presets/factions.yaml` against them.
 
 ---
 
@@ -78,7 +80,7 @@ engine's real relations.
 ### 3b. Session: the GM daemon (exists, extended today)
 - Digest now includes "*West killed 2 East near Gorka*" tallies from AI kill logs.
 - Radio chatter (`say -1`) reacts to fights near players and summarises distant ones:
-  *"...CDF patrol lost contact south of Gorka... heavy fire reported..."*.
+  *"...UN checkpoint at Gorka reports Jackal vehicles on the north road..."*.
 - Later, with the @DZDS mod (§6): spawn reinforcements and events right away instead of
   waiting for a restart.
 
@@ -103,8 +105,8 @@ A persistent state file on your PC (`gm_state/war_ledger.json`), advanced once p
 Why per restart: it needs **no custom server code**, only Expansion's existing config files.
 Real-time control can come later.
 
-**How players move the war**: wipe a ChDKZ garrison and the site flips at the next restart.
-Ambush a CDF fuel convoy and CDF loses fuel income. Ignore the map for a week and you come
+**How players move the war**: wipe a Rust Syndicate well crew and the well flips at the next
+restart. Ambush a Jackal raiding convoy and the Jackals lose supplies. Ignore the map for a week and you come
 back to a different front line.
 
 ---
@@ -150,8 +152,9 @@ Requires DayZ Tools to pack and sign. Worth building after the per-restart loop 
 
 ## 7. Open decisions
 
-1. **Where do players stand?** *Resolved 2026-10-05:* start unaligned; join a side through
-   Expansion Quests enlistment chains (`FactionReward`). See `docs/QUESTS.md`. Original options:
+1. **Where do players stand?** *Resolved 2026-10-05 (Faction Blueprint):* players are the
+   Frontier Settlers (`PlayerFactions: [DZDSSettlers]`), with reputation to earn with the UN
+   and tribes. See `docs/FACTIONS.md`. Original options, superseded:
    a) Unaligned (default). Expansion's targeting of factionless players needs testing **[test]**.
    b) `PlayerFactions: ["West"]`: you're CDF-aligned, ChDKZ and Raiders hunt you. Strong
       story, less neutral.

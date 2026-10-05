@@ -35,35 +35,37 @@ Expansion source (`DayZExpansion/Quests`, `DayZExpansion/Hardline`).
 Accepting and turning in quests still uses Expansion's quest menu. That's the one UI
 concession. Dialogue Framework (later, needs Market) could turn it into conversation.
 
-## Where players stand: resolved through quests
-This replaces open decision 1 in LIVING_WORLD.md:
-- **Everyone starts unaligned.**
-- **Enlistment chains**: a CDF quartermaster at a CDF-held base and a ChDKZ contact in the
-  industrial north each offer a short chain (prove yourself → deliver supplies → small op).
-  The last quest's `FactionReward` makes you a member. **Joining a side is a choice made in
-  the world, not a menu**, and it has consequences: the other army now shoots on sight.
-- Faction-only quests (`RequiredFaction`) unlock after enlisting, gated by reputation.
-- Survivors offer neutral quests to anyone, so you can stay out of the war.
-- **[test]** How each army treats unaligned players (Expansion targeting); how switching
-  sides behaves (a "defector" quest with a `FactionReward` to the other army).
+## Where players stand (Faction Blueprint, docs/FACTIONS.md)
+- Players **are** the Frontier Settlers (`PlayerFactions: [DZDSSettlers]` once @DZDS is built).
+  No enlistment needed; quests build **reputation** instead.
+- **UN reputation** (humanitarian quests): unlocks Green Zone services, UN quest lines and
+  better standing at checkpoints.
+- **Settler reputation**: settlers' quests (defend the farm, find the missing caravan) unlock
+  better recruits and settlement upgrades.
+- **Tribe reputation** through risky neutral deals (trade water with the Rust Syndicate,
+  return a Karkas hunter's remains): opens tribe quests and, later, reputation-aware
+  tolerance in @DZDS (FACTIONS.md §3 layer 5).
+- `FactionReward` stays available for story beats (e.g. a Settler defecting to the UN).
 
 ## Quest catalogue (mapped to the war)
 | Quest | Type(s) | Giver | Effect on the war ledger |
 |---|---|---|---|
-| Fuel run | DELIVERY (jerrycans) | quartermaster of either army | +fuel for that faction |
-| Medical supplies | COLLECT → DELIVERY | Survivor doctor in a coastal town | +medicine for Survivors / reputation |
-| Clear the bandit camp | AICAMP (Raiders) | Survivor elder | Raiders lose a site |
-| Convoy escort | AIESCORT | army logistics officer | convoy arrives → +supplies |
-| Recon | TRAVEL to a contested site | army scout | reveals enemy strength (GM radio report) |
-| Break the siege | AIPATROL at a contested site | army officer | site flips at next restart |
-| Lost cache | TREASUREHUNT | rumour from a Survivor | loot, no war effect |
+| Fuel run | DELIVERY (jerrycans) | UN quartermaster | +fuel for the UN; UN reputation |
+| Medical supplies | COLLECT → DELIVERY | UN field medic | +medicine; UN reputation |
+| Clear the Jackal camp | AICAMP (Jackals) | Settler elder | Jackals lose a site; recruits join |
+| Aid convoy escort | AIESCORT | UN logistics officer | convoy arrives → +supplies; Jackals lose a raid |
+| Recon | TRAVEL to a contested site | UN radio operator | reveals tribal strength (GM radio report) |
+| Break the siege | AIPATROL at a contested well/site | Settler or UN officer | site flips at next restart |
+| Lost cache | TREASUREHUNT | rumour from a Settler | loot, no war effect |
+| Water rights | DELIVERY (trade goods) | Rust Syndicate broker | Rust reputation; settlement water access |
 | Field repairs | CRAFTING / ACTION | mechanic NPC | vehicle parts reward (fits Vehicles module) |
 
 ## Making quests follow the war (war-ledger integration)
 Quests are JSON in `$profile:`, like the patrols, so the war ledger can **regenerate them each
 restart**:
 1. **Quest givers move with the front.** A quartermaster spawns at sites their faction
-   currently holds. If the site falls, he's gone (or a ChDKZ officer is there instead).
+   currently holds. If the Green Zone falls, the UN quartermaster is gone (and a Jackal
+   fence may be there instead).
 2. **Objectives point at the current front.** "Break the siege" always targets a site that is
    contested right now. Recon targets whatever the enemy just took.
 3. **Completions feed back.** Expansion logs quest events. The GM reads completed quests
