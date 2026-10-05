@@ -1,0 +1,34 @@
+# Vehicle spawns by role and holder (docs/VEHICLES.md §4), compiled by tools/vehicle_events.py:
+#   <mission>/dzds/events_dzds.xml      (registered in cfgeconomycore.xml as type="events")
+#   <mission>/cfgeventspawns.xml        (our DZDS_* event blocks replaced idempotently, .bak kept)
+# Positions: a ring around each matching site (radius_m). [test] refine on roads with VPP; CE
+# needs flat, clear ground. Empty `children` = classnames not verified yet -> event skipped.
+# Vanilla classnames are listed; modded ones go in after `make mod-types`.
+defaults: { lifetime: 3888000, restock: 0, saferadius: 500, distanceradius: 500, cleanupradius: 200, radius_m: 60 }
+
+events:
+  - name: DZDS_VehicleFarm
+    roles: [inland_town]
+    holders: [Settlers]
+    children: [Hatchback_02, CivilianSedan]          # + Expansion tractor once verified
+    nominal: 3
+  - name: DZDS_VehicleIndustry
+    roles: [industrial, water]
+    holders: [Rust]
+    children: [Truck_01_Covered]                    # + KamAZ / ArmA2 tankers once verified
+    nominal: 2
+  - name: DZDS_VehicleMilitary
+    roles: [airfield, military]
+    holders: [Peacekeepers]
+    children: [Offroad_02]                          # + UAZ/MRAP/ambulance once verified
+    nominal: 2
+  - name: DZDS_VehicleRaiders
+    roles: [road_junction]
+    holders: [Jackals, contested]
+    children: []                                    # dune buggy, UAZ 452, M1025 wreck: verify first
+    nominal: 2
+  - name: DZDS_HeliWreck
+    roles: [airfield]
+    holders: [Peacekeepers, contested]
+    children: []                                    # UN Mi-8 / Expansion UH-1H as ruined wreck: verify
+    nominal: 1

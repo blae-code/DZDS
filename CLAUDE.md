@@ -99,7 +99,8 @@ make war-turn         # advance one war turn (docs/WAR_LEDGER.md)
 make front-plan       # traders open/relocated/closed + live quests from the ledger
 make loadouts         # faction loadouts -> profiles/ExpansionMod/Loadouts (loadouts-check vs types)
 make dzds-profile     # @DZDS settings (spawn allowlist) + site markers from the ledger
-make prepare-restart  # war-turn, economy, diplomacy, patrols, front-plan, loadouts, dzds-profile,
+make vehicle-events   # vehicle spawns by role + holder (events + cfgeventspawns)
+make prepare-restart  # war-turn, economy, diplomacy, patrols, vehicle-events, front-plan, loadouts, dzds-profile,
                       # overlays, calibrate, validate
 make fake-rcon / sim / gm-sim   # offline GM loop (three terminals)
 make gm-probe         # one-shot Ollama/prompt check
