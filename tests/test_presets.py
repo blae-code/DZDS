@@ -166,3 +166,9 @@ def test_traders_reference_real_factions_roles_and_currencies():
         assert set(tr["currencies"]) <= set(t["currencies"]), name
         if tr.get("required_faction"):
             assert tr["required_faction"] in customs, name
+
+
+def test_all_repo_yaml_parses():
+    for folder in ("config", "presets", "maps"):
+        for f in (ROOT / folder).rglob("*.yaml"):
+            yaml.safe_load(f.read_text())
