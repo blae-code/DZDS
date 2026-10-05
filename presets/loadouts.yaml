@@ -1,0 +1,90 @@
+# Faction loadouts (Faction Blueprint §2) compiled by tools/loadouts.py into Expansion loadout
+# JSON (format from Expansion's ExpansionPrefabObject: ClassName, Chance, Quantity, Health,
+# InventoryAttachments[{SlotName, Items}], InventoryCargo, Sets) at
+# server/profiles/ExpansionMod/Loadouts/DZDS_<Faction>[_<variant>].json.
+#
+# Items in a slot are alternatives (Expansion picks by Chance). Classnames are vanilla DayZ
+# unless noted. They are NOT verified yet: `make loadouts-check` compares every classname
+# against the mission's types files once the server files exist, and lists unknowns to fix.
+# cargo: [classname, min, max] items placed in the AI's inventory (pistols, ammo, mags, food).
+# Pistols go in cargo: DayZ has no holster slot on the body.
+
+health: [0.55, 0.9]          # worn, lived-in gear
+
+factions:
+  Settlers:
+    slots:
+      Body:     [HunterJacket_Brown, HikingJacket_Blue, Shirt_BlueCheck, Shirt_GreenCheck, Hoodie_Green]
+      Legs:     [Jeans_Blue, CargoPants_Beige, HunterPants_Brown, CanvasPants_Beige]
+      Feet:     [WorkingBoots_Brown, HikingBoots_Brown]
+      Headgear: [BeanieHat_Brown, BeanieHat_Green, BaseballCap_Blue]
+      Back:     [HuntingBag, TaloonBag_Blue]
+      Shoulder: [CZ527, B95, Repeater, Izh43Shotgun]
+      Melee:    [Hatchet, Pitchfork]
+    cargo: [[Mag_CZ527_5rnd, 1, 2], [Ammo_308Win, 1, 2], [Ammo_357, 1, 2], [Ammo_12gaPellets, 1, 2], [Apple, 0, 2]]
+    variants: {}
+
+  Peacekeepers:
+    slots:
+      Headgear: [BallisticHelmet_UN]            # [verify] UN blue helmet classname
+      Body:     [BDUJacket, M65Jacket_Olive, M65Jacket_Tan]
+      Legs:     [BDUPants, CargoPants_Green]
+      Feet:     [CombatBoots_Black, CombatBoots_Green]
+      Vest:     [PlateCarrierVest]
+      Back:     [AssaultBag_Green]
+      Shoulder: [M16A2, FAL, MP5K]
+    cargo: [[Mag_STANAG_30Rnd, 2, 3], [Mag_FAL_20Rnd, 1, 2], [Mag_MP5_30Rnd, 1, 2], [BandageDressing, 1, 2]]
+    variants:
+      officer:
+        Headgear: [Beret_UN]                      # [verify] blue beret classname
+        Shoulder: [MP5K]
+      marksman:
+        Shoulder: [Mosin9130]
+
+  Jackals:
+    slots:
+      Body:     [RidersJacket_Black, BomberJacket_Black, QuiltedJacket_Black]
+      Legs:     [CargoPants_Black, Jeans_Black]
+      Feet:     [MilitaryBoots_Black, WorkingBoots_Grey]
+      Mask:     [GasMask, BalaclavaMask_Black]
+      Vest:     [ChestHolster, HuntingVest]
+      Shoulder: [SawedoffIzh43Shotgun, Mp133Shotgun, SKS]
+      Melee:    [Machete, BaseballBat]
+    cargo: [[MakarovIJ70, 1, 1], [Ammo_12gaPellets, 1, 3], [Ammo_762x39, 1, 2], [Mag_IJ70_8Rnd, 1, 2]]
+    variants:
+      warlord:
+        Shoulder: [AKM]
+        Headgear: [GorkaHelmet]
+        Vest:     [PlateCarrierVest]
+
+  Karkas:
+    slots:
+      Headgear: [Ushanka_Black, Ushanka_Green, GhillieHood_Woodland]
+      Body:     [GhillieTop_Woodland, HunterJacket_Autumn, M65Jacket_Olive]
+      Legs:     [HunterPants_Autumn, CargoPants_Green]
+      Feet:     [HikingBoots_Brown, MilitaryBoots_Brown]
+      Vest:     [HuntingVest]
+      Back:     [HuntingBag]
+      Shoulder: [Mosin9130, CZ527, Winchester70]
+      Melee:    [HuntingKnife]
+    cargo: [[Magnum, 0, 1], [Ammo_762x54, 1, 2], [Mag_CZ527_5rnd, 1, 2], [Ammo_308Win, 1, 2], [Ammo_357, 1, 1]]
+    variants:
+      elder:
+        Body:     [GhillieSuit_Woodland]
+        Shoulder: [Winchester70, Mosin9130]
+
+  Rust:
+    slots:
+      Headgear: [ConstructionHelmet_Yellow, ConstructionHelmet_Orange]
+      Mask:     [WeldingMask, GasMask]                  # [verify] WeldingMask
+      Body:     [TrackSuitJacket_Black, BomberJacket_Grey]
+      Legs:     [CargoPants_Grey, CargoPants_Black]
+      Feet:     [WorkingBoots_Yellow, WorkingBoots_Grey]
+      Vest:     [ReflexVest, PlateCarrierVest]
+      Shoulder: [Saiga, PP19, AK74]
+      Melee:    [Wrench, Cleaver]
+    cargo: [[FlareGun, 0, 1], [Mag_Saiga_5Rnd, 1, 2], [Mag_PP19_64Rnd, 1, 1], [Mag_AK74_30Rnd, 1, 2]]
+    variants:
+      foreman:
+        Vest:     [PlateCarrierVest]
+        Shoulder: [AK74]

@@ -97,3 +97,10 @@ war-turn:
 .PHONY: front-plan
 front-plan:
 	$(PY) tools/front_plan.py
+
+.PHONY: loadouts loadouts-check
+loadouts:
+	$(PY) tools/loadouts.py build
+
+loadouts-check:
+	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/loadouts.py check
