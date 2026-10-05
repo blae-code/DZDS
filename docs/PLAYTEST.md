@@ -38,6 +38,8 @@ branch per session; file anything that fails as a follow-up.
 - [ ] Recruits: equip via inventory, command menu, get in vehicles; **do they persist across restarts?**
 - [ ] Diplomacy: add a test override (presets/diplomacy.yaml), `make diplomacy`, restart → RPT
       `[DZDS] Loaded N diplomacy override(s)` and the behaviour changes
+- [ ] Tolerance: give a player Karkas reputation ≥ `tolerance_reputation` (quest reward) → Karkas
+      AI ignore them but not their friend; aiming at the Karkas still provokes them
 - [ ] AI budget: server FPS with ~60 active AI near players; tune LoadBalancing / templates
 
 ## 4. Telemetry → GM → world

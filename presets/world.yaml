@@ -5,6 +5,11 @@
 
 poll_seconds: 10
 
+# Per-player tolerance (mods/DZDS/.../DZDSTolerance.c): Karkas and Rust AI leave alone a player
+# whose Expansion Hardline reputation with that faction is at least this (earned via quests'
+# FactionReputationRewards). 0 turns it off. [test] tune against quest reward sizes.
+tolerance_reputation: 50
+
 # Site markers: placed at server start next to every site, showing who holds it.
 markers:
   offset: [12, 12]          # metres from the site centre (keep markers off roads)

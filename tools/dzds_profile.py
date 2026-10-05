@@ -21,7 +21,8 @@ from gamemaster.ledger import STATE, WarLedger  # noqa: E402
 
 def settings(world: dict) -> dict:
     allowed = sorted({c for a in world["gm_actions"].values() for c in a.get("classnames") or []})
-    return {"AllowedClassNames": allowed, "PollSeconds": int(world.get("poll_seconds", 10))}
+    return {"AllowedClassNames": allowed, "PollSeconds": int(world.get("poll_seconds", 10)),
+            "ToleranceReputation": int(world.get("tolerance_reputation", 0))}
 
 
 def markers(world: dict, led: WarLedger) -> list[dict]:

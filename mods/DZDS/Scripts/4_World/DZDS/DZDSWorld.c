@@ -41,6 +41,7 @@ class DZDSSettings
 {
 	ref array<string> AllowedClassNames;
 	int PollSeconds;
+	int ToleranceReputation;   //! DZDSTolerance.c: 0 = off
 };
 
 class DZDSWorld

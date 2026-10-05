@@ -76,7 +76,7 @@ relationships feel earned:
 - Tribe reputation via "neutral" deals: trading water with the Rust Syndicate, or returning a Karkas
   hunter's remains, lowers hostility **in story and quest access**.
 
-### Layer 5: Reputation-aware hostility (@DZDS, next step after it compiles)
+### Layer 5: Reputation-aware hostility (@DZDS: built, `DZDSTolerance.c`)
 `IsFriendlyEntity(other, factionMember)` is evaluated per player, so @DZDS can make a faction
 tolerate **specific players**: e.g. the Karkas let a player pass their ridges once that player's
 Karkas reputation is high enough, or the Rust Syndicate stops shooting players who paid their
@@ -174,4 +174,5 @@ the style target, and also the first scripts to record as radio clips for the @D
 3. [test] generated patrols: ground placement of y=0 waypoints, HALT/ROAMING behaviour, budget.
 4. Playtest recruitment: persistence, vehicles, garrisons [test].
 5. ~~War ledger~~ built: live control drives patrols and diplomacy (docs/WAR_LEDGER.md).
-6. Per-player reputation-aware hostility in @DZDS (layer 5), once the Hardline API is read.
+6. ~~Per-player reputation-aware hostility~~ built (`DZDSTolerance.c`, Hardline
+   `Expansion_GetFactionReputation`; threshold `tolerance_reputation` in presets/world.yaml) [test].
