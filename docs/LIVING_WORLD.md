@@ -150,14 +150,15 @@ Requires DayZ Tools to pack and sign. Worth building after the per-restart loop 
 
 ## 7. Open decisions
 
-1. **Where do players stand?**
+1. **Where do players stand?** *Resolved 2026-10-05:* start unaligned; join a side through
+   Expansion Quests enlistment chains (`FactionReward`). See `docs/QUESTS.md`. Original options:
    a) Unaligned (default). Expansion's targeting of factionless players needs testing **[test]**.
    b) `PlayerFactions: ["West"]`: you're CDF-aligned, ChDKZ and Raiders hunt you. Strong
       story, less neutral.
    c) Custom player faction via @DZDS: neutral until provoked. Best fit for PvE, needs the mod.
    *Recommendation*: start with (a) and test; move to (c) when @DZDS exists.
-2. **Expansion Quests for faction tasks** ("deliver fuel to the CDF")? Gives players a
-   non-violent way to move the war, but quest menus are UI.
+2. **Expansion Quests for faction tasks**: *Resolved: yes* (with Hardline for faction
+   reputation, markers and HUD off). Design: `docs/QUESTS.md`.
 3. **Escalation assets**: when a faction dominates, unlock Airborne AI (paratroopers) or BS
    Patrol Tank (BTR) for it? Heavy and dramatic; optional.
 4. **Airdrops**: keep Airdrop-Upgraded, or move to Expansion-Missions (same ecosystem, fewer

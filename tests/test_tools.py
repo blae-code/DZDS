@@ -47,3 +47,21 @@ def test_clamp_respects_sentinels_and_bounds():
     assert data["Patrols"][0] == {"AccuracyMax": 0.52, "AccuracyMin": -1, "ThreatDistanceLimit": 300.0}
     assert data["Patrols"][1]["AccuracyMin"] == 0.25
     assert len(changes) == 3
+
+
+def test_overlay_merge_only_existing_keys():
+    import apply_overlays as ov
+    data = {"MapData": {"displayPlayerPosition": True, "ignoreMapOwnership": False}, "Other": 1}
+    changes, missing = ov.merge(data, {"MapData": {"displayPlayerPosition": False, "madeUp": 1}})
+    assert data["MapData"]["displayPlayerPosition"] is False
+    assert "madeUp" not in data["MapData"]
+    assert changes == [("MapData.displayPlayerPosition", True, False)]
+    assert missing == ["MapData.madeUp"]
+
+
+def test_overlay_presets_well_formed():
+    import yaml
+    import apply_overlays as ov
+    for f in ov.OVERLAYS.glob("*.yaml"):
+        o = yaml.safe_load(f.read_text())
+        assert o["root"] in {"profiles", "mission"} and o["target"].endswith(".json") and o["values"], f

@@ -52,7 +52,13 @@ This file holds the rules you must follow when working in this repo.
 9. **Never trust a Workshop ID without checking.** The spec's IDs were mostly wrong
    (`docs/MOD_AUDIT.md`). Any mod added or changed in `config/mods.yaml` must pass
    `make verify-mods`; use `make find-mod Q="..."` to look up IDs.
-10. **Content keyed by map role.** Faction territories, mission placement and GM logic use the
+10. **Server feel (decided):** first-person only, no HUD crosshair, no personal light, physical
+    map/compass with no player position, Expansion quest markers and Hardline HUD off.
+    Keep `config/local_serverDZ.cfg` and the GSP panel in sync.
+11. **Expansion file locations** (from its source): `$profile:ExpansionMod/Settings/` (AI,
+    Quest settings), `$profile:ExpansionMod/Quests/` (quests, NPCs, objectives),
+    `$mission:expansion/settings/` (AIPatrolSettings, AILocationSettings, HardlineSettings).
+12. **Content keyed by map role.** Faction territories, mission placement and GM logic use the
     roles in `maps/_roles.yaml`, so Nasdara (Badlands, 1.30) is a data change. `make maps-check`.
 
 ## Current stage
@@ -70,6 +76,15 @@ make modstring        # print -mod= / -serverMod= strings for the GSP panel
 make keys             # check every mod has a .bikey (needs DAYZ_WORKSHOP_DIR)
 make test             # pytest
 make gm               # run the GM daemon (dry-run unless GM_DRY_RUN=0)
+make calibrate        # AI accuracy bounds + kill logging (needs pulled/generated configs)
+make overlays         # presets/overlays/*.yaml onto real configs (existing keys only)
+make verify-mods      # check every mod ID/title/staleness on the Steam Workshop
+make find-mod Q=...   # search the Workshop
+make maps-check       # map role coverage (nasdara is TODO until release)
+make types            # compile presets/types_dzds.yaml into a CE custom types file
+make fake-rcon / sim / gm-sim   # offline GM loop (three terminals)
+make gm-probe         # one-shot Ollama/prompt check
+scripts/local_server.sh install|mods|start   # optional local dedicated server
 ```
 
 ## Workflow phases (spec §7)

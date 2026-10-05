@@ -16,5 +16,7 @@ values:
   # Put AI hits/kills (with faction="...") into the .ADM so the GM can see the war.
   LogAIHitBy: true
   LogAIKilled: true
+# Paths: relative to server/profiles, or "mission:" = relative to the mission folder.
+# (Expansion keeps patrol/location settings in $mission:expansion/settings/, from its source.)
 clamp_targets:
-  - ExpansionMod/Settings/AIPatrolSettings.json
+  - mission:expansion/settings/AIPatrolSettings.json

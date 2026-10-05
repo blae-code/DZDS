@@ -9,6 +9,7 @@ driven from a local CachyOS rig with a local LLM (Gemma 4 E4B via Ollama/ROCm).
 - **No server yet?** Start with [`docs/PRE_PURCHASE.md`](docs/PRE_PURCHASE.md), then
   [`docs/GSP_CHECKLIST.md`](docs/GSP_CHECKLIST.md)
 - **Living world / faction war design:** [`docs/LIVING_WORLD.md`](docs/LIVING_WORLD.md)
+- **Quests tied to the war:** [`docs/QUESTS.md`](docs/QUESTS.md)
 - **Voice, NPCs, immersion without tedium:** [`docs/IMMERSION.md`](docs/IMMERSION.md)
 - **Mod list audit:** [`docs/MOD_AUDIT.md`](docs/MOD_AUDIT.md) · **Badlands:** [`docs/BADLANDS_PREP.md`](docs/BADLANDS_PREP.md)
 
@@ -54,6 +55,7 @@ ollama pull gemma4:e4b       # confirm the exact tag with `ollama list` / ollama
 | Launch string for GSP panel | `make modstring` |
 | Check mod `.bikey`s | `make keys` (copy with `.venv/bin/python tools/modstring.py keys --copy-to <dir>`) |
 | Apply AI calibration | `make calibrate` |
+| Apply settings overlays (map, quests, Hardline) | `make overlays` |
 | Pull recent logs | `make logs` |
 | Run GM (dry run) | `make gm` |
 | Run GM live | `GM_DRY_RUN=0 make gm` |

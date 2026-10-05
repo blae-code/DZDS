@@ -1,0 +1,11 @@
+# Expansion-Hardline: needed for per-faction reputation from quests (Quests checks
+# UseFactionReputation, and only when AI + Hardline are loaded). Keep the rest invisible.
+root: mission                         # Expansion stores this in $mission:expansion/settings/
+target: expansion/settings/HardlineSettings.json
+values:
+  UseFactionReputation: true
+  EnableFactionPersistence: true     # your faction survives restarts
+  ShowHardlineHUD: false             # no reputation HUD (diegetic)
+  EnableItemRarity: false            # no rarity colours on items
+  UseItemRarityOnInventoryIcons: false
+  UseReputation: false               # generic humanity score off; faction rep only

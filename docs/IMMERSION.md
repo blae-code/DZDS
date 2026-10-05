@@ -106,11 +106,12 @@ chore? Keep the first; automate or cut the second.
 | Setting | File | Suggestion |
 |---|---|---|
 | Map shows no player position | `cfggameplay.json` → `MapData.displayPlayerPosition: false` | Find yourself with landmarks and a compass |
-| Map/compass must be held | `MapData.ignoreMapOwnership: false`, `ignoreNavItemsOwnership: false` | Paper map + compass, as the spec wants. **This may make BasicMap unnecessary**, which removes a stale mod |
+| Map/compass must be held (applied by `make overlays`, needs `enableCfgGameplayFile = 1`) | `MapData.ignoreMapOwnership: false`, `ignoreNavItemsOwnership: false` | Paper map + compass, as the spec wants. **This may make BasicMap unnecessary**, which removes a stale mod |
 | Darker nights | `serverDZ.cfg lightingConfig` (or Dark-Ish Nights mod for a middle setting) | Dark enough that light matters, not black-screen |
 | Day/night length | `serverTimeAcceleration`, `serverNightTimeAcceleration` | Long evenings, short-ish nights |
 | Weather | mission `cfgweather.xml` | More fog and rain fronts; no mod needed |
-| Crosshair / 3rd person | `disableCrosshair`, `disable3rdPerson` | Personal preference; first-person-only is a big immersion step but changes driving and base building. Try crosshair off first |
+| Crosshair / 3rd person | `disableCrosshair`, `disable3rdPerson` | **Decided: first-person only, no HUD crosshair** (set in `config/local_serverDZ.cfg`; mirror on the GSP panel). Optional mod for later: Generic_Gunplay's barrel-aligned crosshair (brand new, evaluate) |
+| Personal light | `disablePersonalLight = 1` | Removes the invisible glow around players at night; real light sources matter |
 
 ### Low-cost immersion mods
 | Mod | Why |

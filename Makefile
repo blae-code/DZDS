@@ -29,7 +29,7 @@ keys:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/modstring.py keys
 
 calibrate:
-	$(PY) tools/apply_ai_calibration.py
+	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/apply_ai_calibration.py
 
 test:
 	$(PY) -m pytest -q
@@ -67,3 +67,7 @@ gm-sim:
 
 gm-probe:
 	$(PY) tools/gm_probe.py
+
+.PHONY: overlays
+overlays:
+	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/apply_overlays.py

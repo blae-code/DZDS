@@ -1,0 +1,8 @@
+# Expansion Quests: quests yes, floating markers no. The quest log tab stays (a journal).
+root: profiles
+target: ExpansionMod/Settings/QuestSettings.json
+values:
+  EnableQuests: true
+  EnableQuestLogTab: true
+  CreateQuestNPCMarkers: false       # no map markers on quest givers
+  UseQuestNPCIndicators: false       # no "!" over NPC heads; find them by word of mouth

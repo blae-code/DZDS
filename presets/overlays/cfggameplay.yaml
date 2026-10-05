@@ -1,0 +1,10 @@
+# Vanilla gameplay settings (mission cfggameplay.json). Requires `enableCfgGameplayFile = 1;`
+# in serverDZ.cfg (set in config/local_serverDZ.cfg; set the same on the GSP panel).
+# Diegetic navigation: you must hold a map/compass, and the map never shows where you are.
+root: mission
+target: cfggameplay.json
+values:
+  MapData:
+    ignoreMapOwnership: false        # map UI only with a physical map
+    ignoreNavItemsOwnership: false   # compass/GPS info only with the physical item
+    displayPlayerPosition: false     # no "you are here"

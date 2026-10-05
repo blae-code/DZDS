@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import sys
 from pathlib import Path
@@ -80,7 +81,11 @@ def write_with_backup(path: Path, data) -> None:
 
 def apply_clamps(preset: dict, dry_run: bool) -> None:
     for rel in preset.get("clamp_targets", []):
-        path = PROFILES / rel
+        if rel.startswith("mission:"):
+            mission = os.environ.get("MISSION_NAME", "dayzOffline.chernarusplus")
+            path = ROOT / "server" / "mpmissions" / mission / rel.removeprefix("mission:")
+        else:
+            path = PROFILES / rel
         if not path.exists():
             print(f"(skip clamp: {rel} not present yet)")
             continue
