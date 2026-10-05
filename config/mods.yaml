@@ -21,6 +21,7 @@ mods:
   - { name: DayZ-Expansion-Core,      folder: "@DayZ-Expansion-Core",      id: 2291785308, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false }
   - { name: Zens Core Mod,            folder: "@ZenModCore",               id: 3702420204, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false, note: "dependency of Zen sleep/door/blood mods" }
   - { name: RaG_Core,                 folder: "@RaG_Core",                 id: 3556131153, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false, note: "dependency of RaG_BaseBuilding, RaG Wells, RaG Hunting Cabin" }
+  - { name: MuchFramework,            folder: "@MuchFramework",            id: 3171576913, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false, note: "dependency of MuchStuffPack (drop together if MuchStuffPack is pruned)" }
   - { name: Survivor Animations,      folder: "@SurvivorAnimations",       id: 2918418331, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false, note: "dependency of DayZ-Bicycle" }
 
   # ---- Tier 2: Dynamic world, factions, living AI ----

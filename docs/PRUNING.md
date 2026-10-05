@@ -12,7 +12,7 @@ diegetic, low tedium, factions)? (4) does it carry risk (beta, heavy, conflicts)
 | Cut | Because | Keep instead |
 |---|---|---|
 | BaseBuildingPlus (stale 2025-03) **or** RaG_BaseBuilding | two modular building systems | RaG_BaseBuilding (maintained 2026-09), unless BBP's tiered walls/watchtowers win the playtest |
-| MuchStuffPack (stale 2025-02, has 1.28 "fix" forks) | overlaps MMG Base Storage | MMG Base Storage |
+| MuchStuffPack (stale 2025-02, has 1.28 "fix" forks) + its dependency MuchFramework | overlaps MMG Base Storage | MMG Base Storage |
 | RUSForma_vehicles + RUSForma_Motorcycles | large packs overlapping CnG UAZ, KamAZ, ArmA2 Trucks, Expansion motorbikes | the smaller targeted packs |
 | Kamaz_Truck | ArmA2 Trucks already has KamAZ incl. tankers | ArmA2 Trucks |
 | HypeTrain Expansion (tiny user base) | AI rail traffic is a nice-to-have on a beta train mod | HypeTrain alone |
