@@ -1,0 +1,11 @@
+# Map-agnostic location ROLES. Missions, faction territories (presets/factions.yaml) and
+# GM logic refer to roles, so porting to a new map = filling in maps/<map>.yaml only.
+# tools/maps_check.py verifies every map assigns at least `min` locations to each role.
+roles:
+  airfield:       { min: 1, purpose: heli spawns, airdrops, Guard garrisons }
+  military:       { min: 2, purpose: Guard bases, high-tier loot, hacked crates }
+  coastal_town:   { min: 2, purpose: fresh-spawn areas, Survivor traders }
+  inland_town:    { min: 3, purpose: Survivor/Raider contact, scavenging }
+  industrial:     { min: 1, purpose: vehicle parts, Raider hideouts }
+  road_junction:  { min: 1, purpose: Raider ambushes, convoys }
+  remote:         { min: 1, purpose: homestead candidates, quiet heli crash sites }

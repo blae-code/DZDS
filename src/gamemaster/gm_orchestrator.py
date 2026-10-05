@@ -15,7 +15,7 @@ from pathlib import Path
 import yaml
 from dotenv import load_dotenv
 
-from .adm import AdmEvent, HealthTracker, SftpAdmTailer, parse_line
+from .adm import AdmEvent, HealthTracker, LocalAdmTailer, SftpAdmTailer, parse_line
 from .llm import OllamaGM
 from .rcon import RconClient
 from .schema import GMPayload, resolve_coords
@@ -102,14 +102,21 @@ class Orchestrator:
                                on_message=lambda m: log.debug("BE: %s", m))
         await self.rcon.connect()
 
-    async def telemetry_loop(self) -> None:
-        tailer = SftpAdmTailer(
+    def make_tailer(self):
+        """GM_TELEMETRY=file reads GM_ADM_FILE locally (no server needed); default is SFTP."""
+        if os.environ.get("GM_TELEMETRY", "sftp") == "file":
+            path = ROOT / os.path.expanduser(os.environ.get("GM_ADM_FILE", "gm_state/sim.ADM"))
+            log.info("Telemetry: local file %s", path)
+            return LocalAdmTailer(str(path), from_start=os.environ.get("GM_ADM_REPLAY") == "1")
+        return SftpAdmTailer(
             os.environ["SFTP_HOST"], int(os.environ.get("SFTP_PORT", 22)),
             os.environ["SFTP_USER"], os.environ["SFTP_PASSWORD"],
             f"{os.environ.get('SFTP_REMOTE_ROOT', '/').rstrip('/')}/"
             f"{os.environ.get('REMOTE_PROFILES_DIR', 'profiles')}",
             poll_seconds=self.cfg.get("adm_poll_seconds", 5))
-        async for line in tailer.lines():
+
+    async def telemetry_loop(self) -> None:
+        async for line in self.make_tailer().lines():
             ev = parse_line(line)
             if ev and self.agg.ingest(ev):
                 self.wake.set()

@@ -76,6 +76,13 @@ def cmd_string(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_ids(args: argparse.Namespace) -> int:
+    """Machine-readable '<side> <id> <folder>' lines, in load order (used by local_server.sh)."""
+    for m in ordered(load_mods()):
+        print(m.get("side", "both"), m["id"], m["folder"])
+    return 0
+
+
 def cmd_keys(args: argparse.Namespace) -> int:
     workshop = Path(os.path.expandvars(os.path.expanduser(
         args.workshop or os.environ.get("DAYZ_WORKSHOP_DIR", ""))))
@@ -112,6 +119,8 @@ def main() -> int:
     s = sub.add_parser("string", help="print launch parameter strings")
     s.add_argument("-v", "--verbose", action="store_true")
     s.set_defaults(func=cmd_string)
+    i = sub.add_parser("ids", help="print '<side> <id> <folder>' per enabled mod")
+    i.set_defaults(func=cmd_ids)
     k = sub.add_parser("keys", help="validate .bikey presence")
     k.add_argument("--workshop", help="override DAYZ_WORKSHOP_DIR")
     k.add_argument("--copy-to", help="copy all found .bikey files here (e.g. server/keys)")

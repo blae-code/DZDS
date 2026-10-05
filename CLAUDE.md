@@ -15,8 +15,8 @@ This file holds the rules you must follow when working in this repo.
 | `config/mods.yaml` | Single source of truth for the mod loadout, load tier, workshop IDs |
 | `server/` | Local mirror of remote `profiles/` + `mpmissions/` (pulled via `scripts/sync.sh`) |
 | `backups/` | Timestamped `.tar.gz` snapshots taken automatically before every push (gitignored) |
-| `presets/` | Calibration overlays (e.g. Expansion AI accuracy) applied onto mirrored configs |
-| `maps/` | Named coordinates per map (ChernarusPlus now, Nasdara later), never hardcode coords |
+| `presets/` | AI calibration, faction intent, loot (types) additions: format-independent sources |
+| `maps/` | Named coordinates + role assignments per map; `_roles.yaml` defines the roles |
 | `tools/` | Python CLIs: mod string, AI calibration, etc. |
 | `scripts/` | Shell entry points: sync, validate |
 | `src/gamemaster/` | Async GM daemon (ADM tail → Ollama → RCON) |
@@ -45,6 +45,17 @@ This file holds the rules you must follow when working in this repo.
 8. **GM daemon safety.** It runs `dry_run: true` by default. LLM output is untrusted: it is
    schema-validated, action types are whitelisted, coords are clamped to map bounds, and
    broadcasts are length-limited and sanitized before reaching RCON.
+
+9. **Never trust a Workshop ID without checking.** The spec's IDs were mostly wrong
+   (`docs/MOD_AUDIT.md`). Any mod added or changed in `config/mods.yaml` must pass
+   `make verify-mods`; use `make find-mod Q="..."` to look up IDs.
+10. **Content keyed by map role.** Faction territories, mission placement and GM logic use the
+    roles in `maps/_roles.yaml`, so Nasdara (Badlands, 1.30) is a data change. `make maps-check`.
+
+## Current stage
+No GSP rented yet. Work proceeds offline (`docs/PRE_PURCHASE.md`): GM against the ADM
+simulator + fake RCON, Phase 2 presets, optional local test server whose profiles are the
+repo's `server/` mirror. Badlands releases Oct 2026: `docs/BADLANDS_PREP.md`.
 
 ## Common commands
 ```bash

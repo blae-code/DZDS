@@ -1,0 +1,58 @@
+# Loot economy additions (spec Phase 2), compiled by tools/types_gen.py into
+#   server/mpmissions/<mission>/dzds/types_dzds.xml
+# and registered in cfgeconomycore.xml, so vanilla db/types.xml is never hand-edited.
+#
+# Profiles keep zone/tier choices in one place; items pick a profile and override fields.
+# enabled: false = classname not confirmed yet. Confirm with `make mod-types` (scans the
+# mods you've downloaded) or in-game with VPPAdminTools, then enable.
+#
+# Note: entries for VANILLA classnames override vanilla values (the CE logs a duplicate
+# warning). Keep those few and deliberate.
+
+profiles:
+  vehicle_part_industrial:
+    category: tools
+    usage: [Industrial, Farm, Village]
+    value: [Tier1, Tier2, Tier3]
+    lifetime: 10800
+    nominal: 12
+    min: 6
+  vehicle_part_military:
+    category: tools
+    usage: [Military]
+    value: [Tier2, Tier3, Tier4]
+    lifetime: 10800
+    nominal: 6
+    min: 3
+  heli_part:
+    category: tools
+    usage: [Military, Industrial]
+    value: [Tier3, Tier4]
+    lifetime: 14400
+    nominal: 3
+    min: 1
+  base_security:
+    category: tools
+    usage: [Military, Industrial, Police]
+    value: [Tier2, Tier3, Tier4]
+    lifetime: 14400
+    nominal: 8
+    min: 3
+
+items:
+  # ---- Vanilla vehicle parts: modest boosts so co-op friends can get rolling ----
+  - { name: SparkPlug,     profile: vehicle_part_industrial, nominal: 20, min: 10, enabled: true }
+  - { name: CarBattery,    profile: vehicle_part_industrial, nominal: 15, min: 8,  enabled: true }
+  - { name: TruckBattery,  profile: vehicle_part_industrial, nominal: 8,  min: 4,  enabled: true }
+  - { name: CarRadiator,   profile: vehicle_part_industrial, nominal: 12, min: 6,  enabled: true }
+  - { name: HeadlightH7,   profile: vehicle_part_industrial, nominal: 15, min: 8,  enabled: true }
+  - { name: Blowtorch,     profile: vehicle_part_military,   nominal: 6,  min: 3,  enabled: true }
+  - { name: TireRepairKit, profile: vehicle_part_industrial, nominal: 10, min: 5,  enabled: true }
+
+  # ---- Modded: confirm classnames, then enable ----
+  - { name: CodeLock,             profile: base_security, enabled: false, mod: Code Lock }
+  - { name: TODO_HeliRotorPart,   profile: heli_part,     enabled: false, mod: RedFalcon Flight System Heliz }
+  - { name: TODO_HeliBattery,     profile: heli_part,     enabled: false, mod: RedFalcon Flight System Heliz }
+  - { name: TODO_DefenderWheel,   profile: vehicle_part_military, enabled: false, mod: IRP-Land-Rover-Defender-110 }
+  - { name: TODO_CarCoverTarp,    profile: vehicle_part_industrial, enabled: false, mod: CarCover }
+  - { name: TODO_CarKey,          profile: vehicle_part_industrial, enabled: false, mod: MuchCarKey }

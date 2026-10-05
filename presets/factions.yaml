@@ -1,0 +1,35 @@
+# Faction design intent (spec §6A), written independently of Expansion's file format.
+#
+# Expansion AI writes its real faction/settings files on first server start
+# (profiles/ExpansionMod/AI/...). Once those exist, translate this table into them.
+# tests/test_presets.py enforces the spec rules on this file so the intent can't drift.
+#
+# stance: friendly | neutral | hostile   (row faction's attitude toward column)
+factions:
+  Survivors:
+    description: Neutral scavengers and traders; won't fire on players unless attacked.
+    stance: { Players: neutral, Survivors: friendly, Raiders: hostile, Guards: neutral,  Infected: hostile }
+    loadout: civilian_light
+  Raiders:
+    description: Bandit crews roaming roads and towns; ambush Guards and players.
+    stance: { Players: hostile, Survivors: hostile, Raiders: friendly, Guards: hostile,  Infected: hostile }
+    loadout: mixed_civil_military
+  Guards:
+    description: Disciplined remnants holding military sites; shoot trespassers.
+    stance: { Players: hostile, Survivors: neutral, Raiders: hostile, Guards: friendly,  Infected: hostile }
+    loadout: military
+  Infected:
+    description: Vanilla zombies. Listed so the matrix is complete; not an Expansion faction.
+    stance: { Players: hostile, Survivors: hostile, Raiders: hostile, Guards: hostile,  Infected: friendly }
+
+# Where each faction should appear, by map ROLE (maps/_roles.yaml), so this ports to Nasdara.
+territories:
+  Survivors: [inland_town, coastal_town]
+  Raiders:   [inland_town, road_junction, industrial]
+  Guards:    [military, airfield]
+
+# Shared combat calibration (spec bounds; also in presets/expansion_ai_calibration.yaml).
+combat:
+  AccuracyMin: 0.28
+  AccuracyMax: 0.48
+  ThreatDistanceLimit: 280.0

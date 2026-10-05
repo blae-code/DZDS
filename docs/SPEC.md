@@ -1,5 +1,8 @@
 # Master Operational Specification: DayZ PvE Persistent Living Sandbox
 
+> **Note (2026-10-05):** Most Workshop IDs in §4 below are incorrect. The verified list lives in
+> `config/mods.yaml`; see `docs/MOD_AUDIT.md`. Badlands releases 15 Oct 2026 with game update 1.30.
+
 This document is the definitive architectural specification and operating blueprint for Claude Code. It details the project intent, remote server infrastructure, local machine environment, modular mod taxonomy, telemetry pipelines, and configuration heuristics required to build, automate, and maintain this private DayZ ecosystem.
 
 ---

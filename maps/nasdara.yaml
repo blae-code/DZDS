@@ -1,7 +1,14 @@
-# Nasdara (Badlands) placeholder for spec Phase 5.
-# Fill in bounds, mission name and named locations when the map ships, keeping the SAME
-# location roles (airfields, military, towns) so missions port as a data swap.
+# Nasdara (Badlands DLC), releasing 2026-10-14. Fill in on release day using
+# docs/BADLANDS_PREP.md. `make maps-check` lists what's still missing.
 name: nasdara
-mission: TBD
-bounds: [0, 0, 0, 0]   # TODO: set real map extents
+mission: TBD          # mission folder name from the updated server files, e.g. dayzOffline.<map>
+bounds: [0, 0, 0, 0]  # TODO: real extents (check the mission's cfgeffectarea/map config or iZurvive)
 locations: {}
+roles:
+  airfield: []
+  military: []
+  coastal_town: []    # may not apply on a desert map; lower `min` in _roles.yaml per-map if so
+  inland_town: []
+  industrial: []
+  road_junction: []
+  remote: []

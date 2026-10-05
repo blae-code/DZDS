@@ -26,3 +26,6 @@ server/profiles/BattlEye/beserver_x64*.cfg
 
 # GM daemon state
 gm_state/
+
+# Generated output
+build/

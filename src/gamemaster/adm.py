@@ -119,3 +119,54 @@ class SftpAdmTailer:
             except (OSError, asyncssh.Error) as exc:
                 log.warning("SFTP tail error (%s); reconnecting in 15s", exc)
                 await asyncio.sleep(15)
+
+
+class LocalAdmTailer:
+    """Follows a local .ADM file, or the newest *.ADM in a directory (e.g. the local test
+    server's server/profiles), switching when the server rotates logs.
+
+    from_start=True replays the whole first file, useful for testing against real logs.
+    """
+
+    def __init__(self, path: str, from_start: bool = False, poll_seconds: float = 1.0) -> None:
+        self.path, self.from_start, self.poll = path, from_start, poll_seconds
+
+    def _newest(self) -> str | None:
+        import glob
+        import os
+
+        if os.path.isdir(self.path):
+            files = glob.glob(os.path.join(self.path, "*.ADM"))
+            return max(files, key=os.path.getmtime) if files else None
+        return self.path if os.path.exists(self.path) else None
+
+    async def lines(self):
+        import os
+
+        current, f, buf = None, None, ""
+        try:
+            while True:
+                newest = self._newest()
+                if newest is None:
+                    log.info("Waiting for an .ADM at %s", self.path)
+                    await asyncio.sleep(2)
+                    continue
+                if newest != current:
+                    if f:
+                        f.close()
+                    f = open(newest, "r", encoding="utf-8", errors="replace")
+                    if current is None and not self.from_start:
+                        f.seek(0, os.SEEK_END)
+                    current, buf = newest, ""
+                    log.info("Tailing %s", newest)
+                chunk = f.read()
+                if chunk:
+                    buf += chunk
+                    *complete, buf = buf.split("\n")
+                    for line in complete:
+                        yield line
+                else:
+                    await asyncio.sleep(self.poll)
+        finally:
+            if f:
+                f.close()

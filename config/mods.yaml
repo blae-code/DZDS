@@ -1,51 +1,58 @@
 # Single source of truth for the mod loadout.
 #
-# tier: load order bucket (spec §6C). 1 core → 2 gameplay/AI → 3 vehicles/base → 4 UI/admin.
-#       Within a tier, list order is preserved.
-# folder: directory name on the server (what goes into -mod=). Keep it free of spaces when
-#         possible. Many GSP panels rename on install, so match what the panel shows.
-# side: "both" (-mod=) or "server" (-serverMod=, not required on clients).
-# enabled: false to keep an entry documented but out of the launch string.
-# verified: flip to true once the workshop ID, dependencies and current-game-version
-#           compatibility have been checked on the Workshop page.
+# tier:     load order bucket (spec §6C). 1 core → 2 gameplay/AI → 3 vehicles/base → 4 UI/admin.
+#           Within a tier, list order is preserved.
+# folder:   directory name on the server (what goes into -mod=). Match what the GSP panel shows.
+# side:     "both" (-mod=, clients need it) or "server" (-serverMod=, server-only).
+# enabled:  false keeps an entry documented but out of the launch string.
+# verified: ID resolved against the Steam Workshop API and title confirmed
+#           (`make verify-mods`). Says nothing about in-game compatibility. That's `tested`.
+# tested:   flip to true after the Phase 4 playtest confirms it works on the current game version.
+# replaces: set when an entry substitutes a spec exemplar that doesn't exist or was swapped.
 #
-# IDs below are copied from docs/SPEC.md and have NOT been verified yet.
+# 2026-10-05: 26 of the 30 IDs in docs/SPEC.md were wrong or pointed at nonexistent
+# items. Corrected below via Workshop search; see docs/MOD_AUDIT.md.
 
 mods:
   # ---- Tier 1: Core frameworks ----
-  - { name: Community Framework,      folder: "@CF",                     id: 1559212036, tier: 1, module: core,     side: both, enabled: true,  verified: false }
-  - { name: Dabs Framework,           folder: "@Dabs Framework",         id: 2545327648, tier: 1, module: core,     side: both, enabled: true,  verified: false }
-  - { name: DayZ-Expansion-Core,      folder: "@DayZ-Expansion-Core",    id: 2115602332, tier: 1, module: core,     side: both, enabled: true,  verified: false }
+  - { name: CF,                       folder: "@CF",                       id: 1559212036, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false }
+  - { name: Dabs Framework,           folder: "@Dabs Framework",           id: 2545327648, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false }
+  - { name: DayZ-Expansion-Core,      folder: "@DayZ-Expansion-Core",      id: 2291785308, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false }
+  - { name: Zens Core Mod,            folder: "@ZenModCore",               id: 3702420204, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false, note: "dependency of Zen sleep/door/blood mods" }
+  - { name: Survivor Animations,      folder: "@SurvivorAnimations",       id: 2918418331, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false, note: "dependency of DayZ-Bicycle" }
 
   # ---- Tier 2: Dynamic world, factions, living AI ----
-  - { name: DayZ-Expansion-AI,        folder: "@DayZ-Expansion-AI",      id: 2792982064, tier: 2, module: world,    side: both, enabled: true,  verified: false }
-  - { name: Spatial AI,               folder: "@Spatial AI",             id: 2960682287, tier: 2, module: world,    side: both, enabled: true,  verified: false }
-  - { name: Dynamic AI Missions,      folder: "@Dynamic AI Missions",    id: 2824688047, tier: 2, module: world,    side: both, enabled: true,  verified: false }
-  - { name: Animated Dynamic Helicopters, folder: "@Animated Dynamic Helicopters", id: 2840742469, tier: 2, module: world, side: both, enabled: true, verified: false }
-  - { name: Bastardos Hacked Crate,   folder: "@Bastardos Hacked Crate", id: 2713769268, tier: 2, module: world,    side: both, enabled: true,  verified: false }
-  - { name: Airdrop-Upgraded,         folder: "@Airdrop-Upgraded",       id: 1870524790, tier: 2, module: world,    side: both, enabled: true,  verified: false }
-  - { name: PvZ MOAR Door Bashing,    folder: "@PvZ MOAR Door Bashing",  id: 2542456482, tier: 2, module: world,    side: both, enabled: true,  verified: false }
-  - { name: Flying Birds!,            folder: "@Flying Birds",           id: 2855146034, tier: 2, module: world,    side: both, enabled: true,  verified: false }
-  - { name: BleedTrail,               folder: "@BleedTrail",             id: 2521992015, tier: 2, module: world,    side: both, enabled: true,  verified: false }
-  - { name: ZenSleep,                 folder: "@ZenSleep",               id: 2840048119, tier: 2, module: base,     side: both, enabled: true,  verified: false }
-  - { name: BetterHarvest,            folder: "@BetterHarvest",          id: 2434005084, tier: 2, module: base,     side: both, enabled: true,  verified: false }
+  - { name: DayZ-Expansion-AI,        folder: "@DayZ-Expansion-AI",        id: 2792982069, tier: 2, module: world,     side: both,   enabled: true, verified: true, tested: false }
+  - { name: DayZ-Dynamic-AI-Addon,    folder: "@DayZ-Dynamic-AI-Addon",    id: 2874589934, tier: 2, module: world,     side: both,   enabled: true, verified: true, tested: false, replaces: "Spatial AI (not found on Workshop)" }
+  - { name: Dynamic AI Missions for DayZ Expansion AI, folder: "@DynamicAIMissions", id: 3277130230, tier: 2, module: world, side: server, enabled: true, verified: true, tested: false, note: "server-side; last updated 2024-12, test carefully" }
+  - { name: AnimatedDynamicHelicopters, folder: "@AnimatedDynamicHelicopters", id: 3382463948, tier: 2, module: world,  side: both,   enabled: true, verified: true, tested: false }
+  - { name: BS HackedCrate,           folder: "@BS_HackedCrate",           id: 3482229348, tier: 2, module: world,     side: both,   enabled: true, verified: true, tested: false, note: "Bastardos Hacked Crate; check whether server-only" }
+  - { name: Airdrop-Upgraded,         folder: "@Airdrop-Upgraded",         id: 1870524790, tier: 2, module: world,     side: both,   enabled: true, verified: true, tested: false }
+  - { name: Zens Zombie Door Bangers, folder: "@ZenZombieDoors",           id: 2932842394, tier: 2, module: world,     side: both,   enabled: true, verified: true, tested: false, replaces: "PvZ MOAR Door Bashing (not found); zombies only, AI door breaching not covered" }
+  - { name: Flying Birds!,            folder: "@Flying Birds",             id: 2501812949, tier: 2, module: world,     side: both,   enabled: true, verified: true, tested: false, note: "last updated 2022" }
+  - { name: Zens Blood Trail,         folder: "@ZenBloodTrail",            id: 3412155287, tier: 2, module: world,     side: both,   enabled: true, verified: true, tested: false, replaces: "BleedTrail (1640091454, unmaintained since 2019)" }
+  - { name: Zens Sleeping Mod,        folder: "@ZenSleep",                 id: 3468961047, tier: 2, module: base,      side: both,   enabled: true, verified: true, tested: false, replaces: "ZenSleep V1 (superseded by author)" }
+  - { name: BetterHarvest,            folder: "@BetterHarvest",            id: 3495536882, tier: 2, module: base,      side: both,   enabled: true, verified: true, tested: false }
 
   # ---- Tier 3: Vehicles, flight, base-building content ----
-  - { name: InventoryInCar,           folder: "@InventoryInCar",         id: 2288301548, tier: 3, module: mobility, side: both, enabled: true,  verified: false }
-  - { name: MuchCarKeys,              folder: "@MuchCarKeys",            id: 2049619524, tier: 3, module: mobility, side: both, enabled: true,  verified: false }
-  - { name: TowingMod,                folder: "@TowingMod",              id: 2414264762, tier: 3, module: mobility, side: both, enabled: true,  verified: false }
-  - { name: CarCover,                 folder: "@CarCover",               id: 2303494793, tier: 3, module: mobility, side: both, enabled: true,  verified: false }
-  - { name: IRP Land Rover Defender 110, folder: "@IRP-Land-Rover-Defender-110", id: 2443003051, tier: 3, module: mobility, side: both, enabled: true, verified: false }
-  - { name: CrSk_Beaters,             folder: "@CrSk_Beaters",           id: 2782352822, tier: 3, module: mobility, side: both, enabled: true,  verified: false }
-  - { name: Crocos Quadbikes,         folder: "@Crocos Quadbikes",       id: 2830849472, tier: 3, module: mobility, side: both, enabled: true,  verified: false }
-  - { name: Hunterz DayZ Bicycles,    folder: "@Hunterz DayZ Bicycles",  id: 2873099951, tier: 3, module: mobility, side: both, enabled: true,  verified: false }
-  - { name: RedFalcon Flight System Heliz, folder: "@RedFalcon Flight System Heliz", id: 2692979668, tier: 3, module: mobility, side: both, enabled: true, verified: false }
-  - { name: BaseBuildingPlus,         folder: "@BaseBuildingPlus",       id: 1710977258, tier: 3, module: base,     side: both, enabled: true,  verified: false }
-  - { name: BuildAnywhere_v3,         folder: "@BuildAnywhere_v3",       id: 1579262963, tier: 3, module: base,     side: both, enabled: true,  verified: false }
-  - { name: CodeLock,                 folder: "@CodeLock",               id: 1646187814, tier: 3, module: base,     side: both, enabled: true,  verified: false }
-  - { name: MuchStuffPack,            folder: "@MuchStuffPack",          id: 1991566648, tier: 3, module: base,     side: both, enabled: true,  verified: false }
+  - { name: InventoryInCar,           folder: "@InventoryInCar",           id: 2361330944, tier: 3, module: mobility,  side: both,   enabled: true, verified: true, tested: false, note: "last updated 2021" }
+  - { name: MuchCarKey,               folder: "@MuchCarKey",               id: 2049002856, tier: 3, module: mobility,  side: both,   enabled: true, verified: true, tested: false }
+  - { name: Towing Service,           folder: "@TowingService",            id: 3004707934, tier: 3, module: mobility,  side: both,   enabled: true, verified: true, tested: false, replaces: "TowingMod (not found); flatbed recovery truck, not tow ropes" }
+  - { name: CarCover,                 folder: "@CarCover",                 id: 2303483532, tier: 3, module: mobility,  side: both,   enabled: true, verified: true, tested: false }
+  - { name: IRP-Land-Rover-Defender-110, folder: "@IRP-Land-Rover-Defender-110", id: 1912237302, tier: 3, module: mobility, side: both, enabled: true, verified: true, tested: false, note: "last updated 2021" }
+  - { name: "[CrSk] VAZ-2107",        folder: "@CrSk_VAZ-2107",            id: 1818957231, tier: 3, module: mobility,  side: both,   enabled: true, verified: true, tested: false, replaces: "CrSk_Beaters (no such pack)" }
+  - { name: "[CrSk] GAZ-3309",        folder: "@CrSk_GAZ-3309",            id: 1756237462, tier: 3, module: mobility,  side: both,   enabled: true, verified: true, tested: false, replaces: "CrSk_Beaters (no such pack)" }
+  - { name: "[CrSk] BMW 525i E34",    folder: "@CrSk_BMW_525i_E34",        id: 1869021368, tier: 3, module: mobility,  side: both,   enabled: false, verified: true, tested: false, note: "optional 80s sedan" }
+  - { name: Crocos Quadbike,          folder: "@Crocos Quadbike",          id: 2757080411, tier: 3, module: mobility,  side: both,   enabled: true, verified: true, tested: false }
+  - { name: DayZ-Bicycle,             folder: "@DayZ-Bicycle",             id: 2971190303, tier: 3, module: mobility,  side: both,   enabled: true, verified: true, tested: false, replaces: "Hunterz DayZ Bicycles (not found)" }
+  - { name: RedFalcon Flight System Heliz, folder: "@RedFalcon Flight System Heliz", id: 2692979668, tier: 3, module: mobility, side: both, enabled: true, verified: true, tested: false }
+  - { name: BaseBuildingPlus,         folder: "@BaseBuildingPlus",         id: 1710977250, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false }
+  - { name: BuildAnywhere_v3,         folder: "@BuildAnywhere_v3",         id: 1854626456, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "last updated 2021" }
+  - { name: Code Lock,                folder: "@Code Lock",                id: 1646187754, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false }
+  - { name: MuchStuffPack,            folder: "@MuchStuffPack",            id: 1991570984, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "community 'MuchStuffPack_Fix' mods exist for 1.28+, check if needed" }
 
   # ---- Tier 4: UI, admin, utility ----
-  - { name: EarPlugs,                 folder: "@EarPlugs",               id: 1819514788, tier: 4, module: mobility, side: both, enabled: true,  verified: false }
-  - { name: BasicMap,                 folder: "@BasicMap",               id: 2270217596, tier: 4, module: telemetry, side: both, enabled: true, verified: false }
-  - { name: VPPAdminTools,            folder: "@VPPAdminTools",          id: 1828463903, tier: 4, module: telemetry, side: both, enabled: true, verified: false }
+  - { name: Ear-Plugs,                folder: "@Ear-Plugs",                id: 1819514788, tier: 4, module: mobility,  side: both,   enabled: true, verified: true, tested: false }
+  - { name: Basic Map,                folder: "@BasicMap",                 id: 2270215132, tier: 4, module: telemetry, side: both,   enabled: true, verified: true, tested: false, note: "last updated 2021; Expansion-Navigation is the maintained alternative" }
+  - { name: DayZ-Expansion-Navigation, folder: "@DayZ-Expansion-Navigation", id: 2792984722, tier: 4, module: telemetry, side: both, enabled: false, verified: true, tested: false, note: "alternative to Basic Map; enable one, not both" }
+  - { name: VPPAdminTools,            folder: "@VPPAdminTools",            id: 1828439124, tier: 4, module: telemetry, side: both,   enabled: true, verified: true, tested: false }

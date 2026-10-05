@@ -36,3 +36,34 @@ test:
 
 gm:
 	$(PY) -m gamemaster.gm_orchestrator
+
+# ---- Pre-purchase / offline ----
+.PHONY: verify-mods find-mod maps-check types mod-types fake-rcon sim gm-sim gm-probe
+
+verify-mods:
+	$(PY) tools/verify_mods.py
+
+find-mod:
+	$(PY) tools/find_mod.py "$(Q)"
+
+maps-check:
+	-$(PY) tools/maps_check.py
+
+types:
+	$(PY) tools/types_gen.py
+
+mod-types:
+	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/collect_mod_types.py
+
+fake-rcon:
+	$(PY) tools/fake_rcon.py --password changeme
+
+sim:
+	$(PY) tools/adm_simulator.py
+
+gm-sim:
+	GM_TELEMETRY=file GM_ADM_FILE=gm_state/sim.ADM GM_DRY_RUN=0 RCON_HOST=127.0.0.1 \
+	RCON_PORT=2310 RCON_PASSWORD=changeme $(PY) -m gamemaster.gm_orchestrator
+
+gm-probe:
+	$(PY) tools/gm_probe.py
