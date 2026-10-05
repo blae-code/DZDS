@@ -45,6 +45,14 @@ phases:
     story: The long haul. Baseline (population-scaled vanilla). Endgame vehicles and wrecks.
     tiers: {}
 
+# ---- Loot follows control (war ledger) -------------------------------------------------
+# Spawn amounts for a usage tag depend on who holds the sites of the matching roles. Military
+# sites held by the UN stay stocked; picked over when tribes hold them (factor down to `min`).
+# Contested sites count half. Without a ledger (gm_state/war_ledger.json) nothing changes.
+war:
+  Military:   { roles: [military, airfield], intact_under: [Peacekeepers], min: 0.6 }
+  Industrial: { roles: [industrial, water],  intact_under: [Rust, Settlers], min: 0.75 }
+
 # ---- Hoarding (months-long persistence) ------------------------------------------------
 # Vanilla doesn't count items in stashes/tents toward nominal (count_in_hoarder=0), so over
 # months a few players can stockpile without limit while the world keeps respawning loot.

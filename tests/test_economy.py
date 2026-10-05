@@ -99,3 +99,23 @@ def test_end_to_end_mission_with_modded_types(tmp_path):
     assert not (tmp_path / "dzds" / "types_dzds.xml.vanilla").exists()   # our items untouched
     akm = ET.fromstring(first).find("type[@name='AKM']")
     assert int(akm.find("nominal").text) < 10
+
+
+def test_loot_follows_control():
+    c = cfg()
+    roles = {"military": ["A", "B"], "airfield": ["C"], "industrial": ["D"]}
+    un = economy.war_factors(c, {"A": "Peacekeepers", "B": "Peacekeepers", "C": "Peacekeepers",
+                                 "D": "Rust"}, roles)
+    tribes = economy.war_factors(c, {"A": "Jackals", "B": "Karkas", "C": "contested", "D": "Jackals"}, roles)
+    assert un["Military"] == 1.0 and tribes["Military"] < 0.75
+    assert tribes["Industrial"] == c["war"]["Industrial"]["min"]
+    root = ET.fromstring(TYPES.replace('<category name="weapons"/>', '<category name="weapons"/><usage name="Military"/>'))
+    economy.scale_types(root, c, economy.pick_phase(c, "long_war", dt.date.today()), tribes)
+    picked = int(root.find("type[@name='AKM']/nominal").text)
+    root2 = ET.fromstring(TYPES.replace('<category name="weapons"/>', '<category name="weapons"/><usage name="Military"/>'))
+    economy.scale_types(root2, c, economy.pick_phase(c, "long_war", dt.date.today()), un)
+    assert picked < int(root2.find("type[@name='AKM']/nominal").text)
+
+
+def test_no_ledger_no_war_effect():
+    assert economy.war_factors(cfg(), None, {}) == {}

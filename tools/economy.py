@@ -60,7 +60,22 @@ def top_tier(t: ET.Element) -> str | None:
     return ranked[-1] if ranked else None
 
 
-def scale_types(root: ET.Element, cfg: dict, phase: dict) -> Counter:
+def war_factors(cfg: dict, control: dict[str, str] | None, map_roles: dict) -> dict[str, float]:
+    """Per-usage spawn factor from who holds the sites (cfg['war'], ledger control)."""
+    if not control or not cfg.get("war"):
+        return {}
+    out = {}
+    for usage, rule in cfg["war"].items():
+        sites = {s for r in rule["roles"] for s in (map_roles.get(r) or [])} & set(control)
+        if not sites:
+            continue
+        score = sum(1.0 if control[s] in rule["intact_under"] else 0.5 if control[s] == "contested" else 0.0
+                    for s in sites) / len(sites)
+        out[usage] = round(rule["min"] + (1 - rule["min"]) * score, 3)
+    return out
+
+
+def scale_types(root: ET.Element, cfg: dict, phase: dict, war: dict[str, float] | None = None) -> Counter:
     """Scale nominal/min in place. Returns before/after nominal totals per tier."""
     pop = population_factors(cfg)
     protected = set(cfg.get("protected_categories", []))
@@ -85,6 +100,10 @@ def scale_types(root: ET.Element, cfg: dict, phase: dict) -> Counter:
         if nominal > 0 and cat not in protected:
             f = pop.get(tier, 1.0) * phase.get("tiers", {}).get(tier, 1.0)
             f *= phase.get("categories", {}).get(cat, 1.0)
+            usages = [u.get("name") for u in t.findall("usage")]
+            war_f = [war[u] for u in usages if war and u in war]
+            if war_f:
+                f *= min(war_f)
             new_nominal = max(1, round(nominal * f))
             new_min = min(new_nominal, max(0, round(minimum * f)))
             if minimum > 0:
@@ -112,7 +131,7 @@ def types_files(mission: Path) -> list[Path]:
     return files
 
 
-def process(path: Path, cfg: dict, phase: dict, dry_run: bool) -> Counter | None:
+def process(path: Path, cfg: dict, phase: dict, dry_run: bool, war: dict | None = None) -> Counter | None:
     baseline = path.with_name(path.name + ".vanilla")
     if not path.exists():
         print(f"  (missing {path}; skipped)")
@@ -121,7 +140,7 @@ def process(path: Path, cfg: dict, phase: dict, dry_run: bool) -> Counter | None
         shutil.copy2(path, baseline)
         print(f"  saved pristine baseline {baseline.name} (commit it)")
     tree = ET.parse(baseline if baseline.exists() else path)
-    stats = scale_types(tree.getroot(), cfg, phase)
+    stats = scale_types(tree.getroot(), cfg, phase, war)
     if not dry_run:
         ET.indent(tree, space="    ")
         tree.write(path, encoding="UTF-8", xml_declaration=True)
@@ -163,10 +182,18 @@ def main() -> int:
         return 2
     print(f"Phase: {phase['name']} ({phase.get('story', '')})")
     print(f"Population factors for {cfg['expected_players']} players: {population_factors(cfg)}")
+    war = {}
+    ledger_file = ROOT / "gm_state" / "war_ledger.json"
+    if ledger_file.exists():
+        import json
+        state = json.loads(ledger_file.read_text())
+        map_roles = yaml.safe_load((ROOT / "maps" / f"{state['map']}.yaml").read_text()).get("roles", {})
+        war = war_factors(cfg, state.get("control"), map_roles)
+        print(f"War ledger loot factors (turn {state.get('turn')}): {war}")
     total: Counter = Counter()
     for path in types_files(mission):
         print(f"- {path.relative_to(mission)}")
-        stats = process(path, cfg, phase, a.dry_run)
+        stats = process(path, cfg, phase, a.dry_run, war)
         if stats:
             total.update(stats)
     for label in TIER_ORDER + ["untiered"]:
