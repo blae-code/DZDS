@@ -145,7 +145,11 @@ class DZDSWorld
 			Print("[DZDS] Refused (not allowlisted): " + c.ClassName);
 			return;
 		}
-		int count = Math.Clamp(c.Count, 1, 10);
+		int count = c.Count;
+		if (count < 1)
+			count = 1;
+		if (count > 10)
+			count = 10;
 		int flags = ECE_PLACE_ON_SURFACE | ECE_CREATEPHYSICS | ECE_UPDATEPATHGRAPH;
 		for (int i = 0; i < count; i++)
 		{
