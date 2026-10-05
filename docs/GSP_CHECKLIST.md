@@ -9,7 +9,8 @@ Ask sales/support or check the panel demo before buying. Every "no" breaks part 
 | Upload / auto-install Workshop mods by ID, custom `-mod=` / `-serverMod=` | 35-mod loadout | the loadout |
 | Edit startup params (`-dologs -adminlog`) | `.ADM` logging the GM reads | GM telemetry |
 | High-clock CPU (Ryzen 7000/9000, Intel 13/14th gen) | DayZ server is mostly single-threaded; Expansion AI is CPU-heavy | AI-heavy world stutters |
-| 8–12 GB RAM | spec target with this mod count | crashes, desync |
+| **12 GB RAM** (14–16 GB with all 96 mods) | estimate from the real mod sizes: docs/SERVER_SPECS.md | crashes, desync |
+| NVMe ≥ 50 GB, 10 slots | docs/SERVER_SPECS.md | slow starts / no room for backups |
 | Server region close to you + friends | latency | |
 | Supports Badlands/Nasdara (1.30) at launch, or soon after | Phase 5 | |
 | Scheduled restarts configurable (e.g. every 4–6 h) | AI/loot cleanup, memory | |

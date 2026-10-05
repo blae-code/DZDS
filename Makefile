@@ -112,3 +112,7 @@ dzds-profile:
 .PHONY: vehicle-events
 vehicle-events:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/vehicle_events.py
+
+.PHONY: specs
+specs:
+	$(PY) tools/specs.py

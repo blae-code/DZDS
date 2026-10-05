@@ -65,3 +65,11 @@ def test_overlay_presets_well_formed():
     for f in ov.OVERLAYS.glob("*.yaml"):
         o = yaml.safe_load(f.read_text())
         assert o["root"] in {"profiles", "mission"} and o["target"].endswith(".json") and o["values"], f
+
+
+def test_spec_estimate_scales_with_mod_size():
+    import specs
+    small, big = specs.estimate(11.7), specs.estimate(24.7)
+    assert small["server_ram_gb"] < big["server_ram_gb"]
+    assert big["server_ram_gb"] >= 12            # full list needs more than the spec's 8 GB
+    assert small["client_disk_gb"] > specs.CLIENT_DAYZ_GB

@@ -6,6 +6,7 @@ driven from a local CachyOS rig with a local LLM (Gemma 4 E4B via Ollama/ROCm).
 - **Design spec:** [`docs/SPEC.md`](docs/SPEC.md)
 - **Rules for Claude Code / contributors:** [`CLAUDE.md`](CLAUDE.md)
 - **Playtest checklist (what's left needs the game):** [`docs/PLAYTEST.md`](docs/PLAYTEST.md) · **Pruning plan:** [`docs/PRUNING.md`](docs/PRUNING.md)
+- **Server specs (calculated from the mod list):** [`docs/SERVER_SPECS.md`](docs/SERVER_SPECS.md), `make specs`
 - **No server yet?** Start with [`docs/PRE_PURCHASE.md`](docs/PRE_PURCHASE.md), then
   [`docs/GSP_CHECKLIST.md`](docs/GSP_CHECKLIST.md)
 - **War ledger (how player actions change the world):** [`docs/WAR_LEDGER.md`](docs/WAR_LEDGER.md)

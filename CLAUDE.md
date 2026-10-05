@@ -88,6 +88,7 @@ make gm               # run the GM daemon (dry-run unless GM_DRY_RUN=0)
 make calibrate        # AI accuracy bounds + kill logging (needs pulled/generated configs)
 make overlays         # presets/overlays/*.yaml onto real configs (existing keys only)
 make verify-mods      # check every mod ID/title/staleness on the Steam Workshop
+make specs            # server RAM/disk + client download estimate from enabled mods
 make find-mod Q=...   # search the Workshop
 make maps-check       # map role coverage (nasdara is TODO until release)
 make types            # compile presets/types_dzds.yaml into a CE custom types file
