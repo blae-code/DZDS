@@ -51,3 +51,15 @@ standing:                   # how each faction regards the players' group (-100.
 # Players fight FOR the Settlers: their kills at a site count as Settler pressure, so clearing
 # a site liberates it for the settlement network.
 players_fight_for: Settlers
+
+# Raids on player settlements (claimed sites): a hostile faction that is strong and dislikes the
+# players sends a raid patrol at a settlement (tools/patrol_gen.py adds it for one restart).
+raids:
+  min_strength: 55          # raider faction strength needed
+  max_standing: -20         # raider's standing with players must be at or below this
+  chance: 0.35              # per eligible settlement per turn (seeded)
+  size: [4, 7]
+
+# Named deeds: the top contributor to a liberation is named in the war report.
+deeds:
+  name_players: true

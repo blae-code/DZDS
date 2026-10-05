@@ -159,8 +159,10 @@ class Orchestrator:
             if not ev:
                 continue
             if ev.is_ai and ev.kind == "death" and ev.faction:
-                killer = ev.by_faction or ("Players" if ev.by and ev.by.startswith("Player") else None)
-                self.ledger.record_death(ev.faction, killer, ev.pos)
+                by_player = bool(ev.by and ev.by.startswith("Player"))
+                killer = ev.by_faction or ("Players" if by_player else None)
+                name = ev.by.split('"')[1] if by_player and '"' in ev.by else None
+                self.ledger.record_death(ev.faction, killer, ev.pos, killer_name=name)
             if self.agg.ingest(ev):
                 self.wake.set()
 

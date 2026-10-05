@@ -41,6 +41,8 @@ class LedgerState:
     deaths: dict[str, int] = field(default_factory=dict)                # faction -> deaths this turn
     player_kills: dict[str, int] = field(default_factory=dict)          # faction -> killed by players
     flags: list[str] = field(default_factory=list)
+    deeds: dict[str, dict[str, int]] = field(default_factory=dict)      # site -> player -> kills (this turn)
+    raids: list[dict] = field(default_factory=list)                     # raids scheduled for next restart
     auto_diplomacy: list[dict] = field(default_factory=list)
     history: list[dict] = field(default_factory=list)
 
@@ -114,8 +116,9 @@ class WarLedger:
         return self.engine_to_name.get(engine_or_name)
 
     # ---- recording ----------------------------------------------------------------------
-    def record_death(self, victim: str, killer: str | None, pos) -> None:
-        """victim/killer: engine faction names (DZDSJackals, Raiders...) or 'Players'."""
+    def record_death(self, victim: str, killer: str | None, pos, killer_name: str | None = None) -> None:
+        """victim/killer: engine faction names (DZDSJackals, Raiders...) or 'Players'.
+        killer_name: the player's name when a player made the kill (for named deeds)."""
         v, k = self.name_of(victim), self.name_of(killer)
         if not v:
             return
@@ -123,6 +126,9 @@ class WarLedger:
         if k == PLAYERS:
             self.s.player_kills[v] = self.s.player_kills.get(v, 0) + 1
         site = self.nearest_site(pos)
+        if site and k == PLAYERS and killer_name:
+            self.s.deeds.setdefault(site, {})
+            self.s.deeds[site][killer_name] = self.s.deeds[site].get(killer_name, 0) + 1
         if site and k and k != v:
             attacker = self.rules["players_fight_for"] if k == PLAYERS else k
             if attacker == v:
@@ -170,7 +176,8 @@ class WarLedger:
         events += self._offscreen(rng)
         self._update_strength()
         events += self._update_standing(today)
-        self.s.pressure, self.s.deaths, self.s.player_kills = {}, {}, {}
+        events += self._schedule_raids(rng)
+        self.s.pressure, self.s.deaths, self.s.player_kills, self.s.deeds = {}, {}, {}, {}
         self.s.auto_diplomacy = [d for d in self.s.auto_diplomacy
                                  if dt.date.fromisoformat(d["until"]) >= today]
         self.s.last_turn_at = now.isoformat(timespec="seconds")
@@ -194,7 +201,9 @@ class WarLedger:
                 holder = "contested"
             if holder == "contested" and top_n >= c["hold_min_pressure"] and top_n >= c["hold_dominance"] * max(1, second_n):
                 self.s.control[site] = top
-                events.append(f"{self._display(top)} took {site}")
+                hero = self._hero(site) if top == self.rules["players_fight_for"] else None
+                events.append(f"{hero}'s militia drove the defenders out of {site}; the Frontier Settlers hold it now"
+                              if hero else f"{self._display(top)} took {site}")
         return events
 
     def _offscreen(self, rng: random.Random) -> list[str]:
@@ -222,6 +231,42 @@ class WarLedger:
                 self.s.control[site] = "contested"
                 events.append(f"{self._display(rival)} are pushing on {self._display(holder)}-held {site}")
         return events
+
+    def _hero(self, site: str) -> str | None:
+        if not self.rules.get("deeds", {}).get("name_players"):
+            return None
+        d = self.s.deeds.get(site) or {}
+        return max(d, key=d.get) if d else None
+
+    def _schedule_raids(self, rng: random.Random) -> list[str]:
+        r = self.rules.get("raids")
+        self.s.raids = []
+        if not r:
+            return []
+        events = []
+        settlements = [s for s, h in self.s.control.items()
+                       if s in self.s.extra_sites and h == self.rules["players_fight_for"]]
+        for site in settlements:
+            raiders = [f for f in self.fspec
+                       if self.hostile(f, self.rules["players_fight_for"])
+                       and self.s.strength.get(f, 0) >= r["min_strength"]
+                       and self.s.standing.get(f, 0) <= r["max_standing"]]
+            if not raiders:
+                continue
+            raider = max(raiders, key=lambda f: self.s.strength.get(f, 0))
+            if rng.random() < r["chance"]:
+                origin = self._nearest_held(raider, site)
+                self.s.raids.append({"faction": raider, "target": site, "origin": origin,
+                                     "size": r["size"]})
+                events.append(f"Radio intercepts suggest {self._display(raider)} are massing near "
+                              f"{origin or 'the hills'} to hit {site}")
+        return events
+
+    def _nearest_held(self, faction: str, target: str) -> str | None:
+        locs = self.locations()
+        tx, tz = locs[target][:2]
+        held = [s for s, h in self.s.control.items() if h == faction and s in locs]
+        return min(held, key=lambda s: (locs[s][0] - tx) ** 2 + (locs[s][1] - tz) ** 2) if held else None
 
     def _update_strength(self) -> None:
         st = self.rules["strength"]
@@ -271,6 +316,8 @@ class WarLedger:
             lines.append(f"  {label:<28} {', '.join(sorted(sites))}")
         lines.append("  Strength: " + ", ".join(f"{f} {v:.0f}" for f, v in self.s.strength.items()))
         lines.append("  Standing with players: " + ", ".join(f"{f} {v:+.0f}" for f, v in self.s.standing.items()))
+        for r in self.s.raids:
+            lines.append(f"  Raid scheduled: {r['faction']} from {r['origin']} -> {r['target']}")
         for d in self.s.auto_diplomacy:
             lines.append(f"  Diplomacy until {d['until']}: {d['from']} -> {d['to']} {d['stance']} ({d['why']})")
         return "\n".join(lines)

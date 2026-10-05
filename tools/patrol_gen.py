@@ -146,6 +146,36 @@ def generate(map_name: str, interim: bool = False, control: dict | None = None,
     return patrols
 
 
+def raid_patrols(raids: list[dict], locs: dict, interim: bool = False) -> list[dict]:
+    """One-restart raid patrols from the war ledger: origin site -> target settlement."""
+    factions = load("presets/factions.yaml")["factions"]
+    out = []
+    for r in raids:
+        spec = factions[r["faction"]]
+        engine = spec["interim_faction"] if interim else spec["custom_faction"]
+        tx, tz = locs[r["target"]][:2]
+        ox, oz = locs[r["origin"]][:2] if r.get("origin") in locs else (tx + 800.0, tz + 800.0)
+        p = dict(BASE)
+        p.update(spec.get("behaviour", {}))
+        p.update({
+            "Name": f"{r['faction']} RAID -> {r['target']}",
+            "Faction": engine,
+            "Persist": False,
+            "Loadout": f"DZDS_{r['faction']}",
+            "NumberOfAI": int(r["size"][0]),
+            "NumberOfAIMax": int(r["size"][1]),
+            "Behaviour": "ONCE",
+            "Speed": "JOG",
+            "UnderThreatSpeed": "SPRINT",
+            "EnableFlankingOutsideCombat": 1,
+            "Chance": 1.0,
+            "RespawnTime": -1.0,
+            "Waypoints": [vec(ox, oz), vec((ox + tx) / 2, (oz + tz) / 2), vec(tx, tz)],
+        })
+        out.append(p)
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--map", default=os.environ.get("GM_MAP", "chernarusplus"))
@@ -162,6 +192,9 @@ def main() -> int:
         control, locs = led.holders(), led.locations()
         print(f"Using war ledger control (turn {led.s.turn})")
     patrols = generate(a.map, a.interim, control, locs)
+    if control is not None and led.s.raids:
+        patrols += raid_patrols(led.s.raids, locs, a.interim)
+        print(f"+ {len(led.s.raids)} raid patrol(s) from the war ledger")
     max_ai = sum(p["NumberOfAIMax"] for p in patrols)
     print(f"{len(patrols)} patrols, up to {max_ai} AI if every one spawned "
           f"(they only spawn near players; docs/LIVING_WORLD.md budget ~60 concurrent)")

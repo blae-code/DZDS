@@ -103,3 +103,35 @@ def test_adm_line_feeds_the_ledger():
     led.record_death(ev.faction, killer, ev.pos)
     assert led.s.player_kills == {"Karkas": 1}
     assert led.s.pressure["Altar"] == {"Settlers": 1}
+
+
+def test_named_deeds_in_liberation_report():
+    led = fresh()
+    for i in range(9):
+        led.record_death("DZDSJackals", "Players", at("Gorka"), killer_name="Host" if i < 6 else "Buddy")
+    events = led.turn(now=T0)
+    assert any(e.startswith("Host's militia drove the defenders out of Gorka") for e in events)
+    assert led.s.deeds == {}  # reset each turn
+
+
+def test_hostile_strong_faction_raids_settlement():
+    led = fresh()
+    led.claim("Host's Homestead", [5200.0, 8600.0], ["inland_town"])
+    led.s.strength["Jackals"] = 90
+    raids = []
+    for i in range(12):
+        led.turn(now=T0 + dt.timedelta(hours=3 * i))
+        led.s.strength["Jackals"] = 90
+        raids += led.s.raids
+    assert raids and all(r["target"] == "Host's Homestead" for r in raids)
+    patrols = patrol_gen.raid_patrols(raids[:1], led.locations())
+    assert patrols[0]["Behaviour"] == "ONCE" and patrols[0]["Waypoints"][-1][0] == 5200.0
+
+
+def test_no_raids_when_raiders_are_weak_or_friendly():
+    led = fresh()
+    led.claim("Host's Homestead", [5200.0, 8600.0], ["inland_town"])
+    for f in led.s.strength:
+        led.s.strength[f] = 10
+    led.turn(now=T0)
+    assert led.s.raids == []
