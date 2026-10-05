@@ -5,7 +5,7 @@ driven from a local CachyOS rig with a local LLM (Gemma 4 E4B via Ollama/ROCm).
 
 - **Design spec:** [`docs/SPEC.md`](docs/SPEC.md)
 - **Rules for Claude Code / contributors:** [`CLAUDE.md`](CLAUDE.md)
-- **Playtest checklist:** [`docs/PLAYTEST.md`](docs/PLAYTEST.md)
+- **Playtest checklist (what's left needs the game):** [`docs/PLAYTEST.md`](docs/PLAYTEST.md) · **Pruning plan:** [`docs/PRUNING.md`](docs/PRUNING.md)
 - **No server yet?** Start with [`docs/PRE_PURCHASE.md`](docs/PRE_PURCHASE.md), then
   [`docs/GSP_CHECKLIST.md`](docs/GSP_CHECKLIST.md)
 - **War ledger (how player actions change the world):** [`docs/WAR_LEDGER.md`](docs/WAR_LEDGER.md)
@@ -86,9 +86,9 @@ backups/                remote snapshots taken before each push (gitignored)
 ```
 
 ## Status vs. spec §7
-- [x] Mod list verified against the Workshop (`docs/MOD_AUDIT.md`)
-- [x] Phase 1: SFTP sync, `-mod=` generator, `.bikey` checker
-- [~] Phase 2: calibration tool, faction stance matrix, custom types generator. Translating into Expansion's real file format needs its generated configs (local server or GSP)
-- [~] Phase 3: GM daemon runs end to end (ADM → Gemma → RCON `say`), testable offline with simulator + fake RCON. `world_actions` are logged only until an Enforce RestApi hook exists
-- [ ] Phase 4: ChernarusPlus playtest (`docs/PLAYTEST.md`)
-- [~] Phase 5: role-based maps + `make maps-check`; Nasdara data on release (`docs/BADLANDS_PREP.md`)
+- [x] Mod list verified against the Workshop; ~95 mods across all categories (`docs/MOD_AUDIT.md`, pruning plan in `docs/PRUNING.md`)
+- [x] Phase 1: SFTP sync, `-mod=` generator, `.bikey` checker, dependency check
+- [x] Phase 2 (offline parts): AI calibration, factions (@DZDS), squad templates, loadouts, economy, traders, quests plan, vehicle events, overlays
+- [x] Phase 3: GM daemon end to end (ADM → Gemma → RCON radio + @DZDS command queue), war ledger, faction voices
+- [ ] Phase 4: in-game validation: **`docs/PLAYTEST.md`** (everything left needs the game)
+- [~] Phase 5: role-based maps, `make maps-check`; Nasdara data on release (`docs/BADLANDS_PREP.md`)

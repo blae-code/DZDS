@@ -57,17 +57,20 @@ standing per kill, "enemy of my enemy" bonus, decay, and the threshold events (e
 diplomacy overrides and duration). Tests in `tests/test_ledger.py` pin the *behaviour*
 (liberation, lockdown, expiry, AI-vs-AI front moves, determinism), not the numbers.
 
-## Next ways to make it more tangible
-1. **Traders follow control**: a trader only exists while its faction holds its site (presets/traders.yaml).
-2. **Quests from the front**: "break the siege" targets the site contested *now*; quest givers move with control.
-3. **Loot follows control**: military loot at a site depends on who holds it (UN-held = guarded but
-   intact; Jackal-held = picked over).
-4. **Physical markers via @DZDS**: faction flags or banners at held sites, burnt wrecks and bodies
-   at sites that changed hands, so you *see* the war turn when you arrive.
-5. **AI raids on player settlements**: when a hostile faction is strong and its standing with you is
-   low, the ledger schedules a raid patrol against your homestead.
-6. **Named deeds**: the GM can name the players in war reports ("Host's militia drove the Jackals
-   out of Gorka"), so the world remembers who did it.
+## Built on top of the ledger
+| Feature | How | Where |
+|---|---|---|
+| **Traders follow control** | open / relocated / closed by who holds their role's sites | `make front-plan` (tools/front_plan.py) |
+| **Quests from the front** | templates instantiate at contested, held, water and raid-target sites; givers at the faction's nearest site; standing gates | presets/quests.yaml, `make front-plan` |
+| **Loot follows control** | Military/Industrial spawn factors from who holds those sites (contested counts half) | presets/economy.yaml `war:`, `make economy` |
+| **Physical markers** | @DZDS places a marker object per site by holder at server start (non-persistent) | presets/world.yaml, `make dzds-profile` |
+| **Raids on settlements** | strong, hostile faction → one-restart ONCE raid patrol at a claimed homestead | presets/ledger.yaml `raids:`, `make patrols` |
+| **Named deeds** | the top player at a liberation is named in the war report | presets/ledger.yaml `deeds:` |
+| **Vehicles follow control** | vehicle events placed at sites by role + holder | presets/vehicle_events.yaml, `make vehicle-events` |
+
+Remaining in-game work: choose the marker objects, write Expansion quest/trader JSON once its
+example files exist (front_plan already decides what should exist where), and the checks in
+docs/PLAYTEST.md.
 
 ## To verify on the local server
 - [test] Kill attribution: `LogAIKilled` lines carry `faction="…"` for both sides as parsed.

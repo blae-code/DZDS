@@ -107,6 +107,10 @@ make gm-probe         # one-shot Ollama/prompt check
 scripts/local_server.sh install|mods|start   # optional local dedicated server
 ```
 
+## Where things stand (2026-10-05)
+All offline work is done and tested (`make test`). Remaining work needs a running game:
+follow `docs/PLAYTEST.md`. Pruning decisions: `docs/PRUNING.md`.
+
 ## Workflow phases (spec §7)
 1. GSP staging: sync script, key validation, mod string. **(scaffolded)**
 2. Config harmonization: Expansion AI / Spatial AI presets, `types.xml` additions. **(calibration tool scaffolded)**
