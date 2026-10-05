@@ -16,22 +16,60 @@ def load(rel):
     return yaml.safe_load((ROOT / rel).read_text())
 
 
+# IsFriendly() relations transcribed from Expansion's source (Factions/*.c, 2026-10).
+# "Passive"/"Observers" omitted. Update this if Expansion changes its factions.
+ENGINE_FRIENDLY = {
+    "West": {"West", "Civilian"},
+    "East": {"East", "Civilian"},
+    "Raiders": {"Raiders"},  # literally IsPassive() only, but never fights its own groups
+    "Civilian": {"West", "East", "Raiders", "Civilian", "Infected"},
+    "Infected": {"Infected"},
+    "Guards": {"Guards"},
+    "Mercenaries": {"Mercenaries"},
+}
+
+
+def test_faction_stances_match_engine():
+    f = load("presets/factions.yaml")["factions"]
+    engine = {name: spec["engine_faction"] for name, spec in f.items()}
+    for name, spec in f.items():
+        if engine[name] is None:  # vanilla Infected: not an Expansion faction
+            continue
+        for other, stance in spec["stance"].items():
+            if engine[other] is None:
+                continue  # zombies attack everyone regardless of faction
+            friendly = engine[other] in ENGINE_FRIENDLY[spec["engine_faction"]]
+            assert (stance == "friendly") == friendly, f"{name} -> {other}: preset says {stance}"
+
+
 def test_faction_rules_from_spec():
     f = load("presets/factions.yaml")["factions"]
-    assert f["Survivors"]["stance"]["Players"] in {"neutral", "friendly"}
-    assert f["Raiders"]["stance"]["Guards"] == "hostile"
-    assert f["Guards"]["stance"]["Raiders"] == "hostile"
-    for name in ("Survivors", "Raiders", "Guards"):
+    # Survivors never initiate; the two armies are at war; Raiders hostile to all humans;
+    # Infected are the universal enemy.
+    assert all(v == "friendly" for k, v in f["Survivors"]["stance"].items() if k != "Infected")
+    assert f["CDF"]["stance"]["ChDKZ"] == f["ChDKZ"]["stance"]["CDF"] == "hostile"
+    assert all(v == "hostile" for k, v in f["Raiders"]["stance"].items() if k != "Raiders")
+    for name in ("CDF", "ChDKZ", "Raiders", "Survivors"):
         assert f[name]["stance"]["Infected"] == "hostile"
-        assert f["Infected"]["stance"][name] == "hostile"
 
 
-def test_faction_combat_within_bounds_and_territories_are_roles():
+def test_faction_combat_within_bounds_and_roles_valid():
     p = load("presets/factions.yaml")
     assert check_bounds(p["combat"]) == []
-    roles = load("maps/_roles.yaml")["roles"]
-    for faction, rs in p["territories"].items():
-        assert set(rs) <= set(roles), faction
+    roles = set(load("maps/_roles.yaml")["roles"])
+    for name, spec in p["factions"].items():
+        assert set(spec.get("holds_roles", [])) <= roles, name
+    for res, spec in p["resources"].items():
+        assert set(spec["from_roles"]) <= roles, res
+
+
+def test_initial_control_uses_known_locations_once():
+    p = load("presets/factions.yaml")
+    for map_name, control in p["initial_control"].items():
+        locs = set(load(f"maps/{map_name}.yaml")["locations"])
+        seen = [loc for holders in control.values() for loc in holders]
+        assert set(seen) <= locs
+        assert len(seen) == len(set(seen)), "a location is assigned twice"
 
 
 def test_chernarus_map_complete():

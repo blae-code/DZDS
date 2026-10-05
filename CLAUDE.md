@@ -34,9 +34,12 @@ This file holds the rules you must follow when working in this repo.
    3 vehicles/base content → 4 UI/admin/utility. Every mod's `.bikey` goes into server `keys/`.
 5. **AI calibration bounds** (Expansion AI defaults are too lethal):
    - `AccuracyMin` ∈ [0.25, 0.32], `AccuracyMax` ∈ [0.45, 0.52], `ThreatDistanceLimit` ≤ 300.0
-   - Factions in `profiles/ExpansionMod/AI/Factions/`: `Survivors` neutral/friendly to players;
-     `Raiders` ↔ `Guards` mutually hostile; `Infected` enemy to all human factions.
-   - Apply with `tools/apply_ai_calibration.py`; it refuses values outside these bounds.
+   - Apply with `make calibrate`: it sets the global values (and AI kill logging) and clamps
+     per-patrol overrides in AIPatrolSettings.json. It refuses values outside these bounds.
+   - **Factions are compiled into Expansion, with no JSON config** (the spec's
+     `profiles/ExpansionMod/AI/Factions/` doesn't exist). Our factions map onto built-ins
+     (CDF=West, ChDKZ=East, Raiders, Survivors=Civilian) in `presets/factions.yaml`; tests
+     check them against the engine's real relations. Design: `docs/LIVING_WORLD.md`.
 6. **Design pillars.** Diegetic only: physical keys, keypads, tarps, tow cables, paper maps,
    radio broadcasts. **No** virtual garages, 3D HUD markers, map fast-travel, supercars,
    or micro-tedium (dipsticks, fuses, lug nuts). Reject or flag mods that violate this.

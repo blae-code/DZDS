@@ -1,11 +1,20 @@
-# Calibration overlay applied by tools/apply_ai_calibration.py onto the mirrored
-# server/profiles/ExpansionMod/Settings/AISettings.json. Only these keys are touched;
-# everything else in the server's file is preserved as-is.
+# Applied by tools/apply_ai_calibration.py (`make calibrate`) onto the mirrored server config.
 #
-# Bounds (enforced by the tool, see CLAUDE.md rule 5):
-#   AccuracyMin 0.25–0.32 | AccuracyMax 0.45–0.52 | ThreatDistanceLimit <= 300
+# target: global AI settings; these keys are SET (Expansion defaults, from its source:
+#         AccuracyMin 0.35, AccuracyMax 0.95, ThreatDistanceLimit 1000, logging off).
+# clamp_targets: files where the same keys can be overridden per patrol/spawn. Values there
+#         are only CLAMPED into the spec bounds; negative sentinels (-1 = "use global")
+#         are left alone.
+#
+# Bounds (enforced, CLAUDE.md rule 5): AccuracyMin 0.25–0.32 | AccuracyMax 0.45–0.52 |
+# ThreatDistanceLimit <= 300
 target: ExpansionMod/Settings/AISettings.json
 values:
   AccuracyMin: 0.28
   AccuracyMax: 0.48
   ThreatDistanceLimit: 280.0
+  # Put AI hits/kills (with faction="...") into the .ADM so the GM can see the war.
+  LogAIHitBy: true
+  LogAIKilled: true
+clamp_targets:
+  - ExpansionMod/Settings/AIPatrolSettings.json

@@ -29,7 +29,7 @@ named mods that don't exist. `config/mods.yaml` now holds the corrected list.
 ## Substitutions (spec mod not found, or a maintained replacement exists)
 | Spec | Replacement | Trade-off |
 |---|---|---|
-| Spatial AI | DayZ-Dynamic-AI-Addon (2874589934) | Expansion-based random AI spawns; confirm it spawns relative to players |
+| Spatial AI | DayZ-Dynamic-AI-Addon (2874589934) | **Same mod, renamed** (its description: "mod version = Spatial AI"). Server-side only |
 | PvZ MOAR Door Bashing | Zens Zombie Door Bangers (2932842394) | Zombies only; AI door breaching not covered |
 | BleedTrail (2019) | Zens Blood Trail (3412155287) | Maintained, persists across restarts |
 | ZenSleep V1 | Zens Sleeping Mod (3468961047) | Author's rewrite for 1.28+ |
@@ -49,3 +49,10 @@ Animations** (2918418331) for DayZ-Bicycle.
   a "CodeLock to ExpansionCodeLock Bridge" mod exists, which suggests overlap is common.
 - **MuchStuffPack**: community `_Fix` uploads exist for 1.28; check whether the base mod works.
 - **Dynamic AI Missions**: last updated 2024-12; candidate for replacement if it breaks.
+
+## Living-world additions (2026-10-05, see docs/LIVING_WORLD.md)
+- Added: **AI War Zones** (3521304609, front-line battles), **Moving AI Convoy** (3767913539, faction logistics).
+- Disabled: Dynamic AI Missions (stale, overlaps War Zones/crates/crashes).
+- Listed as optional (disabled): Airborne AI, BS Patrol Tank, Expansion-Missions, Expansion-Quests, SF Zombie Horde.
+- Rejected: AI Voice Broadcast (author: broken since 1.29), King of the Hill (now private),
+  AI Bandits (separate AI framework, wouldn't join the faction war).

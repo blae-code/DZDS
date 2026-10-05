@@ -1,34 +1,81 @@
-# Faction design intent (spec §6A), written independently of Expansion's file format.
+# Living-world faction design (docs/LIVING_WORLD.md), mapped onto Expansion AI's REAL
+# built-in factions.
 #
-# Expansion AI writes its real faction/settings files on first server start
-# (profiles/ExpansionMod/AI/...). Once those exist, translate this table into them.
-# tests/test_presets.py enforces the spec rules on this file so the intent can't drift.
+# Facts from the Expansion source (DayZExpansion/AI/Scripts/.../Factions/*.c):
+#   - Factions are compiled script classes. Relations are hard-coded in IsFriendly(); there
+#     is NO JSON faction config (the spec's profiles/ExpansionMod/AI/Factions/ doesn't exist).
+#   - A patrol picks its faction by name ("Faction": "East" in AIPatrolSettings.json).
+#   - Custom factions/relations need a small script mod (planned: @DZDS, see design doc).
+#   - Players can be auto-assigned a faction on connect via AISettings.PlayerFactions.
 #
-# stance: friendly | neutral | hostile   (row faction's attitude toward column)
+# `engine_faction` is the Expansion class used; `stance` documents the resulting behaviour
+# (derived from the source, so tests can check our intent matches what the engine does).
+# Stance toward Players depends on the player-alignment option chosen (docs, open decision 1).
+
 factions:
-  Survivors:
-    description: Neutral scavengers and traders; won't fire on players unless attacked.
-    stance: { Players: neutral, Survivors: friendly, Raiders: hostile, Guards: neutral,  Infected: hostile }
-    loadout: civilian_light
+  CDF:
+    engine_faction: West
+    lore: Chernarus Defence Forces remnant. Disciplined, holds military sites and airfields,
+      escorts fuel and arms between bases. Protects civilians.
+    stance: { CDF: friendly, ChDKZ: hostile, Raiders: hostile, Survivors: friendly, Infected: hostile }
+    loadout: WestLoadout        # Expansion default; replace with a CDF-themed loadout file
+    holds_roles: [military, airfield]
+  ChDKZ:
+    engine_faction: East
+    lore: Insurgent militia holding the industrial east and north. Takes fuel and
+      factories, raids CDF supply. Tolerates civilians.
+    stance: { ChDKZ: friendly, CDF: hostile, Raiders: hostile, Survivors: friendly, Infected: hostile }
+    loadout: EastLoadout
+    holds_roles: [industrial, road_junction]
   Raiders:
-    description: Bandit crews roaming roads and towns; ambush Guards and players.
-    stance: { Players: hostile, Survivors: hostile, Raiders: friendly, Guards: hostile,  Infected: hostile }
-    loadout: mixed_civil_military
-  Guards:
-    description: Disciplined remnants holding military sites; shoot trespassers.
-    stance: { Players: hostile, Survivors: neutral, Raiders: hostile, Guards: friendly,  Infected: hostile }
-    loadout: military
+    engine_faction: Raiders
+    lore: Bandit crews. Hostile to everyone, hunt convoys, survivors and stragglers.
+    stance: { Raiders: friendly, CDF: hostile, ChDKZ: hostile, Survivors: hostile, Infected: hostile }
+    loadout: BanditLoadout
+    holds_roles: [remote]
+  Survivors:
+    engine_faction: Civilian
+    lore: Scavengers and families in the towns. Never start fights; prey for Raiders.
+    stance: { Survivors: friendly, CDF: friendly, ChDKZ: friendly, Raiders: friendly, Infected: hostile }
+    loadout: SurvivorLoadout
+    holds_roles: [inland_town, coastal_town]
   Infected:
-    description: Vanilla zombies. Listed so the matrix is complete; not an Expansion faction.
-    stance: { Players: hostile, Survivors: hostile, Raiders: hostile, Guards: hostile,  Infected: friendly }
+    engine_faction: null   # vanilla zombies sit OUTSIDE the faction system and attack every
+                           # human; Expansion's "Infected" faction is a human-AI faction, unused
+    lore: Vanilla zombies; the universal enemy.
+    stance: { Infected: friendly, CDF: hostile, ChDKZ: hostile, Raiders: hostile, Survivors: hostile }
 
-# Where each faction should appear, by map ROLE (maps/_roles.yaml), so this ports to Nasdara.
-territories:
-  Survivors: [inland_town, coastal_town]
-  Raiders:   [inland_town, road_junction, industrial]
-  Guards:    [military, airfield]
+# Spec mapping: spec "Survivors" = Survivors; spec "Raiders" = Raiders; spec "Guards" is split
+# into CDF and ChDKZ, two mutually hostile armies, which gives the war a front line.
+# Expansion's own "Guards" faction stays reserved for static site defenders if needed.
 
-# Shared combat calibration (spec bounds; also in presets/expansion_ai_calibration.yaml).
+# ---- Resources: what the war is fought over -------------------------------------------
+# Each resource comes from sites of certain map ROLES (maps/_roles.yaml), so this ports to
+# Nasdara. Holding sites yields income per restart cycle; income buys effects.
+resources:
+  fuel:
+    from_roles: [industrial]
+    effect: convoy frequency and vehicle patrols for the holder
+  arms:
+    from_roles: [military, airfield]
+    effect: better loadouts (accuracy stays inside spec bounds)
+  food:
+    from_roles: [inland_town]
+    effect: reinforcement rate (patrol size / respawn time)
+  medicine:
+    from_roles: [coastal_town]
+    effect: garrison resilience (DamageReceivedMultiplier slightly below 1.0)
+
+# ---- Initial front line for ChernarusPlus (campaign start) -------------------------------
+# Location names from maps/chernarusplus.yaml. The war ledger evolves this over restarts.
+initial_control:
+  chernarusplus:
+    CDF: [Balota Airfield, Northwest Airfield, Zelenogorsk, Chernogorsk]
+    ChDKZ: [Berezino, Krasnostav, Severograd, Novodmitrovsk, Elektrozavodsk]
+    Raiders: [Tisy Military]
+    contested: [Stary Sobor, Gorka, Vybor]   # no holder; War Zones fight here
+
+# Shared combat calibration (same bounds as presets/expansion_ai_calibration.yaml).
 combat:
   AccuracyMin: 0.28
   AccuracyMax: 0.48

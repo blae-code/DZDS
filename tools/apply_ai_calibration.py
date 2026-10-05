@@ -55,6 +55,44 @@ def apply(node, values: dict, changes: list, seen: set) -> None:
             apply(item, values, changes, seen)
 
 
+def clamp(node, changes: list) -> None:
+    """Pull bounded numeric keys into range wherever they appear; keep 0/negative sentinels ("use global")."""
+    if isinstance(node, dict):
+        for k, v in node.items():
+            if k in BOUNDS and isinstance(v, (int, float)) and not isinstance(v, bool) and v > 0:
+                lo, hi = BOUNDS[k]
+                new = min(max(v, lo), hi)
+                if new != v:
+                    changes.append((k, v, new))
+                    node[k] = new
+            else:
+                clamp(v, changes)
+    elif isinstance(node, list):
+        for item in node:
+            clamp(item, changes)
+
+
+def write_with_backup(path: Path, data) -> None:
+    shutil.copy2(path, path.with_suffix(path.suffix + ".bak"))
+    path.write_text(json.dumps(data, indent=4) + "\n")
+    print(f"Wrote {path} (backup: {path.name}.bak)")
+
+
+def apply_clamps(preset: dict, dry_run: bool) -> None:
+    for rel in preset.get("clamp_targets", []):
+        path = PROFILES / rel
+        if not path.exists():
+            print(f"(skip clamp: {rel} not present yet)")
+            continue
+        data = json.loads(path.read_text())
+        changes: list = []
+        clamp(data, changes)
+        for k, old, new in changes:
+            print(f"{path.name}: {k}: {old} -> {new}")
+        if changes and not dry_run:
+            write_with_backup(path, data)
+
+
 def main() -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--dry-run", action="store_true")
@@ -81,14 +119,12 @@ def main() -> int:
     for k, old, new in changes:
         print(f"{k}: {old} -> {new}")
     if not changes:
-        print("Already calibrated; no changes.")
-        return 0
+        print("Global settings already calibrated.")
+    elif not args.dry_run:
+        write_with_backup(target, data)
+    apply_clamps(preset, args.dry_run)
     if args.dry_run:
         print("(dry run, nothing written)")
-        return 0
-    shutil.copy2(target, target.with_suffix(target.suffix + ".bak"))
-    target.write_text(json.dumps(data, indent=4) + "\n")
-    print(f"Wrote {target} (backup: {target.name}.bak)")
     return 0
 
 

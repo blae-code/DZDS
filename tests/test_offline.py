@@ -22,6 +22,7 @@ def test_simulator_lines_parse():
             triggers += agg.ingest(ev)
     assert {"connect", "hit", "position"} <= kinds
     assert triggers > 0
+    assert agg.faction_kills, "simulator should produce AI faction kills"
 
 
 async def test_rcon_against_fake_server():

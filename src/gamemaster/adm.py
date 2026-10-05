@@ -1,7 +1,10 @@
 """DayZ .ADM log parsing and remote tailing over SFTP.
 
-Vanilla .ADM covers connects, hits (with HP), deaths and positions. Vehicle crashes and
-richer AI telemetry are NOT in vanilla ADM; those need the Enforce RestApi hook (TODO).
+Vanilla .ADM covers connects, hits (with HP), deaths and positions. With Expansion AI's
+LogAIHitBy / LogAIKilled enabled, AI appear too, with their faction in the prefix:
+    AI "Name" (group=12:"Patrol" faction="East" pos=<x, y, z>)
+and players in an Expansion group get ` group=.. faction=".."` before pos=. That's how the
+GM sees faction-vs-faction fighting. Vehicle crashes are still NOT in ADM (needs a server hook).
 """
 from __future__ import annotations
 
@@ -14,13 +17,13 @@ from dataclasses import dataclass, field
 log = logging.getLogger(__name__)
 
 _TIME = r"^(?P<time>\d{2}:\d{2}:\d{2})(?:\.\d+)? \| "
-_PLAYER = r'Player "(?P<name>[^"]+)"'
+_PLAYER = r'(?P<etype>Player|AI) "(?P<name>[^"]+)"'
 _POS = r"pos=<(?P<x>-?[\d.]+), (?P<y>-?[\d.]+), (?P<z>-?[\d.]+)>"
 
 PATTERNS: list[tuple[str, re.Pattern]] = [
     ("connect", re.compile(_TIME + _PLAYER + r".*is connected")),
     ("disconnect", re.compile(_TIME + _PLAYER + r".*has been disconnected")),
-    ("death", re.compile(_TIME + _PLAYER + r" \(DEAD\).*?(?:" + _POS + r")?.*?(?:killed by|died)(?P<by>.*)")),
+    ("death", re.compile(_TIME + _PLAYER + r" \(DEAD\)(?:[^<]*?" + _POS + r")?.*?(?:killed by|died)(?P<by>.*)")),
     ("unconscious", re.compile(_TIME + _PLAYER + r".*?" + _POS + r".*is unconscious")),
     ("hit", re.compile(_TIME + _PLAYER + r".*?" + _POS + r".*?\[HP: (?P<hp>[\d.]+)\] hit by (?P<by>.*)")),
     ("position", re.compile(_TIME + _PLAYER + r".*?" + _POS + r"\)?\s*$")),
@@ -37,6 +40,22 @@ class AdmEvent:
     by: str | None = None
     raw: str = ""
     tags: set[str] = field(default_factory=set)
+    is_ai: bool = False               # the subject (victim/actor) is an Expansion AI
+    faction: str | None = None        # subject's faction, if logged
+    by_is_ai: bool = False            # the attacker/killer is an Expansion AI
+    by_faction: str | None = None     # attacker/killer's faction, if logged
+
+
+_FACTION = re.compile(r'faction="([^"]*)"')
+_SPLIT = re.compile(r"\b(?:hit by|killed by)\b")
+
+
+def _factions(line: str) -> tuple[str | None, str | None]:
+    """Faction of the subject (before 'hit/killed by') and of the attacker (after)."""
+    parts = _SPLIT.split(line, maxsplit=1)
+    subj = _FACTION.search(parts[0])
+    by = _FACTION.search(parts[1]) if len(parts) > 1 else None
+    return (subj.group(1) if subj else None, by.group(1) if by else None)
 
 
 def parse_line(line: str) -> AdmEvent | None:
@@ -47,12 +66,18 @@ def parse_line(line: str) -> AdmEvent | None:
             continue
         g = m.groupdict()
         pos = (float(g["x"]), float(g["z"])) if g.get("x") else None
+        by = (g.get("by") or "").strip() or None
+        faction, by_faction = _factions(line)
         ev = AdmEvent(kind=kind, player=g["name"], time=g["time"], pos=pos,
-                      hp=float(g["hp"]) if g.get("hp") else None,
-                      by=(g.get("by") or "").strip() or None, raw=line)
-        if ev.by and re.search(r"\beAI|Expansion|AI\b", ev.by):
+                      hp=float(g["hp"]) if g.get("hp") else None, by=by, raw=line,
+                      is_ai=g.get("etype") == "AI", faction=faction,
+                      by_is_ai=bool(by and (by.startswith('AI "') or "eAI" in by)),
+                      by_faction=by_faction)
+        if ev.by_is_ai or (ev.is_ai and kind in {"hit", "death"}):
             ev.tags.add("ai_combat")
-        if ev.by and "Infected" in ev.by:
+        if ev.is_ai and ev.by_is_ai and faction and by_faction and faction != by_faction:
+            ev.tags.add("faction_combat")
+        if by and "Infected" in by:
             ev.tags.add("infected")
         return ev
     return None

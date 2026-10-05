@@ -9,7 +9,7 @@ import asyncio
 import logging
 import os
 import time
-from collections import deque
+from collections import Counter, deque
 from pathlib import Path
 
 import yaml
@@ -30,22 +30,38 @@ def load_config() -> dict:
     map_name = os.environ.get("GM_MAP", cfg.get("map", "chernarusplus"))
     cfg["map"] = yaml.safe_load((ROOT / "maps" / f"{map_name}.yaml").read_text())
     cfg["dry_run"] = os.environ.get("GM_DRY_RUN", "1") != "0"
+    factions = yaml.safe_load((ROOT / "presets" / "factions.yaml").read_text())["factions"]
+    cfg["faction_names"] = {spec["engine_faction"]: name for name, spec in factions.items()
+                            if spec.get("engine_faction")}
     return cfg
 
 
 class EventAggregator:
-    """Buffers events and decides when a cognition pass is warranted."""
+    """Buffers events and decides when a cognition pass is warranted.
 
-    SIGNIFICANT = {"death", "unconscious", "health_drop", "ai_combat", "connect"}
+    Player events go into the digest individually. AI-vs-AI fighting (from Expansion's
+    LogAIKilled) is too frequent for that, so it is tallied per faction pair and place,
+    which is also the raw material for the campaign-scale war ledger.
+    """
 
-    def __init__(self, maxlen: int = 200) -> None:
+    SIGNIFICANT = {"death", "unconscious", "health_drop", "connect"}
+
+    def __init__(self, maxlen: int = 200, faction_names: dict[str, str] | None = None) -> None:
+        self.faction_names = faction_names or {}  # engine faction -> our name (West -> CDF)
         self.events: deque[AdmEvent] = deque(maxlen=maxlen)
         self.online: set[str] = set()
         self.last_pos: dict[str, tuple[float, float]] = {}
         self.health = HealthTracker()
+        # (killer_faction, victim_faction, nearest_location) -> kills since last digest
+        self.faction_kills: Counter[tuple[str, str, tuple[float, float] | None]] = Counter()
 
     def ingest(self, ev: AdmEvent) -> bool:
         """Returns True if this event should trigger an immediate GM pass."""
+        if ev.is_ai:
+            if ev.kind == "death" and ev.faction:
+                killer = ev.by_faction or ("Players" if ev.by and ev.by.startswith("Player") else "Unknown")
+                self.faction_kills[(killer, ev.faction, ev.pos)] += 1
+            return False  # AI hits/positions are too chatty for the digest
         if ev.pos:
             self.last_pos[ev.player] = ev.pos
         if ev.kind == "connect":
@@ -70,6 +86,14 @@ class EventAggregator:
         for p, pos in self.last_pos.items():
             if p in self.online:
                 lines.append(f"- {p} last seen near {nearest(pos)}")
+        if self.faction_kills:
+            lines.append("Faction fighting since last report:")
+            grouped: Counter[tuple[str, str, str]] = Counter()
+            name = lambda f: self.faction_names.get(f, f)  # noqa: E731
+            for (killer, victim, pos), n in self.faction_kills.items():
+                grouped[(name(killer), name(victim), nearest(pos))] += n
+            for (killer, victim, place), n in grouped.most_common(8):
+                lines.append(f"- {killer} killed {n} {victim} near {place}")
         lines.append("Recent events:")
         for ev in list(self.events)[-25:]:
             extra = f" hp={ev.hp:.0f}" if ev.hp is not None else ""
@@ -77,6 +101,7 @@ class EventAggregator:
             tags = f" [{','.join(sorted(ev.tags))}]" if ev.tags else ""
             lines.append(f"{ev.time} {ev.kind} {ev.player}{extra}{by} near {nearest(ev.pos)}{tags}")
         self.events.clear()
+        self.faction_kills.clear()
         return "\n".join(lines)
 
 
@@ -86,7 +111,7 @@ class Orchestrator:
         self.map = cfg["map"]
         self.locations: dict[str, list[float]] = self.map.get("locations", {})
         self.bounds = tuple(self.map["bounds"])
-        self.agg = EventAggregator()
+        self.agg = EventAggregator(faction_names=cfg.get("faction_names"))
         self.gm = OllamaGM(os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434"),
                            os.environ.get("OLLAMA_MODEL", cfg.get("model", "gemma4:e4b")))
         self.rcon: RconClient | None = None

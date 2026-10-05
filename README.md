@@ -8,6 +8,7 @@ driven from a local CachyOS rig with a local LLM (Gemma 4 E4B via Ollama/ROCm).
 - **Playtest checklist:** [`docs/PLAYTEST.md`](docs/PLAYTEST.md)
 - **No server yet?** Start with [`docs/PRE_PURCHASE.md`](docs/PRE_PURCHASE.md), then
   [`docs/GSP_CHECKLIST.md`](docs/GSP_CHECKLIST.md)
+- **Living world / faction war design:** [`docs/LIVING_WORLD.md`](docs/LIVING_WORLD.md)
 - **Mod list audit:** [`docs/MOD_AUDIT.md`](docs/MOD_AUDIT.md) · **Badlands:** [`docs/BADLANDS_PREP.md`](docs/BADLANDS_PREP.md)
 
 ## First-time setup on the CachyOS PC

@@ -29,6 +29,10 @@ ATTACKERS = [
 ]
 
 
+FACTION_PAIRS = [("West", "East"), ("East", "West"), ("Raiders", "Civilian"),
+                 ("Raiders", "West"), ("East", "Raiders")]
+
+
 class Sim:
     def __init__(self, players: list[str], locations: dict[str, list[float]], rng: random.Random):
         self.rng = rng
@@ -42,7 +46,20 @@ class Sim:
         z += self.rng.uniform(-250, 250)
         return f"<{x:.1f}, {self.rng.uniform(5, 300):.1f}, {z:.1f}>"
 
+    def ai_kill(self) -> str:
+        """Expansion LogAIKilled-style line: AI of one faction killed by another."""
+        killer, victim = self.rng.choice(FACTION_PAIRS)
+        loc = self.rng.choice(list(self.locations))
+        x, z = self.locations[loc]
+        vx, vz = x + self.rng.uniform(-300, 300), z + self.rng.uniform(-300, 300)
+        return (f'AI "{victim} soldier" (DEAD) (group={self.rng.randint(1, 40)}:"{victim} patrol" '
+                f'faction="{victim}" pos=<{vx:.1f}, 200.0, {vz:.1f}>) killed by AI "{killer} soldier" '
+                f'(group={self.rng.randint(1, 40)}:"{killer} patrol" faction="{killer}" '
+                f'pos=<{vx + 40:.1f}, 200.0, {vz + 30:.1f}>) with AKM from 45.0 meters')
+
     def step(self) -> list[str]:
+        if self.rng.random() < 0.15:
+            return [self.ai_kill()]
         p = self.rng.choice(list(self.state))
         s = self.state[p]
         pid = f"id={zlib.crc32(p.encode()):012d}="

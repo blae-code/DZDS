@@ -96,3 +96,49 @@ def test_resolve_coords_prefers_location_and_clamps():
 def test_delay_bounds(delay):
     with pytest.raises(Exception):
         WorldAction(target="spawn_airdrop", delay_seconds=delay)
+
+
+# ---- Expansion AI faction lines (LogAIHitBy / LogAIKilled) ----
+AI_KILL = ('14:10:02 | AI "Sgt Volkov" (DEAD) (group=12:"East Garrison" faction="East" '
+           'pos=<9512.0, 300.0, 8890.0>) killed by AI "Pvt Hale" (group=7:"West Patrol" '
+           'faction="West" pos=<9480.0, 301.0, 8850.0>) with M4A1 from 52.3 meters')
+PLAYER_KILLS_AI = ('14:11:00 | AI "Raider" (DEAD) (group=3:"Bandits" faction="Raiders" '
+                   'pos=<6100.0, 300.0, 7700.0>) killed by Player "Host" (id=abc= pos=<6090.0, 300.0, 7690.0>) with SKS')
+AI_HITS_PLAYER = ('14:12:00 | Player "Host" (id=abc= pos=<6100.0, 300.0, 7700.0>)[HP: 70] hit by AI "Raider" '
+                  '(group=3:"Bandits" faction="Raiders" pos=<6150.0, 300.0, 7720.0>) into Torso(12) for 20 damage')
+
+
+def test_parse_ai_faction_kill():
+    ev = parse_line(AI_KILL)
+    assert ev.kind == "death" and ev.is_ai and ev.player == "Sgt Volkov"
+    assert (ev.faction, ev.by_faction, ev.by_is_ai) == ("East", "West", True)
+    assert {"ai_combat", "faction_combat"} <= ev.tags
+    assert ev.pos == (9512.0, 8890.0)
+
+
+def test_parse_ai_hits_player():
+    ev = parse_line(AI_HITS_PLAYER)
+    assert ev.kind == "hit" and not ev.is_ai and ev.hp == 70
+    assert ev.by_is_ai and ev.by_faction == "Raiders" and "ai_combat" in ev.tags
+
+
+def test_digest_tallies_faction_fighting():
+    agg = EventAggregator()
+    for line in (AI_KILL, AI_KILL, PLAYER_KILLS_AI):
+        assert agg.ingest(parse_line(line)) is False
+    d = agg.digest({"Gorka": [9500, 8900], "Stary Sobor": [6100, 7700]})
+    assert "West killed 2 East near Gorka" in d
+    assert "Players killed 1 Raiders near Stary Sobor" in d
+    assert not agg.faction_kills  # reset after digest
+
+
+def test_digest_uses_our_faction_names():
+    agg = EventAggregator(faction_names={"West": "CDF", "East": "ChDKZ"})
+    agg.ingest(parse_line(AI_KILL))
+    assert "CDF killed 1 ChDKZ near Gorka" in agg.digest({"Gorka": [9500, 8900]})
+
+
+def test_load_config_maps_factions():
+    from gamemaster.gm_orchestrator import load_config
+    names = load_config()["faction_names"]
+    assert names["West"] == "CDF" and names["East"] == "ChDKZ" and names["Civilian"] == "Survivors"
