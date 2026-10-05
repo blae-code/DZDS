@@ -112,8 +112,9 @@ All offline work is done and tested (`make test`). Remaining work needs a runnin
 follow `docs/PLAYTEST.md`. Pruning decisions: `docs/PRUNING.md`.
 
 ## Workflow phases (spec §7)
-1. GSP staging: sync script, key validation, mod string. **(scaffolded)**
-2. Config harmonization: Expansion AI / Spatial AI presets, `types.xml` additions. **(calibration tool scaffolded)**
-3. GM daemon. **(skeleton runs; world_actions dispatch to RestApi is TODO)**
-4. ChernarusPlus validation & playtest (checklist in `docs/PLAYTEST.md`).
-5. Nasdara porting prep (`maps/nasdara.yaml` placeholder).
+1. GSP staging: sync, key + dependency checks, mod string. **(done)**
+2. Config harmonization: calibration, @DZDS factions, patrols, loadouts, economy, traders,
+   vehicle events, overlays. **(done offline; needs in-game verification)**
+3. GM daemon: ADM → Gemma → RCON radio + @DZDS command queue, war ledger. **(done offline)**
+4. ChernarusPlus validation & playtest: `docs/PLAYTEST.md`. **(next; needs the game)**
+5. Nasdara porting prep: role-based maps; fill `maps/nasdara.yaml` on release (`docs/BADLANDS_PREP.md`).
