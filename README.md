@@ -10,6 +10,7 @@ driven from a local CachyOS rig with a local LLM (Gemma 4 E4B via Ollama/ROCm).
   [`docs/GSP_CHECKLIST.md`](docs/GSP_CHECKLIST.md)
 - **Factions (blueprint, behaviour, recruitment):** [`docs/FACTIONS.md`](docs/FACTIONS.md) · our mod: [`mods/README.md`](mods/README.md)
 - **Living world / faction war design:** [`docs/LIVING_WORLD.md`](docs/LIVING_WORLD.md)
+- **Vehicles, aircraft, horses, trains:** [`docs/VEHICLES.md`](docs/VEHICLES.md)
 - **Quests tied to the war:** [`docs/QUESTS.md`](docs/QUESTS.md)
 - **Voice, NPCs, immersion without tedium:** [`docs/IMMERSION.md`](docs/IMMERSION.md)
 - **Mod list audit:** [`docs/MOD_AUDIT.md`](docs/MOD_AUDIT.md) · **Badlands:** [`docs/BADLANDS_PREP.md`](docs/BADLANDS_PREP.md)

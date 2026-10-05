@@ -60,7 +60,10 @@ This file holds the rules you must follow when working in this repo.
 11. **Expansion file locations** (from its source): `$profile:ExpansionMod/Settings/` (AI,
     Quest settings), `$profile:ExpansionMod/Quests/` (quests, NPCs, objectives),
     `$mission:expansion/settings/` (AIPatrolSettings, AILocationSettings, HardlineSettings).
-12. **Content keyed by map role.** Faction territories, mission placement and GM logic use the
+12. **One system per job** (docs/VEHICLES.md): Expansion keys + towing (MuchCarKey and rope
+    towing off), CarCover for tarps (Expansion covers off). **Never enable
+    DayZ-Expansion-Animations or the Expansion Bundle**: it breaks DayZ Horse (test enforced).
+13. **Content keyed by map role.** Faction territories, mission placement and GM logic use the
     roles in `maps/_roles.yaml`, so Nasdara (Badlands, 1.30) is a data change. `make maps-check`.
 
 ## Current stage

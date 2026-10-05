@@ -142,3 +142,14 @@ def test_every_enabled_mod_verified_and_one_map_mod():
     assert all(m.get("verified") for m in mods)
     map_mods = [m for m in mods if m["name"] in {"Basic Map", "DayZ-Expansion-Navigation"}]
     assert len(map_mods) == 1
+
+
+def test_no_enabled_mod_conflicts():
+    """incompatible_with lists Workshop IDs that must never be enabled alongside the mod."""
+    mods = modstring.load_mods()
+    enabled = {m["id"] for m in mods if m.get("enabled", True)}
+    for m in mods:
+        if m.get("enabled", True):
+            clash = set(m.get("incompatible_with", [])) & enabled
+            assert not clash, f"{m['name']} is incompatible with enabled mod(s) {clash}"
+    assert 2793893086 not in enabled, "DayZ-Expansion-Animations breaks DayZ Horse"

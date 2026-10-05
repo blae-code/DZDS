@@ -1,0 +1,15 @@
+# DayZ-Expansion-Vehicles (docs/VEHICLES.md). Field names and defaults from Expansion's source.
+# Expansion keys + towing replace MuchCarKey + Rope Car Towing; covers stay with CarCover.
+root: profiles
+target: ExpansionMod/Settings/VehicleSettings.json
+values:
+  VehicleRequireKeyToStart: 1              # physical key in hands/inventory/cargo
+  CanPickLock: true                        # lockpicking (default off)
+  CanChangeLock: true
+  Towing: true                             # car-to-car towing (Towing Service adds flatbed recovery)
+  EnableVehicleCovers: false               # CarCover mod handles tarps
+  RevvingOverMaxRPMRuinsEngineInstantly: false   # tedium boundary: no instant engine death
+  DisableVehicleDamage: false
+  EnableMainRotorDamage: true
+  EnableTailRotorDamage: true
+  ShowVehicleOwners: false                 # no floating ownership info

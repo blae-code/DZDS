@@ -53,6 +53,7 @@ Weak spots:
 ### Voice mods considered
 | Mod | Verdict |
 |---|---|
+| **Zens ExpansionAI Audio** (3321340470, 16k users) | **Adopted**: voiced barks for Expansion AI, quest NPCs and traders. Factions sound alive |
 | WalkieTalkie Push-To-Talk (3788057652) | **Maybe.** Real PTT for radios is a big usability win, but only 74 users; test it |
 | Psyern's Radio Show (3627848296) | Optional flavour: 7 music stations on radios/car/base radios. Mood can work in a ruined world, but it's music, not news |
 | OMD_Radio (3410416232) | Skip: synced cassette/car music, Russian UI |
