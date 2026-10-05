@@ -1,0 +1,44 @@
+# Quest templates that follow the war (docs/QUESTS.md, docs/WAR_LEDGER.md). tools/front_plan.py
+# instantiates them from the ledger each restart; the Expansion quest JSON writer comes once the
+# local server has generated Expansion's example quest files (exact schema).
+#
+# target: which sites get an instance
+#   contested            sites currently contested
+#   held_by:<Faction>    sites a faction holds
+#   raid_target          settlements the ledger expects to be raided
+# role: optional map role the target site must have (e.g. water)
+# giver: faction offering it (its nearest held site hosts the quest giver)
+templates:
+  break_the_siege:
+    target: contested
+    giver: Settlers
+    objective: AIPATROL
+    text: "Drive the fighters out of {site} so the settlers can move in."
+    ledger_effect: players' kills there count as Settler pressure (liberation)
+  clear_jackal_camp:
+    target: held_by:Jackals
+    giver: Settlers
+    objective: AICAMP
+    text: "The Jackals at {site} raid our roads. End it."
+  recon_rust_works:
+    target: held_by:Rust
+    giver: Peacekeepers
+    objective: TRAVEL
+    text: "Get eyes on the Syndicate's works at {site} and report back."
+  aid_convoy_escort:
+    target: held_by:Settlers
+    giver: Peacekeepers
+    objective: AIESCORT
+    text: "Escort the aid convoy to {site}."
+  water_rights:
+    target: held_by:Rust
+    role: water
+    giver: Rust
+    objective: DELIVERY
+    text: "The Syndicate wants payment in kind for water from {site}."
+    requires_standing: { Rust: -45 }      # the broker won't even talk below this
+  defend_homestead:
+    target: raid_target
+    giver: Settlers
+    objective: AIPATROL
+    text: "Scouts saw raiders heading for {site}. Be there."

@@ -22,6 +22,7 @@ currencies:
 
 traders:
   frontier_exchange:
+    sites: { chernarusplus: Vybor }   # preferred; relocates to another held site of the role
     display: Frontier Exchange
     faction: Settlers
     role: inland_town            # chernarusplus: Vybor
@@ -31,6 +32,7 @@ traders:
     buys: [pelts, crops, scrap, almost anything at a fair %]
     stock_policy: player-driven     # stock comes mostly from what players sell
   un_quartermaster:
+    sites: { chernarusplus: Northwest Airfield }   # preferred; relocates to another held site of the role
     display: UN Quartermaster (Task Force Blue Shield)
     faction: Peacekeepers
     role: airfield               # chernarusplus: Northwest Airfield
@@ -40,6 +42,7 @@ traders:
     buys: [medical supplies, intel items, ammunition]
     stock_policy: restocked       # aid shipments: steady, limited
   rust_broker:
+    sites: { chernarusplus: Topolka Dam }   # preferred; relocates to another held site of the role
     display: Rust Syndicate Water Broker
     faction: Rust
     role: water                  # chernarusplus: Topolka Dam (a truce gate; perimeter guards stay hostile)
@@ -49,6 +52,7 @@ traders:
     buys: [scrap metal, car batteries, ammunition]
     stock_policy: war-driven     # prices follow fuel/water control in the war ledger
   smuggler:
+    sites: { chernarusplus: Novodmitrovsk }   # preferred; relocates to another held site of the role
     display: The Smuggler
     faction: none                # Passive NPC outside the feud, deals with anyone
     role: remote                 # chernarusplus: Novodmitrovsk outskirts
