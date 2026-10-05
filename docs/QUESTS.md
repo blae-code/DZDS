@@ -47,6 +47,11 @@ concession. Dialogue Framework (later, needs Market) could turn it into conversa
   tolerance in @DZDS (FACTIONS.md §3 layer 5).
 - `FactionReward` stays available for story beats (e.g. a Settler defecting to the UN).
 
+## Quests unlock traders
+Expansion traders support `RequiredCompletedQuestID`: the **UN intro quest** opens the UN
+Quartermaster, **water rights** opens the Rust broker (presets/traders.yaml). UN quests pay
+in aid scrip, a barter currency only UN and Settler traders take.
+
 ## Quest catalogue (mapped to the war)
 | Quest | Type(s) | Giver | Effect on the war ledger |
 |---|---|---|---|

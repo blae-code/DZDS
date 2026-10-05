@@ -1,0 +1,64 @@
+# Traders and barter (docs/ECONOMY.md section 4). Facts from Expansion-Market's source:
+#   - Each trader has its own `Currencies` list: ANY item classnames counted as money
+#     (default is the Expansion Hryvnia banknote). That's how barter works here.
+#   - Gating: `RequiredFaction` (player faction) and `RequiredCompletedQuestID` (quest unlocks a trader).
+#   - Prices float between Min/MaxPriceThreshold according to stock between Min/MaxStockThreshold:
+#     sell 50 AKs to a fence and AKs get cheap there. Supply and demand over months.
+# Trader JSON is written once Expansion generates its example market files on the local server
+# (exact schema); this file is the design the generator will follow.
+#
+# Currency classnames are vanilla unless noted. [verify] = confirm with `make mod-types` / VPP.
+
+currencies:
+  ammo_hard:        # ammunition is the hard currency of the collapse
+    items: [Ammo_22, Ammo_9x19, Ammo_545x39, Ammo_762x39, Ammo_556x45]
+    note: per-round value; .22 lowest, 7.62 highest [test: Expansion accepts stackable ammo as currency]
+  un_scrip:
+    items: [ExpansionBanknoteHryvnia]   # stand-in for UN aid vouchers until @DZDS adds a voucher item
+    note: earned from UN quests; only UN and Settler traders take it
+  settler_goods:
+    items: [Nail]
+    note: boxes of nails, the builders' money
+
+traders:
+  frontier_exchange:
+    display: Frontier Exchange
+    faction: Settlers
+    role: inland_town            # chernarusplus: Vybor
+    required_faction: DZDSSettlers
+    currencies: [settler_goods, ammo_hard, un_scrip]
+    sells: [food, tools, building materials, clothing, bicycles, horses' tack]
+    buys: [pelts, crops, scrap, almost anything at a fair %]
+    stock_policy: player-driven     # stock comes mostly from what players sell
+  un_quartermaster:
+    display: UN Quartermaster (Task Force Blue Shield)
+    faction: Peacekeepers
+    role: airfield               # chernarusplus: Northwest Airfield
+    required_quest: un_intro      # RequiredCompletedQuestID: earn trust before trade
+    currencies: [un_scrip, ammo_hard]
+    sells: [medical, radios + batteries, maps + compasses, rations, NBC gear]
+    buys: [medical supplies, intel items, ammunition]
+    stock_policy: restocked       # aid shipments: steady, limited
+  rust_broker:
+    display: Rust Syndicate Water Broker
+    faction: Rust
+    role: water                  # chernarusplus: Topolka Dam (a truce gate; perimeter guards stay hostile)
+    required_quest: rust_water_rights
+    currencies: [ammo_hard]
+    sells: [fuel, clean water, vehicle parts, trailers, tankers]
+    buys: [scrap metal, car batteries, ammunition]
+    stock_policy: war-driven     # prices follow fuel/water control in the war ledger
+  smuggler:
+    display: The Smuggler
+    faction: none                # Passive NPC outside the feud, deals with anyone
+    role: remote                 # chernarusplus: Novodmitrovsk outskirts
+    currencies: [ammo_hard]
+    sells: [weapons, optics, rare parts, keys and lockpicks]
+    buys: [anything, at a poor rate]
+    sell_price_percent: 25       # pays little: the fence's cut
+    stock_policy: player-driven
+# The Karkas and Jackals don't trade (isolationist / raiders). A Karkas trapper may open after a
+# reputation quest chain (pelts for ammo): see docs/QUESTS.md.
+
+# War ledger hooks (later): a trader disappears while its site is lost; fuel/water prices
+# rise when the Rust Syndicate loses wells; UN stock thins when aid convoys are ambushed.

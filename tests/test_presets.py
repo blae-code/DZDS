@@ -153,3 +153,16 @@ def test_no_enabled_mod_conflicts():
             clash = set(m.get("incompatible_with", [])) & enabled
             assert not clash, f"{m['name']} is incompatible with enabled mod(s) {clash}"
     assert 2793893086 not in enabled, "DayZ-Expansion-Animations breaks DayZ Horse"
+
+
+def test_traders_reference_real_factions_roles_and_currencies():
+    t = load("presets/traders.yaml")
+    factions = load("presets/factions.yaml")["factions"]
+    roles = set(load("maps/_roles.yaml")["roles"])
+    customs = {s["custom_faction"] for s in factions.values() if s["custom_faction"]}
+    for name, tr in t["traders"].items():
+        assert tr["faction"] in factions or tr["faction"] == "none", name
+        assert tr["role"] in roles, name
+        assert set(tr["currencies"]) <= set(t["currencies"]), name
+        if tr.get("required_faction"):
+            assert tr["required_faction"] in customs, name

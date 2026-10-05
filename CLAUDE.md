@@ -63,7 +63,8 @@ This file holds the rules you must follow when working in this repo.
 12. **One system per job** (docs/VEHICLES.md): Expansion keys + towing (MuchCarKey and rope
     towing off), CarCover for tarps (Expansion covers off). **Never enable
     DayZ-Expansion-Animations or the Expansion Bundle**: it breaks DayZ Horse (test enforced).
-13. **Economy = vanilla CE** (docs/ECONOMY.md): no traders/currency (Market and ATMs off).
+13. **Economy = vanilla CE + faction barter traders** (docs/ECONOMY.md, presets/traders.yaml):
+    ammo/nails/UN scrip as currencies, quest-gated traders, ATMs off.
     Never hand-edit `db/types.xml`; edit `presets/economy.yaml` and run `make economy`, which
     regenerates it from `db/types.xml.vanilla`. Our own items go in `presets/types_dzds.yaml`.
 14. **Content keyed by map role.** Faction territories, mission placement and GM logic use the
