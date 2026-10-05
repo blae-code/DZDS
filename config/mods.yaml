@@ -20,6 +20,7 @@ mods:
   - { name: Dabs Framework,           folder: "@Dabs Framework",           id: 2545327648, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false }
   - { name: DayZ-Expansion-Core,      folder: "@DayZ-Expansion-Core",      id: 2291785308, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false }
   - { name: Zens Core Mod,            folder: "@ZenModCore",               id: 3702420204, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false, note: "dependency of Zen sleep/door/blood mods" }
+  - { name: RaG_Core,                 folder: "@RaG_Core",                 id: 3556131153, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false, note: "dependency of RaG_BaseBuilding, RaG Wells, RaG Hunting Cabin" }
   - { name: Survivor Animations,      folder: "@SurvivorAnimations",       id: 2918418331, tier: 1, module: core,      side: both,   enabled: true, verified: true, tested: false, note: "dependency of DayZ-Bicycle" }
 
   # ---- Tier 2: Dynamic world, factions, living AI ----
@@ -106,6 +107,28 @@ mods:
   - { name: BuildAnywhere_v3,         folder: "@BuildAnywhere_v3",         id: 1854626456, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "last updated 2021" }
   - { name: Code Lock,                folder: "@Code Lock",                id: 1646187754, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false }
   - { name: MuchStuffPack,            folder: "@MuchStuffPack",            id: 1991570984, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "community 'MuchStuffPack_Fix' mods exist for 1.28+, check if needed" }
+
+  # ---- Base building, storage, crafting (docs/BASES_CRAFTING_GEAR.md, adopted 2026-10-05) ----
+  - { name: RaG_BaseBuilding,         folder: "@RaG_BaseBuilding",         id: 3157695626, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "maintained modular building (21 kits, snap points). PRUNE: choose BBP or RaG after 1.30 testing" }
+  - { name: RaG_Hunting_Cabin,        folder: "@RaG_Hunting_Cabin",        id: 3117613872, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "buildable cabin: codelock, fireplace, lights; the homestead milestone" }
+  - { name: MMG Base Storage,         folder: "@MMG_BaseStorage",          id: 3210162677, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "lockers, racks, crates (maintained); types file in mod /files" }
+  - { name: Zens Car Workbench,       folder: "@ZenCarWorkbench",          id: 3030756548, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "craftable vehicle parts bench (60 nails + 5 sheet metal)" }
+  - { name: Leather Crafting,         folder: "@LeatherCrafting",          id: 3430034381, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "tanned-leather clothing/bags; pairs with horse tack and hunting" }
+  - { name: Zens Crafting Sounds,     folder: "@ZenCraftingSounds",        id: 3043440124, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "audio for crafting actions (immersion)" }
+  - { name: CookZ,                    folder: "@CookZ",                    id: 3302732231, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "pot/pan recipes; normal cooking still works" }
+  - { name: DayZ-Expansion-BaseBuilding, folder: "@DayZ-Expansion-BaseBuilding", id: 2792982513, tier: 3, module: base, side: both, enabled: false, verified: true, tested: false, note: "off: would be a 3rd building system and a 2nd code-lock system (conflicts with Code Lock)" }
+  - { name: RA Base Building,         folder: "@RABaseBuilding",           id: 3173739565, tier: 3, module: base,      side: both,   enabled: false, verified: true, tested: false, note: "off: another building system; stale (2025-03)" }
+  - { name: Automated Turrets,        folder: "@AutomatedTurrets",         id: 2851374375, tier: 3, module: base,      side: both,   enabled: false, verified: true, tested: false, note: "off by recommendation: auto-aiming sentry guns break the low-tech tone and trivialise AI raids. Flip if wanted" }
+  - { name: zm workbench,             folder: "@zmWorkbench",              id: 3643931184, tier: 3, module: base,      side: both,   enabled: false, verified: true, tested: false, note: "off: beta" }
+
+  # ---- Gear (vanilla-first; faction looks) ----
+  - { name: Mounts & Sights,          folder: "@MountsAndSights",          id: 3322252091, tier: 3, module: gear,      side: both,   enabled: true, verified: true, tested: false, note: "vanilla-compatible mounts and sights" }
+  - { name: Asmond Vanilla Weapons,   folder: "@AsmondVanillaWeapons",     id: 3640419203, tier: 3, module: gear,      side: both,   enabled: true, verified: true, tested: false, note: "vanilla-style weapon additions" }
+  - { name: SNAFU Weapons,            folder: "@SNAFU_Weapons",            id: 2443122116, tier: 3, module: gear,      side: both,   enabled: true, verified: true, tested: false, note: "huge weapon pack; PRUNE candidate (power creep vs vanilla feel). If kept, spawn only lore-fitting guns" }
+  - { name: MMG - Mightys Military Gear, folder: "@MMG_MilitaryGear",      id: 2663169692, tier: 3, module: gear,      side: both,   enabled: true, verified: true, tested: false, note: "plate carriers, pouches, helmets (UN/Rust kit); stale (2023-10)" }
+  - { name: Arma 2 Clothing Pack,     folder: "@Arma2ClothingPack",        id: 2298127647, tier: 3, module: gear,      side: both,   enabled: true, verified: true, tested: false, note: "Chernarus-era clothing + 3-piece ghillies (Karkas); stale (2020)" }
+  - { name: Unknown Ghillie Mod,      folder: "@UnknownGhillie",           id: 2074403068, tier: 3, module: gear,      side: both,   enabled: true, verified: true, tested: false, note: "ghillies on belt slot + craftable camo-net ponchos; stale (2021)" }
+  - { name: Gas Mask Overhaul,        folder: "@GasMaskOverhaul",          id: 3311720441, tier: 3, module: gear,      side: both,   enabled: true, verified: true, tested: false, note: "18 masks (Jackal look), filter tiers for contaminated zones; watch the tedium line" }
 
   # ---- Tier 4: UI, admin, utility ----
   - { name: Ear-Plugs,                folder: "@Ear-Plugs",                id: 1819514788, tier: 4, module: mobility,  side: both,   enabled: true, verified: true, tested: false }

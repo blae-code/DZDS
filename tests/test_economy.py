@@ -73,3 +73,29 @@ def test_population_brackets_scale_up():
     c = cfg()
     c["expected_players"] = 40
     assert economy.population_factors(c)["Tier4"] == 1.0
+
+
+def test_end_to_end_mission_with_modded_types(tmp_path):
+    import subprocess
+    import sys
+
+    (tmp_path / "db").mkdir()
+    (tmp_path / "snafu").mkdir()
+    (tmp_path / "dzds").mkdir()
+    (tmp_path / "db" / "types.xml").write_text(TYPES)
+    (tmp_path / "snafu" / "types.xml").write_text(TYPES)
+    (tmp_path / "dzds" / "types_dzds.xml").write_text(TYPES)
+    (tmp_path / "cfgeconomycore.xml").write_text(
+        '<economycore><ce folder="snafu"><file name="types.xml" type="types"/></ce>'
+        '<ce folder="dzds"><file name="types_dzds.xml" type="types"/></ce></economycore>')
+    cmd = [sys.executable, str(economy.ROOT / "tools" / "economy.py"), "--mission", str(tmp_path),
+           "--phase", "landfall"]
+    subprocess.run(cmd, check=True, capture_output=True)
+    first = (tmp_path / "snafu" / "types.xml").read_text()
+    subprocess.run(cmd, check=True, capture_output=True)           # rerun: no compounding
+    assert (tmp_path / "snafu" / "types.xml").read_text() == first
+    assert (tmp_path / "db" / "types.xml.vanilla").exists()
+    assert (tmp_path / "snafu" / "types.xml.vanilla").exists()
+    assert not (tmp_path / "dzds" / "types_dzds.xml.vanilla").exists()   # our items untouched
+    akm = ET.fromstring(first).find("type[@name='AKM']")
+    assert int(akm.find("nominal").text) < 10

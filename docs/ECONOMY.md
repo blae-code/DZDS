@@ -25,8 +25,9 @@ the same day: traders welcome).
 3. **Time away**: when nobody is online the CE idles; the world doesn't move on by itself.
 
 ## 3. What we add (`presets/economy.yaml`, `make economy`)
-`tools/economy.py` saves the mission's pristine `db/types.xml` as `db/types.xml.vanilla` the
-first time, then always **regenerates** `types.xml` from it. Scaling never compounds and is
+`tools/economy.py` saves the mission's pristine `db/types.xml` (and every modded types file
+registered in `cfgeconomycore.xml`) as `<file>.vanilla` the first time, then always
+**regenerates** from those baselines. Scaling never compounds and is
 fully reversible.
 
 ### a) Population scaling

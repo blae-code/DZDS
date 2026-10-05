@@ -10,6 +10,7 @@ driven from a local CachyOS rig with a local LLM (Gemma 4 E4B via Ollama/ROCm).
   [`docs/GSP_CHECKLIST.md`](docs/GSP_CHECKLIST.md)
 - **Factions (blueprint, behaviour, recruitment):** [`docs/FACTIONS.md`](docs/FACTIONS.md) · our mod: [`mods/README.md`](mods/README.md)
 - **Living world / faction war design:** [`docs/LIVING_WORLD.md`](docs/LIVING_WORLD.md)
+- **Base building, crafting, gear:** [`docs/BASES_CRAFTING_GEAR.md`](docs/BASES_CRAFTING_GEAR.md)
 - **Economy (vanilla, scaled for population and months):** [`docs/ECONOMY.md`](docs/ECONOMY.md)
 - **Vehicles, aircraft, horses, trains:** [`docs/VEHICLES.md`](docs/VEHICLES.md)
 - **Quests tied to the war:** [`docs/QUESTS.md`](docs/QUESTS.md)

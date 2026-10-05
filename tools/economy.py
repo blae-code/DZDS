@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Scale the mission's vanilla loot economy for population and campaign phase.
 
-Regenerates <mission>/db/types.xml from a pristine baseline (db/types.xml.vanilla, created
-on first run) using presets/economy.yaml, and applies `globals:` to db/globals.xml.
+Regenerates <mission>/db/types.xml AND every modded types file registered in
+cfgeconomycore.xml from pristine baselines (<file>.vanilla, created on first run) using
+presets/economy.yaml, and applies `globals:` to db/globals.xml. Our own designed items
+(the "dzds" folder from tools/types_gen.py) are never scaled.
 
 Usage:
   tools/economy.py                      # phase from today's date
@@ -92,6 +94,40 @@ def scale_types(root: ET.Element, cfg: dict, phase: dict) -> Counter:
     return stats
 
 
+SKIP_FOLDERS = {"dzds"}
+
+
+def types_files(mission: Path) -> list[Path]:
+    """db/types.xml plus modded types files registered in cfgeconomycore.xml."""
+    files = [mission / "db" / "types.xml"]
+    core = mission / "cfgeconomycore.xml"
+    if core.exists():
+        for ce in ET.parse(core).getroot().iter("ce"):
+            folder = ce.get("folder", "")
+            if folder in SKIP_FOLDERS:
+                continue
+            for f in ce.findall("file"):
+                if f.get("type") == "types":
+                    files.append(mission / folder / f.get("name"))
+    return files
+
+
+def process(path: Path, cfg: dict, phase: dict, dry_run: bool) -> Counter | None:
+    baseline = path.with_name(path.name + ".vanilla")
+    if not path.exists():
+        print(f"  (missing {path}; skipped)")
+        return None
+    if not baseline.exists() and not dry_run:
+        shutil.copy2(path, baseline)
+        print(f"  saved pristine baseline {baseline.name} (commit it)")
+    tree = ET.parse(baseline if baseline.exists() else path)
+    stats = scale_types(tree.getroot(), cfg, phase)
+    if not dry_run:
+        ET.indent(tree, space="    ")
+        tree.write(path, encoding="UTF-8", xml_declaration=True)
+    return stats
+
+
 def apply_globals(path: Path, values: dict) -> list[str]:
     """Set existing <var name=... value=...> entries; returns warnings for unknown names."""
     if not values:
@@ -120,30 +156,26 @@ def main() -> int:
     cfg = yaml.safe_load(PRESET.read_text())
     today = dt.date.fromisoformat(a.date) if a.date else dt.date.today()
     phase = pick_phase(cfg, a.phase, today)
-    db = Path(a.mission) / "db"
-    types, baseline = db / "types.xml", db / "types.xml.vanilla"
-    if not types.exists():
-        print(f"{types} not found: pull the server or start the local server once.", file=sys.stderr)
+    mission = Path(a.mission)
+    db = mission / "db"
+    if not (db / "types.xml").exists():
+        print(f"{db / 'types.xml'} not found: pull the server or start the local server once.", file=sys.stderr)
         return 2
-    if not baseline.exists() and not a.dry_run:
-        shutil.copy2(types, baseline)
-        print(f"Saved pristine baseline {baseline.name} (commit it; it's the source of truth)")
-    source = baseline if baseline.exists() else types
-
-    tree = ET.parse(source)
-    stats = scale_types(tree.getroot(), cfg, phase)
     print(f"Phase: {phase['name']} ({phase.get('story', '')})")
     print(f"Population factors for {cfg['expected_players']} players: {population_factors(cfg)}")
+    total: Counter = Counter()
+    for path in types_files(mission):
+        print(f"- {path.relative_to(mission)}")
+        stats = process(path, cfg, phase, a.dry_run)
+        if stats:
+            total.update(stats)
     for label in TIER_ORDER + ["untiered"]:
-        b, af = stats[f"{label}:before"], stats[f"{label}:after"]
+        b, af = total[f"{label}:before"], total[f"{label}:after"]
         if b:
             print(f"  {label:<9} nominal {b:>6} -> {af:>6} ({af / b:.0%})")
     if a.dry_run:
         print("(dry run, nothing written)")
         return 0
-    ET.indent(tree, space="    ")
-    tree.write(types, encoding="UTF-8", xml_declaration=True)
-    print(f"Wrote {types}")
     for w in apply_globals(db / "globals.xml", cfg.get("globals") or {}):
         print("WARNING:", w)
     return 0
