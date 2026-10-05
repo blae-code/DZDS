@@ -35,6 +35,16 @@ Rules:
 - Reply ONLY with JSON matching the schema."""
 
 
+def build_system_prompt(voices: dict[str, dict] | None = None) -> str:
+    """SYSTEM_PROMPT plus one voice line per faction (from presets/factions.yaml radio_voice)."""
+    if not voices:
+        return SYSTEM_PROMPT
+    lines = ["", "Faction radio voices (match the speaker's voice when quoting them):"]
+    for name, v in voices.items():
+        lines.append(f"- {name}: {v.get('tone', '')}. Example: {v.get('sample', '')}")
+    return SYSTEM_PROMPT + "\n".join(lines)
+
+
 def strip_thoughts(text: str) -> str:
     return _THOUGHT.sub("", text).strip()
 
@@ -52,8 +62,10 @@ def extract_json(text: str) -> dict:
 
 
 class OllamaGM:
-    def __init__(self, url: str, model: str, timeout: float = 60.0) -> None:
+    def __init__(self, url: str, model: str, timeout: float = 60.0,
+                 voices: dict[str, dict] | None = None) -> None:
         self.url, self.model = url.rstrip("/"), model
+        self.system_prompt = build_system_prompt(voices)
         self.client = httpx.AsyncClient(timeout=timeout)
 
     async def decide(self, digest: str, locations: list[str]) -> GMPayload | None:
@@ -63,7 +75,7 @@ class OllamaGM:
             "format": json_schema(),
             "options": {"temperature": 0.8},
             "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
+                {"role": "system", "content": self.system_prompt},
                 {"role": "user", "content": f"Known locations: {', '.join(locations)}\n\n"
                                             f"Telemetry digest:\n{digest}"},
             ],

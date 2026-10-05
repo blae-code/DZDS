@@ -75,3 +75,14 @@ overlays:
 .PHONY: economy
 economy:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/economy.py $(if $(PHASE),--phase $(PHASE))
+
+.PHONY: patrols diplomacy prepare-restart
+patrols:
+	$(PY) tools/patrol_gen.py $(if $(INTERIM),--interim)
+
+diplomacy:
+	$(PY) tools/diplomacy.py
+
+# Everything that should run between restarts, in order, before `make push`.
+prepare-restart: economy diplomacy patrols overlays calibrate validate
+	@echo "Ready: review git diff, then 'make push' and restart from the GSP panel."

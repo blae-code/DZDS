@@ -1,0 +1,15 @@
+# Dynamic diplomacy (docs/FACTIONS.md). tools/diplomacy.py writes the ACTIVE entries to
+# server/profiles/DZDS/diplomacy.json, which @DZDS reads at server start. Changes apply at the
+# next restart, the same cadence as the war ledger.
+#
+# from/to: preset faction names (Settlers, Peacekeepers, Jackals, Karkas, Rust).
+# stance: friendly | hostile  (one direction; add the reverse entry for a mutual change)
+# until: optional YYYY-MM-DD; expired entries are dropped automatically.
+# For PLAYERS, Expansion asks the players' faction: to make the UN shoot players, override
+# Settlers -> Peacekeepers.
+#
+# Examples (commented out; the war ledger / GM will add these as events happen):
+overrides: []
+#  - { from: Karkas, to: Rust, stance: friendly, until: 2026-12-01, why: "truce against the Jackals" }
+#  - { from: Rust, to: Karkas, stance: friendly, until: 2026-12-01, why: "truce against the Jackals" }
+#  - { from: Settlers, to: Peacekeepers, stance: hostile, until: 2026-11-20, why: "UN lockdown after the Balota shooting" }

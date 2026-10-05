@@ -33,6 +33,8 @@ def load_config() -> dict:
     factions = yaml.safe_load((ROOT / "presets" / "factions.yaml").read_text())["factions"]
     # Logs carry the engine class name: our @DZDS factions (DZDSJackals) or, before @DZDS
     # is built, the interim built-ins (Raiders). Map both to the in-world display name.
+    cfg["faction_voices"] = {spec.get("display", name).split(" (")[0]: spec["radio_voice"]
+                             for name, spec in factions.items() if spec.get("radio_voice")}
     cfg["faction_names"] = {}
     for name, spec in factions.items():
         for key in ("custom_faction", "interim_faction"):
@@ -118,7 +120,8 @@ class Orchestrator:
         self.bounds = tuple(self.map["bounds"])
         self.agg = EventAggregator(faction_names=cfg.get("faction_names"))
         self.gm = OllamaGM(os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434"),
-                           os.environ.get("OLLAMA_MODEL", cfg.get("model", "gemma4:e4b")))
+                           os.environ.get("OLLAMA_MODEL", cfg.get("model", "gemma4:e4b")),
+                           voices=cfg.get("faction_voices"))
         self.rcon: RconClient | None = None
         self.wake = asyncio.Event()
         self.last_pass = 0.0

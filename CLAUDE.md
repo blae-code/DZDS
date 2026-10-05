@@ -92,6 +92,9 @@ make find-mod Q=...   # search the Workshop
 make maps-check       # map role coverage (nasdara is TODO until release)
 make types            # compile presets/types_dzds.yaml into a CE custom types file
 make economy          # population + campaign-phase loot scaling (PHASE=... to force)
+make patrols          # faction squad templates -> AIPatrolSettings.json (INTERIM=1 before @DZDS)
+make diplomacy        # presets/diplomacy.yaml -> profiles/DZDS/diplomacy.json (truces etc.)
+make prepare-restart  # economy, diplomacy, patrols, overlays, calibrate, validate
 make fake-rcon / sim / gm-sim   # offline GM loop (three terminals)
 make gm-probe         # one-shot Ollama/prompt check
 scripts/local_server.sh install|mods|start   # optional local dedicated server

@@ -16,6 +16,8 @@
  *  - Recruiting requires AISettings.CanRecruitFriendly and that the AI doesn't see you as an
  *    enemy, so Settlers (same faction as players) are recruitable; tribes never are.
  *  - tests/test_presets.py checks presets/factions.yaml stances against this file.
+ *  - Every IsFriendly() first consults DZDSDiplomacy (runtime overrides written by the war
+ *    ledger), then falls back to the blueprint relations below.
  */
 
 //! Frontier Settlers: the players' faction and recruitable settler AI.
@@ -34,6 +36,10 @@ class eAIFactionDZDSSettlers : eAIFaction
 
 	override bool IsFriendly(notnull eAIFaction other)
 	{
+		int o = DZDSDiplomacy.Get(GetName(), other.GetName());
+		if (o >= 0)
+			return o == 1;
+
 		if (other.IsInherited(eAIFactionDZDSSettlers)) return true;
 		if (other.IsInherited(eAIFactionDZDSPeacekeepers)) return true;
 		if (other.IsPassive()) return true;
@@ -58,6 +64,10 @@ class eAIFactionDZDSPeacekeepers : eAIFaction
 
 	override bool IsFriendly(notnull eAIFaction other)
 	{
+		int o = DZDSDiplomacy.Get(GetName(), other.GetName());
+		if (o >= 0)
+			return o == 1;
+
 		if (other.IsInherited(eAIFactionDZDSPeacekeepers)) return true;
 		if (other.IsInherited(eAIFactionDZDSSettlers)) return true;
 		if (other.IsPassive()) return true;
@@ -81,6 +91,10 @@ class eAIFactionDZDSJackals : eAIFaction
 
 	override bool IsFriendly(notnull eAIFaction other)
 	{
+		int o = DZDSDiplomacy.Get(GetName(), other.GetName());
+		if (o >= 0)
+			return o == 1;
+
 		if (other.IsInherited(eAIFactionDZDSJackals)) return true;
 		if (other.IsPassive()) return true;
 		return false;
@@ -104,6 +118,10 @@ class eAIFactionDZDSKarkas : eAIFaction
 
 	override bool IsFriendly(notnull eAIFaction other)
 	{
+		int o = DZDSDiplomacy.Get(GetName(), other.GetName());
+		if (o >= 0)
+			return o == 1;
+
 		if (other.IsInherited(eAIFactionDZDSKarkas)) return true;
 		if (other.IsPassive()) return true;
 		return false;
@@ -131,6 +149,10 @@ class eAIFactionDZDSRust : eAIFaction
 
 	override bool IsFriendly(notnull eAIFaction other)
 	{
+		int o = DZDSDiplomacy.Get(GetName(), other.GetName());
+		if (o >= 0)
+			return o == 1;
+
 		if (other.IsInherited(eAIFactionDZDSRust)) return true;
 		if (other.IsPassive()) return true;
 		return false;

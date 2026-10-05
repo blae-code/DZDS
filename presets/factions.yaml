@@ -45,6 +45,13 @@ factions:
       weapons: [CR-527, Blaze, Repeater, double-barrel shotgun, 9mm pistols, SG5-K]
     spawn_archetypes: [rural farmsteads, player base perimeters, roadside transport trucks]
     holds_roles: [inland_town]
+    patrol_templates:
+      farm_watch:      { at: held, kind: garrison, size: [2, 3], chance: 1.0, persist: true, respawn: 1800 }
+      scavenger_party: { at: held, kind: route, size: [2, 4], chance: 0.6, persist: false, respawn: -2,
+                         behaviour: { Behaviour: LOOP, Speed: WALK, LootingBehaviour: ALL } }
+    radio_voice:
+      tone: frightened, practical, neighbourly; farmers and mechanics on cheap handhelds
+      sample: "Anyone near the Vybor road? Jackal trucks heading east, bring the kids inside."
 
   Peacekeepers:
     display: UN Peacekeeping Remnants (Task Force Blue Shield)
@@ -73,6 +80,15 @@ factions:
       weapons: [M16A2, MP5, FAL, Mosin 91/30 (marksmen), Glock/M9]
     spawn_archetypes: [road checkpoints, medical field stations, radar relay towers, cargo airfields]
     holds_roles: [airfield, military]
+    patrol_templates:
+      checkpoint:   { at: held, kind: garrison, size: [3, 4], chance: 1.0, persist: true, respawn: 2400,
+                      behaviour: { Behaviour: HALT, DefaultStance: STANDING } }
+      patrol_route: { at: held, kind: route, size: [4, 6], chance: 0.7, persist: true, respawn: 3600 }
+      officer_detail: { at: held, kind: garrison, size: [2, 2], chance: 0.3, persist: true, respawn: -1,
+                        loadout_variant: officer, behaviour: { AccuracyMax: 0.52 } }
+    radio_voice:
+      tone: formal, procedural, multilingual call signs, weary professionalism
+      sample: "This is Task Force Blue Shield at Checkpoint Charlie. Keep weapons slung on approach."
 
   Jackals:
     display: The Jackal Cohort
@@ -102,6 +118,15 @@ factions:
       weapons: [sawn-off shotgun, BK-133, worn SKS, IJ-70, rare low-durability AKM]
     spawn_archetypes: [dry-wash canyon ambushes, highway pileups, hilltop lookout campfires]
     holds_roles: [road_junction]
+    patrol_templates:
+      raid_party: { at: contested, kind: roam, size: [4, 7], chance: 0.8, persist: false, respawn: -2 }
+      ambush:     { at: held, kind: ambush, size: [3, 5], chance: 0.7, persist: false, respawn: 2700,
+                    behaviour: { Behaviour: HALT, DefaultStance: CROUCHED, EnableFlankingOutsideCombat: 0 } }
+      warband:    { at: held, kind: route, size: [5, 7], chance: 0.2, persist: false, respawn: -1,
+                    loadout_variant: warlord }
+    radio_voice:
+      tone: jeering, predatory, slang-heavy; laughter and engine noise in the background
+      sample: "Vultures on the ridge, light up that supply truck! Leave the blue helmets for the rotters!"
 
   Karkas:
     display: Karkas Mountain Clan
@@ -131,6 +156,16 @@ factions:
       weapons: [scoped Mosin, CR-527, Winchester 70, crossbow, revolvers]
     spawn_archetypes: [ridge overlooks, mountain caves, stone ruins, canyon passes]
     holds_roles: [high_ground, remote]
+    patrol_templates:
+      ridge_watch:    { at: held, kind: garrison, size: [2, 3], chance: 1.0, persist: true, respawn: 3600,
+                        behaviour: { DefaultStance: PRONE, Speed: WALK } }
+      hunting_party:  { at: held, kind: roam, size: [2, 4], chance: 0.6, persist: false, respawn: -2,
+                        behaviour: { Behaviour: ROAMING_LOCAL, LootingBehaviour: FOOD } }
+      elder_marksman: { at: held, kind: garrison, size: [1, 1], chance: 0.3, persist: true, respawn: -1,
+                        loadout_variant: elder, behaviour: { AccuracyMax: 0.52, SniperProneDistanceThreshold: 80.0 } }
+    radio_voice:
+      tone: sparse, gravelly, proverbs and warnings; open airwaves, no call signs
+      sample: "The high pass belongs to the Karkas. Turn your engines back or feed the crows."
 
   Rust:
     display: The Rust Syndicate
@@ -160,6 +195,15 @@ factions:
       weapons: [Saiga-12, Vaiga, Bizon, modified AK-74, flare guns, wrenches/cleavers]
     spawn_archetypes: [contested water wells, railway depots, fuel refineries, power substations]
     holds_roles: [industrial, water]
+    patrol_templates:
+      well_crew:        { at: held, kind: garrison, size: [3, 5], chance: 1.0, persist: true, respawn: 2400 }
+      enforcer_patrol:  { at: held, kind: route, size: [4, 6], chance: 0.6, persist: true, respawn: 3600,
+                          behaviour: { Behaviour: LOOP } }
+      foreman:          { at: held, kind: garrison, size: [1, 2], chance: 0.3, persist: true, respawn: -1,
+                          loadout_variant: foreman, behaviour: { DamageReceivedMultiplier: 0.8 } }
+    radio_voice:
+      tone: corporate menace, shift-work jargon, numbered assets and quotas
+      sample: "Syndicate command to pump crews: intruders near reservoir three. Lethal force authorised."
 
   Infected:
     display: The Infected
@@ -167,6 +211,12 @@ factions:
     interim_faction: null
     lore: Drawn by unsuppressed gunfire, turning two-way fights into three-way chaos.
     stance: { Infected: friendly, Settlers: hostile, Peacekeepers: hostile, Jackals: hostile, Karkas: hostile, Rust: hostile }
+
+# Patrol templates (tools/patrol_gen.py): at = held (sites the faction holds) | contested;
+# kind = garrison (small loop around the site) | route (to the faction's nearest other site and
+# back) | roam (start at the site, wander) | ambush (hold one spot). size = [NumberOfAI,
+# NumberOfAIMax]; respawn = seconds, -1 never, -2 Expansion's general setting; behaviour
+# overrides the faction profile; loadout_variant picks DZDS_<Faction>_<variant> (rank).
 
 # Recruitment (Expansion AI, from source): walk up and "Recruit" (come-here gesture), dismiss,
 # open their inventory to equip them, command menu for formation/follow/goto/hold/get-in/flank.

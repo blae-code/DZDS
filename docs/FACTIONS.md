@@ -118,15 +118,60 @@ From Expansion's source:
 
 ---
 
-## 5. GM radio identities (blueprint §5)
+## 5. Nuance toolkit (built 2026-10-05)
+
+### a) Squad types per faction (`patrol_templates`, `make patrols`)
+Each faction has 2–3 squad templates with their own size, chance, respawn and behaviour
+overrides, placed at the sites the faction holds (or contested sites):
+
+| Faction | Squads |
+|---|---|
+| Settlers | **farm watch** (2–3, guards the homestead), **scavenger party** (2–4, walks to the next settler town and back, loots everything) |
+| UN | **checkpoint** (3–4, HALT), **patrol route** (4–6, between UN sites), **officer detail** (2, rare, never respawns, better aim, officer loadout) |
+| Jackals | **raid party** (4–7, roams contested ground), **ambush** (3–5, crouched at road junctions), **warband** (5–7, rare, warlord loadout) |
+| Karkas | **ridge watch** (2–3, PRONE overwatch), **hunting party** (2–4, roams locally, takes food), **elder marksman** (1, rare, best long-range shot) |
+| Rust | **well crew** (3–5), **enforcer patrol** (4–6, between Rust sites), **foreman** (1–2, rare, armoured) |
+
+Rare leaders with `respawn: -1` matter: kill the Karkas elder and that ridge stays leaderless
+until the war ledger decides otherwise. `tools/patrol_gen.py` writes them into
+`AIPatrolSettings.json` using only Expansion's own field names and sentinels (or with
+`INTERIM=1`, the built-in factions until @DZDS is built). Loadout variants follow the pattern
+`DZDS_<Faction>_<rank>` (e.g. `DZDS_Karkas_elder`). The loadouts get written once Expansion has
+generated its example files.
+
+### b) Dynamic diplomacy (`presets/diplomacy.yaml`, `make diplomacy`)
+@DZDS now reads `$profile:DZDS/diplomacy.json` at server start, and every faction's
+`IsFriendly()` checks it before the blueprint defaults. Relationships can now **change over
+the campaign**:
+- **Truces**: Karkas and Rust stop shooting each other to push the Jackals off a pass.
+- **Betrayal**: the truce expires (`until:`), or the ledger breaks it after an incident.
+- **UN lockdown**: after a shooting near a Green Zone, override Settlers→UN to hostile for a
+  week. (For players, Expansion asks the player's faction, so that's the direction to flip.)
+- **Earned tolerance**: a Settlers→Karkas override (friendly) after a reputation quest chain
+  lets players cross Karkas ridges for good. This is a whole-group version of layer 5.
+
+Entries expire automatically; the GM can announce each change by radio.
+
+### c) Faction radio voices
+`radio_voice` (tone + sample line, from the blueprint's section 5 broadcasts) is fed into the GM's
+system prompt, so intercepted chatter sounds like the faction it came from: UN procedural, Jackals
+jeering, Karkas sparse and proverbial, Rust corporate-menacing, Settlers frightened and neighbourly.
+
+### d) One command between restarts
+`make prepare-restart` runs economy → diplomacy → patrols → overlays → calibrate → validate.
+Review `git diff`, then `make push`.
+
+## 6. GM radio identities (blueprint §5)
 The GM prompt (`src/gamemaster/llm.py`) now knows all five factions. The blueprint's sample
 broadcasts (UN checkpoint advisory, Jackal raid intercept, Karkas warning, Rust incident) are
 the style target, and also the first scripts to record as radio clips for the @DZDS audio library
 (docs/IMMERSION.md §1).
 
-## 6. Next steps
-1. Pack + sign @DZDS (`mods/README.md`), boot the local server, confirm the five factions register.
-2. Let Expansion generate loadouts/patrols; author the five loadouts from the blueprint lists.
-3. Patrol generator: role locations × faction behaviour profiles → `AIPatrolSettings.json`.
+## 7. Next steps
+1. Pack + sign @DZDS (`mods/README.md`), boot the local server, confirm the five factions
+   register and the diplomacy file loads ("[DZDS] Loaded N diplomacy override(s)" in the RPT).
+2. Let Expansion generate example loadouts; author `DZDS_<Faction>` + rank variants.
+3. [test] generated patrols: ground placement of y=0 waypoints, HALT/ROAMING behaviour, budget.
 4. Playtest recruitment: persistence, vehicles, garrisons [test].
-5. Reputation-aware hostility in @DZDS (layer 5).
+5. War ledger: replace `initial_control` with live control, and write diplomacy events.
+6. Per-player reputation-aware hostility in @DZDS (layer 5), once the Hardline API is read.
