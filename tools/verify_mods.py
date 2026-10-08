@@ -91,7 +91,7 @@ def required_items(mod_id: int) -> list[int]:
 
 
 def check_deps(mods: list[dict]) -> int:
-    mods = [m for m in mods if not m.get("local")]
+    mods = [m for m in mods if not m.get("local") and not m.get("unlisted")]
     enabled = {m["id"] for m in mods if m.get("enabled", True)}
     by_id = {m["id"]: m for m in mods}
     missing: dict[int, list[str]] = {}
@@ -146,7 +146,8 @@ def main() -> int:
     p.add_argument("--deps", action="store_true", help="check Workshop 'Required items'")
     args = p.parse_args()
 
-    mods = [m for m in load_mods() if (args.all or m.get("enabled", True)) and not m.get("local")]
+    # Unlisted items (our own @DZDS) are invisible to the anonymous Workshop API (result 9).
+    mods = [m for m in load_mods() if (args.all or m.get("enabled", True)) and not m.get("local") and not m.get("unlisted")]
     details = fetch([m["id"] for m in mods])
     now, stale_s = time.time(), args.stale_months * 30 * 86400
     worst = 0

@@ -22,7 +22,9 @@
     "MaxRecruitableAI": 4,
     "PreventClimb": [],
     "FormationScale": 1.0,
-    "PlayerFactions": [],
+    "PlayerFactions": [
+        "DZDSSettlers"
+    ],
     "LogAIHitBy": true,
     "LogAIKilled": true,
     "EnableZombieVehicleAttackHandler": 0,
