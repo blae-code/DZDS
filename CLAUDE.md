@@ -81,13 +81,18 @@ This file holds the rules you must follow when working in this repo.
     roles in `maps/_roles.yaml`, so Nasdara (Badlands, 1.30) is a data change. `make maps-check`.
 
 ## Current stage
-**GSP rented (Godlike, 2026-10-06), vanilla Chernarus+ running, no mods yet.** Phase 4
-playtests on the GSP directly. Panel settings still differ from rule 10 (third person on,
-crosshair on, persistent time off, darker nights off, time 12 / night 1 instead of 4 / 8)
-and RCON gave **no reply at all** on 26093 (2026-10-07; port allocated TCP/UDP, password set
-in the panel after the last restart so not yet applied). Retest after the next restart; if
-still silent, ask Godlike support. **Pruned 2026-10-07 to fit: 82 Workshop mods, 11.8 GB, ~10 GB RAM est.**
-(docs/PRUNING.md, top).
+**First modded boot 2026-10-07 20:23: all 82 mods loaded, server up.** It threw one VM
+exception (Expansion airdrop loot named BaseBuilding items we don't run); fixed by the
+`expansion_airdrops`/`expansion_missions` overlays. Expansion ships the virtual Garage ON
+(now off via overlay) and the P2P Market ON (undecided). **Generated configs only exist after
+a boot: after any mod change, `make pull` → `make overlays calibrate validate` → `make push`.**
+Do NOT run `make prepare-restart` until @DZDS is enabled: its `patrols` step writes DZDS*
+faction classes (use `INTERIM=1`). Overlays naming @DZDS classes carry `requires_mod: "@DZDS"`.
+**RCON (26093) still gives no reply even with the server's own password** (BattlEye active
+cfg in `/battleye/`, RConPort 26093), while A2S on 26092 answers: a Godlike UDP/port issue,
+ask support. Also, `.env`'s RCON_PASSWORD differs from the server's (compared by hash).
+Panel: first person + no crosshair set 2026-10-07. **Pruned 2026-10-07 to fit: 82 Workshop
+mods, 11.8 GB, ~10 GB RAM est.** (docs/PRUNING.md, top).
 Badlands releases Oct 2026: `docs/BADLANDS_PREP.md`.
 
 ## Common commands
