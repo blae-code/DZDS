@@ -4,8 +4,15 @@ Authoritative design spec: `docs/SPEC.md`. Read it before any non-trivial change
 This file holds the rules you must follow when working in this repo.
 
 ## Topology (short version)
-- **Remote**: DayZ dedicated server on a GSP (GTXGaming / Host Havoc). We touch it only via
-  SFTP (`profiles/`, `mpmissions/`) and BattlEye RCON (UDP 2310). Game 2302, query 2303.
+- **Remote**: DayZ dedicated server **"Ad Aspera" on Godlike** (rented 2026-10-06; "Rampage"
+  Budget plan: 12 GB RAM, 4 vCores AMD EPYC 7543, 70 GB, Canada). Pterodactyl-style panel
+  (`ghcr.io/parkervcp/games:dayz` egg). We touch it only via SFTP (`profiles/`, `mpmissions/`
+  at the SFTP root) and BattlEye RCON. Ports: **game 26091, query 26092, RCON 26093**,
+  host `srv7002.godlike.club`; SFTP `wing7002.panel.godlike.host:2022`. Host/user live in
+  `.env`. **Mods are set in the panel by Workshop ID**: Config → Startup Variables →
+  "Additional Mods" / "Server-Side Only Mods", value from `make panel-mods`. The panel
+  auto-installs/updates `@<id>` entries and rejects capitals/spaces in folder names, so the
+  folder-name string from `make modstring` is for local/other hosts only.
 - **Local**: CachyOS host (7800X3D, RX 7900 XTX, 32 GB). Runs the DayZ client under Proton,
   Ollama (ROCm, `HSA_OVERRIDE_GFX_VERSION=11.0.0`) with Gemma 4 E4B, and the GM daemon.
 
@@ -56,7 +63,10 @@ This file holds the rules you must follow when working in this repo.
    `make verify-mods`; use `make find-mod Q="..."` to look up IDs.
 10. **Server feel (decided):** first-person only, no HUD crosshair, no personal light, physical
     map/compass with no player position, Expansion quest markers and Hardline HUD off.
-    Keep `config/local_serverDZ.cfg` and the GSP panel in sync.
+    **Nights: dark AND short** (Blae, 2026-10-07): `lightingConfig = 1` (panel "Darker
+    Nights" = 1), time multiplier 4, night multiplier 8 → nights ~15–20 min real time,
+    24 h in-game = 6 h. Persistent time on. Keep `config/local_serverDZ.cfg` and the GSP
+    panel in sync.
 11. **Expansion file locations** (from its source): `$profile:ExpansionMod/Settings/` (AI,
     Quest settings), `$profile:ExpansionMod/Quests/` (quests, NPCs, objectives),
     `$mission:expansion/settings/` (AIPatrolSettings, AILocationSettings, HardlineSettings).
@@ -71,9 +81,12 @@ This file holds the rules you must follow when working in this repo.
     roles in `maps/_roles.yaml`, so Nasdara (Badlands, 1.30) is a data change. `make maps-check`.
 
 ## Current stage
-No GSP rented yet. Work proceeds offline (`docs/PRE_PURCHASE.md`): GM against the ADM
-simulator + fake RCON, Phase 2 presets, optional local test server whose profiles are the
-repo's `server/` mirror. Badlands releases Oct 2026: `docs/BADLANDS_PREP.md`.
+**GSP rented (Godlike, 2026-10-06), vanilla Chernarus+ running, no mods yet.** Phase 4
+playtests on the GSP directly. Panel settings still differ from rule 10 (third person on,
+crosshair on, persistent time off, darker nights off, time 12 / night 1 instead of 4 / 8)
+and RCON has no password yet, so
+RCON is off. RAM fits the Tier 1-pruned list (~11 GB), not all 96 mods (~14 GB).
+Badlands releases Oct 2026: `docs/BADLANDS_PREP.md`.
 
 ## Common commands
 ```bash
@@ -81,7 +94,8 @@ make setup            # venv + deps (Python >= 3.11)
 make pull             # mirror remote profiles/ + mpmissions/ into server/
 make validate         # JSON/XML syntax check of server/ and presets/
 make push             # validate → backup remote → upload (prompts; DRY_RUN=1 to preview)
-make modstring        # print -mod= / -serverMod= strings for the GSP panel
+make modstring        # print -mod= / -serverMod= folder strings (local server)
+make panel-mods       # Godlike "Additional Mods" / "Server-Side Only Mods" (@workshopID;)
 make keys             # check every mod has a .bikey (needs DAYZ_WORKSHOP_DIR)
 make test             # pytest
 make gm               # run the GM daemon (dry-run unless GM_DRY_RUN=0)

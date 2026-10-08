@@ -27,7 +27,7 @@ diegetic, low tedium, factions)? (4) does it carry risk (beta, heavy, conflicts)
 | Airborne AI | Paratrooper hunters are dramatic but heavy; escalation-only |
 | BS Patrol Tank | Enemy armour; strong set piece, CPU cost |
 | Gas Mask Overhaul | Filter tiers sit near the tedium line |
-| Dark-Ish Nights (stale) | Only if vanilla bright/dark nights both feel wrong after testing |
+| Dark-Ish Nights (stale) | **Disabled 2026-10-07**: vanilla dark nights (lightingConfig = 1) chosen; re-enable only if those prove too dark in testing |
 | LMs Planes | Planes are server-heavy (author's warning); one Cessna might not justify it next to the Expansion An-2 |
 
 ## Tier 3: stale but load-bearing (test first, replace if broken on 1.30)

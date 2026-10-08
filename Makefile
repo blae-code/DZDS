@@ -2,7 +2,7 @@ VENV ?= .venv
 PY := $(VENV)/bin/python
 SHELL := /bin/bash
 
-.PHONY: setup pull push logs validate modstring keys calibrate test gm
+.PHONY: setup pull push logs validate modstring panel-mods keys calibrate test gm
 
 setup:
 	python3 -m venv $(VENV)
@@ -24,6 +24,9 @@ validate:
 
 modstring:
 	$(PY) tools/modstring.py string -v
+
+panel-mods:
+	$(PY) tools/modstring.py panel
 
 keys:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/modstring.py keys

@@ -93,7 +93,7 @@ branch per session; file anything that fails as a follow-up.
 ## 10. Immersion
 - [ ] Voice: proximity VON levels, radios with batteries, mask muffling; WalkieTalkie PTT
 - [ ] Ambient animals, flying birds, blood trails fade within ~1 h
-- [ ] Zens Immersive Login wake-up; Dark-Ish Nights lighting (lightingConfig = 2)
+- [ ] Zens Immersive Login wake-up; dark nights (lightingConfig = 1) are dark but playable; nights last ~15-20 min real time
 - [ ] No HUD markers anywhere (convoy/horde/airborne notifications disabled in their configs)
 
 ## 11. After testing

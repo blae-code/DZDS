@@ -62,7 +62,7 @@ mods:
   - { name: Doc's Animals,            folder: "@DocsAnimals",              id: 2886393751, tier: 2, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "optional: trophies, rugs, more species" }
   - { name: Generic_Gunplay,          folder: "@GenericGunplay",           id: 3767837404, tier: 4, module: world,     side: both,   enabled: true, verified: true, tested: false, note: "evaluate: barrel-aligned crosshair option + gunplay tuning; brand new (2026-10)" }
   - { name: BetterDriving,            folder: "@BetterDriving",            id: 3651248193, tier: 4, module: mobility,  side: both,   enabled: true, verified: true, tested: false, note: "optional: auto-shifting/Arma-style controls if 1PP driving feels clunky" }
-  - { name: Dark-Ish Nights,          folder: "@DarkIshNights",            id: 3346147359, tier: 4, module: world,     side: both,   enabled: true, verified: true, tested: false, note: "adds lightingConfig = 2 (between bright and dark); stale (2024-10)" }
+  - { name: Dark-Ish Nights,          folder: "@DarkIshNights",            id: 3346147359, tier: 4, module: world,     side: both,   enabled: false, verified: true, tested: false, note: "adds lightingConfig = 2 (between bright and dark); stale (2024-10). OFF 2026-10-07: Blae chose vanilla dark nights (lightingConfig = 1), so it has no job" }
   - { name: Muffled Unconscious,      folder: "@MuffledUnconscious",       id: 3667280991, tier: 4, module: world,     side: both,   enabled: true, verified: true, tested: false, note: "optional: faint audio while unconscious; tiny user base" }
 
   # ---- Tier 3: Vehicles, flight, base-building content ----

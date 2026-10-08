@@ -123,7 +123,7 @@ chore? Keep the first; automate or cut the second.
 | **Zens Immersive Login** (2924719512) | You wake up lying down and open your eyes; fresh spawns get a campfire. Free immersion, no chore |
 | **Immersive Placing Update** (3753472356) | Place items exactly where you aim. Makes base dressing satisfying; verified on 1.29 |
 | RaG Immersive Wells (3406196859) | Pump animation, splashes; optionally wells can run dry. Fits **arid Nasdara**; keep cholera off |
-| Dark-Ish Nights (3346147359) | Only if vanilla bright/dark nights are both wrong; stale (2024) |
+| Dark-Ish Nights (3346147359) | **Disabled 2026-10-07** (vanilla dark nights chosen). Only if vanilla bright/dark nights are both wrong; stale (2024) |
 
 ### Tuning existing mods against tedium
 - **Zens Sleeping Mod**: set fatigue slow, so sleep is a once-per-evening ritual at camp, not an interruption.

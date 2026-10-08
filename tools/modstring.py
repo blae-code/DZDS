@@ -3,6 +3,7 @@
 
 Usage:
   tools/modstring.py string                 # print -mod= / -serverMod= for the GSP panel
+  tools/modstring.py panel                  # Godlike "Additional Mods" / "Server-Side Only Mods"
   tools/modstring.py keys [--copy-to DIR]   # check each mod ships a .bikey (local workshop dir)
 """
 from __future__ import annotations
@@ -54,6 +55,21 @@ def build_strings(mods: list[dict]) -> tuple[str, str]:
     return client, server
 
 
+def build_panel_fields(mods: list[dict]) -> tuple[str, str, list[str]]:
+    """Godlike panel "Additional Mods" / "Server-Side Only Mods" values.
+
+    The panel auto-installs and auto-updates Workshop mods given as '@<workshopID>' and
+    rejects capitals and spaces in folder names, so Workshop mods go in by ID. Local mods
+    (built from mods/) can't be fetched by ID; they're returned separately so they can be
+    uploaded by hand under a lowercase folder name.
+    """
+    active = [m for m in ordered(mods) if not m.get("local")]
+    client = "".join(f"@{m['id']};" for m in active if m.get("side", "both") == "both")
+    server = "".join(f"@{m['id']};" for m in active if m.get("side") == "server")
+    local = [m["folder"] for m in ordered(mods) if m.get("local")]
+    return client, server, local
+
+
 def find_bikeys(mod_dir: Path) -> list[Path]:
     return sorted(p for p in mod_dir.rglob("*") if p.suffix.lower() == ".bikey")
 
@@ -72,6 +88,20 @@ def cmd_string(args: argparse.Namespace) -> int:
     unverified = [m["name"] for m in ordered(mods) if not m.get("verified")]
     if unverified:
         print(f"# WARNING: {len(unverified)} enabled mod(s) not yet verified in mods.yaml",
+              file=sys.stderr)
+    return 0
+
+
+def cmd_panel(args: argparse.Namespace) -> int:
+    client, server, local = build_panel_fields(load_mods())
+    print("# Godlike panel > Config > Startup Variables")
+    print("# Additional Mods:")
+    print(client or "# (none)")
+    print("# [Advanced] Server-Side Only Mods:")
+    print(server or "# (none)")
+    for folder in local:
+        print(f"# LOCAL: upload {folder} by SFTP as a lowercase folder (e.g. "
+              f"{folder.lower()}) and append '{folder.lower()};' to Additional Mods",
               file=sys.stderr)
     return 0
 
@@ -122,6 +152,8 @@ def main() -> int:
     s = sub.add_parser("string", help="print launch parameter strings")
     s.add_argument("-v", "--verbose", action="store_true")
     s.set_defaults(func=cmd_string)
+    g = sub.add_parser("panel", help="print the Godlike panel mod fields (@workshopID;)")
+    g.set_defaults(func=cmd_panel)
     i = sub.add_parser("ids", help="print '<side> <id> <folder>' per enabled mod")
     i.set_defaults(func=cmd_ids)
     k = sub.add_parser("keys", help="validate .bikey presence")

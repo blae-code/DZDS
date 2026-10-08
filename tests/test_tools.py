@@ -13,6 +13,27 @@ def test_mods_yaml_loads_and_core_first():
     assert tiers == sorted(tiers)
 
 
+def test_panel_fields_use_workshop_ids_in_load_order():
+    mods = [
+        {"name": "B", "folder": "@B Mod", "id": 2, "tier": 2, "side": "both"},
+        {"name": "A", "folder": "@A", "id": 1, "tier": 1, "side": "both"},
+        {"name": "S", "folder": "@S", "id": 3, "tier": 2, "side": "server"},
+        {"name": "Off", "folder": "@Off", "id": 4, "tier": 1, "enabled": False},
+        {"name": "Ours", "folder": "@DZDS", "id": 0, "tier": 2, "local": True},
+    ]
+    client, server, local = modstring.build_panel_fields(mods)
+    assert client == "@1;@2;"
+    assert server == "@3;"
+    assert local == ["@DZDS"]
+
+
+def test_panel_fields_real_list_has_no_capitals_or_spaces():
+    client, server, _ = modstring.build_panel_fields(modstring.load_mods())
+    for field in (client, server):
+        assert field == field.lower() and " " not in field
+        assert all(e.startswith("@") and e[1:].isdigit() for e in field.split(";") if e)
+
+
 def test_find_bikeys(tmp_path: Path):
     (tmp_path / "Keys").mkdir()
     (tmp_path / "Keys" / "CF.bikey").write_text("k")

@@ -35,3 +35,6 @@ build/
 
 # @DZDS command queue (transient; consumed by the server)
 server/profiles/DZDS/queue/
+
+# Playwright MCP snapshots (may contain panel data)
+.playwright-mcp/
