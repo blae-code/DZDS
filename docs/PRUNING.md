@@ -1,4 +1,16 @@
-# Pruning Report (prepared 2026-10-05, nothing removed yet)
+# Pruning Report (prepared 2026-10-05; APPLIED 2026-10-07)
+
+## Applied 2026-10-07 (to fit the Godlike plan: 12 GB RAM, 4 vCores, 70 GB)
+**95 → 82 Workshop mods, 24.7 → 11.8 GB download, RAM estimate ~14 → ~10 GB.**
+- **All of Tier 1** (9 mods, 8.7 GB). BBP vs RaG resolved in favour of RaG_BaseBuilding.
+- **Tier 2, the four with a load cost** (4 mods, 4.2 GB): SNAFU Weapons (3.7 GB), LMs Planes
+  (author warns it's server-heavy), Airborne AI and BS Patrol Tank (AI/CPU on 4 vCores).
+- **Kept from Tier 2** (feel only, negligible load): MaharlikaPH MilitaryPack, Gas Mask Overhaul.
+  Dark-Ish Nights was already off (vanilla dark nights chosen).
+- Each pruned entry stays in `config/mods.yaml` with `enabled: false` and a `PRUNED` note.
+- Measured vanilla base on the GSP is ~6 GB (the formula assumes 3), so the honest RAM
+  range for 82 mods is ~7.5–10.5 GB before headroom. Confirm on first modded boot.
+
 
 ~95 mods are enabled. Every one costs client download size, server start time, server FPS
 (scripts tick), and breakage risk on game updates (1.30 ships with Badlands on Oct 15). This
@@ -46,7 +58,7 @@ Vehicle Shooting, Zens ExpansionAI Audio, RaG Core/Building/Cabin/Wells, MMG Bas
 
 ## Estimated effect
 Tier 1 alone removes ~9 mods (to ~86) with no lost features. Tier 2 decisions could remove up
-to 7 more. Measure server FPS and start time on the local server before and after.
+to 7 more. (Applied: see the top of this file.) Measure server FPS and start time on the local server before and after.
 
 ## How to apply
 Set `enabled: false` in `config/mods.yaml` (keep the entry and note why), then

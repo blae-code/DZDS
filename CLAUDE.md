@@ -84,8 +84,10 @@ This file holds the rules you must follow when working in this repo.
 **GSP rented (Godlike, 2026-10-06), vanilla Chernarus+ running, no mods yet.** Phase 4
 playtests on the GSP directly. Panel settings still differ from rule 10 (third person on,
 crosshair on, persistent time off, darker nights off, time 12 / night 1 instead of 4 / 8)
-and RCON has no password yet, so
-RCON is off. RAM fits the Tier 1-pruned list (~11 GB), not all 96 mods (~14 GB).
+and RCON gave **no reply at all** on 26093 (2026-10-07; port allocated TCP/UDP, password set
+in the panel after the last restart so not yet applied). Retest after the next restart; if
+still silent, ask Godlike support. **Pruned 2026-10-07 to fit: 82 Workshop mods, 11.8 GB, ~10 GB RAM est.**
+(docs/PRUNING.md, top).
 Badlands releases Oct 2026: `docs/BADLANDS_PREP.md`.
 
 ## Common commands

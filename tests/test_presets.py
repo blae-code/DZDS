@@ -137,11 +137,13 @@ def test_types_register_is_idempotent(tmp_path):
     assert core.read_text().count('folder="dzds"') == 1
 
 
-def test_every_enabled_mod_verified_and_one_map_mod():
+def test_every_enabled_mod_verified_and_at_most_one_map_mod():
+    # Zero is valid: Basic Map was pruned 2026-10-07 in favour of the vanilla paper map
+    # (displayPlayerPosition false). Two would conflict.
     mods = modstring.ordered(modstring.load_mods())
     assert all(m.get("verified") for m in mods)
     map_mods = [m for m in mods if m["name"] in {"Basic Map", "DayZ-Expansion-Navigation"}]
-    assert len(map_mods) == 1
+    assert len(map_mods) <= 1
 
 
 def test_no_enabled_mod_conflicts():
