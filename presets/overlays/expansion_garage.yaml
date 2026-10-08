@@ -1,0 +1,7 @@
+# Expansion virtual garage OFF: design pillar 6 / SPEC.md "Prohibited: virtual garage
+# terminals". Expansion ships it enabled (GarageSettings Enabled 1, first modded boot
+# 2026-10-07). Vehicles are kept with physical keys, tarps (CarCover) and towing.
+root: profiles                         # $profile:ExpansionMod/Settings/GarageSettings.json
+target: ExpansionMod/Settings/GarageSettings.json
+values:
+  Enabled: 0
