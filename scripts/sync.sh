@@ -45,11 +45,17 @@ run_lftp() {
 dry_flag() { [[ "$DRY" == "1" ]] && echo "--dry-run" || true; }
 
 pull() {
-  mkdir -p "$L_PROFILES" "$L_MISSIONS"
-  echo ">> Pulling $R_PROFILES and $R_MISSIONS"
+  # Only the live mission: the GSP install also ships enoch/sakhal, which we don't run.
+  local r_mission="$R_MISSIONS" l_mission="$L_MISSIONS"
+  if [[ -n "${MISSION_NAME:-}" ]]; then
+    r_mission="$R_MISSIONS/$MISSION_NAME"
+    l_mission="$L_MISSIONS/$MISSION_NAME"
+  fi
+  mkdir -p "$L_PROFILES" "$l_mission"
+  echo ">> Pulling $R_PROFILES and $r_mission"
   run_lftp "
     mirror --verbose --parallel=4 $(dry_flag) $EXCLUDES '$R_PROFILES' '$L_PROFILES'
-    mirror --verbose --parallel=4 $(dry_flag) $EXCLUDES '$R_MISSIONS' '$L_MISSIONS'
+    mirror --verbose --parallel=4 $(dry_flag) $EXCLUDES '$r_mission' '$l_mission'
   "
 }
 

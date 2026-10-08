@@ -38,3 +38,10 @@ server/profiles/DZDS/queue/
 
 # Playwright MCP snapshots (may contain panel data)
 .playwright-mcp/
+
+# Static vanilla terrain data in the mission (never edited here; ~100 MB)
+server/mpmissions/*/areaflags.map
+server/mpmissions/*/mapgroup*.xml
+# Server runtime cache + its own profile
+server/profiles/DataCache/
+server/profiles/users/
