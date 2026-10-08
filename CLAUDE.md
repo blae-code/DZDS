@@ -99,6 +99,10 @@ daemon's RCON path stays offline. Findings kept for later: **RCON (26093) gives 
 cfg in `/battleye/`, RConPort 26093), while A2S on 26092 answers: a Godlike UDP/port issue,
 ask support. Also, `.env`'s RCON_PASSWORD differs from the server's (compared by hash).
 Panel: first person + no crosshair set 2026-10-07.
+**Crash watch:** 2026-10-07 21:25 the engine crashed ("Unhandled exception, Reason: Unknown",
+crash_2026-10-08_04-05-58.log) ~20 min after boot; the panel auto-restarted it. Not an OOM kill
+(a SIGKILL writes no crash log). The next boot ran 10.5 h clean. If it recurs, compare crash
+times against boot times and the script log's last lines before each.
 **Joining: the official DayZ Launcher can't read our mod list** (A2S_RULES is one capped
 3 KB reply, 32 rules, mod list truncated: "Server can't transmit all data"). The DZSA
 Launcher API sees all 81 client mods, so players join via DZSA (Windows) or DZGUI (Linux).
