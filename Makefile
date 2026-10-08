@@ -116,6 +116,10 @@ dzds-profile:
 vehicle-events:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/vehicle_events.py
 
+.PHONY: mod-drift
+mod-drift:
+	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/mod_drift.py $(if $(ALL),--all)
+
 .PHONY: specs
 specs:
 	$(PY) tools/specs.py

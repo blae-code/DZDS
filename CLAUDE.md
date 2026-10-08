@@ -11,8 +11,14 @@ This file holds the rules you must follow when working in this repo.
   host `srv7002.godlike.club`; SFTP `wing7002.panel.godlike.host:2022`. Host/user live in
   `.env`. **Mods are set in the panel by Workshop ID**: Config → Startup Variables →
   "Additional Mods" / "Server-Side Only Mods", value from `make panel-mods`. The panel
-  auto-installs/updates `@<id>` entries and rejects capitals/spaces in folder names, so the
-  folder-name string from `make modstring` is for local/other hosts only.
+  auto-installs `@<id>` entries (lowercasing every file name) and rejects capitals/spaces in
+  folder names, so the folder-name string from `make modstring` is for local/other hosts only.
+  **It installs only MISSING folders and never updates an installed mod** (proven
+  2026-10-08 from the server's `Steam/logs/workshop_log.txt`; a restart does not help). When
+  a mod updates on the Workshop, players are kicked after the password prompt ("mod updated
+  on the client but not the server"). **`make mod-drift`** finds it (server vs Workshop vs
+  this machine's client copy; exit 1 on drift, 2 if it could not read the server). Fix: rename
+  `/@<id>` aside in the File Manager and restart, so the panel re-downloads it.
 - **Local**: CachyOS host (7800X3D, RX 7900 XTX, 32 GB). Runs the DayZ client under Proton,
   Ollama (ROCm, `HSA_OVERRIDE_GFX_VERSION=11.0.0`) with Gemma 4 E4B, and the GM daemon.
 
@@ -125,6 +131,7 @@ make gm               # run the GM daemon (dry-run unless GM_DRY_RUN=0)
 make calibrate        # AI accuracy bounds + kill logging (needs pulled/generated configs)
 make overlays         # presets/overlays/*.yaml onto real configs (existing keys only)
 make verify-mods      # check every mod ID/title/staleness on the Steam Workshop
+make mod-drift        # server's installed mods vs Workshop + client copy (ALL=1 lists OK too)
 make specs            # server RAM/disk + client download estimate from enabled mods
 make find-mod Q=...   # search the Workshop
 make maps-check       # map role coverage (nasdara is TODO until release)
