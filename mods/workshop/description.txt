@@ -1,0 +1,17 @@
+[h1]Ad Aspera Factions (DZDS)[/h1]
+The custom faction mod for the Ad Aspera friends-only PvE server. You only need it to play there; the server's mod list fetches it for you.
+
+[h2]What it adds[/h2]
+[list]
+[*]Five factions for DayZ Expansion AI: Frontier Settlers (players), UN Peacekeepers, the Jackal Cohort, the Karkas Mountain Clan and the Rust Syndicate
+[*]Runtime diplomacy: truces and betrayals between factions, driven by the server's war ledger
+[*]Reputation tolerance: the Karkas and the Rust spare individual players they have come to trust
+[*]A server-side world layer for the server's Game Master
+[/list]
+
+[h2]Requires[/h2]
+[list]
+[*]Community Framework
+[*]DayZ-Expansion-Core
+[*]DayZ-Expansion-AI
+[/list]
