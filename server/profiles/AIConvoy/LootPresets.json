@@ -1,0 +1,808 @@
+{
+    "defaultItemConfigs":  [
+                               {
+                                   "presetName":  "example_ammo_partial",
+                                   "itemname":  "AmmoBox_556x45_20Rnd",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.25,
+                                   "quantmax":  0.75,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "example_worn_vest",
+                                   "itemname":  "PressVest_Blue",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  0.25,
+                                   "lootHealthMax":  0.5,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "example_bandage",
+                                   "itemname":  "BandageDressing",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "_MAG",
+                                   "itemname":  "",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  1,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "mag"
+                               },
+                               {
+                                   "presetName":  "_IND",
+                                   "itemname":  "",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  1,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "any"
+                               },
+                               {
+                                   "presetName":  "_ROOT",
+                                   "itemname":  "",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  1,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "root"
+                               },
+                               {
+                                   "presetName":  "_50%",
+                                   "itemname":  "",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  1,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "any"
+                               },
+                               {
+                                   "presetName":  "example_supply_drop",
+                                   "itemname":  "",
+                                   "items":  [
+                                                 "example_ammo_partial",
+                                                 "example_worn_vest",
+                                                 "example_bandage"
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  2,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_W_AKM",
+                                   "itemname":  "AKM",
+                                   "items":  [
+                                                 "Mag_AKM_30Rnd_MAG",
+                                                 "KobraOptic_IND"
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_W_M4A1",
+                                   "itemname":  "M4A1",
+                                   "items":  [
+                                                 "M4_RISHndgrd_IND",
+                                                 "M4_MPBttstck_IND",
+                                                 "M4_CarryHandleOptic_IND",
+                                                 "Mag_STANAG_30Rnd_MAG"
+                                             ],
+                                   "chance":  0.75,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_W_FAL",
+                                   "itemname":  "FAL",
+                                   "items":  [
+                                                 "Fal_OeBttstck_IND",
+                                                 "Mag_FAL_20Rnd_MAG"
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_W_ASVAL",
+                                   "itemname":  "ASVAL",
+                                   "items":  [
+                                                 "Mag_VAL_20Rnd_MAG",
+                                                 "ReflexOptic_IND"
+                                             ],
+                                   "chance":  0.25,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_W_SVD",
+                                   "itemname":  "SVD",
+                                   "items":  [
+                                                 "PSO1Optic_IND",
+                                                 "Mag_SVD_10Rnd_MAG"
+                                             ],
+                                   "chance":  0.25,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_W_Mosin",
+                                   "itemname":  "Mosin9130",
+                                   "items":  [
+                                                 "PUScopeOptic_IND"
+                                             ],
+                                   "chance":  0.75,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_Weapon",
+                                   "itemname":  "",
+                                   "items":  [
+                                                 "AIConvoy_W_AKM",
+                                                 "AIConvoy_W_M4A1",
+                                                 "AIConvoy_W_FAL",
+                                                 "AIConvoy_W_ASVAL",
+                                                 "AIConvoy_W_SVD",
+                                                 "AIConvoy_W_Mosin"
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_A_762x39",
+                                   "itemname":  "AmmoBox_762x39_20Rnd",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.5,
+                                   "quantmax":  1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_A_556",
+                                   "itemname":  "AmmoBox_556x45_20Rnd",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.75,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.5,
+                                   "quantmax":  1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_A_762x54",
+                                   "itemname":  "AmmoBox_762x54_20Rnd",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.5,
+                                   "quantmax":  1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_A_308",
+                                   "itemname":  "AmmoBox_308Win_20Rnd",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.5,
+                                   "quantmax":  1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_A_9x39",
+                                   "itemname":  "AmmoBox_9x39AP_20Rnd",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.25,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.5,
+                                   "quantmax":  1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_A_AKMag",
+                                   "itemname":  "Mag_AKM_30Rnd",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.5,
+                                   "quantmax":  1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_A_STANAG",
+                                   "itemname":  "Mag_STANAG_30Rnd",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.5,
+                                   "quantmax":  1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_Ammo",
+                                   "itemname":  "",
+                                   "items":  [
+                                                 "AIConvoy_A_762x39",
+                                                 "AIConvoy_A_556",
+                                                 "AIConvoy_A_762x54",
+                                                 "AIConvoy_A_308",
+                                                 "AIConvoy_A_9x39",
+                                                 "AIConvoy_A_AKMag",
+                                                 "AIConvoy_A_STANAG"
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  2,
+                                   "maxSpawnTries":  3,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_G_PlateCarrier",
+                                   "itemname":  "PlateCarrierVest",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  0.5,
+                                   "lootHealthMax":  1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_G_HighCap",
+                                   "itemname":  "HighCapacityVest_Black",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  0.5,
+                                   "lootHealthMax":  1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_G_Smersh",
+                                   "itemname":  "SmershVest",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.75,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  0.5,
+                                   "lootHealthMax":  1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_G_AssaultBag",
+                                   "itemname":  "AssaultBag_Ttsko",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.75,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  0.5,
+                                   "lootHealthMax":  1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_G_DryBag",
+                                   "itemname":  "DryBag_Black",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  0.5,
+                                   "lootHealthMax":  1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_G_Helmet",
+                                   "itemname":  "BallisticHelmet_Black",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  0.5,
+                                   "lootHealthMax":  1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_Gear",
+                                   "itemname":  "",
+                                   "items":  [
+                                                 "AIConvoy_G_PlateCarrier",
+                                                 "AIConvoy_G_HighCap",
+                                                 "AIConvoy_G_Smersh",
+                                                 "AIConvoy_G_AssaultBag",
+                                                 "AIConvoy_G_DryBag",
+                                                 "AIConvoy_G_Helmet"
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_M_Bandage",
+                                   "itemname":  "BandageDressing",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_M_Tetra",
+                                   "itemname":  "TetracyclineAntibiotics",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_M_Painkill",
+                                   "itemname":  "PainkillerTablets",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_M_Morphine",
+                                   "itemname":  "Morphine",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_M_Epi",
+                                   "itemname":  "Epinephrine",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.25,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_M_Saline",
+                                   "itemname":  "SalineBagIV",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_M_Blood",
+                                   "itemname":  "BloodBagIV",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.25,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_Medical",
+                                   "itemname":  "",
+                                   "items":  [
+                                                 "AIConvoy_M_Bandage",
+                                                 "AIConvoy_M_Tetra",
+                                                 "AIConvoy_M_Painkill",
+                                                 "AIConvoy_M_Morphine",
+                                                 "AIConvoy_M_Epi",
+                                                 "AIConvoy_M_Saline",
+                                                 "AIConvoy_M_Blood"
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  2,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_F_Bacon",
+                                   "itemname":  "TacticalBaconCan",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_F_Beans",
+                                   "itemname":  "BakedBeansCan",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_F_Spaghetti",
+                                   "itemname":  "SpaghettiCan",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.75,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_F_Rice",
+                                   "itemname":  "Rice",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_F_Water",
+                                   "itemname":  "WaterBottle",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.75,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.5,
+                                   "quantmax":  1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_F_Canteen",
+                                   "itemname":  "Canteen",
+                                   "items":  [
+
+                                             ],
+                                   "chance":  0.5,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  1,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  0.5,
+                                   "quantmax":  1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               },
+                               {
+                                   "presetName":  "AIConvoy_Food",
+                                   "itemname":  "",
+                                   "items":  [
+                                                 "AIConvoy_F_Bacon",
+                                                 "AIConvoy_F_Beans",
+                                                 "AIConvoy_F_Spaghetti",
+                                                 "AIConvoy_F_Rice",
+                                                 "AIConvoy_F_Water",
+                                                 "AIConvoy_F_Canteen"
+                                             ],
+                                   "chance":  1,
+                                   "individualChance":  0,
+                                   "minSpawnTries":  1,
+                                   "maxSpawnTries":  2,
+                                   "allowDuplicates":  0,
+                                   "quantmin":  -1,
+                                   "quantmax":  -1,
+                                   "lootHealthMin":  -1,
+                                   "lootHealthMax":  -1,
+                                   "spawnIn":  "cargo"
+                               }
+                           ],
+    "presetLists":  [
+
+                    ]
+}

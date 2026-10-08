@@ -1,0 +1,25 @@
+{
+    "VehicleClassName": "AIConvoy_Truck",
+    "VehicleAttachments": [
+        "HeadlightH7",
+        "HeadlightH7",
+        "Truck_01_Wheel",
+        "Truck_01_Wheel",
+        "Truck_01_Wheel",
+        "Truck_01_Wheel",
+        "Truck_01_WheelDouble",
+        "Truck_01_WheelDouble",
+        "Truck_01_WheelDouble",
+        "Truck_01_WheelDouble",
+        "Truck_01_Door_1_1",
+        "Truck_01_Door_2_1",
+        "Truck_01_Hood",
+        "TruckBattery"
+    ],
+    "CargoItems": [],
+    "CargoPresets": ["AIConvoy_Weapon", "AIConvoy_Ammo", "AIConvoy_Gear", "AIConvoy_Gear", "AIConvoy_Medical", "AIConvoy_Food", "AIConvoy_Food"],
+    "VehicleDamageStopThreshold": 0.3,
+    "StopDamageTotal": 6750,
+    "RuinEngineOnStop": 1,
+    "ManualShiftUpSpeeds": [13, 45, 60]
+}

@@ -1,0 +1,18 @@
+{
+    "CONFIG_VERSION": "2",
+    "DebugOn": 0,
+    "GenericAudioTypes": [
+        "ExpansionP2PTrader",
+        "ExpansionTrader",
+        "Sanctuary_Guards"
+    ],
+    "GenericThreatTypes": [
+        "Bunker_Bandits_Level01"
+    ],
+    "GenericAudioTypes_BadGuys": [
+        "YellowKing"
+    ],
+    "GenericThreatTypes_BadGuys": [
+        "YellowKing"
+    ]
+}

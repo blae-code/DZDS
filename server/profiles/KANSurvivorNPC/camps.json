@@ -1,0 +1,1565 @@
+{
+    "Version": 8,
+    "NextEventSerial": 13,
+    "Camps": [
+        {
+            "Id": "Balota_Survivor_Camp",
+            "DisplayName": "Balota Survivor Camp",
+            "Blueprint": "MilitaryCheckpoint",
+            "Alignment": 0,
+            "Position": [
+                4675.0,
+                0.0,
+                2385.0
+            ],
+            "Rotation": 0.0,
+            "CapturedBlueprint": 0,
+            "BlueprintVersion": 0,
+            "KANPlacementMode": 0,
+            "BuildInstantly": 0,
+            "CompletedBuildSteps": 0,
+            "Layout": {
+                "Version": 1,
+                "Revision": 1,
+                "SourceBlueprintId": "MilitaryCheckpoint",
+                "SourceBlueprintRevision": 1,
+                "Blueprint": {
+                    "Version": 6,
+                    "Revision": 1,
+                    "Id": "MilitaryCheckpoint",
+                    "Name": "Military Checkpoint",
+                    "CaptureRadius": 82.0,
+                    "KANPlacementMode": 1,
+                    "MinCampDistance": 260.0,
+                    "MaxTerrainDelta": 3.0,
+                    "CaptureHealth": 1,
+                    "CaptureScale": 1,
+                    "CaptureInventory": 0,
+                    "FixedSite": 0,
+                    "FixedSitePosition": [
+                        0.0,
+                        0.0,
+                        0.0
+                    ],
+                    "FixedSiteRotation": 0.0,
+                    "DefaultAlignment": 1,
+                    "DefaultBuildInstantly": 0,
+                    "Roles": {
+                        "Roamers": 2,
+                        "Looters": 4,
+                        "Builders": 2,
+                        "Guards": 5,
+                        "Attackers": 2,
+                        "Snipers": 1
+                    },
+                    "Objects": [
+                        {
+                            "ObjectId": "object_1",
+                            "ClassName": "Land_Mil_Fortified_Nest_Big",
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                -28.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_2",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -36.0,
+                                0.0,
+                                -58.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_3",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -24.0,
+                                0.0,
+                                -58.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_4",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -12.0,
+                                0.0,
+                                -58.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_5",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                -58.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_6",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                12.0,
+                                0.0,
+                                -58.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_7",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                24.0,
+                                0.0,
+                                -58.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_8",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                36.0,
+                                0.0,
+                                -58.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_9",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -36.0,
+                                0.0,
+                                54.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_10",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -24.0,
+                                0.0,
+                                54.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_11",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -12.0,
+                                0.0,
+                                54.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_12",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                12.0,
+                                0.0,
+                                54.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_13",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                24.0,
+                                0.0,
+                                54.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_14",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                36.0,
+                                0.0,
+                                54.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_15",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                -42.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_16",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                -30.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_17",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                -18.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_18",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                -6.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_19",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                6.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_20",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_21",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                30.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_22",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                42.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_23",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                -42.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_24",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                -30.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_25",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                -18.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_26",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                -6.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_27",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                6.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_28",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_29",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                30.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_30",
+                            "ClassName": "StaticObj_Mil_HBarrier_6m",
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                42.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_31",
+                            "ClassName": "Land_Mil_GuardBox_Green",
+                            "LocalPosition": [
+                                -34.0,
+                                0.0,
+                                16.0
+                            ],
+                            "LocalOrientation": [
+                                270.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_32",
+                            "ClassName": "Land_Mil_GuardBox_Green",
+                            "LocalPosition": [
+                                34.0,
+                                0.0,
+                                16.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_33",
+                            "ClassName": "LargeTent",
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                4.0
+                            ],
+                            "LocalOrientation": [
+                                90.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_34",
+                            "ClassName": "WoodenCrate",
+                            "LocalPosition": [
+                                -8.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Storage",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_35",
+                            "ClassName": "WoodenCrate",
+                            "LocalPosition": [
+                                8.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Storage",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_36",
+                            "ClassName": "Barrel_Green",
+                            "LocalPosition": [
+                                -16.0,
+                                0.0,
+                                20.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Storage",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_37",
+                            "ClassName": "Barrel_Green",
+                            "LocalPosition": [
+                                16.0,
+                                0.0,
+                                20.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Storage",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        },
+                        {
+                            "ObjectId": "object_38",
+                            "ClassName": "Land_Mil_Fortified_Nest_Watchtower",
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                38.0
+                            ],
+                            "LocalOrientation": [
+                                180.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Category": "Legacy camp object",
+                            "LocalTerrainHeight": 0.0,
+                            "Scale": 1.0,
+                            "Health01": 1.0
+                        }
+                    ],
+                    "Markers": [
+                        {
+                            "MarkerId": "marker_1",
+                            "Type": 8,
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 1
+                        },
+                        {
+                            "MarkerId": "marker_2",
+                            "Type": 2,
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                48.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 2
+                        },
+                        {
+                            "MarkerId": "marker_3",
+                            "Type": 7,
+                            "LocalPosition": [
+                                320.0,
+                                0.0,
+                                160.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 3
+                        },
+                        {
+                            "MarkerId": "marker_4",
+                            "Type": 10,
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                20.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 4
+                        },
+                        {
+                            "MarkerId": "marker_5",
+                            "Type": 9,
+                            "LocalPosition": [
+                                -8.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 5
+                        },
+                        {
+                            "MarkerId": "marker_6",
+                            "Type": 9,
+                            "LocalPosition": [
+                                8.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 6
+                        },
+                        {
+                            "MarkerId": "marker_7",
+                            "Type": 9,
+                            "LocalPosition": [
+                                -16.0,
+                                0.0,
+                                20.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 7
+                        },
+                        {
+                            "MarkerId": "marker_8",
+                            "Type": 9,
+                            "LocalPosition": [
+                                16.0,
+                                0.0,
+                                20.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 8
+                        },
+                        {
+                            "MarkerId": "marker_9",
+                            "Type": 6,
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                -31.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 9
+                        },
+                        {
+                            "MarkerId": "marker_10",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -6.0,
+                                0.0,
+                                -30.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 10
+                        },
+                        {
+                            "MarkerId": "marker_11",
+                            "Type": 6,
+                            "LocalPosition": [
+                                6.0,
+                                0.0,
+                                -30.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 11
+                        },
+                        {
+                            "MarkerId": "marker_12",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -30.0,
+                                0.0,
+                                -6.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 12
+                        },
+                        {
+                            "MarkerId": "marker_13",
+                            "Type": 6,
+                            "LocalPosition": [
+                                30.0,
+                                0.0,
+                                -6.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 13
+                        },
+                        {
+                            "MarkerId": "marker_14",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -34.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 14
+                        },
+                        {
+                            "MarkerId": "marker_15",
+                            "Type": 6,
+                            "LocalPosition": [
+                                34.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 15
+                        },
+                        {
+                            "MarkerId": "marker_16",
+                            "Type": 6,
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                37.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 16
+                        },
+                        {
+                            "MarkerId": "marker_17",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -14.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 17
+                        },
+                        {
+                            "MarkerId": "marker_18",
+                            "Type": 6,
+                            "LocalPosition": [
+                                14.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 18
+                        },
+                        {
+                            "MarkerId": "marker_19",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -25.0,
+                                0.0,
+                                8.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 19
+                        },
+                        {
+                            "MarkerId": "marker_20",
+                            "Type": 6,
+                            "LocalPosition": [
+                                25.0,
+                                0.0,
+                                8.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 20
+                        },
+                        {
+                            "MarkerId": "marker_21",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -46.0,
+                                0.0,
+                                -42.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 21
+                        },
+                        {
+                            "MarkerId": "marker_22",
+                            "Type": 6,
+                            "LocalPosition": [
+                                46.0,
+                                0.0,
+                                -42.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 22
+                        },
+                        {
+                            "MarkerId": "marker_23",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                -18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 23
+                        },
+                        {
+                            "MarkerId": "marker_24",
+                            "Type": 6,
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                -18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 24
+                        },
+                        {
+                            "MarkerId": "marker_25",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -54.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 25
+                        },
+                        {
+                            "MarkerId": "marker_26",
+                            "Type": 6,
+                            "LocalPosition": [
+                                54.0,
+                                0.0,
+                                18.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 26
+                        },
+                        {
+                            "MarkerId": "marker_27",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -36.0,
+                                0.0,
+                                50.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 27
+                        },
+                        {
+                            "MarkerId": "marker_28",
+                            "Type": 6,
+                            "LocalPosition": [
+                                36.0,
+                                0.0,
+                                50.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 28
+                        },
+                        {
+                            "MarkerId": "marker_29",
+                            "Type": 6,
+                            "LocalPosition": [
+                                -18.0,
+                                0.0,
+                                45.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 29
+                        },
+                        {
+                            "MarkerId": "marker_30",
+                            "Type": 6,
+                            "LocalPosition": [
+                                18.0,
+                                0.0,
+                                45.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 30
+                        },
+                        {
+                            "MarkerId": "marker_31",
+                            "Type": 6,
+                            "LocalPosition": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "LocalOrientation": [
+                                0.0,
+                                0.0,
+                                0.0
+                            ],
+                            "Order": 31
+                        }
+                    ]
+                },
+                "BuiltObjectIds": [],
+                "PendingOperations": []
+            },
+            "RoleOverrides": {},
+            "Loadouts": {
+                "Roamer": "",
+                "Looter": "",
+                "Builder": "",
+                "Defender": "",
+                "Attacker": "",
+                "Sniper": ""
+            },
+            "Progress": {
+                "Level": 1,
+                "Experience": 0,
+                "Morale": 62,
+                "RaidWins": 0,
+                "RaidLosses": 0,
+                "TotalLootItems": 0,
+                "BuiltObjects": 0,
+                "LastRaidResult": "No raids completed"
+            },
+            "NPCs": [
+                {
+                    "Id": "Balota_Survivor_Camp_npc_1",
+                    "Name": "Marek Kral",
+                    "Role": 0,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_2",
+                    "Name": "Boris Kral",
+                    "Role": 1,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_3",
+                    "Name": "Marek Svoboda",
+                    "Role": 1,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_4",
+                    "Name": "Anya Prochazka",
+                    "Role": 2,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_5",
+                    "Name": "Anya Novak",
+                    "Role": 3,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_6",
+                    "Name": "Ivana Vesely",
+                    "Role": 4,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_7",
+                    "Name": "Cyril Horak",
+                    "Role": 5,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_8",
+                    "Name": "Anton Svoboda",
+                    "Role": 0,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_9",
+                    "Name": "Katarina Prochazka",
+                    "Role": 1,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_10",
+                    "Name": "Ivana Prochazka",
+                    "Role": 2,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_11",
+                    "Name": "Boris Kral",
+                    "Role": 3,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_12",
+                    "Name": "Dimitri Prochazka",
+                    "Role": 1,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_13",
+                    "Name": "Luka Svoboda",
+                    "Role": 3,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_14",
+                    "Name": "Luka Vesely",
+                    "Role": 3,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_15",
+                    "Name": "Boris Svoboda",
+                    "Role": 3,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_16",
+                    "Name": "Mila Urban",
+                    "Role": 4,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                }
+            ],
+            "Events": [
+                {
+                    "Serial": 1,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:43",
+                    "Category": 0,
+                    "Severity": 2,
+                    "Message": "Camp expanded from SurvivorCampSmall to SurvivorCampLarge",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 2,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:43",
+                    "Category": 1,
+                    "Severity": 0,
+                    "Message": "Anton Svoboda joined as Roamer",
+                    "NPCId": "Balota_Survivor_Camp_npc_8"
+                },
+                {
+                    "Serial": 3,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:43",
+                    "Category": 1,
+                    "Severity": 0,
+                    "Message": "Katarina Prochazka joined as Looter",
+                    "NPCId": "Balota_Survivor_Camp_npc_9"
+                },
+                {
+                    "Serial": 4,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:43",
+                    "Category": 1,
+                    "Severity": 0,
+                    "Message": "Ivana Prochazka joined as Builder",
+                    "NPCId": "Balota_Survivor_Camp_npc_10"
+                },
+                {
+                    "Serial": 5,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:43",
+                    "Category": 1,
+                    "Severity": 0,
+                    "Message": "Boris Kral joined as Guard",
+                    "NPCId": "Balota_Survivor_Camp_npc_11"
+                },
+                {
+                    "Serial": 6,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:47",
+                    "Category": 0,
+                    "Severity": 2,
+                    "Message": "Camp expanded from SurvivorCampLarge to MilitaryCheckpoint",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 7,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:47",
+                    "Category": 1,
+                    "Severity": 0,
+                    "Message": "Dimitri Prochazka joined as Looter",
+                    "NPCId": "Balota_Survivor_Camp_npc_12"
+                },
+                {
+                    "Serial": 8,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:47",
+                    "Category": 1,
+                    "Severity": 0,
+                    "Message": "Luka Svoboda joined as Guard",
+                    "NPCId": "Balota_Survivor_Camp_npc_13"
+                },
+                {
+                    "Serial": 9,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:47",
+                    "Category": 1,
+                    "Severity": 0,
+                    "Message": "Luka Vesely joined as Guard",
+                    "NPCId": "Balota_Survivor_Camp_npc_14"
+                },
+                {
+                    "Serial": 10,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:47",
+                    "Category": 1,
+                    "Severity": 0,
+                    "Message": "Boris Svoboda joined as Guard",
+                    "NPCId": "Balota_Survivor_Camp_npc_15"
+                },
+                {
+                    "Serial": 11,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 06:47",
+                    "Category": 1,
+                    "Severity": 0,
+                    "Message": "Mila Urban joined as Attacker",
+                    "NPCId": "Balota_Survivor_Camp_npc_16"
+                },
+                {
+                    "Serial": 12,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 07:24",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                }
+            ]
+        }
+    ]
+}

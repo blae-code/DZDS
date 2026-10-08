@@ -1,0 +1,52 @@
+{
+    "ConfigVersion": "1.29.4",
+    "UseIzurviveURL": 1,
+    "MapIzurviveURL": "https://www.izurvive.com/chernarusplus/",
+    "MapXamURL": "https://dayz.xam.nu/",
+    "ZenCore_AdminConfig": {
+        "EnableCommands": 0,
+        "CommandPrefix": "!",
+        "AdminIDs": [
+            "4s_12UDE-PKYemc7adlZyKGVSrwzIMW0T32Q69_YOURUID"
+        ],
+        "ModeratorIDs": [
+            "4s_12UDE-PKYemc7adlZyKGVSrwzIMW0T32Q69_YOURUID"
+        ],
+        "CommandURLs": {
+            "zenarchist": "https://zenarchist.com"
+        }
+    },
+    "ZenCore_GeneralConfig": {
+        "PreventHologramPlacementAt000": 0,
+        "DeleteObjectsAt000": 0,
+        "AllowDebugChatMessages": 1
+    },
+    "ZenCore_LogConfig": {
+        "EnableLogs": 0,
+        "FileSuffix": ".log",
+        "KeepLogsDaysCount": 14,
+        "LogFolderExcludeList": [
+            "DontPrintToThisFolder"
+        ]
+    },
+    "ZenCore_DiscordConfig": {
+        "EnableDiscord": 0,
+        "ServerName": "CHERNARUSPLUS",
+        "PingAdminCommand": "admin",
+        "AdminWebhooks": [
+            "Insert admin channel webhooks here"
+        ],
+        "KillfeedConfig": {
+            "EnableKillfeed": 0,
+            "KillfeedWebhooks": [
+                "Insert killfeed channel webhooks here"
+            ],
+            "DisplayPlayerSteamID": 0,
+            "DisplayKillLocation": 0,
+            "DisplayKillsByAI": 0
+        },
+        "PlayerWatchlist": {
+            "4s_12UDE-PKYemc7adlZyKGVSrwzIMW0T32Q69_YOURUID": "Reason they're on this watchlist."
+        }
+    }
+}

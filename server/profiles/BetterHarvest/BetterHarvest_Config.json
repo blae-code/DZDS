@@ -1,0 +1,67 @@
+{
+    "version": "1.1",
+    "logLevel": 1,
+    "dropPlantMaterial": 0,
+    "allowPlantSpoilage": 0,
+    "plantYields": [
+        {
+            "plantType": "Plant_Pepper",
+            "fertilizedYield": 5,
+            "nonFertilizedYield": 2,
+            "growthTimeSeconds": 2250
+        },
+        {
+            "plantType": "Plant_Pumpkin",
+            "fertilizedYield": 4,
+            "nonFertilizedYield": 2,
+            "growthTimeSeconds": 2850
+        },
+        {
+            "plantType": "Plant_Potato",
+            "fertilizedYield": 5,
+            "nonFertilizedYield": 2,
+            "growthTimeSeconds": 2850
+        },
+        {
+            "plantType": "Plant_Tomato",
+            "fertilizedYield": 5,
+            "nonFertilizedYield": 2,
+            "growthTimeSeconds": 1650
+        },
+        {
+            "plantType": "Plant_Zucchini",
+            "fertilizedYield": 5,
+            "nonFertilizedYield": 2,
+            "growthTimeSeconds": 1350
+        },
+        {
+            "plantType": "Plant_Cannabis",
+            "fertilizedYield": 6,
+            "nonFertilizedYield": 3,
+            "growthTimeSeconds": 1800
+        }
+    ],
+    "cropSpawnQuantities": [],
+    "seedExtractionQuantities": [
+        {
+            "vegetableType": "Pumpkin",
+            "seedQuantity": 12,
+            "sliceQuantity": 2
+        },
+        {
+            "vegetableType": "Tomato",
+            "seedQuantity": 8,
+            "sliceQuantity": -1
+        },
+        {
+            "vegetableType": "GreenBellPepper",
+            "seedQuantity": 12,
+            "sliceQuantity": -1
+        },
+        {
+            "vegetableType": "Zucchini",
+            "seedQuantity": 8,
+            "sliceQuantity": -1
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "ConfigVersion": "1.29.1",
+    "EnablePlayerBloodDrops": 1,
+    "Player_BloodDropChanceStationary": 0.25,
+    "Player_BloodDropChanceMoving": 0.949999988079071,
+    "Player_BloodDropPersistence": 1800.0,
+    "EnableAnimalBloodDrops": 1,
+    "Animal_StopBleedingAfterSecs": 300,
+    "Animal_BloodDropChanceStationary": 0.0,
+    "Animal_BloodDropChanceMoving": 0.949999988079071,
+    "Animal_BloodDropPersistence": 600.0,
+    "Animal_IncludeList": [
+        "Animal_CapreolusCapreolus",
+        "Animal_CervusElaphus",
+        "Animal_LepusEuropaeus",
+        "Animal_SusScrofa",
+        "Animal_VulpesVulpes"
+    ]
+}

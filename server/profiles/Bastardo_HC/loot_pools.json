@@ -1,0 +1,614 @@
+{
+    "AllDefinedCategories": {
+        "DefaultMedical": [
+            {
+                "pool_name": "Field_Medic_Crate",
+                "guaranteed_items": [],
+                "items": [
+                    {
+                        "item_name": "FirstAidKit",
+                        "attachments": [
+                            {
+                                "name": "BandageDressing",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 2,
+                                "spawn_count_max": 2
+                            },
+                            {
+                                "name": "Morphine",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 0.800000011920929,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "Epinephrine",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 0.5,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "SalineBagIV",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 0.30000001192092898,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            }
+                        ],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "AntiChemInjector",
+                        "attachments": [],
+                        "probability": 0.20000000298023225,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "TetracyclineAntibiotics",
+                        "attachments": [],
+                        "probability": 0.5,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "min_items": 2,
+                "max_items": 4,
+                "probability": 1.0
+            }
+        ],
+        "DefaultMisc": [
+            {
+                "pool_name": "Explosive_Party",
+                "guaranteed_items": [
+                    {
+                        "item_name": "Plastic_Explosive",
+                        "attachments": [],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "RemoteDetonator",
+                        "attachments": [],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "items": [
+                    {
+                        "item_name": "RGD5Grenade",
+                        "attachments": [],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 2,
+                        "spawn_count_max": 4
+                    },
+                    {
+                        "item_name": "LandMineTrap",
+                        "attachments": [],
+                        "probability": 0.30000001192092898,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "min_items": 2,
+                "max_items": 4,
+                "probability": 0.4000000059604645
+            },
+            {
+                "pool_name": "Survival_Food_Pack",
+                "guaranteed_items": [],
+                "items": [
+                    {
+                        "item_name": "Pot",
+                        "attachments": [
+                            {
+                                "name": "TacticalBaconCan",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 2
+                            },
+                            {
+                                "name": "BakedBeansCan",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            }
+                        ],
+                        "probability": 0.5,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "Canteen",
+                        "attachments": [],
+                        "probability": 0.699999988079071,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "SodaCan_Cola",
+                        "attachments": [],
+                        "probability": 0.5,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "min_items": 3,
+                "max_items": 5,
+                "probability": 0.6000000238418579
+            }
+        ],
+        "DefaultArmaments": [
+            {
+                "pool_name": "Tier4_M4_Setup",
+                "guaranteed_items": [
+                    {
+                        "item_name": "CombatKnife",
+                        "attachments": [],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": 1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "PlateCarrierVest_Camo",
+                        "attachments": [
+                            {
+                                "name": "PlateCarrierPouches_Camo",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            }
+                        ],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": 0.5,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "items": [
+                    {
+                        "item_name": "M4A1",
+                        "attachments": [
+                            {
+                                "name": "M4_RISHndgrd",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "M4_MPBttstck",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "M4_Suppressor",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 0.5,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "M4_T3NRDSOptic",
+                                "variants": [
+                                    "ACOGOptic",
+                                    "StarlightOptic"
+                                ],
+                                "attachments": [
+                                    {
+                                        "name": "Battery9V",
+                                        "variants": [],
+                                        "attachments": [],
+                                        "probability": 1.0,
+                                        "health": -1.0,
+                                        "quantity_min": 100,
+                                        "quantity_max": 100,
+                                        "spawn_count_min": 1,
+                                        "spawn_count_max": 1
+                                    }
+                                ],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "Mag_STANAG_30Rnd",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": 30,
+                                "quantity_max": 30,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            }
+                        ],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": 0.8999999761581421,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "min_items": 1,
+                "max_items": 1,
+                "probability": 1.0
+            },
+            {
+                "pool_name": "AKM_Heavy_Setup",
+                "guaranteed_items": [],
+                "items": [
+                    {
+                        "item_name": "AKM",
+                        "attachments": [
+                            {
+                                "name": "AK_RailHndgrd",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "AK_FoldingBttstck",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "AK_Suppressor",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 0.699999988079071,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "PSO1Optic",
+                                "variants": [
+                                    "KobraOptic",
+                                    "KashtanOptic"
+                                ],
+                                "attachments": [
+                                    {
+                                        "name": "Battery9V",
+                                        "variants": [],
+                                        "attachments": [],
+                                        "probability": 0.5,
+                                        "health": -1.0,
+                                        "quantity_min": -1,
+                                        "quantity_max": -1,
+                                        "spawn_count_min": 1,
+                                        "spawn_count_max": 1
+                                    }
+                                ],
+                                "probability": 0.800000011920929,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "Mag_AKM_Drum75Rnd",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": 75,
+                                "quantity_max": 75,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            }
+                        ],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": 0.800000011920929,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "min_items": 1,
+                "max_items": 1,
+                "probability": 0.800000011920929
+            }
+        ],
+        "DefaultSnipers": [
+            {
+                "pool_name": "Sniper_Ghillie_Pack",
+                "guaranteed_items": [
+                    {
+                        "item_name": "GhillieSuit_Woodland",
+                        "attachments": [],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": 0.800000011920929,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "Rangefinder",
+                        "attachments": [
+                            {
+                                "name": "Battery9V",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            }
+                        ],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "items": [
+                    {
+                        "item_name": "SVD",
+                        "attachments": [
+                            {
+                                "name": "PSO11Optic",
+                                "variants": [],
+                                "attachments": [
+                                    {
+                                        "name": "Battery9V",
+                                        "variants": [],
+                                        "attachments": [],
+                                        "probability": 1.0,
+                                        "health": -1.0,
+                                        "quantity_min": -1,
+                                        "quantity_max": -1,
+                                        "spawn_count_min": 1,
+                                        "spawn_count_max": 1
+                                    }
+                                ],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "AK_Suppressor",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 0.5,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "Mag_SVD_10Rnd",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": 5,
+                                "quantity_max": 10,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            }
+                        ],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "Mosin9130",
+                        "attachments": [
+                            {
+                                "name": "PUScopeOptic",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 1.0,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            },
+                            {
+                                "name": "Mosin_Compensator",
+                                "variants": [],
+                                "attachments": [],
+                                "probability": 0.6000000238418579,
+                                "health": -1.0,
+                                "quantity_min": -1,
+                                "quantity_max": -1,
+                                "spawn_count_min": 1,
+                                "spawn_count_max": 1
+                            }
+                        ],
+                        "probability": 0.800000011920929,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "min_items": 1,
+                "max_items": 1,
+                "probability": 0.5
+            }
+        ],
+        "DefaultBuilding": [
+            {
+                "pool_name": "Base_Builder_Starter",
+                "guaranteed_items": [
+                    {
+                        "item_name": "NailBox",
+                        "attachments": [],
+                        "probability": 1.0,
+                        "quantity_min": 70,
+                        "quantity_max": 90,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "CombinationLock4",
+                        "attachments": [],
+                        "probability": 1.0,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "items": [
+                    {
+                        "item_name": "DuctTape",
+                        "attachments": [],
+                        "probability": 0.800000011920929,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "Hammer",
+                        "attachments": [],
+                        "probability": 0.699999988079071,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    },
+                    {
+                        "item_name": "MetalWire",
+                        "attachments": [],
+                        "probability": 0.5,
+                        "quantity_min": -1,
+                        "quantity_max": -1,
+                        "health_lvl": -1.0,
+                        "spawn_count_min": 1,
+                        "spawn_count_max": 1
+                    }
+                ],
+                "min_items": 3,
+                "max_items": 5,
+                "probability": 1.0
+            }
+        ]
+    }
+}

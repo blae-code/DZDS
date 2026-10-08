@@ -1,0 +1,24 @@
+{
+    "ZombieTypes": [
+        "ZmbM_CitizenASkinny_Beige",
+        "ZmbM_CitizenASkinny_Blue",
+        "ZmbM_CitizenBFat_Grey",
+        "ZmbM_CitizenBFat_Red",
+        "ZmbM_CommercialPilotOld_Blue",
+        "ZmbM_ConstrWorkerNormal_Beige",
+        "ZmbM_FarmerFat_Beige",
+        "ZmbM_FirefighterNormal",
+        "ZmbM_HandymanNormal_Beige",
+        "ZmbM_HeavyIndustryWorker",
+        "ZmbM_HermitSkinny_Beige",
+        "ZmbM_Jacket_beige",
+        "ZmbM_Jacket_blue",
+        "ZmbM_JoggerSkinny_Blue",
+        "ZmbM_MotobikerFat_Beige",
+        "ZmbM_OffshoreWorker_Green",
+        "ZmbM_ParamedicNormal_Green",
+        "ZmbM_PatientSkinny",
+        "ZmbM_PolicemanFat",
+        "ZmbM_PrisonerSkinny"
+    ]
+}

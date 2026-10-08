@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 3,
+    "GlobalVolume": 0.800000011920929,
+    "DebugMode": 0,
+    "EarplugBypass": 1,
+    "RadioWestActive": 1,
+    "RadioEastActive": 1,
+    "RadioDMEActive": 1,
+    "RadioEnklaveActive": 1,
+    "RadioLostSignalActive": 1,
+    "RadioFreeSpiritActive": 1,
+    "RadioBanditsActive": 1,
+    "ZombieAttractorEnabled": 1,
+    "ZombieAttractorInterval": 4.0,
+    "ZombieAttractorBaseMultiplier": 0.5,
+    "ZombieAttractorPlayerRange": 150.0,
+    "DisableSeekForDebug": 0
+}

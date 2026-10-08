@@ -1,0 +1,4284 @@
+{
+    "ConfigVersion": 1,
+    "FormatVersion": 2,
+    "SlotCatalog": [
+        {
+            "SlotName": "akolAkMount",
+            "Attachments": [
+                "ACOGOptic",
+                "ACOGOptic_6x",
+                "Akol_Exps",
+                "Akol_Exps_Tan",
+                "Akol_MRDSMount",
+                "Akol_Magnifier",
+                "Akol_Okp77",
+                "Akol_Pilad",
+                "Akol_RailHuntingOptic",
+                "Akol_RailHuntingOpticExp",
+                "Akol_Specter6x",
+                "Asmond_Optic_Reflex_Black",
+                "Asmond_Optic_Reflex_Tan",
+                "HoloOptic",
+                "HoloOptic_Black",
+                "M4_T3NRDSOptic",
+                "M68Optic",
+                "ReflexOptic",
+                "StarlightOptic"
+            ]
+        },
+        {
+            "SlotName": "akolMagnifier",
+            "Attachments": [
+                "Akol_Exps",
+                "Akol_Exps_Tan",
+                "Akol_MRDSMount",
+                "Akol_Okp77",
+                "Asmond_Optic_Reflex_Black",
+                "Asmond_Optic_Reflex_Tan",
+                "HoloOptic",
+                "HoloOptic_Black",
+                "M4_T3NRDSOptic",
+                "M68Optic",
+                "ReflexOptic"
+            ]
+        },
+        {
+            "SlotName": "akolMosinMount",
+            "Attachments": [
+                "ACOGOptic",
+                "ACOGOptic_6x",
+                "Akol_Exps",
+                "Akol_Exps_Tan",
+                "Akol_MRDSMount",
+                "Akol_Magnifier",
+                "Akol_Okp77",
+                "Akol_Pilad",
+                "Akol_RailHuntingOptic",
+                "Akol_RailHuntingOpticExp",
+                "Akol_Specter6x",
+                "Asmond_Optic_Reflex_Black",
+                "Asmond_Optic_Reflex_Tan",
+                "HoloOptic",
+                "HoloOptic_Black",
+                "M4_T3NRDSOptic",
+                "M68Optic",
+                "ReflexOptic",
+                "StarlightOptic"
+            ]
+        },
+        {
+            "SlotName": "akolPistolMount",
+            "Attachments": [
+                "Akol_Exps",
+                "Akol_Exps_Tan",
+                "Akol_MRDSMount",
+                "Akol_Okp77",
+                "Asmond_Optic_Reflex_Black",
+                "Asmond_Optic_Reflex_Tan",
+                "HoloOptic",
+                "HoloOptic_Black",
+                "M4_T3NRDSOptic",
+                "M68Optic",
+                "ReflexOptic"
+            ]
+        },
+        {
+            "SlotName": "akolUniversalRail",
+            "Attachments": [
+                "ACOGOptic",
+                "ACOGOptic_6x",
+                "Akol_Exps",
+                "Akol_Exps_Tan",
+                "Akol_MRDSMount",
+                "Akol_Magnifier",
+                "Akol_Okp77",
+                "Akol_Pilad",
+                "Akol_RailHuntingOptic",
+                "Akol_RailHuntingOpticExp",
+                "Akol_Specter6x",
+                "Asmond_Optic_Reflex_Black",
+                "Asmond_Optic_Reflex_Tan",
+                "HoloOptic",
+                "HoloOptic_Black",
+                "M4_T3NRDSOptic",
+                "M68Optic",
+                "ReflexOptic",
+                "StarlightOptic"
+            ]
+        },
+        {
+            "SlotName": "BatteryD",
+            "Attachments": [
+                "Battery9V"
+            ]
+        },
+        {
+            "SlotName": "helmetFlashlight",
+            "Attachments": [
+                "UniversalLight"
+            ]
+        },
+        {
+            "SlotName": "Knife",
+            "Attachments": [
+                "AK_Bayonet",
+                "M9A1_Bayonet"
+            ]
+        },
+        {
+            "SlotName": "pistolFlashlight",
+            "Attachments": [
+                "Akol_PistolMount_Exps",
+                "Akol_PistolMount_HoloOptic",
+                "Akol_PistolMount_M4_T3NRDSOptic",
+                "Akol_PistolMount_M68Optic",
+                "Akol_PistolMount_MRDSMount",
+                "Akol_PistolMount_NoAttachment",
+                "Akol_PistolMount_Okp77",
+                "Akol_PistolMount_ReflexOptic",
+                "TLRLight"
+            ]
+        },
+        {
+            "SlotName": "pistolMuzzle",
+            "Attachments": [
+                "Asmond_Suppressor_Pistol_Black",
+                "Asmond_Suppressor_Pistol_Tan",
+                "ImprovisedSuppressor",
+                "MakarovPBSuppressor",
+                "PistolSuppressor"
+            ]
+        },
+        {
+            "SlotName": "pistolOptics",
+            "Attachments": [
+                "Asmond_Optic_MiniSight_Black",
+                "Asmond_Optic_MiniSight_Tan",
+                "FNP45_MRDSOptic"
+            ]
+        },
+        {
+            "SlotName": "RevolverCylinder",
+            "Attachments": [
+                "Magnum_Cylinder"
+            ]
+        },
+        {
+            "SlotName": "RevolverEjector",
+            "Attachments": [
+                "Magnum_Ejector"
+            ]
+        },
+        {
+            "SlotName": "Scarh_FrontSight",
+            "Attachments": [
+                "Scarh_Front_Sight"
+            ]
+        },
+        {
+            "SlotName": "suppressorImpro",
+            "Attachments": [
+                "ImprovisedSuppressor"
+            ]
+        },
+        {
+            "SlotName": "weaponBayonet",
+            "Attachments": [
+                "M9A1_Bayonet"
+            ]
+        },
+        {
+            "SlotName": "weaponBayonetAK",
+            "Attachments": [
+                "AK_Bayonet"
+            ]
+        },
+        {
+            "SlotName": "weaponBayonetMosin",
+            "Attachments": [
+                "Mosin_Bayonet"
+            ]
+        },
+        {
+            "SlotName": "weaponBayonetSKS",
+            "Attachments": [
+                "SKS_Bayonet"
+            ]
+        },
+        {
+            "SlotName": "weaponButtstockAK",
+            "Attachments": [
+                "AK74_WoodBttstck",
+                "AK74_WoodBttstck_Black",
+                "AK74_WoodBttstck_Camo",
+                "AKS74U_Bttstck",
+                "AKS74U_Bttstck_Black",
+                "AKS74U_Bttstck_Green",
+                "AK_FoldingBttstck",
+                "AK_FoldingBttstck_Black",
+                "AK_FoldingBttstck_Green",
+                "AK_PlasticBttstck",
+                "AK_PlasticBttstck_Black",
+                "AK_PlasticBttstck_Green",
+                "AK_WoodBttstck",
+                "AK_WoodBttstck_Black",
+                "AK_WoodBttstck_Camo",
+                "Asmond_AK_AKS74UBttstck_Black",
+                "Asmond_AK_AKS74UBttstck_Winter",
+                "Asmond_AK_FoldingBttstck_Green",
+                "Asmond_AK_FoldingBttstck_Winter",
+                "Asmond_AK_PlasticBttstck_Black",
+                "Asmond_AK_PlasticBttstck_Camo",
+                "Asmond_AK_PlasticBttstck_Desert",
+                "Asmond_AK_PlasticBttstck_Green",
+                "Asmond_AK_PlasticBttstck_Grey",
+                "Asmond_AK_PlasticBttstck_Tan",
+                "Asmond_AK_PlasticBttstck_Wine",
+                "Asmond_AK_PlasticBttstck_Winter",
+                "Asmond_AK_WoodBttstck_Camo",
+                "Asmond_AK_WoodBttstck_DarkWood",
+                "Asmond_AK_WoodBttstck_LightBrown",
+                "Asmond_AK_WoodBttstck_LightWood",
+                "Asmond_AK_WoodBttstck_Natural",
+                "Asmond_AK_WoodBttstck_Yellow",
+                "GrozaGL_LowerReceiver",
+                "Groza_LowerReceiver"
+            ]
+        },
+        {
+            "SlotName": "weaponButtstockFal",
+            "Attachments": [
+                "Asmond_FAL_Buttstock_DarkWood",
+                "Asmond_FAL_Buttstock_LightWood",
+                "Asmond_FAL_Buttstock_Moss",
+                "Asmond_FAL_Buttstock_Winter",
+                "Fal_FoldingBttstck",
+                "Fal_OeBttstck"
+            ]
+        },
+        {
+            "SlotName": "weaponButtstockM4",
+            "Attachments": [
+                "Asmond_M4_CQBBttstck_Black",
+                "Asmond_M4_CQBBttstck_Green",
+                "Asmond_M4_CQBBttstck_Grey",
+                "Asmond_M4_CQBBttstck_Tan",
+                "Asmond_M4_MPBttstck_Black",
+                "Asmond_M4_MPBttstck_Green",
+                "Asmond_M4_MPBttstck_Grey",
+                "Asmond_M4_MPBttstck_Tan",
+                "Asmond_M4_OEBttstck_Black",
+                "Asmond_M4_OEBttstck_Green",
+                "Asmond_M4_OEBttstck_Grey",
+                "Asmond_M4_OEBttstck_Tan",
+                "M4_CQBBttstck",
+                "M4_CQBBttstck_Black",
+                "M4_CQBBttstck_Green",
+                "M4_MPBttstck",
+                "M4_MPBttstck_Black",
+                "M4_MPBttstck_Green",
+                "M4_OEBttstck",
+                "M4_OEBttstck_Black",
+                "M4_OEBttstck_Green"
+            ]
+        },
+        {
+            "SlotName": "weaponButtstockMP5",
+            "Attachments": [
+                "Asmond_MP5K_Bttstck_Black",
+                "Asmond_MP5K_Bttstck_Sand",
+                "MP5k_StockBttstck"
+            ]
+        },
+        {
+            "SlotName": "weaponButtstockPP19",
+            "Attachments": [
+                "Asmond_PP19_Buttstock_Black",
+                "Asmond_PP19_Buttstock_Red",
+                "PP19_Bttstck"
+            ]
+        },
+        {
+            "SlotName": "weaponButtstockRed9",
+            "Attachments": [
+                "Red9Bttstck"
+            ]
+        },
+        {
+            "SlotName": "weaponButtstockSaiga",
+            "Attachments": [
+                "Asmond_Saiga_Red_Bttstck",
+                "Saiga_Bttstck"
+            ]
+        },
+        {
+            "SlotName": "weaponButtstockSCAR",
+            "Attachments": [
+                "Asmond_SCAR_PrecisionBttstck_Winter",
+                "SCAR_PrecisionBttstck",
+                "SCAR_PrecisionBttstck_Black",
+                "SCAR_StockBttstck",
+                "SCAR_StockBttstck_Black"
+            ]
+        },
+        {
+            "SlotName": "weaponFlashlight",
+            "Attachments": [
+                "UniversalLight"
+            ]
+        },
+        {
+            "SlotName": "weaponHandguardAK",
+            "Attachments": [
+                "AK74_Hndgrd",
+                "AK74_Hndgrd_Black",
+                "AK74_Hndgrd_Camo",
+                "AK_PlasticHndgrd",
+                "AK_RailHndgrd",
+                "AK_RailHndgrd_Black",
+                "AK_RailHndgrd_Green",
+                "AK_WoodHndgrd",
+                "AK_WoodHndgrd_Black",
+                "AK_WoodHndgrd_Camo",
+                "Asmond_AK_PlasticHndgrd_Black",
+                "Asmond_AK_PlasticHndgrd_Camo",
+                "Asmond_AK_PlasticHndgrd_Desert",
+                "Asmond_AK_PlasticHndgrd_Green",
+                "Asmond_AK_PlasticHndgrd_Grey",
+                "Asmond_AK_PlasticHndgrd_Tan",
+                "Asmond_AK_PlasticHndgrd_Wine",
+                "Asmond_AK_PlasticHndgrd_Winter",
+                "Asmond_AK_RailHndgrd_Green",
+                "Asmond_AK_RailHndgrd_Winter",
+                "Asmond_AK_WoodHndgrd_Camo",
+                "Asmond_AK_WoodHndgrd_DarkWood",
+                "Asmond_AK_WoodHndgrd_LightBrown",
+                "Asmond_AK_WoodHndgrd_LightWood",
+                "Asmond_AK_WoodHndgrd_Natural",
+                "Asmond_AK_WoodHndgrd_Yellow"
+            ]
+        },
+        {
+            "SlotName": "weaponHandguardM249",
+            "Attachments": [
+                "M249_Hndgrd",
+                "M249_RisHndgrd"
+            ]
+        },
+        {
+            "SlotName": "weaponHandguardM4",
+            "Attachments": [
+                "Asmond_M4_MPHndgrd_Black",
+                "Asmond_M4_MPHndgrd_Green",
+                "Asmond_M4_MPHndgrd_Grey",
+                "Asmond_M4_MPHndgrd_Tan",
+                "Asmond_M4_PlasticHndgrd_Black",
+                "Asmond_M4_PlasticHndgrd_Green",
+                "Asmond_M4_PlasticHndgrd_Grey",
+                "Asmond_M4_PlasticHndgrd_Tan",
+                "Asmond_M4_RISHndgrd_Black",
+                "Asmond_M4_RISHndgrd_Green",
+                "Asmond_M4_RISHndgrd_Grey",
+                "Asmond_M4_RISHndgrd_Tan",
+                "M4_MPHndgrd",
+                "M4_MPHndgrd_Black",
+                "M4_MPHndgrd_Green",
+                "M4_PlasticHndgrd",
+                "M4_PlasticHndgrd_Black",
+                "M4_PlasticHndgrd_Green",
+                "M4_RISHndgrd",
+                "M4_RISHndgrd_Black",
+                "M4_RISHndgrd_Green"
+            ]
+        },
+        {
+            "SlotName": "weaponHandguardMP5",
+            "Attachments": [
+                "Asmond_MP5K_PlasticHndgrd_Black",
+                "Asmond_MP5K_PlasticHndgrd_Sand",
+                "Asmond_MP5K_RailHndgrd_Black",
+                "Asmond_MP5K_RailHndgrd_Sand",
+                "MP5_PlasticHndgrd",
+                "MP5_RailHndgrd"
+            ]
+        },
+        {
+            "SlotName": "weaponMuzzleAK",
+            "Attachments": [
+                "AK_Suppressor",
+                "Asmond_Suppressor_EAST_Black",
+                "Asmond_Suppressor_EAST_Winter",
+                "Groza_Barrel_Grip",
+                "Groza_Barrel_Short",
+                "Groza_Barrel_Suppressor",
+                "ImprovisedSuppressor"
+            ]
+        },
+        {
+            "SlotName": "weaponMuzzleM4",
+            "Attachments": [
+                "Asmond_Suppressor_NATO_Black",
+                "Asmond_Suppressor_NATO_Green",
+                "Asmond_Suppressor_NATO_Tan",
+                "Asmond_Suppressor_NATO_Winter",
+                "ImprovisedSuppressor",
+                "M4_Suppressor"
+            ]
+        },
+        {
+            "SlotName": "weaponMuzzleMosin",
+            "Attachments": [
+                "Mosin_Compensator"
+            ]
+        },
+        {
+            "SlotName": "weaponMuzzleMP5",
+            "Attachments": [
+                "MP5_Compensator"
+            ]
+        },
+        {
+            "SlotName": "weaponOptics",
+            "Attachments": [
+                "ACOGOptic",
+                "ACOGOptic_6x",
+                "Akol_Exps",
+                "Akol_Exps_Tan",
+                "Akol_MRDSMount",
+                "Akol_Magnifier",
+                "Akol_Okp77",
+                "Akol_Pilad",
+                "Akol_RailHuntingOptic",
+                "Akol_RailHuntingOpticExp",
+                "Akol_Specter6x",
+                "Asmond_Optic_MK4_Winter",
+                "Asmond_Optic_Reflex_Black",
+                "Asmond_Optic_Reflex_Tan",
+                "BUISOptic",
+                "HoloOptic",
+                "HoloOptic_Black",
+                "M4_CarryHandleOptic",
+                "M4_T3NRDSOptic",
+                "M68Optic",
+                "MK4Optic_Black",
+                "MK4Optic_Green",
+                "MK4Optic_Tan",
+                "ReflexOptic",
+                "StarlightOptic"
+            ]
+        },
+        {
+            "SlotName": "weaponOpticsAK",
+            "Attachments": [
+                "Akol_AKMount_ACOGOptic",
+                "Akol_AKMount_ACOGOptic_6x",
+                "Akol_AKMount_Exps",
+                "Akol_AKMount_HoloOptic",
+                "Akol_AKMount_M4_T3NRDSOptic",
+                "Akol_AKMount_M68Optic",
+                "Akol_AKMount_MRDSMount",
+                "Akol_AKMount_Magnifier",
+                "Akol_AKMount_NoAttachment",
+                "Akol_AKMount_Okp77",
+                "Akol_AKMount_Pilad",
+                "Akol_AKMount_RailHuntingOptic",
+                "Akol_AKMount_RailHuntingOpticExp",
+                "Akol_AKMount_ReflexOptic",
+                "Akol_AKMount_Specter6x",
+                "Akol_AKMount_StarlightOptic",
+                "Asmond_Optic_PSO11_Black",
+                "Asmond_Optic_PSO1_Black",
+                "GrozaOptic",
+                "KashtanOptic",
+                "KazuarOptic",
+                "KobraOptic",
+                "PSO11Optic",
+                "PSO1Optic",
+                "PSO6Optic"
+            ]
+        },
+        {
+            "SlotName": "weaponOpticsAug",
+            "Attachments": [
+                "AugOptic",
+                "M79DummyOptics",
+                "SSG82Optic"
+            ]
+        },
+        {
+            "SlotName": "weaponOpticsCrossbow",
+            "Attachments": [
+                "Asmond_Optic_MiniSight_Black",
+                "Asmond_Optic_MiniSight_Tan",
+                "FNP45_MRDSOptic",
+                "PistolOptic"
+            ]
+        },
+        {
+            "SlotName": "weaponOpticsHunting",
+            "Attachments": [
+                "Akol_B95Rail_ACOGOptic",
+                "Akol_B95Rail_ACOGOptic_6x",
+                "Akol_B95Rail_Exps",
+                "Akol_B95Rail_HoloOptic",
+                "Akol_B95Rail_M4_T3NRDSOptic",
+                "Akol_B95Rail_M68Optic",
+                "Akol_B95Rail_MRDSMount",
+                "Akol_B95Rail_Magnifier",
+                "Akol_B95Rail_NoAttachment",
+                "Akol_B95Rail_Okp77",
+                "Akol_B95Rail_Pilad",
+                "Akol_B95Rail_RailHuntingOptic",
+                "Akol_B95Rail_RailHuntingOpticExp",
+                "Akol_B95Rail_ReflexOptic",
+                "Akol_B95Rail_Specter6x",
+                "Akol_B95Rail_StarlightOptic",
+                "Akol_CZRail_ACOGOptic",
+                "Akol_CZRail_ACOGOptic_6x",
+                "Akol_CZRail_Exps",
+                "Akol_CZRail_HoloOptic",
+                "Akol_CZRail_M4_T3NRDSOptic",
+                "Akol_CZRail_M68Optic",
+                "Akol_CZRail_MRDSMount",
+                "Akol_CZRail_Magnifier",
+                "Akol_CZRail_NoAttachment",
+                "Akol_CZRail_Okp77",
+                "Akol_CZRail_Pilad",
+                "Akol_CZRail_RailHuntingOptic",
+                "Akol_CZRail_RailHuntingOpticExp",
+                "Akol_CZRail_ReflexOptic",
+                "Akol_CZRail_Specter6x",
+                "Akol_CZRail_StarlightOptic",
+                "Akol_M700Rail_ACOGOptic",
+                "Akol_M700Rail_ACOGOptic_6x",
+                "Akol_M700Rail_Exps",
+                "Akol_M700Rail_HoloOptic",
+                "Akol_M700Rail_M4_T3NRDSOptic",
+                "Akol_M700Rail_M68Optic",
+                "Akol_M700Rail_MRDSMount",
+                "Akol_M700Rail_Magnifier",
+                "Akol_M700Rail_NoAttachment",
+                "Akol_M700Rail_Okp77",
+                "Akol_M700Rail_Pilad",
+                "Akol_M700Rail_RailHuntingOptic",
+                "Akol_M700Rail_RailHuntingOpticExp",
+                "Akol_M700Rail_ReflexOptic",
+                "Akol_M700Rail_Specter6x",
+                "Akol_M700Rail_StarlightOptic",
+                "Akol_RailHuntingOpticExpDouble",
+                "Akol_UniversalRail_ACOGOptic",
+                "Akol_UniversalRail_ACOGOptic_6x",
+                "Akol_UniversalRail_Exps",
+                "Akol_UniversalRail_HoloOptic",
+                "Akol_UniversalRail_M4_T3NRDSOptic",
+                "Akol_UniversalRail_M68Optic",
+                "Akol_UniversalRail_MRDSMount",
+                "Akol_UniversalRail_Magnifier",
+                "Akol_UniversalRail_NoAttachment",
+                "Akol_UniversalRail_Okp77",
+                "Akol_UniversalRail_Pilad",
+                "Akol_UniversalRail_RailHuntingOptic",
+                "Akol_UniversalRail_RailHuntingOpticExp",
+                "Akol_UniversalRail_ReflexOptic",
+                "Akol_UniversalRail_Specter6x",
+                "Akol_UniversalRail_StarlightOptic",
+                "HuntingOptic",
+                "SportingOptic"
+            ]
+        },
+        {
+            "SlotName": "weaponOpticsMosin",
+            "Attachments": [
+                "Akol_MosinMount_ACOGOptic",
+                "Akol_MosinMount_ACOGOptic_6x",
+                "Akol_MosinMount_Exps",
+                "Akol_MosinMount_HoloOptic",
+                "Akol_MosinMount_M4_T3NRDSOptic",
+                "Akol_MosinMount_M68Optic",
+                "Akol_MosinMount_MRDSMount",
+                "Akol_MosinMount_Magnifier",
+                "Akol_MosinMount_NoAttachment",
+                "Akol_MosinMount_Okp77",
+                "Akol_MosinMount_Pilad",
+                "Akol_MosinMount_RailHuntingOptic",
+                "Akol_MosinMount_RailHuntingOpticExp",
+                "Akol_MosinMount_ReflexOptic",
+                "Akol_MosinMount_Specter6x",
+                "Akol_MosinMount_StarlightOptic",
+                "Asmond_Optic_PUScope_White",
+                "PUScopeOptic"
+            ]
+        },
+        {
+            "SlotName": "weaponWrap",
+            "Attachments": [
+                "GhillieAtt_Black",
+                "GhillieAtt_Brown",
+                "GhillieAtt_Gold",
+                "GhillieAtt_Mossy",
+                "GhillieAtt_Tan",
+                "GhillieAtt_White",
+                "GhillieAtt_Winter",
+                "GhillieAtt_Woodland"
+            ]
+        }
+    ],
+    "Weapons": [
+        {
+            "WeaponClassName": "PVCBow",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "QuickieBow",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "RecurveBow",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Crossbow",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Crossbow_Autumn",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Crossbow_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Crossbow_Summer",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Crossbow_Wood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AK101",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AK101_Black",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AK101_Green",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AK74",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AK74_Black",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AK74_Green",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AKS74U",
+            "Slots": [
+                "weaponButtstockAK",
+                "weaponMuzzleAK",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AKS74U_Black",
+            "Slots": [
+                "weaponButtstockAK",
+                "weaponMuzzleAK",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AKS74U_Green",
+            "Slots": [
+                "weaponButtstockAK",
+                "weaponMuzzleAK",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AKM",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AKM_TESTBED",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Aug",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AugShort",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "B95",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "B95_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "B95_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffB95",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ527",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ527_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ527_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ527_Camo",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ550",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ61",
+            "Slots": [
+                "pistolMuzzle"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "FAL",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponButtstockFal",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "FAMAS",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffFAMAS",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Izh18",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffIzh18",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "M14",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "M4A1",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardM4",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponBayonet",
+                "weaponButtstockM4",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "M16A2",
+            "Slots": [
+                "weaponBayonet",
+                "weaponMuzzleM4",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "M249",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponHandguardM249",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "M4A1_Green",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardM4",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponBayonet",
+                "weaponButtstockM4",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "M4A1_Black",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardM4",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponBayonet",
+                "weaponButtstockM4",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "UnderSlugGrenadeM4",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Mosin9130",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Mosin9130_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Mosin9130_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Mosin9130_Camo",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffMosin9130",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffMosin9130_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffMosin9130_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffMosin9130_Camo",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "MP5K",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardMP5",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponButtstockMP5",
+                "weaponFlashlight",
+                "weaponMuzzleMP5",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Groza",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponButtstockAK",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "PM73Rak",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "PP19",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponButtstockPP19",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Repeater",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Ruger1022",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SCARH",
+            "Slots": [
+                "BatteryD",
+                "Scarh_FrontSight",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponButtstockSCAR",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SCARH_Black",
+            "Slots": [
+                "BatteryD",
+                "Scarh_FrontSight",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponButtstockSCAR",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Scout",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Scout_Chernarus",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Scout_Livonia",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SKS",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SKS_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SKS_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SSG82",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SV98",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SVD",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SVD_Wooden",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Trumpet",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "UMP45",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "VSS",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "ASVAL",
+            "Slots": [
+                "BatteryD",
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Vikhr",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Winchester70",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Winchester70_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Winchester70_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "GP25",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "GP25_Standalone",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "LAW",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "M203",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "M203_Standalone",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "M79",
+            "Slots": [
+                "weaponOpticsAug"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "RPG7",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "DartGun",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Shockpistol",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Shockpistol_Black",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Colt1911",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Engraved1911",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ75",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Deagle",
+            "Slots": [
+                "BatteryD",
+                "pistolMuzzle",
+                "weaponOpticsCrossbow"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Deagle_Gold",
+            "Slots": [
+                "BatteryD",
+                "pistolMuzzle",
+                "weaponOpticsCrossbow"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Derringer_Black",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Derringer_Pink",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Derringer_Grey",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Flaregun",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "FNX45",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "FNX45_arrow",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Glock19",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "LongHorn",
+            "Slots": [
+                "BatteryD",
+                "suppressorImpro",
+                "weaponOpticsCrossbow"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Magnum",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffMagnum",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "MKII",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "P1",
+            "Slots": [
+                "suppressorImpro"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "MakarovPB",
+            "Slots": [
+                "pistolMuzzle"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "MakarovIJ70",
+            "Slots": [
+                "pistolMuzzle"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Red9",
+            "Slots": [
+                "suppressorImpro",
+                "weaponButtstockRed9"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Izh18Shotgun",
+            "Slots": [
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffIzh18Shotgun",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Izh43Shotgun",
+            "Slots": [
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffIzh43Shotgun",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Mp133Shotgun",
+            "Slots": [
+                "BatteryD",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Mp133Shotgun_PistolGrip",
+            "Slots": [
+                "BatteryD",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "R12",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Saiga",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponButtstockSaiga",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffB95_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffB95_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_1911_Malvinas",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_1911_Black",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_1911_YellowKing",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AK101_Black",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AK101_Wine",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AK101_Winter",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AK101_Grey",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AK74_Desert",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AK74_Black",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AK74_Combatant",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AK74_Winter",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AK74_Rusted",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AKM_Camo",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AKM_Brown",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AKM_Black",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AKM_Winter",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AKS74U_Black",
+            "Slots": [
+                "weaponButtstockAK",
+                "weaponMuzzleAK",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AKS74U_Desert",
+            "Slots": [
+                "weaponButtstockAK",
+                "weaponMuzzleAK",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AKS74U_Grey",
+            "Slots": [
+                "weaponButtstockAK",
+                "weaponMuzzleAK",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AKS74U_Winter",
+            "Slots": [
+                "weaponButtstockAK",
+                "weaponMuzzleAK",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_ASVAL_Red",
+            "Slots": [
+                "BatteryD",
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_ASVAL_Grey",
+            "Slots": [
+                "BatteryD",
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_ASVAL_Moss",
+            "Slots": [
+                "BatteryD",
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_ASVAL_Stalker",
+            "Slots": [
+                "BatteryD",
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_ASVAL_Loner",
+            "Slots": [
+                "BatteryD",
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AUG_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AUG_Beige",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AUG_Grey",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AUG_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AUGShort_Green",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AUGShort_Grey",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AUGShort_Beige",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_AUGShort_Black",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_B95_Wood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawoffB95_Wood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_B95_Dark",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawoffB95_Dark",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_B95_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawoffB95_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_B95_Moss",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawoffB95_Moss",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_PP19_Red",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponButtstockPP19",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_PP19_Black",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponButtstockPP19",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Crossbow_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Crossbow_Camo",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ527_Camo",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ527_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ527_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ527_Brown",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ550_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ550_Brown",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ550_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ550_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ61_Sand",
+            "Slots": [
+                "pistolMuzzle"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ61_Black",
+            "Slots": [
+                "pistolMuzzle"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ75_Wooden",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_CZ75_Silver",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Deagle_Beige",
+            "Slots": [
+                "BatteryD",
+                "pistolMuzzle",
+                "weaponOpticsCrossbow"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Deagle_Black",
+            "Slots": [
+                "BatteryD",
+                "pistolMuzzle",
+                "weaponOpticsCrossbow"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Derringer_White",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Derringer_RedWood",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_FAL_DarkWood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponButtstockFal",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_FAL_Moss",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponButtstockFal",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_FAL_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponButtstockFal",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_FAL_LightWood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponButtstockFal",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_FAMAS_Black",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffFAMAS_Black",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_FNX_Desert",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_FNX_Black",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Glock_Desert",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Glock_Green",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Glock_Grey",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_IZH18Rifle_Black",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffIzh18_Black",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_IZH18Rifle_Brown",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffIzh18_Brown",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_IZH18Shotgun_RedWood",
+            "Slots": [
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffIzh18Shotgun_RedWood",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_IZH18Shotgun_Black",
+            "Slots": [
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffIzh18Shotgun_Black",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_IZH43Shotgun_DarkWood",
+            "Slots": [
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffIzh43Shotgun_DarkWood",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_IZH43Shotgun_RedWood",
+            "Slots": [
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffIzh43Shotgun_RedWood",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_IZH43Shotgun_Green",
+            "Slots": [
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffIzh43Shotgun_Green",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_LongHorn_Black",
+            "Slots": [
+                "BatteryD",
+                "suppressorImpro",
+                "weaponOpticsCrossbow"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_LongHorn_LightBrown",
+            "Slots": [
+                "BatteryD",
+                "suppressorImpro",
+                "weaponOpticsCrossbow"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M14_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M14_Tan",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M14_Camo",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M14_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M14_Wooden",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M16A2_Camo",
+            "Slots": [
+                "weaponBayonet",
+                "weaponMuzzleM4",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M16A2_Purple",
+            "Slots": [
+                "weaponBayonet",
+                "weaponMuzzleM4",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M16A2_Wooden",
+            "Slots": [
+                "weaponBayonet",
+                "weaponMuzzleM4",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M16A2_Tan",
+            "Slots": [
+                "weaponBayonet",
+                "weaponMuzzleM4",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M16A2_Green",
+            "Slots": [
+                "weaponBayonet",
+                "weaponMuzzleM4",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M16A2_Winter",
+            "Slots": [
+                "weaponBayonet",
+                "weaponMuzzleM4",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M4A1_Camo",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardM4",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponBayonet",
+                "weaponButtstockM4",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M4A1_Tan",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardM4",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponBayonet",
+                "weaponButtstockM4",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M4A1_Winter",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardM4",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponBayonet",
+                "weaponButtstockM4",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M4A1_Dark",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardM4",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponBayonet",
+                "weaponButtstockM4",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M4A1_Green",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardM4",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponBayonet",
+                "weaponButtstockM4",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M4A1_Desert",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardM4",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponBayonet",
+                "weaponButtstockM4",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M79_Polymer",
+            "Slots": [
+                "weaponOpticsAug"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_M79_Green",
+            "Slots": [
+                "weaponOpticsAug"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Magnum_Brown",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffMagnum_Brown",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Magnum_Black",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffMagnum_Black",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Magnum_Ivory",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffMagnum_Ivory",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_IJ70_Beige",
+            "Slots": [
+                "pistolMuzzle"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_IJ70_Red",
+            "Slots": [
+                "pistolMuzzle"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_MKII_Wood",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_MKII_Black",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Mosin9130_Dark",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffMosin9130_Dark",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Mosin9130_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffMosin9130_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Mosin9130_BrownCamo",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffMosin9130_BrownCamo",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Mosin9130_RedWood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SawedoffMosin9130_RedWood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_MP133_Beige",
+            "Slots": [
+                "BatteryD",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_MP133_Black",
+            "Slots": [
+                "BatteryD",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_MP133_RedWood",
+            "Slots": [
+                "BatteryD",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_MP5K_Light",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardMP5",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponButtstockMP5",
+                "weaponFlashlight",
+                "weaponMuzzleMP5",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_MP5K_Black",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardMP5",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponButtstockMP5",
+                "weaponFlashlight",
+                "weaponMuzzleMP5",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_MP5K_Sand",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardMP5",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponButtstockMP5",
+                "weaponFlashlight",
+                "weaponMuzzleMP5",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_P1_Wooden",
+            "Slots": [
+                "suppressorImpro"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_P1_Black",
+            "Slots": [
+                "suppressorImpro"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_PM73Rak_Black",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_R12_SledgeHammer",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_R12_Wooden",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_R12_RedWood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Repeater_Black",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Repeater_Wooden",
+            "Slots": [
+                "suppressorImpro",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Ruger1022_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Ruger1022_Beige",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Saiga_Red",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponButtstockSaiga",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SCARH_Green",
+            "Slots": [
+                "BatteryD",
+                "Scarh_FrontSight",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponButtstockSCAR",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SCARH_Winter",
+            "Slots": [
+                "BatteryD",
+                "Scarh_FrontSight",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponButtstockSCAR",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Scout_Grey",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Scout_Beige",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Scout_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Scout_Wooden",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SKS_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SKS_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SKS_Lightwood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SKS_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SKS_RedWood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SKS_Old",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SSG82_Green",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SSG82_Black",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SSG82_Redwood",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SSG82_Winter",
+            "Slots": [
+                "suppressorImpro",
+                "weaponOpticsAug",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SV98_Wooden",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SV98_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SV98_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SVD_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SVD_RedWood",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SVD_Yellow",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_SVD_Camo",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_UMP45_Sand",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_UMP45_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_UMP45_Grey",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_UMP45_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolMuzzle",
+                "pistolOptics",
+                "weaponFlashlight",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Vikhr_Red",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Vikhr_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_VSS_Black",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_VSS_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_VSS_Stalker",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_VSS_Yellow",
+            "Slots": [
+                "BatteryD",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Winchester70_Beige",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Winchester70_Green",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Winchester70_RedWood",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Winchester70_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Asmond_Winchester70_Black",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AKM_eAI_Debug",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Expansion_LobotomyDartGun",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Expansion_LobotomyDartGun_Debug",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOptics",
+                "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        }
+    ]
+}

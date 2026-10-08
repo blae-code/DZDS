@@ -1,0 +1,10 @@
+{
+    "NumberOfAI":  4,
+    "Units":  [
+
+              ],
+    "Faction":  "Mercenaries",
+    "Loadout":  "TriumphConvoyLoadout",
+    "LootableOnDeath":  0,
+    "BodyDespawnSeconds":  0
+}

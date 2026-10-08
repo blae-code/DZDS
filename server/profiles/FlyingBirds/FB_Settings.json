@@ -1,0 +1,13 @@
+{
+    "PLAYER_DELAY": "Used for delay of spawing or removing birds. Seconds X 1000 = Delay(300,000 is 5Mins)",
+    "z_player_Start_delay": 12000,
+    "z_player_Remove_delay": 12000,
+    "SPACE1": "------------------------------------------------------------------",
+    "ANIMAL_DELAY": "Used for delay of spawing or removing birds. Seconds X 1000 = Delay(300,000 is 5Mins)",
+    "z_animal_Start_delay": 12000,
+    "z_animal_Remove_delay": 12000,
+    "SPACE2": "------------------------------------------------------------------",
+    "DISABLE_BIRDS": "1=true/0=false :Used to disable birds from spawning at all over dead bodies Default:1",
+    "z_enable_birds": 1,
+    "SPACE3": "------------------------------------------------------------------"
+}

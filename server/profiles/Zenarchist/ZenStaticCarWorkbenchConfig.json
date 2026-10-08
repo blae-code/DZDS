@@ -1,0 +1,23 @@
+{
+    "ConfigVersion": "1.29.1",
+    "MaxAttachmentCount": 4,
+    "AttachmentTypes": {
+        "TireRepairKit": 0.10000000149011612,
+        "Blowtorch": 0.10000000149011612,
+        "CarBattery": 0.10000000149011612,
+        "SparkPlug": 0.10000000149011612,
+        "TruckBattery": 0.10000000149011612,
+        "Zen_SprayCan_Green": 0.10000000149011612,
+        "Sledgehammer": 0.10000000149011612,
+        "Wrench": 0.10000000149011612,
+        "Screwdriver": 0.10000000149011612,
+        "Pliers": 0.10000000149011612,
+        "Rag": 0.10000000149011612,
+        "CanisterGasoline": 0.009999999776482582,
+        "CarRadiator": 0.10000000149011612,
+        "Pipewrench": 0.10000000149011612,
+        "GlowPlug": 0.10000000149011612,
+        "LugWrench": 0.10000000149011612,
+        "Zen_SprayCan_Black": 0.10000000149011612
+    }
+}

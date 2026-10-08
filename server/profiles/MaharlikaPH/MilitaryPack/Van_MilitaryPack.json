@@ -1,0 +1,67 @@
+{
+    "Tank_ConfigVersion": "3",
+    "Tank_IsDriverGunner": 1,
+    "Tank_CanDestroyObjects": 1,
+    "Tank_3rdPersonControl": 1,
+    "Tank_CanToggleTurretControl": 1,
+    "Van_BMP3": {
+        "Tank_PrimaryCooldown": 8000,
+        "Tank_PrimarySpeed": 300,
+        "Tank_SecondaryCooldown": 200,
+        "Tank_SecondarySpeed": 1500,
+        "Tank_ShootMaxDistance": 1500,
+        "Tank_TurretYawSensitivity": 0.10000000149011612,
+        "Tank_TurretPitchSensitivity": 0.10000000149011612
+    },
+    "Van_M1A2": {
+        "Tank_PrimaryCooldown": 7000,
+        "Tank_PrimarySpeed": 500,
+        "Tank_SecondaryCooldown": 200,
+        "Tank_SecondarySpeed": 1500,
+        "Tank_ShootMaxDistance": 1500,
+        "Tank_TurretYawSensitivity": 0.15000000596046449,
+        "Tank_TurretPitchSensitivity": 0.15000000596046449
+    },
+    "DestructibleObjects": {
+        "DestructibleTypes": [
+            "land_wall_",
+            "land_wreck_",
+            "wreck",
+            "fence",
+            "sign",
+            "pole",
+            "post",
+            "pillar",
+            "barrier",
+            "traffic",
+            "streetlight",
+            "streetlamp"
+        ],
+        "DestructibleP3DPaths": [
+            "structures\\walls",
+            "structures_bliss\\walls",
+            "wrecks\\vehicles",
+            "structures\\signs",
+            "residential\\misc\\lamp",
+            "residential\\misc\\misc_trafficlight",
+            "residential\\misc\\misc_roadbarrier",
+            "residential\\misc\\misc_bench",
+            "residential\\bus\\busstop_city_sign",
+            "industrial\\power\\power_pole",
+            "industrial\\misc\\misc_haybale",
+            "structures\\specific\\cemeteries\\straight",
+            "structures\\specific\\cemeteries\\cemetery_fence",
+            "structures\\specific\\cemeteries\\cemetery_smallcross",
+            "structures\\specific\\cemeteries\\cemetery_tombstone"
+        ],
+        "FlattenTypes": [
+            "wreck"
+        ],
+        "FlattenP3DPaths": [
+            "wreck",
+            "pallet",
+            "haybale",
+            "crate"
+        ]
+    }
+}

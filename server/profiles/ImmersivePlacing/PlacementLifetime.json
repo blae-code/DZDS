@@ -1,0 +1,13 @@
+{
+    "enableExtendLifeTime": 1,
+    "lifetimeOutsideZone": 86400.0,
+    "lifetimeInsideFlagZone": 604800.0,
+    "flagRadius": 60.0,
+    "refreshInterval": 1800.0,
+    "elevationCorrection": [
+        {
+            "classname": "PortableGasLamp",
+            "elevation": 3.0
+        }
+    ]
+}

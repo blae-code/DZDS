@@ -1,0 +1,53 @@
+{
+    "RewardOnCompletion": 1,
+    "RewardContainerClassName": "SeaChest",
+    "RewardSpawnDistance": 2.0,
+    "RewardFireworksEnabled": 1,
+    "RewardFireworksDelayMs": 1500,
+    "CleanupRewardContainerWhenEmpty": 1,
+    "RewardContainerCleanupDelaySeconds": 1800,
+    "CleanupRewardFireworks": 1,
+    "RewardFireworksCleanupDelaySeconds": 180,
+    "CompletionKillPercentRequired": 50.0,
+    "UseRandomRewards": 0,
+    "RandomRewardMinItems": 1,
+    "RandomRewardMaxItems": 3,
+    "CompletionRewards": [
+        {
+            "ClassName": "M67Grenade",
+            "Quantity": 1,
+            "Health": 1.0,
+            "ChancePercent": 100.0
+        },
+        {
+            "ClassName": "AmmoBox_308WinTracer_20Rnd",
+            "Quantity": 1,
+            "Health": 1.0,
+            "ChancePercent": 100.0
+        },
+        {
+            "ClassName": "BandageDressing",
+            "Quantity": 2,
+            "Health": 1.0,
+            "ChancePercent": 100.0
+        },
+        {
+            "ClassName": "Morphine",
+            "Quantity": 1,
+            "Health": 1.0,
+            "ChancePercent": 100.0
+        },
+        {
+            "ClassName": "TacticalBaconCan",
+            "Quantity": 2,
+            "Health": 1.0,
+            "ChancePercent": 100.0
+        },
+        {
+            "ClassName": "WaterBottle",
+            "Quantity": 1,
+            "Health": 1.0,
+            "ChancePercent": 100.0
+        }
+    ]
+}

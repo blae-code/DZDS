@@ -1,0 +1,12 @@
+# Written by Triumph Moving AI Convoy. Lets the mod find its config files on DayZ 1.30, where folders cannot be listed. Safe to delete - it is rebuilt.
+$profile:AIConvoy/Crews|Mercenaries
+$profile:AIConvoy/Crews|Driver
+$profile:AIConvoy/Routes|Route2
+$profile:AIConvoy/Routes|Route6
+$profile:AIConvoy/Routes|Route3
+$profile:AIConvoy/Routes|Route4
+$profile:AIConvoy/Routes|Route1
+$profile:AIConvoy/Routes|Route5
+$profile:AIConvoy/Routes|Route7
+$profile:AIConvoy/Vehicles|M1025
+$profile:AIConvoy/Vehicles|Truck01

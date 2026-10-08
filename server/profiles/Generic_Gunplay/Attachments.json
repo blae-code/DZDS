@@ -1,0 +1,5829 @@
+{
+    "ConfigVersion": 1,
+    "Attachments": [
+        {
+            "ClassName": "UniversalLight",
+            "ParentClass": "Switchable_Base",
+            "Category": "Flashlight",
+            "TierKey": "Flashlight_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0399999618530274,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponFlashlight",
+                "helmetFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "TLRLight",
+            "ParentClass": "Switchable_Base",
+            "Category": "Flashlight",
+            "TierKey": "Flashlight_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0399999618530274,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_Bayonet",
+            "ParentClass": "Inventory_Base",
+            "Category": "Bayonet",
+            "TierKey": "Bayonet_Heavy",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0800000429153443,
+            "ADS": 0.9200000166893005,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponBayonetAK",
+                "Knife"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M9A1_Bayonet",
+            "ParentClass": "Inventory_Base",
+            "Category": "Bayonet",
+            "TierKey": "Bayonet_Heavy",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0800000429153443,
+            "ADS": 0.9200000166893005,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponBayonet",
+                "Knife"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Mosin_Bayonet",
+            "ParentClass": "Inventory_Base",
+            "Category": "Bayonet",
+            "TierKey": "Bayonet_Heavy",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0800000429153443,
+            "ADS": 0.9200000166893005,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponBayonetMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "SKS_Bayonet",
+            "ParentClass": "Inventory_Base",
+            "Category": "Bayonet",
+            "TierKey": "Bayonet_Heavy",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0800000429153443,
+            "ADS": 0.9200000166893005,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponBayonetSKS"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Mosin_Compensator",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Muzzle",
+            "TierKey": "Muzzle_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8500000238418579,
+            "Sway": 0.925000011920929,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 0.949999988079071,
+            "DetectedSlots": [
+                "weaponMuzzleMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "MP5_Compensator",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Muzzle",
+            "TierKey": "Muzzle_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8500000238418579,
+            "Sway": 0.925000011920929,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 0.949999988079071,
+            "DetectedSlots": [
+                "weaponMuzzleMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "ImprovisedSuppressor",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8500000238418579,
+            "Sway": 1.0,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.0499999523162842,
+            "HipFire": 0.949999988079071,
+            "DetectedSlots": [
+                "suppressorImpro",
+                "weaponMuzzleAK",
+                "weaponMuzzleM4",
+                "pistolMuzzle"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_Suppressor",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_Suppressor",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "PistolSuppressor",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "pistolMuzzle"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Groza_Barrel_Short",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Muzzle",
+            "TierKey": "Muzzle_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8500000238418579,
+            "Sway": 0.925000011920929,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 0.949999988079071,
+            "DetectedSlots": [
+                "weaponMuzzleAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Groza_Barrel_Grip",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Muzzle",
+            "TierKey": "Muzzle_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Groza_Barrel_Suppressor",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "MakarovPBSuppressor",
+            "ParentClass": "ItemSuppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8500000238418579,
+            "Sway": 1.0,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.0499999523162842,
+            "HipFire": 0.949999988079071,
+            "DetectedSlots": [
+                "pistolMuzzle"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_CarryHandleOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "BUISOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M68Optic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_T3NRDSOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "FNP45_MRDSOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolOptics",
+                "weaponOpticsCrossbow"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "ReflexOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "HoloOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "HoloOptic_Black",
+            "ParentClass": "HoloOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "ACOGOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "ACOGOptic_6x",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "PUScopeOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "KashtanOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "HuntingOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "PistolOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsCrossbow"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "SportingOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "MK4Optic_Tan",
+            "ParentClass": "MK4Optic_ColorBase",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "MK4Optic_Green",
+            "ParentClass": "MK4Optic_ColorBase",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "MK4Optic_Black",
+            "ParentClass": "MK4Optic_ColorBase",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "PSO1Optic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "PSO11Optic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "PSO6Optic",
+            "ParentClass": "PSO1Optic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GrozaOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "KobraOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "KazuarOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "StarlightOptic",
+            "ParentClass": "ItemOptics_Base",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_OEBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_OEBttstck_Black",
+            "ParentClass": "M4_OEBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_OEBttstck_Green",
+            "ParentClass": "M4_OEBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_MPBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_MPBttstck_Black",
+            "ParentClass": "M4_MPBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_MPBttstck_Green",
+            "ParentClass": "M4_MPBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_CQBBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.10000000149011612,
+            "Sway": 0.550000011920929,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.149999976158142,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_CQBBttstck_Black",
+            "ParentClass": "M4_CQBBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.10000000149011612,
+            "Sway": 0.550000011920929,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.149999976158142,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_CQBBttstck_Green",
+            "ParentClass": "M4_CQBBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.10000000149011612,
+            "Sway": 0.550000011920929,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.149999976158142,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_WoodBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_WoodBttstck_Black",
+            "ParentClass": "AK_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_WoodBttstck_Camo",
+            "ParentClass": "AK_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK74_WoodBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK74_WoodBttstck_Black",
+            "ParentClass": "AK74_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK74_WoodBttstck_Camo",
+            "ParentClass": "AK74_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_FoldingBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_FoldingBttstck_Black",
+            "ParentClass": "AK_FoldingBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_FoldingBttstck_Green",
+            "ParentClass": "AK_FoldingBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_PlasticBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_PlasticBttstck_Black",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_PlasticBttstck_Green",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AKS74U_Bttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AKS74U_Bttstck_Black",
+            "ParentClass": "AKS74U_Bttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AKS74U_Bttstck_Green",
+            "ParentClass": "AKS74U_Bttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "MP5k_StockBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Red9Bttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockRed9"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Fal_OeBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockFal"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Fal_FoldingBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.10000000149011612,
+            "Sway": 0.550000011920929,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.149999976158142,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockFal"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Saiga_Bttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockSaiga"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "PP19_Bttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockPP19"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "SCAR_StockBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockSCAR"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "SCAR_StockBttstck_Black",
+            "ParentClass": "SCAR_StockBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockSCAR"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "SCAR_PrecisionBttstck",
+            "ParentClass": "Inventory_Base",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockSCAR"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "SCAR_PrecisionBttstck_Black",
+            "ParentClass": "SCAR_PrecisionBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockSCAR"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_PlasticHndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_PlasticHndgrd_Black",
+            "ParentClass": "M4_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_PlasticHndgrd_Green",
+            "ParentClass": "M4_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_RISHndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_RISHndgrd_Black",
+            "ParentClass": "M4_RISHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_RISHndgrd_Green",
+            "ParentClass": "M4_RISHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_MPHndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_MPHndgrd_Black",
+            "ParentClass": "M4_MPHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M4_MPHndgrd_Green",
+            "ParentClass": "M4_MPHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_WoodHndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_WoodHndgrd_Black",
+            "ParentClass": "AK_WoodHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_WoodHndgrd_Camo",
+            "ParentClass": "AK_WoodHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK74_Hndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK74_Hndgrd_Black",
+            "ParentClass": "AK74_Hndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK74_Hndgrd_Camo",
+            "ParentClass": "AK74_Hndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_RailHndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8799999952316284,
+            "Sway": 0.550000011920929,
+            "ADS": 1.059999942779541,
+            "Precision": 1.2999999523162842,
+            "HipFire": 0.699999988079071,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_RailHndgrd_Black",
+            "ParentClass": "AK_RailHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8799999952316284,
+            "Sway": 0.550000011920929,
+            "ADS": 1.059999942779541,
+            "Precision": 1.2999999523162842,
+            "HipFire": 0.699999988079071,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_RailHndgrd_Green",
+            "ParentClass": "AK_RailHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8799999952316284,
+            "Sway": 0.550000011920929,
+            "ADS": 1.059999942779541,
+            "Precision": 1.2999999523162842,
+            "HipFire": 0.699999988079071,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_PlasticHndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "MP5_PlasticHndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "MP5_RailHndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M249_Hndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardM249"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M249_RisHndgrd",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM249"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GhillieAtt_Tan",
+            "ParentClass": "GhillieAtt_ColorBase",
+            "Category": "Wrap",
+            "TierKey": "WeaponWrap_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.925000011920929,
+            "ADS": 0.9700000286102295,
+            "Precision": 1.0299999713897706,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponWrap"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GhillieAtt_Woodland",
+            "ParentClass": "GhillieAtt_ColorBase",
+            "Category": "Wrap",
+            "TierKey": "WeaponWrap_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.925000011920929,
+            "ADS": 0.9700000286102295,
+            "Precision": 1.0299999713897706,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponWrap"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GhillieAtt_Mossy",
+            "ParentClass": "GhillieAtt_ColorBase",
+            "Category": "Wrap",
+            "TierKey": "WeaponWrap_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.925000011920929,
+            "ADS": 0.9700000286102295,
+            "Precision": 1.0299999713897706,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponWrap"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GhillieAtt_Winter",
+            "ParentClass": "GhillieAtt_ColorBase",
+            "Category": "Wrap",
+            "TierKey": "WeaponWrap_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.925000011920929,
+            "ADS": 0.9700000286102295,
+            "Precision": 1.0299999713897706,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponWrap"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Groza_LowerReceiver",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GrozaGL_LowerReceiver",
+            "ParentClass": "Inventory_Base",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AugOptic",
+            "ParentClass": "ItemOptics",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAug"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Scarh_Front_Sight",
+            "ParentClass": "Inventory_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "Scarh_FrontSight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "SSG82Optic",
+            "ParentClass": "ItemOptics",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAug"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "M79DummyOptics",
+            "ParentClass": "ItemOptics",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAug"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Magnum_Cylinder",
+            "ParentClass": "Inventory_Base",
+            "Category": "Neutral",
+            "TierKey": "Neutral",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0,
+            "ADS": 1.0,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "RevolverCylinder"
+            ],
+            "NeedsReview": 1,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Magnum_Ejector",
+            "ParentClass": "Inventory_Base",
+            "Category": "Neutral",
+            "TierKey": "Neutral",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0,
+            "ADS": 1.0,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "RevolverEjector"
+            ],
+            "NeedsReview": 1,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_Exps",
+            "ParentClass": "Akol_Exps_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMosinMount",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolMagnifier",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_Exps_Tan",
+            "ParentClass": "Akol_Exps_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMosinMount",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolMagnifier",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_Magnifier",
+            "ParentClass": "Akol_Magnifier_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMosinMount",
+                "akolAkMount",
+                "akolUniversalRail"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_Okp77",
+            "ParentClass": "Akol_Okp77_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMosinMount",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolMagnifier",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_Pilad",
+            "ParentClass": "Akol_Pilad_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMosinMount",
+                "akolAkMount",
+                "akolUniversalRail"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_Specter6x",
+            "ParentClass": "Akol_Specter6x_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMosinMount",
+                "akolAkMount",
+                "akolUniversalRail"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GhillieAtt_Black",
+            "ParentClass": "GhillieAtt_UNKBase",
+            "Category": "Wrap",
+            "TierKey": "WeaponWrap_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.925000011920929,
+            "ADS": 0.9700000286102295,
+            "Precision": 1.0299999713897706,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponWrap"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GhillieAtt_White",
+            "ParentClass": "GhillieAtt_UNKBase",
+            "Category": "Wrap",
+            "TierKey": "WeaponWrap_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.925000011920929,
+            "ADS": 0.9700000286102295,
+            "Precision": 1.0299999713897706,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponWrap"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GhillieAtt_Brown",
+            "ParentClass": "GhillieAtt_UNKBase",
+            "Category": "Wrap",
+            "TierKey": "WeaponWrap_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.925000011920929,
+            "ADS": 0.9700000286102295,
+            "Precision": 1.0299999713897706,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponWrap"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GhillieAtt_Gold",
+            "ParentClass": "GhillieAtt_UNKBase",
+            "Category": "Wrap",
+            "TierKey": "WeaponWrap_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.925000011920929,
+            "ADS": 0.9700000286102295,
+            "Precision": 1.0299999713897706,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponWrap"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Suppressor_EAST_Winter",
+            "ParentClass": "AK_Suppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Suppressor_EAST_Black",
+            "ParentClass": "AK_Suppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Suppressor_NATO_Black",
+            "ParentClass": "M4_Suppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Suppressor_NATO_Tan",
+            "ParentClass": "M4_Suppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Suppressor_NATO_Green",
+            "ParentClass": "M4_Suppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Suppressor_NATO_Winter",
+            "ParentClass": "M4_Suppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponMuzzleM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Suppressor_Pistol_Black",
+            "ParentClass": "PistolSuppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "pistolMuzzle"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Suppressor_Pistol_Tan",
+            "ParentClass": "PistolSuppressor",
+            "Category": "Suppressor",
+            "TierKey": "Suppressor_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 1.0099999904632569,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "pistolMuzzle"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticHndgrd_Black",
+            "ParentClass": "AK_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticBttstck_Black",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticHndgrd_Winter",
+            "ParentClass": "AK_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticBttstck_Winter",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticHndgrd_Tan",
+            "ParentClass": "AK_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticBttstck_Tan",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticHndgrd_Grey",
+            "ParentClass": "AK_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticBttstck_Grey",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticHndgrd_Wine",
+            "ParentClass": "AK_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticBttstck_Wine",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticHndgrd_Green",
+            "ParentClass": "AK_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticBttstck_Green",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_AKS74UBttstck_Black",
+            "ParentClass": "AKS74U_Bttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_AKS74UBttstck_Winter",
+            "ParentClass": "AKS74U_Bttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodHndgrd_Natural",
+            "ParentClass": "AK_WoodHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodBttstck_Natural",
+            "ParentClass": "AK_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodHndgrd_LightWood",
+            "ParentClass": "AK_WoodHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodBttstck_LightWood",
+            "ParentClass": "AK_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodHndgrd_LightBrown",
+            "ParentClass": "AK_WoodHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodBttstck_LightBrown",
+            "ParentClass": "AK_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticHndgrd_Desert",
+            "ParentClass": "AK_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticBttstck_Desert",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticHndgrd_Camo",
+            "ParentClass": "AK_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticBttstck_Camo",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodHndgrd_Camo",
+            "ParentClass": "AK_WoodHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodBttstck_Camo",
+            "ParentClass": "AK_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodHndgrd_Yellow",
+            "ParentClass": "AK_WoodHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodBttstck_Yellow",
+            "ParentClass": "AK_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodHndgrd_DarkWood",
+            "ParentClass": "AK_WoodHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_WoodBttstck_DarkWood",
+            "ParentClass": "AK_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_RailHndgrd_Winter",
+            "ParentClass": "AK_RailHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8799999952316284,
+            "Sway": 0.550000011920929,
+            "ADS": 1.059999942779541,
+            "Precision": 1.2999999523162842,
+            "HipFire": 0.699999988079071,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_RailHndgrd_Green",
+            "ParentClass": "AK_RailHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8799999952316284,
+            "Sway": 0.550000011920929,
+            "ADS": 1.059999942779541,
+            "Precision": 1.2999999523162842,
+            "HipFire": 0.699999988079071,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_FoldingBttstck_Winter",
+            "ParentClass": "AK_FoldingBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_FoldingBttstck_Green",
+            "ParentClass": "AK_FoldingBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_PP19_Buttstock_Red",
+            "ParentClass": "PP19_Bttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockPP19"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_PP19_Buttstock_Black",
+            "ParentClass": "PP19_Bttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockPP19"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_FAL_Buttstock_DarkWood",
+            "ParentClass": "Fal_OeBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockFAL"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_FAL_Buttstock_Moss",
+            "ParentClass": "Fal_OeBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockFAL"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_FAL_Buttstock_Winter",
+            "ParentClass": "Fal_OeBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockFAL"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_FAL_Buttstock_LightWood",
+            "ParentClass": "Fal_OeBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockFAL"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_PlasticHndgrd_Tan",
+            "ParentClass": "M4_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_PlasticHndgrd_Green",
+            "ParentClass": "M4_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_PlasticHndgrd_Grey",
+            "ParentClass": "M4_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_PlasticHndgrd_Black",
+            "ParentClass": "M4_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_RISHndgrd_Tan",
+            "ParentClass": "M4_RISHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_RISHndgrd_Green",
+            "ParentClass": "M4_RISHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_RISHndgrd_Grey",
+            "ParentClass": "M4_RISHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_RISHndgrd_Black",
+            "ParentClass": "M4_RISHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_MPHndgrd_Tan",
+            "ParentClass": "M4_MPHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_MPHndgrd_Green",
+            "ParentClass": "M4_MPHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_MPHndgrd_Grey",
+            "ParentClass": "M4_MPHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_MPHndgrd_Black",
+            "ParentClass": "M4_MPHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_OEBttstck_Tan",
+            "ParentClass": "M4_OEBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_OEBttstck_Green",
+            "ParentClass": "M4_OEBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_OEBttstck_Grey",
+            "ParentClass": "M4_OEBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_OEBttstck_Black",
+            "ParentClass": "M4_OEBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_MPBttstck_Tan",
+            "ParentClass": "M4_MPBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_MPBttstck_Green",
+            "ParentClass": "M4_MPBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_MPBttstck_Grey",
+            "ParentClass": "M4_MPBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_MPBttstck_Black",
+            "ParentClass": "M4_MPBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_CQBBttstck_Tan",
+            "ParentClass": "M4_CQBBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.10000000149011612,
+            "Sway": 0.550000011920929,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.149999976158142,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_CQBBttstck_Green",
+            "ParentClass": "M4_CQBBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.10000000149011612,
+            "Sway": 0.550000011920929,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.149999976158142,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_CQBBttstck_Grey",
+            "ParentClass": "M4_CQBBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.10000000149011612,
+            "Sway": 0.550000011920929,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.149999976158142,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_M4_CQBBttstck_Black",
+            "ParentClass": "M4_CQBBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.10000000149011612,
+            "Sway": 0.550000011920929,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.149999976158142,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockM4"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP5K_Bttstck_Sand",
+            "ParentClass": "MP5k_StockBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP5K_PlasticHndgrd_Sand",
+            "ParentClass": "MP5_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP5K_Bttstck_Black",
+            "ParentClass": "MP5k_StockBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP5K_PlasticHndgrd_Black",
+            "ParentClass": "MP5_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP5K_RailHndgrd_Black",
+            "ParentClass": "MP5_RailHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP5K_RailHndgrd_Sand",
+            "ParentClass": "MP5_RailHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Saiga_Red_Bttstck",
+            "ParentClass": "Saiga_Bttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockSaiga"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_SCAR_PrecisionBttstck_Winter",
+            "ParentClass": "SCAR_PrecisionBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockSCAR"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Battery9V",
+            "ParentClass": "Inventory_Base",
+            "Category": "Neutral",
+            "TierKey": "Neutral",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0,
+            "ADS": 1.0,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "BatteryD"
+            ],
+            "NeedsReview": 1,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MRDSMount",
+            "ParentClass": "Akol_MRDSMount_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMosinMount",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolMagnifier",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_RailHuntingOptic",
+            "ParentClass": "Akol_Mark3HD",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolMosinMount",
+                "akolAkMount",
+                "akolUniversalRail"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_RailHuntingOpticExpDouble",
+            "ParentClass": "Akol_RailHuntingOpticExp_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_RailHuntingOpticExp",
+            "ParentClass": "Akol_RailHuntingOpticExp_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOptics",
+                "akolAkMount",
+                "akolMosinMount",
+                "akolUniversalRail"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_NoAttachment",
+            "ParentClass": "Akol_UniversalRail_NoAttachment_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_ACOGOptic",
+            "ParentClass": "ACOGOptic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_M68Optic",
+            "ParentClass": "M68Optic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_M4_T3NRDSOptic",
+            "ParentClass": "M4_T3NRDSOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_ReflexOptic",
+            "ParentClass": "ReflexOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_ACOGOptic_6x",
+            "ParentClass": "ACOGOptic_6x",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_RailHuntingOptic",
+            "ParentClass": "Akol_RailHuntingOptic_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_RailHuntingOpticExp",
+            "ParentClass": "Akol_RailHuntingOpticExp_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_MRDSMount",
+            "ParentClass": "Akol_MRDSMount_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_Magnifier",
+            "ParentClass": "Akol_Magnifier_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_Pilad",
+            "ParentClass": "Akol_Pilad_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_Specter6x",
+            "ParentClass": "Akol_Specter6x_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_Exps",
+            "ParentClass": "Akol_Exps_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_StarlightOptic",
+            "ParentClass": "Akol_StarlightOptic_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_Okp77",
+            "ParentClass": "Akol_Okp77_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_UniversalRail_HoloOptic",
+            "ParentClass": "HoloOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Optic_MiniSight_Black",
+            "ParentClass": "FNP45_MRDSOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolOptics",
+                "weaponOpticsCrossbow"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Optic_MiniSight_Tan",
+            "ParentClass": "FNP45_MRDSOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolOptics",
+                "weaponOpticsCrossbow"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Optic_MK4_Winter",
+            "ParentClass": "MK4Optic_ColorBase",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Optic_PSO11_Black",
+            "ParentClass": "PSO11Optic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Optic_PSO1_Black",
+            "ParentClass": "PSO1Optic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Optic_PUScope_White",
+            "ParentClass": "PUScopeOptic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Optic_Reflex_Black",
+            "ParentClass": "ReflexOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Optic_Reflex_Tan",
+            "ParentClass": "ReflexOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "WeaponOptics",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "akolAkMount",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolUniversalRail",
+                "akolMosinMount",
+                "akolPistolMount"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_NoAttachment",
+            "ParentClass": "Akol_AKMount_NoAttachment_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_ACOGOptic",
+            "ParentClass": "ACOGOptic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_M68Optic",
+            "ParentClass": "M68Optic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_M4_T3NRDSOptic",
+            "ParentClass": "M4_T3NRDSOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_ReflexOptic",
+            "ParentClass": "ReflexOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_ACOGOptic_6x",
+            "ParentClass": "ACOGOptic_6x",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_RailHuntingOptic",
+            "ParentClass": "Akol_RailHuntingOptic_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_RailHuntingOpticExp",
+            "ParentClass": "Akol_RailHuntingOpticExp_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_MRDSMount",
+            "ParentClass": "Akol_MRDSMount_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_Magnifier",
+            "ParentClass": "Akol_Magnifier_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_Pilad",
+            "ParentClass": "Akol_Pilad_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_Specter6x",
+            "ParentClass": "Akol_Specter6x_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_Exps",
+            "ParentClass": "Akol_Exps_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_StarlightOptic",
+            "ParentClass": "Akol_StarlightOptic_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_Okp77",
+            "ParentClass": "Akol_Okp77_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_AKMount_HoloOptic",
+            "ParentClass": "HoloOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_NoAttachment",
+            "ParentClass": "Akol_B95Rail_NoAttachment_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_ACOGOptic",
+            "ParentClass": "ACOGOptic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_M68Optic",
+            "ParentClass": "M68Optic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_M4_T3NRDSOptic",
+            "ParentClass": "M4_T3NRDSOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_ReflexOptic",
+            "ParentClass": "ReflexOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_ACOGOptic_6x",
+            "ParentClass": "ACOGOptic_6x",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_RailHuntingOptic",
+            "ParentClass": "Akol_RailHuntingOptic_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_RailHuntingOpticExp",
+            "ParentClass": "Akol_RailHuntingOpticExp_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_MRDSMount",
+            "ParentClass": "Akol_MRDSMount_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_Magnifier",
+            "ParentClass": "Akol_Magnifier_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_Pilad",
+            "ParentClass": "Akol_Pilad_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_Specter6x",
+            "ParentClass": "Akol_Specter6x_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_Exps",
+            "ParentClass": "Akol_Exps_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_StarlightOptic",
+            "ParentClass": "Akol_StarlightOptic_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_Okp77",
+            "ParentClass": "Akol_Okp77_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_B95Rail_HoloOptic",
+            "ParentClass": "HoloOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_NoAttachment",
+            "ParentClass": "Akol_CZRail_NoAttachment_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_ACOGOptic",
+            "ParentClass": "ACOGOptic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_M68Optic",
+            "ParentClass": "M68Optic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_M4_T3NRDSOptic",
+            "ParentClass": "M4_T3NRDSOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_ReflexOptic",
+            "ParentClass": "ReflexOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_ACOGOptic_6x",
+            "ParentClass": "ACOGOptic_6x",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_RailHuntingOptic",
+            "ParentClass": "Akol_RailHuntingOptic_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_RailHuntingOpticExp",
+            "ParentClass": "Akol_RailHuntingOpticExp_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_MRDSMount",
+            "ParentClass": "Akol_MRDSMount_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_Magnifier",
+            "ParentClass": "Akol_Magnifier_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_Pilad",
+            "ParentClass": "Akol_Pilad_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_Specter6x",
+            "ParentClass": "Akol_Specter6x_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_Exps",
+            "ParentClass": "Akol_Exps_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_StarlightOptic",
+            "ParentClass": "Akol_StarlightOptic_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_Okp77",
+            "ParentClass": "Akol_Okp77_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_CZRail_HoloOptic",
+            "ParentClass": "HoloOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_NoAttachment",
+            "ParentClass": "Akol_M700Rail_NoAttachment_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_ACOGOptic",
+            "ParentClass": "ACOGOptic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_M68Optic",
+            "ParentClass": "M68Optic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_M4_T3NRDSOptic",
+            "ParentClass": "M4_T3NRDSOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_ReflexOptic",
+            "ParentClass": "ReflexOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_ACOGOptic_6x",
+            "ParentClass": "ACOGOptic_6x",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_RailHuntingOptic",
+            "ParentClass": "Akol_RailHuntingOptic_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_RailHuntingOpticExp",
+            "ParentClass": "Akol_RailHuntingOpticExp_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_MRDSMount",
+            "ParentClass": "Akol_MRDSMount_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_Magnifier",
+            "ParentClass": "Akol_Magnifier_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_Pilad",
+            "ParentClass": "Akol_Pilad_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_Specter6x",
+            "ParentClass": "Akol_Specter6x_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_Exps",
+            "ParentClass": "Akol_Exps_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_StarlightOptic",
+            "ParentClass": "Akol_StarlightOptic_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_Okp77",
+            "ParentClass": "Akol_Okp77_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_M700Rail_HoloOptic",
+            "ParentClass": "HoloOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsHunting"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_NoAttachment",
+            "ParentClass": "Akol_MosinMount_NoAttachment_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_ACOGOptic",
+            "ParentClass": "ACOGOptic",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_M68Optic",
+            "ParentClass": "M68Optic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_M4_T3NRDSOptic",
+            "ParentClass": "M4_T3NRDSOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_ReflexOptic",
+            "ParentClass": "ReflexOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_ACOGOptic_6x",
+            "ParentClass": "ACOGOptic_6x",
+            "Category": "Optic",
+            "TierKey": "HeavyOptic_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9700000286102295,
+            "ADS": 0.949999988079071,
+            "Precision": 1.2000000476837159,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_RailHuntingOptic",
+            "ParentClass": "Akol_RailHuntingOptic_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_RailHuntingOpticExp",
+            "ParentClass": "Akol_RailHuntingOpticExp_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_MRDSMount",
+            "ParentClass": "Akol_MRDSMount_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_Magnifier",
+            "ParentClass": "Akol_Magnifier_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_Pilad",
+            "ParentClass": "Akol_Pilad_Base",
+            "Category": "Optic",
+            "TierKey": "SniperOptic_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9549999833106995,
+            "ADS": 0.8500000238418579,
+            "Precision": 1.2999999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_Specter6x",
+            "ParentClass": "Akol_Specter6x_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_Exps",
+            "ParentClass": "Akol_Exps_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_StarlightOptic",
+            "ParentClass": "Akol_StarlightOptic_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_Okp77",
+            "ParentClass": "Akol_Okp77_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_MosinMount_HoloOptic",
+            "ParentClass": "HoloOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponOpticsMosin"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_PistolMount_NoAttachment",
+            "ParentClass": "Akol_PistolMount_NoAttachment_Base",
+            "Category": "Flashlight",
+            "TierKey": "Flashlight_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0399999618530274,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_PistolMount_M68Optic",
+            "ParentClass": "M68Optic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_PistolMount_M4_T3NRDSOptic",
+            "ParentClass": "M4_T3NRDSOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_PistolMount_ReflexOptic",
+            "ParentClass": "ReflexOptic",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_PistolMount_MRDSMount",
+            "ParentClass": "Akol_MRDSMount_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_PistolMount_Exps",
+            "ParentClass": "Akol_Exps_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_PistolMount_Okp77",
+            "ParentClass": "Akol_Okp77_Base",
+            "Category": "Optic",
+            "TierKey": "LightOptic_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.9850000143051148,
+            "ADS": 1.0499999523162842,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Akol_PistolMount_HoloOptic",
+            "ParentClass": "HoloOptic",
+            "Category": "Flashlight",
+            "TierKey": "Flashlight_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0399999618530274,
+            "ADS": 0.9599999785423279,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "pistolFlashlight"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        }
+    ]
+}

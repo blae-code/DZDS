@@ -1,0 +1,25 @@
+{
+    "VehicleClassName": "AIConvoy_Car",
+    "VehicleAttachments": [
+        "Offroad_02_Wheel",
+        "Offroad_02_Wheel",
+        "Offroad_02_Wheel",
+        "Offroad_02_Wheel",
+        "Offroad_02_Wheel",
+        "Offroad_02_Door_1_1",
+        "Offroad_02_Door_1_2",
+        "Offroad_02_Door_2_1",
+        "Offroad_02_Door_2_2",
+        "Offroad_02_Trunk",
+        "Offroad_02_Hood",
+        "CarBattery",
+        "GlowPlug",
+        "HeadlightH7",
+        "HeadlightH7"
+    ],
+    "CargoItems": [],
+    "CargoPresets": ["AIConvoy_Weapon", "AIConvoy_Ammo", "AIConvoy_Gear", "AIConvoy_Medical", "AIConvoy_Food"],
+    "VehicleDamageStopThreshold": 0.3,
+    "StopDamageTotal": 6750,
+    "RuinEngineOnStop": 1
+}

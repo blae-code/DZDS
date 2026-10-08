@@ -1,0 +1,1160 @@
+{
+    "ModUpdateVersion_Do_Not_Change": 6,
+    "Supply_Drop_Notifications_Description": "Set the type of notifications for CH-47s. 0 = disabled. 1 = Server message prefix with coordinates. 2 = Server message prefix with location name and no coordinates. 3 = Server message prefix with location name and coordinates.",
+    "Supply_Drop_Notifications": 0,
+    "Notification_Display_Time": 10.0,
+    "Notification_Title": "[Animated Dynamic Helicopters]",
+    "Notification_Message_Prefix": "A CH-47 is heading towards ",
+    "Notification_Icon": "set:dayz_gui image:get_in_pilot",
+    "Notification_Transport_Player_Location_Name": "a player who requested an extraction.",
+    "Notification_Supply_Player_Location_Name": "a player who requested supplies.",
+    "Notification_Vehicle_Player_Location_Name": "a player who requested a vehicle.",
+    "Enable_CH47_Transport": 0,
+    "Transport_Health_Description": "Set the health of the Transport CH-47, values of 0 or less will make it invincible. Max health is 100000.",
+    "Transport_Health": -1.0,
+    "Transport_Volume_Description": "Set the volume of the Transport CH-47, values range from 0.0 to 1.0.",
+    "Transport_Volume": 1.0,
+    "Transport_Speed_Description": "Set the speed of the Transport CH-47 in meters per second. Higher values can effect player safety when standing in moving helicopter as well as visual instability. Recommended to sit in a seat during flight.",
+    "Transport_Speed": 35.0,
+    "Transport_Altitude_Description": "Set the cruising altitude of the Transport CH-47 in meters.",
+    "Transport_Altitude": 250.0,
+    "Transport_Altitude_Tolerance_Description": "Set the tolerance for the cruising altitude of the Transport CH-47 in meters. Lower values result in more precise altitude control, however the max speed of altitude change is set to 9m/s due to player safety.",
+    "Transport_Altitude_Tolerance": 50.0,
+    "Transport_Return_Delay_Description": "Set the delay in seconds before the Transport CH-47 returns to its first location after landing and no players being nearby.",
+    "Transport_Return_Delay_In_Seconds": 300.0,
+    "Supply_Drop_Event_Type_Description": "Set the type(s) of supply drop events that are enabled. 0 = disabled. 1 = dynamic/config controlled only. 2 = player called/triggered only. 3 = both types enabled.",
+    "Supply_Drop_Event_Type": 3,
+    "Disable_Vehicle_Drop_Description": "Set whether or not to disable the dynamic event randomly selecting the vehicle drops instead of supply drops. Does not effect player triggered vehicle drops.",
+    "Disable_Vehicle_Drop": 1,
+    "Supply_Drop_Health_Description": "Set the health of the Supply Drop CH-47, values of 0 or less will make it invincible. Max health is 100000.",
+    "Supply_Drop_Health": 1000.0,
+    "Supply_Drop_Volume_Description": "Set the volume of the Supply Drop CH-47, values range from 0.0 to 1.0.",
+    "Supply_Drop_Volume": 1.0,
+    "Supply_Drop_Speed_Description": "Set the speed of the Supply Drop CH-47 in meters per second.",
+    "Supply_Drop_Speed": 40.0,
+    "Supply_Drop_Altitude_Description": "Set the cruising altitude of the Supply Drop CH-47 in meters.",
+    "Supply_Drop_Altitude": 200.0,
+    "Supply_Drop_Altitude_Tolerance_Description": "Set the tolerance for the cruising altitude of the Supply Drop CH-47 in meters. Lower values result in more precise altitude control.",
+    "Supply_Drop_Altitude_Tolerance": 50.0,
+    "Max_Count_Of_Supply_Drops_Description": "Set the maximum of supply drops allowed on the map at the same time. Counts both flying and landed supply drops.",
+    "Max_Count_Of_Supply_Drops": 2,
+    "Lifetime_Of_Supply_Drop_In_Seconds_Description": "Set the lifetime of the supply drops in seconds. This will reset each time a player is nearby the supply drop.",
+    "Lifetime_Of_Supply_Drop_In_Seconds": 2100.0,
+    "Delay_In_Seconds_Until_Next_Supply_Drop_Event_Description": "Set the min/max delay in seconds until a new supply drop event is spawned. A random time in between the min/max will be chosen each time a supply drop event is scheduled to spawn.",
+    "Minimum_Delay_In_Seconds_Until_Next_Supply_Drop_Event": 1800.0,
+    "Maximum_Delay_In_Seconds_Until_Next_Supply_Drop_Event": 3600.0,
+    "CH47_NoFlyZones": [
+        {
+            "Zone_Name": "Example Zone",
+            "Zone_Center": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "Zone_Radius": 0.0
+        }
+    ],
+    "CH47_Transportation": [
+        {
+            "Location_Name": "Example Location",
+            "Location_Position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "Location_Orientation": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "Radio_Position": [
+                0.0,
+                0.0,
+                0.0
+            ],
+            "Radio_Orientation": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        }
+    ],
+    "CH47_SupplyDrop": [
+        {
+            "Supply_Drop_Name": "Camo Container Location",
+            "Supply_Drop_Type": "AirDropCargoContainerCamo",
+            "Enable_Use_Random_Location_Generation": 1,
+            "Location_Radius": 100.0,
+            "Location_Positions": [
+                "0 0 0",
+                "0 0 0",
+                "0 0 0"
+            ],
+            "Cargo_Loot_Minimum_Amount_Of_Items": 10,
+            "Cargo_Loot_Maximum_Amount_Of_Items": 20,
+            "Mannequin_Loot": [
+                {
+                    "ItemType": "FAL",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "Mag_FAL_20Rnd",
+                        "ACOGOptic_6x",
+                        "Fal_OeBttstck"
+                    ]
+                },
+                {
+                    "ItemType": "SVD",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "AK_Suppressor",
+                        "Mag_SVD_10Rnd",
+                        "PSO1Optic",
+                        "Battery9V"
+                    ]
+                },
+                {
+                    "ItemType": "Mich2001Helmet",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "NVGoggles",
+                        "Battery9V",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                },
+                {
+                    "ItemType": "SportGlasses_Black",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "BalaclavaMask_BDU",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMKJacket_Navy",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "PlateCarrierVest_Camo",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "PlateCarrierHolster_Camo",
+                        "Deagle_Gold",
+                        "Mag_Deagle_9rnd",
+                        "PistolSuppressor",
+                        "PistolOptic",
+                        "PlateCarrierPouches_Camo"
+                    ]
+                },
+                {
+                    "ItemType": "AliceBag_Camo",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMNOGloves_Gray",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "Armband_DayZ",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMKPants_Navy",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "MilitaryBelt",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "PlateCarrierHolster_Camo",
+                        "MKII",
+                        "Mag_MKII_10Rnd",
+                        "Canteen",
+                        "NylonKnifeSheath",
+                        "CombatKnife"
+                    ]
+                },
+                {
+                    "ItemType": "MilitaryBoots_Black",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "CombatKnife"
+                    ]
+                }
+            ],
+            "Weaponcase_1_Loot": [
+                {
+                    "ItemType": "M4A1",
+                    "Note1": "Only 1 config in this category will be selected at random for the weapon case #1.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "M4_Suppressor",
+                        "Mag_STANAG_60Rnd",
+                        "M4_RISHndgrd",
+                        "M4_OEBttstck",
+                        "ACOGOptic_6x",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                }
+            ],
+            "Weaponcase_2_Loot": [
+                {
+                    "ItemType": "AKM",
+                    "Note1": "Only 1 config in this category will be selected at random for the weapon case #2.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "AK_Suppressor",
+                        "Mag_AKM_Drum75Rnd",
+                        "AK_WoodBttstck_Camo",
+                        "AK_RailHndgrd_Green",
+                        "KobraOptic",
+                        "Battery9V",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                }
+            ],
+            "Attached_Container_Loot": [
+                {
+                    "ItemType": "Barrel_Green",
+                    "Note1": "Only Container_Base inherited items can be attached to the supply drop spot. Can be used to spawn custom/modded containers. Uses cfgspawnabletypes.xml for cargo/attachments."
+                }
+            ],
+            "Cargo_Loot": [
+                {
+                    "ItemType": "TacticalBaconCan",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "BandageDressing",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 0.10000000149011612,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "NailBox",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "M67Grenade",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_308Win_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_556x45_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_762x39_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_762x54_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                }
+            ],
+            "Vehicle_Drop": [
+                {
+                    "VehicleType": "Offroad_02",
+                    "Note1": "This category will chose a random vehicle config when the helicopter is carrying a vehicle instead of a supply drop.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning vehicle attachments. If left empty the cfgspawnabletypes.xml will be used instead.",
+                    "ItemAttachments": [
+                        "HeadlightH7",
+                        "HeadlightH7",
+                        "CarBattery",
+                        "GlowPlug",
+                        "Offroad_02_Door_1_1",
+                        "Offroad_02_Door_1_2",
+                        "Offroad_02_Door_2_1",
+                        "Offroad_02_Door_2_2",
+                        "Offroad_02_Hood",
+                        "Offroad_02_Trunk",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "CanisterGasoline"
+                    ]
+                }
+            ]
+        },
+        {
+            "Supply_Drop_Name": "Red Container Location",
+            "Supply_Drop_Type": "AirDropCargoContainerRed",
+            "Enable_Use_Random_Location_Generation": 1,
+            "Location_Radius": 100.0,
+            "Location_Positions": [
+                "0 0 0",
+                "0 0 0",
+                "0 0 0"
+            ],
+            "Cargo_Loot_Minimum_Amount_Of_Items": 10,
+            "Cargo_Loot_Maximum_Amount_Of_Items": 20,
+            "Mannequin_Loot": [
+                {
+                    "ItemType": "FAL",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "Mag_FAL_20Rnd",
+                        "ACOGOptic_6x",
+                        "Fal_OeBttstck"
+                    ]
+                },
+                {
+                    "ItemType": "SVD",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "AK_Suppressor",
+                        "Mag_SVD_10Rnd",
+                        "PSO1Optic",
+                        "Battery9V"
+                    ]
+                },
+                {
+                    "ItemType": "Mich2001Helmet",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "NVGoggles",
+                        "Battery9V",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                },
+                {
+                    "ItemType": "SportGlasses_Black",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "BalaclavaMask_BDU",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMKJacket_Navy",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "PlateCarrierVest_Camo",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "PlateCarrierHolster_Camo",
+                        "Deagle_Gold",
+                        "Mag_Deagle_9rnd",
+                        "PistolSuppressor",
+                        "PistolOptic",
+                        "PlateCarrierPouches_Camo"
+                    ]
+                },
+                {
+                    "ItemType": "AliceBag_Camo",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMNOGloves_Gray",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "Armband_DayZ",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMKPants_Navy",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "MilitaryBelt",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "PlateCarrierHolster_Camo",
+                        "MKII",
+                        "Mag_MKII_10Rnd",
+                        "Canteen",
+                        "NylonKnifeSheath",
+                        "CombatKnife"
+                    ]
+                },
+                {
+                    "ItemType": "MilitaryBoots_Black",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "CombatKnife"
+                    ]
+                }
+            ],
+            "Weaponcase_1_Loot": [
+                {
+                    "ItemType": "M4A1",
+                    "Note1": "Only 1 config in this category will be selected at random for the weapon case #1.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "M4_Suppressor",
+                        "Mag_STANAG_60Rnd",
+                        "M4_RISHndgrd",
+                        "M4_OEBttstck",
+                        "ACOGOptic_6x",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                }
+            ],
+            "Weaponcase_2_Loot": [
+                {
+                    "ItemType": "AKM",
+                    "Note1": "Only 1 config in this category will be selected at random for the weapon case #2.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "AK_Suppressor",
+                        "Mag_AKM_Drum75Rnd",
+                        "AK_WoodBttstck_Camo",
+                        "AK_RailHndgrd_Green",
+                        "KobraOptic",
+                        "Battery9V",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                }
+            ],
+            "Attached_Container_Loot": [
+                {
+                    "ItemType": "Barrel_Green",
+                    "Note1": "Only Container_Base inherited items can be attached to the supply drop spot. Can be used to spawn custom/modded containers. Uses cfgspawnabletypes.xml for cargo/attachments."
+                }
+            ],
+            "Cargo_Loot": [
+                {
+                    "ItemType": "TacticalBaconCan",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "BandageDressing",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 0.10000000149011612,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "NailBox",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "M67Grenade",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_308Win_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_556x45_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_762x39_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_762x54_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                }
+            ],
+            "Vehicle_Drop": [
+                {
+                    "VehicleType": "Offroad_02",
+                    "Note1": "This category will chose a random vehicle config when the helicopter is carrying a vehicle instead of a supply drop.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning vehicle attachments. If left empty the cfgspawnabletypes.xml will be used instead.",
+                    "ItemAttachments": [
+                        "HeadlightH7",
+                        "HeadlightH7",
+                        "CarBattery",
+                        "GlowPlug",
+                        "Offroad_02_Door_1_1",
+                        "Offroad_02_Door_1_2",
+                        "Offroad_02_Door_2_1",
+                        "Offroad_02_Door_2_2",
+                        "Offroad_02_Hood",
+                        "Offroad_02_Trunk",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "CanisterGasoline"
+                    ]
+                }
+            ]
+        },
+        {
+            "Supply_Drop_Name": "Blue Container Location",
+            "Supply_Drop_Type": "AirDropCargoContainerBlue",
+            "Enable_Use_Random_Location_Generation": 1,
+            "Location_Radius": 100.0,
+            "Location_Positions": [
+                "0 0 0",
+                "0 0 0",
+                "0 0 0"
+            ],
+            "Cargo_Loot_Minimum_Amount_Of_Items": 10,
+            "Cargo_Loot_Maximum_Amount_Of_Items": 20,
+            "Mannequin_Loot": [
+                {
+                    "ItemType": "FAL",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "Mag_FAL_20Rnd",
+                        "ACOGOptic_6x",
+                        "Fal_OeBttstck"
+                    ]
+                },
+                {
+                    "ItemType": "SVD",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "AK_Suppressor",
+                        "Mag_SVD_10Rnd",
+                        "PSO1Optic",
+                        "Battery9V"
+                    ]
+                },
+                {
+                    "ItemType": "Mich2001Helmet",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "NVGoggles",
+                        "Battery9V",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                },
+                {
+                    "ItemType": "SportGlasses_Black",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "BalaclavaMask_BDU",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMKJacket_Navy",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "PlateCarrierVest_Camo",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "PlateCarrierHolster_Camo",
+                        "Deagle_Gold",
+                        "Mag_Deagle_9rnd",
+                        "PistolSuppressor",
+                        "PistolOptic",
+                        "PlateCarrierPouches_Camo"
+                    ]
+                },
+                {
+                    "ItemType": "AliceBag_Camo",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMNOGloves_Gray",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "Armband_DayZ",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMKPants_Navy",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "MilitaryBelt",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "PlateCarrierHolster_Camo",
+                        "MKII",
+                        "Mag_MKII_10Rnd",
+                        "Canteen",
+                        "NylonKnifeSheath",
+                        "CombatKnife"
+                    ]
+                },
+                {
+                    "ItemType": "MilitaryBoots_Black",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "CombatKnife"
+                    ]
+                }
+            ],
+            "Weaponcase_1_Loot": [
+                {
+                    "ItemType": "M4A1",
+                    "Note1": "Only 1 config in this category will be selected at random for the weapon case #1.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "M4_Suppressor",
+                        "Mag_STANAG_60Rnd",
+                        "M4_RISHndgrd",
+                        "M4_OEBttstck",
+                        "ACOGOptic_6x",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                }
+            ],
+            "Weaponcase_2_Loot": [
+                {
+                    "ItemType": "AKM",
+                    "Note1": "Only 1 config in this category will be selected at random for the weapon case #2.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "AK_Suppressor",
+                        "Mag_AKM_Drum75Rnd",
+                        "AK_WoodBttstck_Camo",
+                        "AK_RailHndgrd_Green",
+                        "KobraOptic",
+                        "Battery9V",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                }
+            ],
+            "Attached_Container_Loot": [
+                {
+                    "ItemType": "Barrel_Green",
+                    "Note1": "Only Container_Base inherited items can be attached to the supply drop spot. Can be used to spawn custom/modded containers. Uses cfgspawnabletypes.xml for cargo/attachments."
+                }
+            ],
+            "Cargo_Loot": [
+                {
+                    "ItemType": "TacticalBaconCan",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "BandageDressing",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 0.10000000149011612,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "NailBox",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "M67Grenade",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_308Win_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_556x45_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_762x39_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_762x54_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                }
+            ],
+            "Vehicle_Drop": [
+                {
+                    "VehicleType": "Offroad_02",
+                    "Note1": "This category will chose a random vehicle config when the helicopter is carrying a vehicle instead of a supply drop.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning vehicle attachments. If left empty the cfgspawnabletypes.xml will be used instead.",
+                    "ItemAttachments": [
+                        "HeadlightH7",
+                        "HeadlightH7",
+                        "CarBattery",
+                        "GlowPlug",
+                        "Offroad_02_Door_1_1",
+                        "Offroad_02_Door_1_2",
+                        "Offroad_02_Door_2_1",
+                        "Offroad_02_Door_2_2",
+                        "Offroad_02_Hood",
+                        "Offroad_02_Trunk",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "CanisterGasoline"
+                    ]
+                }
+            ]
+        },
+        {
+            "Supply_Drop_Name": "Yellow Container Location",
+            "Supply_Drop_Type": "AirDropCargoContainerYellow",
+            "Enable_Use_Random_Location_Generation": 1,
+            "Location_Radius": 100.0,
+            "Location_Positions": [
+                "0 0 0",
+                "0 0 0",
+                "0 0 0"
+            ],
+            "Cargo_Loot_Minimum_Amount_Of_Items": 10,
+            "Cargo_Loot_Maximum_Amount_Of_Items": 20,
+            "Mannequin_Loot": [
+                {
+                    "ItemType": "FAL",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "Mag_FAL_20Rnd",
+                        "ACOGOptic_6x",
+                        "Fal_OeBttstck"
+                    ]
+                },
+                {
+                    "ItemType": "SVD",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "AK_Suppressor",
+                        "Mag_SVD_10Rnd",
+                        "PSO1Optic",
+                        "Battery9V"
+                    ]
+                },
+                {
+                    "ItemType": "Mich2001Helmet",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "NVGoggles",
+                        "Battery9V",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                },
+                {
+                    "ItemType": "SportGlasses_Black",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "BalaclavaMask_BDU",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMKJacket_Navy",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "PlateCarrierVest_Camo",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "PlateCarrierHolster_Camo",
+                        "Deagle_Gold",
+                        "Mag_Deagle_9rnd",
+                        "PistolSuppressor",
+                        "PistolOptic",
+                        "PlateCarrierPouches_Camo"
+                    ]
+                },
+                {
+                    "ItemType": "AliceBag_Camo",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMNOGloves_Gray",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "Armband_DayZ",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "OMKPants_Navy",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "MilitaryBelt",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "PlateCarrierHolster_Camo",
+                        "MKII",
+                        "Mag_MKII_10Rnd",
+                        "Canteen",
+                        "NylonKnifeSheath",
+                        "CombatKnife"
+                    ]
+                },
+                {
+                    "ItemType": "MilitaryBoots_Black",
+                    "Note1": "Recommended to make a seperate config for each attachment slot on the mannequin. Config order doesn't matter, all configs will be selected and spawned in this category.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "CombatKnife"
+                    ]
+                }
+            ],
+            "Weaponcase_1_Loot": [
+                {
+                    "ItemType": "M4A1",
+                    "Note1": "Only 1 config in this category will be selected at random for the weapon case #1.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "M4_Suppressor",
+                        "Mag_STANAG_60Rnd",
+                        "M4_RISHndgrd",
+                        "M4_OEBttstck",
+                        "ACOGOptic_6x",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                }
+            ],
+            "Weaponcase_2_Loot": [
+                {
+                    "ItemType": "AKM",
+                    "Note1": "Only 1 config in this category will be selected at random for the weapon case #2.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": [
+                        "AK_Suppressor",
+                        "Mag_AKM_Drum75Rnd",
+                        "AK_WoodBttstck_Camo",
+                        "AK_RailHndgrd_Green",
+                        "KobraOptic",
+                        "Battery9V",
+                        "UniversalLight",
+                        "Battery9V"
+                    ]
+                }
+            ],
+            "Attached_Container_Loot": [
+                {
+                    "ItemType": "Barrel_Green",
+                    "Note1": "Only Container_Base inherited items can be attached to the supply drop spot. Can be used to spawn custom/modded containers. Uses cfgspawnabletypes.xml for cargo/attachments."
+                }
+            ],
+            "Cargo_Loot": [
+                {
+                    "ItemType": "TacticalBaconCan",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "BandageDressing",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 0.10000000149011612,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "NailBox",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 1,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "M67Grenade",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_308Win_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_556x45_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_762x39_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                },
+                {
+                    "ItemType": "AmmoBox_762x54_20Rnd",
+                    "Minimum_Amount_Of_Item": 1,
+                    "Maximum_Amount_Of_Item": 4,
+                    "Minimum_Quantity": 1.0,
+                    "Maximum_Quantity": 1.0,
+                    "Note1": "This category will chose configs at random based on the Cargo_Loot_Minimum/Maximum_Amount_Of_Items. If selected config's Minimum/Maximum_Amount_Of_Item is set to 0 there is a chance to spawn nothing.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning matching ammo/mags.",
+                    "ItemAttachments": []
+                }
+            ],
+            "Vehicle_Drop": [
+                {
+                    "VehicleType": "Offroad_02",
+                    "Note1": "This category will chose a random vehicle config when the helicopter is carrying a vehicle instead of a supply drop.",
+                    "Note2": "Any extra items added to the ItemAttachments list that do not fit/attach will be added to the cargo instead. Recommended for spawning vehicle attachments. If left empty the cfgspawnabletypes.xml will be used instead.",
+                    "ItemAttachments": [
+                        "HeadlightH7",
+                        "HeadlightH7",
+                        "CarBattery",
+                        "GlowPlug",
+                        "Offroad_02_Door_1_1",
+                        "Offroad_02_Door_1_2",
+                        "Offroad_02_Door_2_1",
+                        "Offroad_02_Door_2_2",
+                        "Offroad_02_Hood",
+                        "Offroad_02_Trunk",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "Offroad_02_Wheel",
+                        "CanisterGasoline"
+                    ]
+                }
+            ]
+        }
+    ]
+}

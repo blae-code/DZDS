@@ -1,0 +1,12 @@
+{
+    "Version": 1,
+    "CanCraftHuntingCabinKit": 1,
+    "RuinHammerAfterBuilt": 1,
+    "GiveBackMaterialsAfterDismantle": 1,
+    "GiveBackKitAfterDismantle": 1,
+    "EnableSnowyRoofTexture": 0,
+    "NailAmount": 99.0,
+    "WoodenPlankAmount": 100.0,
+    "WoodenLogAmount": 20.0,
+    "StoneAmount": 32.0
+}
