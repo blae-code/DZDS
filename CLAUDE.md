@@ -92,7 +92,11 @@ faction classes (use `INTERIM=1`). Overlays naming @DZDS classes carry `requires
 daemon's RCON path stays offline. Findings kept for later: **RCON (26093) gives no reply even with the server's own password** (BattlEye active
 cfg in `/battleye/`, RConPort 26093), while A2S on 26092 answers: a Godlike UDP/port issue,
 ask support. Also, `.env`'s RCON_PASSWORD differs from the server's (compared by hash).
-Panel: first person + no crosshair set 2026-10-07. **Pruned 2026-10-07 to fit: 82 Workshop
+Panel: first person + no crosshair set 2026-10-07.
+**Joining: the official DayZ Launcher can't read our mod list** (A2S_RULES is one capped
+3 KB reply, 32 rules, mod list truncated: "Server can't transmit all data"). The DZSA
+Launcher API sees all 81 client mods, so players join via DZSA (Windows) or DZGUI (Linux).
+Server is password-protected. **Pruned 2026-10-07 to fit: 82 Workshop
 mods, 11.8 GB, ~10 GB RAM est.** (docs/PRUNING.md, top).
 Badlands releases Oct 2026: `docs/BADLANDS_PREP.md`.
 
