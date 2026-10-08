@@ -1,0 +1,7 @@
+# Expansion-Missions (Blae, 2026-10-07): random airdrops OFF, so they don't double up with
+# Airdrop-Upgraded (rule 12, one system per job). The ContaminatedArea_* missions are left as
+# Expansion ships them, which is OFF (Enabled 0 in all 13, first modded boot 2026-10-07).
+root: mission                          # $mission:expansion/missions/Airdrop_Random_*.json
+target: expansion/missions/Airdrop_*.json
+values:
+  Enabled: 0

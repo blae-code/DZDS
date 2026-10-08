@@ -45,3 +45,10 @@ server/mpmissions/*/mapgroup*.xml
 # Server runtime cache + its own profile
 server/profiles/DataCache/
 server/profiles/users/
+
+# Mod-written secrets and runtime logs (first modded boot, 2026-10-07)
+server/profiles/VPPAdminTools/Permissions/credentials.txt
+server/profiles/VPPAdminTools/ConfigurablePlugins/SteamAPI.json
+server/profiles/VPPAdminTools/Logging/
+server/profiles/*/logs/
+server/profiles/*/Logs/

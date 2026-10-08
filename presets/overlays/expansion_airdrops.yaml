@@ -1,0 +1,16 @@
+# Expansion airdrop loot (Blae, 2026-10-07). Expansion's random airdrops are OFF
+# (expansion_missions.yaml): Airdrop-Upgraded is the one airdrop system (rule 12).
+# This table is still used by Expansion supply-signal flares, so keep it clean anyway:
+# - its defaults include items from DayZ-Expansion-BaseBuilding, which we don't run; the
+#   loot spawner throws a VM exception on them ("Couldn't spawn ExpansionBoltCutters",
+#   first modded boot 2026-10-07)
+# - drop markers are 3D/map HUD markers, banned by design pillar 6
+root: profiles                         # $profile:ExpansionMod/Settings/AirdropSettings.json
+target: ExpansionMod/Settings/AirdropSettings.json
+values:
+  Server3DMarkerOnDropLocation: 0
+  ServerMarkerOnDropLocation: 0
+  ShowAirdropTypeOnMarker: 0
+remove_classnames:
+  - ExpansionBoltCutters               # DayZ-Expansion-BaseBuilding (objects_misc.pbo)
+  - ExpansionPropaneTorch              # DayZ-Expansion-BaseBuilding (objects_misc.pbo)

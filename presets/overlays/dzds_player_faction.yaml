@@ -1,0 +1,9 @@
+# Players join the Settlers (docs/FACTIONS.md). DZDSSettlers is a class in our @DZDS mod, so
+# this only applies once @DZDS is enabled in config/mods.yaml. Without it, Expansion AI's
+# eAIFaction.Create logs "Invalid faction name" on every player connect and leaves the player
+# factionless, the same as an empty list (read from ai_scripts.pbo, 2026-10-07).
+requires_mod: "@DZDS"
+root: profiles
+target: ExpansionMod/Settings/AISettings.json
+values:
+  PlayerFactions: [DZDSSettlers]

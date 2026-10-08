@@ -23,7 +23,11 @@ while IFS= read -r -d '' f; do
       fi ;;
   esac
 done < <(find "$@" -type f \( -iname '*.json' -o -iname '*.xml' \) \
-           -not -path '*/storage_*/*' -print0 2>/dev/null)
+           -not -path '*/storage_*/*' \
+           -not -name 'VPPMapAirdrop.json' \
+           -print0 2>/dev/null)
+# VPPMapAirdrop.json: written by VPPAdminTools in its own non-JSON format ("{...},{...}" with
+# no enclosing array, bare backslash paths). Mod-owned admin-map data; we never edit or push it.
 
 echo "Checked $count file(s), $fail failure(s)."
 [[ $fail -eq 0 ]]

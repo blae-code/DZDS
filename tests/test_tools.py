@@ -80,12 +80,67 @@ def test_overlay_merge_only_existing_keys():
     assert missing == ["MapData.madeUp"]
 
 
+def test_overlay_bool_keeps_int_type_of_real_file():
+    # Expansion writes flags as 0/1; a YAML true/false must not turn them into JSON booleans
+    import apply_overlays as ov
+    data = {"ShowHardlineHUD": 1, "UseReputation": 0, "enabled": True}
+    changes, _ = ov.merge(data, {"ShowHardlineHUD": False, "UseReputation": True, "enabled": False})
+    assert data == {"ShowHardlineHUD": 0, "UseReputation": 1, "enabled": False}
+    assert type(data["ShowHardlineHUD"]) is int and type(data["UseReputation"]) is int
+    assert ov.merge(data, {"ShowHardlineHUD": False}) == ([], [])     # 0 == False: no-op
+
+
+def test_overlay_requires_mod_gates_on_mods_yaml():
+    # values naming @DZDS classes must not be written while @DZDS isn't loaded: Expansion
+    # logs "Invalid faction name" on every connect and the setting does nothing
+    import apply_overlays as ov
+    mods = [{"folder": "@DZDS", "enabled": False}, {"folder": "@CF", "enabled": True}]
+    assert ov.mod_enabled("@CF", mods) and not ov.mod_enabled("@DZDS", mods)
+    assert not ov.mod_enabled("@Nope", mods)
+
+
+def test_dzds_class_overlays_are_gated():
+    import yaml
+    import apply_overlays as ov
+    for f in ov.OVERLAYS.glob("*.yaml"):
+        o = yaml.safe_load(f.read_text())
+        if "DZDS" in yaml.safe_dump(o.get("values") or {}):
+            assert o.get("requires_mod") == "@DZDS", f
+
+
+def test_overlay_remove_classnames_everywhere():
+    import apply_overlays as ov
+    data = {"Containers": [
+        {"Container": "Box", "Loot": [
+            {"Name": "SewingKit", "Attachments": ["ExpansionBoltCutters"], "Variants": []},
+            {"Name": "ExpansionBoltCutters", "Attachments": [], "Variants": []},
+            {"Name": "Rope", "Attachments": [], "Variants": [{"Name": "ExpansionPropaneTorch"}]},
+        ]},
+    ]}
+    removed = ov.remove_classnames(data, {"ExpansionBoltCutters", "ExpansionPropaneTorch"})
+    loot = data["Containers"][0]["Loot"]
+    assert [e["Name"] for e in loot] == ["SewingKit", "Rope"]
+    assert loot[0]["Attachments"] == [] and loot[1]["Variants"] == []
+    assert sorted(removed) == ["ExpansionBoltCutters", "ExpansionBoltCutters", "ExpansionPropaneTorch"]
+    assert data["Containers"][0]["Container"] == "Box"     # non-list values untouched
+
+
+def test_overlay_glob_target_hits_every_match(tmp_path, monkeypatch):
+    import apply_overlays as ov
+    for n in ("Airdrop_A", "Airdrop_B", "ContaminatedArea_C"):
+        (tmp_path / f"{n}.json").write_text('{"Enabled": 1}')
+    monkeypatch.setattr(ov, "resolve", lambda root: tmp_path)
+    assert [p.name for p in ov.targets({"root": "mission", "target": "Airdrop_*.json"})] == \
+        ["Airdrop_A.json", "Airdrop_B.json"]
+
+
 def test_overlay_presets_well_formed():
     import yaml
     import apply_overlays as ov
     for f in ov.OVERLAYS.glob("*.yaml"):
         o = yaml.safe_load(f.read_text())
-        assert o["root"] in {"profiles", "mission"} and o["target"].endswith(".json") and o["values"], f
+        assert o["root"] in {"profiles", "mission"} and o["target"].endswith(".json"), f
+        assert o.get("values") or o.get("remove_classnames"), f
 
 
 def test_spec_estimate_scales_with_mod_size():
