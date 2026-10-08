@@ -14,12 +14,12 @@ tolerance_reputation: 50
 markers:
   offset: [12, 12]          # metres from the site centre (keep markers off roads)
   by_holder:
-    Peacekeepers: null      # e.g. a UN-flag pole or barrier set
-    Rust: null              # e.g. an industrial barrel stack / warning sign
-    Karkas: null            # e.g. a bone totem / cairn
-    Jackals: null           # e.g. a tyre fire / skull pole
-    Settlers: null          # e.g. a laundry line / settler sign
-    contested: null         # e.g. burnt-out car wreck
+    Peacekeepers: StaticObj_Mil_HBarrier_4m              # Hesco barrier: checkpoint
+    Rust: StaticObj_Misc_Pallets2                        # industrial stockpile
+    Karkas: StaticObj_Forest_DeerSkeleton_Skull          # bone totem
+    Jackals: StaticObj_Misc_TirePile                     # raider tyre dump
+    Settlers: StaticObj_Misc_HayBale_Packed_Stack        # farm winter stock
+    contested: StaticObj_ShellCrater2_Small              # fought-over ground
 
 # GM world actions (src/gamemaster/schema.py EventTarget) -> objects @DZDS may spawn.
 # Everything listed here becomes the server-side spawn allowlist.

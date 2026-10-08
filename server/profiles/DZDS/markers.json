@@ -1,3 +1,106 @@
 {
-    "Markers": []
+    "Markers": [
+        {
+            "ClassName": "StaticObj_Forest_DeerSkeleton_Skull",
+            "X": 8142.0,
+            "Z": 9292.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Mil_HBarrier_4m",
+            "X": 4512.0,
+            "Z": 2512.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_Pallets2",
+            "X": 12312.0,
+            "Z": 9512.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Forest_DeerSkeleton_Skull",
+            "X": 10292.0,
+            "Z": 12062.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_Pallets2",
+            "X": 6712.0,
+            "Z": 2512.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_Pallets2",
+            "X": 10412.0,
+            "Z": 2212.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_TirePile",
+            "X": 9512.0,
+            "Z": 8912.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Mil_HBarrier_4m",
+            "X": 3712.0,
+            "Z": 6002.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_ShellCrater2_Small",
+            "X": 11212.0,
+            "Z": 12312.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Mil_HBarrier_4m",
+            "X": 4612.0,
+            "Z": 10212.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_HayBale_Packed_Stack",
+            "X": 11512.0,
+            "Z": 14412.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_ShellCrater2_Small",
+            "X": 8012.0,
+            "Z": 12712.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_ShellCrater2_Small",
+            "X": 6112.0,
+            "Z": 7712.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Forest_DeerSkeleton_Skull",
+            "X": 1612.0,
+            "Z": 14012.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_Pallets2",
+            "X": 10372.0,
+            "Z": 3612.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_HayBale_Packed_Stack",
+            "X": 3812.0,
+            "Z": 8912.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Mil_HBarrier_4m",
+            "X": 2712.0,
+            "Z": 5212.0,
+            "Yaw": 0.0
+        }
+    ]
 }
