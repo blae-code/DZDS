@@ -1,6 +1,6 @@
 {
     "Version": 8,
-    "NextEventSerial": 13,
+    "NextEventSerial": 16,
     "Camps": [
         {
             "Id": "Balota_Survivor_Camp",
@@ -1221,7 +1221,7 @@
             "Progress": {
                 "Level": 1,
                 "Experience": 0,
-                "Morale": 62,
+                "Morale": 38,
                 "RaidWins": 0,
                 "RaidLosses": 0,
                 "TotalLootItems": 0,
@@ -1554,6 +1554,36 @@
                     "CampId": "Balota_Survivor_Camp",
                     "CampName": "Balota Survivor Camp",
                     "Timestamp": "8/10 07:24",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 13,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 08:04",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 14,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 08:44",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 15,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 10:04",
                     "Category": 5,
                     "Severity": 1,
                     "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
