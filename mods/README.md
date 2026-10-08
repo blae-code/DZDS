@@ -19,10 +19,12 @@ DayZ loads mods as signed PBOs:
   addons/dzds_scripts.pbo.dzds.bisign
   keys/dzds.bikey                <- copy to the server's keys/
 ```
-1. **Pack**: DayZ Tools' Addon Builder (Steam, free; Windows, or try it under Proton), with
-   the source `mods/DZDS` and prefix `DZDS`. Linux-native PBO packers exist but are untested here.
-2. **Sign**: DayZ Tools' DS Utils: create a key pair once (`dzds.biprivatekey` stays private,
-   gitignored; `dzds.bikey` is public), then sign the PBO.
+1. **Pack + sign: `scripts/build_dzds.sh`** (2026-10-07). Packs with `tools/pack_pbo.py`
+   (Addon Builder hangs at a first-run window under Proton) and signs with DayZ Tools'
+   `DSSignFile.exe` under Proton Experimental, writing a v3 `.bisign`. Output: `build/@DZDS`.
+2. **Keys**: made once with `DSCreateKey.exe dzds` into `build/keys/` (gitignored).
+   `dzds.biprivatekey` is mode 600 and never leaves this PC; `dzds.bikey` ships with the mod.
+   Lose the private key and every future build needs a new key on the server and clients.
 3. Put the packed mod in `build/@DZDS` (local test server links it from there). Copy `@DZDS` to the server and to each player's DayZ folder (or publish it to the Workshop
    as unlisted/friends-only so the launcher fetches it).
 4. Enable `DZDS (local)` in `config/mods.yaml`.
