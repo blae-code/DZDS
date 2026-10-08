@@ -1,0 +1,6 @@
+# Expansion P2P Market OFF (Blae, 2026-10-07: not wanted). Expansion ships it enabled.
+# Player trading stays face to face; the economy is vanilla CE + faction barter traders.
+root: mission                          # $mission:expansion/settings/P2PMarketSettings.json
+target: expansion/settings/P2PMarketSettings.json
+values:
+  Enabled: 0

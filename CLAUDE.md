@@ -83,12 +83,13 @@ This file holds the rules you must follow when working in this repo.
 ## Current stage
 **First modded boot 2026-10-07 20:23: all 82 mods loaded, server up.** It threw one VM
 exception (Expansion airdrop loot named BaseBuilding items we don't run); fixed by the
-`expansion_airdrops`/`expansion_missions` overlays. Expansion ships the virtual Garage ON
-(now off via overlay) and the P2P Market ON (undecided). **Generated configs only exist after
+`expansion_airdrops`/`expansion_missions` overlays. Expansion ships the virtual Garage and
+the P2P Market ON; both are off via overlays (P2P: Blae, 2026-10-07, not wanted). **Generated configs only exist after
 a boot: after any mod change, `make pull` → `make overlays calibrate validate` → `make push`.**
 Do NOT run `make prepare-restart` until @DZDS is enabled: its `patrols` step writes DZDS*
 faction classes (use `INTERIM=1`). Overlays naming @DZDS classes carry `requires_mod: "@DZDS"`.
-**RCON (26093) still gives no reply even with the server's own password** (BattlEye active
+**RCON is DEFERRED (Blae, 2026-10-07: don't pursue RCON features for now)**, so the GM
+daemon's RCON path stays offline. Findings kept for later: **RCON (26093) gives no reply even with the server's own password** (BattlEye active
 cfg in `/battleye/`, RConPort 26093), while A2S on 26092 answers: a Godlike UDP/port issue,
 ask support. Also, `.env`'s RCON_PASSWORD differs from the server's (compared by hash).
 Panel: first person + no crosshair set 2026-10-07. **Pruned 2026-10-07 to fit: 82 Workshop
