@@ -106,7 +106,8 @@ times against boot times and the script log's last lines before each.
 **Joining: the official DayZ Launcher can't read our mod list** (A2S_RULES is one capped
 3 KB reply, 32 rules, mod list truncated: "Server can't transmit all data"). The DZSA
 Launcher API sees all 81 client mods, so players join via DZSA (Windows) or DZGUI (Linux).
-Server is password-protected. **Pruned 2026-10-07 to fit: 82 Workshop
+Server is password-protected. **DZGUI: add by IP with the QUERY port, 23.229.49.100:26092**
+(26091 is the game port and ignores queries, so DZGUI times out). Installed at ~/Applications/dzgui. **Pruned 2026-10-07 to fit: 82 Workshop
 mods, 11.8 GB, ~10 GB RAM est.** (docs/PRUNING.md, top).
 Badlands releases Oct 2026: `docs/BADLANDS_PREP.md`.
 
