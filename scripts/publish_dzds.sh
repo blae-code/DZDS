@@ -2,10 +2,10 @@
 # Prepare a Steam Workshop upload of @DZDS (Unlisted) and print the steamcmd command to run.
 #
 #   scripts/publish_dzds.sh "first release"     # rebuild, write build/workshop_dzds.vdf
-#   steamcmd +login <you> +workshop_build_item <vdf> +quit    # run by Blae: his Steam login
+#   ~/steamcmd/steamcmd.sh +login <you> +workshop_build_item <vdf> +quit   # Blae: his login
 #   scripts/publish_dzds.sh --record            # after the first upload: save the item ID
 #
-# steamcmd writes the new item's ID back into the .vdf on the first upload; --record copies it
+# steamcmd is Valve's tarball in ~/steamcmd (no AUR package needed). It writes the new item's ID back into the .vdf on the first upload; --record copies it
 # to mods/workshop/publishedfileid (tracked), so later uploads update the same item.
 set -euo pipefail
 
@@ -47,5 +47,5 @@ echo
 echo "Upload folder:"; find "$ROOT/build/@DZDS" -type f -printf '  %P\n'
 echo
 echo "Run (logs in as you; Steam Guard may ask for a code):"
-echo "  steamcmd +login <your steam username> +workshop_build_item $VDF +quit"
+echo "  ~/steamcmd/steamcmd.sh +login <your steam username> +workshop_build_item $VDF +quit"
 [[ "$id" == "0" ]] && echo "Then: scripts/publish_dzds.sh --record"
