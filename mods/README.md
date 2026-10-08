@@ -4,10 +4,10 @@
 
 | Part | Status |
 |---|---|
-| Custom factions (`Scripts/3_Game/DZDS/Factions/DZDSFactions.c`) | written, not yet compiled |
-| Runtime diplomacy overrides (`DZDSDiplomacy.c`, reads `$profile:DZDS/diplomacy.json`) | written, not yet compiled |
-| Per-player tolerance (`4_World/DZDS/DZDSTolerance.c`): Karkas/Rust spare players with enough Hardline reputation | written, not yet compiled |
-| World layer (`4_World/DZDS/DZDSWorld.c`): site markers at start + GM command queue (`$profile:DZDS/queue/*.json`, allowlisted spawns) | written, not yet compiled |
+| Custom factions (`Scripts/3_Game/DZDS/Factions/DZDSFactions.c`) | **compiles and registers on the GSP (2026-10-07)** |
+| Runtime diplomacy overrides (`DZDSDiplomacy.c`, reads `$profile:DZDS/diplomacy.json`) | compiles; untested in play |
+| Per-player tolerance (`4_World/DZDS/DZDSTolerance.c`): Karkas/Rust spare players with enough Hardline reputation. Registered through `DZDSToleranceHook` (3_Game), because 4_World cannot `modded class` a 3_Game class | compiles and registers; untested in play |
+| World layer (`4_World/DZDS/DZDSWorld.c`): site markers at start + GM command queue (`$profile:DZDS/queue/*.json`, allowlisted spawns) | starts on the GSP; 0 markers until `presets/world.yaml` names marker classes |
 | Radio-only GM audio clips | planned (docs/IMMERSION.md) |
 | Extra telemetry (vehicle crashes, site entries) | planned |
 

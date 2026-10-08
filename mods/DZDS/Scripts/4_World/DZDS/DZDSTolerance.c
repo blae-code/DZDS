@@ -7,13 +7,15 @@
  * The Jackals never tolerate anyone.
  *
  * Expansion asks the AI's faction IsFriendlyEntity(player) when deciding whether a player is an
- * enemy (eAIBase.PlayerIsEnemy). Hardline's per-faction reputation API is guarded by these defines.
+ * enemy (eAIBase.PlayerIsEnemy). The Karkas and Rust factions (3_Game) forward that question to
+ * DZDSToleranceHook; this 4_World class answers it and is registered in MissionServer.OnInit.
+ * Hardline's per-faction reputation API is guarded by these defines.
  */
 #ifdef EXPANSIONMODHARDLINE
 #ifdef EXPANSIONMODAI
-class DZDSTolerance
+class DZDSTolerance : DZDSToleranceHook
 {
-	static bool Tolerates(eAIFaction faction, EntityAI other)
+	override bool Check(eAIFaction faction, EntityAI other)
 	{
 		if (!DZDSWorld.s_Settings || DZDSWorld.s_Settings.ToleranceReputation <= 0)
 			return false;
@@ -23,26 +25,6 @@ class DZDSTolerance
 			return false;
 
 		return player.Expansion_GetFactionReputation(faction.GetTypeID()) >= DZDSWorld.s_Settings.ToleranceReputation;
-	}
-};
-
-modded class eAIFactionDZDSKarkas
-{
-	override bool IsFriendlyEntity(EntityAI other, DayZPlayer factionMember = null)
-	{
-		if (super.IsFriendlyEntity(other, factionMember))
-			return true;
-		return DZDSTolerance.Tolerates(this, other);
-	}
-};
-
-modded class eAIFactionDZDSRust
-{
-	override bool IsFriendlyEntity(EntityAI other, DayZPlayer factionMember = null)
-	{
-		if (super.IsFriendlyEntity(other, factionMember))
-			return true;
-		return DZDSTolerance.Tolerates(this, other);
 	}
 };
 #endif

@@ -129,7 +129,9 @@ class eAIFactionDZDSKarkas : eAIFaction
 
 	override bool IsFriendlyEntity(EntityAI other, DayZPlayer factionMember = null)
 	{
-		return other.IsInherited(DayZCreatureAI);
+		if (other.IsInherited(DayZCreatureAI))
+			return true;
+		return DZDSToleranceHook.Tolerates(this, other);
 	}
 };
 
@@ -155,6 +157,34 @@ class eAIFactionDZDSRust : eAIFaction
 
 		if (other.IsInherited(eAIFactionDZDSRust)) return true;
 		if (other.IsPassive()) return true;
+		return false;
+	}
+
+	override bool IsFriendlyEntity(EntityAI other, DayZPlayer factionMember = null)
+	{
+		if (super.IsFriendlyEntity(other, factionMember))
+			return true;
+		return DZDSToleranceHook.Tolerates(this, other);
+	}
+};
+
+//! Per-player tolerance (Karkas, Rust) needs PlayerBase and Hardline reputation, which live in
+//! 4_World. A 4_World class cannot `modded class` these 3_Game factions (server compile error
+//! "Unknown type", 2026-10-07), so 4_World registers an implementation here instead
+//! (DZDSTolerance.c). No implementation registered = nobody is tolerated.
+class DZDSToleranceHook
+{
+	static ref DZDSToleranceHook s_Impl;
+
+	static bool Tolerates(eAIFaction faction, EntityAI other)
+	{
+		if (!s_Impl)
+			return false;
+		return s_Impl.Check(faction, other);
+	}
+
+	bool Check(eAIFaction faction, EntityAI other)
+	{
 		return false;
 	}
 };

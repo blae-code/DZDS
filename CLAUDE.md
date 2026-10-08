@@ -86,6 +86,12 @@ exception (Expansion airdrop loot named BaseBuilding items we don't run); fixed 
 `expansion_airdrops`/`expansion_missions` overlays. Expansion ships the virtual Garage and
 the P2P Market ON; both are off via overlays (P2P: Blae, 2026-10-07, not wanted). **Generated configs only exist after
 a boot: after any mod change, `make pull` → `make overlays calibrate validate` → `make push`.**
+**@DZDS compiles and runs on the GSP (2026-10-07), SERVER-SIDE ONLY** (panel "Server-Side
+Only Mods" = `@2874589934;@dzds;`, folder `/@dzds` uploaded by SFTP from `build/@DZDS`).
+Build: `scripts/build_dzds.sh`. Not yet in `-mod`: clients need it once any DZDS faction is
+synced to them (PlayerFactions, DZDS patrols), so publish to the Workshop (Unlisted) first,
+then flip mods.yaml `enabled: true` and move it to "Additional Mods". **Panel trap:** pasting
+into "Additional Mods" REPLACES the 81-mod list; the server then crash-loops on compile errors.
 Do NOT run `make prepare-restart` until @DZDS is enabled: its `patrols` step writes DZDS*
 faction classes (use `INTERIM=1`). Overlays naming @DZDS classes carry `requires_mod: "@DZDS"`.
 **RCON is DEFERRED (Blae, 2026-10-07: don't pursue RCON features for now)**, so the GM
