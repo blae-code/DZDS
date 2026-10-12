@@ -13,7 +13,10 @@
 # behaviour: per-patrol AIPatrolSettings fields (names/values from Expansion's source):
 #   Behaviour HALT|LOOP|ALTERNATE|ONCE|HALT_OR_LOOP|HALT_OR_ALTERNATE|LOOP_OR_ALTERNATE|ROAMING|ROAMING_LOCAL
 #   Speed/UnderThreatSpeed WALK|JOG|SPRINT|RANDOM|RANDOM_NONSTATIC   DefaultStance STANDING|CROUCHED|PRONE
-#   Formation Column|File|Vee|Wall|RANDOM   LootingBehaviour flags: DEFAULT|ALL|WEAPONS|FOOD|BANDAGES|CLOTHING|NONE
+#   Formation Column|File|Vee|Wall|RANDOM   LootingBehaviour flags: DEFAULT|ALL|WEAPONS|FOOD|BANDAGES|CLOTHING|UPGRADE|NONE
+#   (combine with "|"). NO PATROL LOOTS FOOD (Blae, 2026-10-12): food stays at vanilla scarcity,
+#   and AI picking it off the ground made it rarer than vanilla. ALL includes FOOD, so use the
+#   explicit non-food set instead. tests/test_presets.py enforces this.
 # Accuracy per faction must stay inside PATROL bounds (tools/apply_ai_calibration.py):
 #   AccuracyMin 0.20–0.35, AccuracyMax 0.35–0.52, ThreatDistanceLimit <= 300.
 
@@ -38,7 +41,7 @@ factions:
       ThreatDistanceLimit: 180.0
       NoiseInvestigationDistanceLimit: 80.0
       EnableFlankingOutsideCombat: 0
-      LootingBehaviour: FOOD
+      LootingBehaviour: NONE                   # was FOOD (no food looting, 2026-10-12)
       CanBeLooted: true
     loadout:
       apparel: [hiking gear, hunter jackets, work shirts, canvas backpacks, beanies, work boots]
@@ -48,7 +51,7 @@ factions:
     patrol_templates:
       farm_watch:      { at: held, kind: garrison, size: [2, 3], chance: 1.0, persist: true, respawn: 1800 }
       scavenger_party: { at: held, kind: route, size: [2, 4], chance: 0.6, persist: false, respawn: -2,
-                         behaviour: { Behaviour: LOOP, Speed: WALK, LootingBehaviour: ALL } }
+                         behaviour: { Behaviour: LOOP, Speed: WALK, LootingBehaviour: "WEAPONS|BANDAGES|CLOTHING|UPGRADE" } }
     radio_voice:
       tone: frightened, practical, neighbourly; farmers and mechanics on cheap handhelds
       sample: "Anyone near the Vybor road? Jackal trucks heading east, bring the kids inside."
@@ -99,7 +102,7 @@ factions:
     stance: { Jackals: friendly, Settlers: hostile, Peacekeepers: hostile, Karkas: hostile, Rust: hostile, Infected: hostile }
     recruitable: false
     behaviour:
-      Behaviour: ROAMING
+      Behaviour: ROAMING_LOCAL                 # was ROAMING (map-wide); stay near own sites (2026-10-12)
       Speed: JOG
       UnderThreatSpeed: SPRINT
       DefaultStance: STANDING
@@ -111,7 +114,7 @@ factions:
       NoiseInvestigationDistanceLimit: 300.0   # they come to gunfire
       MaxFlankingDistance: 250.0
       EnableFlankingOutsideCombat: 1           # push and overwhelm
-      LootingBehaviour: ALL                    # strip bodies
+      LootingBehaviour: "WEAPONS|BANDAGES|CLOTHING|UPGRADE"  # strip bodies, but not food
       CanBeLooted: true
     loadout:
       apparel: [mismatched surplus, leather jackets, gas masks, cargo pants, skull bandanas, improvised chest rigs]
@@ -160,7 +163,7 @@ factions:
       ridge_watch:    { at: held, kind: garrison, size: [2, 3], chance: 1.0, persist: true, respawn: 3600,
                         behaviour: { DefaultStance: PRONE, Speed: WALK } }
       hunting_party:  { at: held, kind: roam, size: [2, 4], chance: 0.6, persist: false, respawn: -2,
-                        behaviour: { Behaviour: ROAMING_LOCAL, LootingBehaviour: FOOD } }
+                        behaviour: { Behaviour: ROAMING_LOCAL, LootingBehaviour: NONE } }
       elder_marksman: { at: held, kind: garrison, size: [1, 1], chance: 0.3, persist: true, respawn: -1,
                         loadout_variant: elder, behaviour: { AccuracyMax: 0.52, SniperProneDistanceThreshold: 80.0 } }
     radio_voice:

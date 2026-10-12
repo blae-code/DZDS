@@ -1,6 +1,6 @@
 {
     "Version": 8,
-    "NextEventSerial": 16,
+    "NextEventSerial": 682,
     "Camps": [
         {
             "Id": "Balota_Survivor_Camp",
@@ -17,10 +17,10 @@
             "BlueprintVersion": 0,
             "KANPlacementMode": 0,
             "BuildInstantly": 0,
-            "CompletedBuildSteps": 0,
+            "CompletedBuildSteps": 1,
             "Layout": {
                 "Version": 1,
-                "Revision": 1,
+                "Revision": 2,
                 "SourceBlueprintId": "MilitaryCheckpoint",
                 "SourceBlueprintRevision": 1,
                 "Blueprint": {
@@ -1206,10 +1206,19 @@
                         }
                     ]
                 },
-                "BuiltObjectIds": [],
+                "BuiltObjectIds": [
+                    "object_1"
+                ],
                 "PendingOperations": []
             },
-            "RoleOverrides": {},
+            "RoleOverrides": {
+                "Roamers": 0,
+                "Looters": 4,
+                "Builders": 2,
+                "Guards": 5,
+                "Attackers": 1,
+                "Snipers": 1
+            },
             "Loadouts": {
                 "Roamer": "",
                 "Looter": "",
@@ -1220,12 +1229,12 @@
             },
             "Progress": {
                 "Level": 1,
-                "Experience": 0,
-                "Morale": 38,
+                "Experience": 10,
+                "Morale": 0,
                 "RaidWins": 0,
                 "RaidLosses": 0,
-                "TotalLootItems": 0,
-                "BuiltObjects": 0,
+                "TotalLootItems": 7,
+                "BuiltObjects": 1,
                 "LastRaidResult": "No raids completed"
             },
             "NPCs": [
@@ -1259,11 +1268,11 @@
                     "Id": "Balota_Survivor_Camp_npc_3",
                     "Name": "Marek Svoboda",
                     "Role": 1,
-                    "Experience": 0,
+                    "Experience": 5,
                     "Kills": 0,
                     "Deaths": 0,
-                    "LootRuns": 0,
-                    "LootItems": 0,
+                    "LootRuns": 1,
+                    "LootItems": 3,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
                     "Active": 1
@@ -1272,12 +1281,12 @@
                     "Id": "Balota_Survivor_Camp_npc_4",
                     "Name": "Anya Prochazka",
                     "Role": 2,
-                    "Experience": 0,
+                    "Experience": 4,
                     "Kills": 0,
                     "Deaths": 0,
                     "LootRuns": 0,
                     "LootItems": 0,
-                    "ObjectsBuilt": 0,
+                    "ObjectsBuilt": 1,
                     "RaidsSurvived": 0,
                     "Active": 1
                 },
@@ -1337,11 +1346,11 @@
                     "Id": "Balota_Survivor_Camp_npc_9",
                     "Name": "Katarina Prochazka",
                     "Role": 1,
-                    "Experience": 0,
+                    "Experience": 4,
                     "Kills": 0,
                     "Deaths": 0,
-                    "LootRuns": 0,
-                    "LootItems": 0,
+                    "LootRuns": 1,
+                    "LootItems": 2,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
                     "Active": 1
@@ -1376,11 +1385,11 @@
                     "Id": "Balota_Survivor_Camp_npc_12",
                     "Name": "Dimitri Prochazka",
                     "Role": 1,
-                    "Experience": 0,
+                    "Experience": 4,
                     "Kills": 0,
                     "Deaths": 0,
-                    "LootRuns": 0,
-                    "LootItems": 0,
+                    "LootRuns": 1,
+                    "LootItems": 2,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
                     "Active": 1
@@ -1440,13 +1449,13 @@
             ],
             "Events": [
                 {
-                    "Serial": 1,
+                    "Serial": 681,
                     "CampId": "Balota_Survivor_Camp",
                     "CampName": "Balota Survivor Camp",
-                    "Timestamp": "8/10 06:43",
-                    "Category": 0,
-                    "Severity": 2,
-                    "Message": "Camp expanded from SurvivorCampSmall to SurvivorCampLarge",
+                    "Timestamp": "28/10 10:41",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
                     "NPCId": ""
                 },
                 {
@@ -1584,6 +1593,856 @@
                     "CampId": "Balota_Survivor_Camp",
                     "CampName": "Balota Survivor Camp",
                     "Timestamp": "8/10 10:04",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 16,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 10:03",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 17,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 11:03",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 18,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 11:43",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 19,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 12:23",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 20,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 13:03",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 21,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 13:43",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 22,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 14:23",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 23,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 15:03",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 24,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 15:43",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 25,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 16:23",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 26,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 17:03",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 27,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 17:43",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 28,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "8/10 19:56",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 29,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 01:16",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 30,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 05:58",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 31,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 06:38",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 32,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 07:18",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 33,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 07:58",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 34,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 08:38",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 35,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 09:18",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 36,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 09:58",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 37,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 10:38",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 38,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 11:18",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 39,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 11:58",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 40,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 12:38",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 41,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 13:18",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 42,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 13:58",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 43,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 14:38",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 44,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 15:18",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 45,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 15:58",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 46,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 16:38",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 47,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 17:18",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 48,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 17:58",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 49,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "9/10 22:16",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 50,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 03:36",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 51,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 06:17",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 52,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 06:57",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 53,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 07:37",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 54,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 08:17",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 55,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 08:57",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 56,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 09:37",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 57,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 10:17",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 58,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 10:57",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 59,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 11:37",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 60,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 12:17",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 61,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 12:57",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 62,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 13:37",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 63,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 14:17",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 64,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 14:57",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 65,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 15:37",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 66,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 16:17",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 67,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 16:57",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 68,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 17:37",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 69,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "10/10 19:46",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 70,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 01:06",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 71,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 06:00",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 72,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 06:40",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 73,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 07:20",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 74,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 08:00",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 75,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 08:40",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 76,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 09:20",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 77,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 10:00",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 78,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 10:40",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 79,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 11:20",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 80,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 12:00",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 81,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 13:05",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 82,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 14:22",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 83,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 15:02",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 84,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 15:42",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 85,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 16:22",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 86,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 17:02",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 87,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 17:42",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 88,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "11/10 20:43",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 89,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 02:03",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 90,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 06:09",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 91,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 06:49",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 92,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 07:29",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 93,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 08:09",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 94,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 08:49",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 95,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 09:29",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 96,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 10:09",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 97,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 11:24",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 98,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 12:04",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 99,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 12:44",
+                    "Category": 5,
+                    "Severity": 1,
+                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "NPCId": ""
+                },
+                {
+                    "Serial": 100,
+                    "CampId": "Balota_Survivor_Camp",
+                    "CampName": "Balota Survivor Camp",
+                    "Timestamp": "12/10 13:24",
                     "Category": 5,
                     "Severity": 1,
                     "Message": "Food shortage: consumed 0/4 ration(s); morale fell",

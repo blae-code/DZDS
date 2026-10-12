@@ -174,3 +174,24 @@ def test_all_repo_yaml_parses():
     for folder in ("config", "presets", "maps"):
         for f in (ROOT / folder).rglob("*.yaml"):
             yaml.safe_load(f.read_text())
+
+
+def test_no_patrol_loots_food():
+    """Food stays at vanilla scarcity (Blae, 2026-10-12): AI must not pick it up.
+    ALL includes FOOD in Expansion's eAILootingBehavior, so it is banned too."""
+    for name, spec in load("presets/factions.yaml")["factions"].items():
+        behaviours = [("faction", spec.get("behaviour") or {})]
+        for tname, tpl in (spec.get("patrol_templates") or {}).items():
+            behaviours.append((tname, tpl.get("behaviour") or {}))
+        for where, b in behaviours:
+            flags = set(str(b.get("LootingBehaviour", "")).split("|"))
+            assert not flags & {"FOOD", "ALL"}, f"{name}/{where}: {b['LootingBehaviour']}"
+
+
+def test_no_map_wide_roaming():
+    """Human NPCs stay near their own sites (Blae, 2026-10-12): ROAMING sends a group to a
+    new map location every 5-10 min; ROAMING_LOCAL keeps it among nearby buildings."""
+    for name, spec in load("presets/factions.yaml")["factions"].items():
+        behaviours = [spec.get("behaviour") or {}]
+        behaviours += [t.get("behaviour") or {} for t in (spec.get("patrol_templates") or {}).values()]
+        assert all(b.get("Behaviour") != "ROAMING" for b in behaviours), name

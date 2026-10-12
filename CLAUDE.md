@@ -92,14 +92,19 @@ exception (Expansion airdrop loot named BaseBuilding items we don't run); fixed 
 `expansion_airdrops`/`expansion_missions` overlays. Expansion ships the virtual Garage and
 the P2P Market ON; both are off via overlays (P2P: Blae, 2026-10-07, not wanted). **Generated configs only exist after
 a boot: after any mod change, `make pull` → `make overlays calibrate validate` → `make push`.**
-**@DZDS compiles and runs on the GSP (2026-10-07), SERVER-SIDE ONLY** (panel "Server-Side
-Only Mods" = `@2874589934;@dzds;`, folder `/@dzds` uploaded by SFTP from `build/@DZDS`).
-Build: `scripts/build_dzds.sh`. Not yet in `-mod`: clients need it once any DZDS faction is
-synced to them (PlayerFactions, DZDS patrols), so publish to the Workshop (Unlisted) first,
-then flip mods.yaml `enabled: true` and move it to "Additional Mods". **Panel trap:** pasting
-into "Additional Mods" REPLACES the 81-mod list; the server then crash-loops on compile errors.
-Do NOT run `make prepare-restart` until @DZDS is enabled: its `patrols` step writes DZDS*
-faction classes (use `INTERIM=1`). Overlays naming @DZDS classes carry `requires_mod: "@DZDS"`.
+**@DZDS is LIVE in `-mod` as Workshop 3815870621 (Public since 2026-10-08)**; the server log
+of 2026-10-10 shows it in `-mod=` and only `@2874589934` (Spatial AI) in `-serverMod=`. Build:
+`scripts/build_dzds.sh`, publish: `scripts/publish_dzds.sh`. DZDS* faction patrols are real,
+so `make patrols` / `make prepare-restart` run without `INTERIM=1`. **Panel trap:** pasting
+into "Additional Mods" REPLACES the mod list; the server then crash-loops on compile errors.
+Overlays naming @DZDS classes carry `requires_mod: "@DZDS"`.
+**AI pressure tuning (Blae, 2026-10-12):** human NPCs only in home territory, conflict sites
+and drop sites; food at VANILLA scarcity (no boost, but no AI eating into it either).
+Spatial AI off (`overlays/spatial_ai.yaml`, MaxAI 0); no patrol loots food and none roams
+map-wide (`presets/factions.yaml`, pinned by tests); KAN camp roamers 0
+(`presets/kan_camps.yaml`, `make kan-camps` with the server STOPPED, since the mod rewrites
+camps.json); horde rarer and 120-200 m out (`overlays/zombie_horde.yaml`; its on-screen
+warnings stay). Horde spawn-in-the-open (code override) is deferred until the distance is tested.
 **RCON is DEFERRED (Blae, 2026-10-07: don't pursue RCON features for now)**, so the GM
 daemon's RCON path stays offline. Findings kept for later: **RCON (26093) gives no reply even with the server's own password** (BattlEye active
 cfg in `/battleye/`, RConPort 26093), while A2S on 26092 answers: a Godlike UDP/port issue,
@@ -138,6 +143,7 @@ make maps-check       # map role coverage (nasdara is TODO until release)
 make types            # compile presets/types_dzds.yaml into a CE custom types file
 make economy          # population + campaign-phase loot scaling (PHASE=... to force)
 make patrols          # faction squad templates -> AIPatrolSettings.json (INTERIM=1 before @DZDS)
+make kan-camps        # presets/kan_camps.yaml -> KAN camps.json roles (server STOPPED, after pull)
 make diplomacy        # presets/diplomacy.yaml -> profiles/DZDS/diplomacy.json (truces etc.)
 make war-status       # war ledger: front line, strength, standing, diplomacy
 make war-turn         # advance one war turn (docs/WAR_LEDGER.md)

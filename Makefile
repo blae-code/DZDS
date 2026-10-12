@@ -75,6 +75,10 @@ gm-probe:
 overlays:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/apply_overlays.py
 
+.PHONY: kan-camps
+kan-camps:      # presets/kan_camps.yaml -> KAN camps.json role counts (server STOPPED)
+	$(PY) tools/kan_camps.py
+
 .PHONY: economy
 economy:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/economy.py $(if $(PHASE),--phase $(PHASE))

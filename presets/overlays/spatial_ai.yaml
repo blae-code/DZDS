@@ -1,0 +1,10 @@
+# Spatial AI (DayZ-Dynamic-AI-Addon, server-side): random armed groups spawned 140-220 m
+# from each player every 20-40 min, anywhere on the map, hunting them. OFF (Blae, 2026-10-12):
+# human NPCs belong in their home territory, conflict sites and drop sites, which the
+# Expansion faction patrols, AI War Zones and convoys already cover.
+# MaxAI < 1 is the mod's own off switch (SpatialSettings.c: "MaxAI set under 1, disabling
+# Spatial AI"). Its old groups also allowed accuracy 0.66, above our 0.52 bound (rule 5).
+root: profiles
+target: ExpansionMod/AI/Spatial/SpatialSettings.json
+values:
+  MaxAI: 0

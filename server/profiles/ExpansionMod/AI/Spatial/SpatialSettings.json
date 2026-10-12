@@ -11,7 +11,7 @@
     "EngageTimer": 5.0,
     "CleanupTimer": 6.0,
     "PlayerChecks": -5,
-    "MaxAI": 20,
+    "MaxAI": 0,
     "GroupDifficulty": 0,
     "MinimumPlayerDistance": 0,
     "MaxSoloPlayers": 0,
