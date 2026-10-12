@@ -9,8 +9,24 @@ class CfgPatches
 		requiredVersion=0.1;
 		requiredAddons[]=
 		{
-			"DayZExpansion_AI_Scripts"
+			"DayZExpansion_AI_Scripts",
+			// Loads us after Simply's Car Trailer (3811085358) so the HeadlightH7 repair below
+			// wins the merge. Drop this line if the trailer mod is ever removed, or @DZDS
+			// stops loading (tests/test_dzds_contract.py checks both ways).
+			"DZT_UtilityTrailer"
 		};
+	};
+};
+// Simply's Car Trailer declares `class HeadlightH7 {};` where it meant `class HeadlightH7;`.
+// The braces redefine the class with no parent, stripping Inventory_Base, and the engine
+// then refuses to create headlights at all ("Cannot create entity with abstract type
+// HeadlightH7"): cars spawn without them and HeadlightH7_Box won't open (2026-10-12).
+// Restoring the parent keeps vanilla's own HeadlightH7 values (scope, model, ...).
+class CfgVehicles
+{
+	class Inventory_Base;
+	class HeadlightH7: Inventory_Base
+	{
 	};
 };
 class CfgMods

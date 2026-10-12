@@ -60,3 +60,19 @@ def test_mod_config_registers_all_script_modules():
     for mod, folder in (("gameScriptModule", "3_Game"), ("worldScriptModule", "4_World"),
                         ("missionScriptModule", "5_Mission")):
         assert re.search(rf"class {mod}.*?\"DZDS/Scripts/{folder}\"", cfg, re.S), mod
+
+
+def test_mod_config_repairs_trailer_headlight():
+    """Simply's Car Trailer declares `class HeadlightH7 {};` (no parent), which strips its
+    Inventory_Base base: the engine then refuses to create headlights anywhere (2026-10-12).
+    @DZDS re-parents it, and must load after the trailer for that to win the config merge."""
+    mods = yaml.safe_load((ROOT / "config" / "mods.yaml").read_text())
+    trailer = [m for m in mods["mods"] if m.get("id") == 3811085358]
+    cfg = (ROOT / "mods" / "DZDS" / "config.cpp").read_text()
+    required = re.search(r"requiredAddons\[\]\s*=\s*\{(.*?)\}", cfg, re.S).group(1)
+    if trailer and trailer[0].get("enabled"):
+        assert '"DZT_UtilityTrailer"' in required
+        assert re.search(r"class\s+Inventory_Base\s*;", cfg)
+        assert re.search(r"class\s+HeadlightH7\s*:\s*Inventory_Base\s*\{", cfg)
+    else:                       # trailer gone: requiring it would stop @DZDS loading
+        assert "DZT_UtilityTrailer" not in required
