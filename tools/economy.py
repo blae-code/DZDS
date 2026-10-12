@@ -26,6 +26,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 PRESET = ROOT / "presets" / "economy.yaml"
+ARRIVALS = ROOT / "presets" / "arrivals.yaml"
 TIER_ORDER = ["Tier1", "Tier2", "Tier3", "Tier4", "Unique"]
 
 
@@ -113,6 +114,31 @@ def scale_types(root: ET.Element, cfg: dict, phase: dict, war: dict[str, float] 
     return stats
 
 
+def lifetime_overrides(cfg: dict) -> dict[str, int]:
+    """Type name -> lifetime (s) for things our scripts spawn outside the CE's events.
+
+    Vanilla gives vehicle classes a 3 s lifetime: the CE spawns cars through events, which
+    carry their own. A refugee-arrival car spawned by init.c gets those 3 s instead, so the CE
+    deletes it, cargo and all, once no player is within CleanupAvoidance (2026-10-12)."""
+    life = cfg.get("script_vehicle_lifetime")
+    if not life or not ARRIVALS.exists():
+        return {}
+    vehicles = yaml.safe_load(ARRIVALS.read_text()).get("vehicles") or []
+    return {v["class"]: int(life) for v in vehicles}
+
+
+def apply_lifetimes(root: ET.Element, overrides: dict[str, int]) -> int:
+    """Set <lifetime> on the named types present in this file. Returns how many were set."""
+    n = 0
+    for t in root.findall("type"):
+        life = overrides.get(t.get("name"))
+        el = t.find("lifetime")
+        if life is not None and el is not None:
+            el.text = str(life)
+            n += 1
+    return n
+
+
 SKIP_FOLDERS = {"dzds"}
 
 
@@ -141,6 +167,11 @@ def process(path: Path, cfg: dict, phase: dict, dry_run: bool, war: dict | None 
         print(f"  saved pristine baseline {baseline.name} (commit it)")
     tree = ET.parse(baseline if baseline.exists() else path)
     stats = scale_types(tree.getroot(), cfg, phase, war)
+    over = lifetime_overrides(cfg)
+    for t in tree.getroot().findall("type"):
+        if t.get("name") in over:
+            stats[f"lifetime:{t.get('name')}"] += 1
+    apply_lifetimes(tree.getroot(), over)
     if not dry_run:
         ET.indent(tree, space="    ")
         tree.write(path, encoding="UTF-8", xml_declaration=True)
@@ -200,6 +231,13 @@ def main() -> int:
         b, af = total[f"{label}:before"], total[f"{label}:after"]
         if b:
             print(f"  {label:<9} nominal {b:>6} -> {af:>6} ({af / b:.0%})")
+    over = lifetime_overrides(cfg)
+    if over:
+        missing = sorted(k for k in over if not total[f"lifetime:{k}"])
+        print(f"  script-spawned vehicle lifetime {cfg['script_vehicle_lifetime']} s: "
+              f"{len(over) - len(missing)}/{len(over)} type(s)")
+        for k in missing:
+            print(f"WARNING: arrival vehicle {k} is in no types file; the CE will not keep it")
     if a.dry_run:
         print("(dry run, nothing written)")
         return 0

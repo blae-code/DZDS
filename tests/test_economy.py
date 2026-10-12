@@ -119,3 +119,46 @@ def test_loot_follows_control():
 
 def test_no_ledger_no_war_effect():
     assert economy.war_factors(cfg(), None, {}) == {}
+
+
+# Vanilla gives vehicle classes a 3 s lifetime (the CE spawns cars through events, which carry
+# their own). A refugee-arrival car spawned by init.c got those 3 s, so the CE deleted it and its
+# cargo as soon as the player walked out of CleanupAvoidance (2026-10-12, Solnechny).
+VEHICLE_TYPES = """<types>
+  <type name="OffroadHatchback"><nominal>0</nominal><lifetime>3</lifetime><restock>1800</restock><min>0</min>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/></type>
+  <type name="OffroadHatchback_Blue"><nominal>0</nominal><lifetime>3</lifetime><restock>1800</restock><min>0</min>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/></type>
+</types>"""
+
+DAY = 86400
+
+
+def test_every_arrival_vehicle_gets_a_lifetime_override():
+    arrivals = yaml.safe_load((economy.ROOT / "presets" / "arrivals.yaml").read_text())
+    over = economy.lifetime_overrides(cfg())
+    for v in arrivals["vehicles"]:
+        assert over.get(v["class"], 0) >= 7 * DAY, v["class"]
+
+
+def test_lifetime_override_touches_only_named_types():
+    root = ET.fromstring(VEHICLE_TYPES)
+    n = economy.apply_lifetimes(root, {"OffroadHatchback": 3888000, "NotInThisFile": 5})
+    types = {t.get("name"): t for t in root.findall("type")}
+    assert n == 1
+    assert types["OffroadHatchback"].find("lifetime").text == "3888000"
+    assert types["OffroadHatchback_Blue"].find("lifetime").text == "3"
+    assert types["OffroadHatchback"].find("nominal").text == "0"      # still event-only
+
+
+def test_deployed_types_keep_arrival_vehicles():
+    """The generated mission file (what `make push` uploads) carries the override."""
+    mission = economy.ROOT / "server" / "mpmissions" / "dayzOffline.chernarusplus"
+    path = mission / "db" / "types.xml"
+    if not path.exists():
+        import pytest
+        pytest.skip("no pulled mission")
+    types = {t.get("name"): t for t in ET.parse(path).getroot().findall("type")}
+    arrivals = yaml.safe_load((economy.ROOT / "presets" / "arrivals.yaml").read_text())
+    for v in arrivals["vehicles"]:
+        assert int(types[v["class"]].find("lifetime").text) >= 7 * DAY, v["class"]

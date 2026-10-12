@@ -61,6 +61,14 @@ hoarding:
   count_in_hoarder_for_tiers: [Tier4, Unique]
   count_in_hoarder_for_categories: [weapons]
 
+# ---- Lifetime of vehicles our scripts spawn ---------------------------------------------
+# Vanilla vehicle classes have <lifetime>3</lifetime>: the CE spawns cars through events, which
+# carry their own lifetime. A refugee-arrival car (init.c) gets the 3 s instead, so the CE
+# deleted it, cargo and all, as soon as the player walked away (2026-10-12). Applied to every
+# vehicle class in presets/arrivals.yaml. 3888000 s = 45 days, vanilla's lifetime for player
+# property (tents); the CE refreshes it whenever someone uses the car.
+script_vehicle_lifetime: 3888000
+
 # ---- globals.xml ----------------------------------------------------------------------
 # Vanilla values kept ("as intended"). The tool can set any EXISTING <var name="..."> here.
 # Candidates if testing shows a need (vanilla value in comment):
