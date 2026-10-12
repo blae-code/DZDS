@@ -32,3 +32,16 @@ roles:
   remote:        [Tisy Military, Novodmitrovsk]
   high_ground:   [Green Mountain, Altar, Black Mountain]
   water:         [Topolka Dam]
+
+# Refugee arrival anchors (presets/arrivals.yaml, Blae 2026-10-12): first characters wake here,
+# at a campfire beside a vehicle. Deliberately NOT under `locations` (those feed the war ledger,
+# site markers and the GM). Approximate village centres; tools/arrivals.py snaps each to the
+# nearest vanilla roadside vehicle spot within `snap_radius_m`. Balota/Komarovo are left out:
+# the KAN camp and the UN checkpoint sit there.
+arrival_sites:
+  Kamenka:     [1950, 2200]
+  Prigorodki:  [7900, 3300]
+  Kamyshovo:   [12000, 3500]
+  Solnechny:   [13400, 6200]
+  Nizhnoye:    [12900, 8100]
+  Svetlojarsk: [13900, 13300]

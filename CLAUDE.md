@@ -144,6 +144,7 @@ make types            # compile presets/types_dzds.yaml into a CE custom types f
 make economy          # population + campaign-phase loot scaling (PHASE=... to force)
 make patrols          # faction squad templates -> AIPatrolSettings.json (INTERIM=1 before @DZDS)
 make kan-camps        # presets/kan_camps.yaml -> KAN camps.json roles (server STOPPED, after pull)
+make arrivals         # refugee arrivals: presets/arrivals.yaml -> profiles/DZDS/arrivals.json (read by init.c)
 make diplomacy        # presets/diplomacy.yaml -> profiles/DZDS/diplomacy.json (truces etc.)
 make war-status       # war ledger: front line, strength, standing, diplomacy
 make war-turn         # advance one war turn (docs/WAR_LEDGER.md)
@@ -151,7 +152,7 @@ make front-plan       # traders open/relocated/closed + live quests from the led
 make loadouts         # faction loadouts -> profiles/ExpansionMod/Loadouts (loadouts-check vs types)
 make dzds-profile     # @DZDS settings (spawn allowlist) + site markers from the ledger
 make vehicle-events   # vehicle spawns by role + holder (events + cfgeventspawns)
-make prepare-restart  # war-turn, economy, diplomacy, patrols, vehicle-events, front-plan, loadouts, dzds-profile,
+make prepare-restart  # war-turn, economy, diplomacy, patrols, vehicle-events, front-plan, loadouts, dzds-profile, arrivals,
                       # overlays, calibrate, validate
 make fake-rcon / sim / gm-sim   # offline GM loop (three terminals)
 make gm-probe         # one-shot Ollama/prompt check

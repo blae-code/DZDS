@@ -1,0 +1,79 @@
+# Refugee arrivals (Blae, 2026-10-12). Compiled by tools/arrivals.py (`make arrivals`) into
+# profiles/DZDS/arrivals.json, which the mission's init.c reads at server start.
+#
+# - A player's FIRST character arrives at a refugee arrival site (maps/<map>.yaml
+#   arrival_sites), in the look they chose.
+# - Every later character (after a death) is a RANDOMLY generated survivor who wakes on a road.
+# - Both wake at a campfire (Zen's Immersive Login, SpawnFire) beside a worn vehicle whose
+#   paired key is in their pocket, with the cargo about half full of road-scavenged gear.
+# - One vehicle per player per `cooldown_hours` of real time: a death inside that window
+#   still respawns on a road, but without a vehicle (stops suicide-farming cars and gear).
+#
+# Positions come from the mission's own vanilla vehicle spawn points (cfgeventspawns.xml):
+# hand-placed, flat, clear and mostly roadside, each with the road's heading.
+
+enabled: true
+cooldown_hours: 24
+random_character_on_respawn: true
+
+player_offset_m: 9.0            # player wakes this far beside the car, off the road
+cargo_fill: 0.5                 # fraction of the vehicle's cargo grid to fill
+max_cargo_items: 40             # cap so a truck's huge grid doesn't hold 150 items
+fuel: [0.25, 0.5]               # fraction of tank
+vehicle_health: [0.5, 0.7]
+item_health: [0.45, 0.85]       # road-worn
+
+snap_radius_m: 700              # arrival anchor -> roadside spot search radius
+points_per_site: 4              # candidate spots per arrival site (one may be occupied)
+road_events: [VehicleCivilianSedan, VehicleSedan02, VehicleHatchback02, VehicleOffroadHatchback, VehicleTruck01]
+exclude_roles: [airfield, military]   # no respawns beside UN bases or airfields
+exclude_radius_m: 500
+exclude_points:                 # extra no-respawn zones [x, z, radius]
+  - [9500, 8900, 500]           # Gorka: Jackal camp
+
+# Cars + small trucks (Blae). Vanilla only for the first test: their part sets are certain
+# (cfgspawnabletypes.xml). Modded VAZ-2107 / UAZ-452 / GAZ-3309 after an in-game check.
+vehicles:
+  - class: OffroadHatchback      # Ada 4x4
+    weight: 25
+    parts: [HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, CarRadiator, CarBattery,
+            SparkPlug, HeadlightH7, HeadlightH7, HatchbackDoors_Driver, HatchbackDoors_CoDriver,
+            HatchbackHood, HatchbackTrunk]
+  - class: CivilianSedan         # Olga 24
+    weight: 20
+    parts: [CivSedanWheel, CivSedanWheel, CivSedanWheel, CivSedanWheel, CarRadiator, CarBattery,
+            SparkPlug, HeadlightH7, HeadlightH7, CivSedanDoors_Driver, CivSedanDoors_CoDriver,
+            CivSedanDoors_BackLeft, CivSedanDoors_BackRight, CivSedanHood, CivSedanTrunk]
+  - class: Sedan_02              # Sarka 120
+    weight: 20
+    parts: [Sedan_02_Wheel, Sedan_02_Wheel, Sedan_02_Wheel, Sedan_02_Wheel, CarRadiator, CarBattery,
+            SparkPlug, HeadlightH7, HeadlightH7, Sedan_02_Door_1_1, Sedan_02_Door_1_2,
+            Sedan_02_Door_2_1, Sedan_02_Door_2_2, Sedan_02_Hood, Sedan_02_Trunk]
+  - class: Hatchback_02          # Gunter 2
+    weight: 20
+    parts: [Hatchback_02_Wheel, Hatchback_02_Wheel, Hatchback_02_Wheel, Hatchback_02_Wheel, CarRadiator,
+            CarBattery, SparkPlug, HeadlightH7, HeadlightH7, Hatchback_02_Door_1_1, Hatchback_02_Door_1_2,
+            Hatchback_02_Door_2_1, Hatchback_02_Door_2_2, Hatchback_02_Hood, Hatchback_02_Trunk]
+  - class: Truck_01_Covered      # V3S (small truck)
+    weight: 15
+    parts: [Truck_01_Wheel, Truck_01_Wheel, Truck_01_WheelDouble, Truck_01_WheelDouble,
+            Truck_01_WheelDouble, Truck_01_WheelDouble, TruckBattery, HeadlightH7, HeadlightH7,
+            Truck_01_Hood, Truck_01_Door_1_1, Truck_01_Door_2_1]
+
+# What a refugee picks up along the road. Category weight is shared equally by its items.
+# Food is a normal road-scavenge share (Blae chose this over "no food", 2026-10-12).
+gear:
+  food:     { weight: 22, items: [BakedBeansCan, SpaghettiCan, SardinesCan, TunaCan, PeachesCan,
+                                  Rice, PowderedMilk, Crackers, Chips, Pajka, Pate, BrisketSpread,
+                                  Apple, Pear, Plum, CanOpener] }
+  water:    { weight: 10, items: [WaterBottle, Canteen, SodaCan_Cola, SodaCan_Kvass, SodaCan_Pipsi] }
+  tools:    { weight: 20, items: [KitchenKnife, SteakKnife, Screwdriver, Pliers, Hatchet, Hammer, Wrench,
+                                  Matchbox, Rope, DuctTape, SewingKit, Whetstone, Flashlight, Battery9V,
+                                  Roadflare, Compass, ChernarusMap, Pot] }
+  clothing: { weight: 20, items: [Hoodie_Grey, Hoodie_Brown, TShirt_Grey, Jeans_Blue, Jeans_Brown,
+                                  WoolCoat_GreyCheck, Raincoat_Green, BeanieHat_Grey, WorkingBoots_Brown,
+                                  Sneakers_Gray, WorkingGloves_Brown, TaloonBag_Blue, DryBag_Black] }
+  medical:  { weight: 12, items: [BandageDressing, Rag, DisinfectantSpray, PainkillerTablets,
+                                  CharcoalTablets, VitaminBottle, TetracyclineAntibiotics] }
+  camp:     { weight: 8,  items: [Paper, Firewood, PortableGasStove, SmallGasCanister, ShelterKit, Stone] }
+  vehicle:  { weight: 8,  items: [CanisterGasoline, TireRepairKit, EpoxyPutty] }
