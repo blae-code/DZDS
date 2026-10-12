@@ -52,3 +52,9 @@ server/profiles/VPPAdminTools/ConfigurablePlugins/SteamAPI.json
 server/profiles/VPPAdminTools/Logging/
 server/profiles/*/logs/
 server/profiles/*/Logs/
+
+# Per-player runtime persistence (2026-10-12): ATM balances and quest progress, keyed by player
+server/profiles/ExpansionMod/ATM/
+server/profiles/ExpansionMod/Quests/PlayerData/
+# Airdrop-Upgraded writes a timestamped backup of its settings on every boot
+server/profiles/Airdrop/AirdropSettings_bakup_*.json
