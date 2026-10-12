@@ -1,6 +1,6 @@
 {
     "Version": 8,
-    "NextEventSerial": 682,
+    "NextEventSerial": 683,
     "Camps": [
         {
             "Id": "Balota_Survivor_Camp",
@@ -1449,10 +1449,10 @@
             ],
             "Events": [
                 {
-                    "Serial": 681,
+                    "Serial": 682,
                     "CampId": "Balota_Survivor_Camp",
                     "CampName": "Balota Survivor Camp",
-                    "Timestamp": "28/10 10:41",
+                    "Timestamp": "28/10 11:21",
                     "Category": 5,
                     "Severity": 1,
                     "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
