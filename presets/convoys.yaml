@@ -1,0 +1,6 @@
+# Convoy war parties drive ONLY routes recorded in-game with Moving AI Convoy's route recorder
+# (Task 19), between two sites one faction holds. Each recorded file is copied into
+# presets/convoy_routes/<map>/<route>. Empty until routes are recorded: no convoys until then.
+routes:
+  nasdara: []
+  # - { from: <site>, to: <site>, route: <file>.json }

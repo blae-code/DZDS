@@ -42,6 +42,7 @@ def test_standing_gate_and_raid_quest():
     led.s.standing["Rust"] = -80
     assert not any(x["quest"] == "water_rights" for x in front_plan.plan_quests(led, QUESTS))
     led.claim("Host's Homestead", [5200.0, 8600.0], ["inland_town"])
-    led.s.raids = [{"faction": "Jackals", "target": "Host's Homestead", "origin": "Gorka", "size": [4, 7]}]
+    led.s.war_party = {"kind": "raid", "faction": "Jackals", "target": "Host's Homestead",
+                       "origin": "Gorka", "size": [4, 7]}
     assert any(x["quest"] == "defend_homestead" and x["site"] == "Host's Homestead"
                for x in front_plan.plan_quests(led, QUESTS))

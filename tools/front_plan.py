@@ -50,7 +50,8 @@ def plan_traders(led: WarLedger, traders: dict) -> list[dict]:
 
 def plan_quests(led: WarLedger, quests: dict) -> list[dict]:
     out = []
-    raid_targets = {r["target"] for r in led.s.raids}
+    wp = led.s.war_party
+    raid_targets = {wp["target"]} if wp and wp["kind"] == "raid" else set()
     for qid, q in quests["templates"].items():
         req = q.get("requires_standing") or {}
         if any(led.s.standing.get(f, 0) < v for f, v in req.items()):

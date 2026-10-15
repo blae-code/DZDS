@@ -114,24 +114,62 @@ def test_named_deeds_in_liberation_report():
     assert led.s.deeds == {}  # reset each turn
 
 
-def test_hostile_strong_faction_raids_settlement():
+def test_at_most_one_war_party_and_only_with_chance():
+    led = fresh()
+    led.rules["war_party"]["chance"] = 1.0
+    led.turn(now=T0)
+    assert led.s.war_party is not None
+    assert led.s.war_party["kind"] in {"raid", "offensive", "convoy"}
+    led.rules["war_party"]["chance"] = 0.0
+    led.turn(now=T0 + dt.timedelta(hours=3))
+    assert led.s.war_party is None
+
+
+def test_offensive_heads_for_a_contested_site_the_faction_could_hold():
+    led = fresh()
+    for c in led.war_party_candidates():
+        if c["kind"] == "offensive":
+            assert led.s.control[c["target"]] == "contested"
+            assert led.s.control[c["origin"]] == c["faction"]
+
+
+def test_strong_hostile_faction_can_raid_a_settlement():
     led = fresh()
     led.claim("Host's Homestead", [5200.0, 8600.0], ["inland_town"])
     led.s.strength["Jackals"] = 90
-    raids = []
-    for i in range(12):
-        led.turn(now=T0 + dt.timedelta(hours=3 * i))
-        led.s.strength["Jackals"] = 90
-        raids += led.s.raids
+    raids = [c for c in led.war_party_candidates() if c["kind"] == "raid"]
     assert raids and all(r["target"] == "Host's Homestead" for r in raids)
-    patrols = patrol_gen.raid_patrols(raids[:1], led.locations())
-    assert patrols[0]["Behaviour"] == "ONCE" and patrols[0]["Waypoints"][-1][0] == 5200.0
 
 
-def test_no_raids_when_raiders_are_weak_or_friendly():
+def test_no_candidates_when_everyone_is_weak_and_nothing_contested():
+    """Review focus 2: an empty turn is quiet, not an error."""
     led = fresh()
-    led.claim("Host's Homestead", [5200.0, 8600.0], ["inland_town"])
+    for s in list(led.s.control):
+        if led.s.control[s] == "contested":
+            led.s.control[s] = "Rust"
     for f in led.s.strength:
-        led.s.strength[f] = 10
+        led.s.strength[f] = 0
+    led.rules["war_party"]["chance"] = 1.0
+    assert led.war_party_candidates() == []
     led.turn(now=T0)
-    assert led.s.raids == []
+    assert led.s.war_party is None
+
+
+def test_convoy_only_on_a_recorded_route_between_two_held_sites():
+    led = fresh()
+    led.convoy_routes = [{"from": "Chernogorsk", "to": "Elektrozavodsk", "route": "rust_coast.json"}]
+    convoys = [c for c in led.war_party_candidates() if c["kind"] == "convoy"]
+    assert convoys == [{"kind": "convoy", "faction": "Rust", "origin": "Chernogorsk",
+                        "target": "Elektrozavodsk", "route": "rust_coast.json", "size": [0, 0]}]
+    led.s.control["Elektrozavodsk"] = "Jackals"
+    assert not [c for c in led.war_party_candidates() if c["kind"] == "convoy"]
+
+
+def test_ledger_from_another_map_is_refused(tmp_path):
+    import json
+    import pytest
+    p = tmp_path / "war_ledger.json"
+    p.write_text(json.dumps({"map": "chernarusplus", "raids": []}))
+    with pytest.raises(SystemExit, match="reset"):
+        WarLedger.load("nasdara", path=p)
+    assert WarLedger.load("chernarusplus", path=p).s.war_party is None

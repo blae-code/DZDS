@@ -52,12 +52,16 @@ standing:                   # how each faction regards the players' group (-100.
 # a site liberates it for the settlement network.
 players_fight_for: Settlers
 
-# Raids on player settlements (claimed sites): a hostile faction that is strong and dislikes the
-# players sends a raid patrol at a settlement (tools/patrol_gen.py adds it for one restart).
-raids:
-  min_strength: 55          # raider faction strength needed
-  max_standing: -20         # raider's standing with players must be at or below this
-  chance: 0.35              # per eligible settlement per turn (seeded)
+# The war party (spec §4.3): the ONLY thing that moves through open country. Each turn,
+# with `chance`, ONE movement is picked from the candidates (raid / offensive / convoy).
+war_party:
+  chance: 0.35
+  min_strength: 40          # a faction needs this much fight left to go on the offensive
+  size: [4, 6]
+
+raids:                      # eligibility of the "raid" kind (a hostile faction hits a player settlement)
+  min_strength: 55
+  max_standing: -20
   size: [4, 7]
 
 # Named deeds: the top contributor to a liberation is named in the war report.

@@ -42,7 +42,7 @@ class LedgerState:
     player_kills: dict[str, int] = field(default_factory=dict)          # faction -> killed by players
     flags: list[str] = field(default_factory=list)
     deeds: dict[str, dict[str, int]] = field(default_factory=dict)      # site -> player -> kills (this turn)
-    raids: list[dict] = field(default_factory=list)                     # raids scheduled for next restart
+    war_party: dict | None = None                                       # the one movement this restart
     auto_diplomacy: list[dict] = field(default_factory=list)
     history: list[dict] = field(default_factory=list)
 
@@ -54,6 +54,9 @@ class WarLedger:
         self.rules = rules or load_yaml("presets/ledger.yaml")
         self.factions = factions or load_yaml("presets/factions.yaml")
         self.map = map_data or load_yaml(f"maps/{state.map}.yaml")
+        convoys = ROOT / "presets" / "convoys.yaml"
+        self.convoy_routes = ((yaml.safe_load(convoys.read_text()) or {}).get("routes") or {}).get(
+            state.map) or [] if convoys.exists() else []
         self.fspec = {k: v for k, v in self.factions["factions"].items() if v.get("custom_faction")}
         self.engine_to_name = {}
         for name, spec in self.fspec.items():
@@ -76,7 +79,11 @@ class WarLedger:
     @classmethod
     def load(cls, map_name: str, path: Path = STATE, **kw) -> "WarLedger":
         if path.exists():
-            return cls(LedgerState(**json.loads(path.read_text())), **kw)
+            data = json.loads(path.read_text())
+            if data.get("map") != map_name:
+                raise SystemExit(f"{path} is the {data.get('map')} ledger; run tools/war.py reset for {map_name}")
+            known = LedgerState.__dataclass_fields__
+            return cls(LedgerState(**{k: v for k, v in data.items() if k in known}), **kw)
         return cls.new(map_name, **kw)
 
     def save(self, path: Path = STATE) -> None:
@@ -176,7 +183,7 @@ class WarLedger:
         events += self._offscreen(rng)
         self._update_strength()
         events += self._update_standing(today)
-        events += self._schedule_raids(rng)
+        events += self._schedule_war_party(rng)
         self.s.pressure, self.s.deaths, self.s.player_kills, self.s.deeds = {}, {}, {}, {}
         self.s.auto_diplomacy = [d for d in self.s.auto_diplomacy
                                  if dt.date.fromisoformat(d["until"]) >= today]
@@ -238,29 +245,52 @@ class WarLedger:
         d = self.s.deeds.get(site) or {}
         return max(d, key=d.get) if d else None
 
-    def _schedule_raids(self, rng: random.Random) -> list[str]:
-        r = self.rules.get("raids")
-        self.s.raids = []
-        if not r:
-            return []
-        events = []
-        settlements = [s for s, h in self.s.control.items()
-                       if s in self.s.extra_sites and h == self.rules["players_fight_for"]]
-        for site in settlements:
-            raiders = [f for f in self.fspec
-                       if self.hostile(f, self.rules["players_fight_for"])
-                       and self.s.strength.get(f, 0) >= r["min_strength"]
-                       and self.s.standing.get(f, 0) <= r["max_standing"]]
-            if not raiders:
+    def war_party_candidates(self) -> list[dict]:
+        us = self.rules["players_fight_for"]
+        cfg, r = self.rules["war_party"], self.rules["raids"]
+        out: list[dict] = []
+        for site, holder in sorted(self.s.control.items()):
+            if site in self.s.extra_sites and holder == us:
+                for f in sorted(self.fspec):
+                    if (self.hostile(f, us) and self.s.strength.get(f, 0) >= r["min_strength"]
+                            and self.s.standing.get(f, 0) <= r["max_standing"]):
+                        origin = self._nearest_held(f, site)
+                        if origin:
+                            out.append({"kind": "raid", "faction": f, "origin": origin,
+                                        "target": site, "size": list(r["size"])})
+        for site, holder in sorted(self.s.control.items()):
+            if holder != "contested":
                 continue
-            raider = max(raiders, key=lambda f: self.s.strength.get(f, 0))
-            if rng.random() < r["chance"]:
-                origin = self._nearest_held(raider, site)
-                self.s.raids.append({"faction": raider, "target": site, "origin": origin,
-                                     "size": r["size"]})
-                events.append(f"Radio intercepts suggest {self._display(raider)} are massing near "
-                              f"{origin or 'the hills'} to hit {site}")
-        return events
+            roles = self.site_roles(site)
+            for f, spec in sorted(self.fspec.items()):
+                if not roles & set(spec.get("holds_roles", [])):
+                    continue
+                if self.s.strength.get(f, 0) < cfg["min_strength"]:
+                    continue
+                origin = self._nearest_held(f, site)
+                if origin:
+                    out.append({"kind": "offensive", "faction": f, "origin": origin,
+                                "target": site, "size": list(cfg["size"])})
+        for rt in self.convoy_routes:
+            f = self.s.control.get(rt["from"])
+            if f in self.fspec and self.s.control.get(rt["to"]) == f:
+                out.append({"kind": "convoy", "faction": f, "origin": rt["from"],
+                            "target": rt["to"], "route": rt["route"], "size": [0, 0]})
+        return out
+
+    def _schedule_war_party(self, rng: random.Random) -> list[str]:
+        self.s.war_party = None
+        cands = self.war_party_candidates()
+        if not cands or rng.random() >= self.rules["war_party"]["chance"]:
+            return []
+        wp = cands[rng.randrange(len(cands))]
+        self.s.war_party = wp
+        who = self._display(wp["faction"])
+        if wp["kind"] == "raid":
+            return [f"Radio intercepts suggest {who} are massing near {wp['origin']} to hit {wp['target']}"]
+        if wp["kind"] == "convoy":
+            return [f"{who} trucks are moving between {wp['origin']} and {wp['target']}"]
+        return [f"{who} are moving out of {wp['origin']} toward {wp['target']}"]
 
     def _nearest_held(self, faction: str, target: str) -> str | None:
         locs = self.locations()
@@ -316,8 +346,9 @@ class WarLedger:
             lines.append(f"  {label:<28} {', '.join(sorted(sites))}")
         lines.append("  Strength: " + ", ".join(f"{f} {v:.0f}" for f, v in self.s.strength.items()))
         lines.append("  Standing with players: " + ", ".join(f"{f} {v:+.0f}" for f, v in self.s.standing.items()))
-        for r in self.s.raids:
-            lines.append(f"  Raid scheduled: {r['faction']} from {r['origin']} -> {r['target']}")
+        if self.s.war_party:
+            wp = self.s.war_party
+            lines.append(f"  War party: {wp['kind']} {wp['faction']} {wp['origin']} -> {wp['target']}")
         for d in self.s.auto_diplomacy:
             lines.append(f"  Diplomacy until {d['until']}: {d['from']} -> {d['to']} {d['stance']} ({d['why']})")
         return "\n".join(lines)
