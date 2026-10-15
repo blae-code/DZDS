@@ -1,6 +1,6 @@
 {
     "Version": 8,
-    "NextEventSerial": 683,
+    "NextEventSerial": 1188,
     "Camps": [
         {
             "Id": "Balota_Survivor_Camp",
@@ -17,10 +17,10 @@
             "BlueprintVersion": 0,
             "KANPlacementMode": 0,
             "BuildInstantly": 0,
-            "CompletedBuildSteps": 1,
+            "CompletedBuildSteps": 5,
             "Layout": {
                 "Version": 1,
-                "Revision": 2,
+                "Revision": 6,
                 "SourceBlueprintId": "MilitaryCheckpoint",
                 "SourceBlueprintRevision": 1,
                 "Blueprint": {
@@ -1207,7 +1207,11 @@
                     ]
                 },
                 "BuiltObjectIds": [
-                    "object_1"
+                    "object_1",
+                    "object_2",
+                    "object_3",
+                    "object_4",
+                    "object_5"
                 ],
                 "PendingOperations": []
             },
@@ -1228,13 +1232,13 @@
                 "Sniper": ""
             },
             "Progress": {
-                "Level": 1,
-                "Experience": 10,
+                "Level": 3,
+                "Experience": 160,
                 "Morale": 0,
                 "RaidWins": 0,
                 "RaidLosses": 0,
-                "TotalLootItems": 7,
-                "BuiltObjects": 1,
+                "TotalLootItems": 143,
+                "BuiltObjects": 5,
                 "LastRaidResult": "No raids completed"
             },
             "NPCs": [
@@ -1249,17 +1253,17 @@
                     "LootItems": 0,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
-                    "Active": 1
+                    "Active": 0
                 },
                 {
                     "Id": "Balota_Survivor_Camp_npc_2",
                     "Name": "Boris Kral",
                     "Role": 1,
-                    "Experience": 0,
+                    "Experience": 59,
                     "Kills": 0,
                     "Deaths": 0,
-                    "LootRuns": 0,
-                    "LootItems": 0,
+                    "LootRuns": 13,
+                    "LootItems": 33,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
                     "Active": 1
@@ -1268,11 +1272,11 @@
                     "Id": "Balota_Survivor_Camp_npc_3",
                     "Name": "Marek Svoboda",
                     "Role": 1,
-                    "Experience": 5,
+                    "Experience": 65,
                     "Kills": 0,
                     "Deaths": 0,
-                    "LootRuns": 1,
-                    "LootItems": 3,
+                    "LootRuns": 15,
+                    "LootItems": 35,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
                     "Active": 1
@@ -1281,12 +1285,12 @@
                     "Id": "Balota_Survivor_Camp_npc_4",
                     "Name": "Anya Prochazka",
                     "Role": 2,
-                    "Experience": 4,
+                    "Experience": 12,
                     "Kills": 0,
                     "Deaths": 0,
                     "LootRuns": 0,
                     "LootItems": 0,
-                    "ObjectsBuilt": 1,
+                    "ObjectsBuilt": 3,
                     "RaidsSurvived": 0,
                     "Active": 1
                 },
@@ -1340,17 +1344,17 @@
                     "LootItems": 0,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
-                    "Active": 1
+                    "Active": 0
                 },
                 {
                     "Id": "Balota_Survivor_Camp_npc_9",
                     "Name": "Katarina Prochazka",
                     "Role": 1,
-                    "Experience": 4,
+                    "Experience": 73,
                     "Kills": 0,
                     "Deaths": 0,
-                    "LootRuns": 1,
-                    "LootItems": 2,
+                    "LootRuns": 16,
+                    "LootItems": 41,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
                     "Active": 1
@@ -1359,12 +1363,12 @@
                     "Id": "Balota_Survivor_Camp_npc_10",
                     "Name": "Ivana Prochazka",
                     "Role": 2,
-                    "Experience": 0,
+                    "Experience": 8,
                     "Kills": 0,
                     "Deaths": 0,
                     "LootRuns": 0,
                     "LootItems": 0,
-                    "ObjectsBuilt": 0,
+                    "ObjectsBuilt": 2,
                     "RaidsSurvived": 0,
                     "Active": 1
                 },
@@ -1385,11 +1389,11 @@
                     "Id": "Balota_Survivor_Camp_npc_12",
                     "Name": "Dimitri Prochazka",
                     "Role": 1,
-                    "Experience": 4,
+                    "Experience": 64,
                     "Kills": 0,
                     "Deaths": 0,
-                    "LootRuns": 1,
-                    "LootItems": 2,
+                    "LootRuns": 15,
+                    "LootItems": 34,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
                     "Active": 1
@@ -1444,18 +1448,44 @@
                     "LootItems": 0,
                     "ObjectsBuilt": 0,
                     "RaidsSurvived": 0,
+                    "Active": 0
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_17",
+                    "Name": "Mila Dvorak",
+                    "Role": 3,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
+                    "Active": 1
+                },
+                {
+                    "Id": "Balota_Survivor_Camp_npc_18",
+                    "Name": "Anya Urban",
+                    "Role": 1,
+                    "Experience": 0,
+                    "Kills": 0,
+                    "Deaths": 0,
+                    "LootRuns": 0,
+                    "LootItems": 0,
+                    "ObjectsBuilt": 0,
+                    "RaidsSurvived": 0,
                     "Active": 1
                 }
             ],
             "Events": [
                 {
-                    "Serial": 682,
+                    "Serial": 1187,
                     "CampId": "Balota_Survivor_Camp",
                     "CampName": "Balota Survivor Camp",
-                    "Timestamp": "28/10 11:21",
+                    "Timestamp": "10/10 15:09",
                     "Category": 5,
                     "Severity": 1,
-                    "Message": "Food shortage: consumed 0/4 ration(s); morale fell",
+                    "Message": "Food shortage: consumed 0/3 ration(s); morale fell",
                     "NPCId": ""
                 },
                 {
