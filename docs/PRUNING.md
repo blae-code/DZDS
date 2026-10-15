@@ -1,4 +1,29 @@
-# Pruning Report (prepared 2026-10-05; APPLIED 2026-10-07)
+# Pruning Report
+
+## Applied 2026-10-15 (Badlands relaunch, Nasdara)
+**10 mods disabled** (each stays in `config/mods.yaml` with `enabled: false` and a `PRUNED 2026-10-15 (Badlands)` note).
+
+| Mod | Workshop ID | Reason |
+|---|---|---|
+| SF Zombie Horde Event | 3689174025 | targets players anywhere, only supports exclusion zones; events must stay in zones |
+| DayZ-Dynamic-AI-Addon | 2874589934 | Spatial AI already at MaxAI 0 |
+| DayZ-Expansion-Missions | 2792984177 | every feature off |
+| Armored Vehicle Pack | 2147610525 | abandoned since 2022, duplicated by remaining mods |
+| IRP-Land-Rover-Defender-110 | 1912237302 | abandoned since 2021, duplicated |
+| Crocos Quadbike | 2757080411 | abandoned, duplicated |
+| Arma 2 Clothing Pack | 2298127647 | abandoned since 2020, duplicated |
+| Unknown Ghillie Mod | 2074403068 | abandoned since 2021, duplicated |
+| InventoryInCar | 2361330944 | abandoned since 2021, duplicated |
+| HypeTrain | 3115714092 | Blae's decision; rail on Nasdara can't be verified offline |
+
+Overlays removed with their mods: `zombie_horde.yaml`, `spatial_ai.yaml`, `expansion_missions.yaml`.
+
+**Keep if they boot clean** (`pending stage-3 boot`): CarCover, Code Lock, BuildAnywhere_v3,
+Flying Birds, Leather Crafting, MMG Military Gear, MBM DuneBuggy, Horse Expansion, Ear-Plugs.
+
+---
+
+## Earlier report (prepared 2026-10-05; APPLIED 2026-10-07)
 
 ## Applied 2026-10-07 (to fit the Godlike plan: 12 GB RAM, 4 vCores, 70 GB)
 **95 → 82 Workshop mods, 24.7 → 11.8 GB download, RAM estimate ~14 → ~10 GB.**

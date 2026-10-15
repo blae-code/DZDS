@@ -14,7 +14,7 @@ health: [0.55, 0.9]          # worn, lived-in gear
 factions:
   Settlers:
     slots:
-      Body:     [HunterJacket_Brown, HikingJacket_Blue, Shirt_BlueCheck, Shirt_GreenCheck, Hoodie_Green]
+      Body:     [HuntingJacket_Brown, HikingJacket_Blue, Shirt_BlueCheck, Shirt_GreenCheck, Hoodie_Green]
       Legs:     [Jeans_Blue, CargoPants_Beige, HunterPants_Brown, CanvasPants_Beige]
       Feet:     [WorkingBoots_Brown, HikingBoots_Brown]
       Headgear: [BeanieHat_Brown, BeanieHat_Green, BaseballCap_Blue]
@@ -36,7 +36,7 @@ factions:
     cargo: [[Mag_STANAG_30Rnd, 2, 3], [Mag_FAL_20Rnd, 1, 2], [Mag_MP5_30Rnd, 1, 2], [BandageDressing, 1, 2]]
     variants:
       officer:
-        Headgear: [Beret_UN]                      # [verify] blue beret classname
+        Headgear: [MilitaryBeret_UN]                 # blue beret (verified vs Nasdara types)
         Shoulder: [MP5K]
       marksman:
         Shoulder: [Mosin9130]
@@ -60,7 +60,7 @@ factions:
   Karkas:
     slots:
       Headgear: [Ushanka_Black, Ushanka_Green, GhillieHood_Woodland]
-      Body:     [GhillieTop_Woodland, HunterJacket_Autumn, M65Jacket_Olive]
+      Body:     [GhillieTop_Woodland, HuntingJacket_Autumn, M65Jacket_Olive]
       Legs:     [HunterPants_Autumn, CargoPants_Green]
       Feet:     [HikingBoots_Brown, MilitaryBoots_Brown]
       Vest:     [HuntingVest]
@@ -83,7 +83,7 @@ factions:
       Vest:     [ReflexVest, PlateCarrierVest]
       Shoulder: [Saiga, PP19, AK74]
       Melee:    [Wrench, Cleaver]
-    cargo: [[FlareGun, 0, 1], [Mag_Saiga_5Rnd, 1, 2], [Mag_PP19_64Rnd, 1, 1], [Mag_AK74_30Rnd, 1, 2]]
+    cargo: [[Flaregun, 0, 1], [Mag_Saiga_5Rnd, 1, 2], [Mag_PP19_64Rnd, 1, 1], [Mag_AK74_30Rnd, 1, 2]]
     variants:
       foreman:
         Vest:     [PlateCarrierVest]

@@ -195,3 +195,27 @@ def test_no_map_wide_roaming():
         behaviours = [spec.get("behaviour") or {}]
         behaviours += [t.get("behaviour") or {} for t in (spec.get("patrol_templates") or {}).values()]
         assert all(b.get("Behaviour") != "ROAMING" for b in behaviours), name
+
+
+PRUNED_BADLANDS = {
+    3689174025: "SF Zombie Horde Event",       # targets players anywhere; can't respect zones
+    2874589934: "DayZ-Dynamic-AI-Addon",       # Spatial AI already at MaxAI 0
+    2792984177: "DayZ-Expansion-Missions",     # every feature off
+    2147610525: "Armored Vehicle Pack", 1912237302: "IRP-Land-Rover-Defender-110",
+    2757080411: "Crocos Quadbike", 2298127647: "Arma 2 Clothing Pack",
+    2074403068: "Unknown Ghillie Mod", 2361330944: "InventoryInCar",
+    3115714092: "HypeTrain",  # Blae, 2026-10-15: ditched (rail on Nasdara unverifiable)
+}
+
+
+def test_badlands_pruned_mods_are_disabled():
+    by_id = {m["id"]: m for m in modstring.load_mods()}
+    for mid, name in PRUNED_BADLANDS.items():
+        assert by_id[mid]["enabled"] is False, name
+        assert "PRUNED 2026-10-15 (Badlands)" in by_id[mid].get("note", ""), name
+
+
+def test_no_overlay_left_for_pruned_mods():
+    import apply_overlays as ov
+    names = {f.name for f in ov.OVERLAYS.glob("*.yaml")}
+    assert not names & {"zombie_horde.yaml", "spatial_ai.yaml", "expansion_missions.yaml"}
