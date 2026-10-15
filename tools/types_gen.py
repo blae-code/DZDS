@@ -10,13 +10,14 @@ Usage: tools/types_gen.py [--mission server/mpmissions/dayzOffline.chernarusplus
 from __future__ import annotations
 
 import argparse
-import os
 import shutil
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 PRESET = ROOT / "presets" / "types_dzds.yaml"
@@ -80,8 +81,7 @@ def register(core: Path) -> bool:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    mission_name = os.environ.get("MISSION_NAME", "dayzOffline.chernarusplus")
-    ap.add_argument("--mission", default=str(ROOT / "server" / "mpmissions" / mission_name))
+    ap.add_argument("--mission", default=str(active.mission_dir()))
     a = ap.parse_args()
 
     root, warnings = build(yaml.safe_load(PRESET.read_text()))

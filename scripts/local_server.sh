@@ -21,8 +21,8 @@ cd "$ROOT"
 
 SERVER_DIR="${LOCAL_SERVER_DIR:-$HOME/dayz-server}"
 WORKSHOP="${DAYZ_WORKSHOP_DIR:-$HOME/.local/share/Steam/steamapps/workshop/content/221100}"
-MISSION="${MISSION_NAME:-dayzOffline.chernarusplus}"
 PY="$ROOT/.venv/bin/python"
+MISSION="${MISSION_NAME:-$("$PY" "$ROOT/tools/active.py" mission)}"
 
 install() {
   command -v steamcmd >/dev/null || { echo "Install steamcmd: yay -S steamcmd (AUR)"; exit 2; }

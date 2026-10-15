@@ -11,12 +11,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import shutil
 import sys
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 PRESET = ROOT / "presets" / "expansion_ai_calibration.yaml"
@@ -87,7 +88,7 @@ def write_with_backup(path: Path, data) -> None:
 def apply_clamps(preset: dict, dry_run: bool) -> None:
     for rel in preset.get("clamp_targets", []):
         if rel.startswith("mission:"):
-            mission = os.environ.get("MISSION_NAME", "dayzOffline.chernarusplus")
+            mission = active.mission_name()
             path = ROOT / "server" / "mpmissions" / mission / rel.removeprefix("mission:")
         else:
             path = PROFILES / rel

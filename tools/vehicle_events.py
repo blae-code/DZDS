@@ -7,13 +7,14 @@ from __future__ import annotations
 
 import argparse
 import math
-import os
 import shutil
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
@@ -83,12 +84,11 @@ def merge_spawns(path: Path, spawns: dict) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--mission", default=str(ROOT / "server" / "mpmissions" /
-                                             os.environ.get("MISSION_NAME", "dayzOffline.chernarusplus")))
+    ap.add_argument("--mission", default=str(active.mission_dir()))
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
     cfg = yaml.safe_load((ROOT / "presets" / "vehicle_events.yaml").read_text())
-    map_name = os.environ.get("GM_MAP", "chernarusplus")
+    map_name = active.map_name()
     led = WarLedger.load(map_name) if STATE.exists() else WarLedger.new(map_name)
     events, spawns = build(cfg, led)
     for name, pts in spawns.items():

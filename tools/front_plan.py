@@ -11,11 +11,12 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
@@ -81,7 +82,7 @@ def plan_quests(led: WarLedger, quests: dict) -> list[dict]:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--map", default=os.environ.get("GM_MAP", "chernarusplus"))
+    ap.add_argument("--map", default=active.map_name())
     ap.add_argument("--initial", action="store_true", help="ignore the ledger state")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()

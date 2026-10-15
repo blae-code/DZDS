@@ -21,12 +21,13 @@ from __future__ import annotations
 import argparse
 import json
 import math
-import os
 import shutil
 import sys
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 GARRISON_RADIUS = 35.0
@@ -178,7 +179,7 @@ def raid_patrols(raids: list[dict], locs: dict, interim: bool = False) -> list[d
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--map", default=os.environ.get("GM_MAP", "chernarusplus"))
+    ap.add_argument("--map", default=active.map_name())
     ap.add_argument("--interim", action="store_true")
     ap.add_argument("--initial", action="store_true")
     ap.add_argument("--dry-run", action="store_true")

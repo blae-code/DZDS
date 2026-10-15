@@ -7,11 +7,12 @@
 from __future__ import annotations
 
 import json
-import os
 import sys
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "server" / "profiles" / "DZDS"
@@ -41,7 +42,7 @@ def markers(world: dict, led: WarLedger) -> list[dict]:
 
 def main() -> int:
     world = yaml.safe_load((ROOT / "presets" / "world.yaml").read_text())
-    map_name = os.environ.get("GM_MAP", "chernarusplus")
+    map_name = active.map_name()
     led = WarLedger.load(map_name) if STATE.exists() else WarLedger.new(map_name)
     OUT.mkdir(parents=True, exist_ok=True)
     s, mk = settings(world), markers(world, led)

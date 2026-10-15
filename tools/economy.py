@@ -15,7 +15,6 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
-import os
 import shutil
 import sys
 import xml.etree.ElementTree as ET
@@ -23,6 +22,8 @@ from collections import Counter
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 PRESET = ROOT / "presets" / "economy.yaml"
@@ -198,8 +199,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--phase")
     ap.add_argument("--date", help="pretend today is YYYY-MM-DD")
-    ap.add_argument("--mission", default=str(ROOT / "server" / "mpmissions" /
-                                             os.environ.get("MISSION_NAME", "dayzOffline.chernarusplus")))
+    ap.add_argument("--mission", default=str(active.mission_dir()))
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
 

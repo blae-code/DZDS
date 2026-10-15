@@ -1,6 +1,7 @@
 VENV ?= .venv
 PY := $(VENV)/bin/python
 SHELL := /bin/bash
+ENV := set -a; [ -f .env ] && source .env; set +a;
 
 .PHONY: setup pull push logs validate modstring panel-mods keys calibrate test gm
 
@@ -50,7 +51,7 @@ find-mod:
 	$(PY) tools/find_mod.py "$(Q)"
 
 maps-check:
-	-$(PY) tools/maps_check.py
+	-$(ENV) $(PY) tools/maps_check.py
 
 types:
 	$(PY) tools/types_gen.py
@@ -77,11 +78,11 @@ overlays:
 
 .PHONY: arrivals
 arrivals:       # presets/arrivals.yaml + map arrival_sites -> profiles/DZDS/arrivals.json (init.c)
-	$(PY) tools/arrivals.py
+	$(ENV) $(PY) tools/arrivals.py
 
 .PHONY: kan-camps
 kan-camps:      # presets/kan_camps.yaml -> KAN camps.json role counts (server STOPPED)
-	$(PY) tools/kan_camps.py
+	$(ENV) $(PY) tools/kan_camps.py
 
 .PHONY: economy
 economy:
@@ -89,10 +90,10 @@ economy:
 
 .PHONY: patrols diplomacy prepare-restart
 patrols:
-	$(PY) tools/patrol_gen.py $(if $(INTERIM),--interim)
+	$(ENV) $(PY) tools/patrol_gen.py $(if $(INTERIM),--interim)
 
 diplomacy:
-	$(PY) tools/diplomacy.py
+	$(ENV) $(PY) tools/diplomacy.py
 
 # Everything that should run between restarts, in order, before `make push`.
 prepare-restart: war-turn economy diplomacy patrols vehicle-events front-plan loadouts dzds-profile arrivals overlays calibrate validate
@@ -100,25 +101,25 @@ prepare-restart: war-turn economy diplomacy patrols vehicle-events front-plan lo
 
 .PHONY: war-status war-turn
 war-status:
-	$(PY) tools/war.py status
+	$(ENV) $(PY) tools/war.py status
 
 war-turn:
-	$(PY) tools/war.py turn
+	$(ENV) $(PY) tools/war.py turn
 
 .PHONY: front-plan
 front-plan:
-	$(PY) tools/front_plan.py
+	$(ENV) $(PY) tools/front_plan.py
 
 .PHONY: loadouts loadouts-check
 loadouts:
-	$(PY) tools/loadouts.py build
+	$(ENV) $(PY) tools/loadouts.py build
 
 loadouts-check:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/loadouts.py check
 
 .PHONY: dzds-profile
 dzds-profile:
-	$(PY) tools/dzds_profile.py
+	$(ENV) $(PY) tools/dzds_profile.py
 
 .PHONY: vehicle-events
 vehicle-events:

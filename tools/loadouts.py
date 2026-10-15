@@ -10,12 +10,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 PRESET = ROOT / "presets" / "loadouts.yaml"
@@ -86,8 +87,7 @@ def known_types(mission: Path) -> set[str]:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("cmd", choices=["build", "check"])
-    ap.add_argument("--mission", default=str(ROOT / "server" / "mpmissions" /
-                                             os.environ.get("MISSION_NAME", "dayzOffline.chernarusplus")))
+    ap.add_argument("--mission", default=str(active.mission_dir()))
     a = ap.parse_args()
     cfg = yaml.safe_load(PRESET.read_text())
     if a.cmd == "build":

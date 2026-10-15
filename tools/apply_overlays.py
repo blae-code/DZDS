@@ -19,12 +19,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 import shutil
 import sys
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 OVERLAYS = ROOT / "presets" / "overlays"
@@ -87,7 +88,7 @@ def resolve(root: str) -> Path:
     if root == "profiles":
         return ROOT / "server" / "profiles"
     if root == "mission":
-        return ROOT / "server" / "mpmissions" / os.environ.get("MISSION_NAME", "dayzOffline.chernarusplus")
+        return active.mission_dir()
     raise SystemExit(f"unknown root '{root}'")
 
 

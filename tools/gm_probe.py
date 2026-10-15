@@ -17,6 +17,8 @@ import time
 from pathlib import Path
 
 import yaml
+
+import active
 from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -39,7 +41,7 @@ async def main() -> int:
     ap.add_argument("--model", default=os.environ.get("OLLAMA_MODEL", "gemma4:e4b"))
     ap.add_argument("--url", default=os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434"))
     ap.add_argument("--digest", help="file containing a digest to send instead of the sample")
-    ap.add_argument("--map", default=os.environ.get("GM_MAP", "chernarusplus"))
+    ap.add_argument("--map", default=active.map_name())
     ap.add_argument("--runs", type=int, default=1)
     a = ap.parse_args()
 

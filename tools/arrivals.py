@@ -13,12 +13,13 @@ from __future__ import annotations
 import argparse
 import json
 import math
-import os
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import yaml
+
+import active
 
 ROOT = Path(__file__).resolve().parent.parent
 PRESET = ROOT / "presets" / "arrivals.yaml"
@@ -127,7 +128,7 @@ def main() -> int:
     a.add_argument("--dry-run", action="store_true")
     args = a.parse_args()
     cfg = yaml.safe_load(PRESET.read_text())
-    map_name = os.environ.get("GM_MAP", "chernarusplus")
+    map_name = active.map_name()
     map_data = yaml.safe_load((ROOT / "maps" / f"{map_name}.yaml").read_text())
     out = build(cfg, map_data, mission_dir(map_data))
     sites = sorted({p["Name"] for p in out["ArrivalSites"]})
