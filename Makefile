@@ -132,3 +132,7 @@ mod-drift:
 .PHONY: specs
 specs:
 	$(PY) tools/specs.py
+
+.PHONY: survey
+survey:         # candidate sites per role from the active mission's mapgrouppos.xml
+	$(ENV) $(PY) tools/map_survey.py
