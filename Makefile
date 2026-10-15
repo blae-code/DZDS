@@ -136,3 +136,7 @@ specs:
 .PHONY: survey
 survey:         # candidate sites per role from the active mission's mapgrouppos.xml
 	$(ENV) $(PY) tools/map_survey.py
+
+.PHONY: zone-events
+zone-events:    # event mods act only inside zones (presets/zone_events.yaml)
+	$(ENV) $(PY) tools/zone_events.py
