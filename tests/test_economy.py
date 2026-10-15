@@ -1,4 +1,6 @@
-import datetime as dt
+"""Loot is Nasdara's vanilla economy (Blae, 2026-10-15). Only arrival-car lifetimes change."""
+import subprocess
+import sys
 import xml.etree.ElementTree as ET
 
 import yaml
@@ -8,130 +10,64 @@ import economy
 TYPES = """<types>
   <type name="AKM"><nominal>10</nominal><lifetime>1</lifetime><restock>0</restock><min>5</min>
     <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    <category name="weapons"/><value name="Tier3"/><value name="Tier4"/></type>
-  <type name="Apple"><nominal>40</nominal><lifetime>1</lifetime><restock>0</restock><min>20</min>
-    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    <category name="food"/><value name="Tier4"/></type>
-  <type name="Rag"><nominal>30</nominal><lifetime>1</lifetime><restock>0</restock><min>10</min>
-    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    <category name="tools"/><value name="Tier1"/></type>
-  <type name="HeliPart"><nominal>0</nominal><lifetime>1</lifetime><restock>0</restock><min>0</min>
-    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    <category name="tools"/><value name="Tier4"/></type>
-  <type name="NVG"><nominal>1</nominal><lifetime>1</lifetime><restock>0</restock><min>1</min>
-    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/>
-    <category name="tools"/><value name="Tier4"/></type>
+    <category name="weapons"/><value name="Tier4"/></type>
+  <type name="OffroadHatchback"><nominal>0</nominal><lifetime>3</lifetime><restock>1800</restock><min>0</min>
+    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/></type>
 </types>"""
+DAY = 86400
 
 
 def cfg():
     return yaml.safe_load(economy.PRESET.read_text())
 
 
-def run(phase_name):
-    root = ET.fromstring(TYPES)
+def test_preset_has_no_phase_or_scaling_keys():
     c = cfg()
-    economy.scale_types(root, c, economy.pick_phase(c, phase_name, dt.date.today()))
-    return {t.get("name"): t for t in root.findall("type")}
+    for k in ("phases", "campaign_start", "expected_players", "population_brackets",
+              "protected_categories", "war", "hoarding"):
+        assert k not in c, k
 
 
-def nominal(t):
-    return int(t.find("nominal").text)
-
-
-def test_landfall_scarcer_than_long_war_and_protected_food():
-    landfall, long_war = run("landfall"), run("long_war")
-    assert nominal(landfall["AKM"]) < nominal(long_war["AKM"]) < 10   # top tier Tier4 used
-    assert nominal(landfall["Apple"]) == 40                             # food protected
-    assert nominal(landfall["Rag"]) == 30                               # Tier1 untouched
-
-
-def test_never_zeroes_and_skips_event_items():
-    t = run("landfall")
-    assert nominal(t["NVG"]) == 1 and int(t["NVG"].find("min").text) == 1
-    assert nominal(t["HeliPart"]) == 0
-    for x in t.values():
-        assert int(x.find("min").text) <= nominal(x)
-
-
-def test_hoarding_flags():
-    t = run("long_war")
-    assert t["AKM"].find("flags").get("count_in_hoarder") == "1"     # weapons category
-    assert t["NVG"].find("flags").get("count_in_hoarder") == "1"     # Tier4
-    assert t["Rag"].find("flags").get("count_in_hoarder") == "0"
-
-
-def test_phase_by_date():
-    c = cfg()
-    start = dt.date.fromisoformat(str(c["campaign_start"]))
-    assert economy.pick_phase(c, None, start)["name"] == "landfall"
-    assert economy.pick_phase(c, None, start + dt.timedelta(weeks=8))["name"] == "escalation"
-    assert economy.pick_phase(c, None, start + dt.timedelta(weeks=52))["name"] == "long_war"
-
-
-def test_population_brackets_scale_up():
-    c = cfg()
-    c["expected_players"] = 40
-    assert economy.population_factors(c)["Tier4"] == 1.0
-
-
-def test_end_to_end_mission_with_modded_types(tmp_path):
-    import subprocess
-    import sys
-
+def mission(tmp_path):
     (tmp_path / "db").mkdir()
     (tmp_path / "snafu").mkdir()
-    (tmp_path / "dzds").mkdir()
     (tmp_path / "db" / "types.xml").write_text(TYPES)
+    (tmp_path / "db" / "globals.xml").write_text('<variables><var name="X" type="0" value="1"/></variables>')
     (tmp_path / "snafu" / "types.xml").write_text(TYPES)
-    (tmp_path / "dzds" / "types_dzds.xml").write_text(TYPES)
     (tmp_path / "cfgeconomycore.xml").write_text(
-        '<economycore><ce folder="snafu"><file name="types.xml" type="types"/></ce>'
-        '<ce folder="dzds"><file name="types_dzds.xml" type="types"/></ce></economycore>')
-    cmd = [sys.executable, str(economy.ROOT / "tools" / "economy.py"), "--mission", str(tmp_path),
-           "--phase", "landfall"]
-    subprocess.run(cmd, check=True, capture_output=True)
-    first = (tmp_path / "snafu" / "types.xml").read_text()
-    subprocess.run(cmd, check=True, capture_output=True)           # rerun: no compounding
-    assert (tmp_path / "snafu" / "types.xml").read_text() == first
-    assert (tmp_path / "db" / "types.xml.vanilla").exists()
-    assert (tmp_path / "snafu" / "types.xml.vanilla").exists()
-    assert not (tmp_path / "dzds" / "types_dzds.xml.vanilla").exists()   # our items untouched
-    akm = ET.fromstring(first).find("type[@name='AKM']")
-    assert int(akm.find("nominal").text) < 10
+        '<economycore><ce folder="snafu"><file name="types.xml" type="types"/></ce></economycore>')
+    return tmp_path
 
 
-def test_loot_follows_control():
-    c = cfg()
-    roles = {"military": ["A", "B"], "airfield": ["C"], "industrial": ["D"]}
-    un = economy.war_factors(c, {"A": "Peacekeepers", "B": "Peacekeepers", "C": "Peacekeepers",
-                                 "D": "Rust"}, roles)
-    tribes = economy.war_factors(c, {"A": "Jackals", "B": "Karkas", "C": "contested", "D": "Jackals"}, roles)
-    assert un["Military"] == 1.0 and tribes["Military"] < 0.75
-    assert tribes["Industrial"] == c["war"]["Industrial"]["min"]
-    root = ET.fromstring(TYPES.replace('<category name="weapons"/>', '<category name="weapons"/><usage name="Military"/>'))
-    economy.scale_types(root, c, economy.pick_phase(c, "long_war", dt.date.today()), tribes)
-    picked = int(root.find("type[@name='AKM']/nominal").text)
-    root2 = ET.fromstring(TYPES.replace('<category name="weapons"/>', '<category name="weapons"/><usage name="Military"/>'))
-    economy.scale_types(root2, c, economy.pick_phase(c, "long_war", dt.date.today()), un)
-    assert picked < int(root2.find("type[@name='AKM']/nominal").text)
+def run(m):
+    subprocess.run([sys.executable, str(economy.ROOT / "tools" / "economy.py"), "--mission", str(m)],
+                   check=True, capture_output=True)
 
 
-def test_no_ledger_no_war_effect():
-    assert economy.war_factors(cfg(), None, {}) == {}
+def test_output_equals_vanilla_except_arrival_lifetime(tmp_path):
+    m = mission(tmp_path)
+    run(m)
+    out = {t.get("name"): t for t in ET.parse(m / "db" / "types.xml").getroot().findall("type")}
+    assert out["AKM"].find("nominal").text == "10" and out["AKM"].find("min").text == "5"
+    assert out["AKM"].find("flags").get("count_in_hoarder") == "0"
+    assert int(out["OffroadHatchback"].find("lifetime").text) >= 7 * DAY
 
 
-# Vanilla gives vehicle classes a 3 s lifetime (the CE spawns cars through events, which carry
-# their own). A refugee-arrival car spawned by init.c got those 3 s, so the CE deleted it and its
-# cargo as soon as the player walked out of CleanupAvoidance (2026-10-12, Solnechny).
-VEHICLE_TYPES = """<types>
-  <type name="OffroadHatchback"><nominal>0</nominal><lifetime>3</lifetime><restock>1800</restock><min>0</min>
-    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/></type>
-  <type name="OffroadHatchback_Blue"><nominal>0</nominal><lifetime>3</lifetime><restock>1800</restock><min>0</min>
-    <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0"/></type>
-</types>"""
+def test_rerun_is_identical_and_modded_types_untouched(tmp_path):
+    m = mission(tmp_path)
+    run(m)
+    first = (m / "db" / "types.xml").read_text()
+    run(m)
+    assert (m / "db" / "types.xml").read_text() == first
+    akm = ET.parse(m / "snafu" / "types.xml").getroot().find("type[@name='AKM']")
+    assert akm.find("nominal").text == "10"
 
-DAY = 86400
+
+def test_lifetime_override_touches_only_named_types():
+    root = ET.fromstring(TYPES)
+    n = economy.apply_lifetimes(root, {"OffroadHatchback": 3888000, "NotInThisFile": 5})
+    assert n == 1
+    assert root.find("type[@name='AKM']/lifetime").text == "1"
 
 
 def test_every_arrival_vehicle_gets_a_lifetime_override():
@@ -141,24 +77,6 @@ def test_every_arrival_vehicle_gets_a_lifetime_override():
         assert over.get(v["class"], 0) >= 7 * DAY, v["class"]
 
 
-def test_lifetime_override_touches_only_named_types():
-    root = ET.fromstring(VEHICLE_TYPES)
-    n = economy.apply_lifetimes(root, {"OffroadHatchback": 3888000, "NotInThisFile": 5})
-    types = {t.get("name"): t for t in root.findall("type")}
-    assert n == 1
-    assert types["OffroadHatchback"].find("lifetime").text == "3888000"
-    assert types["OffroadHatchback_Blue"].find("lifetime").text == "3"
-    assert types["OffroadHatchback"].find("nominal").text == "0"      # still event-only
-
-
-def test_deployed_types_keep_arrival_vehicles():
-    """The generated mission file (what `make push` uploads) carries the override."""
-    mission = economy.ROOT / "server" / "mpmissions" / "dayzOffline.chernarusplus"
-    path = mission / "db" / "types.xml"
-    if not path.exists():
-        import pytest
-        pytest.skip("no pulled mission")
-    types = {t.get("name"): t for t in ET.parse(path).getroot().findall("type")}
-    arrivals = yaml.safe_load((economy.ROOT / "presets" / "arrivals.yaml").read_text())
-    for v in arrivals["vehicles"]:
-        assert int(types[v["class"]].find("lifetime").text) >= 7 * DAY, v["class"]
+def test_no_vanilla_loot_boosts_in_custom_types():
+    t = yaml.safe_load((economy.ROOT / "presets" / "types_dzds.yaml").read_text())
+    assert t["items"] == []

@@ -86,7 +86,7 @@ kan-camps:      # presets/kan_camps.yaml -> KAN camps.json role counts (server S
 
 .PHONY: economy
 economy:
-	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/economy.py $(if $(PHASE),--phase $(PHASE))
+	$(ENV) $(PY) tools/economy.py
 
 .PHONY: patrols diplomacy prepare-restart
 patrols:

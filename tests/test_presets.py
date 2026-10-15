@@ -120,13 +120,22 @@ def test_chernarus_map_complete():
     assert maps_check.check(load("maps/chernarusplus.yaml"), load("maps/_roles.yaml")["roles"]) == []
 
 
-def test_types_preset_compiles_to_valid_xml(tmp_path):
-    root, warnings = types_gen.build(load("presets/types_dzds.yaml"))
+def test_types_generator_compiles_valid_xml(tmp_path):
+    preset = {"profiles": {"p": {"category": "tools", "usage": ["Industrial"], "value": ["Tier1"],
+                                 "lifetime": 10800, "nominal": 12, "min": 6}},
+              "items": [{"name": "SparkPlug", "profile": "p", "nominal": 20, "min": 10, "enabled": True}]}
+    root, warnings = types_gen.build(preset)
     assert warnings == []
     out = tmp_path / "t.xml"
     ET.ElementTree(root).write(out, encoding="UTF-8", xml_declaration=True)
     subprocess.run(["xmllint", "--noout", str(out)], check=True)
     assert root.find("type[@name='SparkPlug']/nominal").text == "20"
+
+
+def test_shipped_custom_types_add_no_loot():
+    """Pure vanilla loot (Blae, 2026-10-15): our custom types file boosts nothing."""
+    root, warnings = types_gen.build(load("presets/types_dzds.yaml"))
+    assert warnings == [] and root.findall("type") == []
 
 
 def test_types_register_is_idempotent(tmp_path):

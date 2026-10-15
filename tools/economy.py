@@ -1,20 +1,16 @@
 #!/usr/bin/env python3
-"""Scale the mission's vanilla loot economy for population and campaign phase.
+"""Keep the mission's loot economy at vanilla (Blae, 2026-10-15: no phases, no scaling).
 
 Regenerates <mission>/db/types.xml AND every modded types file registered in
-cfgeconomycore.xml from pristine baselines (<file>.vanilla, created on first run) using
-presets/economy.yaml, and applies `globals:` to db/globals.xml. Our own designed items
-(the "dzds" folder from tools/types_gen.py) are never scaled.
+cfgeconomycore.xml from pristine baselines (<file>.vanilla, created on first run), changing
+only the lifetime of vehicle classes init.c spawns (refugee arrivals), and applies `globals:`
+to db/globals.xml. Our own items (the "dzds" folder from tools/types_gen.py) are never touched.
 
-Usage:
-  tools/economy.py                      # phase from today's date
-  tools/economy.py --phase landfall     # force a phase
-  tools/economy.py --dry-run            # report only
+Usage: tools/economy.py [--mission DIR] [--dry-run]
 """
 from __future__ import annotations
 
 import argparse
-import datetime as dt
 import shutil
 import sys
 import xml.etree.ElementTree as ET
@@ -25,102 +21,14 @@ import yaml
 
 import active
 
-ROOT = Path(__file__).resolve().parent.parent
+ROOT = active.ROOT
 PRESET = ROOT / "presets" / "economy.yaml"
 ARRIVALS = ROOT / "presets" / "arrivals.yaml"
-TIER_ORDER = ["Tier1", "Tier2", "Tier3", "Tier4", "Unique"]
-
-
-def pick_phase(cfg: dict, name: str | None, today: dt.date) -> dict:
-    phases = sorted(cfg["phases"], key=lambda p: p["from_week"])
-    if name:
-        for p in phases:
-            if p["name"] == name:
-                return p
-        raise SystemExit(f"unknown phase '{name}'; have {[p['name'] for p in phases]}")
-    start = cfg["campaign_start"]
-    start = start if isinstance(start, dt.date) else dt.date.fromisoformat(str(start))
-    week = max(0, (today - start).days // 7)
-    current = phases[0]
-    for p in phases:
-        if week >= p["from_week"]:
-            current = p
-    return current
-
-
-def population_factors(cfg: dict) -> dict:
-    n = cfg["expected_players"]
-    for b in sorted(cfg["population_brackets"], key=lambda b: b["max"]):
-        if n <= b["max"]:
-            return b["factors"]
-    return {}
-
-
-def top_tier(t: ET.Element) -> str | None:
-    tiers = [v.get("name") for v in t.findall("value")]
-    ranked = [x for x in TIER_ORDER if x in tiers]
-    return ranked[-1] if ranked else None
-
-
-def war_factors(cfg: dict, control: dict[str, str] | None, map_roles: dict) -> dict[str, float]:
-    """Per-usage spawn factor from who holds the sites (cfg['war'], ledger control)."""
-    if not control or not cfg.get("war"):
-        return {}
-    out = {}
-    for usage, rule in cfg["war"].items():
-        sites = {s for r in rule["roles"] for s in (map_roles.get(r) or [])} & set(control)
-        if not sites:
-            continue
-        score = sum(1.0 if control[s] in rule["intact_under"] else 0.5 if control[s] == "contested" else 0.0
-                    for s in sites) / len(sites)
-        out[usage] = round(rule["min"] + (1 - rule["min"]) * score, 3)
-    return out
-
-
-def scale_types(root: ET.Element, cfg: dict, phase: dict, war: dict[str, float] | None = None) -> Counter:
-    """Scale nominal/min in place. Returns before/after nominal totals per tier."""
-    pop = population_factors(cfg)
-    protected = set(cfg.get("protected_categories", []))
-    hoard_tiers = set(cfg.get("hoarding", {}).get("count_in_hoarder_for_tiers", []))
-    hoard_cats = set(cfg.get("hoarding", {}).get("count_in_hoarder_for_categories", []))
-    stats: Counter = Counter()
-    for t in root.findall("type"):
-        nom_el, min_el = t.find("nominal"), t.find("min")
-        if nom_el is None or min_el is None:
-            continue
-        nominal, minimum = int(nom_el.text), int(min_el.text)
-        cat_el = t.find("category")
-        cat = cat_el.get("name") if cat_el is not None else None
-        tier = top_tier(t)
-        label = tier or "untiered"
-        stats[f"{label}:before"] += nominal
-
-        flags = t.find("flags")
-        if flags is not None and (tier in hoard_tiers or cat in hoard_cats):
-            flags.set("count_in_hoarder", "1")
-
-        if nominal > 0 and cat not in protected:
-            f = pop.get(tier, 1.0) * phase.get("tiers", {}).get(tier, 1.0)
-            f *= phase.get("categories", {}).get(cat, 1.0)
-            usages = [u.get("name") for u in t.findall("usage")]
-            war_f = [war[u] for u in usages if war and u in war]
-            if war_f:
-                f *= min(war_f)
-            new_nominal = max(1, round(nominal * f))
-            new_min = min(new_nominal, max(0, round(minimum * f)))
-            if minimum > 0:
-                new_min = max(1, new_min)
-            nom_el.text, min_el.text = str(new_nominal), str(new_min)
-        stats[f"{label}:after"] += int(nom_el.text)
-    return stats
+SKIP_FOLDERS = {"dzds"}
 
 
 def lifetime_overrides(cfg: dict) -> dict[str, int]:
-    """Type name -> lifetime (s) for things our scripts spawn outside the CE's events.
-
-    Vanilla gives vehicle classes a 3 s lifetime: the CE spawns cars through events, which
-    carry their own. A refugee-arrival car spawned by init.c gets those 3 s instead, so the CE
-    deletes it, cargo and all, once no player is within CleanupAvoidance (2026-10-12)."""
+    """Type name -> lifetime (s) for vehicles init.c spawns outside the CE's events."""
     life = cfg.get("script_vehicle_lifetime")
     if not life or not ARRIVALS.exists():
         return {}
@@ -140,9 +48,6 @@ def apply_lifetimes(root: ET.Element, overrides: dict[str, int]) -> int:
     return n
 
 
-SKIP_FOLDERS = {"dzds"}
-
-
 def types_files(mission: Path) -> list[Path]:
     """db/types.xml plus modded types files registered in cfgeconomycore.xml."""
     files = [mission / "db" / "types.xml"]
@@ -158,7 +63,7 @@ def types_files(mission: Path) -> list[Path]:
     return files
 
 
-def process(path: Path, cfg: dict, phase: dict, dry_run: bool, war: dict | None = None) -> Counter | None:
+def process(path: Path, cfg: dict, dry_run: bool) -> Counter | None:
     baseline = path.with_name(path.name + ".vanilla")
     if not path.exists():
         print(f"  (missing {path}; skipped)")
@@ -167,12 +72,8 @@ def process(path: Path, cfg: dict, phase: dict, dry_run: bool, war: dict | None 
         shutil.copy2(path, baseline)
         print(f"  saved pristine baseline {baseline.name} (commit it)")
     tree = ET.parse(baseline if baseline.exists() else path)
-    stats = scale_types(tree.getroot(), cfg, phase, war)
-    over = lifetime_overrides(cfg)
-    for t in tree.getroot().findall("type"):
-        if t.get("name") in over:
-            stats[f"lifetime:{t.get('name')}"] += 1
-    apply_lifetimes(tree.getroot(), over)
+    stats: Counter = Counter()
+    stats["lifetime"] = apply_lifetimes(tree.getroot(), lifetime_overrides(cfg))
     if not dry_run:
         ET.indent(tree, space="    ")
         tree.write(path, encoding="UTF-8", xml_declaration=True)
@@ -197,51 +98,29 @@ def apply_globals(path: Path, values: dict) -> list[str]:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--phase")
-    ap.add_argument("--date", help="pretend today is YYYY-MM-DD")
-    ap.add_argument("--mission", default=str(active.mission_dir()))
+    ap.add_argument("--mission")
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
-
     cfg = yaml.safe_load(PRESET.read_text())
-    today = dt.date.fromisoformat(a.date) if a.date else dt.date.today()
-    phase = pick_phase(cfg, a.phase, today)
-    mission = Path(a.mission)
-    db = mission / "db"
-    if not (db / "types.xml").exists():
-        print(f"{db / 'types.xml'} not found: pull the server or start the local server once.", file=sys.stderr)
+    mission = Path(a.mission) if a.mission else active.mission_dir()
+    if not (mission / "db" / "types.xml").exists():
+        print(f"{mission / 'db' / 'types.xml'} not found.", file=sys.stderr)
         return 2
-    print(f"Phase: {phase['name']} ({phase.get('story', '')})")
-    print(f"Population factors for {cfg['expected_players']} players: {population_factors(cfg)}")
-    war = {}
-    ledger_file = ROOT / "gm_state" / "war_ledger.json"
-    if ledger_file.exists():
-        import json
-        state = json.loads(ledger_file.read_text())
-        map_roles = yaml.safe_load((ROOT / "maps" / f"{state['map']}.yaml").read_text()).get("roles", {})
-        war = war_factors(cfg, state.get("control"), map_roles)
-        print(f"War ledger loot factors (turn {state.get('turn')}): {war}")
     total: Counter = Counter()
     for path in types_files(mission):
         print(f"- {path.relative_to(mission)}")
-        stats = process(path, cfg, phase, a.dry_run, war)
+        stats = process(path, cfg, a.dry_run)
         if stats:
             total.update(stats)
-    for label in TIER_ORDER + ["untiered"]:
-        b, af = total[f"{label}:before"], total[f"{label}:after"]
-        if b:
-            print(f"  {label:<9} nominal {b:>6} -> {af:>6} ({af / b:.0%})")
     over = lifetime_overrides(cfg)
-    if over:
-        missing = sorted(k for k in over if not total[f"lifetime:{k}"])
-        print(f"  script-spawned vehicle lifetime {cfg['script_vehicle_lifetime']} s: "
-              f"{len(over) - len(missing)}/{len(over)} type(s)")
-        for k in missing:
-            print(f"WARNING: arrival vehicle {k} is in no types file; the CE will not keep it")
+    print(f"vanilla economy; script-spawned vehicle lifetime set on {total['lifetime']} type(s) "
+          f"for {len(over)} arrival class(es)")
+    if total["lifetime"] < len(over):
+        print("WARNING: an arrival vehicle is in no types file; the CE will not keep it")
     if a.dry_run:
         print("(dry run, nothing written)")
         return 0
-    for w in apply_globals(db / "globals.xml", cfg.get("globals") or {}):
+    for w in apply_globals(mission / "db" / "globals.xml", cfg.get("globals") or {}):
         print("WARNING:", w)
     return 0
 

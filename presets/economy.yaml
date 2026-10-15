@@ -1,78 +1,16 @@
-# Economy (docs/ECONOMY.md): vanilla Central Economy "as intended", scaled for a small
-# population and paced over months. Applied by tools/economy.py (`make economy`).
-#
-# The tool keeps a pristine copy of the mission's db/types.xml as db/types.xml.vanilla and
-# always regenerates types.xml FROM that baseline, so scaling never compounds and is
-# reversible. Items with nominal 0 (event/vehicle-spawned) are never touched, and no item
-# that spawned before is reduced to zero.
-
-# When the campaign started (week 0). Phase is chosen from today's date unless --phase is given.
-campaign_start: 2026-11-01
-
-# ---- Population scaling ---------------------------------------------------------------
-# Vanilla nominals assume a full server (~60 players). With 1–4 players, loot piles up and
-# everyone is fully kitted within days. Scale valuable tiers down by expected population;
-# change `expected_players` as the group grows and rerun.
-expected_players: 4
-population_brackets:          # first bracket whose max >= expected_players wins
-  - { max: 4,   factors: { Tier1: 1.0, Tier2: 0.85, Tier3: 0.70, Tier4: 0.60, Unique: 0.60 } }
-  - { max: 10,  factors: { Tier1: 1.0, Tier2: 0.90, Tier3: 0.80, Tier4: 0.75, Unique: 0.75 } }
-  - { max: 30,  factors: { Tier1: 1.0, Tier2: 0.95, Tier3: 0.90, Tier4: 0.90, Unique: 0.90 } }
-  - { max: 999, factors: { Tier1: 1.0, Tier2: 1.0,  Tier3: 1.0,  Tier4: 1.0,  Unique: 1.0 } }
-
-# Categories never scaled down by population or phase (survival basics stay vanilla).
-protected_categories: [food]
-
-# ---- Campaign phases (pacing over real months) ----------------------------------------
-# Multipliers stack on top of population factors, per value tier and optionally category.
-phases:
-  - name: landfall
-    from_week: 0
-    story: Fresh arrivals. Civilian loot, little military gear; the UN still holds the bases.
-    tiers: { Tier3: 0.6, Tier4: 0.4, Unique: 0.4 }
-    categories: { weapons: 0.7 }
-  - name: scavenger
-    from_week: 3
-    story: Settlements form; the tribal feud heats up. Military gear starts to circulate.
-    tiers: { Tier3: 0.8, Tier4: 0.6, Unique: 0.6 }
-    categories: { weapons: 0.85 }
-  - name: escalation
-    from_week: 7
-    story: Open faction war; convoys and contested sites bring guns into the world.
-    tiers: { Tier3: 0.95, Tier4: 0.85, Unique: 0.85 }
-  - name: long_war
-    from_week: 13
-    story: The long haul. Baseline (population-scaled vanilla). Endgame vehicles and wrecks.
-    tiers: {}
-
-# ---- Loot follows control (war ledger) -------------------------------------------------
-# Spawn amounts for a usage tag depend on who holds the sites of the matching roles. Military
-# sites held by the UN stay stocked; picked over when tribes hold them (factor down to `min`).
-# Contested sites count half. Without a ledger (gm_state/war_ledger.json) nothing changes.
-war:
-  Military:   { roles: [military, airfield], intact_under: [Peacekeepers], min: 0.6 }
-  Industrial: { roles: [industrial, water],  intact_under: [Rust, Settlers], min: 0.75 }
-
-# ---- Hoarding (months-long persistence) ------------------------------------------------
-# Vanilla doesn't count items in stashes/tents toward nominal (count_in_hoarder=0), so over
-# months a few players can stockpile without limit while the world keeps respawning loot.
-# For these tiers/categories, stashed items count, so a full stockpile makes the world thinner.
-hoarding:
-  count_in_hoarder_for_tiers: [Tier4, Unique]
-  count_in_hoarder_for_categories: [weapons]
+# Economy (Blae, 2026-10-15): PURE VANILLA. Nasdara's db/types.xml exactly as Bohemia ships it:
+# no campaign phases, no population scaling, no loot-follows-control, no hoarding rule.
+# Applied by tools/economy.py (`make economy`), which regenerates types.xml from the pristine
+# db/types.xml.vanilla so the result never drifts. Modded types stay at their authors' defaults.
 
 # ---- Lifetime of vehicles our scripts spawn ---------------------------------------------
 # Vanilla vehicle classes have <lifetime>3</lifetime>: the CE spawns cars through events, which
 # carry their own lifetime. A refugee-arrival car (init.c) gets the 3 s instead, so the CE
 # deleted it, cargo and all, as soon as the player walked away (2026-10-12). Applied to every
 # vehicle class in presets/arrivals.yaml. 3888000 s = 45 days, vanilla's lifetime for player
-# property (tents); the CE refreshes it whenever someone uses the car.
+# property (tents); the CE refreshes it whenever someone uses the car. This is a fix, not loot.
 script_vehicle_lifetime: 3888000
 
 # ---- globals.xml ----------------------------------------------------------------------
-# Vanilla values kept ("as intended"). The tool can set any EXISTING <var name="..."> here.
-# Candidates if testing shows a need (vanilla value in comment):
-#   FlagRefreshMaxDuration: 3456000    # 40 days a base survives without its flag refreshed
-#   IdleModeCountdown: 60              # CE pauses this long after the last player leaves
-#   LootDamageMax: 0.82
+# Vanilla values kept. The tool can set any EXISTING <var name="..."> here.
 globals: {}

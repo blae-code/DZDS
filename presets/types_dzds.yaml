@@ -39,20 +39,6 @@ profiles:
     nominal: 8
     min: 3
 
-items:
-  # ---- Vanilla vehicle parts: modest boosts so co-op friends can get rolling ----
-  - { name: SparkPlug,     profile: vehicle_part_industrial, nominal: 20, min: 10, enabled: true }
-  - { name: CarBattery,    profile: vehicle_part_industrial, nominal: 15, min: 8,  enabled: true }
-  - { name: TruckBattery,  profile: vehicle_part_industrial, nominal: 8,  min: 4,  enabled: true }
-  - { name: CarRadiator,   profile: vehicle_part_industrial, nominal: 12, min: 6,  enabled: true }
-  - { name: HeadlightH7,   profile: vehicle_part_industrial, nominal: 15, min: 8,  enabled: true }
-  - { name: Blowtorch,     profile: vehicle_part_military,   nominal: 6,  min: 3,  enabled: true }
-  - { name: TireRepairKit, profile: vehicle_part_industrial, nominal: 10, min: 5,  enabled: true }
-
-  # ---- Modded: confirm classnames, then enable ----
-  - { name: CodeLock,             profile: base_security, enabled: false, mod: Code Lock }
-  - { name: TODO_HeliRotorPart,   profile: heli_part,     enabled: false, mod: RedFalcon Flight System Heliz }
-  - { name: TODO_HeliBattery,     profile: heli_part,     enabled: false, mod: RedFalcon Flight System Heliz }
-  - { name: TODO_DefenderWheel,   profile: vehicle_part_military, enabled: false, mod: IRP-Land-Rover-Defender-110 }
-  - { name: TODO_CarCoverTarp,    profile: vehicle_part_industrial, enabled: false, mod: CarCover }
-  - { name: TODO_CarKey,          profile: vehicle_part_industrial, enabled: false, mod: MuchCarKey }
+# Vehicle-part boosts removed 2026-10-15 (Blae: pure vanilla loot). Our own designed items
+# go here when there are any.
+items: []
