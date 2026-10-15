@@ -58,4 +58,5 @@ server/profiles/ExpansionMod/ATM/
 server/profiles/ExpansionMod/Quests/PlayerData/
 # Airdrop-Upgraded writes a timestamped backup of its settings on every boot
 server/profiles/Airdrop/AirdropSettings_bakup_*.json
-server/profiles/DZDS/arrivals_ledger.json   # per-player arrival records (player IDs), 2026-10-15
+# Per-player arrival records (player IDs), 2026-10-15
+server/profiles/DZDS/arrivals_ledger.json
