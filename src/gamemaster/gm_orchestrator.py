@@ -10,6 +10,7 @@ import logging
 import os
 import time
 from collections import Counter, deque
+import sys
 from pathlib import Path
 
 import yaml
@@ -23,13 +24,15 @@ from .rcon import RconClient
 from .schema import GMPayload, resolve_coords
 
 ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(ROOT / "tools"))
+import active  # noqa: E402
 log = logging.getLogger("gm")
 
 
 def load_config() -> dict:
     load_dotenv(ROOT / ".env")
     cfg = yaml.safe_load((ROOT / "config" / "gm.yaml").read_text())
-    map_name = os.environ.get("GM_MAP", cfg.get("map", "chernarusplus"))
+    map_name = os.environ.get("GM_MAP", cfg.get("map", active.map_name()))
     cfg["map"] = yaml.safe_load((ROOT / "maps" / f"{map_name}.yaml").read_text())
     cfg["dry_run"] = os.environ.get("GM_DRY_RUN", "1") != "0"
     factions = yaml.safe_load((ROOT / "presets" / "factions.yaml").read_text())["factions"]
@@ -127,7 +130,7 @@ class Orchestrator:
         self.rcon: RconClient | None = None
         # The war ledger: every AI death is recorded against the nearest site; `make war-turn`
         # advances it between restarts. Recent war events open the first digest of a session.
-        self.ledger = WarLedger.load(self.map.get("name", "chernarusplus"))
+        self.ledger = WarLedger.load(self.map.get("name", active.map_name()))
         self.pending_war_report = self.ledger.recent_events()
         self.queue = QueueWriter()
         self.gm_actions = load_actions()

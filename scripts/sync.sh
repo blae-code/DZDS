@@ -46,11 +46,8 @@ dry_flag() { [[ "$DRY" == "1" ]] && echo "--dry-run" || true; }
 
 pull() {
   # Only the live mission: the GSP install also ships enoch/sakhal, which we don't run.
-  local r_mission="$R_MISSIONS" l_mission="$L_MISSIONS"
-  if [[ -n "${MISSION_NAME:-}" ]]; then
-    r_mission="$R_MISSIONS/$MISSION_NAME"
-    l_mission="$L_MISSIONS/$MISSION_NAME"
-  fi
+  local mission="${MISSION_NAME:-$("$ROOT/.venv/bin/python" "$ROOT/tools/active.py" mission)}"
+  local r_mission="$R_MISSIONS/$mission" l_mission="$L_MISSIONS/$mission"
   mkdir -p "$L_PROFILES" "$l_mission"
   echo ">> Pulling $R_PROFILES and $r_mission"
   run_lftp "

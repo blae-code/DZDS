@@ -30,3 +30,10 @@ def test_no_tool_hardcodes_a_default_map():
     offenders = [p.name for p in (active.ROOT / "tools").glob("*.py")
                  if p.name != "active.py" and pat.search(p.read_text())]
     assert offenders == []
+
+
+def test_gamemaster_falls_back_to_active_map():
+    src = (active.ROOT / "src" / "gamemaster" / "gm_orchestrator.py").read_text()
+    assert "chernarusplus" not in src
+    import gamemaster.gm_orchestrator as gm
+    assert gm.active is active
