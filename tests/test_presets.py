@@ -228,3 +228,23 @@ def test_no_overlay_left_for_pruned_mods():
     import apply_overlays as ov
     names = {f.name for f in ov.OVERLAYS.glob("*.yaml")}
     assert not names & {"zombie_horde.yaml", "spatial_ai.yaml", "expansion_missions.yaml"}
+
+
+def test_no_open_country_patrol_templates():
+    """Spec §4.3: only the ledger's war party crosses open country."""
+    for name, spec in load("presets/factions.yaml")["factions"].items():
+        for tname, t in (spec.get("patrol_templates") or {}).items():
+            assert t["kind"] in {"garrison", "perimeter", "roam", "ambush"}, (name, tname)
+
+
+def test_generated_patrols_stay_inside_their_zone():
+    import patrol_gen
+    import zones
+    mp = load("maps/nasdara.yaml")
+    control = zones.control_from_initial(load("presets/factions.yaml")["initial_control"]["nasdara"])
+    zs = zones.build(mp, control)
+    for p in patrol_gen.generate("nasdara"):
+        site = p["Name"].split(" @ ")[1]
+        zn = zones.zone_of(site, zs)
+        for x, _, z in p["Waypoints"]:
+            assert zones.inside(x, z, [zn]), (p["Name"], x, z)

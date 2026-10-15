@@ -31,6 +31,7 @@ import active
 
 ROOT = Path(__file__).resolve().parent.parent
 GARRISON_RADIUS = 35.0
+PERIMETER_RADIUS = 150.0
 GENERAL = -2
 
 # Defaults for every generated patrol. Behaviour profile and template overrides go on top.
@@ -93,17 +94,14 @@ def clamp(x: float, z: float, bounds) -> tuple[float, float]:
 
 def waypoints(kind: str, site: str, sites_of_faction: list[str], locs: dict, bounds) -> list[list[float]]:
     x, z = locs[site][:2]
-    if kind == "garrison":
-        pts = [clamp(x + GARRISON_RADIUS * math.cos(a), z + GARRISON_RADIUS * math.sin(a), bounds)
-               for a in (0, math.pi / 2, math.pi, 3 * math.pi / 2)]
+    if kind in ("garrison", "perimeter"):
+        r, n = (GARRISON_RADIUS, 4) if kind == "garrison" else (PERIMETER_RADIUS, 6)
+        pts = [clamp(x + r * math.cos(2 * math.pi * i / n), z + r * math.sin(2 * math.pi * i / n), bounds)
+               for i in range(n)]
         return [vec(*p) for p in pts]
-    if kind == "route":
-        others = [s for s in sites_of_faction if s != site]
-        if not others:
-            return [vec(x, z)]
-        dest = min(others, key=lambda s: (locs[s][0] - x) ** 2 + (locs[s][1] - z) ** 2)
-        return [vec(x, z), vec(*locs[dest][:2])]
-    return [vec(x, z)]  # roam / ambush: a single anchor point
+    if kind in ("roam", "ambush"):
+        return [vec(x, z)]
+    raise ValueError(f"patrol kind '{kind}' leaves the zone; only the ledger war party may (spec §4.3)")
 
 
 def sites_for(at: str, faction: str, control: dict) -> list[str]:

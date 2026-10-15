@@ -50,7 +50,7 @@ factions:
     holds_roles: [inland_town]
     patrol_templates:
       farm_watch:      { at: held, kind: garrison, size: [2, 3], chance: 1.0, persist: true, respawn: 1800 }
-      scavenger_party: { at: held, kind: route, size: [2, 4], chance: 0.6, persist: false, respawn: -2,
+      scavenger_party: { at: held, kind: perimeter, size: [2, 4], chance: 0.6, persist: false, respawn: -2,
                          behaviour: { Behaviour: LOOP, Speed: WALK, LootingBehaviour: "WEAPONS|BANDAGES|CLOTHING|UPGRADE" } }
     radio_voice:
       tone: frightened, practical, neighbourly; farmers and mechanics on cheap handhelds
@@ -86,7 +86,7 @@ factions:
     patrol_templates:
       checkpoint:   { at: held, kind: garrison, size: [3, 4], chance: 1.0, persist: true, respawn: 2400,
                       behaviour: { Behaviour: HALT, DefaultStance: STANDING } }
-      patrol_route: { at: held, kind: route, size: [4, 6], chance: 0.7, persist: true, respawn: 3600 }
+      patrol_route: { at: held, kind: perimeter, size: [4, 6], chance: 0.7, persist: true, respawn: 3600 }
       officer_detail: { at: held, kind: garrison, size: [2, 2], chance: 0.3, persist: true, respawn: -1,
                         loadout_variant: officer, behaviour: { AccuracyMax: 0.52 } }
     radio_voice:
@@ -123,10 +123,9 @@ factions:
     holds_roles: [road_junction]
     patrol_templates:
       raid_party: { at: contested, kind: roam, size: [4, 7], chance: 0.8, persist: false, respawn: -2 }
-      ambush:     { at: held, kind: ambush, size: [3, 5], chance: 0.7, persist: false, respawn: 2700,
+      ambush:     { at: contested, kind: ambush, size: [3, 5], chance: 0.7, persist: false, respawn: 2700,
                     behaviour: { Behaviour: HALT, DefaultStance: CROUCHED, EnableFlankingOutsideCombat: 0 } }
-      warband:    { at: held, kind: route, size: [5, 7], chance: 0.2, persist: false, respawn: -1,
-                    loadout_variant: warlord }
+      camp_guard: { at: held, kind: garrison, size: [2, 3], chance: 1.0, persist: true, respawn: 2400 }
     radio_voice:
       tone: jeering, predatory, slang-heavy; laughter and engine noise in the background
       sample: "Vultures on the ridge, light up that supply truck! Leave the blue helmets for the rotters!"
@@ -200,7 +199,7 @@ factions:
     holds_roles: [industrial, water]
     patrol_templates:
       well_crew:        { at: held, kind: garrison, size: [3, 5], chance: 1.0, persist: true, respawn: 2400 }
-      enforcer_patrol:  { at: held, kind: route, size: [4, 6], chance: 0.6, persist: true, respawn: 3600,
+      enforcer_patrol:  { at: held, kind: perimeter, size: [4, 6], chance: 0.6, persist: true, respawn: 3600,
                           behaviour: { Behaviour: LOOP } }
       foreman:          { at: held, kind: garrison, size: [1, 2], chance: 0.3, persist: true, respawn: -1,
                           loadout_variant: foreman, behaviour: { DamageReceivedMultiplier: 0.8 } }
@@ -215,9 +214,11 @@ factions:
     lore: Drawn by unsuppressed gunfire, turning two-way fights into three-way chaos.
     stance: { Infected: friendly, Settlers: hostile, Peacekeepers: hostile, Jackals: hostile, Karkas: hostile, Rust: hostile }
 
+# 2026-10-15 (Badlands): every template stays inside its site's zone (garrison 35 m, perimeter
+# 150 m, roam/ambush anchored on the site). Crossing open country is the ledger's war party
+# only (presets/ledger.yaml war_party; spec §4.3). `route` is rejected by tools/patrol_gen.py.
 # Patrol templates (tools/patrol_gen.py): at = held (sites the faction holds) | contested;
-# kind = garrison (small loop around the site) | route (to the faction's nearest other site and
-# back) | roam (start at the site, wander) | ambush (hold one spot). size = [NumberOfAI,
+# kind = garrison (small loop around the site) | perimeter (wide loop) | roam (start at the site, wander) | ambush (hold one spot). size = [NumberOfAI,
 # NumberOfAIMax]; respawn = seconds, -1 never, -2 Expansion's general setting; behaviour
 # overrides the faction profile; loadout_variant picks DZDS_<Faction>_<variant> (rank).
 

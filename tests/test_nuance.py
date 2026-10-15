@@ -9,6 +9,8 @@ import patrol_gen
 from apply_ai_calibration import PATROL_BOUNDS, check_bounds
 from test_presets import BEHAVIOURS, ENGINE_FRIENDLY, FORMATIONS, SPEEDS, STANCES, dzds_relations
 
+LOCS_CH = yaml.safe_load((patrol_gen.ROOT / "maps" / "chernarusplus.yaml").read_text())["locations"]
+
 
 def test_generated_patrols_are_valid_expansion_values():
     patrols = patrol_gen.generate("chernarusplus")
@@ -42,12 +44,28 @@ def test_every_held_site_is_defended():
             assert any(n.startswith(faction) and n.endswith(f"@ {site}") for n in names), (faction, site)
 
 
-def test_routes_go_to_another_held_site_and_ranks_get_variant_loadouts():
+def test_perimeter_loops_the_site_and_ranks_get_variant_loadouts():
     patrols = {p["Name"]: p for p in patrol_gen.generate("chernarusplus")}
-    route = patrols["Rust enforcer_patrol @ Chernogorsk"]
-    assert len(route["Waypoints"]) == 2 and route["Waypoints"][0] != route["Waypoints"][1]
+    per = patrols["Rust enforcer_patrol @ Chernogorsk"]
+    assert len(per["Waypoints"]) == 6
     assert patrols["Karkas elder_marksman @ Altar"]["Loadout"] == "DZDS_Karkas_elder"
     assert patrols["Karkas ridge_watch @ Altar"]["DefaultStance"] == "PRONE"
+
+
+def test_route_kind_is_rejected():
+    import pytest
+    with pytest.raises(ValueError, match="route"):
+        patrol_gen.waypoints("route", "Gorka", ["Gorka"], LOCS_CH, [0, 0, 15360, 15360])
+
+
+def test_war_party_patrol_is_single_and_named():
+    wp = {"kind": "offensive", "faction": "Rust", "origin": "Chernogorsk",
+          "target": "Stary Sobor", "size": [4, 6]}
+    ps = patrol_gen.war_party_patrols(wp, LOCS_CH)
+    assert len(ps) == 1 and ps[0]["Name"].startswith("WAR PARTY ")
+    assert ps[0]["Behaviour"] == "ONCE"
+    assert patrol_gen.war_party_patrols({**wp, "kind": "convoy"}, LOCS_CH) == []
+    assert patrol_gen.war_party_patrols(None, LOCS_CH) == []
 
 
 FACTIONS = yaml.safe_load((patrol_gen.ROOT / "presets" / "factions.yaml").read_text())["factions"]
