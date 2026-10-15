@@ -1,16 +1,53 @@
-# Nasdara (Badlands DLC), releasing 2026-10-14. Fill in on release day using
-# docs/BADLANDS_PREP.md. `make maps-check` lists what's still missing.
+# Nasdara (Badlands DLC, game 1.30). Sites picked 2026-10-15 from tools/map_survey.py
+# (build/survey.nasdara.txt, default 600 m cells) plus a classname scan of mapgrouppos.xml.
+# Names are DESCRIPTIVE PLACEHOLDERS: Nasdara's town labels are in no game file on this box
+# (the terrain is the encrypted worlds_nasdara.ebo) and iZurvive can't be read offline.
+# Blae renames at approval. Coordinates are survey-cell centroids rounded to 10 m.
+# Approved by Blae 2026-10-15 (placeholder names kept).
 name: nasdara
-mission: TBD          # mission folder name from the updated server files, e.g. dayzOffline.<map>
-bounds: [0, 0, 0, 0]  # TODO: real extents (check the mission's cfgeffectarea/map config or iZurvive)
-locations: {}
+mission: dayzOffline.nasdara
+bounds: [0, 0, 16384, 16384]   # xmin, zmin, xmax, zmax (survey header)
+zone_radius_m: 400
+zone_radius: {}            # per-site override, e.g. { "Eastern Airfield": 550 }
+role_min:
+  coastal_town: 0          # no sea: lowest structure sits at y=128 (a lake); medicine moves to military
+locations:
+  Eastern Airfield:      [12030, 10850]   # airfield n=3 (hangars, ATC, radar) + military n=22
+  Southwest Base:        [3250, 4630]     # military n=53, biggest base; refugee camp 1 km NE
+  Southern Barracks:     [8230, 5700]     # military n=34
+  Missile Base Ridge:    [2840, 9170]     # rocket base on a ridge, y=406; high_ground n=31, 1.2 km from towns
+  North Border Post:     [2910, 15740]    # border guardhouses, y=387; 2.9 km from towns
+  Eastern Caravanserai:  [14840, 7910]    # lone caravanserai in the eastern desert, 3.7 km from towns
+  Cement Works:          [9730, 6390]     # industrial n=33
+  South Cement Plant:    [9180, 4420]     # industrial n=20
+  Northern Dam:          [3570, 14380]    # KirovDam_* + power plant (classname scan; the survey water regex misses it)
+  Hilltop Water Station: [8290, 6510]     # water n=2 (Water_Station + WaterTower_Large), y=287, 0.5 km from towns
+  Central Pump Station:  [6920, 7360]     # water n=3, the densest water cell (inside a town)
+  Settler Haven:         [7560, 8720]     # town n=100, central; refugee containers 1.3 km NW
+  Palace Town:           [10440, 8030]    # town n=178 (largest cell), palace ruins 0.3 km W
+  Western Town:          [3790, 11090]    # town n=138
+  Northern Town:         [9280, 11850]    # town n=94
+  Lake Town:             [9880, 4090]     # town n=70; hospital, mosque, lake piers 0.9 km E
+  North Highway Pileup:  [3110, 15250]    # 10 wrecks (bus, trailer, cars) on the north highway, 2.4 km from towns
 roles:
-  airfield: []
-  military: []
-  coastal_town: []    # may not apply on a desert map; lower `min` in _roles.yaml per-map if so
-  inland_town: []
-  industrial: []
-  road_junction: []
-  remote: []
-  high_ground: []     # Karkas ridges/canyons
-  water: []           # wells, pumpjacks' water, reservoirs: the most valuable role on an arid map
+  airfield:      [Eastern Airfield]
+  military:      [Southwest Base, Southern Barracks, Eastern Airfield]
+  coastal_town:  []
+  inland_town:   [Settler Haven, Palace Town, Western Town, Northern Town, Lake Town]
+  industrial:    [Cement Works, South Cement Plant]
+  road_junction: [North Highway Pileup]   # NOT a verified junction: roads aren't readable offline
+  remote:        [Eastern Caravanserai]
+  high_ground:   [Missile Base Ridge, North Border Post]
+  water:         [Northern Dam, Hilltop Water Station, Central Pump Station]
+
+# Refugee arrival anchors (presets/arrivals.yaml): NOT war locations; tools/arrivals.py snaps each
+# to a vanilla roadside vehicle spot within snap_radius_m. Each is the centroid of the road-vehicle
+# spawns (VehicleCivilianSedan/Sedan02/Hatchback02/OffroadHatchback/Truck01) within 700 m and has
+# >= 8 of them; all sit 3-5 km from Settler Haven and >= 900 m from every other zone.
+arrival_sites:
+  East Roadside:      [10550, 7990]    # 10 spots, in Palace Town
+  Northeast Roadside: [9590, 12040]    # 13 spots, in Northern Town
+  North Roadside:     [7700, 13030]    # 8 spots
+  Northwest Roadside: [5290, 13030]    # 8 spots
+  Southwest Roadside: [4930, 6750]     # 8 spots
+  South Roadside:     [6950, 4620]     # 9 spots

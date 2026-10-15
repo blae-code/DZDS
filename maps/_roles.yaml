@@ -2,6 +2,7 @@
 # GM logic refer to roles, so porting to a new map = filling in maps/<map>.yaml only.
 # tools/maps_check.py verifies every map assigns at least `min` locations to each role.
 roles:
+# A map may lower a minimum with `role_min: {role: n}` (e.g. a desert map with no coast).
   airfield:       { min: 1, purpose: heli spawns, airdrops, Guard garrisons }
   military:       { min: 2, purpose: Guard bases, high-tier loot, hacked crates }
   coastal_town:   { min: 2, purpose: fresh-spawn areas, Survivor traders }

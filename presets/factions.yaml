@@ -234,7 +234,9 @@ resources:
   fuel:     { from_roles: [industrial],          effect: convoy frequency and vehicle patrols }
   arms:     { from_roles: [military, airfield],  effect: better loadouts (accuracy stays in bounds) }
   food:     { from_roles: [inland_town],         effect: reinforcement rate (patrol size / respawn time) }
-  medicine: { from_roles: [coastal_town],        effect: garrison resilience }
+  # 2026-10-15: Nasdara has no coast (maps/nasdara.yaml role_min coastal_town: 0), so medicine
+  # comes from military sites (field hospitals, medical containers) instead of coastal towns.
+  medicine: { from_roles: [military],            effect: garrison resilience }
 
 # ---- Initial front line for ChernarusPlus (location names from maps/chernarusplus.yaml) ---
 initial_control:
@@ -245,5 +247,15 @@ initial_control:
     Jackals: [Gorka]                       # nomads: one camp, mostly roaming roads
     Settlers: [Vybor, Novodmitrovsk]
     contested: [Stary Sobor, Severograd, Krasnostav]
+
+  # Nasdara (maps/nasdara.yaml): compact strongholds + 2 warzones (spec §4.1). Picked 2026-10-15,
+  # approved by Blae 2026-10-15; names are placeholders until he renames them.
+  nasdara:
+    Peacekeepers: [Eastern Airfield, Southwest Base]
+    Rust: [Cement Works, Hilltop Water Station]
+    Karkas: [Missile Base Ridge]
+    Jackals: [North Highway Pileup]        # nomads: one camp, mostly roaming roads
+    Settlers: [Settler Haven]              # the settlement; arrival_sites ring it at 3-5 km
+    contested: [Northern Dam, Southern Barracks]
 
 # Global calibration lives in presets/expansion_ai_calibration.yaml (blueprint §4E values).

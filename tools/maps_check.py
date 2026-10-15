@@ -30,8 +30,9 @@ def check(data: dict, roles: dict) -> list[str]:
         unknown = [n for n in names if n not in locs]
         if unknown:
             problems.append(f"role '{role}' references unknown location(s) {unknown}")
-        if len(names) < rule.get("min", 1):
-            problems.append(f"role '{role}' needs >= {rule.get('min', 1)} location(s), has {len(names)}")
+        need = (data.get("role_min") or {}).get(role, rule.get("min", 1))
+        if len(names) < need:
+            problems.append(f"role '{role}' needs >= {need} location(s), has {len(names)}")
     for role in assigned:
         if role not in roles:
             problems.append(f"role '{role}' not defined in _roles.yaml")

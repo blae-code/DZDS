@@ -15,7 +15,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_MAP = "chernarusplus"   # flipped to "nasdara" in Task 4, once maps/nasdara.yaml is complete
+DEFAULT_MAP = "nasdara"   # flipped from chernarusplus 2026-10-15 (Task 4, Badlands relaunch)
 
 
 def map_name() -> str:
