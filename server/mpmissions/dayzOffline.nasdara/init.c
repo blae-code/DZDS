@@ -157,6 +157,20 @@ class RefugeeArrivals
 	static void GiveStartKit(PlayerBase player, int radioIndex, bool flare)
 	{
 		EntityAI radio = player.GetInventory().CreateInInventory("PersonalRadio");
+		if (!radio)
+		{
+			radio = player.GetHumanInventory().CreateInHands("PersonalRadio");
+			if (radio)
+				Print("[DZDS Arrivals] radio in hands (inventory full)");
+		}
+		if (!radio)
+		{
+			radio = EntityAI.Cast(GetGame().CreateObjectEx("PersonalRadio", player.GetPosition(), ECE_PLACE_ON_SURFACE));
+			if (radio)
+				Print("[DZDS Arrivals] radio on ground (inventory and hands full)");
+		}
+		if (!radio)
+			Print("[DZDS Arrivals] radio NOT created for new character");
 		if (radio)
 		{
 			radio.GetInventory().CreateAttachment("Battery9V");

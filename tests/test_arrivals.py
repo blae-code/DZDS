@@ -83,6 +83,7 @@ def test_init_c_gives_radio_battery_and_flare():
     kit = re.search(r"static void GiveStartKit\(.*?\n\t\}", src, re.S).group(0)
     for needle in ('"PersonalRadio"', '"Battery9V"', "SetFrequencyByIndex", '"Roadflare"'):
         assert needle in kit, needle
+    assert "CreateInHands" in kit and "radio NOT created" in kit
     assert "SwitchOn" not in kit                       # ships switched OFF (spec §6.1)
     setup = re.search(r"override void StartingEquipSetup\(.*?\n\t\}", src, re.S).group(0)
     assert "GiveStartKit" in setup
