@@ -1,6 +1,6 @@
 DialogueFramework -- Last Load Report
 =============================================
-Server start: 2026-10-16 8:53:55
+Server start: 2026-10-16 19:10:22
 Loaded 1 dialogue tree file(s) covering 1 NPC ID(s).
 
 No warnings or errors.
