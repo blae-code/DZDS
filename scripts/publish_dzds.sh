@@ -24,16 +24,7 @@ fi
 
 note="${1:?usage: scripts/publish_dzds.sh \"change note\" | --record}"
 "$ROOT/scripts/build_dzds.sh"
-cp "$W/mod.cpp" "$ROOT/build/@DZDS/mod.cpp"
-id=$(cat "$IDFILE" 2>/dev/null || echo 0)
-# meta.cpp carries the Workshop ID. The server advertises each mod's ID from it; without it
-# @DZDS was advertised as ID 0, and one 0 makes Steam reject launchers' whole batch lookup
-# (HTTP 400), so DZGUI marked every mod "Invalid" (2026-10-08). DayZ Tools' Publisher writes
-# this file; steamcmd does not. Timestamp is a Windows FILETIME, like the launcher's.
-if [[ "$id" != "0" ]]; then
-  printf 'protocol = 1;\npublishedid = %s;\nname = "Ad Aspera Factions (DZDS)";\ntimestamp = %s;\n' \
-    "$id" "$(( ($(date +%s) + 11644473600) * 10000000 ))" > "$ROOT/build/@DZDS/meta.cpp"
-fi
+id=$(cat "$IDFILE" 2>/dev/null || echo 0)   # build_dzds.sh already wrote mod.cpp + meta.cpp
 desc=$(sed 's/"/'"'"'/g' "$W/description.txt")
 {
   printf '"workshopitem"\n{\n'

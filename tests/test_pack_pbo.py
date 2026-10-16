@@ -1,3 +1,4 @@
+from pathlib import Path
 import hashlib
 import struct
 
@@ -56,3 +57,17 @@ def test_pack_is_deterministic_and_skips_junk(tmp_path):
     pack_pbo.pack(src, b, prefix="M")
     assert a.read_bytes() == b.read_bytes()
     assert list(read_pbo(a.read_bytes())[1]) == ["config.cpp"]
+
+
+def test_build_writes_meta_cpp_with_workshop_id(tmp_path):
+    """Every build of @DZDS carries mod.cpp + meta.cpp. Without meta.cpp the server
+    advertises @DZDS as ID 0 and DZGUI rejects the server ("Invalid mod"); this shipped
+    twice (2026-10-08, 2026-10-16) because only publish_dzds.sh wrote it."""
+    import subprocess
+    root = Path(__file__).resolve().parent.parent
+    assert '"$ROOT/scripts/dzds_meta.sh" "$OUT"' in (root / "scripts/build_dzds.sh").read_text()
+    subprocess.run([str(root / "scripts/dzds_meta.sh"), str(tmp_path)], check=True)
+    wid = (root / "mods/workshop/publishedfileid").read_text().strip()
+    meta = (tmp_path / "meta.cpp").read_text()
+    assert f"publishedid = {wid};" in meta and wid != "0"
+    assert (tmp_path / "mod.cpp").read_text() == (root / "mods/workshop/mod.cpp").read_text()

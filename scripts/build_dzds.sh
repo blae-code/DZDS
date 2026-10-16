@@ -47,4 +47,5 @@ blob(); blob(); ver = struct.unpack_from("<I", b, p)[0]; p += 4; blob(); blob()
 assert b.startswith(b"dzds\0") and ver == 3 and p == len(b), "malformed .bisign"
 print("   ok: key dzds, signature v3")
 ' "$OUT/addons/dzds_scripts.pbo.dzds.bisign"
+"$ROOT/scripts/dzds_meta.sh" "$OUT"   # mod.cpp + meta.cpp (Workshop ID): every build is uploadable
 find "$OUT" -type f -printf '%10s  %P\n'
