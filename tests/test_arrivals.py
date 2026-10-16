@@ -325,3 +325,18 @@ def test_vehicle_selftest_attaches_parts_one_by_one():
     body = re.search(r"void VehicleSelfTest\(\).*?\n\t\}", src, re.S).group(0)
     assert "GetInventory().CreateAttachment(" in body
     assert re.search(r"SpawnVehicle\([^;]*, NULL, -1, \"\", notAttached\)", body), "spawn without parts, then attach"
+
+
+def test_init_c_spot_selftest_is_local_only():
+    """Plane parking at the airfield (Blae 2026-10-16) is validated on the local server:
+    $profile:DZDS/spot_selftest.json lists candidate spots and classes; each is checked with
+    Expansion's collision-box test and a slope check. Never present on the live server."""
+    src = INIT_C.read_text()
+    body = re.search(r"void SpotSelfTest\(\).*?\n\t\}", src, re.S)
+    assert body, "SpotSelfTest missing"
+    for needle in ("IsSpawnPositionFree(", "GetCollisionBox(", "[DZDS SpotTest]", "SPOTTEST"):
+        assert needle in src, needle
+    assert re.search(r'SPOTTEST\s*=\s*DIR \+ "\\\\spot_selftest\.json"', src)
+    mission = re.search(r"class CustomMission: MissionServer.*", src, re.S).group(0)
+    assert "FileExist(RefugeeArrivals.SPOTTEST)" in mission
+    assert "server/profiles/DZDS/spot_selftest.json" in (ROOT / ".gitignore").read_text()

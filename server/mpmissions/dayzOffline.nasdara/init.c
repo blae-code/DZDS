@@ -127,6 +127,20 @@ class RefugeeArrivalLedger
 	ref array<ref RefugeeArrivalRecord> Players;
 }
 
+// Local spot check (plane parking, 2026-10-16): candidate spots and the classes to fit.
+class DZDSSpotCandidate
+{
+	float X;
+	float Z;
+	float A;
+}
+
+class DZDSSpotTestConfig
+{
+	ref TStringArray Classes;
+	ref array<ref DZDSSpotCandidate> Spots;
+}
+
 class RefugeeArrivalPlan
 {
 	string Uid;
@@ -149,6 +163,7 @@ class RefugeeArrivals
 	static const int PICK_TRIES = 12;
 	static const int VEHICLE_REDRAWS = 4;
 	static const string SELFTEST = DIR + "\\vehicle_selftest";
+	static const string SPOTTEST = DIR + "\\spot_selftest.json";
 
 	ref RefugeeArrivalConfig m_Config;
 	ref RefugeeArrivalLedger m_Ledger;
@@ -483,6 +498,52 @@ class RefugeeArrivals
 		Print("[DZDS VehicleTest] done: " + n + " vehicle(s), " + bad + " to check");
 	}
 
+	// Local check: with $profile:DZDS\spot_selftest.json present, test every candidate spot
+	// for every class with Expansion's collision-box check, plus the terrain slope across
+	// the vehicle's footprint. Nothing is spawned.
+	void SpotSelfTest()
+	{
+		DZDSSpotTestConfig t = new DZDSSpotTestConfig;
+		JsonFileLoader<DZDSSpotTestConfig>.JsonLoadFile(SPOTTEST, t);
+		if (!t.Classes || !t.Spots)
+			return;
+		foreach (string cls : t.Classes)
+		{
+			vector box[2];
+			if (!ExpansionStatic.GetCollisionBox(cls, box))
+			{
+				Print("[DZDS SpotTest] " + cls + ": no collision box");
+				continue;
+			}
+			for (int i = 0; i < t.Spots.Count(); i++)
+			{
+				DZDSSpotCandidate c = t.Spots[i];
+				vector pos = Vector(c.X, GetGame().SurfaceY(c.X, c.Z), c.Z);
+				vector ori = Vector(c.A, 0, 0);
+				Object blocking;
+				bool free = ExpansionItemSpawnHelper.IsSpawnPositionFree(pos, ori, cls, blocking);
+				float rad = c.A * Math.DEG2RAD;
+				float lo = 10000;
+				float hi = -10000;
+				for (int k = 0; k < 4; k++)
+				{
+					float bx = box[k % 2][0];
+					float bz = box[k / 2][2];
+					float wx = c.X + bx * Math.Cos(rad) + bz * Math.Sin(rad);
+					float wz = c.Z - bx * Math.Sin(rad) + bz * Math.Cos(rad);
+					float y = GetGame().SurfaceY(wx, wz);
+					lo = Math.Min(lo, y);
+					hi = Math.Max(hi, y);
+				}
+				string by = "";
+				if (blocking)
+					by = " blocked by " + blocking.GetType();
+				Print("[DZDS SpotTest] " + cls + " #" + i + " free=" + free.ToString() + " slope=" + (hi - lo).ToString() + by);
+			}
+		}
+		Print("[DZDS SpotTest] done");
+	}
+
 	void RecordDeath(string uid, vector pos)
 	{
 		if (!IsActive())
@@ -721,6 +782,15 @@ class CustomMission: MissionServer
 		super.OnInit();
 		if (FileExist(RefugeeArrivals.SELFTEST))
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(RunVehicleSelfTest, 60000, false);
+		if (FileExist(RefugeeArrivals.SPOTTEST))
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(RunSpotSelfTest, 45000, false);
+	}
+
+	void RunSpotSelfTest()
+	{
+		if (!m_RefugeeArrivals)
+			m_RefugeeArrivals = new RefugeeArrivals();
+		m_RefugeeArrivals.SpotSelfTest();
 	}
 
 	void RunVehicleSelfTest()
