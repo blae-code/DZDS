@@ -214,6 +214,7 @@ PRUNED_BADLANDS = {
     2757080411: "Crocos Quadbike", 2298127647: "Arma 2 Clothing Pack",
     2074403068: "Unknown Ghillie Mod", 2361330944: "InventoryInCar",
     3115714092: "HypeTrain",  # Blae, 2026-10-15: ditched (rail on Nasdara unverifiable)
+    3430034381: "Leather Crafting",  # 1.30 boot: duplicate CraftLeatherBelt, World won't compile
 }
 
 
