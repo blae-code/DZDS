@@ -65,8 +65,8 @@ class RefugeeArrivalSlot
 
 class RefugeeArrivalFirearm
 {
-	string Weapon;
-	string Magazine;
+	string WeaponClass;
+	string MagazineClass;
 	string Ammo;
 	int RoundsMin;
 	int RoundsMax;
@@ -325,18 +325,18 @@ class RefugeeArrivals
 	void GiveFirearm(CarScript car, RefugeeArrivalArchetype a, TStringArray got)
 	{
 		RefugeeArrivalFirearm f = a.Firearms.GetRandomElement();
-		Weapon_Base gun = Weapon_Base.Cast(Spawn(car, f.Weapon, m_Config.FirearmHealthMin, m_Config.FirearmHealthMax));
+		Weapon_Base gun = Weapon_Base.Cast(Spawn(car, f.WeaponClass, m_Config.FirearmHealthMin, m_Config.FirearmHealthMax));
 		if (!gun)
 			return;
-		got.Insert(f.Weapon);
+		got.Insert(f.WeaponClass);
 		int rounds = Math.RandomIntInclusive(f.RoundsMin, f.RoundsMax);
-		if (f.Magazine != "")
+		if (f.MagazineClass != "")
 		{
-			Magazine mag = gun.SpawnAttachedMagazine(f.Magazine, WeaponWithAmmoFlags.NONE);
+			Magazine mag = gun.SpawnAttachedMagazine(f.MagazineClass, WeaponWithAmmoFlags.NONE);
 			if (mag)
 			{
 				mag.ServerSetAmmoCount(rounds);
-				got.Insert(f.Magazine + " x" + rounds);
+				got.Insert(f.MagazineClass + " x" + rounds);
 				return;
 			}
 		}

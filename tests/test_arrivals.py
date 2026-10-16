@@ -141,7 +141,7 @@ def test_simulated_kits_meet_the_spec(built):
     for arch in out["Archetypes"]:
         food = set(next(s for s in arch["Slots"] if s["Name"] == "food")["Items"])
         camp = set(next(s for s in arch["Slots"] if s["Name"] == "camp")["Items"])
-        weapons = {f["Weapon"] for f in arch["Firearms"]}
+        weapons = {f["WeaponClass"] for f in arch["Firearms"]}
         for _ in range(1000):
             kit = arrivals.simulate_kit(arch, rng)
             items = [k for k in kit if k not in weapons and not k.startswith(("Ammo_", "Mag_"))]
@@ -161,12 +161,12 @@ def test_firearms_without_magazine_get_loose_rounds(built):
         for f in arch["Firearms"]:
             assert f["Ammo"], f
             assert 1 <= f["RoundsMin"] <= f["RoundsMax"] <= 8, f
-            if f["Magazine"]:
+            if f["MagazineClass"]:
                 assert f["RoundsMax"] <= 5, f
-                t = spawn.find(f"type[@name='{f['Weapon']}']")
+                t = spawn.find(f"type[@name='{f['WeaponClass']}']")
                 if t is not None:
                     mags = {i.get("name") for i in t.iter("item")}
-                    assert f["Magazine"] in mags, f
+                    assert f["MagazineClass"] in mags, f
 
 
 def test_init_c_fill_cargo_uses_archetypes():
@@ -177,3 +177,16 @@ def test_init_c_fill_cargo_uses_archetypes():
         assert needle in src, needle
     assert "PickGear()" not in src
     assert "FillSlot(" in fill and "GiveFirearm(" in fill
+
+
+def test_firearm_fields_do_not_shadow_engine_types(built):
+    """1.30 boot: `string Weapon;` in init.c is a compile error ("Variable name 'Weapon' already
+    used as type name"), and so is `Magazine`. JsonFileLoader maps keys to field names, so the
+    JSON keys must avoid engine type names too."""
+    _, _, out = built
+    for arch in out["Archetypes"]:
+        for f in arch["Firearms"]:
+            assert set(f) == {"WeaponClass", "MagazineClass", "Ammo", "RoundsMin", "RoundsMax"}, f
+    init = (arrivals.mission_dir(built[1]) / "init.c").read_text()
+    for engine_type in ("Weapon", "Magazine", "Ammunition_Base", "Weapon_Base", "ItemBase", "Car"):
+        assert not re.search(rf"^\s*(?:ref\s+)?\w+(?:<[^>]*>)?\s+{engine_type}\s*;", init, re.M), engine_type

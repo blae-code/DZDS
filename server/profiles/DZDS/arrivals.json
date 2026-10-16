@@ -1763,22 +1763,22 @@
             ],
             "Firearms": [
                 {
-                    "Weapon": "MakarovIJ70",
-                    "Magazine": "Mag_IJ70_8Rnd",
+                    "WeaponClass": "MakarovIJ70",
+                    "MagazineClass": "Mag_IJ70_8Rnd",
                     "Ammo": "Ammo_380",
                     "RoundsMin": 2,
                     "RoundsMax": 5
                 },
                 {
-                    "Weapon": "CZ75",
-                    "Magazine": "Mag_CZ75_15Rnd",
+                    "WeaponClass": "CZ75",
+                    "MagazineClass": "Mag_CZ75_15Rnd",
                     "Ammo": "Ammo_9x19",
                     "RoundsMin": 2,
                     "RoundsMax": 5
                 },
                 {
-                    "Weapon": "SKS",
-                    "Magazine": "",
+                    "WeaponClass": "SKS",
+                    "MagazineClass": "",
                     "Ammo": "Ammo_762x39",
                     "RoundsMin": 3,
                     "RoundsMax": 8
@@ -1873,15 +1873,15 @@
             ],
             "Firearms": [
                 {
-                    "Weapon": "Mp133Shotgun",
-                    "Magazine": "",
+                    "WeaponClass": "Mp133Shotgun",
+                    "MagazineClass": "",
                     "Ammo": "Ammo_12gaPellets",
                     "RoundsMin": 3,
                     "RoundsMax": 6
                 },
                 {
-                    "Weapon": "SawedoffIzh43Shotgun",
-                    "Magazine": "",
+                    "WeaponClass": "SawedoffIzh43Shotgun",
+                    "MagazineClass": "",
                     "Ammo": "Ammo_12gaPellets",
                     "RoundsMin": 3,
                     "RoundsMax": 6
@@ -1974,15 +1974,15 @@
             ],
             "Firearms": [
                 {
-                    "Weapon": "Mosin9130",
-                    "Magazine": "",
+                    "WeaponClass": "Mosin9130",
+                    "MagazineClass": "",
                     "Ammo": "Ammo_762x54",
                     "RoundsMin": 3,
                     "RoundsMax": 6
                 },
                 {
-                    "Weapon": "Izh18",
-                    "Magazine": "",
+                    "WeaponClass": "Izh18",
+                    "MagazineClass": "",
                     "Ammo": "Ammo_762x39",
                     "RoundsMin": 3,
                     "RoundsMax": 6
@@ -2074,15 +2074,15 @@
             ],
             "Firearms": [
                 {
-                    "Weapon": "Magnum",
-                    "Magazine": "",
+                    "WeaponClass": "Magnum",
+                    "MagazineClass": "",
                     "Ammo": "Ammo_357",
                     "RoundsMin": 3,
                     "RoundsMax": 6
                 },
                 {
-                    "Weapon": "Derringer_Black",
-                    "Magazine": "",
+                    "WeaponClass": "Derringer_Black",
+                    "MagazineClass": "",
                     "Ammo": "Ammo_357",
                     "RoundsMin": 3,
                     "RoundsMax": 6
