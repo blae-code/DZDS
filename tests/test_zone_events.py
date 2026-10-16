@@ -126,6 +126,11 @@ def test_route_plan_missing_recorded_route_stays_off(tmp_path, capsys):
     assert "not recorded; convoys stay off" in capsys.readouterr().out
 
 
+def test_route_plan_missing_routes_dir_forces_convoy_off(tmp_path):
+    (tmp_path / "rust_run.json").write_text(json.dumps({"Name": "rust run", "Enabled": 0, "Waypoints": []}))
+    assert ze.route_plan(ROUTE, tmp_path, {}, routes_dir_exists=False) == (False, {})
+
+
 def test_route_plan_rerun_is_identical(tmp_path):
     (tmp_path / "rust_run.json").write_text(json.dumps({"Name": "rust run", "Enabled": 0, "Waypoints": []}))
     on, w = ze.route_plan(ROUTE, tmp_path, STOCK)

@@ -148,9 +148,12 @@ def convoy(settings: dict, war_party: dict | None, cfg: dict) -> dict:
 
 
 def route_plan(war_party: dict | None, recorded_dir: Path,
-               existing: dict[str, dict]) -> tuple[bool, dict[str, dict]]:
+               existing: dict[str, dict], routes_dir_exists: bool = True) -> tuple[bool, dict[str, dict]]:
     """(convoy_enabled, files_to_write). Never deletes: stock routes are rewritten Enabled 0."""
     want: dict[str, dict] = {}
+    if war_party and war_party["kind"] == "convoy" and not routes_dir_exists:
+        print("ERROR: Routes/ folder missing on the server mirror; convoys stay off")
+        return False, {}
     if war_party and war_party["kind"] == "convoy":
         src = recorded_dir / war_party["route"]
         if src.exists():
@@ -233,7 +236,8 @@ def main() -> int:
         if routes_dir.exists() else {}
     if not routes_dir.exists():
         print(f"  WARNING: {routes_dir.relative_to(ROOT)} missing; stock routes cannot be disabled")
-    on, writes = route_plan(led.s.war_party, ROOT / "presets" / "convoy_routes" / active.map_name(), existing)
+    on, writes = route_plan(led.s.war_party, ROOT / "presets" / "convoy_routes" / active.map_name(), existing,
+                        routes_dir.exists())
     _rw(PROFILES / "AIConvoy" / "AIConvoySettings.json",
         lambda s: convoy(s, led.s.war_party if on else None, cfg), d)
     for name, body in writes.items():
