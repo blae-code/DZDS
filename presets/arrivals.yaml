@@ -76,3 +76,10 @@ gear:
                                   CharcoalTablets, VitaminBottle, TetracyclineAntibiotics] }
   camp:     { weight: 8,  items: [Paper, Firewood, PortableGasStove, SmallGasCanister, ShelterKit, Stone] }
   vehicle:  { weight: 8,  items: [CanisterGasoline, TireRepairKit, EpoxyPutty] }
+
+# Body kit (Blae, 2026-10-15): every new character also gets a PersonalRadio with a 9V battery,
+# tuned to the Settler net and switched OFF, plus one road flare. Index 0 = the first channel
+# in vanilla's list; the MHz value is read in-game (Task 19) and printed on the player page.
+radio:
+  settler_net_index: 0
+give_roadflare: true

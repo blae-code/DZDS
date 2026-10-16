@@ -115,6 +115,8 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "FuelMin": float(cfg["fuel"][0]), "FuelMax": float(cfg["fuel"][1]),
         "HealthMin": float(cfg["vehicle_health"][0]), "HealthMax": float(cfg["vehicle_health"][1]),
         "ItemHealthMin": float(cfg["item_health"][0]), "ItemHealthMax": float(cfg["item_health"][1]),
+        "RadioFrequencyIndex": int(cfg["radio"]["settler_net_index"]),
+        "GiveRoadflare": int(bool(cfg["give_roadflare"])),
         "ArrivalSites": arrival_points(cfg, map_data, spots),
         "RoadPoints": road,
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"])}

@@ -11,6 +11,8 @@
     "HealthMax": 0.7,
     "ItemHealthMin": 0.45,
     "ItemHealthMax": 0.85,
+    "RadioFrequencyIndex": 0,
+    "GiveRoadflare": 1,
     "ArrivalSites": [
         {
             "Name": "East Roadside",

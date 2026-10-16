@@ -68,6 +68,8 @@ class RefugeeArrivalConfig
 	float PlayerOffset;
 	float CargoFill;
 	int MaxCargoItems;
+	int RadioFrequencyIndex;
+	int GiveRoadflare;
 	float FuelMin;
 	float FuelMax;
 	float HealthMin;
@@ -148,6 +150,36 @@ class RefugeeArrivals
 		if (!m_Config)
 			return false;
 		return m_Config.Enabled == 1;
+	}
+
+	// Every new character: a radio with a battery, tuned to the Settler net, switched off
+	// (vanilla items spawn off), plus one road flare (Blae, 2026-10-15).
+	static void GiveStartKit(PlayerBase player, int radioIndex, bool flare)
+	{
+		EntityAI radio = player.GetInventory().CreateInInventory("PersonalRadio");
+		if (radio)
+		{
+			radio.GetInventory().CreateAttachment("Battery9V");
+			TransmitterBase tx = TransmitterBase.Cast(radio);
+			if (tx)
+				tx.SetFrequencyByIndex(radioIndex);
+		}
+		if (flare)
+			player.GetInventory().CreateInInventory("Roadflare");
+	}
+
+	int RadioIndex()
+	{
+		if (!m_Config)
+			return 0;
+		return m_Config.RadioFrequencyIndex;
+	}
+
+	bool Roadflare()
+	{
+		if (!m_Config)
+			return true;
+		return m_Config.GiveRoadflare == 1;
 	}
 
 	// Seconds since 1970 (UTC), from the civil date (H. Hinnant's days_from_civil).
@@ -484,6 +516,9 @@ class CustomMission: MissionServer
 		
 		player.GetStatWater().Set( 1000 );
 		player.GetStatEnergy().Set( 800 );
+		if (!m_RefugeeArrivals)
+			m_RefugeeArrivals = new RefugeeArrivals();
+		RefugeeArrivals.GiveStartKit(player, m_RefugeeArrivals.RadioIndex(), m_RefugeeArrivals.Roadflare());
 	}
 };
 

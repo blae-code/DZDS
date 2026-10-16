@@ -70,3 +70,24 @@ def test_init_main_is_vanilla():
     ours, vanilla = INIT_C.read_text(), (INIT_C.parent / "init.c.vanilla").read_text()
     grab = lambda s: re.search(r"void main\(\)\s*\{.*?\n\}", s, re.S).group(0)  # noqa: E731
     assert grab(ours) == grab(vanilla)
+
+
+def test_start_kit_is_compiled(built):
+    cfg, _, out = built
+    assert out["RadioFrequencyIndex"] == cfg["radio"]["settler_net_index"] >= 0
+    assert out["GiveRoadflare"] == 1
+
+
+def test_init_c_gives_radio_battery_and_flare():
+    src = INIT_C.read_text()
+    kit = re.search(r"static void GiveStartKit\(.*?\n\t\}", src, re.S).group(0)
+    for needle in ('"PersonalRadio"', '"Battery9V"', "SetFrequencyByIndex", '"Roadflare"'):
+        assert needle in kit, needle
+    assert "SwitchOn" not in kit                       # ships switched OFF (spec §6.1)
+    setup = re.search(r"override void StartingEquipSetup\(.*?\n\t\}", src, re.S).group(0)
+    assert "GiveStartKit" in setup
+
+
+def test_voice_quality_max():
+    cfg = (arrivals.ROOT / "config" / "local_serverDZ.cfg").read_text()
+    assert re.search(r"^vonCodecQuality\s*=\s*30;", cfg, re.M)
