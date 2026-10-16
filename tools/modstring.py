@@ -4,6 +4,7 @@
 Usage:
   tools/modstring.py string                 # print -mod= / -serverMod= for the GSP panel
   tools/modstring.py panel                  # Godlike "Additional Mods" / "Server-Side Only Mods"
+  tools/modstring.py panel --write          # ...and write config/panel_additional_mods.txt
   tools/modstring.py keys [--copy-to DIR]   # check each mod ships a .bikey (local workshop dir)
 """
 from __future__ import annotations
@@ -18,6 +19,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 MODS_FILE = ROOT / "config" / "mods.yaml"
+PANEL_FILE = ROOT / "config" / "panel_additional_mods.txt"
 TIER_NAMES = {1: "core", 2: "gameplay/AI", 3: "vehicles/base", 4: "UI/admin"}
 
 
@@ -94,6 +96,10 @@ def cmd_string(args: argparse.Namespace) -> int:
 
 def cmd_panel(args: argparse.Namespace) -> int:
     client, server, local = build_panel_fields(load_mods())
+    if args.write:
+        # Exactly the field value, no trailing newline, so select-all + paste is safe.
+        PANEL_FILE.write_text(client)
+        print(f"# wrote {PANEL_FILE.relative_to(ROOT)} ({client.count('@')} mods)", file=sys.stderr)
     print("# Godlike panel > Config > Startup Variables")
     print("# Additional Mods:")
     print(client or "# (none)")
@@ -153,6 +159,7 @@ def main() -> int:
     s.add_argument("-v", "--verbose", action="store_true")
     s.set_defaults(func=cmd_string)
     g = sub.add_parser("panel", help="print the Godlike panel mod fields (@workshopID;)")
+    g.add_argument("--write", action="store_true", help=f"also write {PANEL_FILE.name}")
     g.set_defaults(func=cmd_panel)
     i = sub.add_parser("ids", help="print '<side> <id> <folder>' per enabled mod")
     i.set_defaults(func=cmd_ids)

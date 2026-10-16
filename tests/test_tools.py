@@ -149,3 +149,12 @@ def test_spec_estimate_scales_with_mod_size():
     assert small["server_ram_gb"] < big["server_ram_gb"]
     assert big["server_ram_gb"] >= 12            # full list needs more than the spec's 8 GB
     assert small["client_disk_gb"] > specs.CLIENT_DAYZ_GB
+
+
+def test_panel_file_matches_mods_yaml():
+    """config/panel_additional_mods.txt is what Blae pastes into the panel's Additional Mods
+    field (2026-10-16). It must equal the generated line exactly; regenerate with
+    `make panel-mods` after any change to mods.yaml."""
+    client, _, _ = modstring.build_panel_fields(modstring.load_mods())
+    assert modstring.PANEL_FILE.read_text() == client, "stale: run `make panel-mods`"
+    assert "\n" not in client
