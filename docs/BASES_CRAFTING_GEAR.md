@@ -11,7 +11,7 @@ boundary. Mods checked on the Workshop 2026-10-05. **[test]** = confirm on the l
 | **Home on wheels** | loaf van, apocalypse truck, trailer, even a train wagon with barrels on it | docs/VEHICLES.md |
 | **First shelter** | a few walls and a door on a cliff edge | RaG_BaseBuilding / BaseBuildingPlus + BuildAnywhere_v3 |
 | **The cabin** | a lockable hunting cabin with fireplace and lights: the homestead milestone | **RaG_Hunting_Cabin** |
-| **Compound** | multi-tier walls, gates with keypads, watchtowers, lockers, gun racks, a car workbench | BBP/RaG, Code Lock, MMG Base Storage, MuchStuffPack, Zens Car Workbench |
+| **Compound** | multi-tier walls, gates with keypads, watchtowers, lockers, gun racks, a car workbench | BBP/RaG, vanilla DigitalCodeLock (1.30), MMG Base Storage, MuchStuffPack, Zens Car Workbench |
 | **Settlement network** | recruited Settlers garrisoning your towers; KAN NPC camps nearby | docs/FACTIONS.md |
 
 ## 2. Systems (one per job, with overlaps flagged)
@@ -19,7 +19,7 @@ boundary. Mods checked on the Workshop 2026-10-05. **[test]** = confirm on the l
 |---|---|---|
 | Modular building | **BaseBuildingPlus** (spec) + **RaG_BaseBuilding** (maintained, 21 kits, snap points) | **PRUNE**: BBP is stale (2025-03); pick one after 1.30 testing |
 | Build on rough terrain | BuildAnywhere_v3 + Immersive Placing Update | |
-| Locks | **Code Lock** (keypads) | Expansion BaseBuilding stays off: it would add a second code-lock system |
+| Locks | **vanilla `DigitalCodeLock`** (1.30, fence gates; Code Lock mod pruned 2026-10-15) | Expansion BaseBuilding stays off: it would add a second code-lock system |
 | Storage & furniture | **MMG Base Storage** (maintained) + MuchStuffPack | **PRUNE**: overlap; MuchStuffPack has 1.28 "fix" forks |
 | Vehicle work | **Zens Car Workbench** (60 nails + 5 sheet metal; holds tyres, batteries, plugs, tools) | |
 

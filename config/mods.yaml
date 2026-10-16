@@ -106,7 +106,7 @@ mods:
   - { name: RedFalcon Flight System Heliz, folder: "@RedFalcon Flight System Heliz", id: 2692979668, tier: 3, module: mobility, side: both, enabled: true, verified: true, tested: false }
   - { name: BaseBuildingPlus,         folder: "@BaseBuildingPlus",         id: 1710977250, tier: 3, module: base,      side: both,   enabled: false, verified: true, tested: false, note: "PRUNED 2026-10-07 (Tier 1: RaG_BaseBuilding (maintained) covers modular building)" }
   - { name: BuildAnywhere_v3,         folder: "@BuildAnywhere_v3",         id: 1854626456, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false, note: "last updated 2021" }
-  - { name: Code Lock,                folder: "@Code Lock",                id: 1646187754, tier: 3, module: base,      side: both,   enabled: true, verified: true, tested: false }
+  - { name: Code Lock,                folder: "@Code Lock",                id: 1646187754, tier: 3, module: base,      side: both,   enabled: false, verified: true, tested: false, note: "PRUNED 2026-10-15 (Badlands): 1.30 ships a vanilla DigitalCodeLock for fence gates (one system per job; Blae chose vanilla). Code Lock renamed Fence.GetCodeLock to GetCodeLockRS for it, which broke RaG_BaseBuilding's World compile." }
   - { name: MuchStuffPack,            folder: "@MuchStuffPack",            id: 1991570984, tier: 3, module: base,      side: both,   enabled: false, verified: true, tested: false, note: "PRUNED 2026-10-07 (Tier 1: overlaps MMG Base Storage; stale). community 'MuchStuffPack_Fix' mods exist for 1.28+, check if needed" }
 
   # ---- Base building, storage, crafting (docs/BASES_CRAFTING_GEAR.md, adopted 2026-10-05) ----

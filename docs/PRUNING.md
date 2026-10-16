@@ -1,7 +1,7 @@
 # Pruning Report
 
 ## Applied 2026-10-15 (Badlands relaunch, Nasdara)
-**12 mods disabled** (each stays in `config/mods.yaml` with `enabled: false` and a `PRUNED 2026-10-15 (Badlands)` note).
+**13 mods disabled** (each stays in `config/mods.yaml` with `enabled: false` and a `PRUNED 2026-10-15 (Badlands)` note).
 
 | Mod | Workshop ID | Reason |
 |---|---|---|
@@ -15,12 +15,13 @@
 | Unknown Ghillie Mod | 2074403068 | abandoned since 2021, duplicated |
 | InventoryInCar | 2361330944 | abandoned since 2021, duplicated |
 | HypeTrain | 3115714092 | Blae's decision; rail on Nasdara can't be verified offline |
+| Code Lock | 1646187754 | Blae's decision: 1.30's vanilla `DigitalCodeLock` covers fence gates. Its 1.30 rename (`GetCodeLock` → `GetCodeLockRS`) broke RaG_BaseBuilding's compile. Tents and RaG doors lose keypads |
 | DayZ-Bicycle | 2971190303 | first local 1.30 boot: `UnlockServer` marked override but gone from the base class; maintained, re-enable once patched |
 | Leather Crafting | 3430034381 | first local 1.30 boot: `Can't compile "World"`, `CraftLeatherBelt` declared twice (1.30 ships its own) |
 
 Overlays removed with their mods: `zombie_horde.yaml`, `spatial_ai.yaml`, `expansion_missions.yaml`.
 
-**Keep if they boot clean** (`pending stage-3 boot`): CarCover, Code Lock, BuildAnywhere_v3,
+**Keep if they boot clean** (`pending stage-3 boot`): CarCover, BuildAnywhere_v3,
 Flying Birds, MMG Military Gear, MBM DuneBuggy, Horse Expansion, Ear-Plugs.
 
 ---
