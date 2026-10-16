@@ -60,3 +60,9 @@ server/profiles/ExpansionMod/Quests/PlayerData/
 server/profiles/Airdrop/AirdropSettings_bakup_*.json
 # Per-player arrival records (player IDs), 2026-10-15
 server/profiles/DZDS/arrivals_ledger.json
+# Runtime leftovers from the first 1.30 boots (2026-10-16). sync.sh push skips everything
+# ignored here, so a local test boot's state never reaches the live server.
+server/profiles/*.mdmp
+server/profiles/cf_findfile_*
+server/profiles/Zenarchist/*.json.v*
+server/mpmissions/*/BunkerBroadcastPersistenceStorage.bin

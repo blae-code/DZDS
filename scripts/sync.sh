@@ -4,10 +4,14 @@
 #   scripts/sync.sh pull            # remote profiles/ + mpmissions/ -> server/
 #   scripts/sync.sh push            # validate -> snapshot remote to backups/ -> upload
 #   scripts/sync.sh logs            # pull only *.ADM / *.RPT into server/profiles (for debugging)
+#   scripts/sync.sh push-excludes   # print what push leaves out (everything git ignores under server/)
 #   DRY_RUN=1 scripts/sync.sh push  # show what would change, upload nothing
 #
 # Requires: lftp (CachyOS: sudo pacman -S lftp). Credentials come from .env.
 # Push never deletes remote files and only uploads files newer than the remote copy.
+# Push uploads only the active mission and never anything .gitignore marks as runtime
+# (ATM balances, player data, admin logs, the server's own users/ profile, arrival ledger):
+# a local test boot rewrites those, and uploading them would overwrite live player state.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
@@ -42,11 +46,23 @@ run_lftp() {
   "
 }
 
+active_mission() {
+  echo "${MISSION_NAME:-$("$ROOT/.venv/bin/python" "$ROOT/tools/active.py" mission)}"
+}
+
+# Gitignored paths under a local dir, relative to it, as lftp exclude globs
+# (glob characters escaped; ignored directories end in "/", which lftp matches as a directory).
+runtime_excludes() {
+  local dir="$1"
+  git -C "$ROOT" ls-files --others --ignored --exclude-standard --directory -- "$dir" \
+    | sed -e "s|^$dir/||" -e 's/[][*?\\]/\\&/g'
+}
+
 dry_flag() { [[ "$DRY" == "1" ]] && echo "--dry-run" || true; }
 
 pull() {
   # Only the live mission: the GSP install also ships enoch/sakhal, which we don't run.
-  local mission="${MISSION_NAME:-$("$ROOT/.venv/bin/python" "$ROOT/tools/active.py" mission)}"
+  local mission; mission="$(active_mission)"
   local r_mission="$R_MISSIONS/$mission" l_mission="$L_MISSIONS/$mission"
   mkdir -p "$L_PROFILES" "$l_mission"
   echo ">> Pulling $R_PROFILES and $r_mission"
@@ -77,10 +93,16 @@ push() {
     read -r -p "Upload server/ to $SFTP_HOST? [y/N] " ans
     [[ "$ans" =~ ^[Yy]$ ]] || { echo "Aborted."; exit 1; }
   fi
-  echo ">> Pushing (newer files only, no remote deletes)"
+  local mission; mission="$(active_mission)"
+  local l_mission="$L_MISSIONS/$mission" r_mission="$R_MISSIONS/$mission"
+  local xp xm
+  xp="$(mktemp)"; xm="$(mktemp)"; trap 'rm -f "$xp" "$xm"' RETURN
+  runtime_excludes "$L_PROFILES" > "$xp"
+  runtime_excludes "$l_mission" > "$xm"
+  echo ">> Pushing $mission (newer files only, no remote deletes; $(wc -l < "$xp")+$(wc -l < "$xm") gitignored paths skipped)"
   run_lftp "
-    mirror -R --only-newer --verbose --parallel=4 $(dry_flag) $EXCLUDES '$L_PROFILES' '$R_PROFILES'
-    mirror -R --only-newer --verbose --parallel=4 $(dry_flag) $EXCLUDES '$L_MISSIONS' '$R_MISSIONS'
+    mirror -R --only-newer --verbose --parallel=4 $(dry_flag) $EXCLUDES --exclude-glob-from='$xp' '$L_PROFILES' '$R_PROFILES'
+    mirror -R --only-newer --verbose --parallel=4 $(dry_flag) $EXCLUDES --exclude-glob-from='$xm' '$l_mission' '$r_mission'
   "
   echo ">> Done. Restart the server from the GSP panel for changes to take effect."
 }
@@ -94,5 +116,6 @@ case "${1:-}" in
   pull) pull ;;
   push) push ;;
   logs) logs ;;
+  push-excludes) runtime_excludes "$L_PROFILES"; runtime_excludes "$L_MISSIONS/$(active_mission)" ;;
   *) sed -n '2,10p' "$0"; exit 1 ;;
 esac
