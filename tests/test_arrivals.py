@@ -135,48 +135,82 @@ def test_archetype_weights(built):
         {"deserter": 30.0, "trucker": 25.0, "nomad": 25.0, "townie": 20.0}
 
 
+CUTTING = {"CombatKnife", "KitchenKnife", "HuntingKnife"}
+CAR = {"TireRepairKit", "Wrench", "Screwdriver", "Pliers", "SparkPlug", "EpoxyPutty"}
+CAMP = {"Matchbox", "Pot", "PortableGasStove", "SmallGasCanister", "Rope"}
+
+
+def _slot(arch, name):
+    return next(s for s in arch["Slots"] if s["Name"] == name)
+
+
 def test_simulated_kits_meet_the_spec(built):
+    """Blae 2026-10-16: every kit has a knife, one car item and one camp item."""
     _, _, out = built
     rng = random.Random(7)
     for arch in out["Archetypes"]:
-        food = set(next(s for s in arch["Slots"] if s["Name"] == "food")["Items"])
-        camp = set(next(s for s in arch["Slots"] if s["Name"] == "camp")["Items"])
+        food = set(_slot(arch, "food")["Items"])
         weapons = {f["WeaponClass"] for f in arch["Firearms"]}
         for _ in range(1000):
             kit = arrivals.simulate_kit(arch, rng)
+            assert kit[0] in weapons, "the firearm spawns first, so a full trunk can't crowd it out"
             items = [k for k in kit if k not in weapons and not k.startswith(("Ammo_", "Mag_"))]
-            assert 10 <= len(items) <= 16, (arch["Name"], kit)
+            assert 12 <= len(items) <= 17, (arch["Name"], kit)
             for name in set(items):
                 cap = 2 if name in food else 1
                 assert items.count(name) <= cap, (arch["Name"], name)
             assert sum(k in weapons for k in kit) == 1
-            assert sum(k in camp for k in kit) <= 1
+            assert sum(k in CUTTING for k in items) == 1, (arch["Name"], kit)
+            assert sum(k in CAR for k in items) >= 1, (arch["Name"], kit)
+            assert sum(k in CAMP for k in items) >= 1, (arch["Name"], kit)
 
 
-def test_firearms_without_magazine_get_loose_rounds(built):
-    """Review focus 5."""
+def test_knife_car_and_camp_slots_are_guaranteed(built):
+    _, _, out = built
+    for arch in out["Archetypes"]:
+        for name, pool in (("knife", CUTTING), ("car", CAR), ("camp", CAMP)):
+            s = _slot(arch, name)
+            assert s["Min"] == s["Max"] == 1, (arch["Name"], name)
+            assert set(s["Items"]) <= pool, (arch["Name"], name, set(s["Items"]) - pool)
+
+
+def test_firearms_get_magazine_and_spare_rounds(built):
+    """Blae 2026-10-16: a pistol arrives with its magazine (3-6 rounds) plus 4-8 spare rounds;
+    a gun without a magazine gets 6-12 loose rounds."""
     _, map_data, out = built
     spawn = ET.parse(arrivals.mission_dir(map_data) / "cfgspawnabletypes.xml").getroot()
     for arch in out["Archetypes"]:
         for f in arch["Firearms"]:
             assert f["Ammo"], f
-            assert 1 <= f["RoundsMin"] <= f["RoundsMax"] <= 8, f
             if f["MagazineClass"]:
-                assert f["RoundsMax"] <= 5, f
+                assert (f["RoundsMin"], f["RoundsMax"]) == (3, 6), f
+                assert (f["SpareMin"], f["SpareMax"]) == (4, 8), f
                 t = spawn.find(f"type[@name='{f['WeaponClass']}']")
                 if t is not None:
                     mags = {i.get("name") for i in t.iter("item")}
                     assert f["MagazineClass"] in mags, f
+            else:
+                assert (f["RoundsMin"], f["RoundsMax"]) == (6, 12), f
+                assert f["SpareMax"] == 0, f
 
 
 def test_init_c_fill_cargo_uses_archetypes():
     src = INIT_C.read_text()
     fill = re.search(r"int FillCargo\(CarScript car\).*?\n\t\}", src, re.S).group(0)
-    for needle in ("PickArchetype()", "SpawnAttachedMagazine(", "WeaponWithAmmoFlags.NONE",
-                   "ServerSetAmmoCount("):
+    for needle in ("PickArchetype()", "ServerSetAmmoCount(", "SpareMin", "SpareMax"):
         assert needle in src, needle
     assert "PickGear()" not in src
     assert "FillSlot(" in fill and "GiveFirearm(" in fill
+    assert fill.index("GiveFirearm(") < fill.index("FillSlot("), "firearm must spawn before the slots"
+
+
+def test_init_c_puts_the_magazine_in_cargo_not_on_the_gun():
+    """2026-10-16 first live arrival: the Makarov's attached magazine never reached the player.
+    The magazine now goes in the cargo like every other item, and the firearm line is logged
+    on its own (the one-line kit list is truncated by the engine)."""
+    src = INIT_C.read_text()
+    assert "SpawnAttachedMagazine(" not in src
+    assert '"[DZDS Arrivals] firearm "' in src
 
 
 def test_firearm_fields_do_not_shadow_engine_types(built):
@@ -186,7 +220,8 @@ def test_firearm_fields_do_not_shadow_engine_types(built):
     _, _, out = built
     for arch in out["Archetypes"]:
         for f in arch["Firearms"]:
-            assert set(f) == {"WeaponClass", "MagazineClass", "Ammo", "RoundsMin", "RoundsMax"}, f
+            assert set(f) == {"WeaponClass", "MagazineClass", "Ammo", "RoundsMin", "RoundsMax",
+                              "SpareMin", "SpareMax"}, f
     init = (arrivals.mission_dir(built[1]) / "init.c").read_text()
     for engine_type in ("Weapon", "Magazine", "Ammunition_Base", "Weapon_Base", "ItemBase", "Car"):
         assert not re.search(rf"^\s*(?:ref\s+)?\w+(?:<[^>]*>)?\s+{engine_type}\s*;", init, re.M), engine_type

@@ -58,9 +58,14 @@ vehicles:
             Truck_01_Hood, Truck_01_Door_1_1, Truck_01_Door_2_1]
 
 # Arrival cargo (Blae, 2026-10-15): ONE archetype per car, slots drawn WITHOUT replacement
-# (max_each 1, food 2), ~10-16 items + exactly one themed firearm with meagre ammo:
-# a partly filled magazine (2-5) OR 3-8 loose rounds, never a spare magazine.
+# (max_each 1, food 2), ~12-17 items + exactly one themed firearm. Item pools are disjoint
+# within an archetype so no item appears twice.
+# Blae 2026-10-16, after the first live arrival: every kit has a knife, one car-maintenance
+# item and one camp item; a pistol arrives with its magazine (3-6 rounds) PLUS 4-8 spare
+# rounds, a gun without a magazine with 6-12 loose rounds. Magazine and rounds go in the
+# cargo (an attached magazine never reached the player); the firearm spawns first.
 firearm_health: [0.45, 0.70]
+car_items: &car [TireRepairKit, Wrench, Screwdriver, Pliers, SparkPlug, EpoxyPutty]
 archetypes:
   deserter:
     weight: 30
@@ -69,13 +74,15 @@ archetypes:
       water:    { count: [1, 2], items: [Canteen, WaterBottle] }
       food:     { count: [2, 3], max_each: 2, items: [TunaCan, SardinesCan, BakedBeansCan, Crackers] }
       medical:  { count: [2, 2], items: [BandageDressing, PainkillerTablets, CharcoalTablets, TetracyclineAntibiotics] }
-      tools:    { count: [2, 3], items: [CombatKnife, Compass, Matchbox, DuctTape, Binoculars] }
-      extra:    { count: [1, 2], items: [Flashlight, Battery9V, Rope] }
-      camp:     { count: [0, 1], items: [PortableGasStove, Pot] }
+      knife:    { count: [1, 1], items: [CombatKnife] }
+      tools:    { count: [1, 2], items: [Compass, DuctTape, Binoculars] }
+      extra:    { count: [1, 2], items: [Flashlight, Battery9V] }
+      camp:     { count: [1, 1], items: [Matchbox, Pot, Rope] }
+      car:      { count: [1, 1], items: *car }
     firearms:
-      - { weapon: MakarovIJ70, magazine: Mag_IJ70_8Rnd, ammo: Ammo_380, rounds: [2, 5] }
-      - { weapon: CZ75, magazine: Mag_CZ75_15Rnd, ammo: Ammo_9x19, rounds: [2, 5] }
-      - { weapon: SKS, magazine: null, ammo: Ammo_762x39, rounds: [3, 8] }
+      - { weapon: MakarovIJ70, magazine: Mag_IJ70_8Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: CZ75, magazine: Mag_CZ75_15Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: SKS, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
   trucker:
     weight: 25
     slots:
@@ -83,12 +90,14 @@ archetypes:
       water:    { count: [1, 2], items: [WaterBottle, Canteen] }
       food:     { count: [2, 3], max_each: 2, items: [BakedBeansCan, Crackers, Rice, BrisketSpread] }
       medical:  { count: [2, 2], items: [BandageDressing, Rag, PainkillerTablets] }
-      tools:    { count: [2, 3], items: [Wrench, Screwdriver, Pliers, KitchenKnife, DuctTape] }
-      extra:    { count: [1, 2], items: [TireRepairKit, CanisterGasoline, EpoxyPutty] }
-      camp:     { count: [0, 1], items: [PortableGasStove, SmallGasCanister] }
+      knife:    { count: [1, 1], items: [KitchenKnife] }
+      tools:    { count: [1, 2], items: [Wrench, Screwdriver, Pliers, DuctTape] }
+      extra:    { count: [1, 2], items: [CanisterGasoline, Flashlight] }
+      camp:     { count: [1, 1], items: [PortableGasStove, SmallGasCanister, Matchbox] }
+      car:      { count: [1, 1], items: [TireRepairKit, SparkPlug, EpoxyPutty] }
     firearms:
-      - { weapon: Mp133Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [3, 6] }
-      - { weapon: SawedoffIzh43Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [3, 6] }
+      - { weapon: Mp133Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [6, 12] }
+      - { weapon: SawedoffIzh43Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [6, 12] }
   nomad:
     weight: 25
     slots:
@@ -96,12 +105,14 @@ archetypes:
       water:    { count: [1, 2], items: [WaterBottle, Canteen] }
       food:     { count: [2, 3], max_each: 2, items: [Pajka, Pate, Rice, SardinesCan] }
       medical:  { count: [2, 2], items: [Rag, BandageDressing, CharcoalTablets] }
-      tools:    { count: [2, 3], items: [HuntingKnife, Rope, SewingKit, Whetstone, Matchbox] }
-      extra:    { count: [1, 2], items: [Compass, Hatchet] }
-      camp:     { count: [0, 1], items: [Pot] }
+      knife:    { count: [1, 1], items: [HuntingKnife] }
+      tools:    { count: [1, 2], items: [SewingKit, Whetstone, Compass] }
+      extra:    { count: [1, 2], items: [Hatchet, Flashlight] }
+      camp:     { count: [1, 1], items: [Pot, Matchbox, Rope] }
+      car:      { count: [1, 1], items: *car }
     firearms:
-      - { weapon: Mosin9130, magazine: null, ammo: Ammo_762x54, rounds: [3, 6] }
-      - { weapon: Izh18, magazine: null, ammo: Ammo_762x39, rounds: [3, 6] }
+      - { weapon: Mosin9130, magazine: null, ammo: Ammo_762x54, rounds: [6, 12] }
+      - { weapon: Izh18, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
   townie:
     weight: 20
     slots:
@@ -109,12 +120,14 @@ archetypes:
       water:    { count: [1, 2], items: [WaterBottle] }
       food:     { count: [2, 3], max_each: 2, items: [BakedBeansCan, TunaCan, Crackers, Rice] }
       medical:  { count: [2, 2], items: [PainkillerTablets, BandageDressing, DisinfectantSpray, CharcoalTablets] }
-      tools:    { count: [2, 3], items: [KitchenKnife, Flashlight, Battery9V, DuctTape] }
-      extra:    { count: [1, 2], items: [Matchbox, SewingKit] }
-      camp:     { count: [0, 1], items: [PortableGasStove] }
+      knife:    { count: [1, 1], items: [KitchenKnife] }
+      tools:    { count: [1, 2], items: [Flashlight, Battery9V, DuctTape] }
+      extra:    { count: [1, 2], items: [SewingKit, CanOpener] }
+      camp:     { count: [1, 1], items: [PortableGasStove, Matchbox, Pot] }
+      car:      { count: [1, 1], items: *car }
     firearms:
-      - { weapon: Magnum, magazine: null, ammo: Ammo_357, rounds: [3, 6] }
-      - { weapon: Derringer_Black, magazine: null, ammo: Ammo_357, rounds: [3, 6] }
+      - { weapon: Magnum, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+      - { weapon: Derringer_Black, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
 
 # Body kit (Blae, 2026-10-15): every new character also gets a PersonalRadio with a 9V battery,
 # tuned to the Settler net and switched OFF, plus one road flare. Index 0 = the first channel

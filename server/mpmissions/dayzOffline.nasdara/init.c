@@ -70,6 +70,8 @@ class RefugeeArrivalFirearm
 	string Ammo;
 	int RoundsMin;
 	int RoundsMax;
+	int SpareMin;
+	int SpareMax;
 }
 
 class RefugeeArrivalArchetype
@@ -321,31 +323,43 @@ class RefugeeArrivals
 		return added;
 	}
 
-	// One worn firearm; a partly filled magazine attached, or loose rounds (no spare magazine).
-	void GiveFirearm(CarScript car, RefugeeArrivalArchetype a, TStringArray got)
+	// Put a magazine or a pile of loose rounds in the cargo, holding `rounds`.
+	void GiveRounds(CarScript car, string cls, int rounds, TStringArray got)
+	{
+		if (rounds <= 0)
+			return;
+		Magazine m = Magazine.Cast(car.GetInventory().CreateEntityInCargo(cls));
+		if (!m)
+		{
+			got.Insert(cls + " (no room)");
+			return;
+		}
+		m.ServerSetAmmoCount(rounds);
+		got.Insert(cls + " x" + rounds);
+	}
+
+	// One worn firearm. A pistol's magazine goes in the cargo partly filled, plus spare loose
+	// rounds; a gun without a magazine gets loose rounds only. Not attached to the gun: on the
+	// first live arrival (2026-10-16) the attached magazine never reached the player.
+	void GiveFirearm(CarScript car, RefugeeArrivalArchetype a)
 	{
 		RefugeeArrivalFirearm f = a.Firearms.GetRandomElement();
-		Weapon_Base gun = Weapon_Base.Cast(Spawn(car, f.WeaponClass, m_Config.FirearmHealthMin, m_Config.FirearmHealthMax));
-		if (!gun)
-			return;
-		got.Insert(f.WeaponClass);
-		int rounds = Math.RandomIntInclusive(f.RoundsMin, f.RoundsMax);
-		if (f.MagazineClass != "")
+		TStringArray got = new TStringArray;
+		if (Spawn(car, f.WeaponClass, m_Config.FirearmHealthMin, m_Config.FirearmHealthMax))
 		{
-			Magazine mag = gun.SpawnAttachedMagazine(f.MagazineClass, WeaponWithAmmoFlags.NONE);
-			if (mag)
+			int rounds = Math.RandomIntInclusive(f.RoundsMin, f.RoundsMax);
+			if (f.MagazineClass != "")
 			{
-				mag.ServerSetAmmoCount(rounds);
-				got.Insert(f.MagazineClass + " x" + rounds);
-				return;
+				GiveRounds(car, f.MagazineClass, rounds, got);
+				rounds = Math.RandomIntInclusive(f.SpareMin, f.SpareMax);
 			}
+			GiveRounds(car, f.Ammo, rounds, got);
 		}
-		Magazine pile = Magazine.Cast(car.GetInventory().CreateEntityInCargo(f.Ammo));
-		if (pile)
+		else
 		{
-			pile.ServerSetAmmoCount(rounds);
-			got.Insert(f.Ammo + " x" + rounds);
+			got.Insert("NO ROOM for the weapon");
 		}
+		Print("[DZDS Arrivals] firearm " + f.WeaponClass + ": " + got.ToString());
 	}
 
 	static bool IsWater(float x, float z)
@@ -516,14 +530,15 @@ class RefugeeArrivals
 		if (!car.GetInventory().GetCargo())
 			return 0;
 		RefugeeArrivalArchetype a = PickArchetype();
+		// Firearm first, so a crowded trunk can't push it out.
+		GiveFirearm(car, a);
 		TStringArray got = new TStringArray;
 		int added = 0;
 		foreach (RefugeeArrivalSlot s : a.Slots)
 		{
 			added += FillSlot(car, s, got);
 		}
-		GiveFirearm(car, a, got);
-		Print("[DZDS Arrivals] cargo " + a.Name + ": " + got.Count() + " " + got.ToString());
+		Print("[DZDS Arrivals] cargo " + a.Name + ": " + added + " item(s) " + got.ToString());
 		return added;
 	}
 

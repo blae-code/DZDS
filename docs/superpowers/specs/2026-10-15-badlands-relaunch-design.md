@@ -213,7 +213,10 @@ Replaces `PickGear()`'s up-to-40 weighted draws with replacement.
 ### 7.1 Model
 - Each car-granting arrival rolls **one archetype**. The archetype fills **slots**. Within a
   slot, items are drawn **without replacement** (`max_per_item` 1; food cans 2).
-- Total ≈ **10–16 items** plus the firearm and its ammo. `max_cargo_items` stays as a hard cap.
+- Total ≈ **12–17 items** plus the firearm and its ammo. `max_cargo_items` stays as a hard cap.
+- **Revised 2026-10-16 (Blae, after the first live arrival):** a separate `knife` slot makes the
+  cutting tool certain (the old tools draw could miss it), and every kit gets exactly one `car`
+  (maintenance) and one `camp` item. The firearm spawns first so a full trunk can't crowd it out.
 - Item health stays road-worn (`item_health` 0.45–0.85); firearm health 0.45–0.70.
 
 | Archetype (weight) | Flavour |
@@ -229,9 +232,11 @@ Replaces `PickGear()`'s up-to-40 weighted draws with replacement.
 | water | 1–2 |
 | food | 2–4 |
 | medical | 1–3 |
-| tools | 2–3 (always one cutting tool) |
+| knife | exactly 1 (combat / kitchen / hunting knife) |
+| tools | 1–2 |
 | archetype extra | 1–2 |
-| camp | 0–1 (at most one cooking or fire item) |
+| camp | exactly 1 (matches, pot, rope, gas stove or canister) |
+| car | exactly 1 (tire repair kit, wrench, screwdriver, pliers, spark plug, epoxy putty) |
 | **firearm** | **exactly 1** |
 
 ### 7.2 Firearm
@@ -239,8 +244,10 @@ Replaces `PickGear()`'s up-to-40 weighted draws with replacement.
   no military rifles). Examples, to be confirmed against Nasdara's `types.xml` in stage 1:
   Deserter → Makarov / CR-75 / worn SKS · Trucker → BK-133 / sawn-off IZH-43 ·
   Nomad → Mosin / BK-18 / crossbow · Townie → revolver / Derringer.
-- **Meagre ammo:** either the weapon's magazine **partly filled** (2–5 rounds) **or** 3–8 loose
-  rounds. **No spare magazines.**
+- **Ammo (revised 2026-10-16, Blae):** a pistol's magazine with 3–6 rounds **plus** 4–8 spare loose
+  rounds; a gun without a detachable magazine gets 6–12 loose rounds. **No spare magazines.** The
+  magazine goes in the cargo, not on the gun: on the first live arrival the attached magazine
+  never reached the player.
 - Only with a granted car, so the 24 h cooldown bounds it.
 
 ### 7.3 Config shape

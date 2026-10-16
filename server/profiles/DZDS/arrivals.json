@@ -1727,14 +1727,21 @@
                     ]
                 },
                 {
-                    "Name": "tools",
-                    "Min": 2,
-                    "Max": 3,
+                    "Name": "knife",
+                    "Min": 1,
+                    "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "CombatKnife",
+                        "CombatKnife"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
                         "Compass",
-                        "Matchbox",
                         "DuctTape",
                         "Binoculars"
                     ]
@@ -1746,18 +1753,32 @@
                     "MaxEach": 1,
                     "Items": [
                         "Flashlight",
-                        "Battery9V",
-                        "Rope"
+                        "Battery9V"
                     ]
                 },
                 {
                     "Name": "camp",
-                    "Min": 0,
+                    "Min": 1,
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "PortableGasStove",
-                        "Pot"
+                        "Matchbox",
+                        "Pot",
+                        "Rope"
+                    ]
+                },
+                {
+                    "Name": "car",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "TireRepairKit",
+                        "Wrench",
+                        "Screwdriver",
+                        "Pliers",
+                        "SparkPlug",
+                        "EpoxyPutty"
                     ]
                 }
             ],
@@ -1766,22 +1787,28 @@
                     "WeaponClass": "MakarovIJ70",
                     "MagazineClass": "Mag_IJ70_8Rnd",
                     "Ammo": "Ammo_380",
-                    "RoundsMin": 2,
-                    "RoundsMax": 5
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
                 },
                 {
                     "WeaponClass": "CZ75",
                     "MagazineClass": "Mag_CZ75_15Rnd",
                     "Ammo": "Ammo_9x19",
-                    "RoundsMin": 2,
-                    "RoundsMax": 5
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
                 },
                 {
                     "WeaponClass": "SKS",
                     "MagazineClass": "",
                     "Ammo": "Ammo_762x39",
-                    "RoundsMin": 3,
-                    "RoundsMax": 8
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
                 }
             ]
         },
@@ -1837,15 +1864,23 @@
                     ]
                 },
                 {
+                    "Name": "knife",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "KitchenKnife"
+                    ]
+                },
+                {
                     "Name": "tools",
-                    "Min": 2,
-                    "Max": 3,
+                    "Min": 1,
+                    "Max": 2,
                     "MaxEach": 1,
                     "Items": [
                         "Wrench",
                         "Screwdriver",
                         "Pliers",
-                        "KitchenKnife",
                         "DuctTape"
                     ]
                 },
@@ -1855,19 +1890,30 @@
                     "Max": 2,
                     "MaxEach": 1,
                     "Items": [
-                        "TireRepairKit",
                         "CanisterGasoline",
-                        "EpoxyPutty"
+                        "Flashlight"
                     ]
                 },
                 {
                     "Name": "camp",
-                    "Min": 0,
+                    "Min": 1,
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
                         "PortableGasStove",
-                        "SmallGasCanister"
+                        "SmallGasCanister",
+                        "Matchbox"
+                    ]
+                },
+                {
+                    "Name": "car",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "TireRepairKit",
+                        "SparkPlug",
+                        "EpoxyPutty"
                     ]
                 }
             ],
@@ -1876,15 +1922,19 @@
                     "WeaponClass": "Mp133Shotgun",
                     "MagazineClass": "",
                     "Ammo": "Ammo_12gaPellets",
-                    "RoundsMin": 3,
-                    "RoundsMax": 6
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
                 },
                 {
                     "WeaponClass": "SawedoffIzh43Shotgun",
                     "MagazineClass": "",
                     "Ammo": "Ammo_12gaPellets",
-                    "RoundsMin": 3,
-                    "RoundsMax": 6
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
                 }
             ]
         },
@@ -1940,16 +1990,23 @@
                     ]
                 },
                 {
-                    "Name": "tools",
-                    "Min": 2,
-                    "Max": 3,
+                    "Name": "knife",
+                    "Min": 1,
+                    "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "HuntingKnife",
-                        "Rope",
+                        "HuntingKnife"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
                         "SewingKit",
                         "Whetstone",
-                        "Matchbox"
+                        "Compass"
                     ]
                 },
                 {
@@ -1958,17 +2015,33 @@
                     "Max": 2,
                     "MaxEach": 1,
                     "Items": [
-                        "Compass",
-                        "Hatchet"
+                        "Hatchet",
+                        "Flashlight"
                     ]
                 },
                 {
                     "Name": "camp",
-                    "Min": 0,
+                    "Min": 1,
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "Pot"
+                        "Pot",
+                        "Matchbox",
+                        "Rope"
+                    ]
+                },
+                {
+                    "Name": "car",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "TireRepairKit",
+                        "Wrench",
+                        "Screwdriver",
+                        "Pliers",
+                        "SparkPlug",
+                        "EpoxyPutty"
                     ]
                 }
             ],
@@ -1977,15 +2050,19 @@
                     "WeaponClass": "Mosin9130",
                     "MagazineClass": "",
                     "Ammo": "Ammo_762x54",
-                    "RoundsMin": 3,
-                    "RoundsMax": 6
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
                 },
                 {
                     "WeaponClass": "Izh18",
                     "MagazineClass": "",
                     "Ammo": "Ammo_762x39",
-                    "RoundsMin": 3,
-                    "RoundsMax": 6
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
                 }
             ]
         },
@@ -2041,12 +2118,20 @@
                     ]
                 },
                 {
-                    "Name": "tools",
-                    "Min": 2,
-                    "Max": 3,
+                    "Name": "knife",
+                    "Min": 1,
+                    "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "KitchenKnife",
+                        "KitchenKnife"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
                         "Flashlight",
                         "Battery9V",
                         "DuctTape"
@@ -2058,17 +2143,33 @@
                     "Max": 2,
                     "MaxEach": 1,
                     "Items": [
-                        "Matchbox",
-                        "SewingKit"
+                        "SewingKit",
+                        "CanOpener"
                     ]
                 },
                 {
                     "Name": "camp",
-                    "Min": 0,
+                    "Min": 1,
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "PortableGasStove"
+                        "PortableGasStove",
+                        "Matchbox",
+                        "Pot"
+                    ]
+                },
+                {
+                    "Name": "car",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "TireRepairKit",
+                        "Wrench",
+                        "Screwdriver",
+                        "Pliers",
+                        "SparkPlug",
+                        "EpoxyPutty"
                     ]
                 }
             ],
@@ -2077,15 +2178,19 @@
                     "WeaponClass": "Magnum",
                     "MagazineClass": "",
                     "Ammo": "Ammo_357",
-                    "RoundsMin": 3,
-                    "RoundsMax": 6
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
                 },
                 {
                     "WeaponClass": "Derringer_Black",
                     "MagazineClass": "",
                     "Ammo": "Ammo_357",
-                    "RoundsMin": 3,
-                    "RoundsMax": 6
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
                 }
             ]
         }

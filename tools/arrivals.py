@@ -76,7 +76,7 @@ def arrival_points(cfg: dict, map_data: dict, spots: list) -> list[dict]:
     return out
 
 
-SLOT_ORDER = ["clothing", "water", "food", "medical", "tools", "extra", "camp"]
+SLOT_ORDER = ["clothing", "water", "food", "medical", "knife", "tools", "extra", "camp", "car"]
 
 
 def archetypes(cfg: dict) -> list[dict]:
@@ -86,14 +86,21 @@ def archetypes(cfg: dict) -> list[dict]:
                   "MaxEach": int(a["slots"][s].get("max_each", 1)), "Items": list(a["slots"][s]["items"])}
                  for s in SLOT_ORDER]
         guns = [{"WeaponClass": f["weapon"], "MagazineClass": f["magazine"] or "", "Ammo": f["ammo"],
-                 "RoundsMin": int(f["rounds"][0]), "RoundsMax": int(f["rounds"][1])} for f in a["firearms"]]
+                 "RoundsMin": int(f["rounds"][0]), "RoundsMax": int(f["rounds"][1]),
+                 "SpareMin": int(f.get("spare", [0, 0])[0]), "SpareMax": int(f.get("spare", [0, 0])[1])}
+                for f in a["firearms"]]
         out.append({"Name": name, "Weight": float(a["weight"]), "Slots": slots, "Firearms": guns})
     return out
 
 
 def simulate_kit(arch: dict, rng: random.Random) -> list[str]:
     """Python mirror of init.c FillCargo/FillSlot/GiveFirearm (same algorithm, for tests)."""
-    kit = []
+    gun = arch["Firearms"][rng.randrange(len(arch["Firearms"]))]
+    kit = [gun["WeaponClass"]]
+    if gun["MagazineClass"]:
+        kit.append(gun["MagazineClass"])
+    if not gun["MagazineClass"] or gun["SpareMax"] > 0:
+        kit.append(gun["Ammo"])
     for s in arch["Slots"]:
         pool = list(s["Items"])
         used: dict[str, int] = {}
@@ -105,9 +112,6 @@ def simulate_kit(arch: dict, rng: random.Random) -> list[str]:
             used[name] = used.get(name, 0) + 1
             if used[name] >= s["MaxEach"]:
                 pool.remove(name)
-    gun = arch["Firearms"][rng.randrange(len(arch["Firearms"]))]
-    kit.append(gun["WeaponClass"])
-    kit.append(gun["MagazineClass"] or gun["Ammo"])
     return kit
 
 
