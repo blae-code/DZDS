@@ -26,10 +26,9 @@ item_health: [0.45, 0.85]       # road-worn
 snap_radius_m: 700              # arrival anchor -> roadside spot search radius
 points_per_site: 4              # candidate spots per arrival site (one may be occupied)
 road_events: [VehicleCivilianSedan, VehicleSedan02, VehicleHatchback02, VehicleOffroadHatchback, VehicleTruck01]
-exclude_roles: [airfield, military]   # no respawns beside UN bases or airfields
+exclude_roles: [airfield, military, road_junction]   # no respawns beside UN bases or the Jackal camp
 exclude_radius_m: 500
-exclude_points:                 # extra no-respawn zones [x, z, radius]
-  - [9500, 8900, 500]           # Gorka: Jackal camp
+exclude_points: []              # extra no-respawn zones [x, z, radius]
 
 # Cars + small trucks (Blae). Vanilla only for the first test: their part sets are certain
 # (cfgspawnabletypes.xml). Modded VAZ-2107 / UAZ-452 / GAZ-3309 after an in-game check.

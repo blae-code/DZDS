@@ -4,15 +4,16 @@ import re
 import pytest
 import yaml
 
+import active
 import arrivals
 
-INIT_C = arrivals.ROOT / "server" / "mpmissions" / "dayzOffline.chernarusplus" / "init.c"
+INIT_C = active.mission_dir("nasdara") / "init.c"
 
 
 @pytest.fixture(scope="module")
 def built():
     cfg = yaml.safe_load(arrivals.PRESET.read_text())
-    map_data = yaml.safe_load((arrivals.ROOT / "maps" / "chernarusplus.yaml").read_text())
+    map_data = active.map_data("nasdara")
     return cfg, map_data, arrivals.build(cfg, map_data, arrivals.mission_dir(map_data))
 
 
@@ -34,7 +35,7 @@ def test_no_road_respawn_inside_an_exclusion_zone(built):
 
 def test_arrival_sites_stay_out_of_war_locations():
     """Arrival villages must not leak into the war ledger, site markers or the GM."""
-    map_data = yaml.safe_load((arrivals.ROOT / "maps" / "chernarusplus.yaml").read_text())
+    map_data = active.map_data("nasdara")
     assert not set(map_data["arrival_sites"]) & set(map_data["locations"])
 
 
@@ -62,3 +63,10 @@ def test_json_keys_match_init_c_classes(built):
     assert set(out) <= fields, set(out) - fields
     point = re.search(r"class RefugeeArrivalPoint\s*\{(.*?)\n\}", src, re.S).group(1)
     assert set(out["RoadPoints"][0]) <= set(re.findall(r"\b(\w+);", point))
+
+
+def test_init_main_is_vanilla():
+    """Our block must not change Bohemia's main() (economy init, date reset)."""
+    ours, vanilla = INIT_C.read_text(), (INIT_C.parent / "init.c.vanilla").read_text()
+    grab = lambda s: re.search(r"void main\(\)\s*\{.*?\n\}", s, re.S).group(0)  # noqa: E731
+    assert grab(ours) == grab(vanilla)
