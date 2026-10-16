@@ -110,3 +110,24 @@ def test_init_c_column_spills_to_the_next_site():
     assert "ColumnSiteFor(" in pick and "for (" in pick      # tries following sites in order
     plan = re.search(r"RefugeeArrivalPlan Plan\(.*?\n\t\}", src, re.S).group(0)
     assert "PickColumnPoint(plan)" in plan
+
+
+def test_respawn_ring_is_compiled(built):
+    _, _, out = built
+    assert (out["RespawnNearMin"], out["RespawnNearMax"], out["RespawnNearFallback"]) == (2000.0, 5000.0, 8000.0)
+
+
+def test_init_c_records_death_on_respawn_and_on_disconnect():
+    src = INIT_C.read_text()
+    assert re.search(r"override void OnClientRespawnEvent\(PlayerIdentity identity, PlayerBase player\)", src)
+    assert re.search(r"override void PlayerDisconnected\(PlayerBase player, PlayerIdentity identity, string uid\)", src)
+    assert src.count("RecordDeath(") >= 3                    # definition + two hooks
+    rec = re.search(r"class RefugeeArrivalRecord\s*\{(.*?)\n\}", src, re.S).group(1)
+    for f in ("DeathX", "DeathZ", "HasDeath"):
+        assert f in rec
+
+
+def test_init_c_respawn_tries_ring_then_fallback_then_anywhere():
+    src = INIT_C.read_text()
+    plan = re.search(r"RefugeeArrivalPlan Plan\(.*?\n\t\}", src, re.S).group(0)
+    assert plan.index("PickNearDeath(") < plan.index("PickPoint(m_Config.RoadPoints")

@@ -119,6 +119,9 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "GiveRoadflare": int(bool(cfg["give_roadflare"])),
         "ColumnSites": list((map_data.get("arrival_sites") or {}).keys()),
         "ColumnDayStartUtcHour": int(cfg["column_day_start_utc_hour"]),
+        "RespawnNearMin": float(cfg["respawn_near_m"][0]),
+        "RespawnNearMax": float(cfg["respawn_near_m"][1]),
+        "RespawnNearFallback": float(cfg["respawn_near_fallback_m"]),
         "ArrivalSites": arrival_points(cfg, map_data, spots),
         "RoadPoints": road,
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"])}

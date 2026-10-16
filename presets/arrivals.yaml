@@ -88,3 +88,9 @@ give_roadflare: true
 # arrival site; the site rotates daily in this order. A "day" starts at this UTC hour
 # (11 = 06:00 US Central) so one evening's session never splits across two sites.
 column_day_start_utc_hour: 11
+
+# Respawn near where you died (Blae, 2026-10-15): a later character wakes on a road point
+# 2-5 km from the previous character's death, else within 8 km, else anywhere (exclusions
+# still apply). No recorded death (e.g. the server restarted mid-death) = anywhere, as before.
+respawn_near_m: [2000, 5000]
+respawn_near_fallback_m: 8000

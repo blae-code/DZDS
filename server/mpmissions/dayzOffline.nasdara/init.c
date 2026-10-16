@@ -72,6 +72,9 @@ class RefugeeArrivalConfig
 	int GiveRoadflare;
 	ref TStringArray ColumnSites;
 	int ColumnDayStartUtcHour;
+	float RespawnNearMin;
+	float RespawnNearMax;
+	float RespawnNearFallback;
 	float FuelMin;
 	float FuelMax;
 	float HealthMin;
@@ -90,6 +93,9 @@ class RefugeeArrivalRecord
 	int FirstSeen;
 	int LastVehicle;
 	int Lives;
+	float DeathX;
+	float DeathZ;
+	int HasDeath;
 }
 
 class RefugeeArrivalLedger
@@ -302,6 +308,44 @@ class RefugeeArrivals
 		return false;
 	}
 
+	void RecordDeath(string uid, vector pos)
+	{
+		if (!IsActive())
+			return;
+		RefugeeArrivalRecord rec = FindRecord(uid);
+		if (!rec)
+			return;
+		rec.DeathX = pos[0];
+		rec.DeathZ = pos[2];
+		rec.HasDeath = 1;
+		MakeDirectory(DIR);
+		JsonFileLoader<RefugeeArrivalLedger>.JsonSaveFile(LEDGER, m_Ledger);
+	}
+
+	// Road points between lo and hi metres from the last death.
+	array<ref RefugeeArrivalPoint> RingPoints(RefugeeArrivalRecord rec, float lo, float hi)
+	{
+		array<ref RefugeeArrivalPoint> ring = new array<ref RefugeeArrivalPoint>;
+		foreach (RefugeeArrivalPoint p : m_Config.RoadPoints)
+		{
+			float dx = p.X - rec.DeathX;
+			float dz = p.Z - rec.DeathZ;
+			float d = Math.Sqrt(dx * dx + dz * dz);
+			if (d >= lo && d <= hi)
+				ring.Insert(p);
+		}
+		return ring;
+	}
+
+	bool PickNearDeath(RefugeeArrivalPlan plan, RefugeeArrivalRecord rec)
+	{
+		if (!rec || rec.HasDeath != 1)
+			return false;
+		if (PickPoint(RingPoints(rec, m_Config.RespawnNearMin, m_Config.RespawnNearMax), plan))
+			return true;
+		return PickPoint(RingPoints(rec, 1000, m_Config.RespawnNearFallback), plan);
+	}
+
 	bool PickPoint(array<ref RefugeeArrivalPoint> points, RefugeeArrivalPlan plan)
 	{
 		if (!points || points.Count() == 0)
@@ -371,6 +415,8 @@ class RefugeeArrivals
 		bool placed = false;
 		if (plan.FirstArrival)
 			placed = PickColumnPoint(plan);
+		if (!placed && !plan.FirstArrival)
+			placed = PickNearDeath(plan, rec);
 		if (!placed)
 			placed = PickPoint(m_Config.RoadPoints, plan);
 		if (!placed && plan.GrantVehicle)
@@ -458,6 +504,7 @@ class RefugeeArrivals
 			m_Ledger.Players.Insert(rec);
 		}
 		rec.Lives++;
+		rec.HasDeath = 0;
 		if (granted)
 			rec.LastVehicle = now;
 		MakeDirectory(DIR);
@@ -482,6 +529,20 @@ class CustomMission: MissionServer
 			float rndHlt = Math.RandomFloat( 0.45, 0.65 );
 			itemEnt.SetHealth01( "", "", rndHlt );
 		}
+	}
+
+	override void OnClientRespawnEvent(PlayerIdentity identity, PlayerBase player)
+	{
+		if (m_RefugeeArrivals && identity && player)
+			m_RefugeeArrivals.RecordDeath(identity.GetId(), player.GetPosition());
+		super.OnClientRespawnEvent(identity, player);
+	}
+
+	override void PlayerDisconnected(PlayerBase player, PlayerIdentity identity, string uid)
+	{
+		if (m_RefugeeArrivals && player && !player.IsAlive())
+			m_RefugeeArrivals.RecordDeath(uid, player.GetPosition());
+		super.PlayerDisconnected(player, identity, uid);
 	}
 
 	override PlayerBase OnClientNewEvent(PlayerIdentity identity, vector pos, ParamsReadContext ctx)
