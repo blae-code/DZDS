@@ -1,6 +1,5 @@
 # tests/test_zone_placement.py
 """Spec §4.4: every generated NPC/event position is inside a zone, except ONE war party."""
-import pytest
 import yaml
 
 import active
@@ -49,7 +48,6 @@ def test_everything_is_inside_a_zone_except_one_war_party():
         assert len(wp) <= 1
 
 
-@pytest.mark.xfail(reason="Nasdara KAN camp Ids exist only after the first local boot (Task 19)", strict=True)
 def test_kan_camps_sit_in_settler_zones():
     preset = yaml.safe_load((ROOT / "presets" / "kan_camps.yaml").read_text())
     mp = active.map_data("nasdara")

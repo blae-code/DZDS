@@ -2,8 +2,8 @@
     "Controls": {
         "Version": "1.26.01.04",
         "Description": "Default settings file",
-        "Interval": 60,
-        "Variance": 5,
+        "Interval": 180,
+        "Variance": 30,
         "FlightHours": [
             0,
             0,
@@ -20,9 +20,9 @@
         "SmokeTrails": 1
     },
     "Map": {
-        "MapName": "chernarusplus",
-        "Width": 15360.0,
-        "Height": 15360.0
+        "MapName": "nasdara",
+        "Width": 16384.0,
+        "Height": 16384.0
     },
     "Aircraft": {
         "AirSpeedKIAS": 150,
@@ -33,7 +33,7 @@
         "TerrainFollowing": 0.5
     },
     "Messages": {
-        "Mode": 3,
+        "Mode": 0,
         "Duration": 15,
         "Proximity": 1500,
         "ImperialUnits": 0,
@@ -255,133 +255,43 @@
             "DropAccuracy": 100
         },
         {
-            "Title": "Balota",
+            "Title": "Eastern Airfield",
             "Location": "Military",
             "DropType": "RANDOM",
-            "X": 5043.0,
-            "Z": 2505.0,
-            "Zombies": 5,
-            "Radius": 50,
+            "X": 12030.0,
+            "Z": 10850.0,
+            "Zombies": 6,
+            "Radius": 120,
             "DropAccuracy": 100
         },
         {
-            "Title": "Berezino",
-            "Location": "City",
-            "DropType": "RANDOM",
-            "X": 11464.0,
-            "Z": 8908.0,
-            "Zombies": 10,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
-            "Title": "Chernogorks",
-            "Location": "City",
-            "DropType": "RANDOM",
-            "X": 6128.0,
-            "Z": 2497.0,
-            "Zombies": 10,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
-            "Title": "Elektrozavodsk",
-            "Location": "City",
-            "DropType": "RANDOM",
-            "X": 9371.0,
-            "Z": 2229.0,
-            "Zombies": 10,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
-            "Title": "Krasnostav",
+            "Title": "Northern Dam",
             "Location": "Military",
             "DropType": "RANDOM",
-            "X": 12159.0,
-            "Z": 12583.0,
-            "Zombies": 5,
-            "Radius": 50,
+            "X": 3570.0,
+            "Z": 14380.0,
+            "Zombies": 6,
+            "Radius": 120,
             "DropAccuracy": 100
         },
         {
-            "Title": "Myshkino",
-            "Location": "Country",
-            "DropType": "RANDOM",
-            "X": 2036.0,
-            "Z": 7491.0,
-            "Zombies": 5,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
-            "Title": "Northwest Airfield",
+            "Title": "Southern Barracks",
             "Location": "Military",
             "DropType": "RANDOM",
-            "X": 4807.0,
-            "Z": 9812.0,
-            "Zombies": 10,
-            "Radius": 50,
+            "X": 8230.0,
+            "Z": 5700.0,
+            "Zombies": 6,
+            "Radius": 120,
             "DropAccuracy": 100
         },
         {
-            "Title": "Novodmitrovsk",
-            "Location": "City",
-            "DropType": "RANDOM",
-            "X": 11125.0,
-            "Z": 14040.0,
-            "Zombies": 10,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
-            "Title": "Novy Sobor",
-            "Location": "Country",
-            "DropType": "RANDOM",
-            "X": 7436.0,
-            "Z": 7720.0,
-            "Zombies": 5,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
-            "Title": "Skalisty Island",
-            "Location": "Country",
-            "DropType": "RANDOM",
-            "X": 13452.0,
-            "Z": 3112.0,
-            "Zombies": 5,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
-            "Title": "Sosnovka",
+            "Title": "Southwest Base",
             "Location": "Military",
             "DropType": "RANDOM",
-            "X": 2700.0,
-            "Z": 6193.0,
-            "Zombies": 5,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
-            "Title": "Stary Sobor",
-            "Location": "Country",
-            "DropType": "RANDOM",
-            "X": 5823.0,
-            "Z": 7764.0,
-            "Zombies": 5,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
-            "Title": "Zelenogorks",
-            "Location": "City",
-            "DropType": "RANDOM",
-            "X": 2351.0,
-            "Z": 5393.0,
-            "Zombies": 10,
-            "Radius": 50,
+            "X": 3250.0,
+            "Z": 4630.0,
+            "Zombies": 6,
+            "Radius": 120,
             "DropAccuracy": 100
         }
     ],
@@ -482,7 +392,7 @@
         }
     ],
     "VPP_Map": {
-        "ExportMap": 1,
+        "ExportMap": 0,
         "TitleMode": 1,
         "MapColor": [
             0,
@@ -490,7 +400,7 @@
             200
         ],
         "MapIcon": "VanillaPPMap\\GUI\\Textures\\CustomMapIcons\\waypointeditor_CA.paa",
-        "IsActive": 1,
+        "IsActive": 0,
         "Is3DActive": 0
     }
 }

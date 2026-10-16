@@ -97,7 +97,7 @@
                     "Sets": []
                 },
                 {
-                    "ClassName": "HunterJacket_Autumn",
+                    "ClassName": "HuntingJacket_Autumn",
                     "Include": "",
                     "Chance": 0.333,
                     "Quantity": {

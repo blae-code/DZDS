@@ -1,12 +1,12 @@
 [
     {
         "ConfigUniqueID": "DefaultDynamicEvent_Example1",
-        "UseExpansionMapMarker": 1,
-        "UseAdvancedGroupsMapMarker": 1,
-        "UseBasicMapMarker": 1,
-        "UseVPPMapMarker": 1,
+        "UseExpansionMapMarker": 0,
+        "UseAdvancedGroupsMapMarker": 0,
+        "UseBasicMapMarker": 0,
+        "UseVPPMapMarker": 0,
         "StaticSpawns": 0,
-        "ActiveCrateCount": 2,
+        "ActiveCrateCount": 1,
         "AutoRefresh": 1,
         "RefreshInterval": 3600,
         "CrateType": "BS_Hacked_Crate",
@@ -14,7 +14,7 @@
             "DefaultArmaments",
             "DefaultMedical"
         ],
-        "UseCrateNotifications": 1,
+        "UseCrateNotifications": 0,
         "CrateSpawnNotification_Key": "#STR_BSHC_Notification_Spawn_Default",
         "CrateStartNotification_Key": "#STR_BSHC_Notification_Start_Default",
         "CrateEndNotification_Key": "#STR_BSHC_Notification_End_Default",
@@ -25,11 +25,11 @@
         "CrateStartNotification_Key_Located": "#STR_BSHC_Notification_Start_Located",
         "CrateEndNotification_Key_Located": "#STR_BSHC_Notification_End_Located",
         "CrateDespawnNotification_Key_Located": "#STR_BSHC_Notification_Despawn_Located",
-        "EnableSpawnNotification": 1,
-        "EnableStartNotification": 1,
-        "EnableEndNotification": 1,
-        "EnableDespawnNotification": 1,
-        "ShowLocationInNotifications": 1,
+        "EnableSpawnNotification": 0,
+        "EnableStartNotification": 0,
+        "EnableEndNotification": 0,
+        "EnableDespawnNotification": 0,
+        "ShowLocationInNotifications": 0,
         "WarningTimeMinutes": 10,
         "IgnorePlayerCheckOnWarnedSpawn": 1,
         "ExpansionMarkerColor": "255,255,0,0",
@@ -38,23 +38,35 @@
         "MarkerColor_Hacking": "255,255,200,0",
         "MarkerColor_Unlocked": "255,0,200,0",
         "UseStateBasedMarkerColor": 1,
-        "MarkerEnable2D": 1,
-        "MarkerEnable3D": 1,
-        "EnableMarkerHackingProgress": 1,
-        "EnableMarkerUnlockedStatus": 1,
+        "MarkerEnable2D": 0,
+        "MarkerEnable3D": 0,
+        "EnableMarkerHackingProgress": 0,
+        "EnableMarkerUnlockedStatus": 0,
         "RequireAccessAction": 1,
         "CountdownTime": 900,
         "CrateLocations": [
             {
-                "Position": "4732.430176 338.968994 10350.200195",
+                "Position": "12030.0 175.6 10850.0",
                 "Rotation": "0.0 0.0 0.0",
-                "LocationName": "Airfield",
+                "LocationName": "Eastern Airfield",
                 "AISpawnPositions": []
             },
             {
-                "Position": "4553.689941 317.975006 8352.099609",
+                "Position": "3570.0 301.5 14380.0",
                 "Rotation": "0.0 0.0 0.0",
-                "LocationName": "VMC",
+                "LocationName": "Northern Dam",
+                "AISpawnPositions": []
+            },
+            {
+                "Position": "8230.0 264.4 5700.0",
+                "Rotation": "0.0 0.0 0.0",
+                "LocationName": "Southern Barracks",
+                "AISpawnPositions": []
+            },
+            {
+                "Position": "3250.0 279.9 4630.0",
+                "Rotation": "0.0 0.0 0.0",
+                "LocationName": "Southwest Base",
                 "AISpawnPositions": []
             }
         ],

@@ -1,6 +1,7 @@
 {
-    "ConfigVersion": "1.29.1",
-    "GeneralConfig": {
+    "ConfigVersion": "1.29.4",
+    "GeneralSleepConfig": {
+        "AllowVehicleSleep": 1,
         "SecondsAsleepUntilFullRestApprox": 600.0,
         "FreshSpawnFatiguePercent": 70.0,
         "MaxFatiguePercentToAllowSleeping": 70.0,
@@ -52,8 +53,8 @@
             "MorphineMdfr": -1.0
         },
         "ModifierActivatedPercent": {
-            "ZenSleep_Amphetamine": 100.0,
-            "SodaCan_ColorBase": 1.0
+            "SodaCan_ColorBase": 1.0,
+            "ZenSleep_Amphetamine": 100.0
         },
         "ModifierPausesSeconds": {
             "EpinephrineMdfr": 300.0,
@@ -114,5 +115,6 @@
         "TooUncomfortable": "#STR_ZenSleepMsg_TooUncomfortable.",
         "TooHungryThirsty": "#STR_ZenSleepMsg_TooHungryThirsty."
     },
-    "DebugMode": 0
+    "DebugMode": 0,
+    "OverrideTerje": 0
 }

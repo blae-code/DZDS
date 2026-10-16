@@ -710,7 +710,7 @@
         },
         {
             "ClassName": "PSO6Optic",
-            "ParentClass": "PSO1Optic",
+            "ParentClass": "ItemOptics_Base",
             "Category": "Optic",
             "TierKey": "HeavyOptic_T2",
             "CustomTierLabel": "Custom",
@@ -2194,7 +2194,7 @@
                 "weaponWrap"
             ],
             "NeedsReview": 0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "GhillieAtt_White",
@@ -2212,7 +2212,7 @@
                 "weaponWrap"
             ],
             "NeedsReview": 0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "GhillieAtt_Brown",
@@ -2230,7 +2230,7 @@
                 "weaponWrap"
             ],
             "NeedsReview": 0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "GhillieAtt_Gold",
@@ -2248,7 +2248,7 @@
                 "weaponWrap"
             ],
             "NeedsReview": 0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "Asmond_Suppressor_EAST_Winter",
@@ -5823,6 +5823,115 @@
                 "pistolFlashlight"
             ],
             "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "P1907_Bayonet",
+            "ParentClass": "Inventory_Base",
+            "Category": "Bayonet",
+            "TierKey": "Bayonet_Heavy",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0800000429153443,
+            "ADS": 0.9200000166893005,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponBayonetLeeEnfield",
+                "Knife"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_WoodBttstck_Gold",
+            "ParentClass": "AK_WoodBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "AK_WoodHndgrd_Gold",
+            "ParentClass": "AK_WoodHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "GhillieAtt_Desert",
+            "ParentClass": "GhillieAtt_ColorBase",
+            "Category": "Wrap",
+            "TierKey": "WeaponWrap_Utility",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.925000011920929,
+            "ADS": 0.9700000286102295,
+            "Precision": 1.0299999713897706,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponWrap"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Magnum_Cylinder_Gold",
+            "ParentClass": "Magnum_Cylinder",
+            "Category": "Neutral",
+            "TierKey": "Neutral",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0,
+            "ADS": 1.0,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "RevolverCylinder"
+            ],
+            "NeedsReview": 1,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Magnum_Ejector_Gold",
+            "ParentClass": "Magnum_Ejector",
+            "Category": "Neutral",
+            "TierKey": "Neutral",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0,
+            "ADS": 1.0,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "RevolverEjector"
+            ],
+            "NeedsReview": 1,
             "IsCurrentlyLoaded": 1
         }
     ]

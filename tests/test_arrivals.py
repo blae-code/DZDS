@@ -190,3 +190,15 @@ def test_firearm_fields_do_not_shadow_engine_types(built):
     init = (arrivals.mission_dir(built[1]) / "init.c").read_text()
     for engine_type in ("Weapon", "Magazine", "Ammunition_Base", "Weapon_Base", "ItemBase", "Car"):
         assert not re.search(rf"^\s*(?:ref\s+)?\w+(?:<[^>]*>)?\s+{engine_type}\s*;", init, re.M), engine_type
+
+
+def test_firearm_json_keys_are_init_c_fields(built):
+    """JsonFileLoader fills fields by name and silently skips unknown keys, so a key init.c
+    doesn't declare would arrive empty in game (the line only prints once a player joins)."""
+    _, map_data, out = built
+    init = (arrivals.mission_dir(map_data) / "init.c").read_text()
+    body = re.search(r"class RefugeeArrivalFirearm\s*\{(.*?)\}", init, re.S).group(1)
+    fields = set(re.findall(r"\b(?:string|int|float)\s+(\w+)\s*;", body))
+    for arch in out["Archetypes"]:
+        for f in arch["Firearms"]:
+            assert set(f) == fields, (set(f) ^ fields)

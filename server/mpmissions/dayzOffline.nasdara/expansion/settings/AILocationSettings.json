@@ -1,0 +1,1484 @@
+{
+    "m_Version": 4,
+    "RoamingLocations": [
+        {
+            "Name": "City_2 (Dashtabad)",
+            "Position": [
+                10655.263671875,
+                0.0,
+                10792.0615234375
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_3 (Kamar Zir)",
+            "Position": [
+                9432.2783203125,
+                0.0,
+                11924.498046875
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_4 (Shah Yailaq)",
+            "Position": [
+                10333.548828125,
+                0.0,
+                8225.875
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_5 (Bam-e Sabz)",
+            "Position": [
+                8739.630859375,
+                0.0,
+                8571.578125
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_6 (Pesh Kuh)",
+            "Position": [
+                3714.1953125,
+                0.0,
+                10925.462890625
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_7 (Gandomabad)",
+            "Position": [
+                7871.30322265625,
+                0.0,
+                12477.455078125
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_8 (Khorramabad)",
+            "Position": [
+                4633.8193359375,
+                0.0,
+                10833.494140625
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_9 (Sabzabad)",
+            "Position": [
+                6853.52978515625,
+                0.0,
+                7403.9541015625
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_10 (No Abad)",
+            "Position": [
+                7020.87255859375,
+                0.0,
+                5018.859375
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_11 (Gard Abad)",
+            "Position": [
+                11084.3203125,
+                0.0,
+                7627.787109375
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_12 (Kucha Dar)",
+            "Position": [
+                4511.50244140625,
+                0.0,
+                10148.529296875
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_13 (Bustanshahr)",
+            "Position": [
+                7360.537109375,
+                0.0,
+                5641.7548828125
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_14 (Dar-e Ardis)",
+            "Position": [
+                3435.572021484375,
+                0.0,
+                4933.0751953125
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "City_15 (OKB-754)",
+            "Position": [
+                6907.65478515625,
+                0.0,
+                10058.46875
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_13 (Shinkalay)",
+            "Position": [
+                8386.0087890625,
+                0.0,
+                10159.4658203125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_14 (Dehqankalay)",
+            "Position": [
+                9969.072265625,
+                0.0,
+                10524.5078125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_15 (Mal Kalay)",
+            "Position": [
+                9595.6162109375,
+                0.0,
+                8866.60546875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_16 (Bagh-e Mir)",
+            "Position": [
+                4729.5859375,
+                0.0,
+                5598.1904296875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_17 (Tut Dara)",
+            "Position": [
+                5484.25927734375,
+                0.0,
+                8065.947265625
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_18 (Anar Juy)",
+            "Position": [
+                5540.31640625,
+                0.0,
+                9078.8408203125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_19 (Karizak)",
+            "Position": [
+                3531.380126953125,
+                0.0,
+                12814.982421875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_20 (Chashme Sabz)",
+            "Position": [
+                6649.482421875,
+                0.0,
+                12778.59375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_21 (Gul Zar)",
+            "Position": [
+                5060.5537109375,
+                0.0,
+                6494.7568359375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_22 (Sabz Pashan)",
+            "Position": [
+                4570.57177734375,
+                0.0,
+                11723.537109375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_23 (Kati Golzar)",
+            "Position": [
+                6212.291015625,
+                0.0,
+                11817.146484375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_24 (Tor Dara)",
+            "Position": [
+                4164.95751953125,
+                0.0,
+                9323.66015625
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_25 (Mian Deh)",
+            "Position": [
+                7326.1044921875,
+                0.0,
+                4160.916015625
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_26 (Sar-e Deh)",
+            "Position": [
+                3005.009765625,
+                0.0,
+                6277.068359375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_27 (Pay-e Kuh)",
+            "Position": [
+                6311.75830078125,
+                0.0,
+                5731.8173828125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_28 (Bala Kalay)",
+            "Position": [
+                4475.775390625,
+                0.0,
+                7606.5146484375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_29 (Payan Kalay)",
+            "Position": [
+                9327.900390625,
+                0.0,
+                7527.294921875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_30 (Qala-e Kuhna)",
+            "Position": [
+                4491.28662109375,
+                0.0,
+                12228.27734375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_31 (Pir Kalay)",
+            "Position": [
+                7668.5693359375,
+                0.0,
+                8668.701171875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_32 (Bazar-e Kohna)",
+            "Position": [
+                7971.517578125,
+                0.0,
+                8008.01953125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_33 (Darvazeh-e Gharb)",
+            "Position": [
+                4914.04345703125,
+                0.0,
+                13586.271484375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_34 (Yak Chinar)",
+            "Position": [
+                5825.40380859375,
+                0.0,
+                9690.318359375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_35 (Panj Asyab)",
+            "Position": [
+                5829.48876953125,
+                0.0,
+                13558.984375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_36 (Chahar Tut)",
+            "Position": [
+                8078.32275390625,
+                0.0,
+                8769.7021484375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_37 (Marz-e Lut)",
+            "Position": [
+                13779.603515625,
+                0.0,
+                12761.033203125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_38 (Pesh Dasht)",
+            "Position": [
+                11350.5263671875,
+                0.0,
+                9476.0302734375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_39 (Dahaneh-e Kavir)",
+            "Position": [
+                11250.3251953125,
+                0.0,
+                2513.3671875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_40 (Kariz-e Marz)",
+            "Position": [
+                10795.326171875,
+                0.0,
+                8575.888671875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_41 (Manda Marz)",
+            "Position": [
+                5368.1943359375,
+                0.0,
+                10614.849609375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_42 (Bad Asyab)",
+            "Position": [
+                8575.3642578125,
+                0.0,
+                11396.82421875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_43 (Suvin Shahr)",
+            "Position": [
+                5758.87744140625,
+                0.0,
+                12585.7314453125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_44 (Mian Dara)",
+            "Position": [
+                8870.212890625,
+                0.0,
+                12492.5302734375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_45 (Dara-e Nur)",
+            "Position": [
+                10916.5263671875,
+                0.0,
+                13915.95703125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_46 (Gul Dara)",
+            "Position": [
+                7029.97509765625,
+                0.0,
+                4404.294921875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_47 (Bagh-e Dara)",
+            "Position": [
+                9449.880859375,
+                0.0,
+                3243.4091796875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_48 (Salar Abad)",
+            "Position": [
+                7923.35791015625,
+                0.0,
+                9610.68359375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_49 (Tut Mian)",
+            "Position": [
+                7915.42431640625,
+                0.0,
+                6770.734375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_50 (Bar Kalay)",
+            "Position": [
+                7330.9462890625,
+                0.0,
+                13118.3388671875
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_51 (Dost Kalay)",
+            "Position": [
+                6698.07958984375,
+                0.0,
+                11374.986328125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_52 (Shinkay Wadi)",
+            "Position": [
+                7040.427734375,
+                0.0,
+                12020.767578125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_53 (Zir Dara)",
+            "Position": [
+                10153.8056640625,
+                0.0,
+                12727.634765625
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_54 (Kotal-e Khushk)",
+            "Position": [
+                4414.1435546875,
+                0.0,
+                14461.2451171875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_55 (Qalat-e Bala)",
+            "Position": [
+                5460.3408203125,
+                0.0,
+                6111.595703125
+            ],
+            "Radius": 100.0,
+            "Type": "Ruin",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_56 (Didban Tapa)",
+            "Position": [
+                8323.6240234375,
+                0.0,
+                7816.9501953125
+            ],
+            "Radius": 100.0,
+            "Type": "Ruin",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_57 (Ak Hisar)",
+            "Position": [
+                8795.9453125,
+                0.0,
+                9934.642578125
+            ],
+            "Radius": 100.0,
+            "Type": "Ruin",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_58 (Khwakay)",
+            "Position": [
+                5167.6787109375,
+                0.0,
+                7407.595703125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_59 (Ghar-e Siyah)",
+            "Position": [
+                3716.2197265625,
+                0.0,
+                7125.294921875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_60 (Gharibabad)",
+            "Position": [
+                12194.498046875,
+                0.0,
+                2160.0966796875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_61 (Qalat-e Lut)",
+            "Position": [
+                14848.7666015625,
+                0.0,
+                7811.970703125
+            ],
+            "Radius": 100.0,
+            "Type": "Ruin",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_62 (Didban Ghar)",
+            "Position": [
+                3140.132080078125,
+                0.0,
+                5493.58984375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_63 (Chashme No)",
+            "Position": [
+                6903.03076171875,
+                0.0,
+                3699.8154296875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_64 (Sabz Juy)",
+            "Position": [
+                9731.6728515625,
+                0.0,
+                11229.92578125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_65 (Se Rah)",
+            "Position": [
+                6269.72900390625,
+                0.0,
+                8199.109375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_66 (Dukan Kalay)",
+            "Position": [
+                10149.7294921875,
+                0.0,
+                9263.3505859375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_67 (Wachakalay)",
+            "Position": [
+                11219.12109375,
+                0.0,
+                11753.89453125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_68 (Wacha Wadi)",
+            "Position": [
+                12399.15234375,
+                0.0,
+                12679.6328125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_69 (Sarkay)",
+            "Position": [
+                2878.556396484375,
+                0.0,
+                5971.5166015625
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_70 (Sard Sarhad)",
+            "Position": [
+                2982.788330078125,
+                0.0,
+                15752.12109375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Hill_71 (Tak Tapa)",
+            "Position": [
+                9282.37890625,
+                0.0,
+                10167.8310546875
+            ],
+            "Radius": 100.0,
+            "Type": "Hill",
+            "Enabled": 1
+        },
+        {
+            "Name": "Hill_72 (Spinkay Tapa)",
+            "Position": [
+                5511.91650390625,
+                0.0,
+                9664.169921875
+            ],
+            "Radius": 100.0,
+            "Type": "Hill",
+            "Enabled": 1
+        },
+        {
+            "Name": "Hill_73 (Zanu Ghar)",
+            "Position": [
+                1296.16162109375,
+                0.0,
+                7096.0166015625
+            ],
+            "Radius": 100.0,
+            "Type": "Hill",
+            "Enabled": 1
+        },
+        {
+            "Name": "Hill_74 (Shana Kuh)",
+            "Position": [
+                5440.1728515625,
+                0.0,
+                2048.609375
+            ],
+            "Radius": 100.0,
+            "Type": "Hill",
+            "Enabled": 1
+        },
+        {
+            "Name": "Hill_75 (Sar-e Band)",
+            "Position": [
+                902.9445190429688,
+                0.0,
+                597.125
+            ],
+            "Radius": 100.0,
+            "Type": "Hill",
+            "Enabled": 1
+        },
+        {
+            "Name": "Hill_76 (Se Khah)",
+            "Position": [
+                5440.3740234375,
+                0.0,
+                2046.931640625
+            ],
+            "Radius": 100.0,
+            "Type": "Hill",
+            "Enabled": 1
+        },
+        {
+            "Name": "Hill_77 (Kuh-e Shamal)",
+            "Position": [
+                8719.4462890625,
+                0.0,
+                15159.7998046875
+            ],
+            "Radius": 100.0,
+            "Type": "Hill",
+            "Enabled": 1
+        },
+        {
+            "Name": "Hill_78 (Sabz Tapa)",
+            "Position": [
+                8300.21484375,
+                0.0,
+                6702.6201171875
+            ],
+            "Radius": 100.0,
+            "Type": "Hill",
+            "Enabled": 1
+        },
+        {
+            "Name": "Hill_79 (Loy Tapa)",
+            "Position": [
+                7016.5146484375,
+                0.0,
+                11796.1953125
+            ],
+            "Radius": 100.0,
+            "Type": "Hill",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_71 (Dashtabad Airbase)",
+            "Position": [
+                11974.26953125,
+                0.0,
+                10680.8291015625
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_72 (Bala Hissar)",
+            "Position": [
+                4760.33349609375,
+                0.0,
+                12014.54296875
+            ],
+            "Radius": 100.0,
+            "Type": "Ruin",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_73 (Nazar Gah)",
+            "Position": [
+                4786.21337890625,
+                0.0,
+                5370.185546875
+            ],
+            "Radius": 100.0,
+            "Type": "Ruin",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_52 (Dahana)",
+            "Position": [
+                10214.25390625,
+                0.0,
+                11801.6015625
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_74 (Ardis Vostok wreck)",
+            "Position": [
+                13113.0068359375,
+                0.0,
+                2748.8798828125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Capital_1 (Nasdara)",
+            "Position": [
+                9631.9423828125,
+                0.0,
+                4075.3251953125
+            ],
+            "Radius": 1000.0,
+            "Type": "Capital",
+            "Enabled": 1
+        },
+        {
+            "Name": "Capital_1_2 (Karkhana District)",
+            "Position": [
+                9150.365234375,
+                0.0,
+                4218.8984375
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "Capital_1_3 (Terminal Nas)",
+            "Position": [
+                10921.3125,
+                0.0,
+                3809.611328125
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "Capital_1_5 (Ziarat District)",
+            "Position": [
+                10132.9130859375,
+                0.0,
+                4163.224609375
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "Capital_1_6 (Jui Bar District)",
+            "Position": [
+                9189.78515625,
+                0.0,
+                4711.568359375
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "Capital_1_7 (Registan District)",
+            "Position": [
+                10683.2138671875,
+                0.0,
+                4679.224609375
+            ],
+            "Radius": 500.0,
+            "Type": "City",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_75 (HELIOS SOLAR I)",
+            "Position": [
+                9550.759765625,
+                0.0,
+                7243.1455078125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_76 (HELIOS SOLAR II)",
+            "Position": [
+                10623.900390625,
+                0.0,
+                7440.0185546875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_77 (HELIOS SOLAR III)",
+            "Position": [
+                10827.91015625,
+                0.0,
+                7315.8125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_78 (HELIOS SOLAR IV)",
+            "Position": [
+                11330.7978515625,
+                0.0,
+                4187.6923828125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_79 (Sarman-Naft refinery)",
+            "Position": [
+                10766.701171875,
+                0.0,
+                5926.87109375
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_80 (Nasdar-Beton factory)",
+            "Position": [
+                9706.1728515625,
+                0.0,
+                6563.2705078125
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_81 (Rig-e Siyah Terminal)",
+            "Position": [
+                9917.216796875,
+                0.0,
+                6082.77734375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_82 (Nasdar-01 well)",
+            "Position": [
+                10041.1513671875,
+                0.0,
+                7259.65625
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_83 (Deep-Dasht 12 well)",
+            "Position": [
+                11670.0517578125,
+                0.0,
+                7352.861328125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_84 (Damaged oil fields)",
+            "Position": [
+                11895.3427734375,
+                0.0,
+                5833.578125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_85 (Sarman-Naft filtration plant)",
+            "Position": [
+                9084.216796875,
+                0.0,
+                4480.1328125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_86 (Nasdar-Beton factory)",
+            "Position": [
+                8941.4326171875,
+                0.0,
+                3969.4521484375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_87 (Nasdar-Beton quarry)",
+            "Position": [
+                6424.79443359375,
+                0.0,
+                7834.19921875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_88 (Marek Barq hydroelectric plant)",
+            "Position": [
+                3663.31982421875,
+                0.0,
+                14218.697265625
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_89 (Ma'bar Ardistan)",
+            "Position": [
+                3307.072509765625,
+                0.0,
+                4540.6162109375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Military_90 (COP Neptune)",
+            "Position": [
+                12831.970703125,
+                0.0,
+                6665.7294921875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Military_91 (FOB Atlas)",
+            "Position": [
+                8366.779296875,
+                0.0,
+                5728.6806640625
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Military_92 (COP Razorback)",
+            "Position": [
+                4727.39501953125,
+                0.0,
+                7372.19921875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Military_93 (COP Kestrel)",
+            "Position": [
+                4278.28515625,
+                0.0,
+                12981.9501953125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Military_94 (COP Condor)",
+            "Position": [
+                7746.50634765625,
+                0.0,
+                11848.13671875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_95 (Bad Asyab wind array)",
+            "Position": [
+                8716.81640625,
+                0.0,
+                10855.64453125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_96 (Zun Dara)",
+            "Position": [
+                4823.97314453125,
+                0.0,
+                4713.798828125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Military_97 (Baza Zenit)",
+            "Position": [
+                6312.79638671875,
+                0.0,
+                9966.556640625
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_98 (NII-Mirnyy)",
+            "Position": [
+                6127.322265625,
+                0.0,
+                9267.9287109375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_100 (Spets-Stvol 754)",
+            "Position": [
+                6616.0205078125,
+                0.0,
+                10351.3125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Industrial_101 (Proval-754)",
+            "Position": [
+                7120.23388671875,
+                0.0,
+                10152.7109375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Military_102 (Zulfiqar missile base)",
+            "Position": [
+                2696.283203125,
+                0.0,
+                9692.650390625
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        },
+        {
+            "Name": "Military_103 (Fateh Manzil)",
+            "Position": [
+                7372.84130859375,
+                0.0,
+                7449.6171875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_105 (Mel Benazir)",
+            "Position": [
+                6338.49267578125,
+                0.0,
+                12704.8466796875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_106 (Bait al-Aman)",
+            "Position": [
+                8586.8916015625,
+                0.0,
+                4783.4443359375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_107 (Deh-e Ramiro)",
+            "Position": [
+                8668.142578125,
+                0.0,
+                3750.169921875
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_108 (Nejcheh)",
+            "Position": [
+                7072.99072265625,
+                0.0,
+                8150.53125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_109 (Chuuya Kalay)",
+            "Position": [
+                9527.3916015625,
+                0.0,
+                9784.37109375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_110 (Jakhzar)",
+            "Position": [
+                14049.2109375,
+                0.0,
+                13397.208984375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_111 (Mik Dakharti)",
+            "Position": [
+                7444.1357421875,
+                0.0,
+                8935.439453125
+            ],
+            "Radius": 100.0,
+            "Type": "Ruin",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_112 (M12 Bagh-e Mir)",
+            "Position": [
+                5191.55078125,
+                0.0,
+                5421.5908203125
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_113 (M12 No Abad)",
+            "Position": [
+                6902.80712890625,
+                0.0,
+                5067.693359375
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_114 (M12 Nasdara-West)",
+            "Position": [
+                9149.1142578125,
+                0.0,
+                4110.83056640625
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_115 (M12 Nasdara-East)",
+            "Position": [
+                10829.3203125,
+                0.0,
+                3215.199462890625
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Local_116 (Fostkova Mehran Tunnel)",
+            "Position": [
+                5425.02490234375,
+                0.0,
+                5606.2119140625
+            ],
+            "Radius": 100.0,
+            "Type": "Local",
+            "Enabled": 1
+        },
+        {
+            "Name": "Village_117 (Varzaneh)",
+            "Position": [
+                13397.0263671875,
+                0.0,
+                12115.75390625
+            ],
+            "Radius": 200.0,
+            "Type": "Village",
+            "Enabled": 1
+        }
+    ],
+    "ExcludedRoamingBuildings": [
+        "Land_Boat_",
+        "Land_CementWorks_Hall2_Grey",
+        "Land_Factory_Small",
+        "Land_House_1W09",
+        "Land_House_2W03",
+        "Land_HouseBlock_1F4",
+        "Land_Boathouse",
+        "Land_Mine_Building",
+        "Land_Shed_W2",
+        "Land_Tenement_Big",
+        "Land_Misc_Toilet_Mobile",
+        "Land_Ship_Medium2",
+        "Land_Train_Wagon_Box"
+    ],
+    "NoGoAreas": []
+}

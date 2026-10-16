@@ -12,7 +12,7 @@
             "SlotName": "Headgear",
             "Items": [
                 {
-                    "ClassName": "Beret_UN",
+                    "ClassName": "MilitaryBeret_UN",
                     "Include": "",
                     "Chance": 1.0,
                     "Quantity": {

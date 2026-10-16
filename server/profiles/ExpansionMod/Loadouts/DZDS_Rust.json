@@ -391,7 +391,7 @@
     ],
     "InventoryCargo": [
         {
-            "ClassName": "FlareGun",
+            "ClassName": "Flaregun",
             "Include": "",
             "Chance": 0.5,
             "Quantity": {

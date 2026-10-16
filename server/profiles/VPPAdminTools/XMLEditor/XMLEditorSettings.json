@@ -1,0 +1,14 @@
+{
+    "BackupMaxPerFile": 30,
+    "BackupMaxAgeDays": 30,
+    "BackupMaxTotalMB": 250,
+    "CacheIdleMinutes": 15,
+    "LiveScanMaxResults": 2000,
+    "LiveScanCooldownSec": 10,
+    "EnableAreaFlags": 1,
+    "JobBudgetMs": 4,
+    "JobBoostMs": 8,
+    "BackgroundSharePct": 25,
+    "NetChunksPer100ms": 3,
+    "PrewarmTypes": 1
+}

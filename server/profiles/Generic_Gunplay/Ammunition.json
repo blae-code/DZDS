@@ -347,9 +347,9 @@
             "DetectedAirFriction": -0.05999999865889549,
             "DetectedHit": 5.0,
             "DetectedIndirectHit": 2.0,
-            "DetectedHealthDamage": 10.0,
+            "DetectedHealthDamage": 30.0,
             "DetectedBloodDamage": 100.0,
-            "DetectedShockDamage": 0.0,
+            "DetectedShockDamage": 10.0,
             "IsCurrentlyLoaded": 1
         },
         {
@@ -360,9 +360,9 @@
             "DetectedAirFriction": -0.05999999865889549,
             "DetectedHit": 5.0,
             "DetectedIndirectHit": 2.0,
-            "DetectedHealthDamage": 10.0,
+            "DetectedHealthDamage": 30.0,
             "DetectedBloodDamage": 100.0,
-            "DetectedShockDamage": 0.0,
+            "DetectedShockDamage": 10.0,
             "IsCurrentlyLoaded": 1
         },
         {
@@ -373,9 +373,9 @@
             "DetectedAirFriction": -0.05999999865889549,
             "DetectedHit": 5.0,
             "DetectedIndirectHit": 2.0,
-            "DetectedHealthDamage": 10.0,
+            "DetectedHealthDamage": 30.0,
             "DetectedBloodDamage": 100.0,
-            "DetectedShockDamage": 0.0,
+            "DetectedShockDamage": 10.0,
             "IsCurrentlyLoaded": 1
         },
         {
@@ -386,9 +386,9 @@
             "DetectedAirFriction": -0.05999999865889549,
             "DetectedHit": 5.0,
             "DetectedIndirectHit": 2.0,
-            "DetectedHealthDamage": 10.0,
+            "DetectedHealthDamage": 30.0,
             "DetectedBloodDamage": 100.0,
-            "DetectedShockDamage": 0.0,
+            "DetectedShockDamage": 10.0,
             "IsCurrentlyLoaded": 1
         },
         {
@@ -558,7 +558,7 @@
             "DetectedHealthDamage": 10.0,
             "DetectedBloodDamage": 100.0,
             "DetectedShockDamage": 0.0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "Bullet_Expansion_FlareSupplyRed",
@@ -571,7 +571,7 @@
             "DetectedHealthDamage": 10.0,
             "DetectedBloodDamage": 100.0,
             "DetectedShockDamage": 0.0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "Bullet_Expansion_FlareSupplyGreen",
@@ -584,7 +584,7 @@
             "DetectedHealthDamage": 10.0,
             "DetectedBloodDamage": 100.0,
             "DetectedShockDamage": 0.0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "Bullet_Expansion_FlareSupplyBlue",
@@ -597,7 +597,7 @@
             "DetectedHealthDamage": 10.0,
             "DetectedBloodDamage": 100.0,
             "DetectedShockDamage": 0.0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "Bullet_40mm_Smoke_AirStrike",

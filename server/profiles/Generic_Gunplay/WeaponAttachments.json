@@ -122,7 +122,8 @@
             "SlotName": "Knife",
             "Attachments": [
                 "AK_Bayonet",
-                "M9A1_Bayonet"
+                "M9A1_Bayonet",
+                "P1907_Bayonet"
             ]
         },
         {
@@ -160,13 +161,15 @@
         {
             "SlotName": "RevolverCylinder",
             "Attachments": [
-                "Magnum_Cylinder"
+                "Magnum_Cylinder",
+                "Magnum_Cylinder_Gold"
             ]
         },
         {
             "SlotName": "RevolverEjector",
             "Attachments": [
-                "Magnum_Ejector"
+                "Magnum_Ejector",
+                "Magnum_Ejector_Gold"
             ]
         },
         {
@@ -191,6 +194,12 @@
             "SlotName": "weaponBayonetAK",
             "Attachments": [
                 "AK_Bayonet"
+            ]
+        },
+        {
+            "SlotName": "weaponBayonetLeeEnfield",
+            "Attachments": [
+                "P1907_Bayonet"
             ]
         },
         {
@@ -223,6 +232,7 @@
                 "AK_WoodBttstck",
                 "AK_WoodBttstck_Black",
                 "AK_WoodBttstck_Camo",
+                "AK_WoodBttstck_Gold",
                 "Asmond_AK_AKS74UBttstck_Black",
                 "Asmond_AK_AKS74UBttstck_Winter",
                 "Asmond_AK_FoldingBttstck_Green",
@@ -340,6 +350,7 @@
                 "AK_WoodHndgrd",
                 "AK_WoodHndgrd_Black",
                 "AK_WoodHndgrd_Camo",
+                "AK_WoodHndgrd_Gold",
                 "Asmond_AK_PlasticHndgrd_Black",
                 "Asmond_AK_PlasticHndgrd_Camo",
                 "Asmond_AK_PlasticHndgrd_Desert",
@@ -612,12 +623,9 @@
         {
             "SlotName": "weaponWrap",
             "Attachments": [
-                "GhillieAtt_Black",
-                "GhillieAtt_Brown",
-                "GhillieAtt_Gold",
+                "GhillieAtt_Desert",
                 "GhillieAtt_Mossy",
                 "GhillieAtt_Tan",
-                "GhillieAtt_White",
                 "GhillieAtt_Winter",
                 "GhillieAtt_Woodland"
             ]
@@ -4277,6 +4285,283 @@
                 "pistolOptics",
                 "weaponOptics",
                 "weaponOpticsHunting"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ527_Woodland",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ527_desert",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "CZ527_winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Mosin9130_Desert",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Mosin9130_Woodland",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Mosin9130_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetMosin",
+                "weaponMuzzleMosin",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffMosin9130_Desert",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffMosin9130_Woodland",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffMosin9130_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SKS_Desert",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SKS_Winter",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SKS_Woodland",
+            "Slots": [
+                "BatteryD",
+                "akolMagnifier",
+                "akolMosinMount",
+                "akolUniversalRail",
+                "pistolOptics",
+                "suppressorImpro",
+                "weaponBayonetSKS",
+                "weaponOpticsHunting",
+                "weaponOpticsMosin",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Glock19_Tan",
+            "Slots": [
+                "BatteryD",
+                "akolPistolMount",
+                "pistolFlashlight",
+                "pistolMuzzle",
+                "pistolOptics"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "AKM_Gold",
+            "Slots": [
+                "BatteryD",
+                "WeaponHandguardAK",
+                "akolAkMount",
+                "akolMagnifier",
+                "akolPistolMount",
+                "akolUniversalRail",
+                "pistolFlashlight",
+                "pistolOptics",
+                "weaponBayonetAK",
+                "weaponButtstockAK",
+                "weaponFlashlight",
+                "weaponMuzzleAK",
+                "weaponOpticsAK",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "LeeEnfield",
+            "Slots": [
+                "weaponBayonetLeeEnfield",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "MP18",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SCARL",
+            "Slots": [
+                "BatteryD",
+                "Scarh_FrontSight",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponButtstockSCAR",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SCARL_Black",
+            "Slots": [
+                "BatteryD",
+                "Scarh_FrontSight",
+                "akolMagnifier",
+                "akolUniversalRail",
+                "pistolOptics",
+                "weaponButtstockSCAR",
+                "weaponFlashlight",
+                "weaponMuzzleM4",
+                "weaponOptics",
+                "weaponOpticsHunting",
+                "weaponWrap"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Luger",
+            "Slots": [],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "Magnum_Gold",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
+            ],
+            "AttachmentOverrides": {}
+        },
+        {
+            "WeaponClassName": "SawedoffMagnum_Gold",
+            "Slots": [
+                "RevolverCylinder",
+                "RevolverEjector"
             ],
             "AttachmentOverrides": {}
         }

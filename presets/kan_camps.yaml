@@ -10,7 +10,10 @@
 #
 # Blae, 2026-10-12: no wanderers or raiders. Roamers do "unrestricted world roaming".
 camps:
+# Nasdara (2026-10-15 local 1.30 boot): KAN generated no new camp, so the one camp it already has
+# is moved to the Settlers' only stronghold. The Id is KAN's and keeps its Chernarus name.
   Balota_Survivor_Camp:          # FRIENDLY; MilitaryCheckpoint blueprint default 2/4/2/5/2/1
+    site: Settler Haven
     Roamers: 0                   # was 2
     Looters: 4
     Builders: 2

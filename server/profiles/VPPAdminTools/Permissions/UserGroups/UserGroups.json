@@ -89,7 +89,18 @@
             "EspToolsMenu:PlayerMeshEsp",
             "EspToolsMenu:InstantBaseBuild",
             "MenuXMLEditor",
-            "MenuCommandsConsole"
+            "MenuCommandsConsole",
+            "MenuXMLEditor:EditTypes",
+            "MenuXMLEditor:LiveScan",
+            "MenuXMLEditor:DeleteObjects",
+            "MenuXMLEditor:DistributionMap",
+            "MenuXMLEditor:ViewBackups",
+            "MenuXMLEditor:EditMessages",
+            "MenuXMLEditor:EditEvents",
+            "MenuXMLEditor:EditSpawnables",
+            "MenuWebHooks:EditTemplates",
+            "MenuWebHooks:TestSend",
+            "MenuWebHooks:ViewURL"
         ],
         "m_ForceSavedName": 0
     }

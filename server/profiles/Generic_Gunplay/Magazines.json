@@ -2804,7 +2804,7 @@
             "ADS": 1.0,
             "Precision": 1.0,
             "HipFire": 1.0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "Expansion_Ammo_FlareSupplyRed",
@@ -2821,7 +2821,7 @@
             "ADS": 1.0,
             "Precision": 1.0,
             "HipFire": 1.0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "Expansion_Ammo_FlareSupplyGreen",
@@ -2838,7 +2838,7 @@
             "ADS": 1.0,
             "Precision": 1.0,
             "HipFire": 1.0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "Expansion_Ammo_FlareSupplyBlue",
@@ -2855,7 +2855,7 @@
             "ADS": 1.0,
             "Precision": 1.0,
             "HipFire": 1.0,
-            "IsCurrentlyLoaded": 1
+            "IsCurrentlyLoaded": 0
         },
         {
             "ClassName": "Ammo_40mm_Smoke_AirStrike",
@@ -2870,6 +2870,91 @@
             "Recoil": 1.0,
             "Sway": 1.0,
             "ADS": 1.0,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Mag_Luger_8Rnd",
+            "ParentClass": "Magazine_Base",
+            "AmmoClass": "Bullet_9x19",
+            "DetectedCapacity": 8,
+            "IsLooseAmmo": 0,
+            "AutoAssignTier": 1,
+            "TierKey": "StandardMag_Neutral",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0,
+            "ADS": 1.0,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Mag_MP18_Drum32Rnd",
+            "ParentClass": "Magazine_Base",
+            "AmmoClass": "Bullet_9x19",
+            "DetectedCapacity": 32,
+            "IsLooseAmmo": 0,
+            "AutoAssignTier": 1,
+            "TierKey": "HighCap_Heavy",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0199999809265137,
+            "Sway": 1.0299999713897706,
+            "ADS": 0.9800000190734863,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Mag_LeeEnfield_10Rnd",
+            "ParentClass": "Magazine_Base",
+            "AmmoClass": "Bullet_762x54",
+            "DetectedCapacity": 10,
+            "IsLooseAmmo": 0,
+            "AutoAssignTier": 1,
+            "TierKey": "StandardMag_Neutral",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0,
+            "ADS": 1.0,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Mag_AKM_30Rnd_Gold",
+            "ParentClass": "Mag_AKM_30Rnd",
+            "AmmoClass": "Bullet_762x39",
+            "DetectedCapacity": 30,
+            "IsLooseAmmo": 0,
+            "AutoAssignTier": 1,
+            "TierKey": "StandardMag_Neutral",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 1.0,
+            "ADS": 1.0,
+            "Precision": 1.0,
+            "HipFire": 1.0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Mag_AKM_Drum75Rnd_Gold",
+            "ParentClass": "Mag_AKM_Drum75Rnd",
+            "AmmoClass": "Bullet_762x39",
+            "DetectedCapacity": 75,
+            "IsLooseAmmo": 0,
+            "AutoAssignTier": 1,
+            "TierKey": "HighCap_Heavy",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0199999809265137,
+            "Sway": 1.0299999713897706,
+            "ADS": 0.9800000190734863,
             "Precision": 1.0,
             "HipFire": 1.0,
             "IsCurrentlyLoaded": 1

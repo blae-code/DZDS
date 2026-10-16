@@ -12,7 +12,7 @@
             "SlotName": "Body",
             "Items": [
                 {
-                    "ClassName": "HunterJacket_Brown",
+                    "ClassName": "HuntingJacket_Brown",
                     "Include": "",
                     "Chance": 0.2,
                     "Quantity": {
