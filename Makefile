@@ -96,7 +96,7 @@ diplomacy:
 	$(ENV) $(PY) tools/diplomacy.py
 
 # Everything that should run between restarts, in order, before `make push`.
-prepare-restart: war-turn economy diplomacy patrols vehicle-events front-plan loadouts dzds-profile arrivals overlays calibrate validate
+prepare-restart: war-turn economy diplomacy patrols zone-events vehicle-events front-plan loadouts dzds-profile arrivals overlays calibrate validate
 	@echo "Ready: review git diff, then 'make push' and restart from the GSP panel."
 
 .PHONY: war-status war-turn
