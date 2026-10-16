@@ -173,3 +173,47 @@ def test_ledger_from_another_map_is_refused(tmp_path):
     with pytest.raises(SystemExit, match="reset"):
         WarLedger.load("nasdara", path=p)
     assert WarLedger.load("chernarusplus", path=p).s.war_party is None
+
+
+# ---- the front never freezes (Task 12b, spec §4.1 / §5.2) ----------------------------------
+def _contested(led):
+    return sorted(s for s, h in led.s.control.items() if h == "contested")
+
+
+def _advance(led, n):
+    t = T0
+    for _ in range(n):
+        t += dt.timedelta(hours=3)
+        led.turn(now=t, force=True)
+        yield led
+
+
+def test_front_never_freezes_on_nasdara():
+    led = WarLedger.new("nasdara")
+    led.rules["war_party"]["chance"] = 1.0
+    for _ in _advance(led, 40):
+        assert 1 <= len(_contested(led)) <= 2, (led.s.turn, _contested(led))
+
+
+def test_front_caps_contested_sites():
+    led = fresh()
+    held = [s for s, h in sorted(led.s.control.items()) if h != "contested" and s not in led.s.extra_sites][:4]
+    for s in held:
+        led.s.control[s] = "contested"
+    led.turn(now=T0, force=True)
+    assert len(_contested(led)) <= 2
+
+
+def test_front_never_contests_player_settlements():
+    led = fresh()
+    led.claim("Camp Hope", [7000.0, 7000.0], ["settlement"])
+    for _ in _advance(led, 40):
+        assert led.s.control["Camp Hope"] == "Settlers"
+
+
+def test_front_is_deterministic():
+    a, b = WarLedger.new("nasdara"), WarLedger.new("nasdara")
+    for led in (a, b):
+        for _ in _advance(led, 20):
+            pass
+    assert a.s.control == b.s.control

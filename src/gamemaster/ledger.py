@@ -181,6 +181,7 @@ class WarLedger:
         events: list[str] = []
         events += self._resolve_pressure()
         events += self._offscreen(rng)
+        events += self._keep_front(rng)
         self._update_strength()
         events += self._update_standing(today)
         events += self._schedule_war_party(rng)
@@ -237,6 +238,55 @@ class WarLedger:
             if edge > 0 and rng.random() < o["contest_held_chance"] * edge:
                 self.s.control[site] = "contested"
                 events.append(f"{self._display(rival)} are pushing on {self._display(holder)}-held {site}")
+        return events
+
+    def _fits(self, site: str) -> list[str]:
+        roles = self.site_roles(site)
+        return [f for f, spec in sorted(self.fspec.items()) if roles & set(spec.get("holds_roles", []))]
+
+    def _keep_front(self, rng: random.Random) -> list[str]:
+        """Spec 4.1: the war never freezes. Keep min..max sites contested after each turn."""
+        cfg = self.rules.get("front") or {}
+        lo, hi = cfg.get("min_contested", 0), cfg.get("max_contested", 10 ** 6)
+        events: list[str] = []
+
+        def contested() -> list[str]:
+            return sorted(s for s, h in self.s.control.items() if h == "contested")
+
+        skip: set[str] = set()
+        while len(contested()) > hi:
+            pool = [s for s in contested() if s not in skip]
+            if not pool:
+                break
+            site = min(pool, key=lambda s: (sum(self.s.pressure.get(s, {}).values()), s))
+            fits = self._fits(site)
+            if not fits:
+                skip.add(site)
+                continue
+            best = max(fits, key=lambda f: (self.s.strength.get(f, 0), -fits.index(f)))
+            self.s.control[site] = best
+            events.append(f"{self._display(best)} secured {site} as the fighting moved elsewhere")
+        while len(contested()) < lo:
+            # Strict: a rival whose holds_roles fit the site. Relaxed (only when no strict site exists,
+            # e.g. Nasdara where each role has exactly one claimant): any hostile faction may push.
+            strict, relaxed = [], []
+            for site, holder in sorted(self.s.control.items()):
+                if holder not in self.fspec or site in self.s.extra_sites:
+                    continue
+                if any(f != holder and self.hostile(f, holder) for f in self._fits(site)):
+                    strict.append(site)
+                if any(f != holder and self.hostile(f, holder) for f in sorted(self.fspec)):
+                    relaxed.append(site)
+            cands = strict or relaxed
+            if not cands:
+                break
+            site = rng.choice(cands)
+            holder = self.s.control[site]
+            rivals = [f for f in (self._fits(site) if strict else sorted(self.fspec))
+                      if f != holder and self.hostile(f, holder)]
+            rival = max(rivals, key=lambda f: (self.s.strength.get(f, 0), -rivals.index(f)))
+            self.s.control[site] = "contested"
+            events.append(f"{self._display(rival)} are pushing on {self._display(holder)}-held {site}")
         return events
 
     def _hero(self, site: str) -> str | None:

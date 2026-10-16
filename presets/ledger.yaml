@@ -67,3 +67,8 @@ raids:                      # eligibility of the "raid" kind (a hostile faction 
 # Named deeds: the top contributor to a liberation is named in the war report.
 deeds:
   name_players: true
+
+# The front never freezes (spec §4.1: 1-2 active warzones). Enforced at the end of every turn.
+front:
+  min_contested: 1
+  max_contested: 2
