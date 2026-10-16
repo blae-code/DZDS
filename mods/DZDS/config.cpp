@@ -13,7 +13,10 @@ class CfgPatches
 			// Loads us after Simply's Car Trailer (3811085358) so the HeadlightH7 repair below
 			// wins the merge. Drop this line if the trailer mod is ever removed, or @DZDS
 			// stops loading (tests/test_dzds_contract.py checks both ways).
-			"DZT_UtilityTrailer"
+			"DZT_UtilityTrailer",
+			// Survivor Animations: DZDSSurvivorAnimsAI.c overrides its UpdateSAItemInHandsType for AI,
+			// so it must compile after SA. Drop this line if SA is ever removed.
+			"SurvivorAnims"
 		};
 	};
 };

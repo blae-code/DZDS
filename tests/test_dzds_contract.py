@@ -76,3 +76,21 @@ def test_mod_config_repairs_trailer_headlight():
         assert re.search(r"class\s+HeadlightH7\s*:\s*Inventory_Base\s*\{", cfg)
     else:                       # trailer gone: requiring it would stop @DZDS loading
         assert "DZT_UtilityTrailer" not in required
+
+
+def test_survivor_anims_ai_guard():
+    """1.30 boot (2026-10-15): Survivor Animations' per-frame UpdateSAItemInHandsType crashes the
+    engine (Unhandled exception) on every Expansion AI, so @DZDS skips it for eAIBase. Requiring
+    the addon makes the override compile after SA's method; it must go if SA is ever removed."""
+    mods = yaml.safe_load((ROOT / "config" / "mods.yaml").read_text())
+    sa = [m for m in mods["mods"] if m.get("id") == 2918418331]
+    cfg = (ROOT / "mods" / "DZDS" / "config.cpp").read_text()
+    required = re.search(r"requiredAddons\[\]\s*=\s*\{(.*?)\}", cfg, re.S).group(1)
+    guard = (ROOT / "mods" / "DZDS" / "Scripts" / "4_World" / "DZDS" / "DZDSSurvivorAnimsAI.c").read_text()
+    assert "#ifdef SURVIVOR_ANIMS" in guard
+    assert re.search(r"modded\s+class\s+eAIBase\b", guard)
+    assert re.search(r"override\s+void\s+UpdateSAItemInHandsType\s*\(\s*\)", guard)
+    if sa and sa[0].get("enabled"):
+        assert '"SurvivorAnims"' in required
+    else:
+        assert "SurvivorAnims" not in required
