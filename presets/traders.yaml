@@ -28,7 +28,7 @@ traders:
     role: inland_town            # chernarusplus: Vybor
     required_faction: DZDSSettlers
     currencies: [settler_goods, ammo_hard, un_scrip]
-    sells: [food, tools, building materials, clothing, bicycles, horses' tack]
+    sells: [food, tools, building materials, clothing, horses' tack]
     buys: [pelts, crops, scrap, almost anything at a fair %]
     stock_policy: player-driven     # stock comes mostly from what players sell
   un_quartermaster:

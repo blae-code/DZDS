@@ -1,7 +1,7 @@
 # Pruning Report
 
 ## Applied 2026-10-15 (Badlands relaunch, Nasdara)
-**11 mods disabled** (each stays in `config/mods.yaml` with `enabled: false` and a `PRUNED 2026-10-15 (Badlands)` note).
+**12 mods disabled** (each stays in `config/mods.yaml` with `enabled: false` and a `PRUNED 2026-10-15 (Badlands)` note).
 
 | Mod | Workshop ID | Reason |
 |---|---|---|
@@ -15,6 +15,7 @@
 | Unknown Ghillie Mod | 2074403068 | abandoned since 2021, duplicated |
 | InventoryInCar | 2361330944 | abandoned since 2021, duplicated |
 | HypeTrain | 3115714092 | Blae's decision; rail on Nasdara can't be verified offline |
+| DayZ-Bicycle | 2971190303 | first local 1.30 boot: `UnlockServer` marked override but gone from the base class; maintained, re-enable once patched |
 | Leather Crafting | 3430034381 | first local 1.30 boot: `Can't compile "World"`, `CraftLeatherBelt` declared twice (1.30 ships its own) |
 
 Overlays removed with their mods: `zombie_horde.yaml`, `spatial_ai.yaml`, `expansion_missions.yaml`.
