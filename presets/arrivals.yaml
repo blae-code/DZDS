@@ -28,34 +28,177 @@ exclude_roles: [airfield, military, road_junction]   # no respawns beside UN bas
 exclude_radius_m: 500
 exclude_points: []              # extra no-respawn zones [x, z, radius]
 
-# Cars + small trucks (Blae). Vanilla only for the first test: their part sets are certain
-# (cfgspawnabletypes.xml). Modded VAZ-2107 / UAZ-452 / GAZ-3309 after an in-game check.
+# Respawn vehicles (Blae, 2026-10-16: "leverage the more unique and modded vehicles"). Weights
+# sum to 100: ~30 vanilla, ~55 modded cars/vans/trucks, ~12 fun, 3 helicopters (2 small,
+# 1 transport). No armed or attack vehicles. Parts were resolved from each mod's config.bin
+# (attachment slot -> part class, colour-matched; cargo/camo/keychain slots left empty) and
+# every entry is proven by the local self-test (init.c VehicleSelfTest) before it ships.
+# A vehicle that fits nowhere near the spawn point is re-drawn, so big helicopters are safe.
 vehicles:
-  - class: OffroadHatchback      # Ada 4x4
-    weight: 25
-    parts: [HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, CarRadiator, CarBattery,
-            SparkPlug, HeadlightH7, HeadlightH7, HatchbackDoors_Driver, HatchbackDoors_CoDriver,
-            HatchbackHood, HatchbackTrunk]
-  - class: CivilianSedan         # Olga 24
-    weight: 20
-    parts: [CivSedanWheel, CivSedanWheel, CivSedanWheel, CivSedanWheel, CarRadiator, CarBattery,
-            SparkPlug, HeadlightH7, HeadlightH7, CivSedanDoors_Driver, CivSedanDoors_CoDriver,
-            CivSedanDoors_BackLeft, CivSedanDoors_BackRight, CivSedanHood, CivSedanTrunk]
-  - class: Sedan_02              # Sarka 120
-    weight: 20
-    parts: [Sedan_02_Wheel, Sedan_02_Wheel, Sedan_02_Wheel, Sedan_02_Wheel, CarRadiator, CarBattery,
-            SparkPlug, HeadlightH7, HeadlightH7, Sedan_02_Door_1_1, Sedan_02_Door_1_2,
-            Sedan_02_Door_2_1, Sedan_02_Door_2_2, Sedan_02_Hood, Sedan_02_Trunk]
-  - class: Hatchback_02          # Gunter 2
-    weight: 20
-    parts: [Hatchback_02_Wheel, Hatchback_02_Wheel, Hatchback_02_Wheel, Hatchback_02_Wheel, CarRadiator,
-            CarBattery, SparkPlug, HeadlightH7, HeadlightH7, Hatchback_02_Door_1_1, Hatchback_02_Door_1_2,
-            Hatchback_02_Door_2_1, Hatchback_02_Door_2_2, Hatchback_02_Hood, Hatchback_02_Trunk]
-  - class: Truck_01_Covered      # V3S (small truck)
-    weight: 15
-    parts: [Truck_01_Wheel, Truck_01_Wheel, Truck_01_WheelDouble, Truck_01_WheelDouble,
-            Truck_01_WheelDouble, Truck_01_WheelDouble, TruckBattery, HeadlightH7, HeadlightH7,
-            Truck_01_Hood, Truck_01_Door_1_1, Truck_01_Door_2_1]
+  # vanilla (30)
+  - class: OffroadHatchback
+    weight: 8
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, HatchbackDoors_Driver, HatchbackDoors_CoDriver, HatchbackHood, HatchbackTrunk, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+  - class: CivilianSedan
+    weight: 6
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, CivSedanDoors_Driver, CivSedanDoors_CoDriver, CivSedanDoors_BackLeft, CivSedanDoors_BackRight, CivSedanHood, CivSedanTrunk, CivSedanWheel, CivSedanWheel, CivSedanWheel, CivSedanWheel, CivSedanWheel]
+  - class: Sedan_02
+    weight: 6
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, Sedan_02_Hood, Sedan_02_Trunk, Sedan_02_Door_1_1, Sedan_02_Door_2_1, Sedan_02_Door_1_2, Sedan_02_Door_2_2, Sedan_02_Wheel, Sedan_02_Wheel, Sedan_02_Wheel, Sedan_02_Wheel, Sedan_02_Wheel]
+  - class: Hatchback_02
+    weight: 6
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, Hatchback_02_Door_1_1, Hatchback_02_Door_1_2, Hatchback_02_Door_2_1, Hatchback_02_Door_2_2, Hatchback_02_Trunk, Hatchback_02_Hood, Hatchback_02_Wheel, Hatchback_02_Wheel, Hatchback_02_Wheel, Hatchback_02_Wheel, Hatchback_02_Wheel]
+  - class: Truck_01_Covered
+    weight: 4
+    parts: [TruckBattery, HeadlightH7, HeadlightH7, Truck_01_Door_1_1, Truck_01_Door_2_1, Truck_01_Hood, Truck_01_Wheel, Truck_01_WheelDouble, Truck_01_WheelDouble, Truck_01_Wheel, Truck_01_WheelDouble, Truck_01_WheelDouble, Truck_01_Wheel, Truck_01_Wheel]
+  # CrSk VAZ-2107 'Zhiguli'
+  - class: CrSk_VAZ_2107
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_dver_1_1, VAZ2107_dver_2_1, VAZ2107_dver_1_2, VAZ2107_dver_2_2, VAZ2107_bagazhnik, VAZ2107_kapot]
+  - class: CrSk_VAZ_2107_White
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_dver_1_1_White, VAZ2107_dver_2_1_White, VAZ2107_dver_1_2_White, VAZ2107_dver_2_2_White, VAZ2107_bagazhnik_White, VAZ2107_kapot_White]
+  - class: CrSk_VAZ_2107_Black
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_dver_1_1_Black, VAZ2107_dver_2_1_Black, VAZ2107_dver_1_2_Black, VAZ2107_dver_2_2_Black, VAZ2107_bagazhnik_Black, VAZ2107_kapot_Black]
+  - class: CrSk_VAZ_2107_Beige
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_koleso, VAZ2107_dver_1_1_Beige, VAZ2107_dver_2_1_Beige, VAZ2107_dver_1_2_Beige, VAZ2107_dver_2_2_Beige, VAZ2107_bagazhnik_Beige, VAZ2107_kapot_Beige]
+  # CrSk GAZ-3309 truck
+  - class: CrSk_GAZ_3309
+    weight: 4
+    parts: [TruckBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, GAZ3309_koleso, GAZ3309_koleso_double, GAZ3309_koleso, GAZ3309_koleso_double, GAZ3309_koleso, GAZ3309_dver_1_1, GAZ3309_dver_2_1, GAZ3309_kapot]
+  - class: CrSk_GAZ_3309_Cargo_Green
+    weight: 1
+    parts: [TruckBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, GAZ3309_koleso, GAZ3309_koleso_double, GAZ3309_koleso, GAZ3309_koleso_double, GAZ3309_koleso, GAZ3309_dver_1_1_Green, GAZ3309_dver_2_1_Green, GAZ3309_kapot_Green, GAZ3309_bagazhnik]
+  # Expansion UAZ-469
+  - class: ExpansionUAZ
+    weight: 2
+    parts: [CarBattery, CarRadiator, SparkPlug, HeadlightH7, HeadlightH7, ExpansionUAZWheel, ExpansionUAZWheel, ExpansionUAZWheel, ExpansionUAZWheel, ExpansionUAZDoorDriver, ExpansionUAZDoorCoDriver, ExpansionUAZDoorCargo1, ExpansionUAZDoorCargo2, ExpansionUAZDoorHood]
+  - class: ExpansionUAZCargo_Green
+    weight: 2
+    parts: [CarBattery, CarRadiator, SparkPlug, HeadlightH7, HeadlightH7, ExpansionUAZWheel, ExpansionUAZWheel, ExpansionUAZWheel, ExpansionUAZWheel, ExpansionUAZDoorDriver_Green, ExpansionUAZDoorCoDriver_Green, ExpansionUAZDoorCargo1_Green, ExpansionUAZDoorCargo2_Green, ExpansionUAZDoorHood_Green]
+  - class: ExpansionUAZRoofless_Black
+    weight: 2
+    parts: [CarBattery, CarRadiator, SparkPlug, HeadlightH7, HeadlightH7, ExpansionUAZWheel, ExpansionUAZWheel, ExpansionUAZWheel, ExpansionUAZWheel, ExpansionUAZDoorDriver_Black, ExpansionUAZDoorCoDriver_Black, ExpansionUAZDoorCargo1_Black, ExpansionUAZDoorCargo2_Black, ExpansionUAZDoorHood_Black]
+  # Expansion Land Rover
+  - class: Expansion_Landrover
+    weight: 1.5
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, Expansion_Landrover_Left, Expansion_Landrover_Right, Expansion_Landrover_Trunk, Expansion_Landrover_Hood, Expansion_Landrover_Codriverdoor, Expansion_Landrover_Driverdoor, Expansion_Landrover_Wheel, Expansion_Landrover_Wheel, Expansion_Landrover_Wheel, Expansion_Landrover_Wheel, Expansion_Landrover_Wheel]
+  - class: Expansion_Landrover_Red
+    weight: 1.5
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, Expansion_Landrover_Left_Red, Expansion_Landrover_Right_Red, Expansion_Landrover_Trunk_Red, Expansion_Landrover_Hood_Red, Expansion_Landrover_Codriverdoor_Red, Expansion_Landrover_Driverdoor_Red, Expansion_Landrover_Wheel_Red, Expansion_Landrover_Wheel_Red, Expansion_Landrover_Wheel_Red, Expansion_Landrover_Wheel_Red, Expansion_Landrover_Wheel_Red]
+  - class: Expansion_Landrover_Grey
+    weight: 1.5
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, Expansion_Landrover_Left_Grey, Expansion_Landrover_Right_Grey, Expansion_Landrover_Trunk_Grey, Expansion_Landrover_Hood_Grey, Expansion_Landrover_Codriverdoor_Grey, Expansion_Landrover_Driverdoor_Grey, Expansion_Landrover_Wheel_Grey, Expansion_Landrover_Wheel_Grey, Expansion_Landrover_Wheel_Grey, Expansion_Landrover_Wheel_Grey, Expansion_Landrover_Wheel_Grey]
+  - class: Expansion_Landrover_Yellow
+    weight: 1.5
+    parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, Expansion_Landrover_Left_Yellow, Expansion_Landrover_Right_Yellow, Expansion_Landrover_Trunk_Yellow, Expansion_Landrover_Hood_Yellow, Expansion_Landrover_Codriverdoor_Yellow, Expansion_Landrover_Driverdoor_Yellow, Expansion_Landrover_Wheel_Yellow, Expansion_Landrover_Wheel_Yellow, Expansion_Landrover_Wheel_Yellow, Expansion_Landrover_Wheel_Yellow, Expansion_Landrover_Wheel_Yellow]
+  # CnG UAZ-31514
+  - class: UAZ_31514
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7]
+  - class: UAZ_31514_hunter
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7]
+  - class: UAZ_31514_yellow
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7]
+  # CnG UAZ-452 'loaf' van
+  - class: UAZ_452
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7]
+  - class: UAZ_452_offroad
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7]
+  - class: UAZ_452_grey
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7]
+  # TP M1025 Humvee, unarmed
+  - class: TP_Apoc_M1025_NoGun
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7, GlowPlug, TP_Apoc_M1025_Hood, TP_Apoc_M1025_Trunk, TP_Apoc_M1025_Door_1_1, TP_Apoc_M1025_Door_2_1, TP_Apoc_M1025_Door_1_2, TP_Apoc_M1025_Door_2_2, Offroad_02_Wheel, Offroad_02_Wheel, Offroad_02_Wheel, Offroad_02_Wheel, Offroad_02_Wheel]
+  - class: TP_Apoc_M1025_NoGun_Tan
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7, GlowPlug, TP_Apoc_M1025_Hood_Tan, TP_Apoc_M1025_Trunk_Tan, TP_Apoc_M1025_Door_1_1_Tan, TP_Apoc_M1025_Door_2_1_Tan, TP_Apoc_M1025_Door_1_2_Tan, TP_Apoc_M1025_Door_2_2_Tan, Offroad_02_Wheel, Offroad_02_Wheel, Offroad_02_Wheel, Offroad_02_Wheel, Offroad_02_Wheel]
+  - class: TP_Apoc_M1025_NoGun_Camo
+    weight: 2
+    parts: [CarBattery, HeadlightH7, HeadlightH7, GlowPlug, TP_Apoc_M1025_Hood_Camo, TP_Apoc_M1025_Trunk_Camo, TP_Apoc_M1025_Door_1_1_Camo, TP_Apoc_M1025_Door_2_1_Camo, TP_Apoc_M1025_Door_1_2_Camo, TP_Apoc_M1025_Door_2_2_Camo, Offroad_02_Wheel, Offroad_02_Wheel, Offroad_02_Wheel, Offroad_02_Wheel, Offroad_02_Wheel]
+  # ArmA2 KamAZ
+  - class: A2_KamAZ_Covered
+    weight: 2
+    parts: [TruckBattery, GlowPlug, HeadlightH7, HeadlightH7, CarRadiator, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZ_Doors_Driver, A2_KamAZ_Doors_Codriver, A2_KamAZ_Doors_Trunk]
+  - class: A2_KamAZ_Covered_Olive
+    weight: 2
+    parts: [TruckBattery, GlowPlug, HeadlightH7, HeadlightH7, CarRadiator, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZWheel, A2_KamAZ_Doors_Driver_Olive, A2_KamAZ_Doors_Codriver_Olive, A2_KamAZ_Doors_Trunk]
+  # ArmA2 MTVR
+  - class: A2_OA_MTVR_Des
+    weight: 2
+    parts: [TruckBattery, GlowPlug, HeadlightH7, HeadlightH7, CarRadiator, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Doors_Driver_Des, A2_OA_MTVR_Doors_Codriver_Des, A2_OA_MTVR_Doors_Trunk_Des]
+  - class: A2_OA_MTVR_Wdl
+    weight: 2
+    parts: [TruckBattery, GlowPlug, HeadlightH7, HeadlightH7, CarRadiator, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Wheel, A2_OA_MTVR_Doors_Driver_Wdl, A2_OA_MTVR_Doors_Codriver_Wdl, A2_OA_MTVR_Doors_Trunk_Wdl]
+  # ArmA2 Tatra T810
+  - class: A2_OA_ACR_T810_v_ACR_Des
+    weight: 2
+    parts: [TruckBattery, GlowPlug, HeadlightH7, HeadlightH7, CarRadiator, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Doors_Driver_Des, A2_OA_ACR_T810_Doors_Codriver_Des, A2_OA_ACR_T810_Doors_Trunk_Des]
+  - class: A2_OA_ACR_T810_v_ACR_Wdl
+    weight: 2
+    parts: [TruckBattery, GlowPlug, HeadlightH7, HeadlightH7, CarRadiator, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Wheel, A2_OA_ACR_T810_Doors_Driver_Wdl, A2_OA_ACR_T810_Doors_Codriver_Wdl, A2_OA_ACR_T810_Doors_Trunk_Wdl]
+  # fun (12)
+  - class: ExpansionBus
+    weight: 1.5
+    parts: [TruckBattery, HeadlightH7, HeadlightH7, CarRadiator, GlowPlug, ExpansionBusWheel, ExpansionBusWheelDouble, ExpansionBusWheel, ExpansionBusWheelDouble]
+  - class: ExpansionBus_Red
+    weight: 1.5
+    parts: [TruckBattery, HeadlightH7, HeadlightH7, CarRadiator, GlowPlug, ExpansionBusWheel, ExpansionBusWheelDouble, ExpansionBusWheel, ExpansionBusWheelDouble]
+  - class: ExpansionTractor
+    weight: 1
+    parts: [ExpansionTractorFrontWheel, ExpansionTractorFrontWheel, ExpansionTractorBackWheel, ExpansionTractorBackWheel, ExpansionTractorDoorsDriver, ExpansionTractorDoorsCodriver, CarBattery, SparkPlug, HeadlightH7, HeadlightH7]
+  - class: ExpansionTractor_Red
+    weight: 1
+    parts: [ExpansionTractorFrontWheel, ExpansionTractorFrontWheel, ExpansionTractorBackWheel, ExpansionTractorBackWheel, ExpansionTractorDoorsDriver, ExpansionTractorDoorsCodriver, CarBattery, SparkPlug, HeadlightH7, HeadlightH7]
+  - class: ExpansionTractor_Blue
+    weight: 1
+    parts: [ExpansionTractorFrontWheel, ExpansionTractorFrontWheel, ExpansionTractorBackWheel, ExpansionTractorBackWheel, ExpansionTractorDoorsDriver, ExpansionTractorDoorsCodriver, CarBattery, SparkPlug, HeadlightH7, HeadlightH7]
+  - class: ExpansionVodnik
+    weight: 2
+    parts: [TruckBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, ExpansionVodnikWheel, ExpansionVodnikWheel, ExpansionVodnikWheel, ExpansionVodnikWheel, ExpansionVodnikDoorDriver, ExpansionVodnikDoorCoDriver]
+  - class: MBM_Apocalypse_Truck
+    weight: 2
+    parts: [TruckBattery, HeadlightH7, HeadlightH7, CarRadiator, GlowPlug, MBM_Apocalypse_Truck_Wheel_Front, MBM_Apocalypse_Truck_Wheel_Rear, MBM_Apocalypse_Truck_Wheel_Rear, MBM_Apocalypse_Truck_Wheel_Front, MBM_Apocalypse_Truck_Wheel_Rear, MBM_Apocalypse_Truck_Wheel_Rear, MBM_Apocalypse_Truck_Wheel_Front, MBM_Apocalypse_Truck_Wheel_Front, MBM_Apocalypse_Truck_doors_driver, MBM_Apocalypse_Truck_doors_codriver, MBM_Apocalypse_Truck_doors_cargo1, MBM_Apocalypse_Truck_doors_trunk, MBM_Apocalypse_Truck_doors_trunk1]
+  - class: LM_Semi_Truck
+    weight: 2
+    parts: [TruckBattery, CarRadiator, SparkPlug, HeadlightH7, HeadlightH7, LM_Semi_Truck_Wheel, LM_Semi_Truck_WheelDouble, LM_Semi_Truck_Wheel, LM_Semi_Truck_WheelDouble, LM_Semi_Truck_WheelDouble, LM_Semi_Truck_WheelDouble, LM_Semi_Truck_Wheel, LM_Semi_Truck_Doors_Driver, LM_Semi_Truck_Doors_CoDriver, LM_Semi_Truck_Doors_Hood]
+  # small helicopters (2)
+  - class: ExpansionMh6
+    weight: 0.4
+    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, Expansion_Mh6_Door_1_1, Expansion_Mh6_Door_1_2, Expansion_Mh6_Door_2_1, Expansion_Mh6_Door_2_2, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+  - class: ExpansionGyrocopter
+    weight: 0.4
+    parts: [ExpansionHelicopterBattery, HeadlightH7, SparkPlug, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+  - class: EXT_MH6
+    weight: 0.4
+    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+  - class: RFFSHeli_R22
+    weight: 0.4
+    parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, RFFSHeli_R22_DriverDoor, RFFSHeli_R22_CodriverDoor, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7]
+  - class: RFFSHeli_LittleBird
+    weight: 0.4
+    parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7]
+  # transport helicopters (1)
+  - class: ExpansionUh1h
+    weight: 0.25
+    parts: [HeadlightH7, ExpansionHelicopterBattery, ExpansionIgniterPlug, ExpansionHydraulicHoses, ExpansionUh1hDoor_1_1, ExpansionUh1hDoor_1_2, ExpansionUh1hDoor_2_1, ExpansionUh1hDoor_2_2, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+  - class: EXT_Mi8_Civilian
+    weight: 0.25
+    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, EXT_Mi8FrontWheel, EXT_Mi8BackWheel, EXT_Mi8FrontWheel, EXT_Mi8BackWheel, EXT_Mi8Door]
+  - class: EXT_UH1Y
+    weight: 0.25
+    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, EXT_UH1Y_door_1_1, EXT_UH1Y_door_2_1, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+  - class: RFFSHeli_UH1H
+    weight: 0.25
+    parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, RFFSHeli_UH1H_DriverDoor, RFFSHeli_UH1H_CodriverDoor, RFFSHeli_UH1H_Cargo1, RFFSHeli_UH1H_Cargo2, RFFSHeli_UH1H_Cargo1a, RFFSHeli_UH1H_Cargo2a, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7, HeadlightH7]
 
 # Arrival cargo (Blae, 2026-10-15): ONE archetype per car, slots drawn WITHOUT replacement
 # (max_each 1, food 2), ~12-17 items + exactly one themed firearm. Item pools are disjoint

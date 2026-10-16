@@ -147,6 +147,8 @@ class RefugeeArrivals
 	static const string CONFIG = "$profile:DZDS\\arrivals.json";
 	static const string LEDGER = "$profile:DZDS\\arrivals_ledger.json";
 	static const int PICK_TRIES = 12;
+	static const int VEHICLE_REDRAWS = 4;
+	static const string SELFTEST = DIR + "\\vehicle_selftest";
 
 	ref RefugeeArrivalConfig m_Config;
 	ref RefugeeArrivalLedger m_Ledger;
@@ -297,9 +299,22 @@ class RefugeeArrivals
 		return m_Config.Archetypes[m_Config.Archetypes.Count() - 1];
 	}
 
+	// Kit the cargo can't take (no cargo: gyrocopter, R22; small: tractor) lands on the
+	// ground beside the vehicle, as if spilled from it, instead of being lost.
+	EntityAI SpillBeside(CarScript car, string cls)
+	{
+		vector pos = car.GetPosition() + Vector(Math.RandomFloatInclusive(-2.5, 2.5), 0, Math.RandomFloatInclusive(-2.5, 2.5));
+		pos[1] = GetGame().SurfaceY(pos[0], pos[2]);
+		return EntityAI.Cast(GetGame().CreateObjectEx(cls, pos, ECE_PLACE_ON_SURFACE));
+	}
+
 	EntityAI Spawn(CarScript car, string cls, float hmin, float hmax)
 	{
-		EntityAI item = car.GetInventory().CreateEntityInCargo(cls);
+		EntityAI item = null;
+		if (car.GetInventory().GetCargo())
+			item = car.GetInventory().CreateEntityInCargo(cls);
+		if (!item)
+			item = SpillBeside(car, cls);
 		if (item)
 			item.SetHealth01("", "", Math.RandomFloatInclusive(hmin, hmax));
 		return item;
@@ -334,10 +349,14 @@ class RefugeeArrivals
 	{
 		if (rounds <= 0)
 			return;
-		Magazine m = Magazine.Cast(car.GetInventory().CreateEntityInCargo(cls));
+		Magazine m = null;
+		if (car.GetInventory().GetCargo())
+			m = Magazine.Cast(car.GetInventory().CreateEntityInCargo(cls));
+		if (!m)
+			m = Magazine.Cast(SpillBeside(car, cls));
 		if (!m)
 		{
-			got.Insert(cls + " (no room)");
+			got.Insert(cls + " (FAILED)");
 			return;
 		}
 		m.ServerSetAmmoCount(rounds);
@@ -405,6 +424,63 @@ class RefugeeArrivals
 				return true;
 		}
 		return false;
+	}
+
+	// Local check (2026-10-16): with $profile:DZDS\vehicle_selftest present, spawn every
+	// configured vehicle through the same SpawnVehicle + FillCargo path a respawn uses, log
+	// any part that didn't attach, empty slots and the kit size, then delete it.
+	void VehicleSelfTest()
+	{
+		if (!IsActive())
+			return;
+		int n = m_Config.Vehicles.Count();
+		int bad = 0;
+		for (int i = 0; i < n; i++)
+		{
+			RefugeeArrivalVehicle v = m_Config.Vehicles[i];
+			RefugeeArrivalPoint p = m_Config.RoadPoints[(i * 7) % m_Config.RoadPoints.Count()];
+			vector pos = Vector(p.X, GetGame().SurfaceY(p.X, p.Z), p.Z);
+			EntityAI parent = null;
+			int remaining = 1;
+			bool notAttached = false;
+			// No player here, so attach the parts ourselves (SpawnVehicle's own path needs one).
+			Object obj = ExpansionItemSpawnHelper.SpawnVehicle(v.ClassName, null, parent, pos, Vector(p.A, 0, 0), remaining, NULL, -1, "", notAttached);
+			EntityAI e = EntityAI.Cast(obj);
+			if (!e)
+			{
+				bad++;
+				Print("[DZDS VehicleTest] FAIL " + v.ClassName + ": not spawned");
+				continue;
+			}
+			TStringArray failed = new TStringArray;
+			foreach (string part : v.Parts)
+			{
+				if (!e.GetInventory().CreateAttachment(part))
+					failed.Insert(part);
+			}
+			if (failed.Count() > 0)
+				notAttached = true;
+			TStringArray empty = new TStringArray;
+			for (int s = 0; s < e.GetInventory().GetAttachmentSlotsCount(); s++)
+			{
+				int slotId = e.GetInventory().GetAttachmentSlotId(s);
+				if (!e.GetInventory().FindAttachment(slotId))
+					empty.Insert(InventorySlots.GetSlotName(slotId));
+			}
+			int items = -1;
+			CarScript car = CarScript.Cast(obj);
+			if (car)
+				items = FillCargo(car);
+			string verdict = "OK";
+			if (notAttached || items < 12)
+			{
+				verdict = "CHECK";
+				bad++;
+			}
+			Print("[DZDS VehicleTest] " + verdict + " " + v.ClassName + ": " + v.Parts.Count() + " part(s), failed " + failed.ToString() + ", kit item(s)=" + items + ", empty slots " + empty.ToString());
+			GetGame().ObjectDelete(obj);
+		}
+		Print("[DZDS VehicleTest] done: " + n + " vehicle(s), " + bad + " to check");
 	}
 
 	void RecordDeath(string uid, vector pos)
@@ -544,6 +620,15 @@ class RefugeeArrivals
 			placed = PickNearDeath(plan, rec);
 		if (!placed)
 			placed = PickPoint(m_Config.RoadPoints, plan);
+		for (int r = 0; r < VEHICLE_REDRAWS && !placed && plan.GrantVehicle; r++)
+		{
+			// A big vehicle (transport helicopter, semi) may fit no spot here: draw another.
+			plan.Vehicle = PickVehicle();
+			if (!plan.FirstArrival)
+				placed = PickNearDeath(plan, rec);
+			if (!placed)
+				placed = PickPoint(m_Config.RoadPoints, plan);
+		}
 		if (!placed && plan.GrantVehicle)
 		{
 			// Every candidate was blocked: still wake on a road, just without a vehicle.
@@ -559,8 +644,6 @@ class RefugeeArrivals
 
 	int FillCargo(CarScript car)
 	{
-		if (!car.GetInventory().GetCargo())
-			return 0;
 		RefugeeArrivalArchetype a = PickArchetype();
 		// Firearm first, so a crowded trunk can't push it out.
 		GiveFirearm(car, a);
@@ -632,6 +715,20 @@ class CustomMission: MissionServer
 {
 	ref RefugeeArrivals m_RefugeeArrivals;
 	ref RefugeeArrivalPlan m_ArrivalPlan;
+
+	override void OnInit()
+	{
+		super.OnInit();
+		if (FileExist(RefugeeArrivals.SELFTEST))
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(RunVehicleSelfTest, 60000, false);
+	}
+
+	void RunVehicleSelfTest()
+	{
+		if (!m_RefugeeArrivals)
+			m_RefugeeArrivals = new RefugeeArrivals();
+		m_RefugeeArrivals.VehicleSelfTest();
+	}
 
 	void SetRandomHealth(EntityAI itemEnt)
 	{

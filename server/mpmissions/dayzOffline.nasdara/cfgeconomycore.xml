@@ -39,6 +39,7 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
 		<default name="save_types_startup" value="true"/>
 	</defaults>
     <ce folder="dzds">
+        <file name="types_dzds.xml" type="types" />
         <file name="events_dzds.xml" type="events" />
     </ce>
 </economycore>

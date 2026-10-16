@@ -21,6 +21,7 @@ import active
 
 ROOT = Path(__file__).resolve().parent.parent
 PRESET = ROOT / "presets" / "types_dzds.yaml"
+ARRIVALS = ROOT / "presets" / "arrivals.yaml"
 FOLDER, FILE = "dzds", "types_dzds.xml"
 CE_SNIPPET = f'    <ce folder="{FOLDER}">\n        <file name="{FILE}" type="types" />\n    </ce>\n'
 VALID_USAGE = {"Military", "Police", "Medic", "Firefighter", "Industrial", "Farm", "Coast",
@@ -29,10 +30,26 @@ VALID_USAGE = {"Military", "Police", "Medic", "Firefighter", "Industrial", "Farm
 VALID_VALUE = {"Tier1", "Tier2", "Tier3", "Tier4", "Unique"}
 
 
-def build(preset: dict) -> tuple[ET.Element, list[str]]:
+def arrival_items(preset: dict, vanilla: set[str], arrival_cfg: dict | None) -> list[dict]:
+    """Every arrivals.yaml vehicle and part vanilla types.xml lacks, as registration-only
+    entries (nominal 0: the CE keeps them, never spawns them)."""
+    rules = preset.get("arrival_vehicles")
+    if not rules or not arrival_cfg:
+        return []
+    out, seen = [], set(vanilla)
+    for v in arrival_cfg.get("vehicles", []):
+        for name, profile in [(v["class"], rules["vehicle_profile"])] + [(p, rules["part_profile"]) for p in v["parts"]]:
+            if name not in seen:
+                seen.add(name)
+                out.append({"name": name, "profile": profile})
+    return out
+
+
+def build(preset: dict, vanilla: set[str] | None = None,
+          arrival_cfg: dict | None = None) -> tuple[ET.Element, list[str]]:
     root = ET.Element("types")
     warnings = []
-    for item in preset["items"]:
+    for item in preset["items"] + arrival_items(preset, vanilla or set(), arrival_cfg):
         if not item.get("enabled", True):
             continue
         spec = {**preset["profiles"].get(item.get("profile"), {}), **item}
@@ -84,11 +101,15 @@ def main() -> int:
     ap.add_argument("--mission", default=str(active.mission_dir()))
     a = ap.parse_args()
 
-    root, warnings = build(yaml.safe_load(PRESET.read_text()))
-    for w in warnings:
-        print("WARNING:", w, file=sys.stderr)
     mission = Path(a.mission)
     has_mission = (mission / "cfgeconomycore.xml").exists()
+    vanilla = set()
+    if (mission / "db" / "types.xml").exists():
+        vanilla = {t.get("name") for t in ET.parse(mission / "db" / "types.xml").getroot().findall("type")}
+    arrival_cfg = yaml.safe_load(ARRIVALS.read_text()) if ARRIVALS.exists() else None
+    root, warnings = build(yaml.safe_load(PRESET.read_text()), vanilla, arrival_cfg)
+    for w in warnings:
+        print("WARNING:", w, file=sys.stderr)
     out_dir = (mission if has_mission else ROOT / "build") / FOLDER
     out_dir.mkdir(parents=True, exist_ok=True)
     out = out_dir / FILE

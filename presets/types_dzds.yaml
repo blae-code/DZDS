@@ -38,6 +38,24 @@ profiles:
     lifetime: 14400
     nominal: 8
     min: 3
+  # Respawn vehicles (Blae, 2026-10-16): registered the way vanilla registers its own vehicles,
+  # so they persist, but nominal 0 and no usage, so the CE never places them as loot.
+  respawn_vehicle:
+    lifetime: 3888000
+    restock: 1800
+    nominal: 0
+    min: 0
+  respawn_part:
+    category: lootdispatch
+    lifetime: 28800
+    nominal: 0
+    min: 0
+
+# Every presets/arrivals.yaml vehicle and part that vanilla db/types.xml lacks is registered
+# with these profiles (tools/types_gen.py arrival_items), so the two files cannot drift.
+arrival_vehicles:
+  vehicle_profile: respawn_vehicle
+  part_profile: respawn_part
 
 # Vehicle-part boosts removed 2026-10-15 (Blae: pure vanilla loot). Our own designed items
 # go here when there are any.

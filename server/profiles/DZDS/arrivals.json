@@ -1574,102 +1574,914 @@
     "Vehicles": [
         {
             "ClassName": "OffroadHatchback",
-            "Weight": 25.0,
+            "Weight": 8.0,
             "Parts": [
-                "HatchbackWheel",
-                "HatchbackWheel",
-                "HatchbackWheel",
-                "HatchbackWheel",
-                "CarRadiator",
                 "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
                 "SparkPlug",
-                "HeadlightH7",
-                "HeadlightH7",
                 "HatchbackDoors_Driver",
                 "HatchbackDoors_CoDriver",
                 "HatchbackHood",
-                "HatchbackTrunk"
+                "HatchbackTrunk",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel"
             ]
         },
         {
             "ClassName": "CivilianSedan",
-            "Weight": 20.0,
+            "Weight": 6.0,
             "Parts": [
-                "CivSedanWheel",
-                "CivSedanWheel",
-                "CivSedanWheel",
-                "CivSedanWheel",
-                "CarRadiator",
                 "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
                 "SparkPlug",
-                "HeadlightH7",
-                "HeadlightH7",
                 "CivSedanDoors_Driver",
                 "CivSedanDoors_CoDriver",
                 "CivSedanDoors_BackLeft",
                 "CivSedanDoors_BackRight",
                 "CivSedanHood",
-                "CivSedanTrunk"
+                "CivSedanTrunk",
+                "CivSedanWheel",
+                "CivSedanWheel",
+                "CivSedanWheel",
+                "CivSedanWheel",
+                "CivSedanWheel"
             ]
         },
         {
             "ClassName": "Sedan_02",
-            "Weight": 20.0,
+            "Weight": 6.0,
             "Parts": [
-                "Sedan_02_Wheel",
-                "Sedan_02_Wheel",
-                "Sedan_02_Wheel",
-                "Sedan_02_Wheel",
-                "CarRadiator",
                 "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
                 "SparkPlug",
-                "HeadlightH7",
-                "HeadlightH7",
-                "Sedan_02_Door_1_1",
-                "Sedan_02_Door_1_2",
-                "Sedan_02_Door_2_1",
-                "Sedan_02_Door_2_2",
                 "Sedan_02_Hood",
-                "Sedan_02_Trunk"
+                "Sedan_02_Trunk",
+                "Sedan_02_Door_1_1",
+                "Sedan_02_Door_2_1",
+                "Sedan_02_Door_1_2",
+                "Sedan_02_Door_2_2",
+                "Sedan_02_Wheel",
+                "Sedan_02_Wheel",
+                "Sedan_02_Wheel",
+                "Sedan_02_Wheel",
+                "Sedan_02_Wheel"
             ]
         },
         {
             "ClassName": "Hatchback_02",
-            "Weight": 20.0,
+            "Weight": 6.0,
             "Parts": [
-                "Hatchback_02_Wheel",
-                "Hatchback_02_Wheel",
-                "Hatchback_02_Wheel",
-                "Hatchback_02_Wheel",
-                "CarRadiator",
                 "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
                 "SparkPlug",
-                "HeadlightH7",
-                "HeadlightH7",
                 "Hatchback_02_Door_1_1",
                 "Hatchback_02_Door_1_2",
                 "Hatchback_02_Door_2_1",
                 "Hatchback_02_Door_2_2",
+                "Hatchback_02_Trunk",
                 "Hatchback_02_Hood",
-                "Hatchback_02_Trunk"
+                "Hatchback_02_Wheel",
+                "Hatchback_02_Wheel",
+                "Hatchback_02_Wheel",
+                "Hatchback_02_Wheel",
+                "Hatchback_02_Wheel"
             ]
         },
         {
             "ClassName": "Truck_01_Covered",
-            "Weight": 15.0,
+            "Weight": 4.0,
             "Parts": [
-                "Truck_01_Wheel",
-                "Truck_01_Wheel",
-                "Truck_01_WheelDouble",
-                "Truck_01_WheelDouble",
-                "Truck_01_WheelDouble",
-                "Truck_01_WheelDouble",
                 "TruckBattery",
                 "HeadlightH7",
                 "HeadlightH7",
-                "Truck_01_Hood",
                 "Truck_01_Door_1_1",
-                "Truck_01_Door_2_1"
+                "Truck_01_Door_2_1",
+                "Truck_01_Hood",
+                "Truck_01_Wheel",
+                "Truck_01_WheelDouble",
+                "Truck_01_WheelDouble",
+                "Truck_01_Wheel",
+                "Truck_01_WheelDouble",
+                "Truck_01_WheelDouble",
+                "Truck_01_Wheel",
+                "Truck_01_Wheel"
+            ]
+        },
+        {
+            "ClassName": "CrSk_VAZ_2107",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_dver_1_1",
+                "VAZ2107_dver_2_1",
+                "VAZ2107_dver_1_2",
+                "VAZ2107_dver_2_2",
+                "VAZ2107_bagazhnik",
+                "VAZ2107_kapot"
+            ]
+        },
+        {
+            "ClassName": "CrSk_VAZ_2107_White",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_dver_1_1_White",
+                "VAZ2107_dver_2_1_White",
+                "VAZ2107_dver_1_2_White",
+                "VAZ2107_dver_2_2_White",
+                "VAZ2107_bagazhnik_White",
+                "VAZ2107_kapot_White"
+            ]
+        },
+        {
+            "ClassName": "CrSk_VAZ_2107_Black",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_dver_1_1_Black",
+                "VAZ2107_dver_2_1_Black",
+                "VAZ2107_dver_1_2_Black",
+                "VAZ2107_dver_2_2_Black",
+                "VAZ2107_bagazhnik_Black",
+                "VAZ2107_kapot_Black"
+            ]
+        },
+        {
+            "ClassName": "CrSk_VAZ_2107_Beige",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_koleso",
+                "VAZ2107_dver_1_1_Beige",
+                "VAZ2107_dver_2_1_Beige",
+                "VAZ2107_dver_1_2_Beige",
+                "VAZ2107_dver_2_2_Beige",
+                "VAZ2107_bagazhnik_Beige",
+                "VAZ2107_kapot_Beige"
+            ]
+        },
+        {
+            "ClassName": "CrSk_GAZ_3309",
+            "Weight": 4.0,
+            "Parts": [
+                "TruckBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "GAZ3309_koleso",
+                "GAZ3309_koleso_double",
+                "GAZ3309_koleso",
+                "GAZ3309_koleso_double",
+                "GAZ3309_koleso",
+                "GAZ3309_dver_1_1",
+                "GAZ3309_dver_2_1",
+                "GAZ3309_kapot"
+            ]
+        },
+        {
+            "ClassName": "CrSk_GAZ_3309_Cargo_Green",
+            "Weight": 1.0,
+            "Parts": [
+                "TruckBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "GAZ3309_koleso",
+                "GAZ3309_koleso_double",
+                "GAZ3309_koleso",
+                "GAZ3309_koleso_double",
+                "GAZ3309_koleso",
+                "GAZ3309_dver_1_1_Green",
+                "GAZ3309_dver_2_1_Green",
+                "GAZ3309_kapot_Green",
+                "GAZ3309_bagazhnik"
+            ]
+        },
+        {
+            "ClassName": "ExpansionUAZ",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "CarRadiator",
+                "SparkPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "ExpansionUAZWheel",
+                "ExpansionUAZWheel",
+                "ExpansionUAZWheel",
+                "ExpansionUAZWheel",
+                "ExpansionUAZDoorDriver",
+                "ExpansionUAZDoorCoDriver",
+                "ExpansionUAZDoorCargo1",
+                "ExpansionUAZDoorCargo2",
+                "ExpansionUAZDoorHood"
+            ]
+        },
+        {
+            "ClassName": "ExpansionUAZCargo_Green",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "CarRadiator",
+                "SparkPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "ExpansionUAZWheel",
+                "ExpansionUAZWheel",
+                "ExpansionUAZWheel",
+                "ExpansionUAZWheel",
+                "ExpansionUAZDoorDriver_Green",
+                "ExpansionUAZDoorCoDriver_Green",
+                "ExpansionUAZDoorCargo1_Green",
+                "ExpansionUAZDoorCargo2_Green",
+                "ExpansionUAZDoorHood_Green"
+            ]
+        },
+        {
+            "ClassName": "ExpansionUAZRoofless_Black",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "CarRadiator",
+                "SparkPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "ExpansionUAZWheel",
+                "ExpansionUAZWheel",
+                "ExpansionUAZWheel",
+                "ExpansionUAZWheel",
+                "ExpansionUAZDoorDriver_Black",
+                "ExpansionUAZDoorCoDriver_Black",
+                "ExpansionUAZDoorCargo1_Black",
+                "ExpansionUAZDoorCargo2_Black",
+                "ExpansionUAZDoorHood_Black"
+            ]
+        },
+        {
+            "ClassName": "Expansion_Landrover",
+            "Weight": 1.5,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "Expansion_Landrover_Left",
+                "Expansion_Landrover_Right",
+                "Expansion_Landrover_Trunk",
+                "Expansion_Landrover_Hood",
+                "Expansion_Landrover_Codriverdoor",
+                "Expansion_Landrover_Driverdoor",
+                "Expansion_Landrover_Wheel",
+                "Expansion_Landrover_Wheel",
+                "Expansion_Landrover_Wheel",
+                "Expansion_Landrover_Wheel",
+                "Expansion_Landrover_Wheel"
+            ]
+        },
+        {
+            "ClassName": "Expansion_Landrover_Red",
+            "Weight": 1.5,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "Expansion_Landrover_Left_Red",
+                "Expansion_Landrover_Right_Red",
+                "Expansion_Landrover_Trunk_Red",
+                "Expansion_Landrover_Hood_Red",
+                "Expansion_Landrover_Codriverdoor_Red",
+                "Expansion_Landrover_Driverdoor_Red",
+                "Expansion_Landrover_Wheel_Red",
+                "Expansion_Landrover_Wheel_Red",
+                "Expansion_Landrover_Wheel_Red",
+                "Expansion_Landrover_Wheel_Red",
+                "Expansion_Landrover_Wheel_Red"
+            ]
+        },
+        {
+            "ClassName": "Expansion_Landrover_Grey",
+            "Weight": 1.5,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "Expansion_Landrover_Left_Grey",
+                "Expansion_Landrover_Right_Grey",
+                "Expansion_Landrover_Trunk_Grey",
+                "Expansion_Landrover_Hood_Grey",
+                "Expansion_Landrover_Codriverdoor_Grey",
+                "Expansion_Landrover_Driverdoor_Grey",
+                "Expansion_Landrover_Wheel_Grey",
+                "Expansion_Landrover_Wheel_Grey",
+                "Expansion_Landrover_Wheel_Grey",
+                "Expansion_Landrover_Wheel_Grey",
+                "Expansion_Landrover_Wheel_Grey"
+            ]
+        },
+        {
+            "ClassName": "Expansion_Landrover_Yellow",
+            "Weight": 1.5,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "Expansion_Landrover_Left_Yellow",
+                "Expansion_Landrover_Right_Yellow",
+                "Expansion_Landrover_Trunk_Yellow",
+                "Expansion_Landrover_Hood_Yellow",
+                "Expansion_Landrover_Codriverdoor_Yellow",
+                "Expansion_Landrover_Driverdoor_Yellow",
+                "Expansion_Landrover_Wheel_Yellow",
+                "Expansion_Landrover_Wheel_Yellow",
+                "Expansion_Landrover_Wheel_Yellow",
+                "Expansion_Landrover_Wheel_Yellow",
+                "Expansion_Landrover_Wheel_Yellow"
+            ]
+        },
+        {
+            "ClassName": "UAZ_31514",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "UAZ_31514_hunter",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "UAZ_31514_yellow",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "UAZ_452",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "UAZ_452_offroad",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "UAZ_452_grey",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "TP_Apoc_M1025_NoGun",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "GlowPlug",
+                "TP_Apoc_M1025_Hood",
+                "TP_Apoc_M1025_Trunk",
+                "TP_Apoc_M1025_Door_1_1",
+                "TP_Apoc_M1025_Door_2_1",
+                "TP_Apoc_M1025_Door_1_2",
+                "TP_Apoc_M1025_Door_2_2",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel"
+            ]
+        },
+        {
+            "ClassName": "TP_Apoc_M1025_NoGun_Tan",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "GlowPlug",
+                "TP_Apoc_M1025_Hood_Tan",
+                "TP_Apoc_M1025_Trunk_Tan",
+                "TP_Apoc_M1025_Door_1_1_Tan",
+                "TP_Apoc_M1025_Door_2_1_Tan",
+                "TP_Apoc_M1025_Door_1_2_Tan",
+                "TP_Apoc_M1025_Door_2_2_Tan",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel"
+            ]
+        },
+        {
+            "ClassName": "TP_Apoc_M1025_NoGun_Camo",
+            "Weight": 2.0,
+            "Parts": [
+                "CarBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "GlowPlug",
+                "TP_Apoc_M1025_Hood_Camo",
+                "TP_Apoc_M1025_Trunk_Camo",
+                "TP_Apoc_M1025_Door_1_1_Camo",
+                "TP_Apoc_M1025_Door_2_1_Camo",
+                "TP_Apoc_M1025_Door_1_2_Camo",
+                "TP_Apoc_M1025_Door_2_2_Camo",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel",
+                "Offroad_02_Wheel"
+            ]
+        },
+        {
+            "ClassName": "A2_KamAZ_Covered",
+            "Weight": 2.0,
+            "Parts": [
+                "TruckBattery",
+                "GlowPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZ_Doors_Driver",
+                "A2_KamAZ_Doors_Codriver",
+                "A2_KamAZ_Doors_Trunk"
+            ]
+        },
+        {
+            "ClassName": "A2_KamAZ_Covered_Olive",
+            "Weight": 2.0,
+            "Parts": [
+                "TruckBattery",
+                "GlowPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZWheel",
+                "A2_KamAZ_Doors_Driver_Olive",
+                "A2_KamAZ_Doors_Codriver_Olive",
+                "A2_KamAZ_Doors_Trunk"
+            ]
+        },
+        {
+            "ClassName": "A2_OA_MTVR_Des",
+            "Weight": 2.0,
+            "Parts": [
+                "TruckBattery",
+                "GlowPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Doors_Driver_Des",
+                "A2_OA_MTVR_Doors_Codriver_Des",
+                "A2_OA_MTVR_Doors_Trunk_Des"
+            ]
+        },
+        {
+            "ClassName": "A2_OA_MTVR_Wdl",
+            "Weight": 2.0,
+            "Parts": [
+                "TruckBattery",
+                "GlowPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Wheel",
+                "A2_OA_MTVR_Doors_Driver_Wdl",
+                "A2_OA_MTVR_Doors_Codriver_Wdl",
+                "A2_OA_MTVR_Doors_Trunk_Wdl"
+            ]
+        },
+        {
+            "ClassName": "A2_OA_ACR_T810_v_ACR_Des",
+            "Weight": 2.0,
+            "Parts": [
+                "TruckBattery",
+                "GlowPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Doors_Driver_Des",
+                "A2_OA_ACR_T810_Doors_Codriver_Des",
+                "A2_OA_ACR_T810_Doors_Trunk_Des"
+            ]
+        },
+        {
+            "ClassName": "A2_OA_ACR_T810_v_ACR_Wdl",
+            "Weight": 2.0,
+            "Parts": [
+                "TruckBattery",
+                "GlowPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Wheel",
+                "A2_OA_ACR_T810_Doors_Driver_Wdl",
+                "A2_OA_ACR_T810_Doors_Codriver_Wdl",
+                "A2_OA_ACR_T810_Doors_Trunk_Wdl"
+            ]
+        },
+        {
+            "ClassName": "ExpansionBus",
+            "Weight": 1.5,
+            "Parts": [
+                "TruckBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "GlowPlug",
+                "ExpansionBusWheel",
+                "ExpansionBusWheelDouble",
+                "ExpansionBusWheel",
+                "ExpansionBusWheelDouble"
+            ]
+        },
+        {
+            "ClassName": "ExpansionBus_Red",
+            "Weight": 1.5,
+            "Parts": [
+                "TruckBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "GlowPlug",
+                "ExpansionBusWheel",
+                "ExpansionBusWheelDouble",
+                "ExpansionBusWheel",
+                "ExpansionBusWheelDouble"
+            ]
+        },
+        {
+            "ClassName": "ExpansionTractor",
+            "Weight": 1.0,
+            "Parts": [
+                "ExpansionTractorFrontWheel",
+                "ExpansionTractorFrontWheel",
+                "ExpansionTractorBackWheel",
+                "ExpansionTractorBackWheel",
+                "ExpansionTractorDoorsDriver",
+                "ExpansionTractorDoorsCodriver",
+                "CarBattery",
+                "SparkPlug",
+                "HeadlightH7",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "ExpansionTractor_Red",
+            "Weight": 1.0,
+            "Parts": [
+                "ExpansionTractorFrontWheel",
+                "ExpansionTractorFrontWheel",
+                "ExpansionTractorBackWheel",
+                "ExpansionTractorBackWheel",
+                "ExpansionTractorDoorsDriver",
+                "ExpansionTractorDoorsCodriver",
+                "CarBattery",
+                "SparkPlug",
+                "HeadlightH7",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "ExpansionTractor_Blue",
+            "Weight": 1.0,
+            "Parts": [
+                "ExpansionTractorFrontWheel",
+                "ExpansionTractorFrontWheel",
+                "ExpansionTractorBackWheel",
+                "ExpansionTractorBackWheel",
+                "ExpansionTractorDoorsDriver",
+                "ExpansionTractorDoorsCodriver",
+                "CarBattery",
+                "SparkPlug",
+                "HeadlightH7",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "ExpansionVodnik",
+            "Weight": 2.0,
+            "Parts": [
+                "TruckBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "SparkPlug",
+                "ExpansionVodnikWheel",
+                "ExpansionVodnikWheel",
+                "ExpansionVodnikWheel",
+                "ExpansionVodnikWheel",
+                "ExpansionVodnikDoorDriver",
+                "ExpansionVodnikDoorCoDriver"
+            ]
+        },
+        {
+            "ClassName": "MBM_Apocalypse_Truck",
+            "Weight": 2.0,
+            "Parts": [
+                "TruckBattery",
+                "HeadlightH7",
+                "HeadlightH7",
+                "CarRadiator",
+                "GlowPlug",
+                "MBM_Apocalypse_Truck_Wheel_Front",
+                "MBM_Apocalypse_Truck_Wheel_Rear",
+                "MBM_Apocalypse_Truck_Wheel_Rear",
+                "MBM_Apocalypse_Truck_Wheel_Front",
+                "MBM_Apocalypse_Truck_Wheel_Rear",
+                "MBM_Apocalypse_Truck_Wheel_Rear",
+                "MBM_Apocalypse_Truck_Wheel_Front",
+                "MBM_Apocalypse_Truck_Wheel_Front",
+                "MBM_Apocalypse_Truck_doors_driver",
+                "MBM_Apocalypse_Truck_doors_codriver",
+                "MBM_Apocalypse_Truck_doors_cargo1",
+                "MBM_Apocalypse_Truck_doors_trunk",
+                "MBM_Apocalypse_Truck_doors_trunk1"
+            ]
+        },
+        {
+            "ClassName": "LM_Semi_Truck",
+            "Weight": 2.0,
+            "Parts": [
+                "TruckBattery",
+                "CarRadiator",
+                "SparkPlug",
+                "HeadlightH7",
+                "HeadlightH7",
+                "LM_Semi_Truck_Wheel",
+                "LM_Semi_Truck_WheelDouble",
+                "LM_Semi_Truck_Wheel",
+                "LM_Semi_Truck_WheelDouble",
+                "LM_Semi_Truck_WheelDouble",
+                "LM_Semi_Truck_WheelDouble",
+                "LM_Semi_Truck_Wheel",
+                "LM_Semi_Truck_Doors_Driver",
+                "LM_Semi_Truck_Doors_CoDriver",
+                "LM_Semi_Truck_Doors_Hood"
+            ]
+        },
+        {
+            "ClassName": "ExpansionMh6",
+            "Weight": 0.4,
+            "Parts": [
+                "ExpansionHelicopterBattery",
+                "HeadlightH7",
+                "ExpansionIgniterPlug",
+                "ExpansionHydraulicHoses",
+                "Expansion_Mh6_Door_1_1",
+                "Expansion_Mh6_Door_1_2",
+                "Expansion_Mh6_Door_2_1",
+                "Expansion_Mh6_Door_2_2",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel"
+            ]
+        },
+        {
+            "ClassName": "ExpansionGyrocopter",
+            "Weight": 0.4,
+            "Parts": [
+                "ExpansionHelicopterBattery",
+                "HeadlightH7",
+                "SparkPlug",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel"
+            ]
+        },
+        {
+            "ClassName": "EXT_MH6",
+            "Weight": 0.4,
+            "Parts": [
+                "ExpansionHelicopterBattery",
+                "HeadlightH7",
+                "ExpansionIgniterPlug",
+                "ExpansionHydraulicHoses",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel"
+            ]
+        },
+        {
+            "ClassName": "RFFSHeli_R22",
+            "Weight": 0.4,
+            "Parts": [
+                "RFFSHeli_aviation_battery",
+                "RFFSHeli_igniter_plug",
+                "RFFSHeli_hydraulic_hoses",
+                "RFFSHeli_wiring_harness",
+                "RFFSHeli_R22_DriverDoor",
+                "RFFSHeli_R22_CodriverDoor",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "RFFSHeli_LittleBird",
+            "Weight": 0.4,
+            "Parts": [
+                "RFFSHeli_aviation_battery",
+                "RFFSHeli_igniter_plug",
+                "RFFSHeli_hydraulic_hoses",
+                "RFFSHeli_wiring_harness",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HeadlightH7"
+            ]
+        },
+        {
+            "ClassName": "ExpansionUh1h",
+            "Weight": 0.25,
+            "Parts": [
+                "HeadlightH7",
+                "ExpansionHelicopterBattery",
+                "ExpansionIgniterPlug",
+                "ExpansionHydraulicHoses",
+                "ExpansionUh1hDoor_1_1",
+                "ExpansionUh1hDoor_1_2",
+                "ExpansionUh1hDoor_2_1",
+                "ExpansionUh1hDoor_2_2",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel"
+            ]
+        },
+        {
+            "ClassName": "EXT_Mi8_Civilian",
+            "Weight": 0.25,
+            "Parts": [
+                "ExpansionHelicopterBattery",
+                "HeadlightH7",
+                "ExpansionIgniterPlug",
+                "ExpansionHydraulicHoses",
+                "EXT_Mi8FrontWheel",
+                "EXT_Mi8BackWheel",
+                "EXT_Mi8FrontWheel",
+                "EXT_Mi8BackWheel",
+                "EXT_Mi8Door"
+            ]
+        },
+        {
+            "ClassName": "EXT_UH1Y",
+            "Weight": 0.25,
+            "Parts": [
+                "ExpansionHelicopterBattery",
+                "HeadlightH7",
+                "ExpansionIgniterPlug",
+                "ExpansionHydraulicHoses",
+                "EXT_UH1Y_door_1_1",
+                "EXT_UH1Y_door_2_1",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel"
+            ]
+        },
+        {
+            "ClassName": "RFFSHeli_UH1H",
+            "Weight": 0.25,
+            "Parts": [
+                "RFFSHeli_aviation_battery",
+                "RFFSHeli_igniter_plug",
+                "RFFSHeli_hydraulic_hoses",
+                "RFFSHeli_wiring_harness",
+                "RFFSHeli_UH1H_DriverDoor",
+                "RFFSHeli_UH1H_CodriverDoor",
+                "RFFSHeli_UH1H_Cargo1",
+                "RFFSHeli_UH1H_Cargo2",
+                "RFFSHeli_UH1H_Cargo1a",
+                "RFFSHeli_UH1H_Cargo2a",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HatchbackWheel",
+                "HeadlightH7",
+                "HeadlightH7"
             ]
         }
     ],

@@ -66,3 +66,5 @@ server/profiles/*.mdmp
 server/profiles/cf_findfile_*
 server/profiles/Zenarchist/*.json.v*
 server/mpmissions/*/BunkerBroadcastPersistenceStorage.bin
+# local-only trigger for init.c VehicleSelfTest (never pushed)
+server/profiles/DZDS/vehicle_selftest

@@ -32,7 +32,13 @@ def mission_dir(map_data: dict) -> Path:
 
 
 def known_types(mission: Path) -> set[str]:
-    return {t.get("name") for t in ET.parse(mission / "db" / "types.xml").getroot().findall("type")}
+    """Vanilla types plus our own types file (tools/types_gen.py registers modded respawn
+    vehicles and parts there; run `make types` before `make arrivals`)."""
+    names = set()
+    for f in (mission / "db" / "types.xml", mission / "dzds" / "types_dzds.xml"):
+        if f.exists():
+            names |= {t.get("name") for t in ET.parse(f).getroot().findall("type")}
+    return names
 
 
 def road_spots(mission: Path, events: list[str]) -> list[tuple[float, float, float]]:

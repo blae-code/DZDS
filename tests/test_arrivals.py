@@ -278,3 +278,50 @@ def test_init_c_camp_respawn_comes_first_and_grants_no_car():
     for needle in ("rec.HasDeath", "TentBase.PITCHED", "m_Config.CampRespawnRadius", "plan.GrantVehicle = false",
                    "plan.AtCamp = true"):
         assert needle in body, needle
+
+
+def test_init_c_redraws_a_vehicle_that_fits_nowhere():
+    """Blae 2026-10-16: transport helicopters are in the pool; one that fits no spot near the
+    respawn must not cost the player their vehicle, so Plan draws again before giving up."""
+    src = INIT_C.read_text()
+    plan = re.search(r"RefugeeArrivalPlan Plan\(PlayerIdentity identity\).*?\n\t\}", src, re.S).group(0)
+    redraw = re.search(r"for \(int r = 0; r < VEHICLE_REDRAWS && !placed && plan\.GrantVehicle; r\+\+\)(.*?)\n\t\t\}", plan, re.S)
+    assert redraw, "no vehicle re-draw loop in Plan"
+    assert "plan.Vehicle = PickVehicle();" in redraw.group(1)
+    assert plan.index("VEHICLE_REDRAWS") < plan.rindex("plan.GrantVehicle = false;"), "re-draw before giving up"
+
+
+def test_init_c_vehicle_selftest_is_local_only():
+    """The self-test spawns every configured vehicle through the real SpawnVehicle + FillCargo
+    path, but only when $profile:DZDS/vehicle_selftest exists (never on the live server)."""
+    src = INIT_C.read_text()
+    body = re.search(r"void VehicleSelfTest\(\).*?\n\t\}", src, re.S)
+    assert body, "VehicleSelfTest missing"
+    for needle in ("ExpansionItemSpawnHelper.SpawnVehicle(", "FillCargo(", "ObjectDelete(", "[DZDS VehicleTest]"):
+        assert needle in body.group(0), needle
+    assert re.search(r'SELFTEST\s*=\s*DIR \+ "\\\\vehicle_selftest"', src)
+    mission = re.search(r"class CustomMission: MissionServer.*", src, re.S).group(0)
+    assert re.search(r"if \(FileExist\(RefugeeArrivals\.SELFTEST\)\)", mission)
+    gi = (ROOT / ".gitignore").read_text()
+    assert "server/profiles/DZDS/vehicle_selftest" in gi
+
+
+def test_init_c_spills_kit_that_does_not_fit_beside_the_vehicle():
+    """2026-10-16 self-test: the gyrocopter and R22 have no cargo, the tractor holds ~10 items.
+    Whatever the cargo can't take is placed on the ground beside the vehicle, never lost."""
+    src = INIT_C.read_text()
+    spawn = re.search(r"EntityAI Spawn\(CarScript car, string cls, float hmin, float hmax\).*?\n\t\}", src, re.S).group(0)
+    assert "SpillBeside(car, cls)" in spawn
+    rounds = re.search(r"void GiveRounds\(CarScript car, string cls, int rounds, TStringArray got\).*?\n\t\}", src, re.S).group(0)
+    assert "SpillBeside(car, cls)" in rounds
+    fill = re.search(r"int FillCargo\(CarScript car\).*?\n\t\}", src, re.S).group(0)
+    assert "if (!car.GetInventory().GetCargo())" not in fill, "a vehicle without cargo must still get its kit"
+
+
+def test_vehicle_selftest_attaches_parts_one_by_one():
+    """The first self-test passed no player to SpawnVehicle, so Expansion never attached the
+    parts (617 VM exceptions). Parts are now attached one by one and each failure is named."""
+    src = INIT_C.read_text()
+    body = re.search(r"void VehicleSelfTest\(\).*?\n\t\}", src, re.S).group(0)
+    assert "GetInventory().CreateAttachment(" in body
+    assert re.search(r"SpawnVehicle\([^;]*, NULL, -1, \"\", notAttached\)", body), "spawn without parts, then attach"
