@@ -217,3 +217,13 @@ def test_front_is_deterministic():
         for _ in _advance(led, 20):
             pass
     assert a.s.control == b.s.control
+    assert a.s.history == b.s.history
+
+
+def test_contested_sites_always_make_a_warzone():
+    import zone_events
+    led = WarLedger.new("nasdara")
+    led.rules["war_party"]["chance"] = 1.0
+    for _ in _advance(led, 40):
+        for site in _contested(led):
+            assert zone_events._teams(site, led.s.strength, led.fspec, led.site_roles(site)), (led.s.turn, site)

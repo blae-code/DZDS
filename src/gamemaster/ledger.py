@@ -244,6 +244,12 @@ class WarLedger:
         roles = self.site_roles(site)
         return [f for f, spec in sorted(self.fspec.items()) if roles & set(spec.get("holds_roles", []))]
 
+    def _warzone_usable(self, site: str) -> bool:
+        """Mirror of the War Zones team rule (tools/zone_events._teams): a fitting faction exists and the
+        strongest one (strength desc, name) has a hostile custom rival."""
+        fits = sorted(self._fits(site), key=lambda f: (-self.s.strength.get(f, 0), f))
+        return bool(fits) and any(f != fits[0] and self.hostile(fits[0], f) for f in self.fspec)
+
     def _keep_front(self, rng: random.Random) -> list[str]:
         """Spec 4.1: the war never freezes. Keep min..max sites contested after each turn."""
         cfg = self.rules.get("front") or {}
@@ -269,7 +275,7 @@ class WarLedger:
         while len(contested()) < lo:
             # Strict: a rival whose holds_roles fit the site. Relaxed (only when no strict site exists,
             # e.g. Nasdara where each role has exactly one claimant): any hostile faction may push.
-            strict, relaxed = [], []
+            strict, relaxed, usable = [], [], []
             for site, holder in sorted(self.s.control.items()):
                 if holder not in self.fspec or site in self.s.extra_sites:
                     continue
@@ -277,7 +283,9 @@ class WarLedger:
                     strict.append(site)
                 if any(f != holder and self.hostile(f, holder) for f in sorted(self.fspec)):
                     relaxed.append(site)
-            cands = strict or relaxed
+                    if self._warzone_usable(site):
+                        usable.append(site)
+            cands = strict or usable or relaxed
             if not cands:
                 break
             site = rng.choice(cands)
