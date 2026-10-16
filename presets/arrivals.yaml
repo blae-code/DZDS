@@ -24,7 +24,7 @@ vehicle_health: [0.5, 0.7]
 item_health: [0.45, 0.85]       # road-worn
 
 snap_radius_m: 700              # arrival anchor -> roadside spot search radius
-points_per_site: 4              # candidate spots per arrival site (one may be occupied)
+points_per_site: 8              # candidate spots per arrival site (one may be occupied)
 road_events: [VehicleCivilianSedan, VehicleSedan02, VehicleHatchback02, VehicleOffroadHatchback, VehicleTruck01]
 exclude_roles: [airfield, military, road_junction]   # no respawns beside UN bases or the Jackal camp
 exclude_radius_m: 500
@@ -83,3 +83,8 @@ gear:
 radio:
   settler_net_index: 0
 give_roadflare: true
+
+# Refugee column (Blae, 2026-10-15): all FIRST arrivals on the same day wake at the same
+# arrival site; the site rotates daily in this order. A "day" starts at this UTC hour
+# (11 = 06:00 US Central) so one evening's session never splits across two sites.
+column_day_start_utc_hour: 11

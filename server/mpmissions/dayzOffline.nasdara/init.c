@@ -70,6 +70,8 @@ class RefugeeArrivalConfig
 	int MaxCargoItems;
 	int RadioFrequencyIndex;
 	int GiveRoadflare;
+	ref TStringArray ColumnSites;
+	int ColumnDayStartUtcHour;
 	float FuelMin;
 	float FuelMax;
 	float HealthMin;
@@ -270,6 +272,36 @@ class RefugeeArrivals
 	}
 
 	// Pick a spot from `points`. With a vehicle, the spot must be free for that vehicle class.
+	// The site for today's column, or `offset` sites further along the rotation.
+	string ColumnSiteFor(int offset)
+	{
+		if (!m_Config.ColumnSites || m_Config.ColumnSites.Count() == 0)
+			return "";
+		int day = (NowSeconds() - m_Config.ColumnDayStartUtcHour * 3600) / 86400;
+		int n = m_Config.ColumnSites.Count();
+		return m_Config.ColumnSites[(day + offset) % n];
+	}
+
+	// Today's site first; if every spot there is taken, the next site in the rotation.
+	bool PickColumnPoint(RefugeeArrivalPlan plan)
+	{
+		if (!m_Config.ColumnSites)
+			return false;
+		for (int o = 0; o < m_Config.ColumnSites.Count(); o++)
+		{
+			string site = ColumnSiteFor(o);
+			array<ref RefugeeArrivalPoint> pts = new array<ref RefugeeArrivalPoint>;
+			foreach (RefugeeArrivalPoint p : m_Config.ArrivalSites)
+			{
+				if (p.Name == site)
+					pts.Insert(p);
+			}
+			if (PickPoint(pts, plan))
+				return true;
+		}
+		return false;
+	}
+
 	bool PickPoint(array<ref RefugeeArrivalPoint> points, RefugeeArrivalPlan plan)
 	{
 		if (!points || points.Count() == 0)
@@ -338,7 +370,7 @@ class RefugeeArrivals
 
 		bool placed = false;
 		if (plan.FirstArrival)
-			placed = PickPoint(m_Config.ArrivalSites, plan);
+			placed = PickColumnPoint(plan);
 		if (!placed)
 			placed = PickPoint(m_Config.RoadPoints, plan);
 		if (!placed && plan.GrantVehicle)

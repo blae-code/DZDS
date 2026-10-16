@@ -92,3 +92,21 @@ def test_init_c_gives_radio_battery_and_flare():
 def test_voice_quality_max():
     cfg = (arrivals.ROOT / "config" / "local_serverDZ.cfg").read_text()
     assert re.search(r"^vonCodecQuality\s*=\s*30;", cfg, re.M)
+
+
+def test_column_rotation_covers_every_site_with_room(built):
+    """Review focus 1: every site in the rotation has >= 8 roadside spots."""
+    cfg, map_data, out = built
+    assert sorted(out["ColumnSites"]) == sorted(map_data["arrival_sites"])
+    assert cfg["points_per_site"] >= 8
+    for site in out["ColumnSites"]:
+        assert sum(p["Name"] == site for p in out["ArrivalSites"]) >= 8, site
+    assert 0 <= out["ColumnDayStartUtcHour"] <= 23
+
+
+def test_init_c_column_spills_to_the_next_site():
+    src = INIT_C.read_text()
+    pick = re.search(r"bool PickColumnPoint\(.*?\n\t\}", src, re.S).group(0)
+    assert "ColumnSiteFor(" in pick and "for (" in pick      # tries following sites in order
+    plan = re.search(r"RefugeeArrivalPlan Plan\(.*?\n\t\}", src, re.S).group(0)
+    assert "PickColumnPoint(plan)" in plan

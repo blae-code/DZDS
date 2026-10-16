@@ -117,6 +117,8 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "ItemHealthMin": float(cfg["item_health"][0]), "ItemHealthMax": float(cfg["item_health"][1]),
         "RadioFrequencyIndex": int(cfg["radio"]["settler_net_index"]),
         "GiveRoadflare": int(bool(cfg["give_roadflare"])),
+        "ColumnSites": list((map_data.get("arrival_sites") or {}).keys()),
+        "ColumnDayStartUtcHour": int(cfg["column_day_start_utc_hour"]),
         "ArrivalSites": arrival_points(cfg, map_data, spots),
         "RoadPoints": road,
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"])}

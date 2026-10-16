@@ -13,6 +13,15 @@
     "ItemHealthMax": 0.85,
     "RadioFrequencyIndex": 0,
     "GiveRoadflare": 1,
+    "ColumnSites": [
+        "East Roadside",
+        "Northeast Roadside",
+        "North Roadside",
+        "Northwest Roadside",
+        "Southwest Roadside",
+        "South Roadside"
+    ],
+    "ColumnDayStartUtcHour": 11,
     "ArrivalSites": [
         {
             "Name": "East Roadside",
@@ -36,6 +45,30 @@
             "Name": "East Roadside",
             "X": 10402.28,
             "Z": 8019.23,
+            "A": 0.0
+        },
+        {
+            "Name": "East Roadside",
+            "X": 10429.21,
+            "Z": 7891.4,
+            "A": 0.0
+        },
+        {
+            "Name": "East Roadside",
+            "X": 10327.05,
+            "Z": 7928.53,
+            "A": 0.0
+        },
+        {
+            "Name": "East Roadside",
+            "X": 10313.71,
+            "Z": 7899.85,
+            "A": 0.0
+        },
+        {
+            "Name": "East Roadside",
+            "X": 10554.73,
+            "Z": 8256.43,
             "A": 0.0
         },
         {
@@ -63,6 +96,30 @@
             "A": 0.0
         },
         {
+            "Name": "Northeast Roadside",
+            "X": 9968.69,
+            "Z": 12025.85,
+            "A": 0.0
+        },
+        {
+            "Name": "Northeast Roadside",
+            "X": 9150.92,
+            "Z": 11948.9,
+            "A": 0.0
+        },
+        {
+            "Name": "Northeast Roadside",
+            "X": 9990.62,
+            "Z": 12301.85,
+            "A": 0.0
+        },
+        {
+            "Name": "Northeast Roadside",
+            "X": 10027.86,
+            "Z": 11832.97,
+            "A": 0.0
+        },
+        {
             "Name": "North Roadside",
             "X": 7758.05,
             "Z": 13036.18,
@@ -84,6 +141,30 @@
             "Name": "North Roadside",
             "X": 7325.83,
             "Z": 13224.49,
+            "A": 0.0
+        },
+        {
+            "Name": "North Roadside",
+            "X": 7284.97,
+            "Z": 13222.17,
+            "A": 0.0
+        },
+        {
+            "Name": "North Roadside",
+            "X": 7892.22,
+            "Z": 12431.39,
+            "A": 0.0
+        },
+        {
+            "Name": "North Roadside",
+            "X": 7789.61,
+            "Z": 12398.95,
+            "A": 0.0
+        },
+        {
+            "Name": "North Roadside",
+            "X": 8325.61,
+            "Z": 13294.03,
             "A": 0.0
         },
         {
@@ -111,6 +192,30 @@
             "A": 0.0
         },
         {
+            "Name": "Northwest Roadside",
+            "X": 5647.97,
+            "Z": 12711.56,
+            "A": 0.0
+        },
+        {
+            "Name": "Northwest Roadside",
+            "X": 5696.48,
+            "Z": 12712.01,
+            "A": 0.0
+        },
+        {
+            "Name": "Northwest Roadside",
+            "X": 5682.47,
+            "Z": 12657.7,
+            "A": 0.0
+        },
+        {
+            "Name": "Northwest Roadside",
+            "X": 5217.6,
+            "Z": 13594.76,
+            "A": 0.0
+        },
+        {
             "Name": "Southwest Roadside",
             "X": 5052.32,
             "Z": 6654.69,
@@ -135,6 +240,30 @@
             "A": 0.0
         },
         {
+            "Name": "Southwest Roadside",
+            "X": 4541.8,
+            "Z": 6728.86,
+            "A": 0.0
+        },
+        {
+            "Name": "Southwest Roadside",
+            "X": 4552.15,
+            "Z": 6582.0,
+            "A": 0.0
+        },
+        {
+            "Name": "Southwest Roadside",
+            "X": 5088.95,
+            "Z": 7296.67,
+            "A": 0.0
+        },
+        {
+            "Name": "Southwest Roadside",
+            "X": 5126.55,
+            "Z": 7287.36,
+            "A": 0.0
+        },
+        {
             "Name": "South Roadside",
             "X": 6998.79,
             "Z": 4503.05,
@@ -156,6 +285,30 @@
             "Name": "South Roadside",
             "X": 6972.33,
             "Z": 4363.92,
+            "A": 0.0
+        },
+        {
+            "Name": "South Roadside",
+            "X": 6589.81,
+            "Z": 4717.54,
+            "A": 0.0
+        },
+        {
+            "Name": "South Roadside",
+            "X": 6791.06,
+            "Z": 5020.95,
+            "A": 0.0
+        },
+        {
+            "Name": "South Roadside",
+            "X": 7264.89,
+            "Z": 4319.8,
+            "A": 0.0
+        },
+        {
+            "Name": "South Roadside",
+            "X": 7226.75,
+            "Z": 4193.12,
             "A": 0.0
         }
     ],
