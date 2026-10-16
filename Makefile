@@ -140,3 +140,7 @@ survey:         # candidate sites per role from the active mission's mapgrouppos
 .PHONY: zone-events
 zone-events:    # event mods act only inside zones (presets/zone_events.yaml)
 	$(ENV) $(PY) tools/zone_events.py
+
+.PHONY: encounter-audit
+encounter-audit: # AI encounters outside zones per player-session (target <= 1 per 3)
+	$(ENV) $(PY) tools/encounter_audit.py
