@@ -7964,7 +7964,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_olive",
@@ -7973,7 +7973,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_tan",
@@ -7982,7 +7982,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_multicam",
@@ -7991,7 +7991,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_alpine",
@@ -8000,7 +8000,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_erdl",
@@ -8009,7 +8009,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_multicamblack",
@@ -8018,7 +8018,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_dark_woodland",
@@ -8027,7 +8027,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_ucp",
@@ -8036,7 +8036,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_multicam_tropic",
@@ -8045,7 +8045,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_JPC_Vest_atacs",
@@ -8054,7 +8054,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_black",
@@ -8063,7 +8063,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_green",
@@ -8072,7 +8072,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_tan",
@@ -8081,7 +8081,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_multicam",
@@ -8090,7 +8090,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_alpine",
@@ -8099,7 +8099,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_erdl",
@@ -8108,7 +8108,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_multicamblack",
@@ -8117,7 +8117,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_dark_woodland",
@@ -8126,7 +8126,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_admin",
@@ -8135,7 +8135,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_ucp",
@@ -8144,7 +8144,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_police",
@@ -8153,7 +8153,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_multicam_tropic",
@@ -8162,7 +8162,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tt_vest_atacs",
@@ -8171,7 +8171,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_green",
@@ -8180,7 +8180,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_black",
@@ -8189,7 +8189,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_tan",
@@ -8198,7 +8198,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_erdl",
@@ -8207,7 +8207,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_multicam",
@@ -8216,7 +8216,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_multicamblack",
@@ -8225,7 +8225,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_alpine",
@@ -8234,7 +8234,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_dark_woodland",
@@ -8243,7 +8243,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_ucp",
@@ -8252,7 +8252,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_multicam_tropic",
@@ -8261,7 +8261,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_chestrig_atacs",
@@ -8270,7 +8270,7 @@
             "DetectedMeleeReduction": 25.0,
             "DetectedInfectedReduction": 25.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_black",
@@ -8279,7 +8279,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_green",
@@ -8288,7 +8288,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_tan",
@@ -8297,7 +8297,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_multicamblack",
@@ -8306,7 +8306,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_multicam",
@@ -8315,7 +8315,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_erdl",
@@ -8324,7 +8324,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_alpine",
@@ -8333,7 +8333,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_dark_woodland",
@@ -8342,7 +8342,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_ucp",
@@ -8351,7 +8351,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_multicam_tropic",
@@ -8360,7 +8360,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_III_Armor_atacs",
@@ -8369,7 +8369,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 55.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_black",
@@ -8378,7 +8378,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_green",
@@ -8387,7 +8387,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_tan",
@@ -8396,7 +8396,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_multicamblack",
@@ -8405,7 +8405,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_multicam",
@@ -8414,7 +8414,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_alpine",
@@ -8423,7 +8423,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_dark_woodland",
@@ -8432,7 +8432,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_erdl",
@@ -8441,7 +8441,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_ucp",
@@ -8450,7 +8450,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_multicam_tropic",
@@ -8459,7 +8459,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_MK_V_Armor_atacs",
@@ -8468,7 +8468,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 80.0,
             "DetectedFragReduction": 60.000003814697269,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_black",
@@ -8477,7 +8477,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_olive",
@@ -8486,7 +8486,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_tan",
@@ -8495,7 +8495,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_alpine",
@@ -8504,7 +8504,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_erdl",
@@ -8513,7 +8513,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_multicamblack",
@@ -8522,7 +8522,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_multicam",
@@ -8531,7 +8531,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_dark_woodland",
@@ -8540,7 +8540,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_ucp",
@@ -8549,7 +8549,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_multicam_tropic",
@@ -8558,7 +8558,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_carrier_backpack_atacs",
@@ -8567,7 +8567,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_black",
@@ -8576,7 +8576,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_green",
@@ -8585,7 +8585,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_tan",
@@ -8594,7 +8594,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_alpine",
@@ -8603,7 +8603,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_erdl",
@@ -8612,7 +8612,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_multicamblack",
@@ -8621,7 +8621,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_multicam",
@@ -8630,7 +8630,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_dark_woodland",
@@ -8639,7 +8639,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_ucp",
@@ -8648,7 +8648,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_multicam_tropic",
@@ -8657,7 +8657,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_supplybag_atacs",
@@ -8666,7 +8666,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_black",
@@ -8675,7 +8675,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_olive",
@@ -8684,7 +8684,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_tan",
@@ -8693,7 +8693,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_dark_woodland",
@@ -8702,7 +8702,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_erdl",
@@ -8711,7 +8711,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_multicam",
@@ -8720,7 +8720,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_multicamblack",
@@ -8729,7 +8729,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_alpine",
@@ -8738,7 +8738,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_ucp",
@@ -8747,7 +8747,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_mct",
@@ -8756,7 +8756,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_assault_pack_atacs",
@@ -8765,7 +8765,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_tan",
@@ -8774,7 +8774,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_black",
@@ -8783,7 +8783,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_green",
@@ -8792,7 +8792,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_multicamblack",
@@ -8801,7 +8801,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_multicam",
@@ -8810,7 +8810,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_erdl",
@@ -8819,7 +8819,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_alpine",
@@ -8828,7 +8828,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_dark_woodland",
@@ -8837,7 +8837,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_ucp",
@@ -8846,7 +8846,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_multicam_tropic",
@@ -8855,7 +8855,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_camelback_atacs",
@@ -8864,7 +8864,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_black",
@@ -8873,7 +8873,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_green",
@@ -8882,7 +8882,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_tan",
@@ -8891,7 +8891,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_multicam",
@@ -8900,7 +8900,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_multicam_tropic",
@@ -8909,7 +8909,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_multicamblack",
@@ -8918,7 +8918,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_dark_woodland",
@@ -8927,7 +8927,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_erdl",
@@ -8936,7 +8936,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_alpine",
@@ -8945,7 +8945,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_ucp",
@@ -8954,7 +8954,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_mmps_bag_atacs",
@@ -8963,7 +8963,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_olive",
@@ -8972,7 +8972,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_black",
@@ -8981,7 +8981,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_tan",
@@ -8990,7 +8990,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_alpine",
@@ -8999,7 +8999,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_erdl",
@@ -9008,7 +9008,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_multicamblack",
@@ -9017,7 +9017,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_multicam",
@@ -9026,7 +9026,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_dark_woodland",
@@ -9035,7 +9035,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_ucp",
@@ -9044,7 +9044,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_multicam_tropic",
@@ -9053,7 +9053,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_falcon_b1_belt_atacs",
@@ -9062,7 +9062,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_cargobelt_black",
@@ -9071,7 +9071,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_cargobelt_green",
@@ -9080,7 +9080,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_cargobelt_tan",
@@ -9089,7 +9089,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_black",
@@ -9098,7 +9098,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_green",
@@ -9107,7 +9107,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_tan",
@@ -9116,7 +9116,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_multicam",
@@ -9125,7 +9125,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_alpine",
@@ -9134,7 +9134,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_erdl",
@@ -9143,7 +9143,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_multicamblack",
@@ -9152,7 +9152,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_dark_woodland",
@@ -9161,7 +9161,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_ucp",
@@ -9170,7 +9170,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_multicam_tropic",
@@ -9179,7 +9179,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_police",
@@ -9188,7 +9188,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_helmet_atacs",
@@ -9197,7 +9197,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_rusty",
@@ -9206,7 +9206,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_black",
@@ -9215,7 +9215,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_green",
@@ -9224,7 +9224,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_tan",
@@ -9233,7 +9233,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_alpine",
@@ -9242,7 +9242,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_erdl",
@@ -9251,7 +9251,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_multicamblack",
@@ -9260,7 +9260,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_multicam",
@@ -9269,7 +9269,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_dark_woodland",
@@ -9278,7 +9278,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_admin",
@@ -9287,7 +9287,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_ucp",
@@ -9296,7 +9296,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_multicam_tropic",
@@ -9305,7 +9305,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_striker_helmet_atacs",
@@ -9314,7 +9314,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_armored_helmet_black",
@@ -9323,7 +9323,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 85.0,
             "DetectedFragReduction": 65.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_armored_helmet_green",
@@ -9332,7 +9332,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 85.0,
             "DetectedFragReduction": 65.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_armored_helmet_tan",
@@ -9341,7 +9341,7 @@
             "DetectedMeleeReduction": 80.0,
             "DetectedInfectedReduction": 85.0,
             "DetectedFragReduction": 65.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_armored_helmet_visor_black",
@@ -9350,7 +9350,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_armored_helmet_visor_green",
@@ -9359,7 +9359,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_armored_helmet_visor_tan",
@@ -9368,7 +9368,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_armored_helmet_visor_UP_black",
@@ -9377,7 +9377,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_armored_helmet_visor_UP_green",
@@ -9386,7 +9386,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_armored_helmet_visor_UP_tan",
@@ -9395,7 +9395,7 @@
             "DetectedMeleeReduction": 75.0,
             "DetectedInfectedReduction": 75.0,
             "DetectedFragReduction": 50.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_black",
@@ -9404,7 +9404,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_green",
@@ -9413,7 +9413,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_tan",
@@ -9422,7 +9422,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_multicam_tropic",
@@ -9431,7 +9431,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_multicam",
@@ -9440,7 +9440,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_multicamblack",
@@ -9449,7 +9449,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_ucp",
@@ -9458,7 +9458,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_erdl",
@@ -9467,7 +9467,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_alpine",
@@ -9476,7 +9476,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_dark_woodland",
@@ -9485,7 +9485,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_boonie_atacs",
@@ -9494,7 +9494,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_headphones_black",
@@ -9503,7 +9503,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_headphones_green",
@@ -9512,7 +9512,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_headphones_tan",
@@ -9521,7 +9521,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_headphones_ucp",
@@ -9530,7 +9530,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tac_goggles_red_green",
@@ -9539,7 +9539,7 @@
             "DetectedMeleeReduction": 40.000003814697269,
             "DetectedInfectedReduction": 40.000003814697269,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tac_goggles_red_black",
@@ -9548,7 +9548,7 @@
             "DetectedMeleeReduction": 40.000003814697269,
             "DetectedInfectedReduction": 40.000003814697269,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tac_goggles_red_tan",
@@ -9557,7 +9557,7 @@
             "DetectedMeleeReduction": 40.000003814697269,
             "DetectedInfectedReduction": 40.000003814697269,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tac_goggles_blue_green",
@@ -9566,7 +9566,7 @@
             "DetectedMeleeReduction": 40.000003814697269,
             "DetectedInfectedReduction": 40.000003814697269,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tac_goggles_blue_black",
@@ -9575,7 +9575,7 @@
             "DetectedMeleeReduction": 40.000003814697269,
             "DetectedInfectedReduction": 40.000003814697269,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tac_goggles_blue_tan",
@@ -9584,7 +9584,7 @@
             "DetectedMeleeReduction": 40.000003814697269,
             "DetectedInfectedReduction": 40.000003814697269,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tac_goggles_clear_green",
@@ -9593,7 +9593,7 @@
             "DetectedMeleeReduction": 40.000003814697269,
             "DetectedInfectedReduction": 40.000003814697269,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tac_goggles_clear_black",
@@ -9602,7 +9602,7 @@
             "DetectedMeleeReduction": 40.000003814697269,
             "DetectedInfectedReduction": 40.000003814697269,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tac_goggles_clear_tan",
@@ -9611,7 +9611,7 @@
             "DetectedMeleeReduction": 40.000003814697269,
             "DetectedInfectedReduction": 40.000003814697269,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_ballistic_earcover_black",
@@ -9620,7 +9620,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_ballistic_earcover_green",
@@ -9629,7 +9629,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_ballistic_earcover_tan",
@@ -9638,7 +9638,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_visor_black",
@@ -9647,7 +9647,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_visor_green",
@@ -9656,7 +9656,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_visor_tan",
@@ -9665,7 +9665,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_black",
@@ -9674,7 +9674,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_green",
@@ -9683,7 +9683,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_tan",
@@ -9692,7 +9692,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_alpine",
@@ -9701,7 +9701,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_erdl",
@@ -9710,7 +9710,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_multicamblack",
@@ -9719,7 +9719,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_multicam",
@@ -9728,7 +9728,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_dark_woodland",
@@ -9737,7 +9737,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_ucp",
@@ -9746,7 +9746,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_multicam_tropic",
@@ -9755,7 +9755,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_Holster_atacs",
@@ -9764,7 +9764,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_black",
@@ -9773,7 +9773,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_olive",
@@ -9782,7 +9782,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_tan",
@@ -9791,7 +9791,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_alpine",
@@ -9800,7 +9800,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_erdl",
@@ -9809,7 +9809,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_multicamblack",
@@ -9818,7 +9818,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_multicam",
@@ -9827,7 +9827,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_dark_woodland",
@@ -9836,7 +9836,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_ucp",
@@ -9845,7 +9845,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_multicam_tropic",
@@ -9854,7 +9854,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_sheath_atacs",
@@ -9863,7 +9863,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_black",
@@ -9872,7 +9872,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_green",
@@ -9881,7 +9881,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_tan",
@@ -9890,7 +9890,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_erdl",
@@ -9899,7 +9899,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_multicamblack",
@@ -9908,7 +9908,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_multicam",
@@ -9917,7 +9917,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_dark_woodland",
@@ -9926,7 +9926,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_alpine",
@@ -9935,7 +9935,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_ucp",
@@ -9944,7 +9944,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_multicam_tropic",
@@ -9953,7 +9953,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_operatorshirt_atacs",
@@ -9962,7 +9962,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_ucp",
@@ -9971,7 +9971,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_black",
@@ -9980,7 +9980,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_green",
@@ -9989,7 +9989,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_tan",
@@ -9998,7 +9998,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_multicamblack",
@@ -10007,7 +10007,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_erdl",
@@ -10016,7 +10016,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_dark_wl",
@@ -10025,7 +10025,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_alpine",
@@ -10034,7 +10034,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_multicam",
@@ -10043,7 +10043,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_multicam_tropic",
@@ -10052,7 +10052,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_tactical_shirt_atacs",
@@ -10061,7 +10061,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_black",
@@ -10070,7 +10070,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_green",
@@ -10079,7 +10079,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_tan",
@@ -10088,7 +10088,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_ucp",
@@ -10097,7 +10097,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_multicam",
@@ -10106,7 +10106,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_erdl",
@@ -10115,7 +10115,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_atacs",
@@ -10124,7 +10124,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_multicamblack",
@@ -10133,7 +10133,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_multicam_tropic",
@@ -10142,7 +10142,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_alpine",
@@ -10151,7 +10151,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_void_shirt_dark_woodland",
@@ -10160,7 +10160,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_black",
@@ -10169,7 +10169,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_green",
@@ -10178,7 +10178,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_tan",
@@ -10187,7 +10187,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_ucp",
@@ -10196,7 +10196,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_multicam",
@@ -10205,7 +10205,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_erdl",
@@ -10214,7 +10214,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_atacs",
@@ -10223,7 +10223,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_multicamblack",
@@ -10232,7 +10232,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_multicam_tropic",
@@ -10241,7 +10241,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_alpine",
@@ -10250,7 +10250,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_pants_dark_woodland",
@@ -10259,7 +10259,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_olive",
@@ -10268,7 +10268,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_black",
@@ -10277,7 +10277,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_tan",
@@ -10286,7 +10286,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_alpine",
@@ -10295,7 +10295,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_multicam",
@@ -10304,7 +10304,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_erdl",
@@ -10313,7 +10313,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_multicamblack",
@@ -10322,7 +10322,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_dark_woodland",
@@ -10331,7 +10331,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_admin",
@@ -10340,7 +10340,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_ucp",
@@ -10349,7 +10349,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_multicam_tropic",
@@ -10358,7 +10358,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_police",
@@ -10367,7 +10367,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatpants_atacs",
@@ -10376,7 +10376,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_green",
@@ -10385,7 +10385,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_black",
@@ -10394,7 +10394,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_tan",
@@ -10403,7 +10403,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_alpine",
@@ -10412,7 +10412,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_erdl",
@@ -10421,7 +10421,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_multicamblack",
@@ -10430,7 +10430,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_multicam",
@@ -10439,7 +10439,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_dark_woodland",
@@ -10448,7 +10448,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_admin",
@@ -10457,7 +10457,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_ucp",
@@ -10466,7 +10466,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_multicam_tropic",
@@ -10475,7 +10475,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_police",
@@ -10484,7 +10484,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_combatshirt_atacs",
@@ -10493,7 +10493,7 @@
             "DetectedMeleeReduction": 5.000000953674316,
             "DetectedInfectedReduction": 5.000000953674316,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_black",
@@ -10502,7 +10502,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_green",
@@ -10511,7 +10511,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_tan",
@@ -10520,7 +10520,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_multicam",
@@ -10529,7 +10529,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_multicamblack",
@@ -10538,7 +10538,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_erdl",
@@ -10547,7 +10547,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_alpine",
@@ -10556,7 +10556,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_dark_woodland",
@@ -10565,7 +10565,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_ucp",
@@ -10574,7 +10574,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_multicam_tropic",
@@ -10583,7 +10583,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "mmg_tactical_gloves_atacs",
@@ -10592,7 +10592,7 @@
             "DetectedMeleeReduction": 14.999998092651368,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_black",
@@ -10601,7 +10601,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_green",
@@ -10610,7 +10610,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_tan",
@@ -10619,7 +10619,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_multicam",
@@ -10628,7 +10628,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_multicamblack",
@@ -10637,7 +10637,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_erdl",
@@ -10646,7 +10646,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_alpine",
@@ -10655,7 +10655,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_dark_woodland",
@@ -10664,7 +10664,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_ucp",
@@ -10673,7 +10673,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_multicam_tropic",
@@ -10682,7 +10682,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_boots_atacs",
@@ -10691,7 +10691,7 @@
             "DetectedMeleeReduction": 10.000001907348633,
             "DetectedInfectedReduction": 10.000001907348633,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_green",
@@ -10700,7 +10700,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_black",
@@ -10709,7 +10709,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_skull",
@@ -10718,7 +10718,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_joker",
@@ -10727,7 +10727,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_tan",
@@ -10736,7 +10736,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_alpine",
@@ -10745,7 +10745,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_erdl",
@@ -10754,7 +10754,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_multicamblack",
@@ -10763,7 +10763,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_multicam",
@@ -10772,7 +10772,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_dark_woodland",
@@ -10781,7 +10781,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_ucp",
@@ -10790,7 +10790,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_multicam_tropic",
@@ -10799,7 +10799,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_facemask_atacs",
@@ -10808,7 +10808,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_black",
@@ -10817,7 +10817,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_olive",
@@ -10826,7 +10826,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_tan",
@@ -10835,7 +10835,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_erdl",
@@ -10844,7 +10844,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_alpine",
@@ -10853,7 +10853,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_multicamblack",
@@ -10862,7 +10862,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_multicam",
@@ -10871,7 +10871,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_dark_woodland",
@@ -10880,7 +10880,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_admin",
@@ -10889,7 +10889,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_ucp",
@@ -10898,7 +10898,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_multicam_tropic",
@@ -10907,7 +10907,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_balaclava_atacs",
@@ -10916,7 +10916,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_dayz",
@@ -10925,7 +10925,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_511",
@@ -10934,7 +10934,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_driver",
@@ -10943,7 +10943,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_medic",
@@ -10952,7 +10952,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_pilot",
@@ -10961,7 +10961,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_toxic",
@@ -10970,7 +10970,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_bushcraft",
@@ -10979,7 +10979,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_bushcraft1",
@@ -10988,7 +10988,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_ocean",
@@ -10997,7 +10997,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_police",
@@ -11006,7 +11006,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_punisher",
@@ -11015,7 +11015,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_rangers",
@@ -11024,7 +11024,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_cherno_special",
@@ -11033,7 +11033,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_livonia_special",
@@ -11042,7 +11042,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_namalsk_special",
@@ -11051,7 +11051,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_deerisle_special",
@@ -11060,7 +11060,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_eod",
@@ -11069,7 +11069,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_mmg",
@@ -11078,7 +11078,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_sniper1",
@@ -11087,7 +11087,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_admin",
@@ -11096,7 +11096,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_australia",
@@ -11105,7 +11105,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_austria",
@@ -11114,7 +11114,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_austria1",
@@ -11123,7 +11123,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_germany",
@@ -11132,7 +11132,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_sweden",
@@ -11141,7 +11141,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_norway",
@@ -11150,7 +11150,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_ukraine",
@@ -11159,7 +11159,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_bulgaria",
@@ -11168,7 +11168,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_switzerland",
@@ -11177,7 +11177,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_czech_republic",
@@ -11186,7 +11186,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_denmark",
@@ -11195,7 +11195,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_england",
@@ -11204,7 +11204,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_finland",
@@ -11213,7 +11213,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_france",
@@ -11222,7 +11222,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_greece",
@@ -11231,7 +11231,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_netherlands",
@@ -11240,7 +11240,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_poland",
@@ -11249,7 +11249,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_south_africa",
@@ -11258,7 +11258,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_slovakia",
@@ -11267,7 +11267,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_uk",
@@ -11276,7 +11276,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_usa",
@@ -11285,7 +11285,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_bra",
@@ -11294,7 +11294,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_can",
@@ -11303,7 +11303,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_chl",
@@ -11312,7 +11312,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_cro",
@@ -11321,7 +11321,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_irl",
@@ -11330,7 +11330,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_nzl",
@@ -11339,7 +11339,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_rou",
@@ -11348,7 +11348,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_tur",
@@ -11357,7 +11357,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_mex",
@@ -11366,7 +11366,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_por",
@@ -11375,7 +11375,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_wales",
@@ -11384,7 +11384,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_lithuania",
@@ -11393,7 +11393,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_scotland",
@@ -11402,7 +11402,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_apos",
@@ -11411,7 +11411,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_bpos",
@@ -11420,7 +11420,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_abpos",
@@ -11429,7 +11429,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_0pos",
@@ -11438,7 +11438,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_aneg",
@@ -11447,7 +11447,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_bneg",
@@ -11456,7 +11456,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_abneg",
@@ -11465,7 +11465,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_rubber_0neg",
@@ -11474,7 +11474,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_fabric_dayz",
@@ -11483,7 +11483,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_fabric_511",
@@ -11492,7 +11492,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_fabric_driver",
@@ -11501,7 +11501,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_fabric_medic",
@@ -11510,7 +11510,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_fabric_pilot",
@@ -11519,7 +11519,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "MMG_patch_fabric_toxic",
@@ -11528,7 +11528,7 @@
             "DetectedMeleeReduction": 0.0,
             "DetectedInfectedReduction": 0.0,
             "DetectedFragReduction": 0.0,
-            "IsCurrentlyLoaded": 0
+            "IsCurrentlyLoaded": 1
         },
         {
             "ClassName": "CivilAssault_Woodland",
