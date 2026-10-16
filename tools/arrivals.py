@@ -3,7 +3,7 @@
 
 Arrival sites come from maps/<map>.yaml `arrival_sites`, snapped to the nearest vanilla roadside
 vehicle spots; respawn road points are every vanilla vehicle spot (cfgeventspawns.xml) outside
-the excluded zones. Every vehicle, part and gear classname must exist in the mission's
+the excluded zones. Every vehicle, part, item and firearm classname must exist in the mission's
 db/types.xml, so a typo fails here instead of silently spawning nothing in game.
 
 Usage: tools/arrivals.py [--dry-run]
@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import json
 import math
+import random
 import sys
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -75,27 +76,54 @@ def arrival_points(cfg: dict, map_data: dict, spots: list) -> list[dict]:
     return out
 
 
-def gear(cfg: dict) -> list[dict]:
+SLOT_ORDER = ["clothing", "water", "food", "medical", "tools", "extra", "camp"]
+
+
+def archetypes(cfg: dict) -> list[dict]:
     out = []
-    for cat, spec in cfg["gear"].items():
-        items = spec["items"]
-        out += [{"ClassName": c, "Weight": round(spec["weight"] / len(items), 4)} for c in items]
+    for name, a in cfg["archetypes"].items():
+        slots = [{"Name": s, "Min": int(a["slots"][s]["count"][0]), "Max": int(a["slots"][s]["count"][1]),
+                  "MaxEach": int(a["slots"][s].get("max_each", 1)), "Items": list(a["slots"][s]["items"])}
+                 for s in SLOT_ORDER]
+        guns = [{"Weapon": f["weapon"], "Magazine": f["magazine"] or "", "Ammo": f["ammo"],
+                 "RoundsMin": int(f["rounds"][0]), "RoundsMax": int(f["rounds"][1])} for f in a["firearms"]]
+        out.append({"Name": name, "Weight": float(a["weight"]), "Slots": slots, "Firearms": guns})
     return out
+
+
+def simulate_kit(arch: dict, rng: random.Random) -> list[str]:
+    """Python mirror of init.c FillCargo/FillSlot/GiveFirearm (same algorithm, for tests)."""
+    kit = []
+    for s in arch["Slots"]:
+        pool = list(s["Items"])
+        used: dict[str, int] = {}
+        for _ in range(rng.randint(s["Min"], s["Max"])):
+            if not pool:
+                break
+            name = pool[rng.randrange(len(pool))]
+            kit.append(name)
+            used[name] = used.get(name, 0) + 1
+            if used[name] >= s["MaxEach"]:
+                pool.remove(name)
+    gun = arch["Firearms"][rng.randrange(len(arch["Firearms"]))]
+    kit.append(gun["Weapon"])
+    kit.append(gun["Magazine"] or gun["Ammo"])
+    return kit
 
 
 def validate(cfg: dict, types: set[str]) -> None:
     names = [v["class"] for v in cfg["vehicles"]]
     names += [p for v in cfg["vehicles"] for p in v["parts"]]
-    names += [c for spec in cfg["gear"].values() for c in spec["items"]]
+    for a in cfg["archetypes"].values():
+        names += [c for s in a["slots"].values() for c in s["items"]]
+        names += [f[k] for f in a["firearms"] for k in ("weapon", "magazine", "ammo") if f.get(k)]
     missing = sorted({n for n in names if n not in types})
     if missing:
         raise SystemExit(f"not in db/types.xml (typo or modded type not registered): {missing}")
-    for key in ("fuel", "vehicle_health", "item_health"):
+    for key in ("fuel", "vehicle_health", "item_health", "firearm_health"):
         lo, hi = cfg[key]
         if not 0 <= lo <= hi <= 1:
             raise SystemExit(f"{key} must be 0 <= min <= max <= 1, got {cfg[key]}")
-    if not 0 < cfg["cargo_fill"] <= 1:
-        raise SystemExit("cargo_fill must be in (0, 1]")
 
 
 def build(cfg: dict, map_data: dict, mission: Path) -> dict:
@@ -110,8 +138,6 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "CooldownHours": int(cfg["cooldown_hours"]),
         "RandomCharacterOnRespawn": int(bool(cfg["random_character_on_respawn"])),
         "PlayerOffset": float(cfg["player_offset_m"]),
-        "CargoFill": float(cfg["cargo_fill"]),
-        "MaxCargoItems": int(cfg["max_cargo_items"]),
         "FuelMin": float(cfg["fuel"][0]), "FuelMax": float(cfg["fuel"][1]),
         "HealthMin": float(cfg["vehicle_health"][0]), "HealthMax": float(cfg["vehicle_health"][1]),
         "ItemHealthMin": float(cfg["item_health"][0]), "ItemHealthMax": float(cfg["item_health"][1]),
@@ -126,7 +152,9 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "RoadPoints": road,
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"])}
                      for v in cfg["vehicles"]],
-        "Gear": gear(cfg),
+        "Archetypes": archetypes(cfg),
+        "FirearmHealthMin": float(cfg["firearm_health"][0]),
+        "FirearmHealthMax": float(cfg["firearm_health"][1]),
     }
 
 
@@ -141,7 +169,7 @@ def main() -> int:
     sites = sorted({p["Name"] for p in out["ArrivalSites"]})
     print(f"arrivals: {len(out['ArrivalSites'])} arrival spot(s) at {len(sites)} site(s) {sites}, "
           f"{len(out['RoadPoints'])} road respawn spot(s), {len(out['Vehicles'])} vehicle(s), "
-          f"{len(out['Gear'])} gear item(s)")
+          f"{len(out['Archetypes'])} archetype(s)")
     if not args.dry_run:
         OUT.parent.mkdir(parents=True, exist_ok=True)
         OUT.write_text(json.dumps(out, indent=4) + "\n")

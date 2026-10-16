@@ -36,7 +36,7 @@ void main()
 // - First character: a refugee arrival site, in the look the player chose.
 // - Every later character: a random survivor, waking on a road.
 // - Both: Zen's campfire, plus (once per CooldownHours per player) a worn vehicle with its
-//   paired key in the pocket and the cargo about half full of road-scavenged gear.
+//   paired key in the pocket and one archetype's road-scavenged kit and a themed firearm in the cargo.
 // Missing or disabled config = vanilla spawning, unchanged.
 // ===================================================================================
 class RefugeeArrivalPoint
@@ -54,10 +54,30 @@ class RefugeeArrivalVehicle
 	ref TStringArray Parts;
 }
 
-class RefugeeArrivalItem
+class RefugeeArrivalSlot
 {
-	string ClassName;
+	string Name;
+	int Min;
+	int Max;
+	int MaxEach;
+	ref TStringArray Items;
+}
+
+class RefugeeArrivalFirearm
+{
+	string Weapon;
+	string Magazine;
+	string Ammo;
+	int RoundsMin;
+	int RoundsMax;
+}
+
+class RefugeeArrivalArchetype
+{
+	string Name;
 	float Weight;
+	ref array<ref RefugeeArrivalSlot> Slots;
+	ref array<ref RefugeeArrivalFirearm> Firearms;
 }
 
 class RefugeeArrivalConfig
@@ -66,8 +86,6 @@ class RefugeeArrivalConfig
 	int CooldownHours;
 	int RandomCharacterOnRespawn;
 	float PlayerOffset;
-	float CargoFill;
-	int MaxCargoItems;
 	int RadioFrequencyIndex;
 	int GiveRoadflare;
 	ref TStringArray ColumnSites;
@@ -84,7 +102,9 @@ class RefugeeArrivalConfig
 	ref array<ref RefugeeArrivalPoint> ArrivalSites;
 	ref array<ref RefugeeArrivalPoint> RoadPoints;
 	ref array<ref RefugeeArrivalVehicle> Vehicles;
-	ref array<ref RefugeeArrivalItem> Gear;
+	ref array<ref RefugeeArrivalArchetype> Archetypes;
+	float FirearmHealthMin;
+	float FirearmHealthMax;
 }
 
 class RefugeeArrivalRecord
@@ -135,7 +155,7 @@ class RefugeeArrivals
 		}
 		m_Config = new RefugeeArrivalConfig;
 		JsonFileLoader<RefugeeArrivalConfig>.JsonLoadFile(CONFIG, m_Config);
-		if (!m_Config.RoadPoints || m_Config.RoadPoints.Count() == 0 || !m_Config.Vehicles || m_Config.Vehicles.Count() == 0 || !m_Config.Gear)
+		if (!m_Config.RoadPoints || m_Config.RoadPoints.Count() == 0 || !m_Config.Vehicles || m_Config.Vehicles.Count() == 0 || !m_Config.Archetypes || m_Config.Archetypes.Count() == 0)
 		{
 			Print("[DZDS Arrivals] " + CONFIG + " incomplete: vanilla spawning");
 			m_Config = null;
@@ -150,7 +170,7 @@ class RefugeeArrivals
 		if (!m_Ledger.Players)
 			m_Ledger.Players = new array<ref RefugeeArrivalRecord>;
 
-		Print("[DZDS Arrivals] enabled=" + m_Config.Enabled + " sites=" + m_Config.ArrivalSites.Count() + " road=" + m_Config.RoadPoints.Count() + " vehicles=" + m_Config.Vehicles.Count() + " gear=" + m_Config.Gear.Count() + " known players=" + m_Ledger.Players.Count());
+		Print("[DZDS Arrivals] enabled=" + m_Config.Enabled + " sites=" + m_Config.ArrivalSites.Count() + " road=" + m_Config.RoadPoints.Count() + " vehicles=" + m_Config.Vehicles.Count() + " archetypes=" + m_Config.Archetypes.Count() + " known players=" + m_Ledger.Players.Count());
 	}
 
 	bool IsActive()
@@ -252,21 +272,80 @@ class RefugeeArrivals
 		return m_Config.Vehicles[m_Config.Vehicles.Count() - 1];
 	}
 
-	string PickGear()
+	RefugeeArrivalArchetype PickArchetype()
 	{
 		float total = 0;
-		foreach (RefugeeArrivalItem g : m_Config.Gear)
+		foreach (RefugeeArrivalArchetype a : m_Config.Archetypes)
 		{
-			total += g.Weight;
+			total += a.Weight;
 		}
 		float roll = Math.RandomFloat(0, total);
-		foreach (RefugeeArrivalItem i : m_Config.Gear)
+		foreach (RefugeeArrivalArchetype b : m_Config.Archetypes)
 		{
-			roll -= i.Weight;
+			roll -= b.Weight;
 			if (roll <= 0)
-				return i.ClassName;
+				return b;
 		}
-		return m_Config.Gear[m_Config.Gear.Count() - 1].ClassName;
+		return m_Config.Archetypes[m_Config.Archetypes.Count() - 1];
+	}
+
+	EntityAI Spawn(CarScript car, string cls, float hmin, float hmax)
+	{
+		EntityAI item = car.GetInventory().CreateEntityInCargo(cls);
+		if (item)
+			item.SetHealth01("", "", Math.RandomFloatInclusive(hmin, hmax));
+		return item;
+	}
+
+	// Draw Min..Max items WITHOUT replacement (an item leaves the pool after MaxEach draws).
+	int FillSlot(CarScript car, RefugeeArrivalSlot s, TStringArray got)
+	{
+		TStringArray pool = new TStringArray;
+		pool.Copy(s.Items);
+		map<string, int> used = new map<string, int>;
+		int want = Math.RandomIntInclusive(s.Min, s.Max);
+		int added = 0;
+		for (int i = 0; i < want && pool.Count() > 0; i++)
+		{
+			int idx = Math.RandomInt(0, pool.Count());
+			string cls = pool[idx];
+			if (Spawn(car, cls, m_Config.ItemHealthMin, m_Config.ItemHealthMax))
+			{
+				added++;
+				got.Insert(cls);
+			}
+			used.Set(cls, used.Get(cls) + 1);
+			if (used.Get(cls) >= s.MaxEach)
+				pool.Remove(idx);
+		}
+		return added;
+	}
+
+	// One worn firearm; a partly filled magazine attached, or loose rounds (no spare magazine).
+	void GiveFirearm(CarScript car, RefugeeArrivalArchetype a, TStringArray got)
+	{
+		RefugeeArrivalFirearm f = a.Firearms.GetRandomElement();
+		Weapon_Base gun = Weapon_Base.Cast(Spawn(car, f.Weapon, m_Config.FirearmHealthMin, m_Config.FirearmHealthMax));
+		if (!gun)
+			return;
+		got.Insert(f.Weapon);
+		int rounds = Math.RandomIntInclusive(f.RoundsMin, f.RoundsMax);
+		if (f.Magazine != "")
+		{
+			Magazine mag = gun.SpawnAttachedMagazine(f.Magazine, WeaponWithAmmoFlags.NONE);
+			if (mag)
+			{
+				mag.ServerSetAmmoCount(rounds);
+				got.Insert(f.Magazine + " x" + rounds);
+				return;
+			}
+		}
+		Magazine pile = Magazine.Cast(car.GetInventory().CreateEntityInCargo(f.Ammo));
+		if (pile)
+		{
+			pile.ServerSetAmmoCount(rounds);
+			got.Insert(f.Ammo + " x" + rounds);
+		}
 	}
 
 	static bool IsWater(float x, float z)
@@ -432,36 +511,19 @@ class RefugeeArrivals
 		return plan;
 	}
 
-	static int UsedCells(CargoBase cargo)
-	{
-		int used = 0;
-		for (int i = 0; i < cargo.GetItemCount(); i++)
-		{
-			int w, h;
-			if (cargo.GetItemSize(i, w, h))
-				used += w * h;
-		}
-		return used;
-	}
-
 	int FillCargo(CarScript car)
 	{
-		CargoBase cargo = car.GetInventory().GetCargo();
-		if (!cargo)
+		if (!car.GetInventory().GetCargo())
 			return 0;
-		float targetF = cargo.GetWidth() * cargo.GetHeight() * m_Config.CargoFill;
-		int target = targetF;
+		RefugeeArrivalArchetype a = PickArchetype();
+		TStringArray got = new TStringArray;
 		int added = 0;
-		int tries = 0;
-		while (UsedCells(cargo) < target && added < m_Config.MaxCargoItems && tries < m_Config.MaxCargoItems * 3)
+		foreach (RefugeeArrivalSlot s : a.Slots)
 		{
-			tries++;
-			EntityAI item = car.GetInventory().CreateEntityInCargo(PickGear());
-			if (!item)
-				continue;
-			item.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.ItemHealthMin, m_Config.ItemHealthMax));
-			added++;
+			added += FillSlot(car, s, got);
 		}
+		GiveFirearm(car, a, got);
+		Print("[DZDS Arrivals] cargo " + a.Name + ": " + got.Count() + " " + got.ToString());
 		return added;
 	}
 

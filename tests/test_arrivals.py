@@ -1,5 +1,7 @@
 import math
+import random
 import re
+import xml.etree.ElementTree as ET
 
 import pytest
 import yaml
@@ -37,20 +39,6 @@ def test_arrival_sites_stay_out_of_war_locations():
     """Arrival villages must not leak into the war ledger, site markers or the GM."""
     map_data = active.map_data("nasdara")
     assert not set(map_data["arrival_sites"]) & set(map_data["locations"])
-
-
-def test_unknown_classname_is_rejected(built):
-    cfg, map_data, _ = built
-    bad = yaml.safe_load(arrivals.PRESET.read_text())
-    bad["gear"]["food"]["items"].append("NotARealItem")
-    with pytest.raises(SystemExit, match="NotARealItem"):
-        arrivals.build(bad, map_data, arrivals.mission_dir(map_data))
-
-
-def test_gear_weights_keep_category_shares(built):
-    cfg, _, out = built
-    total = sum(g["Weight"] for g in out["Gear"])
-    assert total == pytest.approx(sum(c["weight"] for c in cfg["gear"].values()), rel=1e-3)
 
 
 def test_json_keys_match_init_c_classes(built):
@@ -131,3 +119,61 @@ def test_init_c_respawn_tries_ring_then_fallback_then_anywhere():
     src = INIT_C.read_text()
     plan = re.search(r"RefugeeArrivalPlan Plan\(.*?\n\t\}", src, re.S).group(0)
     assert plan.index("PickNearDeath(") < plan.index("PickPoint(m_Config.RoadPoints")
+
+
+def test_unknown_classname_is_rejected(built):
+    cfg, map_data, _ = built
+    bad = yaml.safe_load(arrivals.PRESET.read_text())
+    bad["archetypes"]["deserter"]["slots"]["food"]["items"].append("NotARealItem")
+    with pytest.raises(SystemExit, match="NotARealItem"):
+        arrivals.build(bad, map_data, arrivals.mission_dir(map_data))
+
+
+def test_archetype_weights(built):
+    _, _, out = built
+    assert {a["Name"]: a["Weight"] for a in out["Archetypes"]} == \
+        {"deserter": 30.0, "trucker": 25.0, "nomad": 25.0, "townie": 20.0}
+
+
+def test_simulated_kits_meet_the_spec(built):
+    _, _, out = built
+    rng = random.Random(7)
+    for arch in out["Archetypes"]:
+        food = set(next(s for s in arch["Slots"] if s["Name"] == "food")["Items"])
+        camp = set(next(s for s in arch["Slots"] if s["Name"] == "camp")["Items"])
+        weapons = {f["Weapon"] for f in arch["Firearms"]}
+        for _ in range(1000):
+            kit = arrivals.simulate_kit(arch, rng)
+            items = [k for k in kit if k not in weapons and not k.startswith(("Ammo_", "Mag_"))]
+            assert 10 <= len(items) <= 16, (arch["Name"], kit)
+            for name in set(items):
+                cap = 2 if name in food else 1
+                assert items.count(name) <= cap, (arch["Name"], name)
+            assert sum(k in weapons for k in kit) == 1
+            assert sum(k in camp for k in kit) <= 1
+
+
+def test_firearms_without_magazine_get_loose_rounds(built):
+    """Review focus 5."""
+    _, map_data, out = built
+    spawn = ET.parse(arrivals.mission_dir(map_data) / "cfgspawnabletypes.xml").getroot()
+    for arch in out["Archetypes"]:
+        for f in arch["Firearms"]:
+            assert f["Ammo"], f
+            assert 1 <= f["RoundsMin"] <= f["RoundsMax"] <= 8, f
+            if f["Magazine"]:
+                assert f["RoundsMax"] <= 5, f
+                t = spawn.find(f"type[@name='{f['Weapon']}']")
+                if t is not None:
+                    mags = {i.get("name") for i in t.iter("item")}
+                    assert f["Magazine"] in mags, f
+
+
+def test_init_c_fill_cargo_uses_archetypes():
+    src = INIT_C.read_text()
+    fill = re.search(r"int FillCargo\(CarScript car\).*?\n\t\}", src, re.S).group(0)
+    for needle in ("PickArchetype()", "SpawnAttachedMagazine(", "WeaponWithAmmoFlags.NONE",
+                   "ServerSetAmmoCount("):
+        assert needle in src, needle
+    assert "PickGear()" not in src
+    assert "FillSlot(" in fill and "GiveFirearm(" in fill

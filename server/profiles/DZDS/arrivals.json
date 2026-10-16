@@ -3,8 +3,6 @@
     "CooldownHours": 24,
     "RandomCharacterOnRespawn": 1,
     "PlayerOffset": 9.0,
-    "CargoFill": 0.5,
-    "MaxCargoItems": 40,
     "FuelMin": 0.25,
     "FuelMax": 0.5,
     "HealthMin": 0.5,
@@ -1673,278 +1671,425 @@
             ]
         }
     ],
-    "Gear": [
-        {
-            "ClassName": "BakedBeansCan",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "SpaghettiCan",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "SardinesCan",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "TunaCan",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "PeachesCan",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "Rice",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "PowderedMilk",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "Crackers",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "Chips",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "Pajka",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "Pate",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "BrisketSpread",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "Apple",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "Pear",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "Plum",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "CanOpener",
-            "Weight": 1.375
-        },
-        {
-            "ClassName": "WaterBottle",
-            "Weight": 2.0
-        },
-        {
-            "ClassName": "Canteen",
-            "Weight": 2.0
-        },
-        {
-            "ClassName": "SodaCan_Cola",
-            "Weight": 2.0
-        },
-        {
-            "ClassName": "SodaCan_Kvass",
-            "Weight": 2.0
-        },
-        {
-            "ClassName": "SodaCan_Pipsi",
-            "Weight": 2.0
-        },
-        {
-            "ClassName": "KitchenKnife",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "SteakKnife",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Screwdriver",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Pliers",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Hatchet",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Hammer",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Wrench",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Matchbox",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Rope",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "DuctTape",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "SewingKit",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Whetstone",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Flashlight",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Battery9V",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Roadflare",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Compass",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "ChernarusMap",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Pot",
-            "Weight": 1.1111
-        },
-        {
-            "ClassName": "Hoodie_Grey",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "Hoodie_Brown",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "TShirt_Grey",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "Jeans_Blue",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "Jeans_Brown",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "WoolCoat_GreyCheck",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "Raincoat_Green",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "BeanieHat_Grey",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "WorkingBoots_Brown",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "Sneakers_Gray",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "WorkingGloves_Brown",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "TaloonBag_Blue",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "DryBag_Black",
-            "Weight": 1.5385
-        },
-        {
-            "ClassName": "BandageDressing",
-            "Weight": 1.7143
-        },
-        {
-            "ClassName": "Rag",
-            "Weight": 1.7143
-        },
-        {
-            "ClassName": "DisinfectantSpray",
-            "Weight": 1.7143
-        },
-        {
-            "ClassName": "PainkillerTablets",
-            "Weight": 1.7143
-        },
-        {
-            "ClassName": "CharcoalTablets",
-            "Weight": 1.7143
-        },
-        {
-            "ClassName": "VitaminBottle",
-            "Weight": 1.7143
-        },
-        {
-            "ClassName": "TetracyclineAntibiotics",
-            "Weight": 1.7143
-        },
-        {
-            "ClassName": "Paper",
-            "Weight": 1.3333
-        },
-        {
-            "ClassName": "Firewood",
-            "Weight": 1.3333
-        },
-        {
-            "ClassName": "PortableGasStove",
-            "Weight": 1.3333
-        },
-        {
-            "ClassName": "SmallGasCanister",
-            "Weight": 1.3333
-        },
-        {
-            "ClassName": "ShelterKit",
-            "Weight": 1.3333
-        },
-        {
-            "ClassName": "Stone",
-            "Weight": 1.3333
-        },
-        {
-            "ClassName": "CanisterGasoline",
-            "Weight": 2.6667
-        },
-        {
-            "ClassName": "TireRepairKit",
-            "Weight": 2.6667
-        },
-        {
-            "ClassName": "EpoxyPutty",
-            "Weight": 2.6667
+    "Archetypes": [
+        {
+            "Name": "deserter",
+            "Weight": 30.0,
+            "Slots": [
+                {
+                    "Name": "clothing",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "USMCJacket_Desert",
+                        "USMCPants_Desert",
+                        "BoonieHat_Desert",
+                        "MilitaryBoots_Beige",
+                        "M65Jacket_Tan",
+                        "CargoPants_Beige",
+                        "AssaultBag_Desert",
+                        "Keffiyeh_LightBrown"
+                    ]
+                },
+                {
+                    "Name": "water",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Canteen",
+                        "WaterBottle"
+                    ]
+                },
+                {
+                    "Name": "food",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 2,
+                    "Items": [
+                        "TunaCan",
+                        "SardinesCan",
+                        "BakedBeansCan",
+                        "Crackers"
+                    ]
+                },
+                {
+                    "Name": "medical",
+                    "Min": 2,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "BandageDressing",
+                        "PainkillerTablets",
+                        "CharcoalTablets",
+                        "TetracyclineAntibiotics"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "CombatKnife",
+                        "Compass",
+                        "Matchbox",
+                        "DuctTape",
+                        "Binoculars"
+                    ]
+                },
+                {
+                    "Name": "extra",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Flashlight",
+                        "Battery9V",
+                        "Rope"
+                    ]
+                },
+                {
+                    "Name": "camp",
+                    "Min": 0,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "PortableGasStove",
+                        "Pot"
+                    ]
+                }
+            ],
+            "Firearms": [
+                {
+                    "Weapon": "MakarovIJ70",
+                    "Magazine": "Mag_IJ70_8Rnd",
+                    "Ammo": "Ammo_380",
+                    "RoundsMin": 2,
+                    "RoundsMax": 5
+                },
+                {
+                    "Weapon": "CZ75",
+                    "Magazine": "Mag_CZ75_15Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 2,
+                    "RoundsMax": 5
+                },
+                {
+                    "Weapon": "SKS",
+                    "Magazine": "",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 8
+                }
+            ]
+        },
+        {
+            "Name": "trucker",
+            "Weight": 25.0,
+            "Slots": [
+                {
+                    "Name": "clothing",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "WorkingBoots_Brown",
+                        "CargoPants_Green",
+                        "Hoodie_Grey",
+                        "WorkingGloves_Brown",
+                        "TaloonBag_Blue",
+                        "BeanieHat_Grey"
+                    ]
+                },
+                {
+                    "Name": "water",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "WaterBottle",
+                        "Canteen"
+                    ]
+                },
+                {
+                    "Name": "food",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 2,
+                    "Items": [
+                        "BakedBeansCan",
+                        "Crackers",
+                        "Rice",
+                        "BrisketSpread"
+                    ]
+                },
+                {
+                    "Name": "medical",
+                    "Min": 2,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "BandageDressing",
+                        "Rag",
+                        "PainkillerTablets"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Wrench",
+                        "Screwdriver",
+                        "Pliers",
+                        "KitchenKnife",
+                        "DuctTape"
+                    ]
+                },
+                {
+                    "Name": "extra",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "TireRepairKit",
+                        "CanisterGasoline",
+                        "EpoxyPutty"
+                    ]
+                },
+                {
+                    "Name": "camp",
+                    "Min": 0,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "PortableGasStove",
+                        "SmallGasCanister"
+                    ]
+                }
+            ],
+            "Firearms": [
+                {
+                    "Weapon": "Mp133Shotgun",
+                    "Magazine": "",
+                    "Ammo": "Ammo_12gaPellets",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6
+                },
+                {
+                    "Weapon": "SawedoffIzh43Shotgun",
+                    "Magazine": "",
+                    "Ammo": "Ammo_12gaPellets",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6
+                }
+            ]
+        },
+        {
+            "Name": "nomad",
+            "Weight": 25.0,
+            "Slots": [
+                {
+                    "Name": "clothing",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "TurbanHat_Beige",
+                        "TurbanHat_Brown",
+                        "Keffiyeh_Brown",
+                        "HuntingJacket_Desert",
+                        "HunterPants_Desert",
+                        "CoyoteBag_Desert"
+                    ]
+                },
+                {
+                    "Name": "water",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "WaterBottle",
+                        "Canteen"
+                    ]
+                },
+                {
+                    "Name": "food",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 2,
+                    "Items": [
+                        "Pajka",
+                        "Pate",
+                        "Rice",
+                        "SardinesCan"
+                    ]
+                },
+                {
+                    "Name": "medical",
+                    "Min": 2,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Rag",
+                        "BandageDressing",
+                        "CharcoalTablets"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "HuntingKnife",
+                        "Rope",
+                        "SewingKit",
+                        "Whetstone",
+                        "Matchbox"
+                    ]
+                },
+                {
+                    "Name": "extra",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Compass",
+                        "Hatchet"
+                    ]
+                },
+                {
+                    "Name": "camp",
+                    "Min": 0,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Pot"
+                    ]
+                }
+            ],
+            "Firearms": [
+                {
+                    "Weapon": "Mosin9130",
+                    "Magazine": "",
+                    "Ammo": "Ammo_762x54",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6
+                },
+                {
+                    "Weapon": "Izh18",
+                    "Magazine": "",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6
+                }
+            ]
+        },
+        {
+            "Name": "townie",
+            "Weight": 20.0,
+            "Slots": [
+                {
+                    "Name": "clothing",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Hoodie_Grey",
+                        "TShirt_Grey",
+                        "Jeans_Blue",
+                        "BeanieHat_Grey",
+                        "TaloonBag_Blue",
+                        "Keffiyeh_Gray"
+                    ]
+                },
+                {
+                    "Name": "water",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "WaterBottle"
+                    ]
+                },
+                {
+                    "Name": "food",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 2,
+                    "Items": [
+                        "BakedBeansCan",
+                        "TunaCan",
+                        "Crackers",
+                        "Rice"
+                    ]
+                },
+                {
+                    "Name": "medical",
+                    "Min": 2,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "PainkillerTablets",
+                        "BandageDressing",
+                        "DisinfectantSpray",
+                        "CharcoalTablets"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "KitchenKnife",
+                        "Flashlight",
+                        "Battery9V",
+                        "DuctTape"
+                    ]
+                },
+                {
+                    "Name": "extra",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Matchbox",
+                        "SewingKit"
+                    ]
+                },
+                {
+                    "Name": "camp",
+                    "Min": 0,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "PortableGasStove"
+                    ]
+                }
+            ],
+            "Firearms": [
+                {
+                    "Weapon": "Magnum",
+                    "Magazine": "",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6
+                },
+                {
+                    "Weapon": "Derringer_Black",
+                    "Magazine": "",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6
+                }
+            ]
         }
-    ]
+    ],
+    "FirearmHealthMin": 0.45,
+    "FirearmHealthMax": 0.7
 }

@@ -5,7 +5,7 @@
 #   arrival_sites), in the look they chose.
 # - Every later character (after a death) is a RANDOMLY generated survivor who wakes on a road.
 # - Both wake at a campfire (Zen's Immersive Login, SpawnFire) beside a worn vehicle whose
-#   paired key is in their pocket, with the cargo about half full of road-scavenged gear.
+#   paired key is in their pocket, with one archetype's road-scavenged kit in the cargo.
 # - One vehicle per player per `cooldown_hours` of real time: a death inside that window
 #   still respawns on a road, but without a vehicle (stops suicide-farming cars and gear).
 #
@@ -17,8 +17,6 @@ cooldown_hours: 24
 random_character_on_respawn: true
 
 player_offset_m: 9.0            # player wakes this far beside the car, off the road
-cargo_fill: 0.5                 # fraction of the vehicle's cargo grid to fill
-max_cargo_items: 40             # cap so a truck's huge grid doesn't hold 150 items
 fuel: [0.25, 0.5]               # fraction of tank
 vehicle_health: [0.5, 0.7]
 item_health: [0.45, 0.85]       # road-worn
@@ -59,23 +57,64 @@ vehicles:
             Truck_01_WheelDouble, Truck_01_WheelDouble, TruckBattery, HeadlightH7, HeadlightH7,
             Truck_01_Hood, Truck_01_Door_1_1, Truck_01_Door_2_1]
 
-# What a refugee picks up along the road. Category weight is shared equally by its items.
-# Food is a normal road-scavenge share (Blae chose this over "no food", 2026-10-12).
-gear:
-  food:     { weight: 22, items: [BakedBeansCan, SpaghettiCan, SardinesCan, TunaCan, PeachesCan,
-                                  Rice, PowderedMilk, Crackers, Chips, Pajka, Pate, BrisketSpread,
-                                  Apple, Pear, Plum, CanOpener] }
-  water:    { weight: 10, items: [WaterBottle, Canteen, SodaCan_Cola, SodaCan_Kvass, SodaCan_Pipsi] }
-  tools:    { weight: 20, items: [KitchenKnife, SteakKnife, Screwdriver, Pliers, Hatchet, Hammer, Wrench,
-                                  Matchbox, Rope, DuctTape, SewingKit, Whetstone, Flashlight, Battery9V,
-                                  Roadflare, Compass, ChernarusMap, Pot] }
-  clothing: { weight: 20, items: [Hoodie_Grey, Hoodie_Brown, TShirt_Grey, Jeans_Blue, Jeans_Brown,
-                                  WoolCoat_GreyCheck, Raincoat_Green, BeanieHat_Grey, WorkingBoots_Brown,
-                                  Sneakers_Gray, WorkingGloves_Brown, TaloonBag_Blue, DryBag_Black] }
-  medical:  { weight: 12, items: [BandageDressing, Rag, DisinfectantSpray, PainkillerTablets,
-                                  CharcoalTablets, VitaminBottle, TetracyclineAntibiotics] }
-  camp:     { weight: 8,  items: [Paper, Firewood, PortableGasStove, SmallGasCanister, ShelterKit, Stone] }
-  vehicle:  { weight: 8,  items: [CanisterGasoline, TireRepairKit, EpoxyPutty] }
+# Arrival cargo (Blae, 2026-10-15): ONE archetype per car, slots drawn WITHOUT replacement
+# (max_each 1, food 2), ~10-16 items + exactly one themed firearm with meagre ammo:
+# a partly filled magazine (2-5) OR 3-8 loose rounds, never a spare magazine.
+firearm_health: [0.45, 0.70]
+archetypes:
+  deserter:
+    weight: 30
+    slots:
+      clothing: { count: [2, 3], items: [USMCJacket_Desert, USMCPants_Desert, BoonieHat_Desert, MilitaryBoots_Beige, M65Jacket_Tan, CargoPants_Beige, AssaultBag_Desert, Keffiyeh_LightBrown] }
+      water:    { count: [1, 2], items: [Canteen, WaterBottle] }
+      food:     { count: [2, 3], max_each: 2, items: [TunaCan, SardinesCan, BakedBeansCan, Crackers] }
+      medical:  { count: [2, 2], items: [BandageDressing, PainkillerTablets, CharcoalTablets, TetracyclineAntibiotics] }
+      tools:    { count: [2, 3], items: [CombatKnife, Compass, Matchbox, DuctTape, Binoculars] }
+      extra:    { count: [1, 2], items: [Flashlight, Battery9V, Rope] }
+      camp:     { count: [0, 1], items: [PortableGasStove, Pot] }
+    firearms:
+      - { weapon: MakarovIJ70, magazine: Mag_IJ70_8Rnd, ammo: Ammo_380, rounds: [2, 5] }
+      - { weapon: CZ75, magazine: Mag_CZ75_15Rnd, ammo: Ammo_9x19, rounds: [2, 5] }
+      - { weapon: SKS, magazine: null, ammo: Ammo_762x39, rounds: [3, 8] }
+  trucker:
+    weight: 25
+    slots:
+      clothing: { count: [2, 3], items: [WorkingBoots_Brown, CargoPants_Green, Hoodie_Grey, WorkingGloves_Brown, TaloonBag_Blue, BeanieHat_Grey] }
+      water:    { count: [1, 2], items: [WaterBottle, Canteen] }
+      food:     { count: [2, 3], max_each: 2, items: [BakedBeansCan, Crackers, Rice, BrisketSpread] }
+      medical:  { count: [2, 2], items: [BandageDressing, Rag, PainkillerTablets] }
+      tools:    { count: [2, 3], items: [Wrench, Screwdriver, Pliers, KitchenKnife, DuctTape] }
+      extra:    { count: [1, 2], items: [TireRepairKit, CanisterGasoline, EpoxyPutty] }
+      camp:     { count: [0, 1], items: [PortableGasStove, SmallGasCanister] }
+    firearms:
+      - { weapon: Mp133Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [3, 6] }
+      - { weapon: SawedoffIzh43Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [3, 6] }
+  nomad:
+    weight: 25
+    slots:
+      clothing: { count: [2, 3], items: [TurbanHat_Beige, TurbanHat_Brown, Keffiyeh_Brown, HuntingJacket_Desert, HunterPants_Desert, CoyoteBag_Desert] }
+      water:    { count: [1, 2], items: [WaterBottle, Canteen] }
+      food:     { count: [2, 3], max_each: 2, items: [Pajka, Pate, Rice, SardinesCan] }
+      medical:  { count: [2, 2], items: [Rag, BandageDressing, CharcoalTablets] }
+      tools:    { count: [2, 3], items: [HuntingKnife, Rope, SewingKit, Whetstone, Matchbox] }
+      extra:    { count: [1, 2], items: [Compass, Hatchet] }
+      camp:     { count: [0, 1], items: [Pot] }
+    firearms:
+      - { weapon: Mosin9130, magazine: null, ammo: Ammo_762x54, rounds: [3, 6] }
+      - { weapon: Izh18, magazine: null, ammo: Ammo_762x39, rounds: [3, 6] }
+  townie:
+    weight: 20
+    slots:
+      clothing: { count: [2, 3], items: [Hoodie_Grey, TShirt_Grey, Jeans_Blue, BeanieHat_Grey, TaloonBag_Blue, Keffiyeh_Gray] }
+      water:    { count: [1, 2], items: [WaterBottle] }
+      food:     { count: [2, 3], max_each: 2, items: [BakedBeansCan, TunaCan, Crackers, Rice] }
+      medical:  { count: [2, 2], items: [PainkillerTablets, BandageDressing, DisinfectantSpray, CharcoalTablets] }
+      tools:    { count: [2, 3], items: [KitchenKnife, Flashlight, Battery9V, DuctTape] }
+      extra:    { count: [1, 2], items: [Matchbox, SewingKit] }
+      camp:     { count: [0, 1], items: [PortableGasStove] }
+    firearms:
+      - { weapon: Magnum, magazine: null, ammo: Ammo_357, rounds: [3, 6] }
+      - { weapon: Derringer_Black, magazine: null, ammo: Ammo_357, rounds: [3, 6] }
 
 # Body kit (Blae, 2026-10-15): every new character also gets a PersonalRadio with a 9V battery,
 # tuned to the Settler net and switched OFF, plus one road flare. Index 0 = the first channel
