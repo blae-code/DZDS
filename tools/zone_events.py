@@ -76,8 +76,9 @@ def crates(dynamic: list[dict], zs, cfg: dict, y=FLAT) -> list[dict]:
         return []
     out = copy.deepcopy(dynamic[:1])
     ev = out[0]
-    for k in MARKER_KEYS:
-        if k in ev:
+    for k in list(ev):
+        if k in MARKER_KEYS or k == "ShowLocationInNotifications" or (
+                k.startswith("Enable") and k.endswith("Notification")):
             ev[k] = 0
     ev.update({"ActiveCrateCount": c["active"], "RefreshInterval": c["refresh_s"], "StaticSpawns": 0,
                "CrateLocations": [{"Position": _xyz(zn.x, zn.z, y), "Rotation": "0.0 0.0 0.0",
@@ -119,12 +120,16 @@ def warzones(settings: dict, zs, strength: dict, factions: dict, roles: dict, cf
                   "zoneRadius": float(w["zone_radius_m"]), "zoneRadiusFX": float(w["zone_radius_m"]) * 0.65,
                   "zoneAIMax": w["ai_max"], "zoneAIMinAccuracy": w["accuracy"][0],
                   "zoneAIMaxAccuracy": w["accuracy"][1], "zoneAIThreatDetectionRange": 300.0,
+                  "zoneAINoiseInvestigationRange": 300.0,
                   "zoneResetTime": float(w["reset_s"]), "zoneShowOnEnter": 0, "zoneShowOnWin": 0,
                   "zoneEnableAirborneAIAircraft": 0,
                   "aTeamFaction": factions[a]["custom_faction"], "aTeamLoadout": f"DZDS_{a}",
                   "aTeamSpawnPosition": _ring(zn, w["spawn_offset_m"], 0.0, y),
                   "bTeamFaction": factions[b]["custom_faction"], "bTeamLoadout": f"DZDS_{b}",
                   "bTeamSpawnPosition": _ring(zn, w["spawn_offset_m"], math.pi, y)})
+        for k, v in z.items():
+            if k.startswith("zone") and "Message" in k and isinstance(v, str):
+                z[k] = ""
         made.append(z)
     if made:
         out["WarZones"] = made
@@ -142,12 +147,26 @@ def convoy(settings: dict, war_party: dict | None, cfg: dict) -> dict:
     return out
 
 
-def convoy_route_files(war_party: dict | None, recorded_dir: Path) -> dict[str, dict]:
-    if not war_party or war_party["kind"] != "convoy":
-        return {}
-    route = json.loads((recorded_dir / war_party["route"]).read_text())
-    route["Enabled"] = 1
-    return {war_party["route"]: route}
+def route_plan(war_party: dict | None, recorded_dir: Path,
+               existing: dict[str, dict]) -> tuple[bool, dict[str, dict]]:
+    """(convoy_enabled, files_to_write). Never deletes: stock routes are rewritten Enabled 0."""
+    want: dict[str, dict] = {}
+    if war_party and war_party["kind"] == "convoy":
+        src = recorded_dir / war_party["route"]
+        if src.exists():
+            route = json.loads(src.read_text())
+            route["Enabled"] = 1
+            want[war_party["route"]] = route
+        else:
+            print(f"ERROR: convoy route {war_party['route']} not recorded; convoys stay off")
+    writes = {}
+    for name, body in existing.items():
+        if name not in want and body.get("Enabled") != 0:
+            writes[name] = {**body, "Enabled": 0}
+    for name, body in want.items():
+        if existing.get(name) != body:
+            writes[name] = body
+    return bool(want), writes
 
 
 def _split(xyz: str) -> tuple[float, float]:
@@ -209,18 +228,18 @@ def main() -> int:
     _rw(PROFILES / "Bastardo_HC" / "BS_Static_crates.json", lambda s: [], d)
     _rw(PROFILES / "AIWarZones" / "AIWarZones_Settings.json",
         lambda s: warzones(s, zs, led.s.strength, led.fspec, roles, cfg, y), d)
-    _rw(PROFILES / "AIConvoy" / "AIConvoySettings.json", lambda s: convoy(s, led.s.war_party, cfg), d)
     routes_dir = PROFILES / "AIConvoy" / "Routes"
-    if routes_dir.exists():
-        want = convoy_route_files(led.s.war_party, ROOT / "presets" / "convoy_routes" / active.map_name())
-        for f in routes_dir.glob("*.json"):
-            if f.name not in want and not d:
-                f.unlink()
-                print(f"  removed {f.relative_to(ROOT)}")
-        for name, body in want.items():
-            if not d:
-                (routes_dir / name).write_text(json.dumps(body, indent=4) + "\n")
-            print(f"  convoy route {name} enabled")
+    existing = {f.name: json.loads(f.read_text()) for f in sorted(routes_dir.glob("*.json"))} \
+        if routes_dir.exists() else {}
+    if not routes_dir.exists():
+        print(f"  WARNING: {routes_dir.relative_to(ROOT)} missing; stock routes cannot be disabled")
+    on, writes = route_plan(led.s.war_party, ROOT / "presets" / "convoy_routes" / active.map_name(), existing)
+    _rw(PROFILES / "AIConvoy" / "AIConvoySettings.json",
+        lambda s: convoy(s, led.s.war_party if on else None, cfg), d)
+    for name, body in writes.items():
+        if not d:
+            (routes_dir / name).write_text(json.dumps(body, indent=4) + "\n")
+        print(f"  route {name} Enabled={body['Enabled']}")
     return 0
 
 

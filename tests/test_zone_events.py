@@ -2,8 +2,6 @@
 import copy
 import json
 
-import pytest
-
 import zone_events as ze
 import zones
 
@@ -29,12 +27,15 @@ HELI = {"Notifications": 1, "Use_Random_Generated_Crash_Sites": 1, "Use_World_Ge
         "Maximum_Delay_In_Seconds_Until_Next_Event": 2400.0, "Max_Count_Of_Helicopters": 4}
 CRATE = {"ConfigUniqueID": "x", "UseExpansionMapMarker": 1, "UseAdvancedGroupsMapMarker": 1,
          "UseBasicMapMarker": 1, "UseVPPMapMarker": 1, "MarkerEnable2D": 1, "MarkerEnable3D": 1,
-         "UseCrateNotifications": 1, "ActiveCrateCount": 2, "RefreshInterval": 600,
+         "UseCrateNotifications": 1, "EnableSpawnNotification": 1, "EnableStartNotification": 1,
+         "EnableEndNotification": 1, "EnableDespawnNotification": 1, "ShowLocationInNotifications": 1,
+         "ActiveCrateCount": 2, "RefreshInterval": 600,
          "CrateLocations": [{"Position": "4732 338 10350", "Rotation": "0 0 0",
                              "LocationName": "Airfield", "AISpawnPositions": []}]}
 WZ = {"maxConcurrentZones": 3, "WarZones": [{"zoneName": "The Battle Of Berezino",
       "zonePosition": "12001.6 54.1 9069.1", "zoneAIMaxAccuracy": 0.9, "zoneAIMinAccuracy": 0.6,
-      "zoneShowOnEnter": 1, "zoneShowOnWin": 1, "aTeamFaction": "West", "bTeamFaction": "East"}]}
+      "zoneShowOnEnter": 1, "zoneShowOnWin": 1, "zoneAINoiseInvestigationRange": 900.0,
+      "zoneStartMessageTitle": "WAR", "zoneWinMessage": "won", "zoneRadius": 5, "aTeamFaction": "West", "bTeamFaction": "East"}]}
 CONVOY = {"Enabled": 1, "NotifyOnSpawn": 1, "NotifyOnAmbush": 1, "MarkerEnabled": 1, "Marker3D": 1,
           "MaxActiveConvoys": 3, "MinIntervalSeconds": 600, "MaxIntervalSeconds": 600}
 
@@ -65,7 +66,9 @@ def test_crates_no_markers_and_inside_zones():
     assert len(out) == 1
     c = out[0]
     for k in ("UseExpansionMapMarker", "UseAdvancedGroupsMapMarker", "UseBasicMapMarker",
-              "UseVPPMapMarker", "MarkerEnable2D", "MarkerEnable3D", "UseCrateNotifications"):
+              "UseVPPMapMarker", "MarkerEnable2D", "MarkerEnable3D", "UseCrateNotifications",
+              "EnableSpawnNotification", "EnableStartNotification", "EnableEndNotification",
+              "EnableDespawnNotification", "ShowLocationInNotifications"):
         assert c[k] == 0, k
     assert {l["LocationName"] for l in c["CrateLocations"]} == {"Well", "Base"}
     assert every_inside(ze.positions("crates", out))
@@ -78,6 +81,8 @@ def test_warzones_one_per_contested_site_with_hostile_dzds_teams():
     assert z["zoneName"] == "Well" and z["aTeamFaction"] == "DZDSRust"
     assert z["bTeamFaction"] in {"DZDSPeacekeepers", "DZDSJackals"}
     assert 0.25 <= z["zoneAIMinAccuracy"] <= 0.32 and 0.45 <= z["zoneAIMaxAccuracy"] <= 0.52
+    assert z["zoneAINoiseInvestigationRange"] <= 300.0
+    assert z["zoneStartMessageTitle"] == "" and z["zoneWinMessage"] == ""
     assert z["zoneShowOnEnter"] == 0 and z["zoneShowOnWin"] == 0
     assert every_inside(ze.positions("warzones", out))
 
@@ -90,17 +95,43 @@ def test_no_contested_site_means_no_war_zones():
     assert ze.positions("warzones", out) == []
 
 
-def test_convoy_enabled_only_for_a_convoy_war_party(tmp_path):
+ROUTE = {"kind": "convoy", "faction": "Rust", "origin": "Well", "target": "Base",
+         "route": "rust_run.json", "size": [0, 0]}
+STOCK = {"Route1.json": {"Name": "r1", "Enabled": 1}, "Route2.json": {"Name": "r2", "Enabled": 0}}
+
+
+def test_convoy_settings_off_without_war_party():
     off = ze.convoy(CONVOY, None, CFG)
     assert off["Enabled"] == 0 and off["NotifyOnSpawn"] == 0 and off["MarkerEnabled"] == 0
-    wp = {"kind": "convoy", "faction": "Rust", "origin": "Well", "target": "Base",
-          "route": "rust_run.json", "size": [0, 0]}
-    on = ze.convoy(CONVOY, wp, CFG)
+    on = ze.convoy(CONVOY, ROUTE, CFG)
     assert on["Enabled"] == 1 and on["MaxActiveConvoys"] == 1
+
+
+def test_route_plan_no_war_party_disables_all_existing(tmp_path):
+    on, w = ze.route_plan(None, tmp_path, STOCK)
+    assert on is False and w == {"Route1.json": {"Name": "r1", "Enabled": 0}}
+
+
+def test_route_plan_convoy_enables_recorded_and_disables_others(tmp_path):
     (tmp_path / "rust_run.json").write_text(json.dumps({"Name": "rust run", "Enabled": 0, "Waypoints": []}))
-    files = ze.convoy_route_files(wp, tmp_path)
-    assert list(files) == ["rust_run.json"] and files["rust_run.json"]["Enabled"] == 1
-    assert ze.convoy_route_files(None, tmp_path) == {}
+    on, w = ze.route_plan(ROUTE, tmp_path, STOCK)
+    assert on is True
+    assert w["rust_run.json"]["Enabled"] == 1 and w["Route1.json"]["Enabled"] == 0
+    assert "Route2.json" not in w
+
+
+def test_route_plan_missing_recorded_route_stays_off(tmp_path, capsys):
+    on, w = ze.route_plan(ROUTE, tmp_path, STOCK)
+    assert on is False and all(b["Enabled"] == 0 for b in w.values())
+    assert "not recorded; convoys stay off" in capsys.readouterr().out
+
+
+def test_route_plan_rerun_is_identical(tmp_path):
+    (tmp_path / "rust_run.json").write_text(json.dumps({"Name": "rust run", "Enabled": 0, "Waypoints": []}))
+    on, w = ze.route_plan(ROUTE, tmp_path, STOCK)
+    after = {**STOCK, **w}
+    assert ze.route_plan(ROUTE, tmp_path, after) == (True, {})
+    assert ze.route_plan(None, tmp_path, {k: {**v, "Enabled": 0} for k, v in STOCK.items()}) == (False, {})
 
 
 def test_rerun_is_identical():
