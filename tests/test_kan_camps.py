@@ -34,3 +34,14 @@ def test_values_the_mod_would_clamp_are_rejected(bad):
 def test_unknown_camp_is_an_error():
     with pytest.raises(SystemExit):
         kan_camps.apply({"Camps": []}, {"camps": {"Nope": dict.fromkeys(kan_camps.ROLES, 1)}})
+
+
+def test_camps_move_to_their_site_and_unlisted_camps_go():
+    data = {"Camps": [{"Id": "A", "Position": [1.0, 0.0, 1.0], "RoleOverrides": {}},
+                      {"Id": "B", "Position": [2.0, 0.0, 2.0], "RoleOverrides": {}}]}
+    roles = {"Roamers": 0, "Looters": 2, "Builders": 1, "Guards": 3, "Attackers": 1, "Snipers": 0}
+    preset = {"camps": {"A": {"site": "Settlement", **roles}}}
+    changes = kan_camps.apply(data, preset, {"Settlement": [5000.0, 6000.0]})
+    assert [c["Id"] for c in data["Camps"]] == ["A"]
+    assert data["Camps"][0]["Position"] == [5015.0, 0.0, 6015.0]
+    assert any("removed B" in c for c in changes)

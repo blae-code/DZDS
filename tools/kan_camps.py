@@ -15,6 +15,8 @@ from pathlib import Path
 
 import yaml
 
+import active
+
 ROOT = Path(__file__).resolve().parent.parent
 PRESET = ROOT / "presets" / "kan_camps.yaml"
 CAMPS = ROOT / "server" / "profiles" / "KANSurvivorNPC" / "camps.json"
@@ -24,6 +26,7 @@ MAX_ROLE = 12  # KAN_CampRoleCounts.MAX_ROLE_COUNT
 
 
 def check(camp_id: str, roles: dict) -> None:
+    roles = {k: v for k, v in roles.items() if k != "site"}
     if sorted(roles) != sorted(ROLES):
         raise SystemExit(f"{camp_id}: give exactly {ROLES} (an all-zero or partial override is ignored)")
     for r, n in roles.items():
@@ -31,17 +34,28 @@ def check(camp_id: str, roles: dict) -> None:
             raise SystemExit(f"{camp_id}.{r}={n}: the mod clamps it to [{FLOOR[r]}, {MAX_ROLE}]")
 
 
-def apply(data: dict, preset: dict) -> list[str]:
+def apply(data: dict, preset: dict, locs: dict | None = None) -> list[str]:
     camps = {c["Id"]: c for c in data["Camps"]}
     changes = []
-    for camp_id, roles in preset["camps"].items():
+    for camp_id in [c for c in camps if c not in preset["camps"]]:
+        data["Camps"] = [c for c in data["Camps"] if c["Id"] != camp_id]
+        changes.append(f"removed {camp_id} (not in presets/kan_camps.yaml)")
+    for camp_id, spec in preset["camps"].items():
+        roles = {k: v for k, v in spec.items() if k != "site"}
         check(camp_id, roles)
         if camp_id not in camps:
             raise SystemExit(f"camp {camp_id} not in camps.json (have {sorted(camps)})")
+        camp = camps[camp_id]
         want = {r: int(roles[r]) for r in ROLES}
-        if camps[camp_id].get("RoleOverrides") != want:
-            changes.append(f"{camp_id}: {camps[camp_id].get('RoleOverrides')} -> {want}")
-            camps[camp_id]["RoleOverrides"] = want
+        if camp.get("RoleOverrides") != want:
+            changes.append(f"{camp_id}: {camp.get('RoleOverrides')} -> {want}")
+            camp["RoleOverrides"] = want
+        if spec.get("site") and locs:
+            x, z = locs[spec["site"]][:2]
+            pos = [float(x) + 15.0, 0.0, float(z) + 15.0]
+            if camp.get("Position") != pos:
+                changes.append(f"{camp_id}: Position -> {pos} ({spec['site']})")
+                camp["Position"] = pos
     return changes
 
 
@@ -50,7 +64,7 @@ def main() -> int:
     a.add_argument("--dry-run", action="store_true")
     args = a.parse_args()
     data = json.loads(CAMPS.read_text())
-    changes = apply(data, yaml.safe_load(PRESET.read_text()))
+    changes = apply(data, yaml.safe_load(PRESET.read_text()), active.map_data()["locations"])
     for c in changes:
         print("  " + c)
     if not changes:
