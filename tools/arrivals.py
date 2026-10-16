@@ -152,6 +152,8 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "RespawnNearMin": float(cfg["respawn_near_m"][0]),
         "RespawnNearMax": float(cfg["respawn_near_m"][1]),
         "RespawnNearFallback": float(cfg["respawn_near_fallback_m"]),
+        "CampRespawnRadius": float(cfg["camp_respawn_m"]),
+        "CampPlayerOffset": float(cfg["camp_player_offset_m"]),
         "ArrivalSites": arrival_points(cfg, map_data, spots),
         "RoadPoints": road,
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"])}

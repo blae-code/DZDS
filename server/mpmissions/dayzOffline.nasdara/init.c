@@ -95,6 +95,8 @@ class RefugeeArrivalConfig
 	float RespawnNearMin;
 	float RespawnNearMax;
 	float RespawnNearFallback;
+	float CampRespawnRadius;
+	float CampPlayerOffset;
 	float FuelMin;
 	float FuelMax;
 	float HealthMin;
@@ -131,6 +133,7 @@ class RefugeeArrivalPlan
 	bool FirstArrival;
 	bool RandomCharacter;
 	bool GrantVehicle;
+	bool AtCamp;
 	string Where;
 	ref RefugeeArrivalVehicle Vehicle;
 	vector CarPos;
@@ -173,6 +176,9 @@ class RefugeeArrivals
 			m_Ledger.Players = new array<ref RefugeeArrivalRecord>;
 
 		Print("[DZDS Arrivals] enabled=" + m_Config.Enabled + " sites=" + m_Config.ArrivalSites.Count() + " road=" + m_Config.RoadPoints.Count() + " vehicles=" + m_Config.Vehicles.Count() + " archetypes=" + m_Config.Archetypes.Count() + " known players=" + m_Ledger.Players.Count());
+#ifdef DZDS_CAMPS
+		Print("[DZDS Arrivals] camp respawn within " + m_Config.CampRespawnRadius.ToString() + " m, pitched tents=" + DZDSCamps.PitchedCount().ToString());
+#endif
 	}
 
 	bool IsActive()
@@ -430,6 +436,27 @@ class RefugeeArrivals
 		return ring;
 	}
 
+	// Blae 2026-10-16: wake beside the pitched tent nearest the last death, without a car.
+	bool PickCamp(RefugeeArrivalPlan plan, RefugeeArrivalRecord rec)
+	{
+		if (!rec || !rec.HasDeath || m_Config.CampRespawnRadius <= 0)
+			return false;
+#ifdef DZDS_CAMPS
+		vector death = Vector(rec.DeathX, GetGame().SurfaceY(rec.DeathX, rec.DeathZ), rec.DeathZ);
+		TentBase tent = DZDSCamps.Nearest(death, m_Config.CampRespawnRadius);
+		if (!tent || tent.GetState() != TentBase.PITCHED)
+			return false;
+		plan.GrantVehicle = false;
+		plan.AtCamp = true;
+		plan.CarPos = tent.GetPosition();
+		plan.CarOri = tent.GetOrientation();
+		plan.Where = "camp (" + tent.GetType() + " " + Math.Round(vector.Distance(death, plan.CarPos)).ToString() + " m from death)";
+		return true;
+#else
+		return false; // @DZDS without camp tracking (pre 2026-10-16): road respawn as before
+#endif
+	}
+
 	bool PickNearDeath(RefugeeArrivalPlan plan, RefugeeArrivalRecord rec)
 	{
 		if (!rec || rec.HasDeath != 1)
@@ -473,10 +500,13 @@ class RefugeeArrivals
 		float side = 1;
 		if (Math.RandomInt(0, 2) == 0)
 			side = -1;
+		float offset = m_Config.PlayerOffset;
+		if (plan.AtCamp)
+			offset = m_Config.CampPlayerOffset;
 		for (int i = 0; i < 2; i++)
 		{
-			float x = plan.CarPos[0] + rx * m_Config.PlayerOffset * side;
-			float z = plan.CarPos[2] + rz * m_Config.PlayerOffset * side;
+			float x = plan.CarPos[0] + rx * offset * side;
+			float z = plan.CarPos[2] + rz * offset * side;
 			if (!IsWater(x, z))
 			{
 				plan.PlayerPos = Vector(x, GetGame().SurfaceY(x, z), z);
@@ -508,6 +538,8 @@ class RefugeeArrivals
 		bool placed = false;
 		if (plan.FirstArrival)
 			placed = PickColumnPoint(plan);
+		if (!placed && !plan.FirstArrival)
+			placed = PickCamp(plan, rec);
 		if (!placed && !plan.FirstArrival)
 			placed = PickNearDeath(plan, rec);
 		if (!placed)
@@ -548,6 +580,8 @@ class RefugeeArrivals
 			return;
 
 		string got = "no vehicle (cooldown)";
+		if (plan.AtCamp)
+			got = "no vehicle (camp)";
 		int now = NowSeconds();
 		bool granted = false;
 		if (plan.GrantVehicle)

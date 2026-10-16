@@ -10,6 +10,7 @@ import active
 import arrivals
 
 INIT_C = active.mission_dir("nasdara") / "init.c"
+ROOT = active.ROOT
 
 
 @pytest.fixture(scope="module")
@@ -237,3 +238,43 @@ def test_firearm_json_keys_are_init_c_fields(built):
     for arch in out["Archetypes"]:
         for f in arch["Firearms"]:
             assert set(f) == fields, (set(f) ^ fields)
+
+
+def test_camp_respawn_is_compiled(built):
+    """Blae 2026-10-16: a respawn wakes at the pitched tent nearest the death, within range."""
+    cfg, _, out = built
+    assert out["CampRespawnRadius"] == float(cfg["camp_respawn_m"]) == 5000.0
+    assert 2.0 <= out["CampPlayerOffset"] <= 6.0
+
+
+def test_dzds_mod_registers_pitched_tents():
+    """Tents register on EEInit (pitch, or load from persistence) and leave on EEDelete, so a
+    respawn never scans the world. This lives in @DZDS: init.c cannot mod a 4_World class
+    (1.30 local boot: "Unknown type 'TentBase'")."""
+    mod = ROOT / "mods" / "DZDS"
+    src = (mod / "Scripts" / "4_World" / "DZDS" / "DZDSCamps.c").read_text()
+    tent = re.search(r"modded class TentBase\s*\{(.*?)\n\}", src, re.S)
+    assert tent, "@DZDS must mod TentBase to keep the camp list"
+    assert re.search(r"void EEInit\(\).*?DZDSCamps\.Add\(this\)", tent.group(1), re.S)
+    assert re.search(r"void EEDelete\(EntityAI parent\).*?DZDSCamps\.Remove\(this\)", tent.group(1), re.S)
+    assert re.search(r'defines\[\]\s*=\s*\{\s*"DZDS_CAMPS"', (mod / "config.cpp").read_text())
+    init = INIT_C.read_text()
+    assert "modded class" not in init
+    assert "GetObjectsAtPosition" not in init
+    # init.c must still compile against an @DZDS without camps (upload lag): every use is guarded.
+    for m in re.finditer(r"DZDSCamps\.", init):
+        before = init[:m.start()]
+        assert before.rfind("#ifdef DZDS_CAMPS") > before.rfind("#endif"), "unguarded DZDSCamps use"
+
+
+def test_init_c_camp_respawn_comes_first_and_grants_no_car():
+    src = INIT_C.read_text()
+    plan = re.search(r"RefugeeArrivalPlan Plan\(PlayerIdentity identity\).*?\n\t\}", src, re.S).group(0)
+    assert "PickCamp(plan, rec)" in plan
+    assert plan.index("PickCamp(plan, rec)") < plan.index("PickNearDeath(plan, rec)")
+    camp = re.search(r"bool PickCamp\(RefugeeArrivalPlan plan, RefugeeArrivalRecord rec\).*?\n\t\}", src, re.S)
+    assert camp, "PickCamp missing"
+    body = camp.group(0)
+    for needle in ("rec.HasDeath", "TentBase.PITCHED", "m_Config.CampRespawnRadius", "plan.GrantVehicle = false",
+                   "plan.AtCamp = true"):
+        assert needle in body, needle

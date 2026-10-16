@@ -146,3 +146,10 @@ column_day_start_utc_hour: 11
 # still apply). No recorded death (e.g. the server restarted mid-death) = anywhere, as before.
 respawn_near_m: [2000, 5000]
 respawn_near_fallback_m: 8000
+
+# Camp respawn (Blae, 2026-10-16): a later character wakes beside the PITCHED tent nearest the
+# previous character's death, if one stands within camp_respawn_m. Any player's tent counts
+# (small co-op server). No car comes with a camp respawn and the car cooldown is untouched;
+# with no tent in range, the road respawn above applies.
+camp_respawn_m: 5000
+camp_player_offset_m: 4.0

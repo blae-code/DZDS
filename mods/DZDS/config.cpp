@@ -40,6 +40,10 @@ class CfgMods
 		name="DZDS Living Sandbox";
 		author="DZDS";
 		type="mod";
+		defines[]=
+		{
+			"DZDS_CAMPS"
+		};
 		dependencies[]=
 		{
 			"Game",
