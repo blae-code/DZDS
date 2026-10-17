@@ -279,6 +279,23 @@ radio:
   settler_net_index: 0
 give_roadflare: true
 
+# Navigation kit (Blae, 2026-10-17): once per player per nav_kit.cooldown_hours of real time,
+# a new character (first arrival or respawn) also gets a paper map and a GPS receiver with a
+# 9V battery, switched ON. The walkie-talkie above already comes with every character. Items
+# that don't fit on the body go in the arrival vehicle's cargo, else on the ground.
+nav_kit:
+  cooldown_hours: 24
+  items: [ChernarusMap, GPSReceiver]
+
+# Trailers (Blae, 2026-10-17): an arrival vehicle that can tow gets Simply's utility trailer
+# parked behind it, unhitched, coupler at the hitch ("Attach trailer to car" at the drawbar).
+# The trailer mod decides what can tow (4+ wheels, not a helicopter or boat); aircraft are
+# also skipped here explicitly. Parts: its two wheels and the two tail-lamp bulbs.
+trailer:
+  class: DZT_UtilityTrailer
+  parts: [HatchbackWheel, HatchbackWheel, HeadlightH7, HeadlightH7]
+  skip: [ExpansionMh6, ExpansionGyrocopter, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
+
 # Refugee column (Blae, 2026-10-15): all FIRST arrivals on the same day wake at the same
 # arrival site; the site rotates daily in this order. A "day" starts at this UTC hour
 # (11 = 06:00 US Central) so one evening's session never splits across two sites.

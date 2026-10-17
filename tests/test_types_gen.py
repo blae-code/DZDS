@@ -61,3 +61,12 @@ def test_arrivals_accepts_classnames_from_our_types_file(tmp_path):
     (mission / "dzds").mkdir()
     (mission / "dzds" / "types_dzds.xml").write_text('<types><type name="CrSk_VAZ_2107"/></types>')
     assert {"CarBattery", "CrSk_VAZ_2107"} <= arrivals.known_types(mission)
+
+
+def test_arrival_trailer_is_registered_like_a_respawn_vehicle():
+    """Blae 2026-10-17: towing arrival vehicles get Simply's trailer; it must persist too."""
+    vanilla, cfg, types = _built()
+    t = types[cfg["trailer"]["class"]]
+    assert (t.findtext("nominal"), t.findtext("min"), t.findtext("lifetime")) == ("0", "0", "3888000")
+    for part in cfg["trailer"]["parts"]:
+        assert part in vanilla or part in types, part

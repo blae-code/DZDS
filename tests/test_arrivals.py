@@ -340,3 +340,54 @@ def test_init_c_spot_selftest_is_local_only():
     mission = re.search(r"class CustomMission: MissionServer.*", src, re.S).group(0)
     assert "FileExist(RefugeeArrivals.SPOTTEST)" in mission
     assert "server/profiles/DZDS/spot_selftest.json" in (ROOT / ".gitignore").read_text()
+
+
+AIRCRAFT = {"ExpansionMh6", "ExpansionGyrocopter", "EXT_MH6", "RFFSHeli_R22", "RFFSHeli_LittleBird",
+            "ExpansionUh1h", "EXT_Mi8_Civilian", "EXT_UH1Y", "RFFSHeli_UH1H"}
+
+
+def test_trailer_and_nav_kit_are_compiled(built):
+    """Blae 2026-10-17: a towing vehicle comes with a trailer; every 24 h a new character gets a
+    paper map and a working GPS (the walkie-talkie already comes with every character)."""
+    _, _, out = built
+    assert out["NavKitHours"] == 24
+    assert {"ChernarusMap", "GPSReceiver"} <= set(out["NavKit"])
+    assert out["TrailerClass"] == "DZT_UtilityTrailer"
+    assert out["TrailerParts"].count("HatchbackWheel") == 2
+    flags = {v["ClassName"]: v["Trailer"] for v in out["Vehicles"]}
+    assert {c for c, f in flags.items() if f == 0} == AIRCRAFT
+    point = re.search(r"class RefugeeArrivalVehicle\s*\{(.*?)\n\}", INIT_C.read_text(), re.S).group(1)
+    assert set(out["Vehicles"][0]) <= set(re.findall(r"\b(\w+);", point))
+
+
+def test_trailer_skip_must_name_a_vehicle(built):
+    cfg, map_data, _ = built
+    bad = {**cfg, "trailer": {**cfg["trailer"], "skip": ["NoSuchHeli"]}}
+    with pytest.raises(SystemExit, match="NoSuchHeli"):
+        arrivals.validate(bad, arrivals.known_types(arrivals.mission_dir(map_data)))
+
+
+def test_init_c_trailer_follows_the_trailer_mods_hitch_rule():
+    src = INIT_C.read_text()
+    body = re.search(r"string GiveTrailer\(CarScript car, RefugeeArrivalVehicle v, out Object trailerObj\).*?\n\t\}", src, re.S).group(0)
+    for needle in ("v.Trailer != 1", "DZT_HitchProfile.Get(car, hitch)", "IsSpawnPositionFree(",
+                   '"dzt_coupler"', "GetInventory().CreateAttachment(part)", "SetPosition("):
+        assert needle in body, needle
+    assert re.search(r'SpawnVehicle\(m_Config\.TrailerClass, null, [^;]*NULL, -1, "", notAttached\)', body)
+    deliver = re.search(r"void Deliver\(PlayerBase player, RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
+    assert "GiveTrailer(car, plan.Vehicle, trailerObj)" in deliver
+    test = re.search(r"void VehicleSelfTest\(\).*?\n\t\}", src, re.S).group(0)
+    assert "GiveTrailer(car, v, trailerObj)" in test and "ObjectDelete(trailerObj)" in test
+
+
+def test_init_c_nav_kit_once_per_cooldown():
+    src = INIT_C.read_text()
+    kit = re.search(r"string GiveNavKit\(PlayerBase player, CarScript car\).*?\n\t\}", src, re.S).group(0)
+    for needle in ("CreateInInventory(cls)", "CreateEntityInCargo(cls)", "ECE_PLACE_ON_SURFACE",
+                   '"Battery9V"', "SwitchOn()"):
+        assert needle in kit, needle
+    deliver = re.search(r"void Deliver\(PlayerBase player, RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
+    assert "now - rec.LastNavKit >= m_Config.NavKitHours * 3600" in deliver
+    assert "rec.LastNavKit = now;" in deliver and "GiveNavKit(player, car)" in deliver
+    record = re.search(r"class RefugeeArrivalRecord\s*\{(.*?)\n\}", src, re.S).group(1)
+    assert "int LastNavKit;" in record

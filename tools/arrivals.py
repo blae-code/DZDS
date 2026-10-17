@@ -127,6 +127,7 @@ def validate(cfg: dict, types: set[str]) -> None:
     for a in cfg["archetypes"].values():
         names += [c for s in a["slots"].values() for c in s["items"]]
         names += [f[k] for f in a["firearms"] for k in ("weapon", "magazine", "ammo") if f.get(k)]
+    names += [cfg["trailer"]["class"]] + cfg["trailer"]["parts"] + cfg["nav_kit"]["items"]
     missing = sorted({n for n in names if n not in types})
     if missing:
         raise SystemExit(f"not in db/types.xml (typo or modded type not registered): {missing}")
@@ -134,6 +135,9 @@ def validate(cfg: dict, types: set[str]) -> None:
         lo, hi = cfg[key]
         if not 0 <= lo <= hi <= 1:
             raise SystemExit(f"{key} must be 0 <= min <= max <= 1, got {cfg[key]}")
+    stray = set(cfg["trailer"]["skip"]) - {v["class"] for v in cfg["vehicles"]}
+    if stray:
+        raise SystemExit(f"trailer.skip names no configured vehicle: {sorted(stray)}")
 
 
 def build(cfg: dict, map_data: dict, mission: Path) -> dict:
@@ -153,6 +157,10 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "ItemHealthMin": float(cfg["item_health"][0]), "ItemHealthMax": float(cfg["item_health"][1]),
         "RadioFrequencyIndex": int(cfg["radio"]["settler_net_index"]),
         "GiveRoadflare": int(bool(cfg["give_roadflare"])),
+        "NavKitHours": int(cfg["nav_kit"]["cooldown_hours"]),
+        "NavKit": list(cfg["nav_kit"]["items"]),
+        "TrailerClass": cfg["trailer"]["class"],
+        "TrailerParts": list(cfg["trailer"]["parts"]),
         "ColumnSites": list((map_data.get("arrival_sites") or {}).keys()),
         "ColumnDayStartUtcHour": int(cfg["column_day_start_utc_hour"]),
         "RespawnNearMin": float(cfg["respawn_near_m"][0]),
@@ -162,7 +170,8 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "CampPlayerOffset": float(cfg["camp_player_offset_m"]),
         "ArrivalSites": arrival_points(cfg, map_data, spots),
         "RoadPoints": road,
-        "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"])}
+        "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"]),
+                      "Trailer": int(v["class"] not in cfg["trailer"]["skip"])}
                      for v in cfg["vehicles"]],
         "Archetypes": archetypes(cfg),
         "FirearmHealthMin": float(cfg["firearm_health"][0]),

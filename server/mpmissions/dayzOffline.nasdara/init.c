@@ -52,6 +52,7 @@ class RefugeeArrivalVehicle
 	string ClassName;
 	float Weight;
 	ref TStringArray Parts;
+	int Trailer;          // 1 = park a trailer behind it, if the trailer mod says it can tow
 }
 
 class RefugeeArrivalSlot
@@ -90,6 +91,10 @@ class RefugeeArrivalConfig
 	float PlayerOffset;
 	int RadioFrequencyIndex;
 	int GiveRoadflare;
+	int NavKitHours;
+	ref TStringArray NavKit;
+	string TrailerClass;
+	ref TStringArray TrailerParts;
 	ref TStringArray ColumnSites;
 	int ColumnDayStartUtcHour;
 	float RespawnNearMin;
@@ -116,6 +121,7 @@ class RefugeeArrivalRecord
 	string Id;
 	int FirstSeen;
 	int LastVehicle;
+	int LastNavKit;
 	int Lives;
 	float DeathX;
 	float DeathZ;
@@ -162,6 +168,8 @@ class RefugeeArrivals
 	static const string LEDGER = "$profile:DZDS\\arrivals_ledger.json";
 	static const int PICK_TRIES = 12;
 	static const int VEHICLE_REDRAWS = 4;
+	static const float TRAILER_SETBACK = 3.0;   // trailer centre behind the hitch, before alignment
+	static const float COUPLER_GAP = 0.3;       // coupler this far behind the hitch once aligned
 	static const string SELFTEST = DIR + "\\vehicle_selftest";
 	static const string SPOTTEST = DIR + "\\spot_selftest.json";
 
@@ -441,6 +449,87 @@ class RefugeeArrivals
 		return false;
 	}
 
+	// Blae 2026-10-17: a vehicle that can tow gets Simply's utility trailer parked behind it,
+	// unhitched, its coupler just behind the hitch, so "Attach trailer to car" works at once.
+	// What can tow is the trailer mod's own rule (DZT_HitchProfile: 4+ wheels, not a
+	// helicopter or boat). This makes init.c need Simply's Car Trailer, as @DZDS already does.
+	string GiveTrailer(CarScript car, RefugeeArrivalVehicle v, out Object trailerObj)
+	{
+		trailerObj = null;
+		if (v.Trailer != 1 || m_Config.TrailerClass == "")
+			return "";
+		vector hitch;
+		if (!DZT_HitchProfile.Get(car, hitch))
+			return ", no trailer (cannot tow)";
+		vector ori = car.GetOrientation();
+		vector back = car.GetDirection() * -1;
+		vector hitchWorld = car.ModelToWorld(hitch);
+		vector pos = hitchWorld + back * TRAILER_SETBACK;
+		pos[1] = GetGame().SurfaceY(pos[0], pos[2]);
+		Object blocking;
+		if (!ExpansionItemSpawnHelper.IsSpawnPositionFree(pos, ori, m_Config.TrailerClass, blocking) && blocking != car)
+		{
+			string by = "?";
+			if (blocking)
+				by = blocking.GetType();
+			return ", no trailer (spot blocked by " + by + ")";
+		}
+		EntityAI parent = null;
+		int remaining = 1;
+		bool notAttached = false;
+		// No player passed: attach the parts ourselves (see VehicleSelfTest).
+		trailerObj = ExpansionItemSpawnHelper.SpawnVehicle(m_Config.TrailerClass, null, parent, pos, ori, remaining, NULL, -1, "", notAttached);
+		CarScript trailer = CarScript.Cast(trailerObj);
+		if (!trailer)
+			return ", trailer spawn FAILED";
+		int parts = 0;
+		foreach (string part : m_Config.TrailerParts)
+		{
+			if (trailer.GetInventory().CreateAttachment(part))
+				parts++;
+		}
+		vector shift = hitchWorld + back * COUPLER_GAP - trailer.ModelToWorld(trailer.GetMemoryPointPos("dzt_coupler"));
+		shift[1] = 0;
+		trailer.SetPosition(trailer.GetPosition() + shift);
+		trailer.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.HealthMin, m_Config.HealthMax));
+		return ", " + m_Config.TrailerClass + " (" + parts + "/" + m_Config.TrailerParts.Count() + " parts)";
+	}
+
+	// Blae 2026-10-17: a paper map and a working GPS, once per NavKitHours per player. On the
+	// body if it fits, else in the vehicle's cargo, else on the ground. Anything that takes a
+	// 9V battery (the GPS) gets one and is switched on.
+	string GiveNavKit(PlayerBase player, CarScript car)
+	{
+		TStringArray got = new TStringArray;
+		foreach (string cls : m_Config.NavKit)
+		{
+			string where = "";
+			EntityAI item = player.GetInventory().CreateInInventory(cls);
+			if (!item && car && car.GetInventory().GetCargo())
+			{
+				item = car.GetInventory().CreateEntityInCargo(cls);
+				where = " (vehicle)";
+			}
+			if (!item)
+			{
+				item = EntityAI.Cast(GetGame().CreateObjectEx(cls, player.GetPosition(), ECE_PLACE_ON_SURFACE));
+				where = " (ground)";
+			}
+			if (!item)
+			{
+				got.Insert(cls + " FAILED");
+				continue;
+			}
+			if (item.GetInventory().CreateAttachment("Battery9V") && item.GetCompEM())
+			{
+				item.GetCompEM().SwitchOn();
+				where = where + " on";
+			}
+			got.Insert(cls + where);
+		}
+		return got.ToString();
+	}
+
 	// Local check (2026-10-16): with $profile:DZDS\vehicle_selftest present, spawn every
 	// configured vehicle through the same SpawnVehicle + FillCargo path a respawn uses, log
 	// any part that didn't attach, empty slots and the kit size, then delete it.
@@ -483,16 +572,23 @@ class RefugeeArrivals
 					empty.Insert(InventorySlots.GetSlotName(slotId));
 			}
 			int items = -1;
+			string trailerNote = "";
+			Object trailerObj = null;
 			CarScript car = CarScript.Cast(obj);
 			if (car)
+			{
 				items = FillCargo(car);
+				trailerNote = GiveTrailer(car, v, trailerObj);
+			}
 			string verdict = "OK";
-			if (notAttached || items < 12)
+			if (notAttached || items < 12 || trailerNote.Contains("FAILED"))
 			{
 				verdict = "CHECK";
 				bad++;
 			}
-			Print("[DZDS VehicleTest] " + verdict + " " + v.ClassName + ": " + v.Parts.Count() + " part(s), failed " + failed.ToString() + ", kit item(s)=" + items + ", empty slots " + empty.ToString());
+			Print("[DZDS VehicleTest] " + verdict + " " + v.ClassName + ": " + v.Parts.Count() + " part(s), failed " + failed.ToString() + ", kit item(s)=" + items + trailerNote + ", empty slots " + empty.ToString());
+			if (trailerObj)
+				GetGame().ObjectDelete(trailerObj);
 			GetGame().ObjectDelete(obj);
 		}
 		Print("[DZDS VehicleTest] done: " + n + " vehicle(s), " + bad + " to check");
@@ -728,12 +824,13 @@ class RefugeeArrivals
 			got = "no vehicle (camp)";
 		int now = NowSeconds();
 		bool granted = false;
+		CarScript car = null;
 		if (plan.GrantVehicle)
 		{
 			EntityAI parent = player;
 			int remaining = 1;
 			Object obj = ExpansionItemSpawnHelper.SpawnVehicle(plan.Vehicle.ClassName, player, parent, plan.CarPos, plan.CarOri, remaining, plan.Vehicle.Parts, -1, "ExpansionCarKey");
-			CarScript car = CarScript.Cast(obj);
+			car = CarScript.Cast(obj);
 			if (car)
 			{
 				float fuelCap = car.GetFluidCapacity(CarFluid.FUEL);
@@ -741,7 +838,8 @@ class RefugeeArrivals
 				car.Leak(CarFluid.FUEL, fuelCap * (1 - fuel));
 				car.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.HealthMin, m_Config.HealthMax));
 				int items = FillCargo(car);
-				got = plan.Vehicle.ClassName + " with " + items + " item(s)";
+				Object trailerObj;
+				got = plan.Vehicle.ClassName + " with " + items + " item(s)" + GiveTrailer(car, plan.Vehicle, trailerObj);
 				granted = true;
 			}
 			else
@@ -751,6 +849,13 @@ class RefugeeArrivals
 		}
 
 		RefugeeArrivalRecord rec = FindRecord(plan.Uid);
+		string nav = "no nav kit (cooldown)";
+		bool navGiven = false;
+		if (m_Config.NavKit && m_Config.NavKit.Count() > 0 && (!rec || rec.LastNavKit <= 0 || now - rec.LastNavKit >= m_Config.NavKitHours * 3600))
+		{
+			nav = "nav kit " + GiveNavKit(player, car);
+			navGiven = true;
+		}
 		if (!rec)
 		{
 			rec = new RefugeeArrivalRecord;
@@ -762,13 +867,15 @@ class RefugeeArrivals
 		rec.HasDeath = 0;
 		if (granted)
 			rec.LastVehicle = now;
+		if (navGiven)
+			rec.LastNavKit = now;
 		MakeDirectory(DIR);
 		JsonFileLoader<RefugeeArrivalLedger>.JsonSaveFile(LEDGER, m_Ledger);
 
 		string kind = "respawn";
 		if (plan.FirstArrival)
 			kind = "first arrival";
-		Print("[DZDS Arrivals] " + kind + " at " + plan.Where + ", random=" + plan.RandomCharacter.ToString() + ", " + got + ", life " + rec.Lives);
+		Print("[DZDS Arrivals] " + kind + " at " + plan.Where + ", random=" + plan.RandomCharacter.ToString() + ", " + got + ", " + nav + ", life " + rec.Lives);
 	}
 }
 

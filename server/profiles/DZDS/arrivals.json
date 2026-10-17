@@ -11,6 +11,18 @@
     "ItemHealthMax": 0.85,
     "RadioFrequencyIndex": 0,
     "GiveRoadflare": 1,
+    "NavKitHours": 24,
+    "NavKit": [
+        "ChernarusMap",
+        "GPSReceiver"
+    ],
+    "TrailerClass": "DZT_UtilityTrailer",
+    "TrailerParts": [
+        "HatchbackWheel",
+        "HatchbackWheel",
+        "HeadlightH7",
+        "HeadlightH7"
+    ],
     "ColumnSites": [
         "East Roadside",
         "Northeast Roadside",
@@ -1590,7 +1602,8 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "CivilianSedan",
@@ -1612,7 +1625,8 @@
                 "CivSedanWheel",
                 "CivSedanWheel",
                 "CivSedanWheel"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "Sedan_02",
@@ -1634,7 +1648,8 @@
                 "Sedan_02_Wheel",
                 "Sedan_02_Wheel",
                 "Sedan_02_Wheel"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "Hatchback_02",
@@ -1656,7 +1671,8 @@
                 "Hatchback_02_Wheel",
                 "Hatchback_02_Wheel",
                 "Hatchback_02_Wheel"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "Truck_01_Covered",
@@ -1676,7 +1692,8 @@
                 "Truck_01_WheelDouble",
                 "Truck_01_Wheel",
                 "Truck_01_Wheel"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "CrSk_VAZ_2107",
@@ -1698,7 +1715,8 @@
                 "VAZ2107_dver_2_2",
                 "VAZ2107_bagazhnik",
                 "VAZ2107_kapot"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "CrSk_VAZ_2107_White",
@@ -1720,7 +1738,8 @@
                 "VAZ2107_dver_2_2_White",
                 "VAZ2107_bagazhnik_White",
                 "VAZ2107_kapot_White"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "CrSk_VAZ_2107_Black",
@@ -1742,7 +1761,8 @@
                 "VAZ2107_dver_2_2_Black",
                 "VAZ2107_bagazhnik_Black",
                 "VAZ2107_kapot_Black"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "CrSk_VAZ_2107_Beige",
@@ -1764,7 +1784,8 @@
                 "VAZ2107_dver_2_2_Beige",
                 "VAZ2107_bagazhnik_Beige",
                 "VAZ2107_kapot_Beige"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "CrSk_GAZ_3309",
@@ -1783,7 +1804,8 @@
                 "GAZ3309_dver_1_1",
                 "GAZ3309_dver_2_1",
                 "GAZ3309_kapot"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "CrSk_GAZ_3309_Cargo_Green",
@@ -1803,7 +1825,8 @@
                 "GAZ3309_dver_2_1_Green",
                 "GAZ3309_kapot_Green",
                 "GAZ3309_bagazhnik"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionUAZ",
@@ -1823,7 +1846,8 @@
                 "ExpansionUAZDoorCargo1",
                 "ExpansionUAZDoorCargo2",
                 "ExpansionUAZDoorHood"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionUAZCargo_Green",
@@ -1843,7 +1867,8 @@
                 "ExpansionUAZDoorCargo1_Green",
                 "ExpansionUAZDoorCargo2_Green",
                 "ExpansionUAZDoorHood_Green"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionUAZRoofless_Black",
@@ -1863,7 +1888,8 @@
                 "ExpansionUAZDoorCargo1_Black",
                 "ExpansionUAZDoorCargo2_Black",
                 "ExpansionUAZDoorHood_Black"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "Expansion_Landrover",
@@ -1885,7 +1911,8 @@
                 "Expansion_Landrover_Wheel",
                 "Expansion_Landrover_Wheel",
                 "Expansion_Landrover_Wheel"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "Expansion_Landrover_Red",
@@ -1907,7 +1934,8 @@
                 "Expansion_Landrover_Wheel_Red",
                 "Expansion_Landrover_Wheel_Red",
                 "Expansion_Landrover_Wheel_Red"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "Expansion_Landrover_Grey",
@@ -1929,7 +1957,8 @@
                 "Expansion_Landrover_Wheel_Grey",
                 "Expansion_Landrover_Wheel_Grey",
                 "Expansion_Landrover_Wheel_Grey"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "Expansion_Landrover_Yellow",
@@ -1951,7 +1980,8 @@
                 "Expansion_Landrover_Wheel_Yellow",
                 "Expansion_Landrover_Wheel_Yellow",
                 "Expansion_Landrover_Wheel_Yellow"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "UAZ_31514",
@@ -1960,7 +1990,8 @@
                 "CarBattery",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "UAZ_31514_hunter",
@@ -1969,7 +2000,8 @@
                 "CarBattery",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "UAZ_31514_yellow",
@@ -1978,7 +2010,8 @@
                 "CarBattery",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "UAZ_452",
@@ -1987,7 +2020,8 @@
                 "CarBattery",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "UAZ_452_offroad",
@@ -1996,7 +2030,8 @@
                 "CarBattery",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "UAZ_452_grey",
@@ -2005,7 +2040,8 @@
                 "CarBattery",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "TP_Apoc_M1025_NoGun",
@@ -2026,7 +2062,8 @@
                 "Offroad_02_Wheel",
                 "Offroad_02_Wheel",
                 "Offroad_02_Wheel"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "TP_Apoc_M1025_NoGun_Tan",
@@ -2047,7 +2084,8 @@
                 "Offroad_02_Wheel",
                 "Offroad_02_Wheel",
                 "Offroad_02_Wheel"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "TP_Apoc_M1025_NoGun_Camo",
@@ -2068,7 +2106,8 @@
                 "Offroad_02_Wheel",
                 "Offroad_02_Wheel",
                 "Offroad_02_Wheel"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "A2_KamAZ_Covered",
@@ -2089,7 +2128,8 @@
                 "A2_KamAZ_Doors_Driver",
                 "A2_KamAZ_Doors_Codriver",
                 "A2_KamAZ_Doors_Trunk"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "A2_KamAZ_Covered_Olive",
@@ -2110,7 +2150,8 @@
                 "A2_KamAZ_Doors_Driver_Olive",
                 "A2_KamAZ_Doors_Codriver_Olive",
                 "A2_KamAZ_Doors_Trunk"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "A2_OA_MTVR_Des",
@@ -2131,7 +2172,8 @@
                 "A2_OA_MTVR_Doors_Driver_Des",
                 "A2_OA_MTVR_Doors_Codriver_Des",
                 "A2_OA_MTVR_Doors_Trunk_Des"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "A2_OA_MTVR_Wdl",
@@ -2152,7 +2194,8 @@
                 "A2_OA_MTVR_Doors_Driver_Wdl",
                 "A2_OA_MTVR_Doors_Codriver_Wdl",
                 "A2_OA_MTVR_Doors_Trunk_Wdl"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "A2_OA_ACR_T810_v_ACR_Des",
@@ -2173,7 +2216,8 @@
                 "A2_OA_ACR_T810_Doors_Driver_Des",
                 "A2_OA_ACR_T810_Doors_Codriver_Des",
                 "A2_OA_ACR_T810_Doors_Trunk_Des"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "A2_OA_ACR_T810_v_ACR_Wdl",
@@ -2194,7 +2238,8 @@
                 "A2_OA_ACR_T810_Doors_Driver_Wdl",
                 "A2_OA_ACR_T810_Doors_Codriver_Wdl",
                 "A2_OA_ACR_T810_Doors_Trunk_Wdl"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionBus",
@@ -2209,7 +2254,8 @@
                 "ExpansionBusWheelDouble",
                 "ExpansionBusWheel",
                 "ExpansionBusWheelDouble"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionBus_Red",
@@ -2224,7 +2270,8 @@
                 "ExpansionBusWheelDouble",
                 "ExpansionBusWheel",
                 "ExpansionBusWheelDouble"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionTractor",
@@ -2240,7 +2287,8 @@
                 "SparkPlug",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionTractor_Red",
@@ -2256,7 +2304,8 @@
                 "SparkPlug",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionTractor_Blue",
@@ -2272,7 +2321,8 @@
                 "SparkPlug",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionVodnik",
@@ -2289,7 +2339,8 @@
                 "ExpansionVodnikWheel",
                 "ExpansionVodnikDoorDriver",
                 "ExpansionVodnikDoorCoDriver"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "MBM_Apocalypse_Truck",
@@ -2313,7 +2364,8 @@
                 "MBM_Apocalypse_Truck_doors_cargo1",
                 "MBM_Apocalypse_Truck_doors_trunk",
                 "MBM_Apocalypse_Truck_doors_trunk1"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "LM_Semi_Truck",
@@ -2334,7 +2386,8 @@
                 "LM_Semi_Truck_Doors_Driver",
                 "LM_Semi_Truck_Doors_CoDriver",
                 "LM_Semi_Truck_Doors_Hood"
-            ]
+            ],
+            "Trailer": 1
         },
         {
             "ClassName": "ExpansionMh6",
@@ -2352,7 +2405,8 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel"
-            ]
+            ],
+            "Trailer": 0
         },
         {
             "ClassName": "ExpansionGyrocopter",
@@ -2365,7 +2419,8 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel"
-            ]
+            ],
+            "Trailer": 0
         },
         {
             "ClassName": "EXT_MH6",
@@ -2379,7 +2434,8 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel"
-            ]
+            ],
+            "Trailer": 0
         },
         {
             "ClassName": "RFFSHeli_R22",
@@ -2396,7 +2452,8 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 0
         },
         {
             "ClassName": "RFFSHeli_LittleBird",
@@ -2411,7 +2468,8 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 0
         },
         {
             "ClassName": "ExpansionUh1h",
@@ -2429,7 +2487,8 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel"
-            ]
+            ],
+            "Trailer": 0
         },
         {
             "ClassName": "EXT_Mi8_Civilian",
@@ -2444,7 +2503,8 @@
                 "EXT_Mi8FrontWheel",
                 "EXT_Mi8BackWheel",
                 "EXT_Mi8Door"
-            ]
+            ],
+            "Trailer": 0
         },
         {
             "ClassName": "EXT_UH1Y",
@@ -2460,7 +2520,8 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel"
-            ]
+            ],
+            "Trailer": 0
         },
         {
             "ClassName": "RFFSHeli_UH1H",
@@ -2482,7 +2543,8 @@
                 "HatchbackWheel",
                 "HeadlightH7",
                 "HeadlightH7"
-            ]
+            ],
+            "Trailer": 0
         }
     ],
     "Archetypes": [

@@ -37,7 +37,10 @@ def arrival_items(preset: dict, vanilla: set[str], arrival_cfg: dict | None) -> 
     if not rules or not arrival_cfg:
         return []
     out, seen = [], set(vanilla)
-    for v in arrival_cfg.get("vehicles", []):
+    vehicles = list(arrival_cfg.get("vehicles", []))
+    if arrival_cfg.get("trailer"):   # the trailer parked behind a towing arrival vehicle
+        vehicles.append({"class": arrival_cfg["trailer"]["class"], "parts": arrival_cfg["trailer"]["parts"]})
+    for v in vehicles:
         for name, profile in [(v["class"], rules["vehicle_profile"])] + [(p, rules["part_profile"]) for p in v["parts"]]:
             if name not in seen:
                 seen.add(name)
