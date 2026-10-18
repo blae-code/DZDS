@@ -891,6 +891,34 @@ class CustomMission: MissionServer
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(RunVehicleSelfTest, 60000, false);
 		if (FileExist(RefugeeArrivals.SPOTTEST))
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(RunSpotSelfTest, 45000, false);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(ClearTrailers, 20000, false);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(ClearTrailers, 120000, true);
+	}
+
+	// Blae 2026-10-17: trailers crash the server. Simply's trailer is a driverless CarScript,
+	// and Expansion AI's eAIDamageHandler.OnDamageCalculated calls CrewMember(DRIVER) on any
+	// Transport that hits an infected, unchecked: the first zombie a trailer touches takes the
+	// engine down (crash logs 23:49 and 23:55 UTC, both RegisterTransportHit -> line 162).
+	// Until that is patched, every trailer in the world is removed, its cargo and parts
+	// dropped on the ground beside it. Arrivals stop handing them out (arrivals.yaml).
+	void ClearTrailers()
+	{
+		int cleared = 0;
+		auto node = CarScript.s_Expansion_AllVehicles.m_Head;
+		while (node)
+		{
+			DZT_UtilityTrailer trailer = DZT_UtilityTrailer.Cast(node.m_Value);
+			node = node.m_Next;
+			if (!trailer)
+				continue;
+			trailer.DZT_Detach();
+			MiscGameplayFunctions.ThrowAllItemsInInventory(trailer, ThrowEntityFlags.SPLIT);
+			Print("[DZDS] Trailer removed at " + trailer.GetPosition().ToString());
+			GetGame().ObjectDelete(trailer);
+			cleared++;
+		}
+		if (cleared > 0)
+			Print("[DZDS] Trailers removed: " + cleared);
 	}
 
 	void RunSpotSelfTest()

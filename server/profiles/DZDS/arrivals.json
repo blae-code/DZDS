@@ -16,7 +16,7 @@
         "ChernarusMap",
         "GPSReceiver"
     ],
-    "TrailerClass": "DZT_UtilityTrailer",
+    "TrailerClass": "",
     "TrailerParts": [
         "HatchbackWheel",
         "HatchbackWheel",

@@ -159,7 +159,7 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "GiveRoadflare": int(bool(cfg["give_roadflare"])),
         "NavKitHours": int(cfg["nav_kit"]["cooldown_hours"]),
         "NavKit": list(cfg["nav_kit"]["items"]),
-        "TrailerClass": cfg["trailer"]["class"],
+        "TrailerClass": cfg["trailer"]["class"] if cfg["trailer"].get("enabled", True) else "",
         "TrailerParts": list(cfg["trailer"]["parts"]),
         "ColumnSites": list((map_data.get("arrival_sites") or {}).keys()),
         "ColumnDayStartUtcHour": int(cfg["column_day_start_utc_hour"]),

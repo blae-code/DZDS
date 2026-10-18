@@ -349,10 +349,10 @@ AIRCRAFT = {"ExpansionMh6", "ExpansionGyrocopter", "EXT_MH6", "RFFSHeli_R22", "R
 def test_trailer_and_nav_kit_are_compiled(built):
     """Blae 2026-10-17: a towing vehicle comes with a trailer; every 24 h a new character gets a
     paper map and a working GPS (the walkie-talkie already comes with every character)."""
-    _, _, out = built
+    cfg, _, out = built
     assert out["NavKitHours"] == 24
     assert {"ChernarusMap", "GPSReceiver"} <= set(out["NavKit"])
-    assert out["TrailerClass"] == "DZT_UtilityTrailer"
+    assert cfg["trailer"]["class"] == "DZT_UtilityTrailer"   # TrailerClass is "" while trailers are off"
     assert out["TrailerParts"].count("HatchbackWheel") == 2
     flags = {v["ClassName"]: v["Trailer"] for v in out["Vehicles"]}
     assert {c for c, f in flags.items() if f == 0} == AIRCRAFT
@@ -391,3 +391,19 @@ def test_init_c_nav_kit_once_per_cooldown():
     assert "rec.LastNavKit = now;" in deliver and "GiveNavKit(player, car)" in deliver
     record = re.search(r"class RefugeeArrivalRecord\s*\{(.*?)\n\}", src, re.S).group(1)
     assert "int LastNavKit;" in record
+
+
+def test_trailers_are_off_and_cleared_from_the_world(built):
+    """Blae 2026-10-17: trailers crash the server (Expansion AI's eAIDamageHandler calls
+    CrewMember(DRIVER) on the driverless trailer when it hits an infected). Arrivals hand out
+    none (an empty TrailerClass makes GiveTrailer return early) and init.c removes any left."""
+    cfg, _, out = built
+    assert cfg["trailer"]["enabled"] is False and out["TrailerClass"] == ""
+    src = INIT_C.read_text()
+    assert 'm_Config.TrailerClass == ""' in src
+    assert "CallLater(ClearTrailers, 20000, false)" in src and "CallLater(ClearTrailers, 120000, true)" in src
+    body = re.search(r"void ClearTrailers\(\).*?\n\t\}", src, re.S).group(0)
+    for needle in ("DZT_UtilityTrailer.Cast(", "node = node.m_Next;", "ThrowAllItemsInInventory(trailer",
+                   "ObjectDelete(trailer)"):
+        assert needle in body, needle
+    assert body.index("node = node.m_Next;") < body.index("ObjectDelete(trailer)")   # advance before delete

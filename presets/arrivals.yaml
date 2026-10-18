@@ -291,7 +291,11 @@ nav_kit:
 # parked behind it, unhitched, coupler at the hitch ("Attach trailer to car" at the drawbar).
 # The trailer mod decides what can tow (4+ wheels, not a helicopter or boat); aircraft are
 # also skipped here explicitly. Parts: its two wheels and the two tail-lamp bulbs.
+# OFF (Blae, 2026-10-17): a trailer touching an infected crashes the server (Expansion AI's
+# eAIDamageHandler calls CrewMember(DRIVER) on the driverless trailer). init.c also removes
+# every trailer already in the world (ClearTrailers). Re-enable only once that is patched.
 trailer:
+  enabled: false
   class: DZT_UtilityTrailer
   parts: [HatchbackWheel, HatchbackWheel, HeadlightH7, HeadlightH7]
   skip: [ExpansionMh6, ExpansionGyrocopter, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
