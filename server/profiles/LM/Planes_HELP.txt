@@ -1,0 +1,13 @@
+LM_Planes config  ->  edit Planes.json then restart the server.
+Bad or missing values revert to default automatically.
+
+MaxHeightASL      (number)  Max metres above sea level. Default 1200. Range 50-10000.
+CanStall          (0 or 1)  1 = stalls enabled (a held stall cuts the engine), 0 = no stalling. Default 1.
+SpeedMultiplier   (number)  Scales each plane's own max speed. 1.0 = stock. Default 1.0.
+ThrustMultiplier  (number)  Scales each plane's own engine thrust. 1.0 = stock. Default 1.0.
+
+Spitfire = built-in guns (these work even without the weapon mod):
+  ShotSoundSet    (text)    Soundset played when the guns fire.
+  ImpactSoundSet  (text)    Soundset played at the bullet impact.
+  DamageAmmo      (text)    CfgAmmo class that supplies the bullet's damage.
+  DamageMult      (number)  Multiplies the bullet damage. Default 1.

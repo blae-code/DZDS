@@ -1,0 +1,12 @@
+{
+    "MaxHeightASL": 1200.0,
+    "CanStall": 1,
+    "SpeedMultiplier": 1.0,
+    "ThrustMultiplier": 1.0,
+    "Spitfire": {
+        "ShotSoundSet": "LM_Spitfire_Shot_SoundSet",
+        "ImpactSoundSet": "Grenade_explosion_SoundSet",
+        "DamageAmmo": "RGD5Grenade_Ammo",
+        "DamageMult": 1.0
+    }
+}
