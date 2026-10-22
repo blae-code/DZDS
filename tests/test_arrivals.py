@@ -287,7 +287,7 @@ def test_init_c_redraws_a_vehicle_that_fits_nowhere():
     plan = re.search(r"RefugeeArrivalPlan Plan\(PlayerIdentity identity\).*?\n\t\}", src, re.S).group(0)
     redraw = re.search(r"for \(int r = 0; r < VEHICLE_REDRAWS && !placed && plan\.GrantVehicle; r\+\+\)(.*?)\n\t\t\}", plan, re.S)
     assert redraw, "no vehicle re-draw loop in Plan"
-    assert "plan.Vehicle = PickVehicle();" in redraw.group(1)
+    assert "plan.Vehicle = PickVehicle(only);" in redraw.group(1)
     assert plan.index("VEHICLE_REDRAWS") < plan.rindex("plan.GrantVehicle = false;"), "re-draw before giving up"
 
 
@@ -407,3 +407,44 @@ def test_trailers_are_off_and_cleared_from_the_world(built):
                    "ObjectDelete(trailer)"):
         assert needle in body, needle
     assert body.index("node = node.m_Next;") < body.index("ObjectDelete(trailer)")   # advance before delete
+
+
+AIRCRAFT = {"ExpansionMh6", "ExpansionGyrocopter", "EXT_MH6", "RFFSHeli_R22", "RFFSHeli_LittleBird",
+            "ExpansionUh1h", "EXT_Mi8_Civilian", "EXT_UH1Y", "RFFSHeli_UH1H"}
+BLAE_ID = "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ="
+
+
+def test_blae_is_favored_with_every_aircraft(built):
+    """Blae 2026-10-21: the server owner's vehicle is always an aircraft (any of the 9)."""
+    _, _, out = built
+    fav = {f["Id"]: f for f in out["Favored"]}
+    assert set(fav[BLAE_ID]["Vehicles"]) == AIRCRAFT
+    assert AIRCRAFT <= {v["ClassName"] for v in out["Vehicles"]}
+
+
+def test_favored_vehicle_must_be_in_the_pool(built):
+    _, map_data, _ = built
+    bad = yaml.safe_load(arrivals.PRESET.read_text())
+    bad["favored"][0]["vehicles"].append("UAZ_452")
+    with pytest.raises(SystemExit, match="UAZ_452"):
+        arrivals.build(bad, map_data, arrivals.mission_dir(map_data))
+
+
+def test_favored_json_keys_are_init_c_fields(built):
+    _, _, out = built
+    body = re.search(r"class RefugeeArrivalFavored\s*\{(.*?)\n\}", INIT_C.read_text(), re.S).group(1)
+    assert set(out["Favored"][0]) <= set(re.findall(r"\b(\w+);", body))
+
+
+def test_init_c_favored_pool_on_every_draw_and_cooldown_unchanged():
+    """Blae 2026-10-21: the favored pool restricts WHICH vehicle, never WHETHER: the 24 h
+    cooldown still applies, and the redraw loop keeps drawing from the same pool."""
+    src = INIT_C.read_text()
+    plan = re.search(r"RefugeeArrivalPlan Plan\(PlayerIdentity identity\).*?\n\t\}", src, re.S).group(0)
+    assert "TStringArray only = FavoredVehicles(plan.Uid);" in plan
+    assert plan.count("PickVehicle(only)") == 2 and "PickVehicle()" not in plan
+    assert "NowSeconds() - rec.LastVehicle < m_Config.CooldownHours * 3600)\n\t\t\tplan.GrantVehicle = false;" in plan
+    pick = re.search(r"RefugeeArrivalVehicle PickVehicle\(TStringArray only = null\).*?\n\t\}", src, re.S).group(0)
+    assert "only.Find(v.ClassName)" in pick and "only.Find(w.ClassName)" in pick
+    assert "if (total <= 0)" in pick, "an unmatched list must fall back to the whole pool"
+    assert "!m_Config.Favored" in src, "older arrivals.json without Favored must still load"

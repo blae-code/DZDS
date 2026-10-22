@@ -302,6 +302,14 @@ trailer:
   parts: [HatchbackWheel, HatchbackWheel, HeadlightH7, HeadlightH7]
   skip: [ExpansionMh6, ExpansionGyrocopter, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
 
+# Favored players (Blae, 2026-10-21): a listed player's vehicle is always drawn from their
+# `vehicles` (at those vehicles' pool weights). It changes WHICH vehicle, never WHETHER: the
+# cooldown still applies. `id` is identity.GetId(), the id= in the ADM log.
+favored:
+  - name: blae
+    id: "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ="
+    vehicles: [ExpansionMh6, ExpansionGyrocopter, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
+
 # Refugee column (Blae, 2026-10-15): all FIRST arrivals on the same day wake at the same
 # arrival site; the site rotates daily in this order. A "day" starts at this UTC hour
 # (11 = 06:00 US Central) so one evening's session never splits across two sites.

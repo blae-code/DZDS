@@ -180,6 +180,9 @@ prints the live count. Since the launch:
   2026-10-22 by a full wipe** (Blae): `storage_1` backed up to
   `backups/storage_1-nasdara-20261022T0157Z` and renamed `storage_1.old-20261022` on the
   server. Boot 02:00 UTC: 0 decode errors, 0 `SCRIPT (E)`, World layer started, no crash.
+- 2026-10-22: favored players (`favored:` in `presets/arrivals.yaml`): Blae's respawn vehicle
+  is always one of the 9 aircraft. The 24 h cooldown still applies.
+  `make reset-respawns` (server STOPPED) clears everyone's cooldown and resets characters.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
@@ -242,6 +245,7 @@ make economy          # population + campaign-phase loot scaling (PHASE=... to f
 make patrols          # faction squad templates -> AIPatrolSettings.json (INTERIM=1 before @DZDS)
 make kan-camps        # presets/kan_camps.yaml -> KAN camps.json roles (server STOPPED, after pull)
 make arrivals         # refugee arrivals: presets/arrivals.yaml -> profiles/DZDS/arrivals.json (read by init.c)
+make reset-respawns   # server STOPPED: clear arrivals cooldowns + reset characters (DRY_RUN=1 / YES=1)
 make diplomacy        # presets/diplomacy.yaml -> profiles/DZDS/diplomacy.json (truces etc.)
 make war-status       # war ledger: front line, strength, standing, diplomacy
 make war-turn         # advance one war turn (docs/WAR_LEDGER.md)

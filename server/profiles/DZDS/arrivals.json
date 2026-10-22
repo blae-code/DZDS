@@ -1984,66 +1984,6 @@
             "Trailer": 1
         },
         {
-            "ClassName": "UAZ_31514",
-            "Weight": 2.0,
-            "Parts": [
-                "CarBattery",
-                "HeadlightH7",
-                "HeadlightH7"
-            ],
-            "Trailer": 1
-        },
-        {
-            "ClassName": "UAZ_31514_hunter",
-            "Weight": 2.0,
-            "Parts": [
-                "CarBattery",
-                "HeadlightH7",
-                "HeadlightH7"
-            ],
-            "Trailer": 1
-        },
-        {
-            "ClassName": "UAZ_31514_yellow",
-            "Weight": 2.0,
-            "Parts": [
-                "CarBattery",
-                "HeadlightH7",
-                "HeadlightH7"
-            ],
-            "Trailer": 1
-        },
-        {
-            "ClassName": "UAZ_452",
-            "Weight": 2.0,
-            "Parts": [
-                "CarBattery",
-                "HeadlightH7",
-                "HeadlightH7"
-            ],
-            "Trailer": 1
-        },
-        {
-            "ClassName": "UAZ_452_offroad",
-            "Weight": 2.0,
-            "Parts": [
-                "CarBattery",
-                "HeadlightH7",
-                "HeadlightH7"
-            ],
-            "Trailer": 1
-        },
-        {
-            "ClassName": "UAZ_452_grey",
-            "Weight": 2.0,
-            "Parts": [
-                "CarBattery",
-                "HeadlightH7",
-                "HeadlightH7"
-            ],
-            "Trailer": 1
-        },
-        {
             "ClassName": "TP_Apoc_M1025_NoGun",
             "Weight": 2.0,
             "Parts": [
@@ -2545,6 +2485,23 @@
                 "HeadlightH7"
             ],
             "Trailer": 0
+        }
+    ],
+    "Favored": [
+        {
+            "Id": "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ=",
+            "Name": "blae",
+            "Vehicles": [
+                "ExpansionMh6",
+                "ExpansionGyrocopter",
+                "EXT_MH6",
+                "RFFSHeli_R22",
+                "RFFSHeli_LittleBird",
+                "ExpansionUh1h",
+                "EXT_Mi8_Civilian",
+                "EXT_UH1Y",
+                "RFFSHeli_UH1H"
+            ]
         }
     ],
     "Archetypes": [

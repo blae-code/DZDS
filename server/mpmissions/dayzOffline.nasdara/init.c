@@ -55,6 +55,15 @@ class RefugeeArrivalVehicle
 	int Trailer;          // 1 = park a trailer behind it, if the trailer mod says it can tow
 }
 
+// A player whose vehicle is always drawn from Vehicles (Blae, 2026-10-21: the owner gets an
+// aircraft). Changes which vehicle, never whether: the cooldown still applies.
+class RefugeeArrivalFavored
+{
+	string Id;
+	string Name;
+	ref TStringArray Vehicles;
+}
+
 class RefugeeArrivalSlot
 {
 	string Name;
@@ -111,6 +120,7 @@ class RefugeeArrivalConfig
 	ref array<ref RefugeeArrivalPoint> ArrivalSites;
 	ref array<ref RefugeeArrivalPoint> RoadPoints;
 	ref array<ref RefugeeArrivalVehicle> Vehicles;
+	ref array<ref RefugeeArrivalFavored> Favored;
 	ref array<ref RefugeeArrivalArchetype> Archetypes;
 	float FirearmHealthMin;
 	float FirearmHealthMax;
@@ -199,8 +209,10 @@ class RefugeeArrivals
 			JsonFileLoader<RefugeeArrivalLedger>.JsonLoadFile(LEDGER, m_Ledger);
 		if (!m_Ledger.Players)
 			m_Ledger.Players = new array<ref RefugeeArrivalRecord>;
+		if (!m_Config.Favored)
+			m_Config.Favored = new array<ref RefugeeArrivalFavored>;
 
-		Print("[DZDS Arrivals] enabled=" + m_Config.Enabled + " sites=" + m_Config.ArrivalSites.Count() + " road=" + m_Config.RoadPoints.Count() + " vehicles=" + m_Config.Vehicles.Count() + " archetypes=" + m_Config.Archetypes.Count() + " known players=" + m_Ledger.Players.Count());
+		Print("[DZDS Arrivals] enabled=" + m_Config.Enabled + " sites=" + m_Config.ArrivalSites.Count() + " road=" + m_Config.RoadPoints.Count() + " vehicles=" + m_Config.Vehicles.Count() + " archetypes=" + m_Config.Archetypes.Count() + " favored=" + m_Config.Favored.Count() + " known players=" + m_Ledger.Players.Count());
 #ifdef DZDS_CAMPS
 		Print("[DZDS Arrivals] camp respawn within " + m_Config.CampRespawnRadius.ToString() + " m, pitched tents=" + DZDSCamps.PitchedCount().ToString());
 #endif
@@ -288,21 +300,47 @@ class RefugeeArrivals
 		return null;
 	}
 
-	RefugeeArrivalVehicle PickVehicle()
+	// The favored player's vehicle list, or null for everyone else.
+	TStringArray FavoredVehicles(string uid)
+	{
+		foreach (RefugeeArrivalFavored f : m_Config.Favored)
+		{
+			if (f.Id == uid && f.Vehicles && f.Vehicles.Count() > 0)
+				return f.Vehicles;
+		}
+		return null;
+	}
+
+	// Weighted draw from the pool, or only from the classes in `only` when given.
+	RefugeeArrivalVehicle PickVehicle(TStringArray only = null)
 	{
 		float total = 0;
 		foreach (RefugeeArrivalVehicle v : m_Config.Vehicles)
 		{
-			total += v.Weight;
+			if (!only || only.Find(v.ClassName) >= 0)
+				total += v.Weight;
+		}
+		if (total <= 0)
+		{
+			// No configured vehicle matches the list: draw from the whole pool instead.
+			only = null;
+			foreach (RefugeeArrivalVehicle a : m_Config.Vehicles)
+			{
+				total += a.Weight;
+			}
 		}
 		float roll = Math.RandomFloat(0, total);
+		RefugeeArrivalVehicle last = m_Config.Vehicles[m_Config.Vehicles.Count() - 1];
 		foreach (RefugeeArrivalVehicle w : m_Config.Vehicles)
 		{
+			if (only && only.Find(w.ClassName) < 0)
+				continue;
+			last = w;
 			roll -= w.Weight;
 			if (roll <= 0)
 				return w;
 		}
-		return m_Config.Vehicles[m_Config.Vehicles.Count() - 1];
+		return last;
 	}
 
 	RefugeeArrivalArchetype PickArchetype()
@@ -765,8 +803,9 @@ class RefugeeArrivals
 		plan.GrantVehicle = true;
 		if (rec && rec.LastVehicle > 0 && NowSeconds() - rec.LastVehicle < m_Config.CooldownHours * 3600)
 			plan.GrantVehicle = false;
+		TStringArray only = FavoredVehicles(plan.Uid);
 		if (plan.GrantVehicle)
-			plan.Vehicle = PickVehicle();
+			plan.Vehicle = PickVehicle(only);
 
 		bool placed = false;
 		if (plan.FirstArrival)
@@ -780,7 +819,7 @@ class RefugeeArrivals
 		for (int r = 0; r < VEHICLE_REDRAWS && !placed && plan.GrantVehicle; r++)
 		{
 			// A big vehicle (transport helicopter, semi) may fit no spot here: draw another.
-			plan.Vehicle = PickVehicle();
+			plan.Vehicle = PickVehicle(only);
 			if (!plan.FirstArrival)
 				placed = PickNearDeath(plan, rec);
 			if (!placed)

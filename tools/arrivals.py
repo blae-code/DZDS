@@ -138,6 +138,10 @@ def validate(cfg: dict, types: set[str]) -> None:
     stray = set(cfg["trailer"]["skip"]) - {v["class"] for v in cfg["vehicles"]}
     if stray:
         raise SystemExit(f"trailer.skip names no configured vehicle: {sorted(stray)}")
+    for f in cfg.get("favored", []):
+        stray = set(f["vehicles"]) - {v["class"] for v in cfg["vehicles"]}
+        if stray or not f["vehicles"]:
+            raise SystemExit(f"favored {f['name']} names no configured vehicle: {sorted(stray)}")
 
 
 def build(cfg: dict, map_data: dict, mission: Path) -> dict:
@@ -173,6 +177,8 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"]),
                       "Trailer": int(v["class"] not in cfg["trailer"]["skip"])}
                      for v in cfg["vehicles"]],
+        "Favored": [{"Id": f["id"], "Name": f["name"], "Vehicles": list(f["vehicles"])}
+                    for f in cfg.get("favored", [])],
         "Archetypes": archetypes(cfg),
         "FirearmHealthMin": float(cfg["firearm_health"][0]),
         "FirearmHealthMax": float(cfg["firearm_health"][1]),

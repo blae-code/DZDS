@@ -1,0 +1,135 @@
+#!/usr/bin/env python3
+"""Fresh respawns for everyone: clear the arrivals cooldowns and reset characters.
+
+Run it with the server STOPPED (it refuses otherwise: the server holds the arrivals ledger in
+memory and writes it back on every spawn and death, so an edit under a running server is lost):
+
+  1. stop the server in the panel
+  2. make reset-respawns            (DRY_RUN=1 to preview, YES=1 to skip the prompt)
+  3. start the server
+
+What it does, over SFTP (credentials from .env):
+  * downloads profiles/DZDS/arrivals_ledger.json and storage_1/players.db into
+    backups/reset-<UTC stamp>/ first;
+  * zeroes every player's LastVehicle (the 24 h vehicle cooldown), LastNavKit and HasDeath,
+    keeping the player known, so they come back on the respawn path (road + vehicle), not
+    as a first arrival at the refugee column;
+  * renames storage_1/players.db to players.db.old-<stamp> (never deleted), so every
+    character starts fresh. The world (storage_1/data) is untouched.
+
+The "is it stopped?" check is an A2S_INFO query to RCON_HOST:QUERY_PORT (default 26092),
+which the game answers only while it runs.
+"""
+from __future__ import annotations
+
+import argparse
+import asyncio
+import datetime as dt
+import json
+import os
+import socket
+import sys
+from pathlib import Path
+
+import active
+
+ROOT = active.ROOT
+A2S_INFO = b"\xff\xff\xff\xffTSource Engine Query\x00"
+QUERY_PORT = 26092
+
+
+def reset_ledger(ledger: dict) -> tuple[dict, int]:
+    players = ledger.get("Players") or []
+    for p in players:
+        p["LastVehicle"] = 0
+        p["LastNavKit"] = 0
+        p["HasDeath"] = 0
+    return {**ledger, "Players": players}, len(players)
+
+
+def server_is_up(host: str, port: int, timeout: float = 3.0) -> bool:
+    """True if anything answers an A2S_INFO query (an info reply or a challenge)."""
+    with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
+        s.settimeout(timeout)
+        try:
+            s.sendto(A2S_INFO, (host, port))
+            data, _ = s.recvfrom(1400)
+        except OSError:
+            return False
+    return data[:4] == b"\xff\xff\xff\xff" and data[4:5] in (b"I", b"A")
+
+
+def remote_paths() -> tuple[str, str]:
+    env = os.environ
+    base = (env.get("SFTP_REMOTE_ROOT") or "/").rstrip("/")
+    profiles = env.get("REMOTE_PROFILES_DIR") or "profiles"
+    missions = env.get("REMOTE_MPMISSIONS_DIR") or "mpmissions"
+    return (f"{base}/{profiles}/DZDS/arrivals_ledger.json",
+            f"{base}/{missions}/{active.mission_name()}/storage_1/players.db")
+
+
+async def apply(dry_run: bool, assume_yes: bool) -> int:
+    import asyncssh
+
+    env = os.environ
+    ledger_path, players_path = remote_paths()
+    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    backup = ROOT / "backups" / f"reset-{stamp}"
+    async with asyncssh.connect(env["SFTP_HOST"], port=int(env.get("SFTP_PORT") or 22),
+                                username=env["SFTP_USER"], password=env["SFTP_PASSWORD"],
+                                known_hosts=None) as conn:
+        async with conn.start_sftp_client() as sftp:
+            has_ledger = await sftp.exists(ledger_path)
+            has_players = await sftp.exists(players_path)
+            backup.mkdir(parents=True, exist_ok=True)
+            ledger, n = {"Players": []}, 0
+            if has_ledger:
+                await sftp.get(ledger_path, str(backup / "arrivals_ledger.json"))
+                ledger, n = reset_ledger(json.loads((backup / "arrivals_ledger.json").read_text()))
+            if has_players:
+                await sftp.get(players_path, str(backup / "players.db"))
+
+            print(f"backup:     {backup.relative_to(ROOT)}")
+            print(f"ledger:     {ledger_path}: " + (f"clear cooldowns for {n} player(s)" if has_ledger else "absent, nothing to clear"))
+            print(f"characters: {players_path}: " + (f"rename to players.db.old-{stamp}" if has_players else "absent, already fresh"))
+            if dry_run:
+                print("DRY_RUN: nothing changed on the server")
+                return 0
+            if not (has_ledger or has_players):
+                return 0
+            if not assume_yes and input("Apply to the server? [y/N] ").strip().lower() != "y":
+                print("aborted: nothing changed")
+                return 1
+
+            if has_ledger:
+                new = backup / "arrivals_ledger.reset.json"
+                new.write_text(json.dumps(ledger, indent=4))
+                tmp = ledger_path + ".reset-tmp"
+                await sftp.put(str(new), tmp)
+                await sftp.posix_rename(tmp, ledger_path)
+            if has_players:
+                await sftp.rename(players_path, f"{players_path}.old-{stamp}")
+    print("done: start the server from the panel")
+    return 0
+
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument("--dry-run", action="store_true", help="show what would change, change nothing")
+    ap.add_argument("--yes", action="store_true", help="don't prompt before writing")
+    args = ap.parse_args(argv)
+
+    host = os.environ.get("RCON_HOST")
+    port = int(os.environ.get("QUERY_PORT") or QUERY_PORT)
+    if not host:
+        print("RCON_HOST is not set in .env: can't check that the server is stopped")
+        return 2
+    if server_is_up(host, port):
+        print(f"The server is running ({host}:{port} answers). Stop the server in the panel first, then re-run.")
+        return 1
+    print(f"server is stopped ({host}:{port} silent)")
+    return asyncio.run(apply(args.dry_run, args.yes))
+
+
+if __name__ == "__main__":
+    sys.exit(main())
