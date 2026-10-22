@@ -1,0 +1,32 @@
+{
+  "folders": [
+    { "name": "DayZ (Ad Aspera)", "path": "." }
+  ],
+  "settings": {
+    "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+    "python.testing.pytestEnabled": true,
+    "python.testing.pytestArgs": ["tests", "-q"],
+    "files.exclude": {
+      "**/__pycache__": true,
+      ".pytest_cache": true
+    },
+    "search.exclude": {
+      ".venv": true,
+      "backups": true,
+      "build": true
+    },
+    "files.watcherExclude": {
+      "**/.venv/**": true,
+      "**/backups/**": true,
+      "**/build/**": true
+    },
+    "files.associations": {
+      "*.c": "c",
+      "*.cpp": "cpp",
+      "*.xml": "xml"
+    }
+  },
+  "extensions": {
+    "recommendations": ["ms-python.python", "redhat.vscode-xml", "redhat.vscode-yaml"]
+  }
+}

@@ -74,7 +74,7 @@ Operational task, with no new code. Produces the archive, the branch and the van
 - [ ] **Step 1: Branch**
 
 ```bash
-cd ~/Documents/Code/DZDS
+cd ~/Documents/Code/DayZ
 git switch -c badlands-relaunch
 ```
 
