@@ -72,3 +72,30 @@ def test_remote_paths_follow_the_active_mission(monkeypatch):
     ledger, players = rr.remote_paths()
     assert ledger == "/profiles/DZDS/arrivals_ledger.json"
     assert players.startswith("/mpmissions/dayzOffline.") and players.endswith("/storage_1/players.db")
+
+
+def test_reset_one_player_leaves_everyone_else_alone():
+    out, n = rr.reset_ledger(json.loads(json.dumps(LEDGER)), only="a=")
+    assert n == 1
+    a, b = out["Players"]
+    assert a["LastVehicle"] == 0 and a["LastNavKit"] == 0 and a["HasDeath"] == 0
+    assert b == LEDGER["Players"][1]
+
+
+def test_drop_character_removes_only_that_uid(tmp_path):
+    import sqlite3
+    db = tmp_path / "players.db"
+    with sqlite3.connect(db) as c:
+        c.execute('CREATE TABLE "Players" (Id INTEGER PRIMARY KEY NOT NULL, Alive INTEGER NOT NULL, '
+                  'UID CHAR(64) UNIQUE NOT NULL, Data BLOB NULL)')
+        c.executemany("INSERT INTO Players (Alive, UID, Data) VALUES (?, ?, ?)",
+                      [(1, "a=", b"x"), (0, "b=", b"y")])
+    assert rr.drop_character(db, "a=") == 1
+    assert rr.drop_character(db, "a=") == 0
+    with sqlite3.connect(db) as c:
+        assert c.execute("SELECT UID FROM Players").fetchall() == [("b=",)]
+
+
+def test_player_resolves_a_favored_name_to_its_id():
+    assert rr.resolve_player("Blae") == "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ="
+    assert rr.resolve_player("someid=") == "someid="

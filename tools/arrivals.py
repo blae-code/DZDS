@@ -83,6 +83,7 @@ def arrival_points(cfg: dict, map_data: dict, spots: list) -> list[dict]:
 
 
 SLOT_ORDER = ["clothing", "water", "food", "medical", "knife", "tools", "extra", "camp", "car"]
+OPTIONAL_SLOTS = ["fuel", "signal"]   # pilot profiles (aircraft: true) add these
 
 
 def archetypes(cfg: dict) -> list[dict]:
@@ -90,12 +91,13 @@ def archetypes(cfg: dict) -> list[dict]:
     for name, a in cfg["archetypes"].items():
         slots = [{"Name": s, "Min": int(a["slots"][s]["count"][0]), "Max": int(a["slots"][s]["count"][1]),
                   "MaxEach": int(a["slots"][s].get("max_each", 1)), "Items": list(a["slots"][s]["items"])}
-                 for s in SLOT_ORDER]
+                 for s in SLOT_ORDER + [o for o in OPTIONAL_SLOTS if o in a["slots"]]]
         guns = [{"WeaponClass": f["weapon"], "MagazineClass": f["magazine"] or "", "Ammo": f["ammo"],
                  "RoundsMin": int(f["rounds"][0]), "RoundsMax": int(f["rounds"][1]),
                  "SpareMin": int(f.get("spare", [0, 0])[0]), "SpareMax": int(f.get("spare", [0, 0])[1])}
                 for f in a["firearms"]]
-        out.append({"Name": name, "Weight": float(a["weight"]), "Slots": slots, "Firearms": guns})
+        out.append({"Name": name, "Weight": float(a["weight"]), "Aircraft": int(bool(a.get("aircraft"))),
+                    "Slots": slots, "Firearms": guns})
     return out
 
 
@@ -128,10 +130,18 @@ def validate(cfg: dict, types: set[str]) -> None:
         names += [c for s in a["slots"].values() for c in s["items"]]
         names += [f[k] for f in a["firearms"] for k in ("weapon", "magazine", "ammo") if f.get(k)]
     names += [cfg["trailer"]["class"]] + cfg["trailer"]["parts"] + cfg["nav_kit"]["items"]
+    names += cfg.get("fuel_cans", [])
     missing = sorted({n for n in names if n not in types})
     if missing:
         raise SystemExit(f"not in db/types.xml (typo or modded type not registered): {missing}")
-    for key in ("fuel", "vehicle_health", "item_health", "firearm_health"):
+    stray = set(cfg.get("aircraft", [])) - {v["class"] for v in cfg["vehicles"]}
+    if stray:
+        raise SystemExit(f"aircraft names no configured vehicle: {sorted(stray)}")
+    kinds = {bool(a.get("aircraft")) for a in cfg["archetypes"].values()}
+    if False not in kinds or (cfg.get("aircraft") and True not in kinds):
+        raise SystemExit("archetypes need at least one ground profile, and one pilot profile "
+                         "(aircraft: true) when any aircraft is configured")
+    for key in ("fuel", "aircraft_fuel", "vehicle_health", "item_health", "firearm_health"):
         lo, hi = cfg[key]
         if not 0 <= lo <= hi <= 1:
             raise SystemExit(f"{key} must be 0 <= min <= max <= 1, got {cfg[key]}")
@@ -157,6 +167,9 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "RandomCharacterOnRespawn": int(bool(cfg["random_character_on_respawn"])),
         "PlayerOffset": float(cfg["player_offset_m"]),
         "FuelMin": float(cfg["fuel"][0]), "FuelMax": float(cfg["fuel"][1]),
+        "AircraftFuelMin": float(cfg["aircraft_fuel"][0]), "AircraftFuelMax": float(cfg["aircraft_fuel"][1]),
+        "FuelCans": list(cfg.get("fuel_cans", [])),
+        "UnfillableSlots": list(cfg.get("unfillable_slots", [])),
         "HealthMin": float(cfg["vehicle_health"][0]), "HealthMax": float(cfg["vehicle_health"][1]),
         "ItemHealthMin": float(cfg["item_health"][0]), "ItemHealthMax": float(cfg["item_health"][1]),
         "RadioFrequencyIndex": int(cfg["radio"]["settler_net_index"]),
@@ -175,7 +188,8 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "ArrivalSites": arrival_points(cfg, map_data, spots),
         "RoadPoints": road,
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"]),
-                      "Trailer": int(v["class"] not in cfg["trailer"]["skip"])}
+                      "Trailer": int(v["class"] not in cfg["trailer"]["skip"]),
+                      "Aircraft": int(v["class"] in cfg.get("aircraft", []))}
                      for v in cfg["vehicles"]],
         "Favored": [{"Id": f["id"], "Name": f["name"], "Vehicles": list(f["vehicles"])}
                     for f in cfg.get("favored", [])],

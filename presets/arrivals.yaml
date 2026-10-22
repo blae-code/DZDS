@@ -34,6 +34,18 @@ exclude_points: []              # extra no-respawn zones [x, z, radius]
 # (attachment slot -> part class, colour-matched; cargo/camo/keychain slots left empty) and
 # every entry is proven by the local self-test (init.c VehicleSelfTest) before it ships.
 # A vehicle that fits nowhere near the spawn point is re-drawn, so big helicopters are safe.
+#
+# Aircraft (Blae, 2026-10-22: "comes with the requisite gear in all attachments, especially
+# inventory"). Every attachment slot the aircraft's config declares is filled (slot lists read
+# from each mod's config.bin): Expansion-framework helis also get a desert camo net, a key
+# chain, a wrench and a FULL jerrycan in their own slots; RedFalcon (RFFSHeli_*) helis get the
+# 10x100 flight storage case, which is the R22's only inventory (its own cargo is 0x0) and
+# where their kit goes. The one slot left empty is Tac_Radio: no loaded mod makes an item for
+# it (unfillable_slots). An aircraft's cargo is a pilot profile (aircraft: true archetypes).
+aircraft: &aircraft [ExpansionMh6, ExpansionGyrocopter, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
+aircraft_fuel: [0.6, 0.9]       # fraction of tank: enough to reach somewhere, not a full ferry
+fuel_cans: [CanisterGasoline]   # filled with gasoline wherever they spawn (slot or cargo)
+unfillable_slots: [Tac_Radio]   # the vehicle self-test ignores these when grading empty slots
 vehicles:
   # vanilla (30)
   - class: OffroadHatchback
@@ -175,32 +187,32 @@ vehicles:
   # small helicopters (2)
   - class: ExpansionMh6
     weight: 0.4
-    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, Expansion_Mh6_Door_1_1, Expansion_Mh6_Door_1_2, Expansion_Mh6_Door_2_1, Expansion_Mh6_Door_2_2, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, Expansion_Mh6_Door_1_1, Expansion_Mh6_Door_1_2, Expansion_Mh6_Door_2_1, Expansion_Mh6_Door_2_2, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, CamoNetDesert, ExpansionKeyChain_Black, Wrench, CanisterGasoline]
   - class: ExpansionGyrocopter
     weight: 0.4
-    parts: [ExpansionHelicopterBattery, HeadlightH7, SparkPlug, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+    parts: [ExpansionHelicopterBattery, HeadlightH7, SparkPlug, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, CamoNetDesert, ExpansionKeyChain_Black, Wrench, CanisterGasoline]
   - class: EXT_MH6
     weight: 0.4
-    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, CamoNetDesert, ExpansionKeyChain_Black, Wrench, CanisterGasoline]
   - class: RFFSHeli_R22
     weight: 0.4
-    parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, RFFSHeli_R22_DriverDoor, RFFSHeli_R22_CodriverDoor, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7]
+    parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, RFFSHeli_R22_DriverDoor, RFFSHeli_R22_CodriverDoor, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7, RFFSHeli_flight_case_red]
   - class: RFFSHeli_LittleBird
     weight: 0.4
-    parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7]
+    parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7, RFFSHeli_flight_case_red]
   # transport helicopters (1)
   - class: ExpansionUh1h
     weight: 0.25
-    parts: [HeadlightH7, ExpansionHelicopterBattery, ExpansionIgniterPlug, ExpansionHydraulicHoses, ExpansionUh1hDoor_1_1, ExpansionUh1hDoor_1_2, ExpansionUh1hDoor_2_1, ExpansionUh1hDoor_2_2, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+    parts: [HeadlightH7, ExpansionHelicopterBattery, ExpansionIgniterPlug, ExpansionHydraulicHoses, ExpansionUh1hDoor_1_1, ExpansionUh1hDoor_1_2, ExpansionUh1hDoor_2_1, ExpansionUh1hDoor_2_2, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, CamoNetDesert, ExpansionKeyChain_Black, Wrench, CanisterGasoline]
   - class: EXT_Mi8_Civilian
     weight: 0.25
-    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, EXT_Mi8FrontWheel, EXT_Mi8BackWheel, EXT_Mi8FrontWheel, EXT_Mi8BackWheel, EXT_Mi8Door]
+    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, EXT_Mi8FrontWheel, EXT_Mi8BackWheel, EXT_Mi8FrontWheel, EXT_Mi8BackWheel, EXT_Mi8Door, CamoNetDesert, ExpansionKeyChain_Black, Wrench, CanisterGasoline]
   - class: EXT_UH1Y
     weight: 0.25
-    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, EXT_UH1Y_door_1_1, EXT_UH1Y_door_2_1, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel]
+    parts: [ExpansionHelicopterBattery, HeadlightH7, ExpansionIgniterPlug, ExpansionHydraulicHoses, EXT_UH1Y_door_1_1, EXT_UH1Y_door_2_1, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, CamoNetDesert, ExpansionKeyChain_Black, Wrench, CanisterGasoline]
   - class: RFFSHeli_UH1H
     weight: 0.25
-    parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, RFFSHeli_UH1H_DriverDoor, RFFSHeli_UH1H_CodriverDoor, RFFSHeli_UH1H_Cargo1, RFFSHeli_UH1H_Cargo2, RFFSHeli_UH1H_Cargo1a, RFFSHeli_UH1H_Cargo2a, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7, HeadlightH7]
+    parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, RFFSHeli_UH1H_DriverDoor, RFFSHeli_UH1H_CodriverDoor, RFFSHeli_UH1H_Cargo1, RFFSHeli_UH1H_Cargo2, RFFSHeli_UH1H_Cargo1a, RFFSHeli_UH1H_Cargo2a, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7, HeadlightH7, RFFSHeli_flight_case_red]
 
 # Arrival cargo (Blae, 2026-10-15): ONE archetype per car, slots drawn WITHOUT replacement
 # (max_each 1, food 2), ~12-17 items + exactly one themed firearm. Item pools are disjoint
@@ -273,6 +285,48 @@ archetypes:
     firearms:
       - { weapon: Magnum, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
       - { weapon: Derringer_Black, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+  # Pilot profiles (Blae, 2026-10-22): an aircraft's cargo is always one of these, a ground
+  # vehicle's never is. Same slot rules as above ("car" = airframe field repair), plus a FULL
+  # jerrycan (fuel) and signalling (signal), so a pilot who sets down off-field can refuel,
+  # patch the airframe and be found.
+  bush_pilot:     # civilian backcountry flier: fish, hunt, camp, fix it with what's aboard
+    aircraft: true
+    weight: 60
+    slots:
+      clothing: { count: [2, 3], items: [BomberJacket_Brown, AviatorGlasses, CargoPants_Beige, HikingBoots_Brown, BaseballCap_Beige, WorkingGloves_Brown, MountainBag_Green] }
+      water:    { count: [1, 2], items: [Canteen, WaterBottle] }
+      food:     { count: [2, 3], max_each: 2, items: [TunaCan, SardinesCan, PeachesCan, Crackers] }
+      medical:  { count: [2, 2], items: [BandageDressing, PainkillerTablets, CharcoalTablets, VitaminBottle] }
+      knife:    { count: [1, 1], items: [HuntingKnife] }
+      tools:    { count: [1, 2], items: [Compass, Binoculars, FishingRod, Hook] }
+      extra:    { count: [1, 2], items: [Flashlight, Battery9V, Hatchet] }
+      camp:     { count: [1, 1], items: [Matchbox, Pot, Rope] }
+      car:      { count: [1, 1], items: [EpoxyPutty, DuctTape, TireRepairKit, Pliers] }
+      fuel:     { count: [1, 1], items: [CanisterGasoline] }
+      signal:   { count: [1, 1], items: [Roadflare] }
+    firearms:
+      - { weapon: Repeater, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+      - { weapon: Izh18, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
+      - { weapon: Mp133Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [6, 12] }
+  combat_pilot:   # downed military aircrew: flight helmet, sidearm or PDW, smoke to mark a LZ
+    aircraft: true
+    weight: 40
+    slots:
+      clothing: { count: [2, 3], items: [ZSh3PilotHelmet, PilotkaCap, AviatorGlasses, TacticalGloves_Black, USMCJacket_Desert, USMCPants_Desert, MilitaryBoots_Beige] }
+      water:    { count: [1, 2], items: [Canteen, WaterBottle] }
+      food:     { count: [2, 3], max_each: 2, items: [TunaCan, BakedBeansCan, Crackers, Pajka] }
+      medical:  { count: [2, 2], items: [BandageDressing, Morphine, Epinephrine, TetracyclineAntibiotics] }
+      knife:    { count: [1, 1], items: [CombatKnife] }
+      tools:    { count: [1, 2], items: [Compass, Binoculars, DuctTape] }
+      extra:    { count: [1, 2], items: [Flashlight, Battery9V, Chemlight_Red] }
+      camp:     { count: [1, 1], items: [Matchbox, Rope] }
+      car:      { count: [1, 1], items: [EpoxyPutty, TireRepairKit, Screwdriver, Pliers] }
+      fuel:     { count: [1, 1], items: [CanisterGasoline] }
+      signal:   { count: [1, 1], items: [M18SmokeGrenade_Green, M18SmokeGrenade_Red, M18SmokeGrenade_Yellow] }
+    firearms:
+      - { weapon: Glock19, magazine: Mag_Glock_15Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: FNX45, magazine: Mag_FNX45_15Rnd, ammo: Ammo_45ACP, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: CZ61, magazine: Mag_CZ61_20Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
 
 # Body kit (Blae, 2026-10-15): every new character also gets a PersonalRadio with a 9V battery,
 # tuned to the Settler net and switched OFF, plus one road flare. Index 0 = the first channel
@@ -300,15 +354,17 @@ trailer:
   enabled: false
   class: DZT_UtilityTrailer
   parts: [HatchbackWheel, HatchbackWheel, HeadlightH7, HeadlightH7]
-  skip: [ExpansionMh6, ExpansionGyrocopter, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
+  skip: *aircraft
 
 # Favored players (Blae, 2026-10-21): a listed player's vehicle is always drawn from their
 # `vehicles` (at those vehicles' pool weights). It changes WHICH vehicle, never WHETHER: the
 # cooldown still applies. `id` is identity.GetId(), the id= in the ADM log.
+# 2026-10-22: every aircraft EXCEPT the gyrocopter, whose 5x2 cargo can't hold a pilot kit (it
+# has no flight-case slot either), so the kit would land on the ground beside it.
 favored:
   - name: blae
     id: "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ="
-    vehicles: [ExpansionMh6, ExpansionGyrocopter, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
+    vehicles: [ExpansionMh6, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
 
 # Refugee column (Blae, 2026-10-15): all FIRST arrivals on the same day wake at the same
 # arrival site; the site rotates daily in this order. A "day" starts at this UTC hour

@@ -188,6 +188,16 @@ prints the live count. Since the launch:
   to `/@<id>.old-20261022` over SFTP (Blae approved) and the panel re-downloaded them on
   restart. Drift 67/67 OK; the 23:17 UTC boot shows 0 `SCRIPT (E)`, 0 decode errors, and World
   layer started. The `.old-20261022` folders can go once a client joins cleanly.
+- 2026-10-22: aircraft arrive fully kitted (Blae). Every attachment slot an aircraft declares
+  is filled. Expansion helis get a desert camo net, key chain, wrench and a FULL jerrycan, and
+  RedFalcon helis get the flight storage case, which is where their kit goes (the R22's own
+  cargo is 0x0). `Tac_Radio` stays empty because no loaded mod makes an item for it.
+  Aircraft get 60-90 % fuel and a pilot profile kit: `bush_pilot` or `combat_pilot`, both
+  with a full jerrycan and signalling gear. Blae's favored pool drops the gyrocopter (5x2
+  cargo). Also fixed: respawns woke ON the vehicle's spot (the R22 hit Blae as it spawned).
+  `make reset-respawns PLAYER=blae` resets one player. A local boot (old 164078 server)
+  compiled the mission cleanly, but then crashed in a mod animal, so the vehicle self-test
+  didn't run; verify on the live RPT's `[DZDS Arrivals]` line.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
@@ -250,7 +260,7 @@ make economy          # population + campaign-phase loot scaling (PHASE=... to f
 make patrols          # faction squad templates -> AIPatrolSettings.json (INTERIM=1 before @DZDS)
 make kan-camps        # presets/kan_camps.yaml -> KAN camps.json roles (server STOPPED, after pull)
 make arrivals         # refugee arrivals: presets/arrivals.yaml -> profiles/DZDS/arrivals.json (read by init.c)
-make reset-respawns   # server STOPPED: clear arrivals cooldowns + reset characters (DRY_RUN=1 / YES=1)
+make reset-respawns   # server STOPPED: clear arrivals cooldowns + reset characters (DRY_RUN=1 / YES=1 / PLAYER=blae)
 make diplomacy        # presets/diplomacy.yaml -> profiles/DZDS/diplomacy.json (truces etc.)
 make war-status       # war ledger: front line, strength, standing, diplomacy
 make war-turn         # advance one war turn (docs/WAR_LEDGER.md)

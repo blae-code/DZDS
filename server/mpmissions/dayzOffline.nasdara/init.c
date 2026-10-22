@@ -53,6 +53,7 @@ class RefugeeArrivalVehicle
 	float Weight;
 	ref TStringArray Parts;
 	int Trailer;          // 1 = park a trailer behind it, if the trailer mod says it can tow
+	int Aircraft;         // 1 = its cargo is a pilot profile, and it gets AircraftFuel
 }
 
 // A player whose vehicle is always drawn from Vehicles (Blae, 2026-10-21: the owner gets an
@@ -88,6 +89,7 @@ class RefugeeArrivalArchetype
 {
 	string Name;
 	float Weight;
+	int Aircraft;         // 1 = pilot profile: only for aircraft, which only get these
 	ref array<ref RefugeeArrivalSlot> Slots;
 	ref array<ref RefugeeArrivalFirearm> Firearms;
 }
@@ -113,6 +115,10 @@ class RefugeeArrivalConfig
 	float CampPlayerOffset;
 	float FuelMin;
 	float FuelMax;
+	float AircraftFuelMin;
+	float AircraftFuelMax;
+	ref TStringArray FuelCans;          // filled with gasoline wherever they spawn
+	ref TStringArray UnfillableSlots;   // no item exists for these: the self-test ignores them
 	float HealthMin;
 	float HealthMax;
 	float ItemHealthMin;
@@ -211,6 +217,16 @@ class RefugeeArrivals
 			m_Ledger.Players = new array<ref RefugeeArrivalRecord>;
 		if (!m_Config.Favored)
 			m_Config.Favored = new array<ref RefugeeArrivalFavored>;
+		if (!m_Config.FuelCans)
+			m_Config.FuelCans = new TStringArray;
+		if (!m_Config.UnfillableSlots)
+			m_Config.UnfillableSlots = new TStringArray;
+		if (m_Config.AircraftFuelMax <= 0)
+		{
+			// Older arrivals.json without aircraft fuel: aircraft get the ground range.
+			m_Config.AircraftFuelMin = m_Config.FuelMin;
+			m_Config.AircraftFuelMax = m_Config.FuelMax;
+		}
 
 		Print("[DZDS Arrivals] enabled=" + m_Config.Enabled + " sites=" + m_Config.ArrivalSites.Count() + " road=" + m_Config.RoadPoints.Count() + " vehicles=" + m_Config.Vehicles.Count() + " archetypes=" + m_Config.Archetypes.Count() + " favored=" + m_Config.Favored.Count() + " known players=" + m_Ledger.Players.Count());
 #ifdef DZDS_CAMPS
@@ -343,25 +359,43 @@ class RefugeeArrivals
 		return last;
 	}
 
-	RefugeeArrivalArchetype PickArchetype()
+	// Weighted draw among the pilot profiles (aircraft) or the ground ones (everything else).
+	// A config with none of the wanted kind draws from all of them.
+	RefugeeArrivalArchetype PickArchetype(bool aircraft)
 	{
+		int want = 0;
+		if (aircraft)
+			want = 1;
 		float total = 0;
 		foreach (RefugeeArrivalArchetype a : m_Config.Archetypes)
 		{
-			total += a.Weight;
+			if (a.Aircraft == want)
+				total += a.Weight;
+		}
+		bool any = total <= 0;
+		if (any)
+		{
+			foreach (RefugeeArrivalArchetype c : m_Config.Archetypes)
+			{
+				total += c.Weight;
+			}
 		}
 		float roll = Math.RandomFloat(0, total);
+		RefugeeArrivalArchetype last = m_Config.Archetypes[m_Config.Archetypes.Count() - 1];
 		foreach (RefugeeArrivalArchetype b : m_Config.Archetypes)
 		{
+			if (!any && b.Aircraft != want)
+				continue;
+			last = b;
 			roll -= b.Weight;
 			if (roll <= 0)
 				return b;
 		}
-		return m_Config.Archetypes[m_Config.Archetypes.Count() - 1];
+		return last;
 	}
 
-	// Kit the cargo can't take (no cargo: gyrocopter, R22; small: tractor) lands on the
-	// ground beside the vehicle, as if spilled from it, instead of being lost.
+	// Kit the cargo can't take (small cargo: gyrocopter, tractor) lands on the ground beside
+	// the vehicle, as if spilled from it, instead of being lost.
 	EntityAI SpillBeside(CarScript car, string cls)
 	{
 		vector pos = car.GetPosition() + Vector(Math.RandomFloatInclusive(-2.5, 2.5), 0, Math.RandomFloatInclusive(-2.5, 2.5));
@@ -369,15 +403,58 @@ class RefugeeArrivals
 		return EntityAI.Cast(GetGame().CreateObjectEx(cls, pos, ECE_PLACE_ON_SURFACE));
 	}
 
-	EntityAI Spawn(CarScript car, string cls, float hmin, float hmax)
+	// The vehicle's own cargo first, then the cargo of anything attached to it: a RedFalcon
+	// heli's flight storage case is its inventory (the R22's own cargo is 0x0).
+	static EntityAI CreateInVehicle(CarScript car, string cls)
 	{
 		EntityAI item = null;
 		if (car.GetInventory().GetCargo())
 			item = car.GetInventory().CreateEntityInCargo(cls);
+		for (int i = 0; !item && i < car.GetInventory().AttachmentCount(); i++)
+		{
+			EntityAI att = car.GetInventory().GetAttachmentFromIndex(i);
+			if (att && att.GetInventory().GetCargo())
+				item = att.GetInventory().CreateEntityInCargo(cls);
+		}
+		return item;
+	}
+
+	// A fuel can (FuelCans) arrives full of gasoline, wherever it spawned.
+	void TopUp(EntityAI item)
+	{
+		ItemBase can = ItemBase.Cast(item);
+		if (!can || m_Config.FuelCans.Find(item.GetType()) < 0)
+			return;
+		can.SetLiquidType(LIQUID_GASOLINE);
+		can.SetQuantityMax();
+	}
+
+	// Fill the fuel cans the vehicle carries in its own slots (an Expansion heli's jerrycan).
+	int TopUpAttached(CarScript car)
+	{
+		int n = 0;
+		for (int i = 0; i < car.GetInventory().AttachmentCount(); i++)
+		{
+			EntityAI att = car.GetInventory().GetAttachmentFromIndex(i);
+			if (att && m_Config.FuelCans.Find(att.GetType()) >= 0)
+			{
+				TopUp(att);
+				n++;
+			}
+		}
+		return n;
+	}
+
+	EntityAI Spawn(CarScript car, string cls, float hmin, float hmax)
+	{
+		EntityAI item = CreateInVehicle(car, cls);
 		if (!item)
 			item = SpillBeside(car, cls);
 		if (item)
+		{
 			item.SetHealth01("", "", Math.RandomFloatInclusive(hmin, hmax));
+			TopUp(item);
+		}
 		return item;
 	}
 
@@ -410,9 +487,7 @@ class RefugeeArrivals
 	{
 		if (rounds <= 0)
 			return;
-		Magazine m = null;
-		if (car.GetInventory().GetCargo())
-			m = Magazine.Cast(car.GetInventory().CreateEntityInCargo(cls));
+		Magazine m = Magazine.Cast(CreateInVehicle(car, cls));
 		if (!m)
 			m = Magazine.Cast(SpillBeside(car, cls));
 		if (!m)
@@ -448,12 +523,24 @@ class RefugeeArrivals
 		Print("[DZDS Arrivals] firearm " + f.WeaponClass + ": " + got.ToString());
 	}
 
+	// The engine's own sea and pond test. The old surface-name check ("water" in the name)
+	// misfired on Nasdara: on 2026-10-22 both respawns stood the player ON the vehicle's spot
+	// (PlacePlayer's fallback), and Blae's R22 hit him as it spawned.
 	static bool IsWater(float x, float z)
 	{
-		string surface;
-		GetGame().SurfaceGetType(x, z, surface);
-		surface.ToLower();
-		return surface.Contains("water");
+		return GetGame().SurfaceIsSea(x, z) || GetGame().SurfaceIsPond(x, z);
+	}
+
+	// Attachment slots the vehicle has and nothing fills (for the delivery log).
+	static int EmptySlots(EntityAI e)
+	{
+		int n = 0;
+		for (int s = 0; s < e.GetInventory().GetAttachmentSlotsCount(); s++)
+		{
+			if (!e.GetInventory().FindAttachment(e.GetInventory().GetAttachmentSlotId(s)))
+				n++;
+		}
+		return n;
 	}
 
 	// Pick a spot from `points`. With a vehicle, the spot must be free for that vehicle class.
@@ -543,9 +630,9 @@ class RefugeeArrivals
 		{
 			string where = "";
 			EntityAI item = player.GetInventory().CreateInInventory(cls);
-			if (!item && car && car.GetInventory().GetCargo())
+			if (!item && car)
 			{
-				item = car.GetInventory().CreateEntityInCargo(cls);
+				item = CreateInVehicle(car, cls);
 				where = " (vehicle)";
 			}
 			if (!item)
@@ -603,28 +690,41 @@ class RefugeeArrivals
 			if (failed.Count() > 0)
 				notAttached = true;
 			TStringArray empty = new TStringArray;
+			int missing = 0;
 			for (int s = 0; s < e.GetInventory().GetAttachmentSlotsCount(); s++)
 			{
 				int slotId = e.GetInventory().GetAttachmentSlotId(s);
 				if (!e.GetInventory().FindAttachment(slotId))
-					empty.Insert(InventorySlots.GetSlotName(slotId));
+				{
+					string slotName = InventorySlots.GetSlotName(slotId);
+					empty.Insert(slotName);
+					if (m_Config.UnfillableSlots.Find(slotName) < 0)
+						missing++;
+				}
 			}
 			int items = -1;
+			int cans = 0;
 			string trailerNote = "";
 			Object trailerObj = null;
 			CarScript car = CarScript.Cast(obj);
 			if (car)
 			{
-				items = FillCargo(car);
+				cans = TopUpAttached(car);
+				items = FillCargo(car, v.Aircraft == 1);
 				trailerNote = GiveTrailer(car, v, trailerObj);
 			}
 			string verdict = "OK";
-			if (notAttached || items < 12 || trailerNote.Contains("FAILED"))
+			// An aircraft must arrive with every fillable slot filled (Blae, 2026-10-22).
+			if (notAttached || items < 12 || trailerNote.Contains("FAILED") || (v.Aircraft == 1 && missing > 0))
 			{
 				verdict = "CHECK";
 				bad++;
 			}
-			Print("[DZDS VehicleTest] " + verdict + " " + v.ClassName + ": " + v.Parts.Count() + " part(s), failed " + failed.ToString() + ", kit item(s)=" + items + trailerNote + ", empty slots " + empty.ToString());
+			Print("[DZDS VehicleTest] " + verdict + " " + v.ClassName + ": " + v.Parts.Count() + " part(s), failed " + failed.ToString() + ", kit item(s)=" + items + ", full cans=" + cans + trailerNote + ", " + missing + " fillable slot(s) empty");
+			foreach (string slot : empty)
+			{
+				Print("[DZDS VehicleTest]   empty slot " + v.ClassName + "." + slot);
+			}
 			if (trailerObj)
 				GetGame().ObjectDelete(trailerObj);
 			GetGame().ObjectDelete(obj);
@@ -785,7 +885,11 @@ class RefugeeArrivals
 			}
 			side = -side;
 		}
-		plan.PlayerPos = plan.CarPos;
+		// Water on both sides: still beside the vehicle, never on its spot (a spawning
+		// vehicle hits whoever stands there).
+		float wx = plan.CarPos[0] + rx * offset * side;
+		float wz = plan.CarPos[2] + rz * offset * side;
+		plan.PlayerPos = Vector(wx, GetGame().SurfaceY(wx, wz), wz);
 	}
 
 	RefugeeArrivalPlan Plan(PlayerIdentity identity)
@@ -838,9 +942,9 @@ class RefugeeArrivals
 		return plan;
 	}
 
-	int FillCargo(CarScript car)
+	int FillCargo(CarScript car, bool aircraft)
 	{
-		RefugeeArrivalArchetype a = PickArchetype();
+		RefugeeArrivalArchetype a = PickArchetype(aircraft);
 		// Firearm first, so a crowded trunk can't push it out.
 		GiveFirearm(car, a);
 		TStringArray got = new TStringArray;
@@ -872,13 +976,17 @@ class RefugeeArrivals
 			car = CarScript.Cast(obj);
 			if (car)
 			{
+				bool aircraft = plan.Vehicle.Aircraft == 1;
 				float fuelCap = car.GetFluidCapacity(CarFluid.FUEL);
 				float fuel = Math.RandomFloatInclusive(m_Config.FuelMin, m_Config.FuelMax);
+				if (aircraft)
+					fuel = Math.RandomFloatInclusive(m_Config.AircraftFuelMin, m_Config.AircraftFuelMax);
 				car.Leak(CarFluid.FUEL, fuelCap * (1 - fuel));
 				car.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.HealthMin, m_Config.HealthMax));
-				int items = FillCargo(car);
+				int cans = TopUpAttached(car);
+				int items = FillCargo(car, aircraft);
 				Object trailerObj;
-				got = plan.Vehicle.ClassName + " with " + items + " item(s)" + GiveTrailer(car, plan.Vehicle, trailerObj);
+				got = plan.Vehicle.ClassName + " with " + items + " item(s), fuel " + Math.Round(fuel * 100).ToString() + "%, " + cans + " full can(s) attached, " + EmptySlots(car).ToString() + " empty slot(s)" + GiveTrailer(car, plan.Vehicle, trailerObj);
 				granted = true;
 			}
 			else
@@ -914,7 +1022,10 @@ class RefugeeArrivals
 		string kind = "respawn";
 		if (plan.FirstArrival)
 			kind = "first arrival";
-		Print("[DZDS Arrivals] " + kind + " at " + plan.Where + ", random=" + plan.RandomCharacter.ToString() + ", " + got + ", " + nav + ", life " + rec.Lives);
+		string beside = "";
+		if (car)
+			beside = ", player " + Math.Round(vector.Distance(player.GetPosition(), car.GetPosition())).ToString() + " m from it";
+		Print("[DZDS Arrivals] " + kind + " at " + plan.Where + ", random=" + plan.RandomCharacter.ToString() + ", " + got + beside + ", " + nav + ", life " + rec.Lives);
 	}
 }
 

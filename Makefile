@@ -134,8 +134,8 @@ mod-drift:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/mod_drift.py $(if $(ALL),--all)
 
 .PHONY: reset-respawns
-reset-respawns:   # server STOPPED: clear arrivals cooldowns + reset characters (DRY_RUN=1, YES=1)
-	$(ENV) $(PY) tools/reset_respawns.py $(if $(DRY_RUN),--dry-run) $(if $(YES),--yes)
+reset-respawns:   # server STOPPED: clear arrivals cooldowns + reset characters (DRY_RUN=1, YES=1, PLAYER=blae)
+	$(ENV) $(PY) tools/reset_respawns.py $(if $(DRY_RUN),--dry-run) $(if $(YES),--yes) $(if $(PLAYER),--player "$(PLAYER)")
 
 .PHONY: specs
 specs:

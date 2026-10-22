@@ -5,6 +5,14 @@
     "PlayerOffset": 9.0,
     "FuelMin": 0.25,
     "FuelMax": 0.5,
+    "AircraftFuelMin": 0.6,
+    "AircraftFuelMax": 0.9,
+    "FuelCans": [
+        "CanisterGasoline"
+    ],
+    "UnfillableSlots": [
+        "Tac_Radio"
+    ],
     "HealthMin": 0.5,
     "HealthMax": 0.7,
     "ItemHealthMin": 0.45,
@@ -1603,7 +1611,8 @@
                 "HatchbackWheel",
                 "HatchbackWheel"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "CivilianSedan",
@@ -1626,7 +1635,8 @@
                 "CivSedanWheel",
                 "CivSedanWheel"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "Sedan_02",
@@ -1649,7 +1659,8 @@
                 "Sedan_02_Wheel",
                 "Sedan_02_Wheel"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "Hatchback_02",
@@ -1672,7 +1683,8 @@
                 "Hatchback_02_Wheel",
                 "Hatchback_02_Wheel"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "Truck_01_Covered",
@@ -1693,7 +1705,8 @@
                 "Truck_01_Wheel",
                 "Truck_01_Wheel"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "CrSk_VAZ_2107",
@@ -1716,7 +1729,8 @@
                 "VAZ2107_bagazhnik",
                 "VAZ2107_kapot"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "CrSk_VAZ_2107_White",
@@ -1739,7 +1753,8 @@
                 "VAZ2107_bagazhnik_White",
                 "VAZ2107_kapot_White"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "CrSk_VAZ_2107_Black",
@@ -1762,7 +1777,8 @@
                 "VAZ2107_bagazhnik_Black",
                 "VAZ2107_kapot_Black"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "CrSk_VAZ_2107_Beige",
@@ -1785,7 +1801,8 @@
                 "VAZ2107_bagazhnik_Beige",
                 "VAZ2107_kapot_Beige"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "CrSk_GAZ_3309",
@@ -1805,7 +1822,8 @@
                 "GAZ3309_dver_2_1",
                 "GAZ3309_kapot"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "CrSk_GAZ_3309_Cargo_Green",
@@ -1826,7 +1844,8 @@
                 "GAZ3309_kapot_Green",
                 "GAZ3309_bagazhnik"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionUAZ",
@@ -1847,7 +1866,8 @@
                 "ExpansionUAZDoorCargo2",
                 "ExpansionUAZDoorHood"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionUAZCargo_Green",
@@ -1868,7 +1888,8 @@
                 "ExpansionUAZDoorCargo2_Green",
                 "ExpansionUAZDoorHood_Green"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionUAZRoofless_Black",
@@ -1889,7 +1910,8 @@
                 "ExpansionUAZDoorCargo2_Black",
                 "ExpansionUAZDoorHood_Black"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "Expansion_Landrover",
@@ -1912,7 +1934,8 @@
                 "Expansion_Landrover_Wheel",
                 "Expansion_Landrover_Wheel"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "Expansion_Landrover_Red",
@@ -1935,7 +1958,8 @@
                 "Expansion_Landrover_Wheel_Red",
                 "Expansion_Landrover_Wheel_Red"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "Expansion_Landrover_Grey",
@@ -1958,7 +1982,8 @@
                 "Expansion_Landrover_Wheel_Grey",
                 "Expansion_Landrover_Wheel_Grey"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "Expansion_Landrover_Yellow",
@@ -1981,7 +2006,8 @@
                 "Expansion_Landrover_Wheel_Yellow",
                 "Expansion_Landrover_Wheel_Yellow"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "TP_Apoc_M1025_NoGun",
@@ -2003,7 +2029,8 @@
                 "Offroad_02_Wheel",
                 "Offroad_02_Wheel"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "TP_Apoc_M1025_NoGun_Tan",
@@ -2025,7 +2052,8 @@
                 "Offroad_02_Wheel",
                 "Offroad_02_Wheel"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "TP_Apoc_M1025_NoGun_Camo",
@@ -2047,7 +2075,8 @@
                 "Offroad_02_Wheel",
                 "Offroad_02_Wheel"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "A2_KamAZ_Covered",
@@ -2069,7 +2098,8 @@
                 "A2_KamAZ_Doors_Codriver",
                 "A2_KamAZ_Doors_Trunk"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "A2_KamAZ_Covered_Olive",
@@ -2091,7 +2121,8 @@
                 "A2_KamAZ_Doors_Codriver_Olive",
                 "A2_KamAZ_Doors_Trunk"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "A2_OA_MTVR_Des",
@@ -2113,7 +2144,8 @@
                 "A2_OA_MTVR_Doors_Codriver_Des",
                 "A2_OA_MTVR_Doors_Trunk_Des"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "A2_OA_MTVR_Wdl",
@@ -2135,7 +2167,8 @@
                 "A2_OA_MTVR_Doors_Codriver_Wdl",
                 "A2_OA_MTVR_Doors_Trunk_Wdl"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "A2_OA_ACR_T810_v_ACR_Des",
@@ -2157,7 +2190,8 @@
                 "A2_OA_ACR_T810_Doors_Codriver_Des",
                 "A2_OA_ACR_T810_Doors_Trunk_Des"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "A2_OA_ACR_T810_v_ACR_Wdl",
@@ -2179,7 +2213,8 @@
                 "A2_OA_ACR_T810_Doors_Codriver_Wdl",
                 "A2_OA_ACR_T810_Doors_Trunk_Wdl"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionBus",
@@ -2195,7 +2230,8 @@
                 "ExpansionBusWheel",
                 "ExpansionBusWheelDouble"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionBus_Red",
@@ -2211,7 +2247,8 @@
                 "ExpansionBusWheel",
                 "ExpansionBusWheelDouble"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionTractor",
@@ -2228,7 +2265,8 @@
                 "HeadlightH7",
                 "HeadlightH7"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionTractor_Red",
@@ -2245,7 +2283,8 @@
                 "HeadlightH7",
                 "HeadlightH7"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionTractor_Blue",
@@ -2262,7 +2301,8 @@
                 "HeadlightH7",
                 "HeadlightH7"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionVodnik",
@@ -2280,7 +2320,8 @@
                 "ExpansionVodnikDoorDriver",
                 "ExpansionVodnikDoorCoDriver"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "MBM_Apocalypse_Truck",
@@ -2305,7 +2346,8 @@
                 "MBM_Apocalypse_Truck_doors_trunk",
                 "MBM_Apocalypse_Truck_doors_trunk1"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "LM_Semi_Truck",
@@ -2327,7 +2369,8 @@
                 "LM_Semi_Truck_Doors_CoDriver",
                 "LM_Semi_Truck_Doors_Hood"
             ],
-            "Trailer": 1
+            "Trailer": 1,
+            "Aircraft": 0
         },
         {
             "ClassName": "ExpansionMh6",
@@ -2344,9 +2387,14 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel",
-                "HatchbackWheel"
+                "HatchbackWheel",
+                "CamoNetDesert",
+                "ExpansionKeyChain_Black",
+                "Wrench",
+                "CanisterGasoline"
             ],
-            "Trailer": 0
+            "Trailer": 0,
+            "Aircraft": 1
         },
         {
             "ClassName": "ExpansionGyrocopter",
@@ -2358,9 +2406,14 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel",
-                "HatchbackWheel"
+                "HatchbackWheel",
+                "CamoNetDesert",
+                "ExpansionKeyChain_Black",
+                "Wrench",
+                "CanisterGasoline"
             ],
-            "Trailer": 0
+            "Trailer": 0,
+            "Aircraft": 1
         },
         {
             "ClassName": "EXT_MH6",
@@ -2373,9 +2426,14 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel",
-                "HatchbackWheel"
+                "HatchbackWheel",
+                "CamoNetDesert",
+                "ExpansionKeyChain_Black",
+                "Wrench",
+                "CanisterGasoline"
             ],
-            "Trailer": 0
+            "Trailer": 0,
+            "Aircraft": 1
         },
         {
             "ClassName": "RFFSHeli_R22",
@@ -2391,9 +2449,11 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel",
-                "HeadlightH7"
+                "HeadlightH7",
+                "RFFSHeli_flight_case_red"
             ],
-            "Trailer": 0
+            "Trailer": 0,
+            "Aircraft": 1
         },
         {
             "ClassName": "RFFSHeli_LittleBird",
@@ -2407,9 +2467,11 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel",
-                "HeadlightH7"
+                "HeadlightH7",
+                "RFFSHeli_flight_case_red"
             ],
-            "Trailer": 0
+            "Trailer": 0,
+            "Aircraft": 1
         },
         {
             "ClassName": "ExpansionUh1h",
@@ -2426,9 +2488,14 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel",
-                "HatchbackWheel"
+                "HatchbackWheel",
+                "CamoNetDesert",
+                "ExpansionKeyChain_Black",
+                "Wrench",
+                "CanisterGasoline"
             ],
-            "Trailer": 0
+            "Trailer": 0,
+            "Aircraft": 1
         },
         {
             "ClassName": "EXT_Mi8_Civilian",
@@ -2442,9 +2509,14 @@
                 "EXT_Mi8BackWheel",
                 "EXT_Mi8FrontWheel",
                 "EXT_Mi8BackWheel",
-                "EXT_Mi8Door"
+                "EXT_Mi8Door",
+                "CamoNetDesert",
+                "ExpansionKeyChain_Black",
+                "Wrench",
+                "CanisterGasoline"
             ],
-            "Trailer": 0
+            "Trailer": 0,
+            "Aircraft": 1
         },
         {
             "ClassName": "EXT_UH1Y",
@@ -2459,9 +2531,14 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HatchbackWheel",
-                "HatchbackWheel"
+                "HatchbackWheel",
+                "CamoNetDesert",
+                "ExpansionKeyChain_Black",
+                "Wrench",
+                "CanisterGasoline"
             ],
-            "Trailer": 0
+            "Trailer": 0,
+            "Aircraft": 1
         },
         {
             "ClassName": "RFFSHeli_UH1H",
@@ -2482,9 +2559,11 @@
                 "HatchbackWheel",
                 "HatchbackWheel",
                 "HeadlightH7",
-                "HeadlightH7"
+                "HeadlightH7",
+                "RFFSHeli_flight_case_red"
             ],
-            "Trailer": 0
+            "Trailer": 0,
+            "Aircraft": 1
         }
     ],
     "Favored": [
@@ -2493,7 +2572,6 @@
             "Name": "blae",
             "Vehicles": [
                 "ExpansionMh6",
-                "ExpansionGyrocopter",
                 "EXT_MH6",
                 "RFFSHeli_R22",
                 "RFFSHeli_LittleBird",
@@ -2508,6 +2586,7 @@
         {
             "Name": "deserter",
             "Weight": 30.0,
+            "Aircraft": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -2648,6 +2727,7 @@
         {
             "Name": "trucker",
             "Weight": 25.0,
+            "Aircraft": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -2774,6 +2854,7 @@
         {
             "Name": "nomad",
             "Weight": 25.0,
+            "Aircraft": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -2902,6 +2983,7 @@
         {
             "Name": "townie",
             "Weight": 20.0,
+            "Aircraft": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -3024,6 +3106,322 @@
                     "RoundsMax": 12,
                     "SpareMin": 0,
                     "SpareMax": 0
+                }
+            ]
+        },
+        {
+            "Name": "bush_pilot",
+            "Weight": 60.0,
+            "Aircraft": 1,
+            "Slots": [
+                {
+                    "Name": "clothing",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "BomberJacket_Brown",
+                        "AviatorGlasses",
+                        "CargoPants_Beige",
+                        "HikingBoots_Brown",
+                        "BaseballCap_Beige",
+                        "WorkingGloves_Brown",
+                        "MountainBag_Green"
+                    ]
+                },
+                {
+                    "Name": "water",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Canteen",
+                        "WaterBottle"
+                    ]
+                },
+                {
+                    "Name": "food",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 2,
+                    "Items": [
+                        "TunaCan",
+                        "SardinesCan",
+                        "PeachesCan",
+                        "Crackers"
+                    ]
+                },
+                {
+                    "Name": "medical",
+                    "Min": 2,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "BandageDressing",
+                        "PainkillerTablets",
+                        "CharcoalTablets",
+                        "VitaminBottle"
+                    ]
+                },
+                {
+                    "Name": "knife",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "HuntingKnife"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Compass",
+                        "Binoculars",
+                        "FishingRod",
+                        "Hook"
+                    ]
+                },
+                {
+                    "Name": "extra",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Flashlight",
+                        "Battery9V",
+                        "Hatchet"
+                    ]
+                },
+                {
+                    "Name": "camp",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Matchbox",
+                        "Pot",
+                        "Rope"
+                    ]
+                },
+                {
+                    "Name": "car",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "EpoxyPutty",
+                        "DuctTape",
+                        "TireRepairKit",
+                        "Pliers"
+                    ]
+                },
+                {
+                    "Name": "fuel",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "CanisterGasoline"
+                    ]
+                },
+                {
+                    "Name": "signal",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Roadflare"
+                    ]
+                }
+            ],
+            "Firearms": [
+                {
+                    "WeaponClass": "Repeater",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Izh18",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Mp133Shotgun",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_12gaPellets",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                }
+            ]
+        },
+        {
+            "Name": "combat_pilot",
+            "Weight": 40.0,
+            "Aircraft": 1,
+            "Slots": [
+                {
+                    "Name": "clothing",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "ZSh3PilotHelmet",
+                        "PilotkaCap",
+                        "AviatorGlasses",
+                        "TacticalGloves_Black",
+                        "USMCJacket_Desert",
+                        "USMCPants_Desert",
+                        "MilitaryBoots_Beige"
+                    ]
+                },
+                {
+                    "Name": "water",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Canteen",
+                        "WaterBottle"
+                    ]
+                },
+                {
+                    "Name": "food",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 2,
+                    "Items": [
+                        "TunaCan",
+                        "BakedBeansCan",
+                        "Crackers",
+                        "Pajka"
+                    ]
+                },
+                {
+                    "Name": "medical",
+                    "Min": 2,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "BandageDressing",
+                        "Morphine",
+                        "Epinephrine",
+                        "TetracyclineAntibiotics"
+                    ]
+                },
+                {
+                    "Name": "knife",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "CombatKnife"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Compass",
+                        "Binoculars",
+                        "DuctTape"
+                    ]
+                },
+                {
+                    "Name": "extra",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Flashlight",
+                        "Battery9V",
+                        "Chemlight_Red"
+                    ]
+                },
+                {
+                    "Name": "camp",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Matchbox",
+                        "Rope"
+                    ]
+                },
+                {
+                    "Name": "car",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "EpoxyPutty",
+                        "TireRepairKit",
+                        "Screwdriver",
+                        "Pliers"
+                    ]
+                },
+                {
+                    "Name": "fuel",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "CanisterGasoline"
+                    ]
+                },
+                {
+                    "Name": "signal",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "M18SmokeGrenade_Green",
+                        "M18SmokeGrenade_Red",
+                        "M18SmokeGrenade_Yellow"
+                    ]
+                }
+            ],
+            "Firearms": [
+                {
+                    "WeaponClass": "Glock19",
+                    "MagazineClass": "Mag_Glock_15Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "FNX45",
+                    "MagazineClass": "Mag_FNX45_15Rnd",
+                    "Ammo": "Ammo_45ACP",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "CZ61",
+                    "MagazineClass": "Mag_CZ61_20Rnd",
+                    "Ammo": "Ammo_380",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
                 }
             ]
         }

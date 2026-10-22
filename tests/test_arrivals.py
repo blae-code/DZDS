@@ -132,13 +132,16 @@ def test_unknown_classname_is_rejected(built):
 
 def test_archetype_weights(built):
     _, _, out = built
-    assert {a["Name"]: a["Weight"] for a in out["Archetypes"]} == \
-        {"deserter": 30.0, "trucker": 25.0, "nomad": 25.0, "townie": 20.0}
+    ground = {a["Name"]: a["Weight"] for a in out["Archetypes"] if not a["Aircraft"]}
+    pilots = {a["Name"]: a["Weight"] for a in out["Archetypes"] if a["Aircraft"]}
+    assert ground == {"deserter": 30.0, "trucker": 25.0, "nomad": 25.0, "townie": 20.0}
+    assert pilots == {"bush_pilot": 60.0, "combat_pilot": 40.0}
 
 
 CUTTING = {"CombatKnife", "KitchenKnife", "HuntingKnife"}
 CAR = {"TireRepairKit", "Wrench", "Screwdriver", "Pliers", "SparkPlug", "EpoxyPutty"}
 CAMP = {"Matchbox", "Pot", "PortableGasStove", "SmallGasCanister", "Rope"}
+AIRFRAME = {"EpoxyPutty", "DuctTape", "TireRepairKit", "Pliers", "Screwdriver"}   # a pilot's "car" slot
 
 
 def _slot(arch, name):
@@ -156,20 +159,22 @@ def test_simulated_kits_meet_the_spec(built):
             kit = arrivals.simulate_kit(arch, rng)
             assert kit[0] in weapons, "the firearm spawns first, so a full trunk can't crowd it out"
             items = [k for k in kit if k not in weapons and not k.startswith(("Ammo_", "Mag_"))]
-            assert 12 <= len(items) <= 17, (arch["Name"], kit)
+            lo, hi = (14, 19) if arch["Aircraft"] else (12, 17)   # pilots add fuel + signal
+            assert lo <= len(items) <= hi, (arch["Name"], kit)
             for name in set(items):
                 cap = 2 if name in food else 1
                 assert items.count(name) <= cap, (arch["Name"], name)
             assert sum(k in weapons for k in kit) == 1
             assert sum(k in CUTTING for k in items) == 1, (arch["Name"], kit)
-            assert sum(k in CAR for k in items) >= 1, (arch["Name"], kit)
+            assert sum(k in (AIRFRAME if arch["Aircraft"] else CAR) for k in items) >= 1, (arch["Name"], kit)
             assert sum(k in CAMP for k in items) >= 1, (arch["Name"], kit)
 
 
 def test_knife_car_and_camp_slots_are_guaranteed(built):
     _, _, out = built
     for arch in out["Archetypes"]:
-        for name, pool in (("knife", CUTTING), ("car", CAR), ("camp", CAMP)):
+        car = AIRFRAME if arch["Aircraft"] else CAR
+        for name, pool in (("knife", CUTTING), ("car", car), ("camp", CAMP)):
             s = _slot(arch, name)
             assert s["Min"] == s["Max"] == 1, (arch["Name"], name)
             assert set(s["Items"]) <= pool, (arch["Name"], name, set(s["Items"]) - pool)
@@ -197,8 +202,8 @@ def test_firearms_get_magazine_and_spare_rounds(built):
 
 def test_init_c_fill_cargo_uses_archetypes():
     src = INIT_C.read_text()
-    fill = re.search(r"int FillCargo\(CarScript car\).*?\n\t\}", src, re.S).group(0)
-    for needle in ("PickArchetype()", "ServerSetAmmoCount(", "SpareMin", "SpareMax"):
+    fill = re.search(r"int FillCargo\(CarScript car, bool aircraft\).*?\n\t\}", src, re.S).group(0)
+    for needle in ("PickArchetype(aircraft)", "ServerSetAmmoCount(", "SpareMin", "SpareMax"):
         assert needle in src, needle
     assert "PickGear()" not in src
     assert "FillSlot(" in fill and "GiveFirearm(" in fill
@@ -314,7 +319,7 @@ def test_init_c_spills_kit_that_does_not_fit_beside_the_vehicle():
     assert "SpillBeside(car, cls)" in spawn
     rounds = re.search(r"void GiveRounds\(CarScript car, string cls, int rounds, TStringArray got\).*?\n\t\}", src, re.S).group(0)
     assert "SpillBeside(car, cls)" in rounds
-    fill = re.search(r"int FillCargo\(CarScript car\).*?\n\t\}", src, re.S).group(0)
+    fill = re.search(r"int FillCargo\(CarScript car, bool aircraft\).*?\n\t\}", src, re.S).group(0)
     assert "if (!car.GetInventory().GetCargo())" not in fill, "a vehicle without cargo must still get its kit"
 
 
@@ -383,7 +388,7 @@ def test_init_c_trailer_follows_the_trailer_mods_hitch_rule():
 def test_init_c_nav_kit_once_per_cooldown():
     src = INIT_C.read_text()
     kit = re.search(r"string GiveNavKit\(PlayerBase player, CarScript car\).*?\n\t\}", src, re.S).group(0)
-    for needle in ("CreateInInventory(cls)", "CreateEntityInCargo(cls)", "ECE_PLACE_ON_SURFACE",
+    for needle in ("CreateInInventory(cls)", "CreateInVehicle(car, cls)", "ECE_PLACE_ON_SURFACE",
                    '"Battery9V"', "SwitchOn()"):
         assert needle in kit, needle
     deliver = re.search(r"void Deliver\(PlayerBase player, RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
@@ -414,11 +419,12 @@ AIRCRAFT = {"ExpansionMh6", "ExpansionGyrocopter", "EXT_MH6", "RFFSHeli_R22", "R
 BLAE_ID = "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ="
 
 
-def test_blae_is_favored_with_every_aircraft(built):
-    """Blae 2026-10-21: the server owner's vehicle is always an aircraft (any of the 9)."""
+def test_blae_is_favored_with_every_aircraft_that_holds_a_kit(built):
+    """Blae 2026-10-21: the server owner's vehicle is always an aircraft. 2026-10-22: one whose
+    inventory holds the pilot kit, so not the gyrocopter (5x2 cargo, no flight-case slot)."""
     _, _, out = built
     fav = {f["Id"]: f for f in out["Favored"]}
-    assert set(fav[BLAE_ID]["Vehicles"]) == AIRCRAFT
+    assert set(fav[BLAE_ID]["Vehicles"]) == AIRCRAFT - {"ExpansionGyrocopter"}
     assert AIRCRAFT <= {v["ClassName"] for v in out["Vehicles"]}
 
 
@@ -448,3 +454,103 @@ def test_init_c_favored_pool_on_every_draw_and_cooldown_unchanged():
     assert "only.Find(v.ClassName)" in pick and "only.Find(w.ClassName)" in pick
     assert "if (total <= 0)" in pick, "an unmatched list must fall back to the whole pool"
     assert "!m_Config.Favored" in src, "older arrivals.json without Favored must still load"
+
+
+# Slot -> item for every attachment slot each aircraft's config.bin declares (read from the
+# mods 2026-10-22), beyond the flight parts it already had. Tac_Radio has no item in any
+# loaded mod, so it is the one slot left empty.
+EXPANSION_HELIS = {"ExpansionMh6", "ExpansionGyrocopter", "EXT_MH6", "ExpansionUh1h", "EXT_Mi8_Civilian", "EXT_UH1Y"}
+EXPANSION_SLOT_GEAR = {"CamoNetDesert", "ExpansionKeyChain_Black", "Wrench", "CanisterGasoline"}
+RFFS_HELIS = {"RFFSHeli_R22", "RFFSHeli_LittleBird", "RFFSHeli_UH1H"}
+
+
+def test_aircraft_arrive_with_every_slot_filled(built):
+    """Blae 2026-10-22: an aircraft comes "with the requisite gear in all attachments": camo net,
+    key chain, wrench and jerrycan in an Expansion heli's own slots; the flight storage case
+    (its inventory) on a RedFalcon heli."""
+    cfg, _, out = built
+    assert EXPANSION_HELIS | RFFS_HELIS == AIRCRAFT == set(cfg["aircraft"])
+    parts = {v["ClassName"]: v["Parts"] for v in out["Vehicles"]}
+    for cls in EXPANSION_HELIS:
+        assert EXPANSION_SLOT_GEAR <= set(parts[cls]), cls
+    for cls in RFFS_HELIS:
+        assert parts[cls].count("RFFSHeli_flight_case_red") == 1, cls
+    assert out["UnfillableSlots"] == ["Tac_Radio"]
+    assert out["FuelCans"] == ["CanisterGasoline"]
+
+
+def test_aircraft_flag_and_fuel_are_compiled(built):
+    cfg, _, out = built
+    for v in out["Vehicles"]:
+        assert v["Aircraft"] == int(v["ClassName"] in AIRCRAFT), v["ClassName"]
+    assert out["FuelMax"] < out["AircraftFuelMin"] <= out["AircraftFuelMax"] <= 1
+
+
+def test_pilot_profiles_carry_fuel_signal_and_a_firearm(built):
+    """Every pilot kit has exactly one full jerrycan, one signal item and one firearm."""
+    _, _, out = built
+    rng = random.Random(11)
+    pilots = [a for a in out["Archetypes"] if a["Aircraft"]]
+    assert {a["Name"] for a in pilots} == {"bush_pilot", "combat_pilot"}
+    for arch in pilots:
+        signal = set(_slot(arch, "signal")["Items"])
+        for _ in range(500):
+            kit = arrivals.simulate_kit(arch, rng)
+            assert kit.count("CanisterGasoline") == 1, kit
+            assert sum(k in signal for k in kit) == 1, kit
+    ground = [a for a in out["Archetypes"] if not a["Aircraft"]]
+    assert all({s["Name"] for s in a["Slots"]} == set(arrivals.SLOT_ORDER) for a in ground)
+
+
+def test_aircraft_without_a_pilot_profile_is_rejected(built):
+    _, map_data, _ = built
+    bad = yaml.safe_load(arrivals.PRESET.read_text())
+    for name in ("bush_pilot", "combat_pilot"):
+        del bad["archetypes"][name]
+    with pytest.raises(SystemExit, match="pilot profile"):
+        arrivals.build(bad, map_data, arrivals.mission_dir(map_data))
+
+
+def test_vehicle_and_archetype_json_keys_are_init_c_fields(built):
+    _, _, out = built
+    src = INIT_C.read_text()
+    for cls, rows in (("RefugeeArrivalVehicle", out["Vehicles"]), ("RefugeeArrivalArchetype", out["Archetypes"])):
+        body = re.search(rf"class {cls}\s*\{{(.*?)\n\}}", src, re.S).group(1)
+        assert set(rows[0]) <= set(re.findall(r"\b(\w+);", body)), cls
+
+
+def test_init_c_aircraft_get_pilot_profiles_fuel_and_full_cans():
+    src = INIT_C.read_text()
+    pick = re.search(r"RefugeeArrivalArchetype PickArchetype\(bool aircraft\).*?\n\t\}", src, re.S).group(0)
+    assert "a.Aircraft == want" in pick and "b.Aircraft != want" in pick
+    deliver = re.search(r"void Deliver\(PlayerBase player, RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
+    for needle in ("AircraftFuelMin", "TopUpAttached(car)", "FillCargo(car, aircraft)"):
+        assert needle in deliver, needle
+    test = re.search(r"void VehicleSelfTest\(\).*?\n\t\}", src, re.S).group(0)
+    assert "FillCargo(car, v.Aircraft == 1)" in test and "UnfillableSlots" in test
+    top = re.search(r"void TopUp\(EntityAI item\).*?\n\t\}", src, re.S).group(0)
+    assert "SetLiquidType(LIQUID_GASOLINE)" in top and "SetQuantityMax()" in top
+
+
+def test_init_c_kit_goes_into_attached_cargo_before_the_ground():
+    """The R22's own cargo is 0x0: its kit belongs in the flight storage case attached to it."""
+    src = INIT_C.read_text()
+    inv = re.search(r"static EntityAI CreateInVehicle\(CarScript car, string cls\).*?\n\t\}", src, re.S).group(0)
+    assert "GetAttachmentFromIndex(i)" in inv and "att.GetInventory().CreateEntityInCargo(cls)" in inv
+    for fn in (r"EntityAI Spawn\(CarScript car, string cls, float hmin, float hmax\)",
+               r"void GiveRounds\(CarScript car, string cls, int rounds, TStringArray got\)",
+               r"string GiveNavKit\(PlayerBase player, CarScript car\)"):
+        body = re.search(fn + r".*?\n\t\}", src, re.S).group(0)
+        assert "CreateInVehicle(car, cls)" in body, fn
+        assert "car.GetInventory().CreateEntityInCargo(" not in body, fn
+
+
+def test_init_c_player_never_wakes_on_the_vehicle_spot():
+    """2026-10-22: both respawns stood the player ON the vehicle's spot and Blae's R22 hit him.
+    Water is the engine's sea/pond test, and no path puts the player at CarPos."""
+    src = INIT_C.read_text()
+    water = re.search(r"static bool IsWater\(float x, float z\).*?\n\t\}", src, re.S).group(0)
+    assert "SurfaceIsSea(x, z)" in water and "SurfaceIsPond(x, z)" in water
+    assert "SurfaceGetType" not in water
+    place = re.search(r"void PlacePlayer\(RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
+    assert "plan.PlayerPos = plan.CarPos" not in place
