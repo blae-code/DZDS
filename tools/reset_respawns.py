@@ -143,9 +143,11 @@ async def apply(dry_run: bool, assume_yes: bool, only: str | None = None) -> int
             if has_ledger:
                 new = backup / "arrivals_ledger.reset.json"
                 new.write_text(json.dumps(ledger, indent=4))
-                tmp = ledger_path + ".reset-tmp"
-                await sftp.put(str(new), tmp)
-                await sftp.posix_rename(tmp, ledger_path)
+                # Plain overwrite: the Godlike panel's SFTP refuses posix-rename (2026-10-22).
+                stray = ledger_path + ".reset-tmp"
+                if await sftp.exists(stray):
+                    await sftp.remove(stray)
+                await sftp.put(str(new), ledger_path)
             if has_players:
                 await sftp.rename(players_path, f"{players_path}.old-{stamp}")
                 if only:
