@@ -183,6 +183,11 @@ prints the live count. Since the launch:
 - 2026-10-22: favored players (`favored:` in `presets/arrivals.yaml`): Blae's respawn vehicle
   is always one of the 9 aircraft. The 24 h cooldown still applies.
   `make reset-respawns` (server STOPPED) clears everyone's cooldown and resets characters.
+- 2026-10-22: players kicked again for a version mismatch. 4 mods DIFFERS (RaG_Core,
+  RaG_Hunting_Cabin, Ambient Animals Pack, Asmond Vanilla Weapons). Each `/@<id>` was renamed
+  to `/@<id>.old-20261022` over SFTP (Blae approved) and the panel re-downloaded them on
+  restart. Drift 67/67 OK; the 23:17 UTC boot shows 0 `SCRIPT (E)`, 0 decode errors, and World
+  layer started. The `.old-20261022` folders can go once a client joins cleanly.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
