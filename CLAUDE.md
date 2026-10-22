@@ -197,7 +197,12 @@ prints the live count. Since the launch:
   cargo). Also fixed: respawns woke ON the vehicle's spot (the R22 hit Blae as it spawned).
   `make reset-respawns PLAYER=blae` resets one player. A local boot (old 164078 server)
   compiled the mission cleanly, but then crashed in a mod animal, so the vehicle self-test
-  didn't run; verify on the live RPT's `[DZDS Arrivals]` line.
+  didn't run; verify on the live RPT's `[DZDS Arrivals]` line. Deployed 23:47 UTC (only
+  `init.c`, `dzds/types_dzds.xml` and `DZDS/arrivals.json`; a full `make push` would also have
+  sent a dozen unrelated files newer only by mtime). Server-side backups are in
+  `backups/aircraft-kit-20261022T234655Z`. Blae was reset with the server stopped (players.db
+  kept as `players.db.old-20261022T234754Z`). The panel's SFTP refuses posix-rename, so
+  remote writes overwrite in place.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
