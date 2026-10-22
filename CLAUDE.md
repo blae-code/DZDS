@@ -1,7 +1,81 @@
 # CLAUDE.md — DZDS (DayZ PvE Living Sandbox)
 
-Authoritative design spec: `docs/SPEC.md`. Read it before any non-trivial change.
+Authoritative design spec: `docs/SPEC.md`. Read it before any non-trivial change. **Since
+the Badlands relaunch, `docs/superpowers/specs/2026-10-15-badlands-relaunch-design.md`
+overrides SPEC.md where they disagree** (map, loot, campaign phases, zones).
 This file holds the rules you must follow when working in this repo.
+
+## Working environment
+- **Repo:** `~/Documents/Code/DayZ` (renamed from `~/Documents/Code/DZDS` on 2026-10-21;
+  the GitHub repo, the `@DZDS` mod, the `dzds-gm` entry point and the Python package keep
+  the DZDS name, which is a mod name, not a path). Outside the Obsidian vault on purpose.
+- **VS Code:** open `DayZ.code-workspace` (`code ~/Documents/Code/DayZ/DayZ.code-workspace`).
+  It points Python at `.venv` and pytest at `tests/`, and keeps `backups/`, `build/` and
+  `.venv` out of search and file watching.
+- **Python:** always the repo venv: `make <target>` or `.venv/bin/python`, never the system
+  `python3` (which lacks the deps). If the venv breaks (it bakes in absolute paths, so it
+  breaks whenever the repo moves): move `.venv` aside, run `make setup`, run `make test`.
+- **Shells:** the operator's interactive shell is **fish** (`source .venv/bin/activate.fish`);
+  the Makefile and `scripts/*.sh` are **bash** on purpose (`SHELL := /bin/bash`). Don't write
+  bash-isms into fish snippets you hand Blae, or the reverse.
+- **Credentials:** `.env` only (mode 600, gitignored). Never print a value. Compare by hash.
+- **Branch:** work happens on `badlands-relaunch` (well ahead of `main`). Commit there and
+  end messages with the Co-Authored-By trailer. **Don't push to GitHub, merge to `main`, or
+  touch the `origin/ccr-*` branches without asking.**
+
+## Who does what: the boundary with the live server
+Claude can reach the server **only over SFTP** (the `.env` credentials) and the public
+Workshop API. Claude **cannot** reach the Godlike panel, and RCON doesn't work (see Current
+stage). So:
+
+| Claude does freely (read-only or local) | Ask Blae first (writes to something live or public) | Only Blae can do (panel) |
+|---|---|---|
+| `make mod-drift`, `verify-mods`, `specs`, `logs`, `test`, `validate` | `make push` (writes the live server; it prompts, so use `DRY_RUN=1 make push` to preview) | Restart / stop / start the server |
+| `make pull` (overwrites the local `server/` mirror: **commit or stash local edits under `server/` first**) | `scripts/publish_dzds.sh` (public Workshop item every player downloads) | File Manager: rename `/@<id>` aside so the panel re-downloads it |
+| Edit `presets/`, `config/`, `tools/`, `mods/DZDS` source, tests, docs | Adding, removing or pruning a mod in `config/mods.yaml` (a design decision: pillar rule 6) | Startup Variables: "Additional Mods" / "Server-Side Only Mods" |
+| `scripts/build_dzds.sh` (local build only) | Any SFTP write outside `make push`, e.g. renaming `/@<id>` over SFTP | Anything in the panel's settings |
+
+When a fix needs a panel action, **hand Blae the exact list** (mod name + `@<id>`) and the
+order of operations. Don't describe it vaguely and stop there.
+
+## When the server is down: triage runbook
+This happens again and again: Workshop mods update with no notice, and the panel never
+refreshes an installed mod. **Work through the steps in order, and don't guess the cause
+before step 1 has run.**
+
+1. **`make mod-drift`** (read-only, ~1 min). Exit **0** = all mods match, so go to step 2.
+   Exit **1** = drift: every `STALE`/`DIFFERS` row is a mod the panel must re-download.
+   Hand Blae the list (fix: rename each `/@<id>` aside in File Manager, then restart).
+   Exit **2** = it couldn't read the server: that is **not** a clean result. Check `.env`
+   and SFTP reachability before anything else.
+2. **`make logs`** pulls the last day's `*.ADM` / `*.RPT` into `server/profiles/`. It does
+   **not** pull `crash_*.log`. Get those from the same SFTP profiles directory by hand
+   (read-only) when the engine crashed rather than refused to boot.
+3. **Read the newest `.RPT` from the bottom up.** Look for: `SCRIPT (E)`,
+   `Can't compile "...World" script module` (a mod's API changed, or a load-order or
+   dependency problem), `Unhandled exception` / crash logs (runtime crash, so correlate
+   crash times with boot times), and missing-class errors naming our overlays (an overlay
+   points at a class a pruned or updated mod no longer has; see `requires_mod`).
+   **Also check the RPT's `Version` line against the last good boot, and grep for
+   `Error decoding <file> from <mod>`.** A DayZ patch can stop the engine decoding an
+   obfuscated mod's scripts. The missing file then shows up as an unrelated compile error in
+   another file (2026-10-21: BuildAnywhere's `m_Trader_IsInSafezone`, CnG's
+   `WorldEditorTool`). The fix is to disable the mod named in the decode line, not the one
+   named in the compile error.
+4. **Classify, then fix the right layer:**
+   - *A mod updated and broke another* (e.g. Code Lock's rename broke RaG_BaseBuilding,
+     2026-10-15): propose prune or replace in `config/mods.yaml`. Blae decides.
+   - *A mod interaction crashes at runtime* (e.g. trailers vs Expansion AI's
+     `eAIDamageHandler`, 2026-10-17): contain it in our config, `init.c` or `@DZDS`, add a
+     test that pins it, and record the re-enable condition in the commit message.
+   - *Our generated config is wrong*: fix the preset/tool and regenerate, never hand-edit
+     the output (rule 13).
+5. **After any mod-list change:** `make panel-mods` (regenerates
+   `config/panel_additional_mods.txt`) → Blae updates the panel (**the paste REPLACES the
+   list**) → restart → `make pull` → `make overlays calibrate validate` → `make push`.
+6. **Verify. Never declare it fixed on inference:** `make mod-drift` exits 0, and the fresh
+   `.RPT` shows `[DZDS] World layer started` with zero `SCRIPT (E)` lines after the boot.
+7. **Record it:** one dated line under "Current stage" (cause → fix), and a commit.
 
 ## Topology (short version)
 - **Remote**: DayZ dedicated server **"Ad Aspera" on Godlike** (rented 2026-10-06; "Rampage"
@@ -87,6 +161,29 @@ This file holds the rules you must follow when working in this repo.
     roles in `maps/_roles.yaml`, so Nasdara (Badlands, 1.30) is a data change. `make maps-check`.
 
 ## Current stage
+**Now (2026-10-21): live on Nasdara (Badlands, game 1.30) since 2026-10-16 19:09 UTC**, with
+a fresh start and the war ledger at turn 0. That launch booted all **70** mods with 0 script
+errors. Don't trust that number: `config/mods.yaml` is the source and `make mod-drift`
+prints the live count. Since the launch:
+- 2026-10-15: Code Lock pruned for 1.30's vanilla DigitalCodeLock (its rename broke
+  RaG_BaseBuilding).
+- 2026-10-17: trailers disabled. A driverless trailer touching an infected crashes the engine
+  via Expansion AI's `eAIDamageHandler`. Re-enable once @DZDS patches that.
+- 2026-10-21: server down again with 13 mods drifted (2 STALE: AI War Zones and Arma 2
+  Helicopters Remastered, both updated on the Workshop that morning; 11 DIFFERS). The fix
+  (panel re-download) was handed to Blae, and drift was 70/70 OK by evening. The boot still
+  failed because of the same day's **DayZ patch (server 1.30.164078 → 1.30.164200)**, which
+  can't decode scripts in BuildAnywhere_v3, [CnG]Core_Bundle and both CnG UAZs (`Error
+  decoding` in the RPT). All four disabled (67 mods), and the CnG UAZs were commented out of
+  `presets/arrivals.yaml`. The 67-mod boot then compiled clean, but crashed restoring the
+  10-18 world save (`Weather::Load … WeatherProperty`, then the first item). **Fixed
+  2026-10-22 by a full wipe** (Blae): `storage_1` backed up to
+  `backups/storage_1-nasdara-20261022T0157Z` and renamed `storage_1.old-20261022` on the
+  server. Boot 02:00 UTC: 0 decode errors, 0 `SCRIPT (E)`, World layer started, no crash.
+
+*Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
+lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
+
 **First modded boot 2026-10-07 20:23: all 82 mods loaded, server up.** It threw one VM
 exception (Expansion airdrop loot named BaseBuilding items we don't run); fixed by the
 `expansion_airdrops`/`expansion_missions` overlays. Expansion ships the virtual Garage and
@@ -159,14 +256,16 @@ make gm-probe         # one-shot Ollama/prompt check
 scripts/local_server.sh install|mods|start   # optional local dedicated server
 ```
 
-## Where things stand (2026-10-05)
-All offline work is done and tested (`make test`). Remaining work needs a running game:
-follow `docs/PLAYTEST.md`. Pruning decisions: `docs/PRUNING.md`.
+## Where things stand
+Live status is "Current stage" above. Offline work stays green under `make test`, so run it
+before every commit. Playtest procedure: `docs/PLAYTEST.md`. Pruning decisions:
+`docs/PRUNING.md`. Relaunch plan: `docs/superpowers/plans/2026-10-15-badlands-relaunch.md`.
 
 ## Workflow phases (spec §7)
 1. GSP staging: sync, key + dependency checks, mod string. **(done)**
 2. Config harmonization: calibration, @DZDS factions, patrols, loadouts, economy, traders,
    vehicle events, overlays. **(done offline; needs in-game verification)**
 3. GM daemon: ADM → Gemma → RCON radio + @DZDS command queue, war ledger. **(done offline)**
-4. ChernarusPlus validation & playtest: `docs/PLAYTEST.md`. **(next; needs the game)**
-5. Nasdara porting prep: role-based maps; fill `maps/nasdara.yaml` on release (`docs/BADLANDS_PREP.md`).
+4. ChernarusPlus validation & playtest: `docs/PLAYTEST.md`. **(superseded by the relaunch)**
+5. Nasdara porting: role-based maps, `maps/nasdara.yaml`. **(done: live 2026-10-16;
+   relaunch spec + plan under `docs/superpowers/`)**

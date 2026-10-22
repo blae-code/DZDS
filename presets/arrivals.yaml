@@ -94,26 +94,28 @@ vehicles:
   - class: Expansion_Landrover_Yellow
     weight: 1.5
     parts: [CarBattery, HeadlightH7, HeadlightH7, CarRadiator, SparkPlug, Expansion_Landrover_Left_Yellow, Expansion_Landrover_Right_Yellow, Expansion_Landrover_Trunk_Yellow, Expansion_Landrover_Hood_Yellow, Expansion_Landrover_Codriverdoor_Yellow, Expansion_Landrover_Driverdoor_Yellow, Expansion_Landrover_Wheel_Yellow, Expansion_Landrover_Wheel_Yellow, Expansion_Landrover_Wheel_Yellow, Expansion_Landrover_Wheel_Yellow, Expansion_Landrover_Wheel_Yellow]
-  # CnG UAZ-31514
-  - class: UAZ_31514
-    weight: 2
-    parts: [CarBattery, HeadlightH7, HeadlightH7]
-  - class: UAZ_31514_hunter
-    weight: 2
-    parts: [CarBattery, HeadlightH7, HeadlightH7]
-  - class: UAZ_31514_yellow
-    weight: 2
-    parts: [CarBattery, HeadlightH7, HeadlightH7]
-  # CnG UAZ-452 'loaf' van
-  - class: UAZ_452
-    weight: 2
-    parts: [CarBattery, HeadlightH7, HeadlightH7]
-  - class: UAZ_452_offroad
-    weight: 2
-    parts: [CarBattery, HeadlightH7, HeadlightH7]
-  - class: UAZ_452_grey
-    weight: 2
-    parts: [CarBattery, HeadlightH7, HeadlightH7]
+  # CnG UAZs DISABLED 2026-10-21 with their mods (config/mods.yaml): DayZ 1.30.164200 can't
+  # decode their scripts. Uncomment when the mods are re-enabled.
+  # # CnG UAZ-31514
+  # - class: UAZ_31514
+  #   weight: 2
+  #   parts: [CarBattery, HeadlightH7, HeadlightH7]
+  # - class: UAZ_31514_hunter
+  #   weight: 2
+  #   parts: [CarBattery, HeadlightH7, HeadlightH7]
+  # - class: UAZ_31514_yellow
+  #   weight: 2
+  #   parts: [CarBattery, HeadlightH7, HeadlightH7]
+  # # CnG UAZ-452 'loaf' van
+  # - class: UAZ_452
+  #   weight: 2
+  #   parts: [CarBattery, HeadlightH7, HeadlightH7]
+  # - class: UAZ_452_offroad
+  #   weight: 2
+  #   parts: [CarBattery, HeadlightH7, HeadlightH7]
+  # - class: UAZ_452_grey
+  #   weight: 2
+  #   parts: [CarBattery, HeadlightH7, HeadlightH7]
   # TP M1025 Humvee, unarmed
   - class: TP_Apoc_M1025_NoGun
     weight: 2
