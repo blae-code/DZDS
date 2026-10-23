@@ -183,9 +183,16 @@ async def apply(dry_run: bool, assume_yes: bool, only: str | None = None) -> int
                     await sftp.remove(stray)
                 await sftp.put(str(new), ledger_path)
             if has_players:
+                if only:
+                    # Upload first, move after: on 2026-10-23 a full disk ("Quota Exceeded") failed
+                    # this put after the rename, leaving no players.db (a boot would wipe everyone).
+                    tmp = players_path + ".reset-tmp"
+                    if await sftp.exists(tmp):
+                        await sftp.remove(tmp)
+                    await sftp.put(str(backup / "players.reset.db"), tmp)
                 await sftp.rename(players_path, f"{players_path}.old-{stamp}")
                 if only:
-                    await sftp.put(str(backup / "players.reset.db"), players_path)
+                    await sftp.rename(tmp, players_path)
     print("done: start the server from the panel")
     return 0
 

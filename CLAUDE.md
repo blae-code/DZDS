@@ -227,6 +227,14 @@ prints the live count. Since the launch:
   in `PlacePlayer` and the `!a && b == 1` expression both misbehaved in Enforce; the cause of
   each wasn't pinned down. Open: every road/arrival point has heading `A = 0.0`, so all spawned
   vehicles face north. Live cooldown resets: `make reset-respawns LIVE=1 PLAYER=..`.
+- 2026-10-23 ~20:00 UTC: DZGUI refused to connect because ArmA2 Trucks (3593276829) was
+  deleted from the Workshop (Steam result 9). `make mod-drift` had read it as OK, and now flags
+  REMOVED. It was pruned (66 mods), and the 19:55 UTC boot was clean with drift 66/66 OK. Then the
+  server disk hit its quota ("Quota Exceeded" on SFTP writes). It was full of `/@<id>.old-<date>`
+  folders, which the panel never cleans up. 49 of them (~7.9 GB) and the orphaned `/@3593276829` were
+  deleted. **After each re-download, delete the `.old-*` folder once a client has joined.**
+  17 pruned mods (`enabled: false`) still have `/@<id>` folders at the root. Blae's character was
+  reset (`players.db.old-20261023T205644Z`). reset_respawns now uploads before it renames.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
