@@ -636,3 +636,15 @@ def test_dzds_mod_tracks_territory_flags():
                    'IsPartConstructed("pole")', '"Material_FPole_Flag"', 'GetAnimationPhase("flag_mast") < 1',
                    "static TerritoryFlag NearestRaised(vector pos)", "static int RaisedCount()", "static int Count()"):
         assert needle in src, needle
+
+
+def test_player_is_put_back_beside_the_vehicle():
+    """Blae 2026-10-23: two respawns woke ON the vehicle's spot (inside the MH-6). Deliver
+    moves a player found within BESIDE_MIN_M of the spot back to PlayerPos, and checks again
+    once the login settles, passing positions by value (the call queue holds args weakly)."""
+    src = INIT_C.read_text()
+    deliver = re.search(r"void Deliver\(PlayerBase player, RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
+    assert 'KeepBeside(player, plan.CarPos, plan.PlayerPos, "deliver")' in deliver
+    assert "CallLater(KeepBesideLater, BESIDE_RECHECK_MS, false, player, plan.CarPos, plan.PlayerPos)" in deliver
+    keep = re.search(r"string KeepBeside\(PlayerBase player, vector carPos, vector playerPos, string when\).*?\n\t\}", src, re.S).group(0)
+    assert "player.SetPosition(playerPos)" in keep and "BESIDE_MIN_M" in keep

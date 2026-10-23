@@ -189,6 +189,8 @@ class RefugeeArrivals
 	static const string LEDGER = "$profile:DZDS\\arrivals_ledger.json";
 	static const int PICK_TRIES = 12;
 	static const int VEHICLE_REDRAWS = 4;
+	static const float BESIDE_MIN_M = 4.0;      // closer to the vehicle's spot than this = inside it
+	static const int BESIDE_RECHECK_MS = 3000;  // and look again once the login has settled
 	static const float TRAILER_SETBACK = 3.0;   // trailer centre behind the hitch, before alignment
 	static const float COUPLER_GAP = 0.3;       // coupler this far behind the hitch once aligned
 	static const string SELFTEST = DIR + "\\vehicle_selftest";
@@ -1055,6 +1057,37 @@ class RefugeeArrivals
 		return added;
 	}
 
+	// Blae 2026-10-23: two respawns in a row woke ON the vehicle's spot, stuck inside the MH-6,
+	// though CreateCharacter places the player PlayerOffset metres beside it (the ADM log has
+	// them at the road point itself). Nothing found in the mission or the mods moves them, so
+	// whatever does it, put them back on their planned spot and log where they were.
+	static float Dist2D(vector a, vector b)
+	{
+		float dx = a[0] - b[0];
+		float dz = a[2] - b[2];
+		return Math.Sqrt(dx * dx + dz * dz);
+	}
+
+	// Positions by value: the call queue holds its arguments weakly, and the plan is released
+	// as soon as the login finishes.
+	string KeepBeside(PlayerBase player, vector carPos, vector playerPos, string when)
+	{
+		if (!player || !player.IsAlive())
+			return "";
+		vector was = player.GetPosition();
+		if (Dist2D(was, carPos) >= BESIDE_MIN_M)
+			return "";
+		player.SetPosition(playerPos);
+		return " (" + when + ": was " + Math.Round(Dist2D(was, carPos)).ToString() + " m from the vehicle spot at " + Math.Round(was[0]).ToString() + "," + Math.Round(was[2]).ToString() + ", moved to " + Math.Round(Dist2D(playerPos, carPos)).ToString() + " m beside it)";
+	}
+
+	void KeepBesideLater(PlayerBase player, vector carPos, vector playerPos)
+	{
+		string moved = KeepBeside(player, carPos, playerPos, "recheck");
+		if (moved != "")
+			Print("[DZDS Arrivals] player back beside the vehicle" + moved);
+	}
+
 	void Deliver(PlayerBase player, RefugeeArrivalPlan plan)
 	{
 		if (!player || !plan)
@@ -1124,7 +1157,10 @@ class RefugeeArrivals
 			kind = "first arrival";
 		string beside = "";
 		if (car)
-			beside = ", player " + Math.Round(vector.Distance(player.GetPosition(), car.GetPosition())).ToString() + " m from it";
+		{
+			beside = ", player " + Math.Round(vector.Distance(player.GetPosition(), car.GetPosition())).ToString() + " m from it" + KeepBeside(player, plan.CarPos, plan.PlayerPos, "deliver");
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(KeepBesideLater, BESIDE_RECHECK_MS, false, player, plan.CarPos, plan.PlayerPos);
+		}
 		Print("[DZDS Arrivals] " + kind + " at " + plan.Where + ", random=" + plan.RandomCharacter.ToString() + ", " + got + beside + ", " + nav + ", life " + rec.Lives);
 	}
 }
