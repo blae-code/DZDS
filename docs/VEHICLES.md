@@ -31,6 +31,11 @@ which matters because DayZ Horse is incompatible with that (guarded by a test).
 Two helicopter flight models feel different. That's acceptable if RedFalcon is the "common"
 light heli and Expansion/Arma 2 helis are rarer and heavier. If it bothers you, keep one family.
 
+For the installed client-side VKB Gladiator NXT bridge, its virtual XInput bindings, and
+flight checks, see [HOSAS Helicopter Controls](./FLIGHT_CONTROLS.md) and
+[`tools/vkb_pad.py`](../tools/vkb_pad.py). Bindings and flight response must still be checked
+separately for RedFalcon and Expansion in game.
+
 Settings: `presets/overlays/expansion_vehicles.yaml` (`make overlays`). Also sets
 `RevvingOverMaxRPMRuinsEngineInstantly: false` (tedium boundary) and `ShowVehicleOwners: false`.
 
