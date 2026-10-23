@@ -15,9 +15,9 @@ import types_gen
 
 def _built():
     mission = arrivals.mission_dir(active.map_data("nasdara"))
-    vanilla = {t.get("name") for t in ET.parse(mission / "db" / "types.xml").getroot().findall("type")}
-    preset = yaml.safe_load(types_gen.PRESET.read_text())
-    cfg = yaml.safe_load(arrivals.PRESET.read_text())
+    vanilla = arrivals._types_in_file(mission / "db" / "types.xml")
+    preset = active.load_yaml(types_gen.PRESET)
+    cfg = active.load_yaml(arrivals.PRESET)
     root, _ = types_gen.build(preset, vanilla=vanilla, arrival_cfg=cfg)
     return vanilla, cfg, {t.get("name"): t for t in root.findall("type")}
 

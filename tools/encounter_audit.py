@@ -59,8 +59,8 @@ def main() -> int:
     ap.add_argument("--window", type=int, default=300)
     a = ap.parse_args()
     files = [Path(f) for f in a.files] or sorted((active.ROOT / "server" / "profiles").glob("*.ADM"))
-    from gamemaster.ledger import STATE, WarLedger
-    led = WarLedger.load(active.map_name()) if STATE.exists() else WarLedger.new(active.map_name())
+    from gamemaster.ledger import WarLedger
+    led = WarLedger.load_or_new(active.map_name())
     zs = zmod.build(active.map_data(), led.s.control, led.locations())
     lines = [ln for f in files for ln in f.read_text(errors="replace").splitlines()]
     res = audit(lines, zs, a.window)

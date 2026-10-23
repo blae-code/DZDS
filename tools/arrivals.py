@@ -27,28 +27,49 @@ PRESET = ROOT / "presets" / "arrivals.yaml"
 OUT = ROOT / "server" / "profiles" / "DZDS" / "arrivals.json"
 
 
+_TYPES_CACHE: dict[Path, tuple[int, int, set[str]]] = {}
+_SPOTS_CACHE: dict[tuple[Path, int, int, tuple[str, ...]], list[tuple[float, float, float]]] = {}
+
+
 def mission_dir(map_data: dict) -> Path:
     return ROOT / "server" / "mpmissions" / map_data["mission"]
+
+
+def _types_in_file(path: Path) -> set[str]:
+    st = path.stat()
+    hit = _TYPES_CACHE.get(path)
+    if hit and hit[0] == st.st_mtime_ns and hit[1] == st.st_size:
+        return hit[2]
+    names = {t.get("name") for t in ET.parse(path).getroot().findall("type")}
+    _TYPES_CACHE[path] = (st.st_mtime_ns, st.st_size, names)
+    return names
 
 
 def known_types(mission: Path) -> set[str]:
     """Vanilla types plus our own types file (tools/types_gen.py registers modded respawn
     vehicles and parts there; run `make types` before `make arrivals`)."""
-    names = set()
+    names: set[str] = set()
     for f in (mission / "db" / "types.xml", mission / "dzds" / "types_dzds.xml"):
         if f.exists():
-            names |= {t.get("name") for t in ET.parse(f).getroot().findall("type")}
+            names |= _types_in_file(f)
     return names
 
 
 def road_spots(mission: Path, events: list[str]) -> list[tuple[float, float, float]]:
-    root = ET.parse(mission / "cfgeventspawns.xml").getroot()
+    spawns_path = mission / "cfgeventspawns.xml"
+    st = spawns_path.stat()
+    key = (spawns_path, st.st_mtime_ns, st.st_size, tuple(events))
+    if key in _SPOTS_CACHE:
+        return list(_SPOTS_CACHE[key])
+    ev_set = set(events)
+    root = ET.parse(spawns_path).getroot()
     out = []
     for ev in root.findall("event"):
-        if ev.get("name") in events:
+        if ev.get("name") in ev_set:
             for p in ev.findall("pos"):
                 out.append((float(p.get("x")), float(p.get("z")), float(p.get("a") or 0.0)))
-    return out
+    _SPOTS_CACHE[key] = out
+    return list(out)
 
 
 def excluded(spot, zones) -> bool:

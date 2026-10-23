@@ -10,6 +10,7 @@ Faction keys are preset names from presets/factions.yaml (Settlers, Peacekeepers
 """
 from __future__ import annotations
 
+import copy
 import datetime as dt
 import json
 import random
@@ -23,9 +24,21 @@ ROOT = Path(__file__).resolve().parents[2]
 STATE = ROOT / "gm_state" / "war_ledger.json"
 PLAYERS = "Players"
 
+_YAML_CACHE: dict[Path, tuple[int, int, object]] = {}
 
-def load_yaml(rel: str):
-    return yaml.safe_load((ROOT / rel).read_text())
+
+def load_yaml(rel: str | Path):
+    """Mtime-cached YAML loader returning a fresh copy so callers may mutate safely."""
+    path = Path(rel) if isinstance(rel, Path) else (ROOT / rel)
+    if not path.is_absolute():
+        path = ROOT / path
+    st = path.stat()
+    hit = _YAML_CACHE.get(path)
+    if hit and hit[0] == st.st_mtime_ns and hit[1] == st.st_size:
+        return copy.deepcopy(hit[2])
+    parsed = yaml.safe_load(path.read_text())
+    _YAML_CACHE[path] = (st.st_mtime_ns, st.st_size, parsed)
+    return copy.deepcopy(parsed)
 
 
 @dataclass
@@ -55,7 +68,7 @@ class WarLedger:
         self.factions = factions or load_yaml("presets/factions.yaml")
         self.map = map_data or load_yaml(f"maps/{state.map}.yaml")
         convoys = ROOT / "presets" / "convoys.yaml"
-        self.convoy_routes = ((yaml.safe_load(convoys.read_text()) or {}).get("routes") or {}).get(
+        self.convoy_routes = ((load_yaml(convoys) or {}).get("routes") or {}).get(
             state.map) or [] if convoys.exists() else []
         self.fspec = {k: v for k, v in self.factions["factions"].items() if v.get("custom_faction")}
         self.engine_to_name = {}
@@ -84,6 +97,16 @@ class WarLedger:
                 raise SystemExit(f"{path} is the {data.get('map')} ledger; run tools/war.py reset for {map_name}")
             known = LedgerState.__dataclass_fields__
             return cls(LedgerState(**{k: v for k, v in data.items() if k in known}), **kw)
+        return cls.new(map_name, **kw)
+
+    @classmethod
+    def load_or_new(cls, map_name: str, path: Path = STATE, initial: bool = False, **kw) -> "WarLedger":
+        """Load the on-disk ledger if it exists and matches `map_name`, else return a fresh ledger."""
+        if not initial and path.exists():
+            try:
+                return cls.load(map_name, path=path, **kw)
+            except SystemExit:
+                return cls.new(map_name, **kw)
         return cls.new(map_name, **kw)
 
     def save(self, path: Path = STATE) -> None:

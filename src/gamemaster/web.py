@@ -49,30 +49,97 @@ class SandboxStore:
         self.ledgers: dict[str, WarLedger] = {}
         self.rng = random.Random()
         self.turn_log: list[dict] = []
+        self._road_cache: dict[tuple[str, int], tuple[list[dict], list[dict], list[dict]]] = {}
+        self._adm_cache: tuple[tuple, int, list[str], list[dict]] | None = None
+        self._audit_cache: dict[tuple, list[dict]] = {}
 
     def get_ledger(self, map_name: str, reload_disk: bool = False) -> WarLedger:
         if reload_disk or map_name not in self.ledgers:
-            if STATE.exists():
-                try:
-                    led = WarLedger.load(map_name)
-                except SystemExit:
-                    led = WarLedger.new(map_name)
-            else:
-                led = WarLedger.new(map_name)
-            self.ledgers[map_name] = led
+            self.ledgers[map_name] = WarLedger.load_or_new(map_name)
         return self.ledgers[map_name]
+
+    def _road_and_arrival_points(self, map_name: str, map_data: dict, arrivals_cfg: dict) -> tuple[list[dict], list[dict], list[dict]]:
+        mission = arrivals.mission_dir(map_data)
+        spawns_file = mission / "cfgeventspawns.xml"
+        mtime = spawns_file.stat().st_mtime_ns if spawns_file.exists() else 0
+        key = (map_name, mtime)
+        if key in self._road_cache:
+            return self._road_cache[key]
+        raw_zones = arrivals.exclusion_zones(arrivals_cfg, map_data)
+        excl_zones = [{"x": x, "z": z, "radius": r} for x, z, r in raw_zones]
+        road_pts: list[dict] = []
+        arr_pts: list[dict] = []
+        if mtime:
+            spots = arrivals.road_spots(mission, arrivals_cfg["road_events"])
+            road_pts = [arrivals.point(s) for s in spots if not arrivals.excluded(s, raw_zones)]
+            try:
+                arr_pts = arrivals.arrival_points(arrivals_cfg, map_data, spots)
+            except SystemExit:
+                arr_pts = []
+        res = (excl_zones, road_pts, arr_pts)
+        self._road_cache[key] = res
+        return res
+
+    def _adm_telemetry(self, zs: list[zmod.Zone]) -> tuple[int, list[dict], list[dict]]:
+        adm_files = sorted((ROOT / "server" / "profiles").glob("*.ADM"))
+        sim_file = ROOT / "gm_state" / "sim.ADM"
+        if sim_file.exists():
+            adm_files.append(sim_file)
+        tail_files = adm_files[-4:]
+        sig = tuple((str(f), f.stat().st_mtime_ns, f.stat().st_size) for f in tail_files)
+        if self._adm_cache and self._adm_cache[0] == sig:
+            _, total_count, adm_lines, recent_adm = self._adm_cache
+        else:
+            adm_lines = [ln for f in tail_files for ln in f.read_text(errors="replace").splitlines()[-500:]]
+            recent_adm = []
+            for ln in reversed(adm_lines):
+                ev = parse_line(ln)
+                if ev and ev.kind in ("connect", "disconnect", "hit", "death"):
+                    recent_adm.append({
+                        "time": ev.time,
+                        "kind": ev.kind,
+                        "is_ai": ev.is_ai,
+                        "player": ev.player,
+                        "faction": ev.faction or ("Settlers" if not ev.is_ai else ""),
+                        "by": ev.by or "",
+                        "hp": ev.hp,
+                        "pos": list(ev.pos) if ev.pos else None,
+                    })
+                if len(recent_adm) >= 25:
+                    break
+            total_count = len(adm_files)
+            self._adm_cache = (sig, total_count, adm_lines, recent_adm)
+
+        audit_key = (sig, tuple(zs))
+        if audit_key in self._audit_cache:
+            audit_list = self._audit_cache[audit_key]
+        else:
+            audit_raw = encounter_audit.audit(adm_lines, zs)
+            audit_list = []
+            for player, rec in sorted(audit_raw.items()):
+                rate = rec["outside"] / max(1, rec["sessions"])
+                audit_list.append({
+                    "player": player,
+                    "sessions": rec["sessions"],
+                    "outside": rec["outside"],
+                    "inside": rec["inside"],
+                    "rate": round(rate, 2),
+                    "ok": rate <= 1 / 3,
+                })
+            self._audit_cache[audit_key] = audit_list
+        return total_count, audit_list, recent_adm
 
     def build_state(self, map_name: str | None = None) -> dict:
         map_name = map_name or active.map_name()
         if map_name not in ("nasdara", "chernarusplus"):
             map_name = active.map_name()
         led = self.get_ledger(map_name)
-        map_data = yaml.safe_load((ROOT / "maps" / f"{map_name}.yaml").read_text())
-        factions_cfg = yaml.safe_load((ROOT / "presets" / "factions.yaml").read_text())
-        traders_cfg = yaml.safe_load((ROOT / "presets" / "traders.yaml").read_text())
-        quests_cfg = yaml.safe_load((ROOT / "presets" / "quests.yaml").read_text())
-        arrivals_cfg = yaml.safe_load((ROOT / "presets" / "arrivals.yaml").read_text())
-        world_cfg = yaml.safe_load((ROOT / "presets" / "world.yaml").read_text())
+        map_data = active.map_data(map_name)
+        factions_cfg = active.load_yaml("presets/factions.yaml")
+        traders_cfg = active.load_yaml("presets/traders.yaml")
+        quests_cfg = active.load_yaml("presets/quests.yaml")
+        arrivals_cfg = active.load_yaml("presets/arrivals.yaml")
+        world_cfg = active.load_yaml("presets/world.yaml")
         mods_all = modstring.load_mods()
         mods_enabled = modstring.ordered(mods_all)
 
@@ -93,23 +160,7 @@ class SandboxStore:
 
         quests = front_plan.plan_quests(led, quests_cfg)
         col_site = status_mod.active_column_site(map_data, arrivals_cfg)
-
-        # Arrivals road points & exclusion zones (if mission files exist)
-        mission = arrivals.mission_dir(map_data)
-        excl_zones = [
-            {"x": x, "z": z, "radius": r}
-            for x, z, r in arrivals.exclusion_zones(arrivals_cfg, map_data)
-        ]
-        road_pts = []
-        arr_pts = []
-        if (mission / "cfgeventspawns.xml").exists():
-            spots = arrivals.road_spots(mission, arrivals_cfg["road_events"])
-            raw_zones = arrivals.exclusion_zones(arrivals_cfg, map_data)
-            road_pts = [arrivals.point(s) for s in spots if not arrivals.excluded(s, raw_zones)]
-            try:
-                arr_pts = arrivals.arrival_points(arrivals_cfg, map_data, spots)
-            except SystemExit:
-                arr_pts = []
+        excl_zones, road_pts, arr_pts = self._road_and_arrival_points(map_name, map_data, arrivals_cfg)
 
         # Faction detail cards
         factions_out = {}
@@ -141,41 +192,7 @@ class SandboxStore:
                 "stance": effective_stance,
             }
 
-        # Telemetry & ADM audit
-        adm_files = sorted((ROOT / "server" / "profiles").glob("*.ADM"))
-        sim_file = ROOT / "gm_state" / "sim.ADM"
-        if sim_file.exists():
-            adm_files.append(sim_file)
-        adm_lines = [ln for f in adm_files[-4:] for ln in f.read_text(errors="replace").splitlines()[-500:]]
-        audit_raw = encounter_audit.audit(adm_lines, zs)
-        audit_list = []
-        for player, rec in sorted(audit_raw.items()):
-            rate = rec["outside"] / max(1, rec["sessions"])
-            audit_list.append({
-                "player": player,
-                "sessions": rec["sessions"],
-                "outside": rec["outside"],
-                "inside": rec["inside"],
-                "rate": round(rate, 2),
-                "ok": rate <= 1 / 3,
-            })
-
-        recent_adm = []
-        for ln in reversed(adm_lines):
-            ev = parse_line(ln)
-            if ev and ev.kind in ("connect", "disconnect", "hit", "death"):
-                recent_adm.append({
-                    "time": ev.time,
-                    "kind": ev.kind,
-                    "is_ai": ev.is_ai,
-                    "player": ev.player,
-                    "faction": ev.faction or ("Settlers" if not ev.is_ai else ""),
-                    "by": ev.by or "",
-                    "hp": ev.hp,
-                    "pos": list(ev.pos) if ev.pos else None,
-                })
-            if len(recent_adm) >= 25:
-                break
+        adm_file_count, audit_list, recent_adm = self._adm_telemetry(zs)
 
         client_panel, server_panel, local_mods = modstring.build_panel_fields(mods_all)
         panel_ok = modstring.PANEL_FILE.exists() and modstring.PANEL_FILE.read_text() == client_panel
@@ -183,11 +200,7 @@ class SandboxStore:
         arr_ok = (ROOT / "server" / "profiles" / "DZDS" / "arrivals.json").exists()
 
         # Radio bulletin preview
-        bulletin = dzds_profile.build_bulletin(led, traders, quests) if hasattr(dzds_profile, "build_bulletin") else {
-            "Turn": led.s.turn,
-            "Frequency": "87.8 MHz (Settler Net)",
-            "Messages": led.recent_events(6) or [f"Turn {led.s.turn}: All Settler strongholds holding perimeter."],
-        }
+        bulletin = dzds_profile.build_bulletin(led, traders, quests, world=world_cfg)
 
         return {
             "active_map": map_name,
@@ -265,7 +278,7 @@ class SandboxStore:
                 ],
             },
             "telemetry": {
-                "adm_file_count": len(adm_files),
+                "adm_file_count": adm_file_count,
                 "encounter_audit": audit_list,
                 "recent_events": recent_adm,
                 "bulletin": bulletin,
@@ -309,7 +322,7 @@ class SandboxStore:
         return {"state": self.build_state(map_name)}
 
     def roll_kit(self, archetype_name: str | None = None) -> dict:
-        arrivals_cfg = yaml.safe_load((ROOT / "presets" / "arrivals.yaml").read_text())
+        arrivals_cfg = active.load_yaml("presets/arrivals.yaml")
         archs = arrivals.archetypes(arrivals_cfg)
         arch = next((a for a in archs if a["Name"] == archetype_name), archs[0])
         items = arrivals.simulate_kit(arch, self.rng)
@@ -327,6 +340,7 @@ STORE = SandboxStore()
 
 
 UI_HTML_PATH = Path(__file__).with_name("web_ui.html")
+PLAYER_PORTAL_HTML_PATH = Path(__file__).with_name("player_portal.html")
 
 
 def handle_api(method: str, path: str, query: dict[str, list[str]], body: dict) -> tuple[int, dict]:
@@ -382,6 +396,15 @@ class DashboardHandler(BaseHTTPRequestHandler):
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(html)))
+            self.end_headers()
+            self.wfile.write(html)
+            return
+        if parsed.path in ("/portal", "/portal/"):
+            html = PLAYER_PORTAL_HTML_PATH.read_bytes()
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-Type", "text/html; charset=utf-8")
+            self.send_header("Content-Length", str(len(html)))
+            self.send_header("Cache-Control", "no-store")
             self.end_headers()
             self.wfile.write(html)
             return

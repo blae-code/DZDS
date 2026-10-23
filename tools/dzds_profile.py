@@ -43,7 +43,7 @@ def markers(world: dict, led: WarLedger) -> list[dict]:
 def build_bulletin(led: WarLedger, traders: list[dict] | None = None,
                    quests: list[dict] | None = None, world: dict | None = None) -> dict:
     """Compile diegetic radio dispatches for $profile:DZDS/bulletin.json (DZDSBulletin.c)."""
-    world = world or yaml.safe_load((ROOT / "presets" / "world.yaml").read_text())
+    world = world or active.load_yaml("presets/world.yaml")
     bul_cfg = world.get("bulletin") or {}
     msgs: list[str] = list(led.recent_events(6))
     contested = sorted(s for s, h in led.s.control.items() if h == "contested")
@@ -68,9 +68,9 @@ def build_bulletin(led: WarLedger, traders: list[dict] | None = None,
 
 
 def main() -> int:
-    world = yaml.safe_load((ROOT / "presets" / "world.yaml").read_text())
+    world = active.load_yaml("presets/world.yaml")
     map_name = active.map_name()
-    led = WarLedger.load(map_name) if STATE.exists() else WarLedger.new(map_name)
+    led = WarLedger.load_or_new(map_name)
     OUT.mkdir(parents=True, exist_ok=True)
     import front_plan
     traders = front_plan.plan_traders(led, front_plan.load("presets/traders.yaml"))

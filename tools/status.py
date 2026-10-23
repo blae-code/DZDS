@@ -39,17 +39,11 @@ def active_column_site(map_data: dict, arrivals_cfg: dict) -> str | None:
 
 def render_overview(map_name: str | None = None, color: bool | None = None) -> str:
     map_name = map_name or active.map_name()
-    map_data = yaml.safe_load((ROOT / "maps" / f"{map_name}.yaml").read_text())
-    if STATE.exists():
-        try:
-            led = WarLedger.load(map_name)
-        except SystemExit:
-            led = WarLedger.new(map_name)
-    else:
-        led = WarLedger.new(map_name)
-    arrivals_cfg = yaml.safe_load((ROOT / "presets" / "arrivals.yaml").read_text())
-    traders_cfg = yaml.safe_load((ROOT / "presets" / "traders.yaml").read_text())
-    quests_cfg = yaml.safe_load((ROOT / "presets" / "quests.yaml").read_text())
+    map_data = active.map_data(map_name)
+    led = WarLedger.load_or_new(map_name)
+    arrivals_cfg = active.load_yaml("presets/arrivals.yaml")
+    traders_cfg = active.load_yaml("presets/traders.yaml")
+    quests_cfg = active.load_yaml("presets/quests.yaml")
 
     mods = modstring.ordered(modstring.load_mods())
     ws_mods = [m for m in mods if not m.get("local")]

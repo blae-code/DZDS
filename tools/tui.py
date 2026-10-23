@@ -64,18 +64,12 @@ class TuiState:
         self.reload()
 
     def reload(self) -> None:
-        self.map_data = yaml.safe_load((ROOT / "maps" / f"{self.map_name}.yaml").read_text())
-        if STATE.exists():
-            try:
-                self.led = WarLedger.load(self.map_name)
-            except SystemExit:
-                self.led = WarLedger.new(self.map_name)
-        else:
-            self.led = WarLedger.new(self.map_name)
-        self.factions_cfg = yaml.safe_load((ROOT / "presets" / "factions.yaml").read_text())
-        self.traders_cfg = yaml.safe_load((ROOT / "presets" / "traders.yaml").read_text())
-        self.quests_cfg = yaml.safe_load((ROOT / "presets" / "quests.yaml").read_text())
-        self.arrivals_cfg = yaml.safe_load((ROOT / "presets" / "arrivals.yaml").read_text())
+        self.map_data = active.map_data(self.map_name)
+        self.led = WarLedger.load_or_new(self.map_name)
+        self.factions_cfg = active.load_yaml("presets/factions.yaml")
+        self.traders_cfg = active.load_yaml("presets/traders.yaml")
+        self.quests_cfg = active.load_yaml("presets/quests.yaml")
+        self.arrivals_cfg = active.load_yaml("presets/arrivals.yaml")
         self.mods = modstring.ordered(modstring.load_mods())
         self.archs = arrivals.archetypes(self.arrivals_cfg)
         self.sites = sorted(self.led.locations().keys())
@@ -84,6 +78,7 @@ class TuiState:
         self.quests = front_plan.plan_quests(self.led, self.quests_cfg)
         self.rolled_kit: list[str] = arrivals.simulate_kit(self.archs[self.kit_arch_idx % len(self.archs)], self.rng)
         self.cursor = min(self.cursor, max(0, len(self.sites) - 1))
+        self._adm_cache: tuple | None = None
 
     def toggle_map(self) -> None:
         self.map_name = "chernarusplus" if self.map_name == "nasdara" else "nasdara"
@@ -296,9 +291,15 @@ def render_tab_snapshot(st: TuiState, tab: int | None = None, color: bool | None
         sim_file = ROOT / "gm_state" / "sim.ADM"
         if sim_file.exists():
             adm_files.append(sim_file)
+        tail = adm_files[-3:]
         zs = zmod.build(st.map_data, st.led.s.control, st.led.locations())
-        lines = [ln for f in adm_files[-3:] for ln in f.read_text(errors="replace").splitlines()[-400:]]
-        audit_res = encounter_audit.audit(lines, zs)
+        sig = (tuple((str(f), f.stat().st_mtime_ns, f.stat().st_size) for f in tail), tuple(zs))
+        if getattr(st, "_adm_cache", None) and st._adm_cache[0] == sig:
+            _, lines, audit_res = st._adm_cache
+        else:
+            lines = [ln for f in tail for ln in f.read_text(errors="replace").splitlines()[-400:]]
+            audit_res = encounter_audit.audit(lines, zs)
+            st._adm_cache = (sig, lines, audit_res)
         a_rows = []
         for p, r in sorted(audit_res.items()):
             rate = r["outside"] / max(1, r["sessions"])

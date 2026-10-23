@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AD ASPERA · DZDS Tactical Command Center</title>
+<link rel="icon" href="data:,">
 <style>
   :root {
     --bg-canvas: #0b0e11;
@@ -32,6 +33,7 @@
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
+  [hidden] { display: none !important; }
   html, body {
     height: 100%;
     background: var(--bg-canvas);
@@ -45,7 +47,7 @@
 
   /* Top Command Bar */
   .topbar {
-    height: 56px;
+    min-height: 56px;
     background: rgba(17, 21, 26, 0.92);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border-dim);
@@ -103,7 +105,8 @@
     background: transparent;
     color: var(--muted);
     border: none;
-    padding: 6px 13px;
+    padding: 6px 12px;
+    min-height: 48px;
     font-family: var(--font-mono);
     font-size: 11px;
     font-weight: 600;
@@ -116,6 +119,17 @@
     gap: 6px;
   }
   .nav-tab:hover { color: var(--bone); background: rgba(255,255,255,0.04); }
+  .nav-tab:focus-visible,
+  .portal-nav-link:focus-visible,
+  .btn:focus-visible,
+  .layer-chip:focus-visible,
+  .panel-close:focus-visible,
+  .site-item:focus-visible,
+  .layers-menu summary:focus-visible,
+  .tac-input:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+  }
   .nav-tab.active {
     background: var(--bg-elevated);
     color: var(--bone);
@@ -128,6 +142,18 @@
     padding: 0 4px;
     border-radius: 3px;
   }
+  .portal-nav-link {
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    padding: 6px 10px;
+    text-decoration: none;
+    border-left: 1px solid var(--border-dim);
+    white-space: nowrap;
+  }
+  .portal-nav-link:hover { color: var(--bone); }
 
   /* Right Status Cluster */
   .status-cluster {
@@ -186,7 +212,7 @@
 
   /* Workspace Layout */
   .workspace {
-    height: calc(100vh - 56px);
+    height: calc(100dvh - var(--topbar-height, 56px));
     display: none;
   }
   .workspace.active { display: flex; }
@@ -195,19 +221,28 @@
   .theatre-layout {
     width: 100%;
     height: 100%;
-    display: grid;
-    grid-template-columns: 270px 1fr 390px;
+    position: relative;
+    overflow: hidden;
   }
   .side-panel {
+    position: absolute;
+    z-index: 5;
+    top: 60px;
+    bottom: 12px;
+    left: 12px;
+    width: min(340px, calc(100% - 24px));
     background: var(--bg-panel);
-    border-right: 1px solid var(--border-dim);
+    border: 1px solid var(--border-bright);
+    border-radius: 7px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.48);
   }
   .side-panel.right {
-    border-right: none;
-    border-left: 1px solid var(--border-dim);
+    left: auto;
+    right: 12px;
+    width: min(390px, calc(100% - 24px));
   }
   .panel-hdr {
     padding: 11px 14px;
@@ -223,6 +258,23 @@
     align-items: center;
     background: rgba(0, 0, 0, 0.18);
   }
+  .panel-hdr-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .panel-close {
+    width: 48px;
+    height: 48px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background: transparent;
+    color: var(--muted);
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .panel-close:hover { color: var(--bone); background: var(--bg-elevated); }
   .panel-scroll {
     flex: 1;
     overflow-y: auto;
@@ -234,7 +286,8 @@
 
   /* Map Canvas Container */
   .map-stage {
-    position: relative;
+    position: absolute;
+    inset: 0;
     background: #090c0f;
     overflow: hidden;
     display: flex;
@@ -258,19 +311,22 @@
     justify-content: space-between;
     pointer-events: none;
     gap: 8px;
+    align-items: flex-start;
   }
   .map-hud-group {
     display: flex;
     gap: 6px;
     pointer-events: auto;
     flex-wrap: wrap;
+    align-items: flex-start;
   }
   .layer-chip {
     background: rgba(17, 21, 26, 0.88);
     backdrop-filter: blur(8px);
     border: 1px solid var(--border-dim);
     color: var(--muted);
-    padding: 5px 10px;
+    min-height: 48px;
+    padding: 7px 11px;
     border-radius: 4px;
     font-family: var(--font-mono);
     font-size: 11px;
@@ -287,7 +343,44 @@
     border-color: var(--cyan);
     background: rgba(104, 192, 208, 0.18);
   }
-
+  .map-panel-toggle[aria-expanded="true"] {
+    color: var(--bone);
+    border-color: var(--cyan);
+    background: rgba(104, 192, 208, 0.13);
+  }
+  .layers-menu { position: relative; }
+  .layers-menu summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+  .layers-menu summary::-webkit-details-marker { display: none; }
+  .layers-menu summary::after {
+    content: "⌄";
+    margin-left: 8px;
+    color: var(--muted);
+  }
+  .layers-menu[open] summary::after { content: "⌃"; }
+  .layers-menu-panel {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    z-index: 8;
+    width: min(290px, calc(100vw - 32px));
+    padding: 8px;
+    display: grid;
+    gap: 4px;
+    border: 1px solid var(--border-bright);
+    border-radius: 6px;
+    background: rgba(17, 21, 26, 0.98);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.55);
+  }
+  .layers-menu-panel .layer-chip {
+    width: 100%;
+    text-align: left;
+  }
   .map-hud-bottom {
     position: absolute;
     bottom: 12px;
@@ -295,8 +388,9 @@
     right: 12px;
     display: flex;
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     pointer-events: none;
+    gap: 8px;
   }
   .coord-box {
     background: rgba(17, 21, 26, 0.9);
@@ -308,6 +402,24 @@
     font-size: 11px;
     color: var(--bone);
     font-variant-numeric: tabular-nums;
+  }
+  .map-hud-bottom .coord-box {
+    max-width: 100%;
+    padding: 7px 10px;
+    font-size: 10px;
+  }
+  .map-hud-bottom #column-readout { margin-left: auto; }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   /* Cards & Lists */
@@ -330,10 +442,14 @@
     align-items: center;
   }
   .site-item {
+    width: 100%;
     padding: 8px 10px;
     border-radius: 5px;
     background: var(--bg-card);
     border: 1px solid var(--border-dim);
+    color: var(--bone);
+    font-family: var(--font-sans);
+    text-align: left;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -383,6 +499,33 @@
     display: flex;
     flex-direction: column;
     gap: 18px;
+  }
+  .page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-dim);
+  }
+  .page-heading h1 {
+    font-size: 20px;
+    line-height: 1.2;
+    font-weight: 650;
+    letter-spacing: 0.01em;
+  }
+  .page-heading p {
+    max-width: 760px;
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 12px;
+  }
+  .page-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    flex-wrap: wrap;
   }
   .grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -446,80 +589,142 @@
     z-index: 100;
     display: none;
   }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+
+  @media (max-width: 1100px) {
+    html, body { height: auto; min-height: 100%; overflow: auto; }
+    .topbar {
+      flex-wrap: wrap;
+      padding: 8px 14px;
+      gap: 8px 12px;
+    }
+    .brand-cluster { flex: 1; }
+    .status-cluster { margin-left: auto; }
+    .nav-tabs {
+      order: 3;
+      flex: 1 0 100%;
+      justify-content: center;
+      overflow-x: auto;
+    }
+    .workspace { height: auto; min-height: calc(100dvh - var(--topbar-height, 56px)); }
+    .workspace.active { display: block; }
+    .grid-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .theatre-layout { height: min(72vh, 760px); min-height: 440px; }
+    .page-scroll { padding: 16px; }
+  }
+
+  @media (max-width: 850px) {
+    .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 600px) {
+    html, body { height: auto; min-height: 100%; overflow: auto; }
+    .topbar { position: sticky; top: 0; padding: 8px 10px; }
+    .brand-title { font-size: 14px; }
+    .brand-sub { display: none; }
+    .status-cluster { gap: 6px; font-size: 10px; }
+    .status-cluster .pill { padding: 3px 6px; }
+    .status-cluster .readiness-pill { display: inline-flex; gap: 4px; padding: 3px 5px; font-size: 9px; }
+    #map-select { max-width: 100px; }
+    .brand-title { font-size: 13px; letter-spacing: 0.1em; }
+    .nav-tabs { justify-content: flex-start; }
+    .nav-tab { flex: 0 0 auto; padding: 6px 10px; }
+    .workspace { height: auto; min-height: calc(100dvh - var(--topbar-height, 56px)); }
+    .workspace.active { display: block; }
+    .theatre-layout { height: min(70vh, 680px); min-height: 400px; }
+    .side-panel { top: 120px; bottom: 12px; }
+    .page-scroll { height: auto; padding: 12px; gap: 12px; }
+    .page-heading { align-items: flex-start; flex-direction: column; gap: 10px; }
+    .page-actions { justify-content: flex-start; }
+    .grid-5, .grid-3, .grid-2 { grid-template-columns: minmax(0, 1fr); }
+    #view-1 > .page-scroll > div:first-child { align-items: flex-start !important; flex-direction: column; }
+    #view-1 .claim-form { grid-template-columns: minmax(0, 1fr) !important; }
+    table.tactical-table { display: block; overflow-x: auto; white-space: nowrap; }
+    .map-hud-top { flex-direction: column; }
+    .map-hud-group { max-width: 100%; }
+    .map-hud-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .map-hud-bottom #column-readout { margin-left: 0; }
+  }
 </style>
 </head>
 <body>
 
 <header class="topbar">
   <div class="brand-cluster">
-    <div class="faction-bars">
-      <div class="faction-bars-row">
-        <span class="fbar" style="background:var(--f-settlers)"></span>
-        <span class="fbar" style="background:var(--f-peacekeepers)"></span>
-        <span class="fbar" style="background:var(--f-jackals)"></span>
-        <span class="fbar" style="background:var(--f-karkas)"></span>
-        <span class="fbar" style="background:var(--f-rust)"></span>
-      </div>
-      <div class="brand-sub">FACTIONS · DZDS C4ISR</div>
-    </div>
     <div>
       <div class="brand-title"><span class="ad">AD</span><span class="aspera">ASPERA</span></div>
     </div>
   </div>
 
-  <nav class="nav-tabs">
-    <button class="nav-tab active" onclick="switchView(0)"><span class="key">1</span> TACTICAL THEATRE</button>
-    <button class="nav-tab" onclick="switchView(1)"><span class="key">2</span> WAR LEDGER & DIPLOMACY</button>
-    <button class="nav-tab" onclick="switchView(2)"><span class="key">3</span> FRONT PLAN & ARRIVALS</button>
-    <button class="nav-tab" onclick="switchView(3)"><span class="key">4</span> MOD LOADOUT & OPS</button>
-    <button class="nav-tab" onclick="switchView(4)"><span class="key">5</span> GM TELEMETRY & RADIO</button>
+  <nav class="nav-tabs" aria-label="Main navigation">
+    <button class="nav-tab active" aria-current="page" title="Map and sites · shortcut 1" onclick="switchView(0)">MAP</button>
+    <button class="nav-tab" title="War ledger and diplomacy · shortcut 2" onclick="switchView(1)">WAR</button>
+    <button class="nav-tab" title="Traders, quests and arrivals · shortcut 3" onclick="switchView(2)">CAMPAIGN</button>
+    <button class="nav-tab" title="Mod loadout · shortcut 4" onclick="switchView(3)">MODS</button>
+    <button class="nav-tab" title="Game Master telemetry and radio · shortcut 5" onclick="switchView(4)">GM</button>
+    <a class="portal-nav-link" href="/portal" title="Open the read-only player guide">GUIDE ↗</a>
   </nav>
 
   <div class="status-cluster">
-    <div class="pill" title="Active Map Sector">
-      <span>SECTOR:</span>
-      <select id="map-select" class="tac-input" style="padding:2px 6px; font-size:11px;" onchange="changeMap(this.value)">
-        <option value="nasdara">NASDARA (1.30)</option>
+    <div class="pill" title="Active map">
+      <span>MAP</span>
+      <select id="map-select" class="tac-input" aria-label="Active map" style="padding:2px 6px; font-size:11px;" onchange="changeMap(this.value)">
+        <option value="nasdara">NASDARA</option>
         <option value="chernarusplus">CHERNARUS+</option>
       </select>
     </div>
-    <div class="pill">
-      <span class="dot ok"></span>
-      <span id="hdr-turn">TURN 0</span>
+    <div class="pill"><span id="hdr-turn">TURN 0</span></div>
+    <div class="pill readiness-pill" id="readiness-pill" title="Local file/build checks only; this does not confirm live server health">
+      <span class="dot ok" id="readiness-dot"></span>
+      <span id="readiness-label">LOCAL 0/3</span>
     </div>
-    <button class="btn btn-coral" onclick="simulateTurn(false)" title="Advance one War Turn in preview mode">⚡ SIMULATE TURN</button>
-    <button class="btn" onclick="resetPreview()" title="Reload War Ledger from disk">↺ RESET</button>
   </div>
 </header>
 
 <!-- VIEW 1: TACTICAL THEATRE -->
 <section class="workspace active" id="view-0">
   <div class="theatre-layout">
-    <!-- Left Rail: Locations & Faction Filter -->
-    <aside class="side-panel">
+    <h1 class="sr-only">Operational map</h1>
+    <aside class="side-panel" id="locations-panel" aria-labelledby="locations-panel-title" hidden>
       <div class="panel-hdr">
-        <span>SECTOR LOCATIONS</span>
-        <span id="site-count-label" class="mono">17</span>
+        <span class="panel-hdr-title">
+          <span id="locations-panel-title">Locations</span>
+          <span id="site-count-label" class="mono">17</span>
+        </span>
+        <button class="panel-close" type="button" aria-label="Close locations panel" onclick="closeMapPanel('locations')">×</button>
       </div>
       <div style="padding: 8px 12px; border-bottom: 1px solid var(--border-dim);">
-        <input type="text" id="site-filter" class="tac-input" style="width:100%" placeholder="Filter locations or roles..." oninput="renderSiteList()">
+        <input type="text" id="site-filter" class="tac-input" style="width:100%" aria-label="Filter locations" placeholder="Filter locations or roles..." oninput="renderSiteList()">
       </div>
       <div class="panel-scroll" id="site-list"></div>
     </aside>
 
-    <!-- Center: Interactive Vector Map -->
     <main class="map-stage">
       <div class="map-hud-top">
-        <div class="map-hud-group">
-          <button class="layer-chip on" id="lyr-zones" onclick="toggleLayer('zones')">◉ ZONES (400m)</button>
-          <button class="layer-chip on" id="lyr-patrols" onclick="toggleLayer('patrols')">⬡ PATROL SQUADS</button>
-          <button class="layer-chip on" id="lyr-arrivals" onclick="toggleLayer('arrivals')">◈ ARRIVAL COLUMNS & ROADS</button>
-          <button class="layer-chip on" id="lyr-quests" onclick="toggleLayer('quests')">⇢ QUEST VECTORS</button>
-          <button class="layer-chip" id="lyr-exclusions" onclick="toggleLayer('exclusions')">⊘ EXCLUSION RINGS</button>
+        <div class="map-hud-group" role="group" aria-label="Map panels and layers">
+          <button class="layer-chip map-panel-toggle" id="btn-locations" type="button" aria-expanded="false" aria-controls="locations-panel" onclick="toggleMapPanel('locations')">Locations <span id="location-toggle-count">17</span></button>
+          <button class="layer-chip map-panel-toggle" id="btn-dossier" type="button" aria-expanded="false" aria-controls="dossier-panel" onclick="toggleMapPanel('dossier')">Site details</button>
+          <details class="layers-menu">
+            <summary class="layer-chip" aria-label="Map layers">Layers</summary>
+            <div class="layers-menu-panel" role="group" aria-label="Map layers">
+              <button class="layer-chip on" id="lyr-zones" type="button" aria-pressed="true" onclick="toggleLayer('zones')">Zones (400 m)</button>
+              <button class="layer-chip on" id="lyr-patrols" type="button" aria-pressed="true" onclick="toggleLayer('patrols')">Patrol squads</button>
+              <button class="layer-chip on" id="lyr-arrivals" type="button" aria-pressed="true" onclick="toggleLayer('arrivals')">Arrival columns & roads</button>
+              <button class="layer-chip on" id="lyr-quests" type="button" aria-pressed="true" onclick="toggleLayer('quests')">Quest vectors</button>
+              <button class="layer-chip" id="lyr-exclusions" type="button" aria-pressed="false" onclick="toggleLayer('exclusions')">Exclusion rings</button>
+            </div>
+          </details>
         </div>
-        <div class="map-hud-group">
-          <button class="layer-chip" id="btn-ruler" onclick="toggleRuler()">📏 RULER / FLIGHT TIME [R]</button>
-          <button class="layer-chip on" onclick="resetMapCamera()">⌖ FIT MAP</button>
+        <div class="map-hud-group" role="group" aria-label="Map tools">
+          <button class="layer-chip" id="btn-ruler" type="button" aria-pressed="false" title="Measure distance and travel time (R)" onclick="toggleRuler()">Ruler</button>
+          <button class="layer-chip on" type="button" title="Fit the whole map" onclick="resetMapCamera()">Fit map</button>
         </div>
       </div>
 
@@ -531,11 +736,13 @@
       </div>
     </main>
 
-    <!-- Right Rail: Selected Site Dossier & Dispatches -->
-    <aside class="side-panel right">
+    <aside class="side-panel right" id="dossier-panel" aria-labelledby="dossier-panel-title" hidden>
       <div class="panel-hdr">
-        <span>TACTICAL SITE DOSSIER</span>
-        <span id="dossier-state-badge" class="badge ok">STRONGHOLD</span>
+        <span class="panel-hdr-title">
+          <span id="dossier-panel-title">Site details</span>
+          <span id="dossier-state-badge" class="badge ok">STRONGHOLD</span>
+        </span>
+        <button class="panel-close" type="button" aria-label="Close site details panel" onclick="closeMapPanel('dossier')">×</button>
       </div>
       <div class="panel-scroll" id="site-dossier"></div>
     </aside>
@@ -545,16 +752,17 @@
 <!-- VIEW 2: WAR LEDGER & DIPLOMACY -->
 <section class="workspace" id="view-1">
   <div class="page-scroll">
-    <div style="display:flex; justify-content:space-between; align-items:center;">
+    <header class="page-heading">
       <div>
-        <h2 style="font-family:var(--font-mono); letter-spacing:0.08em;">WAR LEDGER · FACTION STRENGTH, STANDING & DIPLOMACY</h2>
-        <p class="muted">AI deaths from Expansion's LogAIKilled shift site pressure, faction strength, and player standing thresholds each restart.</p>
+        <h1>War ledger</h1>
+        <p>Faction strength, player standing and diplomacy. Preview a turn before saving it.</p>
       </div>
-      <div style="display:flex; gap:8px;">
-        <button class="btn btn-coral" onclick="simulateTurn(false)">⚡ ADVANCE TURN (PREVIEW)</button>
-        <button class="btn btn-cyan" onclick="simulateTurn(true)">💾 ADVANCE & SAVE TO LEDGER</button>
+      <div class="page-actions">
+        <button class="btn" type="button" onclick="simulateTurn(false)">Preview turn</button>
+        <button class="btn btn-cyan" type="button" onclick="simulateTurn(true)">Advance & save</button>
+        <button class="btn" type="button" onclick="resetPreview()" title="Reload the War Ledger from disk">Reload</button>
       </div>
-    </div>
+    </header>
 
     <div class="grid-5" id="faction-cards"></div>
 
@@ -566,10 +774,10 @@
       <div class="card">
         <div class="card-title"><span>CLAIM PLAYER SETTLEMENT / OUTPOST</span><span class="mono muted">tools/war.py claim</span></div>
         <p class="muted" style="margin-bottom:10px;">Claimed player settlements receive Frontier Settler farm_watch & scavenger_party garrisons and never fall to off-screen fighting.</p>
-        <div style="display:grid; grid-template-columns: 1fr 110px 110px auto; gap:8px; margin-bottom:14px;">
-          <input id="claim-name" class="tac-input" placeholder="Settlement Name (e.g. Canyon Homestead)">
-          <input id="claim-x" class="tac-input" type="number" value="7200" placeholder="X (m)">
-          <input id="claim-z" class="tac-input" type="number" value="8400" placeholder="Z (m)">
+        <div class="claim-form" style="display:grid; grid-template-columns: 1fr 110px 110px auto; gap:8px; margin-bottom:14px;">
+          <input id="claim-name" class="tac-input" aria-label="Settlement name" placeholder="Settlement Name (e.g. Canyon Homestead)">
+          <input id="claim-x" class="tac-input" type="number" value="7200" aria-label="Settlement X coordinate in meters" placeholder="X (m)">
+          <input id="claim-z" class="tac-input" type="number" value="8400" aria-label="Settlement Z coordinate in meters" placeholder="Z (m)">
           <button class="btn btn-cyan" onclick="submitClaim()">+ CLAIM SITE</button>
         </div>
         <div class="card-title" style="margin-top:8px;"><span>RECENT WAR LEDGER DISPATCHES</span></div>
@@ -582,6 +790,12 @@
 <!-- VIEW 3: FRONT PLAN & ARRIVALS -->
 <section class="workspace" id="view-2">
   <div class="page-scroll">
+    <header class="page-heading">
+      <div>
+        <h1>Campaign</h1>
+        <p>Traders, arrivals, live quests and vehicle pools for the current front.</p>
+      </div>
+    </header>
     <div class="grid-2">
       <div class="card">
         <div class="card-title"><span>DYNAMIC FACTION BARTER TRADERS</span><span class="mono muted">presets/traders.yaml</span></div>
@@ -609,6 +823,12 @@
 <!-- VIEW 4: MOD LOADOUT & OPS -->
 <section class="workspace" id="view-3">
   <div class="page-scroll">
+    <header class="page-heading">
+      <div>
+        <h1>Mod loadout</h1>
+        <p>Review the enabled list and copy the complete Workshop string for the server panel.</p>
+      </div>
+    </header>
     <div class="card">
       <div class="card-title">
         <span>GODLIKE PANEL · STARTUP VARIABLES ("ADDITIONAL MODS")</span>
@@ -622,8 +842,8 @@
       <div class="card-title">
         <span>MOD LOADOUT REGISTRY (TIER 1 CORE → TIER 4 UI/ADMIN)</span>
         <div style="display:flex; gap:8px;">
-          <input id="mod-search" class="tac-input" placeholder="Search mod name, @folder, or Workshop ID..." oninput="renderModsTable()">
-          <select id="mod-filter" class="tac-input" onchange="renderModsTable()">
+          <input id="mod-search" class="tac-input" aria-label="Search mods by name, folder or Workshop ID" placeholder="Search mod name, @folder, or Workshop ID..." oninput="renderModsTable()">
+          <select id="mod-filter" class="tac-input" aria-label="Filter mods by status" onchange="renderModsTable()">
             <option value="enabled">Enabled Only</option>
             <option value="all">All Mods (incl. Pruned)</option>
             <option value="pruned">Pruned / Disabled Only</option>
@@ -638,6 +858,12 @@
 <!-- VIEW 5: GM TELEMETRY & RADIO -->
 <section class="workspace" id="view-4">
   <div class="page-scroll">
+    <header class="page-heading">
+      <div>
+        <h1>Game Master</h1>
+        <p>Encounter audit, radio bulletin preview and recent server telemetry.</p>
+      </div>
+    </header>
     <div class="grid-2">
       <div class="card">
         <div class="card-title"><span>OPEN-COUNTRY AI ENCOUNTER AUDIT (SPEC §4.4 TARGET &le; 0.33)</span><span id="adm-count-label" class="mono muted">0 ADM files</span></div>
@@ -695,14 +921,32 @@ async function api(path, method = 'GET', body = null) {
 async function loadState(mapName = null) {
   const q = mapName ? `?map=${encodeURIComponent(mapName)}` : '';
   STATE = await api(`/api/state${q}`);
+  renderHeader();
+  renderAll();
+}
+
+function renderHeader() {
   document.getElementById('map-select').value = STATE.active_map;
   document.getElementById('hdr-turn').textContent = `TURN ${STATE.ledger.turn}`;
+  const readiness = STATE.telemetry.readiness;
+  const checks = Object.values(readiness);
+  const readyCount = checks.filter(Boolean).length;
+  const readinessDot = document.getElementById('readiness-dot');
+  readinessDot.className = `dot ${readyCount === checks.length ? 'ok' : readyCount ? 'warn' : 'err'}`;
+  const missing = Object.entries(readiness)
+    .filter(([, ready]) => !ready)
+    .map(([key]) => ({ panel_ok: 'panel mod string', pbo_ok: 'signed DZDS build', arrivals_ok: 'arrivals config' }[key] || key));
+  const readinessPill = document.getElementById('readiness-pill');
+  document.getElementById('readiness-label').textContent = `LOCAL ${readyCount}/${checks.length}`;
+  readinessPill.title = missing.length
+    ? `Local checks missing: ${missing.join(', ')}. This does not confirm live server health.`
+    : 'All local file/build checks passed. This does not confirm live server health.';
+  readinessPill.setAttribute('aria-label', readinessPill.title);
   document.getElementById('column-readout').textContent =
     `TODAY'S REFUGEE COLUMN: ${STATE.map.active_column || 'N/A'} (SETTLER NETIDX #${STATE.arrivals.radio_index})`;
   if (!SELECTED_SITE || !STATE.map.locations[SELECTED_SITE]) {
     SELECTED_SITE = STATE.map.locations['Settler Haven'] ? 'Settler Haven' : Object.keys(STATE.map.locations)[0];
   }
-  renderAll();
 }
 
 function renderAll() {
@@ -718,9 +962,34 @@ function renderAll() {
 
 function switchView(idx) {
   ACTIVE_VIEW = idx;
-  document.querySelectorAll('.nav-tab').forEach((b, i) => b.classList.toggle('active', i === idx));
+  document.querySelectorAll('.nav-tab').forEach((b, i) => {
+    b.classList.toggle('active', i === idx);
+    if (i === idx) b.setAttribute('aria-current', 'page');
+    else b.removeAttribute('aria-current');
+  });
   document.querySelectorAll('.workspace').forEach((w, i) => w.classList.toggle('active', i === idx));
   if (idx === 0) requestAnimationFrame(drawMap);
+}
+
+function setMapPanel(panelName, open) {
+  if (open) document.querySelector('.layers-menu').open = false;
+  for (const name of ['locations', 'dossier']) {
+    const panel = document.getElementById(`${name}-panel`);
+    const toggle = document.getElementById(`btn-${name}`);
+    const isOpen = open && name === panelName;
+    panel.hidden = !isOpen;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+  }
+}
+
+function toggleMapPanel(panelName) {
+  const panel = document.getElementById(`${panelName}-panel`);
+  setMapPanel(panelName, panel.hidden);
+}
+
+function closeMapPanel(panelName) {
+  setMapPanel(panelName, false);
+  document.getElementById(`btn-${panelName}`).focus();
 }
 
 function changeMap(mapName) {
@@ -731,7 +1000,7 @@ function changeMap(mapName) {
 async function simulateTurn(commit = false) {
   const res = await api('/api/simulate-turn', 'POST', { map: STATE.active_map, commit });
   STATE = res.state;
-  document.getElementById('hdr-turn').textContent = `TURN ${STATE.ledger.turn}`;
+  renderHeader();
   renderAll();
   const ev = (res.events && res.events.length) ? res.events.join(' · ') : 'Front line quiet';
   showToast(`${commit ? 'Saved' : 'Simulated'} Turn ${STATE.ledger.turn}: ${ev}`);
@@ -740,7 +1009,7 @@ async function simulateTurn(commit = false) {
 async function resetPreview() {
   const res = await api('/api/reset-preview', 'POST', { map: STATE.active_map });
   STATE = res.state;
-  document.getElementById('hdr-turn').textContent = `TURN ${STATE.ledger.turn}`;
+  renderHeader();
   renderAll();
   showToast('Reloaded War Ledger state from disk.');
 }
@@ -777,6 +1046,7 @@ function renderSiteList() {
     return k.toLowerCase().includes(q) || info.roles.join(' ').toLowerCase().includes(q) || info.holder.toLowerCase().includes(q);
   });
   document.getElementById('site-count-label').textContent = `${keys.length}/${Object.keys(locs).length}`;
+  document.getElementById('location-toggle-count').textContent = `${keys.length}`;
   const container = document.getElementById('site-list');
   container.innerHTML = keys.map(name => {
     const loc = locs[name];
@@ -784,21 +1054,24 @@ function renderSiteList() {
     const sel = name === SELECTED_SITE ? 'selected' : '';
     const stateLabel = loc.holder === 'contested' ? 'WARZONE' : loc.holder === 'unheld' ? 'OPEN' : loc.holder.toUpperCase();
     return `
-      <div class="site-item ${sel}" onclick="selectSite('${name.replace(/'/g, "\\'")}')">
+      <button class="site-item ${sel}" type="button" aria-pressed="${name === SELECTED_SITE}" onclick="selectSite('${name.replace(/'/g, "\\'")}')">
         <div>
           <div class="site-name">${name}</div>
           <div class="site-meta">${loc.roles.join(', ') || 'unassigned'} · (${loc.pos[0]}, ${loc.pos[1]})</div>
         </div>
         <span class="badge" style="color:${col}; border:1px solid ${col}55; background:${col}18;">${stateLabel}</span>
-      </div>
+      </button>
     `;
   }).join('');
 }
 
 function selectSite(name) {
+  const selectionWasInLocations = document.getElementById('locations-panel').contains(document.activeElement);
   SELECTED_SITE = name;
   renderSiteList();
   renderSiteDossier();
+  setMapPanel('dossier', true);
+  if (selectionWasInLocations) document.getElementById('btn-dossier').focus();
   drawMap();
 }
 
@@ -1104,7 +1377,9 @@ const ctx = canvas.getContext('2d');
 
 function toggleLayer(name) {
   LAYERS[name] = !LAYERS[name];
-  document.getElementById(`lyr-${name}`).classList.toggle('on', LAYERS[name]);
+  const button = document.getElementById(`lyr-${name}`);
+  button.classList.toggle('on', LAYERS[name]);
+  button.setAttribute('aria-pressed', String(LAYERS[name]));
   drawMap();
 }
 
@@ -1112,6 +1387,7 @@ function toggleRuler() {
   RULER.active = !RULER.active;
   if (!RULER.active) { RULER.p1 = null; RULER.p2 = null; }
   document.getElementById('btn-ruler').classList.toggle('ruler-on', RULER.active);
+  document.getElementById('btn-ruler').setAttribute('aria-pressed', String(RULER.active));
   canvas.classList.toggle('ruler-active', RULER.active);
   drawMap();
 }
@@ -1224,8 +1500,10 @@ function drawMap() {
       ctx.arc(ax, ay, (isCol ? 9 : 5), 0, Math.PI * 2);
       ctx.stroke();
       ctx.fillStyle = isCol ? '#68c0d0' : '#84909c';
-      ctx.font = '600 10px "JetBrains Mono", monospace';
-      ctx.fillText((isCol ? '◈ COLUMN: ' : '◇ ') + aname, ax + 11, ay + 3);
+      if (isCol || CAM.zoom >= 1.8) {
+        ctx.font = '600 10px "JetBrains Mono", monospace';
+        ctx.fillText((isCol ? '◈ COLUMN: ' : '◇ ') + aname, ax + 11, ay + 3);
+      }
     }
   }
 
@@ -1305,12 +1583,13 @@ function drawMap() {
       ctx.stroke();
     }
 
-    // Label
-    ctx.font = `${isSel ? '700 12px' : '600 11px'} "JetBrains Mono", monospace`;
-    ctx.fillStyle = '#090c0f';
-    ctx.fillText(name, sx + 9, sy + 5);
-    ctx.fillStyle = isSel ? '#ffffff' : (loc.holder === 'unheld' ? '#9aa6b2' : '#dedcd6');
-    ctx.fillText(name, sx + 8, sy + 4);
+    if (isSel || CAM.zoom >= 1.8) {
+      ctx.font = `${isSel ? '700 12px' : '600 11px'} "JetBrains Mono", monospace`;
+      ctx.fillStyle = '#090c0f';
+      ctx.fillText(name, sx + 9, sy + 5);
+      ctx.fillStyle = isSel ? '#ffffff' : (loc.holder === 'unheld' ? '#9aa6b2' : '#dedcd6');
+      ctx.fillText(name, sx + 8, sy + 4);
+    }
   }
 
   // 9. Tactical Ruler Overlay
@@ -1408,12 +1687,33 @@ canvas.addEventListener('wheel', e => {
 }, { passive: false });
 
 window.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    const openPanel = ['locations', 'dossier'].find(name =>
+      !document.getElementById(`${name}-panel`).hidden
+    );
+    if (openPanel) {
+      closeMapPanel(openPanel);
+      return;
+    }
+  }
   if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
   if (e.key >= '1' && e.key <= '5') switchView(parseInt(e.key) - 1);
   if (e.key === 'r' || e.key === 'R') toggleRuler();
 });
 
-window.addEventListener('resize', drawMap);
+function syncTopbarHeight() {
+  const topbar = document.querySelector('.topbar');
+  document.documentElement.style.setProperty('--topbar-height', `${topbar.offsetHeight}px`);
+}
+
+window.addEventListener('resize', () => {
+  syncTopbarHeight();
+  drawMap();
+});
+document.querySelector('.layers-menu').addEventListener('toggle', event => {
+  if (event.currentTarget.open) setMapPanel(null, false);
+});
+syncTopbarHeight();
 loadState();
 </script>
 </body>

@@ -21,9 +21,14 @@ ROOT = Path(__file__).resolve().parent.parent
 MODS_FILE = ROOT / "config" / "mods.yaml"
 PANEL_FILE = ROOT / "config" / "panel_additional_mods.txt"
 TIER_NAMES = {1: "core", 2: "gameplay/AI", 3: "vehicles/base", 4: "UI/admin"}
+_MODS_CACHE: dict[Path, tuple[int, int, list[dict]]] = {}
 
 
 def load_mods(path: Path = MODS_FILE) -> list[dict]:
+    st = path.stat()
+    hit = _MODS_CACHE.get(path)
+    if hit and hit[0] == st.st_mtime_ns and hit[1] == st.st_size:
+        return [dict(m) for m in hit[2]]
     data = yaml.safe_load(path.read_text())
     mods = data.get("mods", [])
     errors = []
@@ -42,7 +47,8 @@ def load_mods(path: Path = MODS_FILE) -> list[dict]:
         seen_folders.add(m.get("folder"))
     if errors:
         raise SystemExit("mods.yaml invalid:\n  " + "\n  ".join(errors))
-    return mods
+    _MODS_CACHE[path] = (st.st_mtime_ns, st.st_size, mods)
+    return [dict(m) for m in mods]
 
 
 def ordered(mods: list[dict]) -> list[dict]:

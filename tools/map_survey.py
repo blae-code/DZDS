@@ -30,10 +30,17 @@ ROLE_PATTERNS = {
 MIN_COUNT = {"military": 6, "airfield": 3, "industrial": 4, "water": 1, "town": 25,
              "refugee": 3, "rail": 10}
 _GROUP = re.compile(r'<group name="([^"]+)" pos="(-?[\d.]+) (-?[\d.]+) (-?[\d.]+)"')
+_GROUPS_CACHE: dict[Path, tuple[int, int, list[tuple[str, float, float, float]]]] = {}
 
 
 def load_groups(path: Path) -> list[tuple[str, float, float, float]]:
-    return [(m[1], float(m[2]), float(m[3]), float(m[4])) for m in _GROUP.finditer(path.read_text())]
+    st = path.stat()
+    hit = _GROUPS_CACHE.get(path)
+    if hit and hit[0] == st.st_mtime_ns and hit[1] == st.st_size:
+        return hit[2]
+    groups = [(m[1], float(m[2]), float(m[3]), float(m[4])) for m in _GROUP.finditer(path.read_text())]
+    _GROUPS_CACHE[path] = (st.st_mtime_ns, st.st_size, groups)
+    return groups
 
 
 def survey(groups, cell: float = 600.0) -> dict[str, list[dict]]:
@@ -64,11 +71,17 @@ def bounds(groups) -> list[int]:
 
 
 def ground_y(groups, x: float, z: float, within: float = 150.0) -> float:
-    best, best_d = 0.0, within
+    best, best_d2 = 0.0, within * within
     for _, gx, gy, gz in groups:
-        d = math.hypot(gx - x, gz - z)
-        if d <= best_d:
-            best, best_d = gy, d
+        dx = gx - x
+        if dx > within or dx < -within:
+            continue
+        dz = gz - z
+        if dz > within or dz < -within:
+            continue
+        d2 = dx * dx + dz * dz
+        if d2 <= best_d2:
+            best, best_d2 = gy, d2
     return best
 
 

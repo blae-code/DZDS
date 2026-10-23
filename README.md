@@ -53,9 +53,9 @@ ollama pull gemma4:e4b       # confirm the exact tag with `ollama list` / ollama
 
 | Task | Command |
 |---|---|
-| Tactical sandbox overview (map, factions, traders, readiness) | `make status` |
-| Interactive 5-tab Terminal UI (TUI) command deck | `make tui` |
-| Web Tactical Command Center (`http://127.0.0.1:8787`) | `make dashboard` (`OPEN=1` to open browser) |
+| Unified web app (operator dashboard at `/`, player guide at `/portal`) | `make dashboard` (`OPEN=1` to open browser) |
+| Terminal status snapshot (optional) | `make status` |
+| Keyboard-driven terminal command deck (optional) | `make tui` |
 | Pull live configs | `make pull` |
 | Edit configs | edit files in `server/`, then `git diff` |
 | Validate | `make validate` |
@@ -73,6 +73,15 @@ ollama pull gemma4:e4b       # confirm the exact tag with `ollama list` / ollama
 | Scale loot for population + campaign phase | `make economy` (`PHASE=landfall` to force) |
 | Build custom loot types | `make types` (list mod classnames: `make mod-types`) |
 | Local test server | `scripts/local_server.sh install \| mods \| start` |
+
+The browser app is the home for in-repo web experiences. The operator dashboard at `/`
+brings the status overview and interactive command-deck views together; its **Player Guide**
+link opens the separate, read-only survivor guide at `/portal`. The guide is built from
+verified repository information and contains no operator controls. `make status` and
+`make tui` remain optional terminal alternatives. The pages are served by
+`src/gamemaster/web.py` from `src/gamemaster/web_ui.html` and
+`src/gamemaster/player_portal.html`. The app listens on loopback by default; it is not a
+publicly hosted player website.
 
 ## Layout
 ```

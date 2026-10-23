@@ -87,6 +87,22 @@ def test_tui_all_five_tabs_and_actions():
     assert "COMMAND DECK · CHERNARUSPLUS" in ui.strip_ansi(tui.render_tab_snapshot(st, tab=0, color=False))
 
 
+def test_dashboard_map_controls_use_progressive_disclosure():
+    html = web.UI_HTML_PATH.read_text()
+    assert 'id="locations-panel" aria-labelledby="locations-panel-title" hidden' in html
+    assert 'id="dossier-panel" aria-labelledby="dossier-panel-title" hidden' in html
+    assert 'aria-expanded="false" aria-controls="locations-panel"' in html
+    assert 'aria-expanded="false" aria-controls="dossier-panel"' in html
+    assert '<details class="layers-menu">' in html
+    assert 'aria-pressed="true" onclick="toggleLayer(\'zones\')"' in html
+    assert "function setMapPanel(panelName, open)" in html
+    assert "if (e.key === 'Escape')" in html
+    assert '<h1>War ledger</h1>' in html
+    assert '<h1>Campaign</h1>' in html
+    assert '<h1>Mod loadout</h1>' in html
+    assert '<h1>Game Master</h1>' in html
+
+
 def test_web_api_endpoints_and_live_http_roundtrip():
     web.STORE.reset_preview("nasdara")
     code, state = web.handle_api("GET", "/api/state", {"map": ["nasdara"]}, {})
@@ -128,7 +144,7 @@ def test_web_api_endpoints_and_live_http_roundtrip():
     import http.client
     srv = ThreadingHTTPServer(("127.0.0.1", 0), web.DashboardHandler)
     port = srv.server_address[1]
-    t = threading.Thread(target=srv.serve_forever, daemon=True)
+    t = threading.Thread(target=srv.serve_forever, kwargs={"poll_interval": 0.02}, daemon=True)
     t.start()
     try:
         conn = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
@@ -138,12 +154,49 @@ def test_web_api_endpoints_and_live_http_roundtrip():
         assert resp.status == 200
         assert "AD ASPERA · DZDS Tactical Command Center" in html
 
+        conn.request("GET", "/portal")
+        portal_resp = conn.getresponse()
+        portal_html = portal_resp.read().decode("utf-8")
+        assert portal_resp.status == 200
+        assert portal_resp.getheader("Content-Type") == "text/html; charset=utf-8"
+        assert "Ad Aspera | Survivor's Guide" in portal_html
+        assert "23.229.49.100:26092" in portal_html
+        assert "87.8 MHz" in portal_html
+        assert "06:00 US Central" in portal_html
+        assert "/api/" not in portal_html
+        assert "simulateTurn" not in portal_html
+        assert "<script" not in portal_html
+
         conn.request("GET", "/api/state?map=nasdara")
         resp2 = conn.getresponse()
         payload = json.loads(resp2.read().decode("utf-8"))
         assert resp2.status == 200
         assert payload["active_map"] == "nasdara"
         conn.close()
+
+        conn.request("GET", "/portal/")
+        portal_slash_resp = conn.getresponse()
+        assert portal_slash_resp.status == 200
+        portal_slash_resp.read()
     finally:
         srv.shutdown()
         srv.server_close()
+
+
+def test_refactored_yaml_cache_and_load_or_new_cross_map(tmp_path):
+    """active.load_yaml returns mutation-safe copies and WarLedger.load_or_new falls back across maps."""
+    import active
+
+    d1 = active.load_yaml("presets/traders.yaml")
+    d1["traders"].clear()
+    d2 = active.load_yaml("presets/traders.yaml")
+    assert d2["traders"], "mutating a cached YAML result must not pollute subsequent loads"
+
+    fake_ledger = tmp_path / "war_ledger.json"
+    fake_ledger.write_text(json.dumps({"map": "chernarusplus", "turn": 7}))
+    led_match = WarLedger.load_or_new("chernarusplus", path=fake_ledger)
+    assert led_match.s.turn == 7
+    led_fallback = WarLedger.load_or_new("nasdara", path=fake_ledger)
+    assert led_fallback.s.map == "nasdara" and led_fallback.s.turn == 0
+    led_initial = WarLedger.load_or_new("chernarusplus", path=fake_ledger, initial=True)
+    assert led_initial.s.turn == 0

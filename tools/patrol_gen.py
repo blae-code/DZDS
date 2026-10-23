@@ -79,7 +79,7 @@ BASE = {
 
 
 def load(rel: str):
-    return yaml.safe_load((ROOT / rel).read_text())
+    return active.load_yaml(rel)
 
 
 def vec(x: float, z: float) -> list[float]:

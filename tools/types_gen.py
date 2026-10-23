@@ -84,19 +84,7 @@ def build(preset: dict, vanilla: set[str] | None = None,
 def register(core: Path) -> bool:
     """Add our types file to cfgeconomycore.xml once (inside an existing dzds block if
     another tool, e.g. tools/vehicle_events.py, created it). Returns True if changed."""
-    text = core.read_text()
-    if f'name="{FILE}"' in text:
-        return False
-    if "</economycore>" not in text:
-        raise SystemExit(f"{core} has no </economycore>; add manually:\n{CE_SNIPPET}")
-    shutil.copy2(core, core.with_suffix(".xml.bak"))
-    block = f'<ce folder="{FOLDER}">'
-    if block in text:
-        text = text.replace(block, block + f'\n        <file name="{FILE}" type="types" />', 1)
-    else:
-        text = text.replace("</economycore>", CE_SNIPPET + "</economycore>", 1)
-    core.write_text(text)
-    return True
+    return active.register_ce_file(core, FILE, "types", FOLDER)
 
 
 def main() -> int:

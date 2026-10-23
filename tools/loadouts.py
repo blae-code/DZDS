@@ -75,12 +75,13 @@ def classnames(cfg: dict) -> set[str]:
 
 def known_types(mission: Path) -> set[str]:
     sys.path.insert(0, str(ROOT / "tools"))
+    from arrivals import _types_in_file
     from economy import types_files
-    found = set()
+    found: set[str] = set()
     for f in types_files(mission):
         src = f.with_name(f.name + ".vanilla") if f.with_name(f.name + ".vanilla").exists() else f
         if src.exists():
-            found |= {t.get("name") for t in ET.parse(src).getroot().findall("type")}
+            found |= _types_in_file(src)
     return found
 
 

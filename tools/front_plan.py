@@ -24,7 +24,7 @@ from gamemaster.ledger import STATE, WarLedger  # noqa: E402
 
 
 def load(rel: str):
-    return yaml.safe_load((ROOT / rel).read_text())
+    return active.load_yaml(rel)
 
 
 def plan_traders(led: WarLedger, traders: dict) -> list[dict]:
@@ -91,7 +91,7 @@ def main() -> int:
     a = ap.parse_args()
     import ui
     rich = True if a.color else False if a.plain else ui.use_color()
-    led = WarLedger.new(a.map) if a.initial or not STATE.exists() else WarLedger.load(a.map)
+    led = WarLedger.load_or_new(a.map, initial=a.initial)
     plan = {"turn": led.s.turn, "traders": plan_traders(led, load("presets/traders.yaml")),
             "quests": plan_quests(led, load("presets/quests.yaml"))}
     if rich:

@@ -87,9 +87,9 @@ def main() -> int:
     ap.add_argument("--mission", default=str(active.mission_dir()))
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
-    cfg = yaml.safe_load((ROOT / "presets" / "vehicle_events.yaml").read_text())
+    cfg = active.load_yaml(ROOT / "presets" / "vehicle_events.yaml")
     map_name = active.map_name()
-    led = WarLedger.load(map_name) if STATE.exists() else WarLedger.new(map_name)
+    led = WarLedger.load_or_new(map_name)
     events, spawns = build(cfg, led)
     for name, pts in spawns.items():
         print(f"  {name:<24} {len(pts)} position(s)")
@@ -104,17 +104,7 @@ def main() -> int:
     (mission / FOLDER).mkdir(exist_ok=True)
     ET.ElementTree(events).write(mission / FOLDER / FILE, encoding="UTF-8", xml_declaration=True)
     merge_spawns(mission / "cfgeventspawns.xml", spawns)
-    core = mission / "cfgeconomycore.xml"
-    text = core.read_text()
-    if f'name="{FILE}"' not in text:
-        shutil.copy2(core, core.with_suffix(".xml.bak"))
-        block = f'<ce folder="{FOLDER}">'
-        entry = f'        <file name="{FILE}" type="events" />\n'
-        if block in text:
-            text = text.replace(block, block + "\n" + entry, 1)
-        else:
-            text = text.replace("</economycore>", f'    {block}\n{entry}    </ce>\n</economycore>', 1)
-        core.write_text(text)
+    active.register_ce_file(mission / "cfgeconomycore.xml", FILE, "events", FOLDER)
     print(f"Wrote {FOLDER}/{FILE}, updated cfgeventspawns.xml and cfgeconomycore.xml")
     return 0
 

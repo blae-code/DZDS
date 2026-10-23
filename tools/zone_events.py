@@ -31,7 +31,7 @@ FLAT = lambda x, z: 0.0  # noqa: E731
 
 
 def load_cfg() -> dict:
-    return yaml.safe_load((ROOT / "presets" / "zone_events.yaml").read_text())
+    return active.load_yaml("presets/zone_events.yaml")
 
 
 def _xyz(x: float, z: float, y) -> str:
@@ -213,12 +213,9 @@ def main() -> int:
     ap.add_argument("--dry-run", action="store_true")
     a = ap.parse_args()
     sys.path.insert(0, str(ROOT / "src"))
-    from gamemaster.ledger import STATE, WarLedger
+    from gamemaster.ledger import WarLedger
     cfg, mp = load_cfg(), active.map_data()
-    if STATE.exists() and not a.initial:
-        led = WarLedger.load(active.map_name())
-    else:
-        led = WarLedger.new(active.map_name())
+    led = WarLedger.load_or_new(active.map_name(), initial=a.initial)
     zs = zmod.build(mp, led.s.control, led.locations())
     groups_file = active.mission_dir() / "mapgrouppos.xml"
     groups = map_survey.load_groups(groups_file) if groups_file.exists() else []
