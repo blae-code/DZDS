@@ -13,6 +13,10 @@ side strafing with the twist being throttle, twist in being up and twist out bei
   right stick twist -> right thumbstick X  pedals / yaw
   left stick twist  -> triggers            collective: twist in raises, out lowers, centre holds
   right hat         -> D-pad               trim set/release, landing lights, HUD
+  right mini-stick  -> Left Alt + mouse    free look: deflect to look around (speed follows
+                                           deflection), let go and the view snaps forward.
+                                           A small virtual mouse/keyboard, because the pad's
+                                           right stick is already the pedals.
   right buttons 1-4 -> A, B, X, Y          (Y auto-hover, X free look)
 
 The pad exists only while DayZ_x64.exe runs, so Star Citizen (which reads the sticks
@@ -48,6 +52,11 @@ TWIST_DEADZONE = 0.08 # twists drift more than the stick axes
 # Left twist "in" (top of the grip turned toward the right, clockwise from above) raises the
 # collective. VKB twist reads higher clockwise; if up and down come out swapped, flip this.
 COLLECTIVE_TWIST_SIGN = 1
+MINI_MAX = 1023       # NXT analog mini-stick (ABS_RX / ABS_RY) is 10-bit, centred
+LOOK_DEADZONE = 0.15  # mini-sticks drift; inside this the view is released
+LOOK_EXPO = 0.4
+LOOK_SPEED = 1400.0   # mouse counts per second at full deflection (raise if looking is slow)
+LOOK_HZ = 100
 PAD_MAX = 32767
 TRIGGER_MAX = 255
 
@@ -109,6 +118,17 @@ def collective(raw_twist: int, sign: int = COLLECTIVE_TWIST_SIGN) -> tuple[int, 
 def cyclic(right: float, left: float) -> int:
     """Both sticks' contribution on one cyclic axis (each -1..1, already curved), clamped."""
     return to_stick(right + left)
+
+
+def look_step(x: float, y: float, dt: float, carry: list[float]) -> tuple[int, int]:
+    """Mini-stick deflection (-1..1, curved) over `dt` seconds -> whole mouse counts, carrying
+    the fraction in `carry` so slow looks don't stall at zero."""
+    carry[0] += x * LOOK_SPEED * dt
+    carry[1] += y * LOOK_SPEED * dt
+    dx, dy = int(carry[0]), int(carry[1])
+    carry[0] -= dx
+    carry[1] -= dy
+    return dx, dy
 
 
 def rewrite_preset(root: ET.Element, bindings: dict[str, list[str]] = HELI_BINDINGS) -> tuple[int, int]:
@@ -182,12 +202,25 @@ def make_pad():
                   version=0x110, bustype=e.BUS_USB)
 
 
+def make_look():
+    """The free-look mouse + Left Alt (DayZ's hold-to-look key in both helicopter systems)."""
+    from evdev import UInput, ecodes as e
+    caps = {e.EV_REL: [e.REL_X, e.REL_Y],
+            e.EV_KEY: [e.BTN_LEFT, e.BTN_RIGHT, e.BTN_MIDDLE, e.KEY_LEFTALT]}
+    return UInput(caps, name="DZDS VKB free look")
+
+
 def run() -> int:
     import selectors
     from evdev import ecodes as e
     pad = None
     sticks = {}
     cyc = {"rx": 0.0, "ry": 0.0, "lx": 0.0, "ly": 0.0}
+    look = None
+    view = [0.0, 0.0]     # mini-stick deflection, curved
+    carry = [0.0, 0.0]
+    alt = False
+    last_look = time.monotonic()
     sel = selectors.DefaultSelector()
     last_check = 0.0
     print("vkb_pad: waiting for", GAME, flush=True)
@@ -204,10 +237,17 @@ def run() -> int:
                     print("vkb_pad: right stick not found", flush=True)
             if running and pad is None and RIGHT in sticks:
                 pad = make_pad()
+                look = make_look()
                 print("vkb_pad: virtual pad up for", ", ".join(sticks), flush=True)
             if not running and pad is not None:
                 pad.close()
                 pad = None
+                if alt:
+                    look.write(e.EV_KEY, e.KEY_LEFTALT, 0)
+                    look.syn()
+                    alt = False
+                look.close()
+                look = None
                 for d in sticks.values():
                     sel.unregister(d)
                     d.close()
@@ -216,7 +256,8 @@ def run() -> int:
         if not sticks:
             time.sleep(1)
             continue
-        for key, _ in sel.select(timeout=0.5):
+        looking = view[0] != 0.0 or view[1] != 0.0
+        for key, _ in sel.select(timeout=1 / LOOK_HZ if looking else 0.5):
             dev = key.fileobj
             try:
                 events = list(dev.read())
@@ -242,6 +283,8 @@ def run() -> int:
                         pad.write(e.EV_ABS, e.ABS_RX, to_stick(centred(ev.value, TWIST_MAX, deadzone=TWIST_DEADZONE)))
                     elif ev.code in (e.ABS_HAT0X, e.ABS_HAT0Y):
                         pad.write(e.EV_ABS, ev.code, ev.value)
+                    elif ev.code in (e.ABS_RX, e.ABS_RY):
+                        view[0 if ev.code == e.ABS_RX else 1] = centred(ev.value, MINI_MAX, deadzone=LOOK_DEADZONE, expo=LOOK_EXPO)
                 elif ev.type == e.EV_ABS and not right and ev.code == e.ABS_RZ:
                     down, up = collective(ev.value)
                     pad.write(e.EV_ABS, e.ABS_Z, down)
@@ -250,6 +293,25 @@ def run() -> int:
                     pad.write(e.EV_KEY, e.ecodes[BUTTONS[ev.code]], ev.value)
                 elif ev.type == e.EV_SYN:
                     pad.syn()
+        # Free look: hold Left Alt while the mini-stick is deflected and turn the view.
+        now = time.monotonic()
+        if look is not None:
+            looking = view[0] != 0.0 or view[1] != 0.0
+            if looking and not alt:
+                look.write(e.EV_KEY, e.KEY_LEFTALT, 1)
+                alt = True
+                carry = [0.0, 0.0]
+            if looking:
+                dx, dy = look_step(view[0], view[1], min(now - last_look, 0.05), carry)
+                if dx:
+                    look.write(e.EV_REL, e.REL_X, dx)
+                if dy:
+                    look.write(e.EV_REL, e.REL_Y, dy)
+            if not looking and alt:
+                look.write(e.EV_KEY, e.KEY_LEFTALT, 0)
+                alt = False
+            look.syn()
+        last_look = now
 
 
 def learn() -> int:

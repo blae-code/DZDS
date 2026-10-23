@@ -92,3 +92,18 @@ def test_only_the_game_process_counts():
     assert vkb_pad.is_game(b"Z:\\home\\blae\\.local\\share\\Steam\\steamapps\\common\\DayZ\\DayZ_x64.exe\0-connect=1.2.3.4\0")
     assert not vkb_pad.is_game(b"/usr/bin/zsh\0-c\0pgrep -f DayZ_x64.exe\0")
     assert not vkb_pad.is_game(b"")
+
+
+def test_free_look_speed_follows_deflection_and_keeps_fractions():
+    carry = [0.0, 0.0]
+    full = vkb_pad.look_step(1.0, 0.0, 0.01, carry)
+    assert full == (int(vkb_pad.LOOK_SPEED * 0.01), 0)
+    carry = [0.0, 0.0]
+    slow = [vkb_pad.look_step(0.01, -0.01, 0.01, carry) for _ in range(100)]
+    assert sum(d[0] for d in slow) > 0 and sum(d[1] for d in slow) < 0, "slow looks still move"
+
+
+def test_mini_stick_centre_releases_the_view():
+    assert vkb_pad.centred(512, vkb_pad.MINI_MAX, deadzone=vkb_pad.LOOK_DEADZONE) == 0.0
+    assert vkb_pad.centred(512 + 60, vkb_pad.MINI_MAX, deadzone=vkb_pad.LOOK_DEADZONE) == 0.0
+    assert vkb_pad.centred(1023, vkb_pad.MINI_MAX, deadzone=vkb_pad.LOOK_DEADZONE, expo=vkb_pad.LOOK_EXPO) == 1.0
