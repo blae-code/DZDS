@@ -19,6 +19,12 @@ def test_missing_folder():
     assert md.classify({"readme.md": (1, T0)}, None, None)[0] == "MISSING"
 
 
+def test_removed_from_workshop_beats_in_sync_copies():
+    # 2026-10-23: ArmA2 Trucks matched on server and client but was gone from the Workshop.
+    assert md.classify(files(100), files(100), None, removed=True)[0] == "REMOVED"
+    assert md.classify(None, None, None, removed=True)[0] == "REMOVED"
+
+
 def test_identical_and_not_updated_is_ok():
     assert md.classify(files(100), files(100, T0 + 50_000), int(T0) - 10) == ("OK", "")
 

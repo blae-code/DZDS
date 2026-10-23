@@ -153,6 +153,7 @@ def badge(text: str, kind: str | None = None, enabled: bool | None = None) -> st
         "CHECK": "warn",
         "DIFFERS": "err",
         "MISSING": "err",
+        "REMOVED": "err",
         "CLOSED": "err",
         "OVER": "err",
         "CONTESTED": "contested",

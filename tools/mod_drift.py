@@ -13,6 +13,8 @@ Per enabled mod it reads, read-only:
   * the local client copy in DAYZ_WORKSHOP_DIR (default: Steam's 221100 content dir).
 
 Status:
+  REMOVED  the Workshop no longer has the item (deleted or hidden): clients can't download it,
+           so DZGUI refuses to connect. Prune it in config/mods.yaml and update the panel list
   MISSING  no `/@<id>` on the server (the panel will download it on the next restart)
   DIFFERS  addons/ or keys/ on the server differ from the client copy: players are kicked
   STALE    the Workshop updated after the server installed it; clients that update get kicked
@@ -53,8 +55,11 @@ def compared(files: Files) -> dict[str, int]:
     return {p: s for p, (s, _) in files.items() if p.startswith(COMPARED_DIRS)}
 
 
-def classify(server: Files | None, client: Files | None, ws_updated: int | None) -> tuple[str, str]:
+def classify(server: Files | None, client: Files | None, ws_updated: int | None,
+             removed: bool = False) -> tuple[str, str]:
     """(status, detail) for one mod. Pure, so it is tested without SFTP or Steam."""
+    if removed:
+        return "REMOVED", "not on the Workshop any more: prune it and update the panel mod list"
     if server is None:
         return "MISSING", "no folder on the server"
     if not compared(server):
@@ -147,10 +152,14 @@ def main() -> int:
         print(f"Could not read the server over SFTP: {exc}", file=sys.stderr)
         return 2
     try:
-        ws = {int(k): int(d.get("time_updated") or 0) for k, d in fetch(ids).items()}
+        details = fetch(ids)
     except Exception as exc:  # noqa: BLE001
         print(f"Workshop API unavailable ({exc}); checking server vs client only", file=sys.stderr)
-        ws = {}
+        details = {}
+    ws = {int(k): int(d.get("time_updated") or 0) for k, d in details.items()}
+    # 2026-10-23: ArmA2 Trucks was deleted from the Workshop (result 9) while server and client
+    # copies still matched, so it read OK here and DZGUI refused to connect.
+    gone = {int(k) for k, d in details.items() if d.get("result") != 1}
     client_root = Path(os.environ.get("DAYZ_WORKSHOP_DIR") or DEFAULT_CLIENT)
 
     counts: dict[str, int] = {}
@@ -160,7 +169,7 @@ def main() -> int:
     for m in mods:
         i = int(m["id"])
         client = local_files(client_root / str(i)) if m.get("side") != "server" else None
-        status, detail = classify(server.get(i), client, ws.get(i))
+        status, detail = classify(server.get(i), client, ws.get(i), i in gone)
         counts[status] = counts.get(status, 0) + 1
         if status != "OK" or args.all:
             if rich:
@@ -176,6 +185,9 @@ def main() -> int:
     else:
         print(f"client copies not found at {client_root}: DIFFERS cannot be detected", file=sys.stderr)
     if counts.keys() - {"OK"}:
+        if counts.get("REMOVED"):
+            print("Fix REMOVED: set enabled: false in config/mods.yaml, drop its classes from presets, "
+                  "`make panel-mods`, then paste the new list into the panel.")
         print("Fix DIFFERS/STALE: rename /@<id> aside in the panel File Manager, then restart "
               "(the panel re-downloads missing folders). MISSING fixes itself on restart.")
         return 1

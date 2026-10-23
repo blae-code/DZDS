@@ -68,7 +68,7 @@ RaG Immersive Vehicles (oil/wheel wear tedium).
 ### What exists and what we took
 | Mod | What it is | Weapons? | Verdict |
 |---|---|---|---|
-| **ArmA2 Trucks** (3593276829) | KamAZ, MTVR, T810 from Arma 2 (28 variants) | 2 armoured versions, unarmed | **Yes.** Its **tankers can be filled with water or fuel**, perfect for the Rust Syndicate's water/fuel economy and settler logistics |
+| **ArmA2 Trucks** (3593276829) | KamAZ, MTVR, T810 from Arma 2 (28 variants) | 2 armoured versions, unarmed | **PRUNED 2026-10-23** (deleted from the Workshop; the Rust water/fuel tanker role is unfilled). Was: yes. Its **tankers can be filled with water or fuel**, perfect for the Rust Syndicate's water/fuel economy and settler logistics |
 | **Kamaz_Truck** (1895398348, 157k) | KamAZ cargo, covered, fuel | no | **Yes**: common heavy truck |
 | **TP_Apoc_M1025** (3737385977, 2026-08) | Apocalypse Humvee: **working mounted gun** (own ammo item) plus no-gun and static-gun variants | **yes** | **Yes**: the "technical". Spawn the armed variant rarely; ammo scarce |
 | **MaharlikaPH MilitaryPack** (3529074158) | **BMP-3 IFV** and **M1 Abrams**, with working gunner seats and gunner camera | **yes** | **Yes, with a rule**: the BMP-3 exists only as a single endgame wreck to restore; the Abrams never spawns (a US tank in post-Soviet Chernarus breaks tone). Known issue: VPPAdminTools glitches the gunner camera |
@@ -105,7 +105,7 @@ keyed by map role so it ports to Nasdara:
 | Role (holder) | What spawns there |
 |---|---|
 | airfield / military (UN) | UN Mi-8 (rare), Cessna/An-2 (rare), UAZ, Land Rover, MRAP/LAPV, ambulance, BMP-3 wreck (one, endgame) |
-| industrial / water (Rust) | semi truck, KamAZ/MTVR/T810, water/fuel tankers, trailers, HypeTrain wagons at rail yards |
+| industrial / water (Rust) | semi truck, trailers, HypeTrain wagons at rail yards |
 | inland_town (Settlers) | tractor, beaters, bicycles, horses in fields |
 | road_junction (Jackals) | wrecked beaters (parts), UAZ 452, dune buggies, armed M1025 (rare wreck) |
 | high_ground / remote (Karkas) | horses, quadbikes |
