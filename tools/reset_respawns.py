@@ -21,6 +21,11 @@ With PLAYER=<id or favored name> (`--player`), only that player: their ledger re
 and their row is removed from a copy of players.db, which replaces the original (kept as
 players.db.old-<stamp>). Everyone else keeps their character and cooldown.
 
+With LIVE=1 (`--live`, needs PLAYER), the server may be RUNNING: it uploads
+profiles/DZDS/reset_cooldowns.json naming that player, and init.c applies it (clears the
+cooldowns, then deletes the file) at the next spawn of anyone. Cooldowns only: a live character
+can't be reset under a running server, so use it after a death (the character is gone anyway).
+
 The "is it stopped?" check is an A2S_INFO query to RCON_HOST:QUERY_PORT (default 26092),
 which the game answers only while it runs.
 """
@@ -72,6 +77,35 @@ def resolve_player(arg: str) -> str:
         if f["name"].lower() == arg.lower():
             return f["id"]
     return arg
+
+
+def live_request(ids: list[str]) -> dict:
+    """The reset_cooldowns.json init.c reads (class RefugeeArrivalReset)."""
+    return {"Ids": list(ids)}
+
+
+async def apply_live(dry_run: bool, uid: str) -> int:
+    import asyncssh
+
+    env = os.environ
+    ledger_path, _ = remote_paths()
+    target = ledger_path.rsplit("/", 1)[0] + "/reset_cooldowns.json"
+    body = json.dumps(live_request([uid]), indent=4)
+    print(f"live reset: {target} -> {body.replace(chr(10), ' ')}")
+    if dry_run:
+        print("DRY_RUN: nothing changed on the server")
+        return 0
+    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    local = ROOT / "backups" / f"reset-live-{stamp}.json"
+    local.parent.mkdir(parents=True, exist_ok=True)
+    local.write_text(body)
+    async with asyncssh.connect(env["SFTP_HOST"], port=int(env.get("SFTP_PORT") or 22),
+                                username=env["SFTP_USER"], password=env["SFTP_PASSWORD"],
+                                known_hosts=None) as conn:
+        async with conn.start_sftp_client() as sftp:
+            await sftp.put(str(local), target)
+    print("done: applied at the next spawn (the RPT logs '[DZDS Arrivals] live reset')")
+    return 0
 
 
 def server_is_up(host: str, port: int, timeout: float = 3.0) -> bool:
@@ -161,8 +195,14 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dry-run", action="store_true", help="show what would change, change nothing")
     ap.add_argument("--yes", action="store_true", help="don't prompt before writing")
     ap.add_argument("--player", help="only this player: identity id, or a `favored` name from arrivals.yaml")
+    ap.add_argument("--live", action="store_true", help="server running: clear PLAYER's cooldowns at the next spawn")
     args = ap.parse_args(argv)
     only = resolve_player(args.player) if args.player else None
+    if args.live:
+        if not only:
+            print("--live needs --player")
+            return 2
+        return asyncio.run(apply_live(args.dry_run, only))
 
     host = os.environ.get("RCON_HOST")
     port = int(os.environ.get("QUERY_PORT") or QUERY_PORT)

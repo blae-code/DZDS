@@ -99,3 +99,12 @@ def test_drop_character_removes_only_that_uid(tmp_path):
 def test_player_resolves_a_favored_name_to_its_id():
     assert rr.resolve_player("Blae") == "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ="
     assert rr.resolve_player("someid=") == "someid="
+
+
+def test_live_request_matches_init_c():
+    """--live writes the file init.c's ApplyLiveResets reads (class RefugeeArrivalReset)."""
+    assert rr.live_request(["abc="]) == {"Ids": ["abc="]}
+    src = (rr.ROOT / "server" / "mpmissions" / "dayzOffline.nasdara" / "init.c").read_text()
+    assert "class RefugeeArrivalReset" in src and "ref TStringArray Ids;" in src
+    assert 'RESET = DIR + "\\\\reset_cooldowns.json"' in src
+    assert "ApplyLiveResets();" in src and "DeleteFile(RESET);" in src

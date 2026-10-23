@@ -153,6 +153,12 @@ class RefugeeArrivalLedger
 	ref array<ref RefugeeArrivalRecord> Players;
 }
 
+// A live cooldown reset (tools/reset_respawns.py --live): the player ids to clear.
+class RefugeeArrivalReset
+{
+	ref TStringArray Ids;
+}
+
 // Local spot check (plane parking, 2026-10-16): candidate spots and the classes to fit.
 class DZDSSpotCandidate
 {
@@ -190,11 +196,13 @@ class RefugeeArrivals
 	static const int PICK_TRIES = 12;
 	static const int VEHICLE_REDRAWS = 4;
 	static const float BESIDE_MIN_M = 4.0;      // closer to the vehicle's spot than this = inside it
+	static const float BESIDE_FALLBACK_M = 9.0; // used when the configured offset reads below that
 	static const int BESIDE_RECHECK_MS = 3000;  // and look again once the login has settled
 	static const float TRAILER_SETBACK = 3.0;   // trailer centre behind the hitch, before alignment
 	static const float COUPLER_GAP = 0.3;       // coupler this far behind the hitch once aligned
 	static const string SELFTEST = DIR + "\\vehicle_selftest";
 	static const string SPOTTEST = DIR + "\\spot_selftest.json";
+	static const string RESET = DIR + "\\reset_cooldowns.json";
 
 	ref RefugeeArrivalConfig m_Config;
 	ref RefugeeArrivalLedger m_Ledger;
@@ -957,39 +965,72 @@ class RefugeeArrivals
 	// Player wakes beside the car, off the road (perpendicular to its heading), not in water.
 	void PlacePlayer(RefugeeArrivalPlan plan)
 	{
-		float rad = plan.CarOri[0] * Math.DEG2RAD;
-		float rx = Math.Cos(rad);
-		float rz = -Math.Sin(rad);
-		float side = 1;
-		if (Math.RandomInt(0, 2) == 0)
-			side = -1;
 		float offset = m_Config.PlayerOffset;
 		if (plan.AtCamp)
 			offset = m_Config.CampPlayerOffset;
 		if (plan.AtBase)
 			offset = m_Config.BasePlayerOffset;
-		for (int i = 0; i < 2; i++)
+		plan.PlayerPos = BesideSpot(plan.CarPos, plan.CarOri[0], offset);
+		// 2026-10-23: respawns kept landing ON the vehicle's spot; this line shows the inputs.
+		Print("[DZDS Arrivals] place: spot " + Math.Round(plan.CarPos[0]).ToString() + "," + Math.Round(plan.CarPos[2]).ToString() + " heading " + plan.CarOri[0].ToString() + " offset " + offset.ToString() + " camp=" + plan.AtCamp.ToString() + " base=" + plan.AtBase.ToString() + " -> player " + Math.Round(plan.PlayerPos[0]).ToString() + "," + Math.Round(plan.PlayerPos[2]).ToString() + " (" + Math.Round(Dist2D(plan.PlayerPos, plan.CarPos)).ToString() + " m)");
+	}
+
+	// `offset` metres to one side of `spot`, perpendicular to `heading` (degrees), not in
+	// water. Never closer than BESIDE_MIN_M: a spawning vehicle hits whoever stands on it.
+	static vector BesideSpot(vector spot, float heading, float offset)
+	{
+		if (offset < BESIDE_MIN_M)
+			offset = BESIDE_FALLBACK_M;
+		float rad = heading * Math.DEG2RAD;
+		float rx = Math.Cos(rad);
+		float rz = -Math.Sin(rad);
+		float side = 1;
+		if (Math.RandomInt(0, 2) == 0)
+			side = -1;
+		float x = spot[0] + rx * offset * side;
+		float z = spot[2] + rz * offset * side;
+		if (IsWater(x, z))
 		{
-			float x = plan.CarPos[0] + rx * offset * side;
-			float z = plan.CarPos[2] + rz * offset * side;
-			if (!IsWater(x, z))
-			{
-				plan.PlayerPos = Vector(x, GetGame().SurfaceY(x, z), z);
-				return;
-			}
-			side = -side;
+			x = spot[0] - rx * offset * side;
+			z = spot[2] - rz * offset * side;
 		}
-		// Water on both sides: still beside the vehicle, never on its spot (a spawning
-		// vehicle hits whoever stands there).
-		float wx = plan.CarPos[0] + rx * offset * side;
-		float wz = plan.CarPos[2] + rz * offset * side;
-		plan.PlayerPos = Vector(wx, GetGame().SurfaceY(wx, wz), wz);
+		return Vector(x, GetGame().SurfaceY(x, z), z);
+	}
+
+	// Blae 2026-10-23: clear cooldowns WITHOUT a restart. The server holds the ledger in memory
+	// and writes it on every spawn and death, so editing arrivals_ledger.json under a running
+	// server is lost; `make reset-respawns LIVE=1 PLAYER=...` drops RESET instead, and the next
+	// spawn applies and deletes it.
+	void ApplyLiveResets()
+	{
+		if (!FileExist(RESET))
+			return;
+		RefugeeArrivalReset req = new RefugeeArrivalReset;
+		JsonFileLoader<RefugeeArrivalReset>.JsonLoadFile(RESET, req);
+		DeleteFile(RESET);
+		if (!req.Ids)
+			return;
+		int n = 0;
+		foreach (string id : req.Ids)
+		{
+			RefugeeArrivalRecord rec = FindRecord(id);
+			if (!rec)
+				continue;
+			rec.LastVehicle = 0;
+			rec.LastNavKit = 0;
+			rec.HasDeath = 0;
+			n++;
+		}
+		MakeDirectory(DIR);
+		JsonFileLoader<RefugeeArrivalLedger>.JsonSaveFile(LEDGER, m_Ledger);
+		Print("[DZDS Arrivals] live reset: cleared cooldowns for " + n.ToString() + " of " + req.Ids.Count().ToString() + " player(s)");
 	}
 
 	RefugeeArrivalPlan Plan(PlayerIdentity identity)
 	{
 		if (!IsActive() || !identity)
 			return null;
+		ApplyLiveResets();
 
 		RefugeeArrivalPlan plan = new RefugeeArrivalPlan;
 		plan.Uid = identity.GetId();
@@ -997,7 +1038,14 @@ class RefugeeArrivals
 		plan.FirstArrival = false;
 		if (rec == null)
 			plan.FirstArrival = true;
-		plan.RandomCharacter = !plan.FirstArrival && m_Config.RandomCharacterOnRespawn == 1;
+		// Plain ifs: `!plan.FirstArrival && m_Config.RandomCharacterOnRespawn == 1` logged
+		// random=false on every respawn (2026-10-22/23) with the setting at 1.
+		plan.RandomCharacter = false;
+		if (!plan.FirstArrival)
+		{
+			if (m_Config.RandomCharacterOnRespawn == 1)
+				plan.RandomCharacter = true;
+		}
 		plan.GrantVehicle = true;
 		if (rec && rec.LastVehicle > 0 && NowSeconds() - rec.LastVehicle < m_Config.CooldownHours * 3600)
 			plan.GrantVehicle = false;
@@ -1070,20 +1118,23 @@ class RefugeeArrivals
 
 	// Positions by value: the call queue holds its arguments weakly, and the plan is released
 	// as soon as the login finishes.
-	string KeepBeside(PlayerBase player, vector carPos, vector playerPos, string when)
+	string KeepBeside(PlayerBase player, vector carPos, vector playerPos, float heading, string when)
 	{
 		if (!player || !player.IsAlive())
 			return "";
 		vector was = player.GetPosition();
 		if (Dist2D(was, carPos) >= BESIDE_MIN_M)
 			return "";
-		player.SetPosition(playerPos);
-		return " (" + when + ": was " + Math.Round(Dist2D(was, carPos)).ToString() + " m from the vehicle spot at " + Math.Round(was[0]).ToString() + "," + Math.Round(was[2]).ToString() + ", moved to " + Math.Round(Dist2D(playerPos, carPos)).ToString() + " m beside it)";
+		vector target = playerPos;
+		if (Dist2D(target, carPos) < BESIDE_MIN_M)   // the plan itself put them on the spot
+			target = BesideSpot(carPos, heading, m_Config.PlayerOffset);
+		player.SetPosition(target);
+		return " (" + when + ": was " + Math.Round(Dist2D(was, carPos)).ToString() + " m from the vehicle spot at " + Math.Round(was[0]).ToString() + "," + Math.Round(was[2]).ToString() + ", planned " + Math.Round(Dist2D(playerPos, carPos)).ToString() + " m, moved to " + Math.Round(Dist2D(target, carPos)).ToString() + " m beside it)";
 	}
 
-	void KeepBesideLater(PlayerBase player, vector carPos, vector playerPos)
+	void KeepBesideLater(PlayerBase player, vector carPos, vector playerPos, float heading)
 	{
-		string moved = KeepBeside(player, carPos, playerPos, "recheck");
+		string moved = KeepBeside(player, carPos, playerPos, heading, "recheck");
 		if (moved != "")
 			Print("[DZDS Arrivals] player back beside the vehicle" + moved);
 	}
@@ -1101,6 +1152,9 @@ class RefugeeArrivals
 		int now = NowSeconds();
 		bool granted = false;
 		CarScript car = null;
+		string before = "";
+		if (plan.GrantVehicle)
+			before = KeepBeside(player, plan.CarPos, plan.PlayerPos, plan.CarOri[0], "before vehicle");
 		if (plan.GrantVehicle)
 		{
 			EntityAI parent = player;
@@ -1158,8 +1212,8 @@ class RefugeeArrivals
 		string beside = "";
 		if (car)
 		{
-			beside = ", player " + Math.Round(vector.Distance(player.GetPosition(), car.GetPosition())).ToString() + " m from it" + KeepBeside(player, plan.CarPos, plan.PlayerPos, "deliver");
-			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(KeepBesideLater, BESIDE_RECHECK_MS, false, player, plan.CarPos, plan.PlayerPos);
+			beside = ", player " + Math.Round(vector.Distance(player.GetPosition(), car.GetPosition())).ToString() + " m from it" + before + KeepBeside(player, plan.CarPos, plan.PlayerPos, plan.CarOri[0], "after vehicle");
+			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(KeepBesideLater, BESIDE_RECHECK_MS, false, player, plan.CarPos, plan.PlayerPos, plan.CarOri[0]);
 		}
 		Print("[DZDS Arrivals] " + kind + " at " + plan.Where + ", random=" + plan.RandomCharacter.ToString() + ", " + got + beside + ", " + nav + ", life " + rec.Lives);
 	}
