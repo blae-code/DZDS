@@ -214,6 +214,13 @@ prints the live count. Since the launch:
   live quest state); backups in `backups/kits-grouping-20261023T013342Z`. Blae reset again
   (`players.db.old-20261023T013358Z`). Local boot: mission + new @DZDS compiled, then the
   local CE crashed loading its own `storage_1`.
+- 2026-10-23 02:08 UTC: Blae respawned INSIDE the EXT_MH6. The ADM log put him on the road
+  point itself, not 9 m beside it, and the 10-22 respawn did the same, so that fix never
+  worked. Cause not found (nothing in init.c, @DZDS, CF, Zen Login/Sleep or vanilla moves the
+  player). Deliver now puts a player within 4 m of the spot back beside it, then re-checks at
+  3 s; check the RPT for `was N m from the vehicle spot` to find the cause. Deployed `init.c`
+  only (`backups/spawn-beside-20261023T020758Z`); Blae reset (`players.db.old-20261023T020808Z`).
+  The stuck MH-6 stays in the world.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
