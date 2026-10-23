@@ -221,6 +221,12 @@ prints the live count. Since the launch:
   3 s; check the RPT for `was N m from the vehicle spot` to find the cause. Deployed `init.c`
   only (`backups/spawn-beside-20261023T020758Z`); Blae reset (`players.db.old-20261023T020808Z`).
   The stuck MH-6 stays in the world.
+- 2026-10-23 02:31 UTC: FIXED. The plan's own PlayerPos had been ON the spot ("moved to 0 m");
+  after the rework (`BesideSpot`, plain-if `RandomCharacter`) the log reads `place: ... offset 9
+  -> player (9 m)`, `random=true`, and the ADM has Blae 9 m beside an EXT_UH1Y. The old loop
+  in `PlacePlayer` and the `!a && b == 1` expression both misbehaved in Enforce; the cause of
+  each wasn't pinned down. Open: every road/arrival point has heading `A = 0.0`, so all spawned
+  vehicles face north. Live cooldown resets: `make reset-respawns LIVE=1 PLAYER=..`.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
