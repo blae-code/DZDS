@@ -289,6 +289,8 @@ make prepare-restart  # war-turn, economy, diplomacy, patrols, vehicle-events, f
 make fake-rcon / sim / gm-sim   # offline GM loop (three terminals)
 make gm-probe         # one-shot Ollama/prompt check
 scripts/local_server.sh install|mods|start   # optional local dedicated server
+/usr/bin/python3 tools/vkb_pad.py learn|bind   # VKB sticks -> virtual Xbox pad for helis; the
+                      # dzds-vkb-pad user service runs it only while DayZ runs (bind: DayZ closed)
 ```
 
 ## Where things stand
