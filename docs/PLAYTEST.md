@@ -77,6 +77,10 @@ branch per session; file anything that fails as a follow-up.
 - [ ] Expansion keys required to start; lockpicking; car-to-car towing; CarCover tarps
 - [ ] Towing Service flatbed recovery; Simply's Car Trailer hitching
 - [ ] Expansion An-2 / C-130J flyable?; RedFalcon MH-6; Arma 2 helis (do Hind/Ka-52 keep weapons?)
+- [ ] Test both VKB Gladiator NXT sticks with the [HOSAS helicopter setup](./FLIGHT_CONTROLS.md):
+      confirm direct-axis detection (or record that it is unavailable), analog vs. digital
+      response, neutral center, hover, approach, and landing separately for RedFalcon and
+      Expansion; do not save guessed axis bindings
 - [ ] LMs Planes Cessna: server load acceptable
 - [ ] DayZ Horse: saddle + bridle, ride, jump, swim; Horse Expansion crafting
 - [ ] HypeTrain on Chernarus rails; barrels on wagons; persistence; no derailment chaos
