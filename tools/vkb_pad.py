@@ -2,11 +2,16 @@
 """Fly DayZ helicopters with VKB Gladiator NXT sticks: present them as one virtual Xbox pad.
 
 DayZ only reads keyboard, mouse and an Xbox (XInput) controller, so this maps the sticks onto
-a uinput "Microsoft X-Box 360 pad" that Proton exposes as XInput (Blae, 2026-10-22):
+a uinput "Microsoft X-Box 360 pad" that Proton exposes as XInput. HOSAS layout (Blae,
+2026-10-23: "Right stick is pitch, roll, and twist is yaw. Left stick is forward/backward and
+side strafing with the twist being throttle, twist in being up and twist out being down"):
 
-  right stick X/Y   -> left thumbstick     cyclic          (Expansion + RedFalcon helis)
-  right stick twist -> right thumbstick X  pedals / anti-torque
-  left stick Y      -> triggers            collective: forward raises, back lowers, centre holds
+  right stick X/Y   -> left thumbstick     cyclic: roll / pitch     (Expansion + RedFalcon helis)
+  left stick X/Y    -> left thumbstick     ALSO cyclic: strafe / forward-back. A helicopter has
+                                           no separate translation input: it moves by tilting
+                                           the rotor, so both sticks add into one cyclic.
+  right stick twist -> right thumbstick X  pedals / yaw
+  left stick twist  -> triggers            collective: twist in raises, out lowers, centre holds
   right hat         -> D-pad               trim set/release, landing lights, HUD
   right buttons 1-4 -> A, B, X, Y          (Y auto-hover, X free look)
 
@@ -39,6 +44,10 @@ STICK_MAX = 4095      # NXT X/Y are 12-bit, centred
 TWIST_MAX = 2047      # NXT twist (ABS_RZ) is 11-bit, centred
 DEADZONE = 0.04       # fraction of half-travel ignored around the centre
 CYCLIC_EXPO = 0.3     # 0 = linear; more = softer near the centre, full at the stops
+TWIST_DEADZONE = 0.08 # twists drift more than the stick axes
+# Left twist "in" (top of the grip turned toward the right, clockwise from above) raises the
+# collective. VKB twist reads higher clockwise; if up and down come out swapped, flip this.
+COLLECTIVE_TWIST_SIGN = 1
 PAD_MAX = 32767
 TRIGGER_MAX = 255
 
@@ -88,12 +97,18 @@ def to_stick(v: float) -> int:
     return int(round(max(-1.0, min(1.0, v)) * PAD_MAX))
 
 
-def collective(raw_y: int) -> tuple[int, int]:
-    """Left stick Y -> (left trigger, right trigger). Forward (low raw) raises the collective."""
-    v = -centred(raw_y, STICK_MAX)
+def collective(raw_twist: int, sign: int = COLLECTIVE_TWIST_SIGN) -> tuple[int, int]:
+    """Left twist -> (left trigger, right trigger): twist in raises the collective (RT), out
+    lowers it (LT), centre holds (both helicopter systems read collective as a rate)."""
+    v = sign * centred(raw_twist, TWIST_MAX, deadzone=TWIST_DEADZONE)
     up = int(round(max(0.0, v) * TRIGGER_MAX))
     down = int(round(max(0.0, -v) * TRIGGER_MAX))
     return down, up
+
+
+def cyclic(right: float, left: float) -> int:
+    """Both sticks' contribution on one cyclic axis (each -1..1, already curved), clamped."""
+    return to_stick(right + left)
 
 
 def rewrite_preset(root: ET.Element, bindings: dict[str, list[str]] = HELI_BINDINGS) -> tuple[int, int]:
@@ -172,6 +187,7 @@ def run() -> int:
     from evdev import ecodes as e
     pad = None
     sticks = {}
+    cyc = {"rx": 0.0, "ry": 0.0, "lx": 0.0, "ly": 0.0}
     sel = selectors.DefaultSelector()
     last_check = 0.0
     print("vkb_pad: waiting for", GAME, flush=True)
@@ -216,16 +232,17 @@ def run() -> int:
             for ev in events:
                 if pad is None:
                     continue
-                if ev.type == e.EV_ABS and right:
-                    if ev.code == e.ABS_X:
-                        pad.write(e.EV_ABS, e.ABS_X, to_stick(centred(ev.value, STICK_MAX, expo=CYCLIC_EXPO)))
-                    elif ev.code == e.ABS_Y:
-                        pad.write(e.EV_ABS, e.ABS_Y, to_stick(centred(ev.value, STICK_MAX, expo=CYCLIC_EXPO)))
-                    elif ev.code == e.ABS_RZ:
-                        pad.write(e.EV_ABS, e.ABS_RX, to_stick(centred(ev.value, TWIST_MAX)))
+                if ev.type == e.EV_ABS and ev.code in (e.ABS_X, e.ABS_Y):
+                    side = ("r" if right else "l") + ("x" if ev.code == e.ABS_X else "y")
+                    cyc[side] = centred(ev.value, STICK_MAX, expo=CYCLIC_EXPO)
+                    axis = side[1]
+                    pad.write(e.EV_ABS, ev.code, cyclic(cyc["r" + axis], cyc["l" + axis]))
+                elif ev.type == e.EV_ABS and right:
+                    if ev.code == e.ABS_RZ:
+                        pad.write(e.EV_ABS, e.ABS_RX, to_stick(centred(ev.value, TWIST_MAX, deadzone=TWIST_DEADZONE)))
                     elif ev.code in (e.ABS_HAT0X, e.ABS_HAT0Y):
                         pad.write(e.EV_ABS, ev.code, ev.value)
-                elif ev.type == e.EV_ABS and not right and ev.code == e.ABS_Y:
+                elif ev.type == e.EV_ABS and not right and ev.code == e.ABS_RZ:
                     down, up = collective(ev.value)
                     pad.write(e.EV_ABS, e.ABS_Z, down)
                     pad.write(e.EV_ABS, e.ABS_RZ, up)

@@ -26,12 +26,23 @@ def test_stick_range():
     assert vkb_pad.to_stick(2.0) == 32767
 
 
-def test_collective_forward_raises_back_lowers_centre_holds():
-    assert vkb_pad.collective(2048) == (0, 0)
-    down, up = vkb_pad.collective(0)             # stick fully forward (low raw value)
-    assert (down, up) == (0, 255)
-    down, up = vkb_pad.collective(4095)
-    assert (down, up) == (255, 0)
+def test_collective_on_left_twist_in_raises_out_lowers_centre_holds():
+    """Blae 2026-10-23: left twist is the throttle, twist in = up, twist out = down."""
+    assert vkb_pad.collective(1024) == (0, 0)
+    assert vkb_pad.collective(1024 + 60) == (0, 0), "inside the twist deadzone"
+    assert vkb_pad.collective(2047) == (0, 255)   # twisted in (clockwise): raise
+    assert vkb_pad.collective(0) == (255, 0)      # twisted out: lower
+    assert vkb_pad.collective(2047, sign=-1) == (255, 0), "one flag swaps the direction"
+
+
+def test_both_sticks_add_into_one_cyclic():
+    """Right = pitch/roll, left = forward-back/strafe: a heli moves by tilting the rotor, so
+    both feed the cyclic, summed and clamped to the stick range."""
+    assert vkb_pad.cyclic(0.5, 0.0) == vkb_pad.to_stick(0.5)
+    assert vkb_pad.cyclic(0.0, -0.5) == vkb_pad.to_stick(-0.5)
+    assert vkb_pad.cyclic(0.4, 0.4) == vkb_pad.to_stick(0.8)
+    assert vkb_pad.cyclic(1.0, 1.0) == 32767
+    assert vkb_pad.cyclic(0.6, -0.6) == 0, "opposed inputs cancel"
 
 
 PRESET = """<preset>
