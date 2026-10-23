@@ -203,6 +203,17 @@ prints the live count. Since the launch:
   `backups/aircraft-kit-20261022T234655Z`. Blae was reset with the server stopped (players.db
   kept as `players.db.old-20261022T234754Z`). The panel's SFTP refuses posix-rename, so
   remote writes overwrite in place.
+- 2026-10-23 01:34 UTC: pilot kits add a pack and a survival kit (bush: rod and hook, snare,
+  shovel; combat: survival vest, splint, rangefinder). Respawns now wake within 1 km (else
+  2 km) of another living player online, BEFORE base/camp/near-death (Blae: "friend first").
+  Base respawn (beside the raised territory flag nearest the death, no car) is in init.c
+  behind `#ifdef DZDS_BASES` and needs the new @DZDS (`DZDSBases.c`). That build is **not
+  published yet**: Blae uploads it, then the server re-downloads `/@3815870621`. Planes: none
+  usable. Expansion's An-2/C-130J are `Vehicle_*` classes at scope 0, and LMs Planes was
+  pruned. Deployed `init.c` + `DZDS/arrivals.json` only (a full push would have overwritten
+  live quest state); backups in `backups/kits-grouping-20261023T013342Z`. Blae reset again
+  (`players.db.old-20261023T013358Z`). Local boot: mission + new @DZDS compiled, then the
+  local CE crashed loading its own `storage_1`.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*

@@ -113,6 +113,10 @@ class RefugeeArrivalConfig
 	float RespawnNearFallback;
 	float CampRespawnRadius;
 	float CampPlayerOffset;
+	float RespawnNearPlayersMin;   // wake this close to another living player online...
+	float RespawnNearPlayersMax;   // ...else this close (0 = off, e.g. an older arrivals.json)
+	int BaseRespawn;               // 1 = wake at the raised territory flag nearest the death
+	float BasePlayerOffset;
 	float FuelMin;
 	float FuelMax;
 	float AircraftFuelMin;
@@ -170,6 +174,7 @@ class RefugeeArrivalPlan
 	bool RandomCharacter;
 	bool GrantVehicle;
 	bool AtCamp;
+	bool AtBase;
 	string Where;
 	ref RefugeeArrivalVehicle Vehicle;
 	vector CarPos;
@@ -231,6 +236,12 @@ class RefugeeArrivals
 		Print("[DZDS Arrivals] enabled=" + m_Config.Enabled + " sites=" + m_Config.ArrivalSites.Count() + " road=" + m_Config.RoadPoints.Count() + " vehicles=" + m_Config.Vehicles.Count() + " archetypes=" + m_Config.Archetypes.Count() + " favored=" + m_Config.Favored.Count() + " known players=" + m_Ledger.Players.Count());
 #ifdef DZDS_CAMPS
 		Print("[DZDS Arrivals] camp respawn within " + m_Config.CampRespawnRadius.ToString() + " m, pitched tents=" + DZDSCamps.PitchedCount().ToString());
+#endif
+		Print("[DZDS Arrivals] near players within " + m_Config.RespawnNearPlayersMin.ToString() + "/" + m_Config.RespawnNearPlayersMax.ToString() + " m, base respawn=" + m_Config.BaseRespawn.ToString());
+#ifdef DZDS_BASES
+		Print("[DZDS Arrivals] territory flags=" + DZDSBases.Count().ToString() + " raised=" + DZDSBases.RaisedCount().ToString());
+#else
+		Print("[DZDS Arrivals] base respawn needs @DZDS with DZDSBases: skipped");
 #endif
 	}
 
@@ -828,6 +839,85 @@ class RefugeeArrivals
 #endif
 	}
 
+	// Blae 2026-10-22: wake near the others, not across the map from them. Road and arrival
+	// spots within RespawnNearPlayersMin metres of any other living player online, else
+	// within RespawnNearPlayersMax. Nobody else online: false, and the usual order applies.
+	bool PickNearPlayers(RefugeeArrivalPlan plan)
+	{
+		if (m_Config.RespawnNearPlayersMax <= 0)
+			return false;
+		array<Man> men = new array<Man>;
+		GetGame().GetPlayers(men);
+		array<vector> others = new array<vector>;
+		foreach (Man m : men)
+		{
+			if (!m || !m.IsAlive() || !m.GetIdentity() || m.GetIdentity().GetId() == plan.Uid)
+				continue;
+			others.Insert(m.GetPosition());
+		}
+		if (others.Count() == 0)
+			return false;
+		bool picked = PickPoint(PointsNear(others, m_Config.RespawnNearPlayersMin), plan);
+		if (!picked)
+			picked = PickPoint(PointsNear(others, m_Config.RespawnNearPlayersMax), plan);
+		if (picked)
+			plan.Where = plan.Where + " (near " + others.Count().ToString() + " player(s))";
+		return picked;
+	}
+
+	// Road and arrival spots within `radius` metres (on the ground plane) of any centre.
+	array<ref RefugeeArrivalPoint> PointsNear(array<vector> centres, float radius)
+	{
+		array<ref RefugeeArrivalPoint> near = new array<ref RefugeeArrivalPoint>;
+		foreach (RefugeeArrivalPoint p : m_Config.RoadPoints)
+		{
+			if (NearAny(p, centres, radius))
+				near.Insert(p);
+		}
+		foreach (RefugeeArrivalPoint site : m_Config.ArrivalSites)
+		{
+			if (NearAny(site, centres, radius))
+				near.Insert(site);
+		}
+		return near;
+	}
+
+	static bool NearAny(RefugeeArrivalPoint p, array<vector> centres, float radius)
+	{
+		foreach (vector c : centres)
+		{
+			float dx = p.X - c[0];
+			float dz = p.Z - c[2];
+			if (dx * dx + dz * dz <= radius * radius)
+				return true;
+		}
+		return false;
+	}
+
+	// Blae 2026-10-22: wake at the base, beside the raised territory flag nearest the last
+	// death (any distance; with no recorded death, any raised flag), without a car.
+	bool PickBase(RefugeeArrivalPlan plan, RefugeeArrivalRecord rec)
+	{
+		if (m_Config.BaseRespawn != 1)
+			return false;
+#ifdef DZDS_BASES
+		vector from = "0 0 0";
+		if (rec && rec.HasDeath == 1)
+			from = Vector(rec.DeathX, 0, rec.DeathZ);
+		TerritoryFlag flag = DZDSBases.NearestRaised(from);
+		if (!flag)
+			return false;
+		plan.GrantVehicle = false;
+		plan.AtBase = true;
+		plan.CarPos = flag.GetPosition();
+		plan.CarOri = flag.GetOrientation();
+		plan.Where = "base (flag at " + Math.Round(plan.CarPos[0]).ToString() + "," + Math.Round(plan.CarPos[2]).ToString() + ")";
+		return true;
+#else
+		return false; // @DZDS without base tracking (pre 2026-10-22): camp/road respawn as before
+#endif
+	}
+
 	bool PickNearDeath(RefugeeArrivalPlan plan, RefugeeArrivalRecord rec)
 	{
 		if (!rec || rec.HasDeath != 1)
@@ -874,6 +964,8 @@ class RefugeeArrivals
 		float offset = m_Config.PlayerOffset;
 		if (plan.AtCamp)
 			offset = m_Config.CampPlayerOffset;
+		if (plan.AtBase)
+			offset = m_Config.BasePlayerOffset;
 		for (int i = 0; i < 2; i++)
 		{
 			float x = plan.CarPos[0] + rx * offset * side;
@@ -915,6 +1007,10 @@ class RefugeeArrivals
 		if (plan.FirstArrival)
 			placed = PickColumnPoint(plan);
 		if (!placed && !plan.FirstArrival)
+			placed = PickNearPlayers(plan);
+		if (!placed && !plan.FirstArrival)
+			placed = PickBase(plan, rec);
+		if (!placed && !plan.FirstArrival)
 			placed = PickCamp(plan, rec);
 		if (!placed && !plan.FirstArrival)
 			placed = PickNearDeath(plan, rec);
@@ -925,6 +1021,8 @@ class RefugeeArrivals
 			// A big vehicle (transport helicopter, semi) may fit no spot here: draw another.
 			plan.Vehicle = PickVehicle(only);
 			if (!plan.FirstArrival)
+				placed = PickNearPlayers(plan);
+			if (!placed && !plan.FirstArrival)
 				placed = PickNearDeath(plan, rec);
 			if (!placed)
 				placed = PickPoint(m_Config.RoadPoints, plan);
@@ -965,6 +1063,8 @@ class RefugeeArrivals
 		string got = "no vehicle (cooldown)";
 		if (plan.AtCamp)
 			got = "no vehicle (camp)";
+		if (plan.AtBase)
+			got = "no vehicle (base)";
 		int now = NowSeconds();
 		bool granted = false;
 		CarScript car = null;

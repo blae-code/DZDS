@@ -83,7 +83,7 @@ def arrival_points(cfg: dict, map_data: dict, spots: list) -> list[dict]:
 
 
 SLOT_ORDER = ["clothing", "water", "food", "medical", "knife", "tools", "extra", "camp", "car"]
-OPTIONAL_SLOTS = ["fuel", "signal"]   # pilot profiles (aircraft: true) add these
+OPTIONAL_SLOTS = ["pack", "vest", "survival", "fishing", "fuel", "signal"]   # pilot profiles add these
 
 
 def archetypes(cfg: dict) -> list[dict]:
@@ -137,6 +137,10 @@ def validate(cfg: dict, types: set[str]) -> None:
     stray = set(cfg.get("aircraft", [])) - {v["class"] for v in cfg["vehicles"]}
     if stray:
         raise SystemExit(f"aircraft names no configured vehicle: {sorted(stray)}")
+    for name, a in cfg["archetypes"].items():
+        unknown = set(a["slots"]) - set(SLOT_ORDER) - set(OPTIONAL_SLOTS)
+        if unknown:   # archetypes() compiles only known slots: an unknown one would vanish
+            raise SystemExit(f"archetype {name}: unknown slot(s) {sorted(unknown)}")
     kinds = {bool(a.get("aircraft")) for a in cfg["archetypes"].values()}
     if False not in kinds or (cfg.get("aircraft") and True not in kinds):
         raise SystemExit("archetypes need at least one ground profile, and one pilot profile "
@@ -145,6 +149,9 @@ def validate(cfg: dict, types: set[str]) -> None:
         lo, hi = cfg[key]
         if not 0 <= lo <= hi <= 1:
             raise SystemExit(f"{key} must be 0 <= min <= max <= 1, got {cfg[key]}")
+    lo, hi = cfg["respawn_near_players_m"]
+    if not 0 < lo <= hi:
+        raise SystemExit(f"respawn_near_players_m must be 0 < min <= max, got {[lo, hi]}")
     stray = set(cfg["trailer"]["skip"]) - {v["class"] for v in cfg["vehicles"]}
     if stray:
         raise SystemExit(f"trailer.skip names no configured vehicle: {sorted(stray)}")
@@ -185,6 +192,10 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "RespawnNearFallback": float(cfg["respawn_near_fallback_m"]),
         "CampRespawnRadius": float(cfg["camp_respawn_m"]),
         "CampPlayerOffset": float(cfg["camp_player_offset_m"]),
+        "RespawnNearPlayersMin": float(cfg["respawn_near_players_m"][0]),
+        "RespawnNearPlayersMax": float(cfg["respawn_near_players_m"][1]),
+        "BaseRespawn": int(bool(cfg["base_respawn"])),
+        "BasePlayerOffset": float(cfg["base_player_offset_m"]),
         "ArrivalSites": arrival_points(cfg, map_data, spots),
         "RoadPoints": road,
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"]),

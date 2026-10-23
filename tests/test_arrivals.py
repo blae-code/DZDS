@@ -159,7 +159,7 @@ def test_simulated_kits_meet_the_spec(built):
             kit = arrivals.simulate_kit(arch, rng)
             assert kit[0] in weapons, "the firearm spawns first, so a full trunk can't crowd it out"
             items = [k for k in kit if k not in weapons and not k.startswith(("Ammo_", "Mag_"))]
-            lo, hi = (14, 19) if arch["Aircraft"] else (12, 17)   # pilots add fuel + signal
+            lo, hi = (18, 26) if arch["Aircraft"] else (12, 17)   # pilots add pack, survival, fuel, signal...
             assert lo <= len(items) <= hi, (arch["Name"], kit)
             for name in set(items):
                 cap = 2 if name in food else 1
@@ -554,3 +554,85 @@ def test_init_c_player_never_wakes_on_the_vehicle_spot():
     assert "SurfaceGetType" not in water
     place = re.search(r"void PlacePlayer\(RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
     assert "plan.PlayerPos = plan.CarPos" not in place
+
+
+PACKS = {"MountainBag_Green", "MountainBag_Orange", "HuntingBag", "AssaultBag_Desert", "AssaultBag_Ttsko", "AssaultBag_Black"}
+
+
+def test_pilots_carry_a_pack_and_survival_kit(built):
+    """Blae 2026-10-22: pilots get "packs and survival equipment they would have access to
+    because of their profession": exactly one pack, 2-3 survival items, the bush pilot a rod
+    AND its hook, the combat pilot a survival vest. Ground kits are unchanged."""
+    _, _, out = built
+    rng = random.Random(5)
+    pilots = {a["Name"]: a for a in out["Archetypes"] if a["Aircraft"]}
+    for arch in pilots.values():
+        names = [s["Name"] for s in arch["Slots"]]
+        assert names[:len(arrivals.SLOT_ORDER)] == arrivals.SLOT_ORDER, "standard slots first"
+        survival = set(_slot(arch, "survival")["Items"])
+        assert "FirstAidKit" in survival and "PurificationTablets" in survival, arch["Name"]
+        for _ in range(500):
+            kit = arrivals.simulate_kit(arch, rng)
+            assert sum(k in PACKS for k in kit) == 1, kit
+            assert 2 <= sum(k in survival for k in kit) <= 3, kit
+            if arch["Name"] == "bush_pilot":
+                assert "FishingRod" in kit and "Hook" in kit, kit
+            if arch["Name"] == "combat_pilot":
+                assert sum(k in set(_slot(arch, "vest")["Items"]) for k in kit) == 1, kit
+    ground = [a for a in out["Archetypes"] if not a["Aircraft"]]
+    assert ground and all(not {"pack", "vest", "survival", "fishing"} & {s["Name"] for s in a["Slots"]} for a in ground)
+
+
+def test_pilot_item_pools_are_disjoint(built):
+    """No item appears in two slots of one archetype, so a kit never holds a duplicate."""
+    cfg, _, _ = built
+    for name, a in cfg["archetypes"].items():
+        seen: dict[str, str] = {}
+        for slot, s in a["slots"].items():
+            for item in s["items"]:
+                assert item not in seen, (name, item, seen.get(item), slot)
+                seen[item] = slot
+
+
+def test_unknown_slot_is_rejected(built):
+    """archetypes() compiles only known slot names: a typo'd slot must fail, not vanish."""
+    _, map_data, _ = built
+    bad = yaml.safe_load(arrivals.PRESET.read_text())
+    bad["archetypes"]["bush_pilot"]["slots"]["survivl"] = {"count": [1, 1], "items": ["Heatpack"]}
+    with pytest.raises(SystemExit, match="unknown slot"):
+        arrivals.build(bad, map_data, arrivals.mission_dir(map_data))
+
+
+def test_near_players_and_base_respawn_are_compiled(built):
+    """Blae 2026-10-22: respawn within 1 km of the others (else 2 km), and at the base."""
+    _, _, out = built
+    assert (out["RespawnNearPlayersMin"], out["RespawnNearPlayersMax"]) == (1000.0, 2000.0)
+    assert out["BaseRespawn"] == 1 and out["BasePlayerOffset"] > 0
+
+
+def test_init_c_respawn_order_is_friends_base_camp_death():
+    """Blae chose "friend first": near players, then base, then camp, then near the death."""
+    src = INIT_C.read_text()
+    plan = re.search(r"RefugeeArrivalPlan Plan\(PlayerIdentity identity\).*?\n\t\}", src, re.S).group(0)
+    order = [plan.index(f) for f in ("PickColumnPoint(plan)", "PickNearPlayers(plan)", "PickBase(plan, rec)",
+                                     "PickCamp(plan, rec)", "PickNearDeath(plan, rec)")]
+    assert order == sorted(order), order
+    redraw = plan[plan.index("VEHICLE_REDRAWS"):]
+    assert redraw.index("PickNearPlayers(plan)") < redraw.index("PickNearDeath(plan, rec)"), \
+        "a big heli that fits nowhere near the others must be redrawn near them first"
+    near = re.search(r"bool PickNearPlayers\(RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
+    for needle in ("GetGame().GetPlayers(", "IsAlive()", "GetId() == plan.Uid", "RespawnNearPlayersMin", "RespawnNearPlayersMax"):
+        assert needle in near, needle
+    base = re.search(r"bool PickBase\(RefugeeArrivalPlan plan, RefugeeArrivalRecord rec\).*?\n\t\}", src, re.S).group(0)
+    assert "#ifdef DZDS_BASES" in base and "plan.GrantVehicle = false" in base
+
+
+def test_dzds_mod_tracks_territory_flags():
+    """init.c's base respawn needs @DZDS's DZDSBases registry and the DZDS_BASES define."""
+    mod = ROOT / "mods" / "DZDS"
+    assert '"DZDS_BASES"' in (mod / "config.cpp").read_text()
+    src = (mod / "Scripts" / "4_World" / "DZDS" / "DZDSBases.c").read_text()
+    for needle in ("modded class TerritoryFlag", "DZDSBases.Add(this)", "DZDSBases.Remove(this)",
+                   'IsPartConstructed("pole")', '"Material_FPole_Flag"', 'GetAnimationPhase("flag_mast") < 1',
+                   "static TerritoryFlag NearestRaised(vector pos)", "static int RaisedCount()", "static int Count()"):
+        assert needle in src, needle

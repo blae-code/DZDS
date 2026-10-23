@@ -289,17 +289,25 @@ archetypes:
   # vehicle's never is. Same slot rules as above ("car" = airframe field repair), plus a FULL
   # jerrycan (fuel) and signalling (signal), so a pilot who sets down off-field can refuel,
   # patch the airframe and be found.
+  # Blae 2026-10-22 ("packs and survival equipment they would have access to because of their
+  # profession"): every pilot also gets a pack and a survival kit (first-aid kit, purification
+  # tablets, heat pack...). The bush pilot carries what backcountry fliers keep aboard (rod and
+  # hook together, snare, shovel, sewing kit, rain gear); the combat pilot an aircrew survival
+  # vest, splint, rangefinder and head torch. Extra slots go after the standard ones, in order.
   bush_pilot:     # civilian backcountry flier: fish, hunt, camp, fix it with what's aboard
     aircraft: true
     weight: 60
     slots:
-      clothing: { count: [2, 3], items: [BomberJacket_Brown, AviatorGlasses, CargoPants_Beige, HikingBoots_Brown, BaseballCap_Beige, WorkingGloves_Brown, MountainBag_Green] }
+      clothing: { count: [2, 3], items: [BomberJacket_Brown, AviatorGlasses, CargoPants_Beige, HikingBoots_Brown, BaseballCap_Beige, WorkingGloves_Brown, Raincoat_Green] }
+      pack:     { count: [1, 1], items: [MountainBag_Green, MountainBag_Orange, HuntingBag] }
       water:    { count: [1, 2], items: [Canteen, WaterBottle] }
-      food:     { count: [2, 3], max_each: 2, items: [TunaCan, SardinesCan, PeachesCan, Crackers] }
-      medical:  { count: [2, 2], items: [BandageDressing, PainkillerTablets, CharcoalTablets, VitaminBottle] }
+      food:     { count: [2, 3], max_each: 2, items: [TunaCan, SardinesCan, PeachesCan, Crackers, PowderedMilk] }
+      medical:  { count: [2, 3], items: [BandageDressing, PainkillerTablets, CharcoalTablets, VitaminBottle, IodineTincture] }
       knife:    { count: [1, 1], items: [HuntingKnife] }
-      tools:    { count: [1, 2], items: [Compass, Binoculars, FishingRod, Hook] }
-      extra:    { count: [1, 2], items: [Flashlight, Battery9V, Hatchet] }
+      tools:    { count: [1, 2], items: [Compass, Binoculars, FieldShovel] }
+      survival: { count: [2, 3], items: [FirstAidKit, PurificationTablets, Heatpack, RabbitSnareTrap, LeatherSewingKit] }
+      fishing:  { count: [2, 2], items: [FishingRod, Hook] }
+      extra:    { count: [1, 2], items: [Headtorch_Grey, Battery9V, Hatchet] }
       camp:     { count: [1, 1], items: [Matchbox, Pot, Rope] }
       car:      { count: [1, 1], items: [EpoxyPutty, DuctTape, TireRepairKit, Pliers] }
       fuel:     { count: [1, 1], items: [CanisterGasoline] }
@@ -313,11 +321,14 @@ archetypes:
     weight: 40
     slots:
       clothing: { count: [2, 3], items: [ZSh3PilotHelmet, PilotkaCap, AviatorGlasses, TacticalGloves_Black, USMCJacket_Desert, USMCPants_Desert, MilitaryBoots_Beige] }
+      pack:     { count: [1, 1], items: [AssaultBag_Desert, AssaultBag_Ttsko, AssaultBag_Black] }
+      vest:     { count: [1, 1], items: [UKAssVest_Khaki, UKAssVest_Olive, HighCapacityVest_Olive] }
       water:    { count: [1, 2], items: [Canteen, WaterBottle] }
       food:     { count: [2, 3], max_each: 2, items: [TunaCan, BakedBeansCan, Crackers, Pajka] }
-      medical:  { count: [2, 2], items: [BandageDressing, Morphine, Epinephrine, TetracyclineAntibiotics] }
+      medical:  { count: [2, 3], items: [BandageDressing, Morphine, Epinephrine, TetracyclineAntibiotics, Splint] }
       knife:    { count: [1, 1], items: [CombatKnife] }
-      tools:    { count: [1, 2], items: [Compass, Binoculars, DuctTape] }
+      tools:    { count: [1, 2], items: [Compass, Binoculars, Rangefinder] }
+      survival: { count: [2, 3], items: [FirstAidKit, PurificationTablets, Heatpack, Headtorch_Black, Chemlight_Green] }
       extra:    { count: [1, 2], items: [Flashlight, Battery9V, Chemlight_Red] }
       camp:     { count: [1, 1], items: [Matchbox, Rope] }
       car:      { count: [1, 1], items: [EpoxyPutty, TireRepairKit, Screwdriver, Pliers] }
@@ -383,3 +394,20 @@ respawn_near_fallback_m: 8000
 # with no tent in range, the road respawn above applies.
 camp_respawn_m: 5000
 camp_player_offset_m: 4.0
+
+# Respawn near the others (Blae, 2026-10-22: "it's a massive map, and we spend the majority of
+# the time just finding each other"). A later character wakes on a road or arrival spot within
+# 1 km of another living player who is online, else within 2 km. This comes BEFORE the base,
+# camp and near-death respawns (Blae chose "friend first"); with nobody else online they apply
+# as before. The vehicle and its cooldown work as on any road respawn. First arrivals still go
+# to the refugee column.
+respawn_near_players_m: [1000, 2000]
+
+# Base respawn (Blae, 2026-10-22): with nobody online to wake beside, a later character wakes
+# at the base: beside the RAISED territory flag nearest the previous death, any distance, with
+# no car (the base has its own) and the car cooldown untouched. A flag counts once its pole is
+# built and a flag is on it, raised at least partway; vanilla lowers it as the base's refresh
+# time runs out, so an abandoned base stops being a respawn. Needs @DZDS with DZDSBases
+# (DZDS_BASES); without it this step is skipped.
+base_respawn: true
+base_player_offset_m: 5.0

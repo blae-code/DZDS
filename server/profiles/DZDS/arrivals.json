@@ -45,6 +45,10 @@
     "RespawnNearFallback": 8000.0,
     "CampRespawnRadius": 5000.0,
     "CampPlayerOffset": 4.0,
+    "RespawnNearPlayersMin": 1000.0,
+    "RespawnNearPlayersMax": 2000.0,
+    "BaseRespawn": 1,
+    "BasePlayerOffset": 5.0,
     "ArrivalSites": [
         {
             "Name": "East Roadside",
@@ -3126,7 +3130,7 @@
                         "HikingBoots_Brown",
                         "BaseballCap_Beige",
                         "WorkingGloves_Brown",
-                        "MountainBag_Green"
+                        "Raincoat_Green"
                     ]
                 },
                 {
@@ -3148,19 +3152,21 @@
                         "TunaCan",
                         "SardinesCan",
                         "PeachesCan",
-                        "Crackers"
+                        "Crackers",
+                        "PowderedMilk"
                     ]
                 },
                 {
                     "Name": "medical",
                     "Min": 2,
-                    "Max": 2,
+                    "Max": 3,
                     "MaxEach": 1,
                     "Items": [
                         "BandageDressing",
                         "PainkillerTablets",
                         "CharcoalTablets",
-                        "VitaminBottle"
+                        "VitaminBottle",
+                        "IodineTincture"
                     ]
                 },
                 {
@@ -3180,8 +3186,7 @@
                     "Items": [
                         "Compass",
                         "Binoculars",
-                        "FishingRod",
-                        "Hook"
+                        "FieldShovel"
                     ]
                 },
                 {
@@ -3190,7 +3195,7 @@
                     "Max": 2,
                     "MaxEach": 1,
                     "Items": [
-                        "Flashlight",
+                        "Headtorch_Grey",
                         "Battery9V",
                         "Hatchet"
                     ]
@@ -3216,6 +3221,40 @@
                         "DuctTape",
                         "TireRepairKit",
                         "Pliers"
+                    ]
+                },
+                {
+                    "Name": "pack",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "MountainBag_Green",
+                        "MountainBag_Orange",
+                        "HuntingBag"
+                    ]
+                },
+                {
+                    "Name": "survival",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "FirstAidKit",
+                        "PurificationTablets",
+                        "Heatpack",
+                        "RabbitSnareTrap",
+                        "LeatherSewingKit"
+                    ]
+                },
+                {
+                    "Name": "fishing",
+                    "Min": 2,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "FishingRod",
+                        "Hook"
                     ]
                 },
                 {
@@ -3312,13 +3351,14 @@
                 {
                     "Name": "medical",
                     "Min": 2,
-                    "Max": 2,
+                    "Max": 3,
                     "MaxEach": 1,
                     "Items": [
                         "BandageDressing",
                         "Morphine",
                         "Epinephrine",
-                        "TetracyclineAntibiotics"
+                        "TetracyclineAntibiotics",
+                        "Splint"
                     ]
                 },
                 {
@@ -3338,7 +3378,7 @@
                     "Items": [
                         "Compass",
                         "Binoculars",
-                        "DuctTape"
+                        "Rangefinder"
                     ]
                 },
                 {
@@ -3372,6 +3412,41 @@
                         "TireRepairKit",
                         "Screwdriver",
                         "Pliers"
+                    ]
+                },
+                {
+                    "Name": "pack",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "AssaultBag_Desert",
+                        "AssaultBag_Ttsko",
+                        "AssaultBag_Black"
+                    ]
+                },
+                {
+                    "Name": "vest",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "UKAssVest_Khaki",
+                        "UKAssVest_Olive",
+                        "HighCapacityVest_Olive"
+                    ]
+                },
+                {
+                    "Name": "survival",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "FirstAidKit",
+                        "PurificationTablets",
+                        "Heatpack",
+                        "Headtorch_Black",
+                        "Chemlight_Green"
                     ]
                 },
                 {
