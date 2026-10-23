@@ -10,6 +10,12 @@ poll_seconds: 10
 # FactionReputationRewards). 0 turns it off. [test] tune against quest reward sizes.
 tolerance_reputation: 50
 
+# Diegetic radio bulletin (mods/DZDS/Scripts/4_World/DZDS/DZDSBulletin.c): periodic Settler Net
+# war dispatches delivered only to players carrying a powered, switched-on radio (no RCON needed).
+bulletin:
+  interval_seconds: 600
+  frequency: "87.8 MHz"
+
 # Site markers: placed at server start next to every site, showing who holds it.
 markers:
   offset: [12, 12]          # metres from the site centre (keep markers off roads)

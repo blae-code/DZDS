@@ -1,0 +1,9 @@
+{
+    "Turn": 0,
+    "IntervalSeconds": 600,
+    "Frequency": "87.8 MHz",
+    "Messages": [
+        "Heavy fighting reported around Northern Dam, Southern Barracks. Keep off the approaches.",
+        "Active barter posts: Frontier Exchange at Settler Haven; UN Quartermaster at Eastern Airfield; Rust Syndicate Water Broker at Hilltop Water Station."
+    ]
+}

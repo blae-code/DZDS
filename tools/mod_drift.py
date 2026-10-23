@@ -154,14 +154,22 @@ def main() -> int:
     client_root = Path(os.environ.get("DAYZ_WORKSHOP_DIR") or DEFAULT_CLIENT)
 
     counts: dict[str, int] = {}
+    rows: list[list[str]] = []
+    import ui
+    rich = ui.use_color()
     for m in mods:
         i = int(m["id"])
         client = local_files(client_root / str(i)) if m.get("side") != "server" else None
         status, detail = classify(server.get(i), client, ws.get(i))
         counts[status] = counts.get(status, 0) + 1
         if status != "OK" or args.all:
-            print(f"{status:8} @{i:<11} {m['name'][:38]:38} {detail}")
+            if rich:
+                rows.append([ui.badge(status, status), f"@{i}", m["name"][:38], detail or "in sync"])
+            else:
+                print(f"{status:8} @{i:<11} {m['name'][:38]:38} {detail}")
 
+    if rich and rows:
+        print(ui.table(["STATUS", "WORKSHOP ID", "MOD NAME", "DETAIL"], rows, title="MOD DRIFT REPORT"))
     print(f"\n{len(mods)} mods checked: " + ", ".join(f"{n} {s}" for s, n in sorted(counts.items())))
     if client_root.is_dir():
         print(f"client copies: {client_root}")

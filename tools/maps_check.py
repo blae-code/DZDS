@@ -40,15 +40,32 @@ def check(data: dict, roles: dict) -> list[str]:
 
 
 def main(argv: list[str]) -> int:
+    import ui
     roles = yaml.safe_load((MAPS / "_roles.yaml").read_text())["roles"]
     files = [MAPS / f"{m}.yaml" for m in argv] or sorted(p for p in MAPS.glob("*.yaml") if not p.name.startswith("_"))
     bad = 0
+    rows = []
     for f in files:
-        problems = check(yaml.safe_load(f.read_text()), roles)
-        print(f"{'OK  ' if not problems else 'TODO'} {f.stem}")
-        for p in problems:
-            print(f"     - {p}")
+        data = yaml.safe_load(f.read_text())
+        problems = check(data, roles)
         bad += bool(problems)
+        if ui.use_color():
+            rows.append([
+                ui.badge("OK" if not problems else "TODO", "ok" if not problems else "warn"),
+                f.stem,
+                data.get("mission", "—"),
+                str(len(data.get("locations") or {})),
+                str(len(data.get("arrival_sites") or {})),
+                "; ".join(problems) if problems else ui.fg("All role minimums & bounds verified", "ok"),
+            ])
+        else:
+            print(f"{'OK  ' if not problems else 'TODO'} {f.stem}")
+            for p in problems:
+                print(f"     - {p}")
+    if ui.use_color():
+        print(ui.table(["STATUS", "MAP", "MISSION", "SITES", "ARRIVALS", "DIAGNOSTICS"],
+                       rows, alignments=["left", "left", "left", "right", "right", "left"],
+                       title="MAP PORTABILITY & ROLE COVERAGE"))
     return 1 if bad else 0
 
 

@@ -56,6 +56,7 @@ class DZDSWorld
 
 		LoadSettings();
 		SpawnMarkers();
+		DZDSBulletin.Start();
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(PollQueue, s_Settings.PollSeconds * 1000, true);
 		Print("[DZDS] World layer started; polling " + DIR + "queue every " + s_Settings.PollSeconds + "s");
 	}

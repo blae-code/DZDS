@@ -64,6 +64,22 @@ def main() -> int:
     zs = zmod.build(active.map_data(), led.s.control, led.locations())
     lines = [ln for f in files for ln in f.read_text(errors="replace").splitlines()]
     res = audit(lines, zs, a.window)
+    import ui
+    if ui.use_color():
+        print(ui.banner("OPEN-COUNTRY ENCOUNTER AUDIT", subtitle=f"{len(files)} ADM log file(s)  │  Target: <= 0.33 outside encounters / session", width=86))
+        rows = []
+        worst = 0.0
+        for p, r in sorted(res.items()):
+            rate = r["outside"] / max(1, r["sessions"])
+            worst = max(worst, rate)
+            status = ui.badge("OVER", "err") if rate > 1 / 3 else ui.badge("OK", "ok")
+            rows.append([p, str(r["sessions"]), str(r["outside"]), str(r["inside"]), f"{rate:.2f}", status])
+        if rows:
+            print(ui.table(["PLAYER", "SESSIONS", "OUTSIDE", "INSIDE", "RATE", "STATUS"], rows,
+                           alignments=["left", "right", "right", "right", "right", "left"]))
+        else:
+            print(ui.panel("No player sessions or AI encounters recorded in current ADM files.", title="AUDIT CLEAN"))
+        return 1 if worst > 1 / 3 else 0
     print(f"{len(files)} ADM file(s); target <= 0.33 outside encounters per session")
     worst = 0.0
     for p, r in sorted(res.items()):

@@ -53,6 +53,9 @@ ollama pull gemma4:e4b       # confirm the exact tag with `ollama list` / ollama
 
 | Task | Command |
 |---|---|
+| Tactical sandbox overview (map, factions, traders, readiness) | `make status` |
+| Interactive 5-tab Terminal UI (TUI) command deck | `make tui` |
+| Web Tactical Command Center (`http://127.0.0.1:8787`) | `make dashboard` (`OPEN=1` to open browser) |
 | Pull live configs | `make pull` |
 | Edit configs | edit files in `server/`, then `git diff` |
 | Validate | `make validate` |

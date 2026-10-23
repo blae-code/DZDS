@@ -34,10 +34,23 @@ def estimate(mod_gb: float) -> dict:
 
 
 def main() -> int:
+    import ui
     mods = [m for m in load_mods() if m.get("enabled", True) and not m.get("local")]
     d = fetch([m["id"] for m in mods])
     sizes = {m["name"]: int(d.get(str(m["id"]), {}).get("file_size") or 0) / 1e9 for m in mods}
     e = estimate(sum(sizes.values()))
+    if ui.use_color():
+        print(ui.banner("SERVER & CLIENT SPECS", subtitle=f"{len(mods)} enabled Workshop mods  │  {e['mod_download_gb']} GB total download", right=f"~{e['server_ram_gb']} GB RAM", width=82))
+        rows = [
+            ["Dedicated Server RAM", f"~{e['server_ram_gb']} GB", f"Includes {int((HEADROOM - 1) * 100)}% headroom (Godlike plan: 12 GB)"],
+            ["Server Disk Footprint", f"~{e['server_disk_gb']} GB", "Install + mods + persistence/logs (×1.5)"],
+            ["Client Disk Footprint", f"~{e['client_disk_gb']} GB", "DayZ + Badlands DLC + Workshop mods"],
+        ]
+        print(ui.table(["METRIC", "ESTIMATE", "NOTES"], rows, alignments=["left", "right", "left"], title="RESOURCE FOOTPRINT"))
+        top_rows = [[name, f"{gb:5.2f} GB", ui.meter(gb, max(sizes.values() or [1.0]), width=12, show_val=False)]
+                    for name, gb in sorted(sizes.items(), key=lambda kv: kv[1], reverse=True)[:8]]
+        print(ui.table(["MOD NAME", "SIZE", "SHARE"], top_rows, alignments=["left", "right", "left"], title="LARGEST MODS (TOP 8)"))
+        return 0
     print(f"{len(mods)} enabled Workshop mods, {e['mod_download_gb']} GB download")
     print(f"  server RAM  ~{e['server_ram_gb']} GB   (dedicated, incl. {int((HEADROOM - 1) * 100)}% headroom)")
     print(f"  server disk ~{e['server_disk_gb']} GB   (install + mods + persistence/logs, x1.5)")

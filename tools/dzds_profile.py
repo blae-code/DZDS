@@ -40,15 +40,46 @@ def markers(world: dict, led: WarLedger) -> list[dict]:
     return out
 
 
+def build_bulletin(led: WarLedger, traders: list[dict] | None = None,
+                   quests: list[dict] | None = None, world: dict | None = None) -> dict:
+    """Compile diegetic radio dispatches for $profile:DZDS/bulletin.json (DZDSBulletin.c)."""
+    world = world or yaml.safe_load((ROOT / "presets" / "world.yaml").read_text())
+    bul_cfg = world.get("bulletin") or {}
+    msgs: list[str] = list(led.recent_events(6))
+    contested = sorted(s for s, h in led.s.control.items() if h == "contested")
+    if contested:
+        msgs.append(f"Heavy fighting reported around {', '.join(contested)}. Keep off the approaches.")
+    if led.s.war_party:
+        wp = led.s.war_party
+        who = led._display(wp["faction"])
+        msgs.append(f"Spotters report {who} ({wp['kind']}) moving from {wp['origin']} toward {wp['target']}.")
+    if traders:
+        open_t = [f"{t['display'].split(' (')[0]} at {t['site']}" for t in traders if t["status"] in ("open", "relocated") and t["site"]]
+        if open_t:
+            msgs.append("Active barter posts: " + "; ".join(open_t[:3]) + ".")
+    if not msgs:
+        msgs.append(f"Settler Net check-in (Turn {led.s.turn}): Stronghold perimeters holding steady.")
+    return {
+        "Turn": int(led.s.turn),
+        "IntervalSeconds": int(bul_cfg.get("interval_seconds", 600)),
+        "Frequency": str(bul_cfg.get("frequency", "87.8 MHz")),
+        "Messages": msgs[:8],
+    }
+
+
 def main() -> int:
     world = yaml.safe_load((ROOT / "presets" / "world.yaml").read_text())
     map_name = active.map_name()
     led = WarLedger.load(map_name) if STATE.exists() else WarLedger.new(map_name)
     OUT.mkdir(parents=True, exist_ok=True)
-    s, mk = settings(world), markers(world, led)
+    import front_plan
+    traders = front_plan.plan_traders(led, front_plan.load("presets/traders.yaml"))
+    s, mk, bul = settings(world), markers(world, led), build_bulletin(led, traders, world=world)
     (OUT / "settings.json").write_text(json.dumps(s, indent=4) + "\n")
     (OUT / "markers.json").write_text(json.dumps({"Markers": mk}, indent=4) + "\n")
-    print(f"@DZDS profile: {len(s['AllowedClassNames'])} allowlisted classname(s), {len(mk)} marker(s)"
+    (OUT / "bulletin.json").write_text(json.dumps(bul, indent=4) + "\n")
+    print(f"@DZDS profile: {len(s['AllowedClassNames'])} allowlisted classname(s), {len(mk)} marker(s), "
+          f"{len(bul['Messages'])} radio bulletin(s)"
           + ("" if mk else " (marker classnames not chosen yet: presets/world.yaml)"))
     return 0
 

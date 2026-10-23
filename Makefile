@@ -149,6 +149,18 @@ survey:         # candidate sites per role from the active mission's mapgrouppos
 zone-events:    # event mods act only inside zones (presets/zone_events.yaml)
 	$(ENV) $(PY) tools/zone_events.py
 
-.PHONY: encounter-audit
+.PHONY: encounter-audit status tui dashboard web help
 encounter-audit: # AI encounters outside zones per player-session (target <= 1 per 3)
 	$(ENV) $(PY) tools/encounter_audit.py
+
+status:          # executive tactical overview (sector map, faction balance, front plan)
+	$(ENV) $(PY) tools/status.py
+
+tui:             # interactive 5-tab Terminal UI command deck
+	$(ENV) $(PY) tools/tui.py
+
+dashboard web:   # launch the Web Tactical Command Center on http://127.0.0.1:8787
+	$(ENV) $(PY) tools/dashboard.py $(if $(PORT),--port $(PORT)) $(if $(OPEN),--open)
+
+help:            # show tactical overview and command reference
+	@$(ENV) $(PY) tools/status.py

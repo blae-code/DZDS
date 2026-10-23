@@ -28,6 +28,13 @@ def test_settings_and_markers_match_enforce_classes():
     mk = dzds_profile.markers(world, WarLedger.new("chernarusplus"))
     assert mk and set(mk[0]) == fields("DZDSMarker")
     assert {m["ClassName"] for m in mk} == {"SomeObject"}           # null holders skipped
+    bul = dzds_profile.build_bulletin(WarLedger.new("nasdara"), world=WORLD)
+    assert set(bul) == fields("DZDSBulletinData")
+    assert bul["Messages"] and bul["Frequency"] == "87.8 MHz"
+    src_bul = (ROOT / "mods" / "DZDS" / "Scripts" / "4_World" / "DZDS" / "DZDSBulletin.c").read_text()
+    assert "TransmitterBase.Cast(" in src_bul and "GetCompEM().IsWorking()" in src_bul
+    src_world = (ROOT / "mods" / "DZDS" / "Scripts" / "4_World" / "DZDS" / "DZDSWorld.c").read_text()
+    assert "DZDSBulletin.Start();" in src_world
 
 
 def test_commands_match_enforce_class_and_respect_allowlist():

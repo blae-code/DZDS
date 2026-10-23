@@ -43,7 +43,8 @@ class CfgMods
 		defines[]=
 		{
 			"DZDS_CAMPS",
-			"DZDS_BASES"
+			"DZDS_BASES",
+			"DZDS_BULLETIN"
 		};
 		dependencies[]=
 		{

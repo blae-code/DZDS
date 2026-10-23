@@ -86,15 +86,26 @@ def main() -> int:
     ap.add_argument("--map", default=active.map_name())
     ap.add_argument("--initial", action="store_true", help="ignore the ledger state")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--color", action="store_true", help="force rich ANSI output")
+    ap.add_argument("--plain", action="store_true", help="force plain output")
     a = ap.parse_args()
+    import ui
+    rich = True if a.color else False if a.plain else ui.use_color()
     led = WarLedger.new(a.map) if a.initial or not STATE.exists() else WarLedger.load(a.map)
     plan = {"turn": led.s.turn, "traders": plan_traders(led, load("presets/traders.yaml")),
             "quests": plan_quests(led, load("presets/quests.yaml"))}
-    for t in plan["traders"]:
-        print(f"  trader {t['display']:<42} {t['status']:<9} {t['site'] or '-'}")
-    print(f"  {len(plan['quests'])} live quest(s)")
-    for q in plan["quests"]:
-        print(f"    {q['quest']:<20} at {q['site']:<20} from {q['giver']} @ {q['giver_site']}")
+    if rich:
+        print(ui.banner(f"FRONT PLAN · {a.map.upper()}", subtitle=f"Barter Traders & Front-Line Quests  │  Turn {led.s.turn}", right=f"{len(plan['quests'])} QUESTS", width=96, enabled=True))
+        t_rows = [[ui.badge(t["status"].upper(), t["status"].upper(), enabled=True), t["display"], t["site"] or "—"] for t in plan["traders"]]
+        print(ui.table(["STATUS", "TRADER", "CURRENT SITE"], t_rows, title="FACTION BARTER TRADERS", enabled=True))
+        q_rows = [[ui.fg(q["quest"], "bone", bold=True, enabled=True), q["site"], ui.faction_tag(q["giver"], enabled=True), q["giver_site"], q["text"][:46] + ("…" if len(q["text"]) > 46 else "")] for q in plan["quests"]]
+        print(ui.table(["QUEST", "TARGET SITE", "GIVER", "AT SITE", "BRIEFING"], q_rows, title=f"LIVE QUESTS ({len(plan['quests'])})", enabled=True))
+    else:
+        for t in plan["traders"]:
+            print(f"  trader {t['display']:<42} {t['status']:<9} {t['site'] or '-'}")
+        print(f"  {len(plan['quests'])} live quest(s)")
+        for q in plan["quests"]:
+            print(f"    {q['quest']:<20} at {q['site']:<20} from {q['giver']} @ {q['giver_site']}")
     if not a.dry_run:
         out = ROOT / "build" / f"front_plan.{a.map}.json"
         out.parent.mkdir(exist_ok=True)
