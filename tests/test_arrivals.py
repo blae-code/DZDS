@@ -421,10 +421,11 @@ BLAE_ID = "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ="
 
 def test_blae_is_favored_with_every_aircraft_that_holds_a_kit(built):
     """Blae 2026-10-21: the server owner's vehicle is always an aircraft. 2026-10-22: one whose
-    inventory holds the pilot kit, so not the gyrocopter (5x2 cargo, no flight-case slot)."""
+    inventory holds the pilot kit, so not the gyrocopter (5x2 cargo, no flight-case slot).
+    2026-10-24: and not a RedFalcon heli, whose SyncedValue inputs make his VKB sticks stutter."""
     _, _, out = built
     fav = {f["Id"]: f for f in out["Favored"]}
-    assert set(fav[BLAE_ID]["Vehicles"]) == AIRCRAFT - {"ExpansionGyrocopter"}
+    assert set(fav[BLAE_ID]["Vehicles"]) == EXPANSION_HELIS - {"ExpansionGyrocopter"}
     assert AIRCRAFT <= {v["ClassName"] for v in out["Vehicles"]}
 
 

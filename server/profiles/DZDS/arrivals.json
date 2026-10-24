@@ -2439,12 +2439,9 @@
             "Vehicles": [
                 "ExpansionMh6",
                 "EXT_MH6",
-                "RFFSHeli_R22",
-                "RFFSHeli_LittleBird",
                 "ExpansionUh1h",
                 "EXT_Mi8_Civilian",
-                "EXT_UH1Y",
-                "RFFSHeli_UH1H"
+                "EXT_UH1Y"
             ],
             "Outfit": "soviet_special_forces",
             "CooldownVehicles": [

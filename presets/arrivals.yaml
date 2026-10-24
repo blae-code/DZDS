@@ -383,7 +383,11 @@ trailer:
 favored:
   - name: blae
     id: "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ="
-    vehicles: [ExpansionMh6, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
+    # 2026-10-24: Expansion-framework helis only. Blae flies VKB sticks (tools/vkb_pad.py), and
+    # RedFalcon helis steer by each input's SyncedValue (the network copy), so a stick's
+    # continuous changes arrive in steps and the controls stutter. Expansion reads LocalValue,
+    # interpolated, and flies smoothly.
+    vehicles: [ExpansionMh6, EXT_MH6, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y]
     outfit: soviet_special_forces
     cooldown_vehicles: [ExpansionUAZCargo_Green, ExpansionUAZ, ExpansionUAZRoofless_Black, ExpansionVodnik, CrSk_GAZ_3309_Cargo_Green]
 
