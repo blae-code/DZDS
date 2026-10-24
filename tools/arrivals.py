@@ -107,19 +107,75 @@ SLOT_ORDER = ["clothing", "water", "food", "medical", "knife", "tools", "extra",
 OPTIONAL_SLOTS = ["pack", "vest", "survival", "fishing", "fuel", "signal"]   # pilot profiles add these
 
 
+def _archetype(name: str, a: dict) -> dict:
+    slots = [{"Name": s, "Min": int(a["slots"][s]["count"][0]), "Max": int(a["slots"][s]["count"][1]),
+              "MaxEach": int(a["slots"][s].get("max_each", 1)), "Items": list(a["slots"][s]["items"])}
+             for s in SLOT_ORDER + [o for o in OPTIONAL_SLOTS if o in a["slots"]]]
+    guns = [{"WeaponClass": f["weapon"], "MagazineClass": f["magazine"] or "", "Ammo": f["ammo"],
+             "RoundsMin": int(f["rounds"][0]), "RoundsMax": int(f["rounds"][1]),
+             "SpareMin": int(f.get("spare", [0, 0])[0]), "SpareMax": int(f.get("spare", [0, 0])[1])}
+            for f in a["firearms"]]
+    return {"Name": name, "Weight": float(a.get("weight", 0)), "Aircraft": int(bool(a.get("aircraft"))),
+            "Slots": slots, "Firearms": guns}
+
+
 def archetypes(cfg: dict) -> list[dict]:
+    return [_archetype(name, a) for name, a in cfg["archetypes"].items()]
+
+
+def _worn(entry) -> dict:
+    if isinstance(entry, str):
+        return {"ClassName": entry, "Attach": []}
+    return {"ClassName": entry["class"], "Attach": list(entry.get("attach") or [])}
+
+
+def _kit_weapon(w: dict) -> dict:
+    return {"WeaponClass": w["weapon"], "Attach": list(w.get("attach") or []), "MagazineClass": w["magazine"],
+            "Magazines": int(w["magazines"]), "Rounds": int(w["rounds"])}
+
+
+def outfits(cfg: dict) -> list[dict]:
+    """Worn outfits (Blae, 2026-10-23). LandCargo is a ground archetype used only by its outfit."""
     out = []
-    for name, a in cfg["archetypes"].items():
-        slots = [{"Name": s, "Min": int(a["slots"][s]["count"][0]), "Max": int(a["slots"][s]["count"][1]),
-                  "MaxEach": int(a["slots"][s].get("max_each", 1)), "Items": list(a["slots"][s]["items"])}
-                 for s in SLOT_ORDER + [o for o in OPTIONAL_SLOTS if o in a["slots"]]]
-        guns = [{"WeaponClass": f["weapon"], "MagazineClass": f["magazine"] or "", "Ammo": f["ammo"],
-                 "RoundsMin": int(f["rounds"][0]), "RoundsMax": int(f["rounds"][1]),
-                 "SpareMin": int(f.get("spare", [0, 0])[0]), "SpareMax": int(f.get("spare", [0, 0])[1])}
-                for f in a["firearms"]]
-        out.append({"Name": name, "Weight": float(a["weight"]), "Aircraft": int(bool(a.get("aircraft"))),
-                    "Slots": slots, "Firearms": guns})
+    for name, o in (cfg.get("outfits") or {}).items():
+        out.append({
+            "Name": name, "Chance": float(o["chance"]),
+            "HealthMin": float(o["health"][0]), "HealthMax": float(o["health"][1]),
+            "Variants": [{"Name": v, "Worn": [_worn(e) for e in worn]} for v, worn in o["variants"].items()],
+            "Carried": list(o["carried"]),
+            "Primary": [_kit_weapon(w) for w in o["primary"]],
+            "Sidearm": _kit_weapon(o["sidearm"]),
+            "AircraftCargo": o["aircraft_cargo"],
+            "LandCargo": _archetype(name, o["land_cargo"]),
+        })
     return out
+
+
+def outfit_classnames(o: dict) -> list[str]:
+    names = []
+    for worn in o["variants"].values():
+        for w in map(_worn, worn):
+            names += [w["ClassName"], *w["Attach"]]
+    names += o["carried"]
+    for w in [*o["primary"], o["sidearm"]]:
+        names += [w["weapon"], w["magazine"], *(w.get("attach") or [])]
+    lc = o["land_cargo"]
+    names += [c for s in lc["slots"].values() for c in s["items"]]
+    names += [f[k] for f in lc["firearms"] for k in ("weapon", "magazine", "ammo") if f.get(k)]
+    return names
+
+
+def simulate_dress(outfit: dict, rng: random.Random) -> list[str]:
+    """Python mirror of init.c Dress: one variant worn (attachments after their carrier), the
+    carried items, one primary and the sidearm, each followed by its full magazines."""
+    variant = outfit["Variants"][rng.randrange(len(outfit["Variants"]))]
+    kit = []
+    for w in variant["Worn"]:
+        kit += [w["ClassName"], *w["Attach"]]
+    kit += outfit["Carried"]
+    for w in (outfit["Primary"][rng.randrange(len(outfit["Primary"]))], outfit["Sidearm"]):
+        kit += [w["WeaponClass"], *w["Attach"]] + [w["MagazineClass"]] * w["Magazines"]
+    return kit
 
 
 def simulate_kit(arch: dict, rng: random.Random) -> list[str]:
@@ -152,6 +208,8 @@ def validate(cfg: dict, types: set[str]) -> None:
         names += [f[k] for f in a["firearms"] for k in ("weapon", "magazine", "ammo") if f.get(k)]
     names += [cfg["trailer"]["class"]] + cfg["trailer"]["parts"] + cfg["nav_kit"]["items"]
     names += cfg.get("fuel_cans", [])
+    for o in (cfg.get("outfits") or {}).values():
+        names += outfit_classnames(o)
     missing = sorted({n for n in names if n not in types})
     if missing:
         raise SystemExit(f"not in db/types.xml (typo or modded type not registered): {missing}")
@@ -180,6 +238,28 @@ def validate(cfg: dict, types: set[str]) -> None:
         stray = set(f["vehicles"]) - {v["class"] for v in cfg["vehicles"]}
         if stray or not f["vehicles"]:
             raise SystemExit(f"favored {f['name']} names no configured vehicle: {sorted(stray)}")
+        if f.get("outfit") and f["outfit"] not in (cfg.get("outfits") or {}):
+            raise SystemExit(f"favored {f['name']}: no outfit named {f['outfit']!r}")
+        cooldown = set(f.get("cooldown_vehicles") or [])
+        stray = cooldown - {v["class"] for v in cfg["vehicles"]}
+        if stray:
+            raise SystemExit(f"favored {f['name']} cooldown_vehicles names no configured vehicle: {sorted(stray)}")
+        if cooldown & set(cfg.get("aircraft", [])):
+            raise SystemExit(f"favored {f['name']} cooldown_vehicles must be land vehicles, got "
+                             f"{sorted(cooldown & set(cfg.get('aircraft', [])))}")
+    pilots = {n for n, a in cfg["archetypes"].items() if a.get("aircraft")}
+    for name, o in (cfg.get("outfits") or {}).items():
+        if o["aircraft_cargo"] not in pilots:
+            raise SystemExit(f"outfit {name}: aircraft_cargo {o['aircraft_cargo']!r} is not a pilot profile")
+        unknown = set(o["land_cargo"]["slots"]) - set(SLOT_ORDER)
+        missing_slots = set(SLOT_ORDER) - set(o["land_cargo"]["slots"])
+        if unknown or missing_slots:
+            raise SystemExit(f"outfit {name}: land_cargo needs exactly the slots {SLOT_ORDER}")
+        lo, hi = o["health"]
+        if not 0 <= o["chance"] <= 1 or not 0 <= lo <= hi <= 1:
+            raise SystemExit(f"outfit {name}: chance and health must lie in [0, 1]")
+        if not o["variants"] or not o["primary"]:
+            raise SystemExit(f"outfit {name}: needs at least one variant and one primary")
 
 
 def build(cfg: dict, map_data: dict, mission: Path) -> dict:
@@ -223,9 +303,11 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
                       "Trailer": int(v["class"] not in cfg["trailer"]["skip"]),
                       "Aircraft": int(v["class"] in cfg.get("aircraft", []))}
                      for v in cfg["vehicles"]],
-        "Favored": [{"Id": f["id"], "Name": f["name"], "Vehicles": list(f["vehicles"])}
+        "Favored": [{"Id": f["id"], "Name": f["name"], "Vehicles": list(f["vehicles"]),
+                     "Outfit": f.get("outfit") or "", "CooldownVehicles": list(f.get("cooldown_vehicles") or [])}
                     for f in cfg.get("favored", [])],
         "Archetypes": archetypes(cfg),
+        "Outfits": outfits(cfg),
         "FirearmHealthMin": float(cfg["firearm_health"][0]),
         "FirearmHealthMax": float(cfg["firearm_health"][1]),
     }
@@ -242,7 +324,7 @@ def main() -> int:
     sites = sorted({p["Name"] for p in out["ArrivalSites"]})
     print(f"arrivals: {len(out['ArrivalSites'])} arrival spot(s) at {len(sites)} site(s) {sites}, "
           f"{len(out['RoadPoints'])} road respawn spot(s), {len(out['Vehicles'])} vehicle(s), "
-          f"{len(out['Archetypes'])} archetype(s)")
+          f"{len(out['Archetypes'])} archetype(s), {len(out['Outfits'])} outfit(s)")
     if not args.dry_run:
         OUT.parent.mkdir(parents=True, exist_ok=True)
         OUT.write_text(json.dumps(out, indent=4) + "\n")

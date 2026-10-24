@@ -57,12 +57,16 @@ class RefugeeArrivalVehicle
 }
 
 // A player whose vehicle is always drawn from Vehicles (Blae, 2026-10-21: the owner gets an
-// aircraft). Changes which vehicle, never whether: the cooldown still applies.
+// aircraft). Changes which vehicle, never whether: the cooldown still applies to Vehicles.
+// 2026-10-23: Outfit dresses every character of theirs; inside the cooldown they get one of
+// CooldownVehicles instead, which starts no cooldown (Blae: "just helicopters").
 class RefugeeArrivalFavored
 {
 	string Id;
 	string Name;
 	ref TStringArray Vehicles;
+	string Outfit;
+	ref TStringArray CooldownVehicles;
 }
 
 class RefugeeArrivalSlot
@@ -92,6 +96,42 @@ class RefugeeArrivalArchetype
 	int Aircraft;         // 1 = pilot profile: only for aircraft, which only get these
 	ref array<ref RefugeeArrivalSlot> Slots;
 	ref array<ref RefugeeArrivalFirearm> Firearms;
+}
+
+// Outfits (Blae, 2026-10-23): a starting archetype worn on the body. One variant per character.
+class RefugeeArrivalWorn
+{
+	string ClassName;
+	ref TStringArray Attach;   // carried on this item (the Smersh bag on its vest)
+}
+
+class RefugeeArrivalOutfitVariant
+{
+	string Name;
+	ref array<ref RefugeeArrivalWorn> Worn;
+}
+
+class RefugeeArrivalKitWeapon
+{
+	string WeaponClass;
+	ref TStringArray Attach;
+	string MagazineClass;
+	int Magazines;             // this many FULL magazines, loose in the inventory
+	int Rounds;
+}
+
+class RefugeeArrivalOutfit
+{
+	string Name;
+	float Chance;              // per respawn (random character); a favored Outfit always applies
+	float HealthMin;
+	float HealthMax;
+	ref array<ref RefugeeArrivalOutfitVariant> Variants;
+	ref TStringArray Carried;
+	ref array<ref RefugeeArrivalKitWeapon> Primary;   // one drawn
+	ref RefugeeArrivalKitWeapon Sidearm;
+	string AircraftCargo;      // an aircraft's cargo: this pilot profile
+	ref RefugeeArrivalArchetype LandCargo;            // any other vehicle's cargo
 }
 
 class RefugeeArrivalConfig
@@ -132,6 +172,7 @@ class RefugeeArrivalConfig
 	ref array<ref RefugeeArrivalVehicle> Vehicles;
 	ref array<ref RefugeeArrivalFavored> Favored;
 	ref array<ref RefugeeArrivalArchetype> Archetypes;
+	ref array<ref RefugeeArrivalOutfit> Outfits;
 	float FirearmHealthMin;
 	float FirearmHealthMax;
 }
@@ -179,6 +220,9 @@ class RefugeeArrivalPlan
 	bool FirstArrival;
 	bool RandomCharacter;
 	bool GrantVehicle;
+	bool StartsCooldown;    // false for a favored player's CooldownVehicles
+	bool AlwaysVehicle;     // favored with CooldownVehicles: base and camp (no vehicle) are skipped
+	ref RefugeeArrivalOutfit Outfit;
 	bool AtCamp;
 	bool AtBase;
 	string Where;
@@ -232,6 +276,8 @@ class RefugeeArrivals
 			m_Ledger.Players = new array<ref RefugeeArrivalRecord>;
 		if (!m_Config.Favored)
 			m_Config.Favored = new array<ref RefugeeArrivalFavored>;
+		if (!m_Config.Outfits)
+			m_Config.Outfits = new array<ref RefugeeArrivalOutfit>;
 		if (!m_Config.FuelCans)
 			m_Config.FuelCans = new TStringArray;
 		if (!m_Config.UnfillableSlots)
@@ -243,7 +289,7 @@ class RefugeeArrivals
 			m_Config.AircraftFuelMax = m_Config.FuelMax;
 		}
 
-		Print("[DZDS Arrivals] enabled=" + m_Config.Enabled + " sites=" + m_Config.ArrivalSites.Count() + " road=" + m_Config.RoadPoints.Count() + " vehicles=" + m_Config.Vehicles.Count() + " archetypes=" + m_Config.Archetypes.Count() + " favored=" + m_Config.Favored.Count() + " known players=" + m_Ledger.Players.Count());
+		Print("[DZDS Arrivals] enabled=" + m_Config.Enabled + " sites=" + m_Config.ArrivalSites.Count() + " road=" + m_Config.RoadPoints.Count() + " vehicles=" + m_Config.Vehicles.Count() + " archetypes=" + m_Config.Archetypes.Count() + " favored=" + m_Config.Favored.Count() + " outfits=" + m_Config.Outfits.Count() + " known players=" + m_Ledger.Players.Count());
 #ifdef DZDS_CAMPS
 		Print("[DZDS Arrivals] camp respawn within " + m_Config.CampRespawnRadius.ToString() + " m, pitched tents=" + DZDSCamps.PitchedCount().ToString());
 #endif
@@ -346,6 +392,165 @@ class RefugeeArrivals
 				return f.Vehicles;
 		}
 		return null;
+	}
+
+	RefugeeArrivalFavored FindFavored(string uid)
+	{
+		foreach (RefugeeArrivalFavored f : m_Config.Favored)
+		{
+			if (f.Id == uid)
+				return f;
+		}
+		return null;
+	}
+
+	RefugeeArrivalOutfit FindOutfit(string name)
+	{
+		foreach (RefugeeArrivalOutfit o : m_Config.Outfits)
+		{
+			if (o.Name == name)
+				return o;
+		}
+		return null;
+	}
+
+	RefugeeArrivalArchetype FindArchetype(string name)
+	{
+		foreach (RefugeeArrivalArchetype a : m_Config.Archetypes)
+		{
+			if (a.Name == name)
+				return a;
+		}
+		return null;
+	}
+
+	// Blae 2026-10-23: a favored player's outfit always; anyone else rolls each outfit's Chance
+	// once per respawn (random character). A first arrival keeps the look the player chose.
+	RefugeeArrivalOutfit PickOutfit(RefugeeArrivalPlan plan, RefugeeArrivalFavored fav)
+	{
+		if (fav)
+		{
+			if (fav.Outfit != "")
+				return FindOutfit(fav.Outfit);
+		}
+		if (!plan.RandomCharacter)
+			return null;
+		foreach (RefugeeArrivalOutfit o : m_Config.Outfits)
+		{
+			if (Math.RandomFloat01() < o.Chance)
+				return o;
+		}
+		return null;
+	}
+
+	// A dressed character's vehicle cargo: the outfit's pilot profile in an aircraft, its land
+	// kit in anything else. null = the usual weighted draw.
+	RefugeeArrivalArchetype OutfitCargo(RefugeeArrivalOutfit o, bool aircraft)
+	{
+		if (!o)
+			return null;
+		if (aircraft)
+			return FindArchetype(o.AircraftCargo);
+		return o.LandCargo;
+	}
+
+	// One outfit item on the body, else on the ground at the player's feet (logged).
+	EntityAI DressItem(PlayerBase p, string cls, RefugeeArrivalOutfit o, TStringArray notes)
+	{
+		EntityAI item = p.GetInventory().CreateInInventory(cls);
+		if (!item)
+		{
+			item = EntityAI.Cast(GetGame().CreateObjectEx(cls, p.GetPosition(), ECE_PLACE_ON_SURFACE));
+			if (item)
+				notes.Insert(cls + " (ground)");
+			else
+				notes.Insert(cls + " FAILED");
+		}
+		if (!item)
+			return null;
+		item.SetHealth01("", "", Math.RandomFloatInclusive(o.HealthMin, o.HealthMax));
+		Bottle_Base bottle = Bottle_Base.Cast(item);
+		if (bottle)
+		{
+			bottle.SetLiquidType(LIQUID_WATER);
+			bottle.SetQuantityMax();
+		}
+		return item;
+	}
+
+	// Each attachment on its carrier; one that won't fit there goes into the inventory instead.
+	void GiveAttachments(PlayerBase p, EntityAI carrier, TStringArray attach, RefugeeArrivalOutfit o, TStringArray notes)
+	{
+		if (!attach)
+			return;
+		foreach (string cls : attach)
+		{
+			EntityAI att = carrier.GetInventory().CreateAttachment(cls);
+			if (att)
+			{
+				att.SetHealth01("", "", Math.RandomFloatInclusive(o.HealthMin, o.HealthMax));
+				continue;
+			}
+			notes.Insert(cls + " not on " + carrier.GetType());
+			DressItem(p, cls, o, notes);
+		}
+	}
+
+	// A weapon with its attachments, plus Magazines full magazines loose in the inventory (not
+	// attached: on 2026-10-16 an attached magazine never reached the player).
+	string GiveKitWeapon(PlayerBase p, RefugeeArrivalKitWeapon w, RefugeeArrivalOutfit o, TStringArray notes)
+	{
+		if (!w || w.WeaponClass == "")
+			return "no weapon";
+		EntityAI gun = DressItem(p, w.WeaponClass, o, notes);
+		if (!gun)
+			return w.WeaponClass + " FAILED";
+		GiveAttachments(p, gun, w.Attach, o, notes);
+		int mags = 0;
+		for (int i = 0; i < w.Magazines; i++)
+		{
+			Magazine m = Magazine.Cast(DressItem(p, w.MagazineClass, o, notes));
+			if (!m)
+				continue;
+			m.ServerSetAmmoCount(w.Rounds);
+			mags++;
+		}
+		return w.WeaponClass + " + " + mags + "x " + w.MagazineClass + " (" + w.Rounds + ")";
+	}
+
+	// Blae 2026-10-23: dress `p` in the outfit (variant -1 = a random one): worn items, what rides
+	// on them, carried items, one primary and the sidearm. Returns the log line.
+	string Dress(PlayerBase p, RefugeeArrivalOutfit o, int variant = -1)
+	{
+		if (!o.Variants || o.Variants.Count() == 0)
+			return "outfit " + o.Name + ": no variants";
+		if (variant < 0)
+			variant = Math.RandomInt(0, o.Variants.Count());
+		RefugeeArrivalOutfitVariant v = o.Variants[variant];
+		TStringArray notes = new TStringArray;
+		int worn = 0;
+		foreach (RefugeeArrivalWorn w : v.Worn)
+		{
+			EntityAI item = DressItem(p, w.ClassName, o, notes);
+			if (!item)
+				continue;
+			worn++;
+			GiveAttachments(p, item, w.Attach, o, notes);
+		}
+		int carried = 0;
+		if (o.Carried)
+		{
+			foreach (string cls : o.Carried)
+			{
+				if (DressItem(p, cls, o, notes))
+					carried++;
+			}
+		}
+		string weapons = "no primary";
+		if (o.Primary && o.Primary.Count() > 0)
+			weapons = GiveKitWeapon(p, o.Primary.GetRandomElement(), o, notes);
+		weapons = weapons + ", " + GiveKitWeapon(p, o.Sidearm, o, notes);
+		return "outfit " + o.Name + "/" + v.Name + ": " + worn + "/" + v.Worn.Count() + " worn, " + carried + " carried, " + weapons + ", notes " + notes.ToString();
 	}
 
 	// Weighted draw from the pool, or only from the classes in `only` when given.
@@ -751,6 +956,29 @@ class RefugeeArrivals
 			GetGame().ObjectDelete(obj);
 		}
 		Print("[DZDS VehicleTest] done: " + n + " vehicle(s), " + bad + " to check");
+		OutfitSelfTest();
+	}
+
+	// Blae 2026-10-23: dress a stand-in survivor in every outfit variant through the same Dress
+	// a spawn uses, log what attached and what didn't, then delete it.
+	void OutfitSelfTest()
+	{
+		RefugeeArrivalPoint p = m_Config.RoadPoints[0];
+		vector pos = Vector(p.X, GetGame().SurfaceY(p.X, p.Z), p.Z);
+		foreach (RefugeeArrivalOutfit o : m_Config.Outfits)
+		{
+			for (int v = 0; v < o.Variants.Count(); v++)
+			{
+				PlayerBase dummy = PlayerBase.Cast(GetGame().CreateObjectEx("SurvivorM_Mirek", pos, ECE_PLACE_ON_SURFACE));
+				if (!dummy)
+				{
+					Print("[DZDS VehicleTest] FAIL outfit " + o.Name + ": no stand-in survivor");
+					return;
+				}
+				Print("[DZDS VehicleTest] " + Dress(dummy, o, v));
+				GetGame().ObjectDelete(dummy);
+			}
+		}
 	}
 
 	// Local check: with $profile:DZDS\spot_selftest.json present, test every candidate spot
@@ -1047,20 +1275,47 @@ class RefugeeArrivals
 				plan.RandomCharacter = true;
 		}
 		plan.GrantVehicle = true;
+		plan.StartsCooldown = true;
 		if (rec && rec.LastVehicle > 0 && NowSeconds() - rec.LastVehicle < m_Config.CooldownHours * 3600)
 			plan.GrantVehicle = false;
 		TStringArray only = FavoredVehicles(plan.Uid);
+		RefugeeArrivalFavored fav = FindFavored(plan.Uid);
+		plan.AlwaysVehicle = false;
+		if (fav)
+		{
+			if (fav.CooldownVehicles)
+			{
+				if (fav.CooldownVehicles.Count() > 0)
+					plan.AlwaysVehicle = true;
+			}
+		}
+		if (plan.AlwaysVehicle)
+		{
+			// Blae 2026-10-23: the cooldown covers the favored Vehicles (helicopters) only. Inside
+			// it, a land vehicle that starts no cooldown of its own.
+			if (!plan.GrantVehicle)
+			{
+				plan.GrantVehicle = true;
+				plan.StartsCooldown = false;
+				only = fav.CooldownVehicles;
+			}
+		}
+		plan.Outfit = PickOutfit(plan, fav);
 		if (plan.GrantVehicle)
 			plan.Vehicle = PickVehicle(only);
 
+		// Base and camp give no vehicle, so a player who always gets one skips them.
+		bool baseCamp = !plan.FirstArrival;
+		if (plan.AlwaysVehicle)
+			baseCamp = false;
 		bool placed = false;
 		if (plan.FirstArrival)
 			placed = PickColumnPoint(plan);
 		if (!placed && !plan.FirstArrival)
 			placed = PickNearPlayers(plan);
-		if (!placed && !plan.FirstArrival)
+		if (!placed && baseCamp)
 			placed = PickBase(plan, rec);
-		if (!placed && !plan.FirstArrival)
+		if (!placed && baseCamp)
 			placed = PickCamp(plan, rec);
 		if (!placed && !plan.FirstArrival)
 			placed = PickNearDeath(plan, rec);
@@ -1090,9 +1345,12 @@ class RefugeeArrivals
 		return plan;
 	}
 
-	int FillCargo(CarScript car, bool aircraft)
+	// `forced` (a dressed character's OutfitCargo) replaces the weighted draw.
+	int FillCargo(CarScript car, bool aircraft, RefugeeArrivalArchetype forced = null)
 	{
-		RefugeeArrivalArchetype a = PickArchetype(aircraft);
+		RefugeeArrivalArchetype a = forced;
+		if (!a)
+			a = PickArchetype(aircraft);
 		// Firearm first, so a crowded trunk can't push it out.
 		GiveFirearm(car, a);
 		TStringArray got = new TStringArray;
@@ -1171,7 +1429,7 @@ class RefugeeArrivals
 				car.Leak(CarFluid.FUEL, fuelCap * (1 - fuel));
 				car.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.HealthMin, m_Config.HealthMax));
 				int cans = TopUpAttached(car);
-				int items = FillCargo(car, aircraft);
+				int items = FillCargo(car, aircraft, OutfitCargo(plan.Outfit, aircraft));
 				Object trailerObj;
 				got = plan.Vehicle.ClassName + " with " + items + " item(s), fuel " + Math.Round(fuel * 100).ToString() + "%, " + cans + " full can(s) attached, " + EmptySlots(car).ToString() + " empty slot(s)" + GiveTrailer(car, plan.Vehicle, trailerObj);
 				granted = true;
@@ -1200,7 +1458,10 @@ class RefugeeArrivals
 		rec.Lives++;
 		rec.HasDeath = 0;
 		if (granted)
-			rec.LastVehicle = now;
+		{
+			if (plan.StartsCooldown)
+				rec.LastVehicle = now;
+		}
 		if (navGiven)
 			rec.LastNavKit = now;
 		MakeDirectory(DIR);
@@ -1209,6 +1470,13 @@ class RefugeeArrivals
 		string kind = "respawn";
 		if (plan.FirstArrival)
 			kind = "first arrival";
+		if (plan.Outfit)
+			kind = kind + " as " + plan.Outfit.Name;
+		if (granted)
+		{
+			if (!plan.StartsCooldown)
+				got = got + " (no cooldown)";
+		}
 		string beside = "";
 		if (car)
 		{
@@ -1338,7 +1606,21 @@ class CustomMission: MissionServer
 	override void StartingEquipSetup(PlayerBase player, bool clothesChosen)
 	{
 		player.RemoveAllItems();
-		
+		if (!m_RefugeeArrivals)
+			m_RefugeeArrivals = new RefugeeArrivals();
+		if (m_ArrivalPlan)
+		{
+			if (m_ArrivalPlan.Outfit)
+			{
+				// Blae 2026-10-23: an outfit (Soviet Special Forces) instead of the civilian clothes.
+				Print("[DZDS Arrivals] " + m_RefugeeArrivals.Dress(player, m_ArrivalPlan.Outfit));
+				player.GetStatWater().Set( 1000 );
+				player.GetStatEnergy().Set( 800 );
+				RefugeeArrivals.GiveStartKit(player, m_RefugeeArrivals.RadioIndex(), m_RefugeeArrivals.Roadflare());
+				return;
+			}
+		}
+
 		EntityAI itemClothing;
 		EntityAI itemEnt;
 		ItemBase itemBs;

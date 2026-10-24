@@ -8,6 +8,8 @@
 #   paired key is in their pocket, with one archetype's road-scavenged kit in the cargo.
 # - One vehicle per player per `cooldown_hours` of real time: a death inside that window
 #   still respawns on a road, but without a vehicle (stops suicide-farming cars and gear).
+#   A favored player's `cooldown_vehicles` are the exception (see favored).
+# - A rare respawn (and every one of a favored player's characters) wakes in an `outfit`.
 #
 # Positions come from the mission's own vanilla vehicle spawn points (cfgeventspawns.xml):
 # hand-placed, flat, clear and mostly roadside, each with the road's heading.
@@ -370,13 +372,58 @@ trailer:
 
 # Favored players (Blae, 2026-10-21): a listed player's vehicle is always drawn from their
 # `vehicles` (at those vehicles' pool weights). It changes WHICH vehicle, never WHETHER: the
-# cooldown still applies. `id` is identity.GetId(), the id= in the ADM log.
+# cooldown still applies to `vehicles`. `id` is identity.GetId(), the id= in the ADM log.
 # 2026-10-22: every aircraft EXCEPT the gyrocopter, whose 5x2 cargo can't hold a pilot kit (it
 # has no flight-case slot either), so the kit would land on the ground beside it.
+# 2026-10-23: `outfit` dresses every character of that player (first or later) in that outfit.
+# `cooldown_vehicles`: inside the cooldown of `vehicles`, the player still gets one of these,
+# with no cooldown of their own (Blae: "no 24 hour cooldown for vehicles, just helicopters").
+# A player with cooldown_vehicles always has a vehicle, so the base and camp respawns (which
+# give none) are skipped for them.
 favored:
   - name: blae
     id: "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ="
     vehicles: [ExpansionMh6, EXT_MH6, RFFSHeli_R22, RFFSHeli_LittleBird, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y, RFFSHeli_UH1H]
+    outfit: soviet_special_forces
+    cooldown_vehicles: [ExpansionUAZCargo_Green, ExpansionUAZ, ExpansionUAZRoofless_Black, ExpansionVodnik, CrSk_GAZ_3309_Cargo_Green]
+
+# Outfits (Blae, 2026-10-23): a starting archetype WORN on the body, instead of the civilian
+# clothes every character otherwise wakes in. A favored player's `outfit` always applies; anyone
+# else rolls each outfit's `chance` once per respawn (random character). A first arrival keeps
+# the look the player chose. A dressed character's vehicle cargo is the outfit's own: its
+# `aircraft_cargo` pilot profile in an aircraft, its `land_cargo` kit in anything else.
+# variants: one is drawn per character, every slot filled and the camo matched. An entry is a
+# class, or {class, attach} for an item carried on another (the Smersh bag rides on its vest).
+# An attachment that won't fit goes into the inventory instead. Weapons: one `primary` on the
+# shoulder plus the `sidearm`, each with `magazines` FULL magazines loose in the vest and packs.
+outfits:
+  soviet_special_forces:
+    chance: 0.03
+    health: [0.7, 1.0]
+    variants:
+      ttsko:        [Ssh68Helmet, BalaclavaMask_Green, TTsKOJacket_Camo, TTSKOPants, TTSKOBoots, TacticalGloves_Green, {class: SmershVest, attach: [SmershBag]}, AssaultBag_Ttsko, MilitaryBelt]
+      gorka_summer: [MilitaryBeret_Red, BalaclavaMask_Green, GorkaEJacket_Summer, GorkaPants_Summer, MilitaryBoots_Black, TacticalGloves_Green, {class: SmershVest, attach: [SmershBag]}, AssaultBag_Ttsko, MilitaryBelt]
+      gorka_flat:   [MilitaryBeret_Red, BalaclavaMask_Beige, GorkaEJacket_Flat, GorkaPants_Flat, MilitaryBoots_Brown, TacticalGloves_Beige, {class: SmershVest, attach: [SmershBag]}, AssaultBag_Ttsko, MilitaryBelt]
+    carried: [CombatKnife, Compass, Binoculars, BandageDressing, BandageDressing, Morphine, Canteen, TacticalBaconCan, TacticalBaconCan, RGD5Grenade, M18SmokeGrenade_White]
+    primary:
+      - { weapon: AKS74U, attach: [AKS74U_Bttstck], magazine: Mag_AK74_30Rnd, magazines: 3, rounds: 30 }
+      - { weapon: ASVAL, attach: [], magazine: Mag_VAL_20Rnd, magazines: 3, rounds: 20 }   # rail takes western optics only
+    sidearm: { weapon: MakarovIJ70, attach: [], magazine: Mag_IJ70_8Rnd, magazines: 2, rounds: 8 }
+    aircraft_cargo: combat_pilot
+    land_cargo:     # same rules as a ground archetype: knife, car and camp items, one worn firearm
+      slots:
+        clothing: { count: [2, 3], items: [TelnyashkaShirt, Ushanka_Green, PilotkaCap, WinterMilitaryCoat_Grey] }
+        water:    { count: [1, 2], items: [WaterBottle, Canteen] }
+        food:     { count: [2, 3], max_each: 2, items: [TacticalBaconCan, Pajka, BakedBeansCan, Crackers] }
+        medical:  { count: [2, 2], items: [Epinephrine, TetracyclineAntibiotics, Splint, CharcoalTablets] }
+        knife:    { count: [1, 1], items: [AK_Bayonet] }
+        tools:    { count: [1, 2], items: [Rangefinder, DuctTape, Flashlight] }
+        extra:    { count: [1, 2], items: [Battery9V, Headtorch_Black, M18SmokeGrenade_Green] }
+        camp:     { count: [1, 1], items: [Matchbox, Rope, PortableGasStove] }
+        car:      { count: [1, 1], items: [TireRepairKit, Wrench, SparkPlug, EpoxyPutty] }
+      firearms:
+        - { weapon: SVD, magazine: Mag_SVD_10Rnd, ammo: Ammo_762x54, rounds: [3, 6], spare: [4, 8] }
+        - { weapon: AKM, magazine: Mag_AKM_30Rnd, ammo: Ammo_762x39, rounds: [3, 6], spare: [4, 8] }
 
 # Refugee column (Blae, 2026-10-15): all FIRST arrivals on the same day wake at the same
 # arrival site; the site rotates daily in this order. A "day" starts at this UTC hour

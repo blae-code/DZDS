@@ -235,6 +235,14 @@ prints the live count. Since the launch:
   deleted. **After each re-download, delete the `.old-*` folder once a client has joined.**
   17 pruned mods (`enabled: false`) still have `/@<id>` folders at the root. Blae's character was
   reset (`players.db.old-20261023T205644Z`). reset_respawns now uploads before it renames.
+- 2026-10-23: outfits (`outfits:` in `presets/arrivals.yaml`): a starting archetype WORN on the
+  body. Soviet Special Forces (TTsKO or Gorka with a Smersh vest and bag, AKS-74U or AS Val with 3
+  full mags, a Makarov, an RGD-5) has a 3 % chance per respawn for anyone, and Blae always gets it. Blae's 24 h
+  cooldown now covers only his helicopter (cargo `combat_pilot`). Inside it he gets a Soviet land
+  vehicle (UAZ/Vodnik/GAZ) carrying the outfit's `land_cargo`, which starts no cooldown, and he
+  skips base/camp respawns. Not compiled by a boot yet (Blae was in-game). On the next RPT check
+  for `[DZDS Arrivals] outfit soviet_special_forces/...` with empty notes; the local
+  `vehicle_selftest` also dresses a stand-in survivor in each variant.
 - 2026-10-24 02:00 UTC: Zens Core Mod (3702420204) updated on the Workshop (DIFFERS in
   `zenmodcore.pbo`). `/@3702420204` was renamed to `/@3702420204.old-20261023` over SFTP (Blae
   approved), and the restart re-downloaded it. Drift 66/66 OK. The 02:00 boot shows 0 `SCRIPT (E)`,

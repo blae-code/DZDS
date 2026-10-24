@@ -2445,6 +2445,14 @@
                 "EXT_Mi8_Civilian",
                 "EXT_UH1Y",
                 "RFFSHeli_UH1H"
+            ],
+            "Outfit": "soviet_special_forces",
+            "CooldownVehicles": [
+                "ExpansionUAZCargo_Green",
+                "ExpansionUAZ",
+                "ExpansionUAZRoofless_Black",
+                "ExpansionVodnik",
+                "CrSk_GAZ_3309_Cargo_Green"
             ]
         }
     ],
@@ -3361,6 +3369,311 @@
                     "SpareMax": 8
                 }
             ]
+        }
+    ],
+    "Outfits": [
+        {
+            "Name": "soviet_special_forces",
+            "Chance": 0.03,
+            "HealthMin": 0.7,
+            "HealthMax": 1.0,
+            "Variants": [
+                {
+                    "Name": "ttsko",
+                    "Worn": [
+                        {
+                            "ClassName": "Ssh68Helmet",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "BalaclavaMask_Green",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "TTsKOJacket_Camo",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "TTSKOPants",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "TTSKOBoots",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "TacticalGloves_Green",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "SmershVest",
+                            "Attach": [
+                                "SmershBag"
+                            ]
+                        },
+                        {
+                            "ClassName": "AssaultBag_Ttsko",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "MilitaryBelt",
+                            "Attach": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "gorka_summer",
+                    "Worn": [
+                        {
+                            "ClassName": "MilitaryBeret_Red",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "BalaclavaMask_Green",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "GorkaEJacket_Summer",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "GorkaPants_Summer",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "MilitaryBoots_Black",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "TacticalGloves_Green",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "SmershVest",
+                            "Attach": [
+                                "SmershBag"
+                            ]
+                        },
+                        {
+                            "ClassName": "AssaultBag_Ttsko",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "MilitaryBelt",
+                            "Attach": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "gorka_flat",
+                    "Worn": [
+                        {
+                            "ClassName": "MilitaryBeret_Red",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "BalaclavaMask_Beige",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "GorkaEJacket_Flat",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "GorkaPants_Flat",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "MilitaryBoots_Brown",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "TacticalGloves_Beige",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "SmershVest",
+                            "Attach": [
+                                "SmershBag"
+                            ]
+                        },
+                        {
+                            "ClassName": "AssaultBag_Ttsko",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "MilitaryBelt",
+                            "Attach": []
+                        }
+                    ]
+                }
+            ],
+            "Carried": [
+                "CombatKnife",
+                "Compass",
+                "Binoculars",
+                "BandageDressing",
+                "BandageDressing",
+                "Morphine",
+                "Canteen",
+                "TacticalBaconCan",
+                "TacticalBaconCan",
+                "RGD5Grenade",
+                "M18SmokeGrenade_White"
+            ],
+            "Primary": [
+                {
+                    "WeaponClass": "AKS74U",
+                    "Attach": [
+                        "AKS74U_Bttstck"
+                    ],
+                    "MagazineClass": "Mag_AK74_30Rnd",
+                    "Magazines": 3,
+                    "Rounds": 30
+                },
+                {
+                    "WeaponClass": "ASVAL",
+                    "Attach": [],
+                    "MagazineClass": "Mag_VAL_20Rnd",
+                    "Magazines": 3,
+                    "Rounds": 20
+                }
+            ],
+            "Sidearm": {
+                "WeaponClass": "MakarovIJ70",
+                "Attach": [],
+                "MagazineClass": "Mag_IJ70_8Rnd",
+                "Magazines": 2,
+                "Rounds": 8
+            },
+            "AircraftCargo": "combat_pilot",
+            "LandCargo": {
+                "Name": "soviet_special_forces",
+                "Weight": 0.0,
+                "Aircraft": 0,
+                "Slots": [
+                    {
+                        "Name": "clothing",
+                        "Min": 2,
+                        "Max": 3,
+                        "MaxEach": 1,
+                        "Items": [
+                            "TelnyashkaShirt",
+                            "Ushanka_Green",
+                            "PilotkaCap",
+                            "WinterMilitaryCoat_Grey"
+                        ]
+                    },
+                    {
+                        "Name": "water",
+                        "Min": 1,
+                        "Max": 2,
+                        "MaxEach": 1,
+                        "Items": [
+                            "WaterBottle",
+                            "Canteen"
+                        ]
+                    },
+                    {
+                        "Name": "food",
+                        "Min": 2,
+                        "Max": 3,
+                        "MaxEach": 2,
+                        "Items": [
+                            "TacticalBaconCan",
+                            "Pajka",
+                            "BakedBeansCan",
+                            "Crackers"
+                        ]
+                    },
+                    {
+                        "Name": "medical",
+                        "Min": 2,
+                        "Max": 2,
+                        "MaxEach": 1,
+                        "Items": [
+                            "Epinephrine",
+                            "TetracyclineAntibiotics",
+                            "Splint",
+                            "CharcoalTablets"
+                        ]
+                    },
+                    {
+                        "Name": "knife",
+                        "Min": 1,
+                        "Max": 1,
+                        "MaxEach": 1,
+                        "Items": [
+                            "AK_Bayonet"
+                        ]
+                    },
+                    {
+                        "Name": "tools",
+                        "Min": 1,
+                        "Max": 2,
+                        "MaxEach": 1,
+                        "Items": [
+                            "Rangefinder",
+                            "DuctTape",
+                            "Flashlight"
+                        ]
+                    },
+                    {
+                        "Name": "extra",
+                        "Min": 1,
+                        "Max": 2,
+                        "MaxEach": 1,
+                        "Items": [
+                            "Battery9V",
+                            "Headtorch_Black",
+                            "M18SmokeGrenade_Green"
+                        ]
+                    },
+                    {
+                        "Name": "camp",
+                        "Min": 1,
+                        "Max": 1,
+                        "MaxEach": 1,
+                        "Items": [
+                            "Matchbox",
+                            "Rope",
+                            "PortableGasStove"
+                        ]
+                    },
+                    {
+                        "Name": "car",
+                        "Min": 1,
+                        "Max": 1,
+                        "MaxEach": 1,
+                        "Items": [
+                            "TireRepairKit",
+                            "Wrench",
+                            "SparkPlug",
+                            "EpoxyPutty"
+                        ]
+                    }
+                ],
+                "Firearms": [
+                    {
+                        "WeaponClass": "SVD",
+                        "MagazineClass": "Mag_SVD_10Rnd",
+                        "Ammo": "Ammo_762x54",
+                        "RoundsMin": 3,
+                        "RoundsMax": 6,
+                        "SpareMin": 4,
+                        "SpareMax": 8
+                    },
+                    {
+                        "WeaponClass": "AKM",
+                        "MagazineClass": "Mag_AKM_30Rnd",
+                        "Ammo": "Ammo_762x39",
+                        "RoundsMin": 3,
+                        "RoundsMax": 6,
+                        "SpareMin": 4,
+                        "SpareMax": 8
+                    }
+                ]
+            }
         }
     ],
     "FirearmHealthMin": 0.45,

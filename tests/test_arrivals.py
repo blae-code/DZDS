@@ -202,7 +202,7 @@ def test_firearms_get_magazine_and_spare_rounds(built):
 
 def test_init_c_fill_cargo_uses_archetypes():
     src = INIT_C.read_text()
-    fill = re.search(r"int FillCargo\(CarScript car, bool aircraft\).*?\n\t\}", src, re.S).group(0)
+    fill = re.search(r"int FillCargo\(CarScript car, bool aircraft, RefugeeArrivalArchetype forced = null\).*?\n\t\}", src, re.S).group(0)
     for needle in ("PickArchetype(aircraft)", "ServerSetAmmoCount(", "SpareMin", "SpareMax"):
         assert needle in src, needle
     assert "PickGear()" not in src
@@ -319,7 +319,7 @@ def test_init_c_spills_kit_that_does_not_fit_beside_the_vehicle():
     assert "SpillBeside(car, cls)" in spawn
     rounds = re.search(r"void GiveRounds\(CarScript car, string cls, int rounds, TStringArray got\).*?\n\t\}", src, re.S).group(0)
     assert "SpillBeside(car, cls)" in rounds
-    fill = re.search(r"int FillCargo\(CarScript car, bool aircraft\).*?\n\t\}", src, re.S).group(0)
+    fill = re.search(r"int FillCargo\(CarScript car, bool aircraft, RefugeeArrivalArchetype forced = null\).*?\n\t\}", src, re.S).group(0)
     assert "if (!car.GetInventory().GetCargo())" not in fill, "a vehicle without cargo must still get its kit"
 
 
@@ -524,7 +524,7 @@ def test_init_c_aircraft_get_pilot_profiles_fuel_and_full_cans():
     pick = re.search(r"RefugeeArrivalArchetype PickArchetype\(bool aircraft\).*?\n\t\}", src, re.S).group(0)
     assert "a.Aircraft == want" in pick and "b.Aircraft != want" in pick
     deliver = re.search(r"void Deliver\(PlayerBase player, RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
-    for needle in ("AircraftFuelMin", "TopUpAttached(car)", "FillCargo(car, aircraft)"):
+    for needle in ("AircraftFuelMin", "TopUpAttached(car)", "FillCargo(car, aircraft, OutfitCargo(plan.Outfit, aircraft))"):
         assert needle in deliver, needle
     test = re.search(r"void VehicleSelfTest\(\).*?\n\t\}", src, re.S).group(0)
     assert "FillCargo(car, v.Aircraft == 1)" in test and "UnfillableSlots" in test
@@ -663,3 +663,164 @@ def test_random_character_is_plain_ifs():
     plan = re.search(r"RefugeeArrivalPlan Plan\(PlayerIdentity identity\).*?\n\t\}", src, re.S).group(0)
     assert "if (m_Config.RandomCharacterOnRespawn == 1)\n\t\t\t\tplan.RandomCharacter = true;" in plan
     assert plan.index("ApplyLiveResets();") < plan.index("FindRecord(plan.Uid)"), "a live reset applies before the record is read"
+
+
+# Soviet Special Forces (Blae, 2026-10-23): a starting archetype worn on the body, rare for
+# everyone, always for Blae; his helicopter keeps the 24 h cooldown, a land vehicle comes inside it.
+SOVIET_LAND = {"ExpansionUAZCargo_Green", "ExpansionUAZ", "ExpansionUAZRoofless_Black", "ExpansionVodnik",
+               "CrSk_GAZ_3309_Cargo_Green"}
+# Body slot -> the classes that fill it, across the outfit's variants.
+SSF_SLOTS = {
+    "headgear": {"Ssh68Helmet", "MilitaryBeret_Red"},
+    "mask": {"BalaclavaMask_Green", "BalaclavaMask_Beige"},
+    "body": {"TTsKOJacket_Camo", "GorkaEJacket_Summer", "GorkaEJacket_Flat"},
+    "legs": {"TTSKOPants", "GorkaPants_Summer", "GorkaPants_Flat"},
+    "feet": {"TTSKOBoots", "MilitaryBoots_Black", "MilitaryBoots_Brown"},
+    "gloves": {"TacticalGloves_Green", "TacticalGloves_Beige"},
+    "vest": {"SmershVest"},
+    "back": {"AssaultBag_Ttsko"},
+    "belt": {"MilitaryBelt"},
+}
+
+
+def _ssf(out):
+    return next(o for o in out["Outfits"] if o["Name"] == "soviet_special_forces")
+
+
+def test_blae_is_always_soviet_special_forces(built):
+    """Blae always wakes as Soviet Special Forces; inside the helicopter cooldown he gets a
+    Soviet land vehicle from the pool, never an aircraft."""
+    cfg, _, out = built
+    fav = {f["Id"]: f for f in out["Favored"]}[BLAE_ID]
+    assert fav["Outfit"] == "soviet_special_forces"
+    assert set(fav["CooldownVehicles"]) == SOVIET_LAND
+    assert SOVIET_LAND <= {v["ClassName"] for v in out["Vehicles"]}
+    assert not SOVIET_LAND & set(cfg["aircraft"])
+
+
+def test_soviet_special_forces_is_rare_and_a_full_uniform(built):
+    _, _, out = built
+    ssf = _ssf(out)
+    assert ssf["Chance"] == 0.03
+    assert 0.5 <= ssf["HealthMin"] <= ssf["HealthMax"] <= 1
+    assert {v["Name"] for v in ssf["Variants"]} == {"ttsko", "gorka_summer", "gorka_flat"}
+    for v in ssf["Variants"]:
+        worn = [w["ClassName"] for w in v["Worn"]]
+        for slot, classes in SSF_SLOTS.items():
+            assert sum(c in classes for c in worn) == 1, (v["Name"], slot)
+        assert len(worn) == len(SSF_SLOTS), v["Name"]
+        vest = next(w for w in v["Worn"] if w["ClassName"] == "SmershVest")
+        assert vest["Attach"] == ["SmershBag"], v["Name"]
+    assert ssf["AircraftCargo"] == "combat_pilot"
+
+
+def test_soviet_special_forces_carries_a_rifle_a_pistol_and_full_mags(built):
+    _, _, out = built
+    ssf = _ssf(out)
+    primaries = {w["WeaponClass"]: w for w in ssf["Primary"]}
+    assert set(primaries) == {"AKS74U", "ASVAL"}
+    assert ssf["Sidearm"]["WeaponClass"] == "MakarovIJ70"
+    full = {"Mag_AK74_30Rnd": 30, "Mag_VAL_20Rnd": 20, "Mag_IJ70_8Rnd": 8}
+    for w in [*ssf["Primary"], ssf["Sidearm"]]:
+        assert w["Rounds"] == full[w["MagazineClass"]], w
+    assert primaries["AKS74U"]["Magazines"] == primaries["ASVAL"]["Magazines"] == 3
+    assert ssf["Sidearm"]["Magazines"] == 2
+    rng = random.Random(3)
+    for _ in range(200):
+        kit = arrivals.simulate_dress(ssf, rng)
+        assert sum(k in primaries for k in kit) == 1 and kit.count("MakarovIJ70") == 1, kit
+        assert "SmershBag" in kit and "RGD5Grenade" in kit and "CombatKnife" in kit, kit
+
+
+def test_soviet_special_forces_land_cargo_meets_the_kit_spec(built):
+    """The land vehicle's kit follows the ground rules: 12-17 items, one knife, one car item, one
+    camp item, one worn firearm with a partial magazine and spare rounds."""
+    _, _, out = built
+    cargo = _ssf(out)["LandCargo"]
+    assert [s["Name"] for s in cargo["Slots"]] == arrivals.SLOT_ORDER and not cargo["Aircraft"]
+    for name, pool in (("knife", CUTTING | {"AK_Bayonet"}), ("car", CAR), ("camp", CAMP)):
+        s = _slot(cargo, name)
+        assert s["Min"] == s["Max"] == 1 and set(s["Items"]) <= pool, name
+    for f in cargo["Firearms"]:
+        assert (f["RoundsMin"], f["RoundsMax"], f["SpareMin"], f["SpareMax"]) == (3, 6, 4, 8), f
+    rng = random.Random(9)
+    weapons = {f["WeaponClass"] for f in cargo["Firearms"]}
+    for _ in range(500):
+        kit = arrivals.simulate_kit(cargo, rng)
+        items = [k for k in kit if k not in weapons and not k.startswith(("Ammo_", "Mag_"))]
+        assert 12 <= len(items) <= 17, kit
+        assert sum(k in weapons for k in kit) == 1, kit
+
+
+def test_outfit_json_keys_are_init_c_fields(built):
+    _, _, out = built
+    src = INIT_C.read_text()
+
+    def fields(cls):
+        return set(re.findall(r"\b(\w+);", re.search(rf"class {cls}\s*\{{(.*?)\n\}}", src, re.S).group(1)))
+
+    ssf = _ssf(out)
+    assert set(ssf) <= fields("RefugeeArrivalOutfit")
+    assert set(ssf["Variants"][0]) <= fields("RefugeeArrivalOutfitVariant")
+    assert set(ssf["Variants"][0]["Worn"][0]) <= fields("RefugeeArrivalWorn")
+    assert set(ssf["Sidearm"]) <= fields("RefugeeArrivalKitWeapon")
+    assert set(ssf["LandCargo"]) <= fields("RefugeeArrivalArchetype")
+    assert set(out["Favored"][0]) <= fields("RefugeeArrivalFavored")
+    for engine_type in ("Cargo", "Weapon", "Magazine"):
+        assert engine_type not in fields("RefugeeArrivalOutfit") | fields("RefugeeArrivalKitWeapon")
+
+
+@pytest.mark.parametrize("break_it, match", [
+    (lambda c: c["outfits"]["soviet_special_forces"]["carried"].append("Kalashnikov_Typo"), "Kalashnikov_Typo"),
+    (lambda c: c["favored"][0].update(outfit="nope"), "no outfit named"),
+    (lambda c: c["favored"][0]["cooldown_vehicles"].append("ExpansionMh6"), "land vehicles"),
+    (lambda c: c["favored"][0]["cooldown_vehicles"].append("UAZ_452"), "UAZ_452"),
+    (lambda c: c["outfits"]["soviet_special_forces"].update(aircraft_cargo="deserter"), "pilot profile"),
+    (lambda c: c["outfits"]["soviet_special_forces"].update(chance=3), r"\[0, 1\]"),
+])
+def test_bad_outfit_config_is_rejected(built, break_it, match):
+    _, map_data, _ = built
+    bad = yaml.safe_load(arrivals.PRESET.read_text())
+    break_it(bad)
+    with pytest.raises(SystemExit, match=match):
+        arrivals.build(bad, map_data, arrivals.mission_dir(map_data))
+
+
+def test_init_c_outfit_and_helicopter_only_cooldown():
+    """The outfit is rolled only for a random (respawn) character unless favored; a favored
+    player's CooldownVehicles come inside the cooldown, start none, and skip base and camp."""
+    src = INIT_C.read_text()
+    pick = re.search(r"RefugeeArrivalOutfit PickOutfit\(RefugeeArrivalPlan plan, RefugeeArrivalFavored fav\).*?\n\t\}", src, re.S).group(0)
+    assert pick.index("fav.Outfit") < pick.index("if (!plan.RandomCharacter)") < pick.index("o.Chance")
+    plan = re.search(r"RefugeeArrivalPlan Plan\(PlayerIdentity identity\).*?\n\t\}", src, re.S).group(0)
+    for needle in ("plan.StartsCooldown = false;", "only = fav.CooldownVehicles;", "plan.Outfit = PickOutfit(plan, fav);",
+                   "if (!placed && baseCamp)\n\t\t\tplaced = PickBase(plan, rec);",
+                   "if (!placed && baseCamp)\n\t\t\tplaced = PickCamp(plan, rec);",
+                   "if (plan.AlwaysVehicle)\n\t\t\tbaseCamp = false;"):
+        assert needle in plan, needle
+    assert plan.index("plan.Outfit = PickOutfit") > plan.index("plan.RandomCharacter = true"), "roll after RandomCharacter is known"
+    deliver = re.search(r"void Deliver\(PlayerBase player, RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
+    assert "if (plan.StartsCooldown)\n\t\t\t\trec.LastVehicle = now;" in deliver
+    assert deliver.count("rec.LastVehicle = now") == 1
+    cargo = re.search(r"RefugeeArrivalArchetype OutfitCargo\(RefugeeArrivalOutfit o, bool aircraft\).*?\n\t\}", src, re.S).group(0)
+    assert "FindArchetype(o.AircraftCargo)" in cargo and "return o.LandCargo;" in cargo
+    fill = re.search(r"int FillCargo\(CarScript car, bool aircraft, RefugeeArrivalArchetype forced = null\).*?\n\t\}", src, re.S).group(0)
+    assert "a = PickArchetype(aircraft);" in fill and "RefugeeArrivalArchetype a = forced;" in fill
+
+
+def test_init_c_dresses_the_outfit_instead_of_civilian_clothes():
+    src = INIT_C.read_text()
+    setup = re.search(r"override void StartingEquipSetup\(PlayerBase player, bool clothesChosen\).*?\n\t\}", src, re.S).group(0)
+    assert setup.index("player.RemoveAllItems();") < setup.index("Dress(player, m_ArrivalPlan.Outfit)") < setup.index("KameezShirt_Beige")
+    dressed = setup[setup.index("Dress(player, m_ArrivalPlan.Outfit)"):setup.index("KameezShirt_Beige")]
+    assert "GiveStartKit(" in dressed and "return;" in dressed
+    dress = re.search(r"string Dress\(PlayerBase p, RefugeeArrivalOutfit o, int variant = -1\).*?\n\t\}", src, re.S).group(0)
+    for needle in ("GiveAttachments(p, item, w.Attach, o, notes)", "o.Primary.GetRandomElement()", "o.Sidearm"):
+        assert needle in dress, needle
+    weapon = re.search(r"string GiveKitWeapon\(.*?\n\t\}", src, re.S).group(0)
+    assert "ServerSetAmmoCount(w.Rounds)" in weapon and "CreateAttachment" not in weapon.split("GiveAttachments")[0]
+    attach = re.search(r"void GiveAttachments\(.*?\n\t\}", src, re.S).group(0)
+    assert "carrier.GetInventory().CreateAttachment(cls)" in attach and "DressItem(p, cls, o, notes)" in attach
+    test = re.search(r"void OutfitSelfTest\(\).*?\n\t\}", src, re.S).group(0)
+    assert "Dress(dummy, o, v)" in test and "ObjectDelete(dummy)" in test
+    assert "OutfitSelfTest();" in re.search(r"void VehicleSelfTest\(\).*?\n\t\}", src, re.S).group(0)
