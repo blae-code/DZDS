@@ -31,7 +31,7 @@ follows:
 | Left stick twist | Left/right triggers | Twist in raises collective; twist out lowers it; centered twist holds |
 | Right hat | D-pad | Trim on Expansion; landing lights/HUD on RedFalcon |
 | Right stick buttons 1–4 | A/B/X/Y | Expansion auto-hover/free-look use Y/X |
-| Right analog mini-stick | Mouse movement while holding Left Alt | Free-look; release the mini-stick to release the look modifier |
+| Right analog mini-stick | Mouse movement while holding Left Alt, then Numpad 5 on release | Free-look (push up to look up). Releasing it taps Numpad 5, Expansion's "centre camera", because an Expansion heli otherwise leaves the view where you left it. `LOOK_Y_SIGN` flips the vertical. |
 
 Engine start/stop, lights, view, and exit remain on their normal keyboard or in-game controls.
 The bridge keeps the physical sticks available to other applications and only publishes the

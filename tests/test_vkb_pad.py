@@ -107,3 +107,13 @@ def test_mini_stick_centre_releases_the_view():
     assert vkb_pad.centred(512, vkb_pad.MINI_MAX, deadzone=vkb_pad.LOOK_DEADZONE) == 0.0
     assert vkb_pad.centred(512 + 60, vkb_pad.MINI_MAX, deadzone=vkb_pad.LOOK_DEADZONE) == 0.0
     assert vkb_pad.centred(1023, vkb_pad.MINI_MAX, deadzone=vkb_pad.LOOK_DEADZONE, expo=vkb_pad.LOOK_EXPO) == 1.0
+
+
+def test_mini_stick_y_is_flipped_and_x_is_not():
+    """Blae 2026-10-23: free-look Y was inverted. One flag sets which way is up."""
+    full = vkb_pad.centred(1023, vkb_pad.MINI_MAX, deadzone=vkb_pad.LOOK_DEADZONE, expo=vkb_pad.LOOK_EXPO)
+    assert vkb_pad.look_axis(1023, vertical=False) == full
+    assert vkb_pad.look_axis(1023, vertical=True) == vkb_pad.LOOK_Y_SIGN * full
+    assert vkb_pad.look_axis(1023, vertical=True, y_sign=1) == full
+    assert vkb_pad.look_axis(512, vertical=True) == 0.0
+

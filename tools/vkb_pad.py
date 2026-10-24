@@ -14,7 +14,8 @@ side strafing with the twist being throttle, twist in being up and twist out bei
   left stick twist  -> triggers            collective: twist in raises, out lowers, centre holds
   right hat         -> D-pad               trim set/release, landing lights, HUD
   right mini-stick  -> Left Alt + mouse    free look: deflect to look around (speed follows
-                                           deflection), let go and the view snaps forward.
+                                           deflection, push up to look up), let go and Numpad 5
+                                           (Expansion's centre camera) brings the view forward.
                                            A small virtual mouse/keyboard, because the pad's
                                            right stick is already the pedals.
   right buttons 1-4 -> A, B, X, Y          (Y auto-hover, X free look)
@@ -57,6 +58,13 @@ LOOK_DEADZONE = 0.15  # mini-sticks drift; inside this the view is released
 LOOK_EXPO = 0.4
 LOOK_SPEED = 1400.0   # mouse counts per second at full deflection (raise if looking is slow)
 LOOK_HZ = 100
+# Blae 2026-10-23: the view's Y was inverted. Flip back to 1 if up and down come out swapped.
+LOOK_Y_SIGN = -1
+# Expansion helicopters keep free look on whenever mouse flight is off (and Left Alt only
+# toggles it when mouse flight is on), so letting go of the mouse leaves the view where it is.
+# UAExpansionVehicleCenterCamera (Numpad 5 by default) smoothly re-centres it: tapped on release.
+CENTRE_KEY = "KEY_KP5"
+CENTRE_HOLD = 0.05    # seconds the centre key is held
 PAD_MAX = 32767
 TRIGGER_MAX = 255
 
@@ -118,6 +126,12 @@ def collective(raw_twist: int, sign: int = COLLECTIVE_TWIST_SIGN) -> tuple[int, 
 def cyclic(right: float, left: float) -> int:
     """Both sticks' contribution on one cyclic axis (each -1..1, already curved), clamped."""
     return to_stick(right + left)
+
+
+def look_axis(raw: int, vertical: bool, y_sign: int = LOOK_Y_SIGN) -> float:
+    """Mini-stick axis -> view deflection (-1..1, curved); `y_sign` sets which way is up."""
+    v = centred(raw, MINI_MAX, deadzone=LOOK_DEADZONE, expo=LOOK_EXPO)
+    return y_sign * v if vertical else v
 
 
 def look_step(x: float, y: float, dt: float, carry: list[float]) -> tuple[int, int]:
@@ -206,7 +220,7 @@ def make_look():
     """The free-look mouse + Left Alt (DayZ's hold-to-look key in both helicopter systems)."""
     from evdev import UInput, ecodes as e
     caps = {e.EV_REL: [e.REL_X, e.REL_Y],
-            e.EV_KEY: [e.BTN_LEFT, e.BTN_RIGHT, e.BTN_MIDDLE, e.KEY_LEFTALT]}
+            e.EV_KEY: [e.BTN_LEFT, e.BTN_RIGHT, e.BTN_MIDDLE, e.KEY_LEFTALT, e.ecodes[CENTRE_KEY]]}
     return UInput(caps, name="DZDS VKB free look")
 
 
@@ -220,6 +234,7 @@ def run() -> int:
     view = [0.0, 0.0]     # mini-stick deflection, curved
     carry = [0.0, 0.0]
     alt = False
+    centre_up = 0.0       # when to release the centre key (0 = not held)
     last_look = time.monotonic()
     sel = selectors.DefaultSelector()
     last_check = 0.0
@@ -242,10 +257,12 @@ def run() -> int:
             if not running and pad is not None:
                 pad.close()
                 pad = None
-                if alt:
+                if alt or centre_up:
                     look.write(e.EV_KEY, e.KEY_LEFTALT, 0)
+                    look.write(e.EV_KEY, e.ecodes[CENTRE_KEY], 0)
                     look.syn()
                     alt = False
+                    centre_up = 0.0
                 look.close()
                 look = None
                 for d in sticks.values():
@@ -257,7 +274,7 @@ def run() -> int:
             time.sleep(1)
             continue
         looking = view[0] != 0.0 or view[1] != 0.0
-        for key, _ in sel.select(timeout=1 / LOOK_HZ if looking else 0.5):
+        for key, _ in sel.select(timeout=1 / LOOK_HZ if looking or centre_up else 0.5):
             dev = key.fileobj
             try:
                 events = list(dev.read())
@@ -284,7 +301,7 @@ def run() -> int:
                     elif ev.code in (e.ABS_HAT0X, e.ABS_HAT0Y):
                         pad.write(e.EV_ABS, ev.code, ev.value)
                     elif ev.code in (e.ABS_RX, e.ABS_RY):
-                        view[0 if ev.code == e.ABS_RX else 1] = centred(ev.value, MINI_MAX, deadzone=LOOK_DEADZONE, expo=LOOK_EXPO)
+                        view[0 if ev.code == e.ABS_RX else 1] = look_axis(ev.value, ev.code == e.ABS_RY)
                 elif ev.type == e.EV_ABS and not right and ev.code == e.ABS_RZ:
                     down, up = collective(ev.value)
                     pad.write(e.EV_ABS, e.ABS_Z, down)
@@ -310,6 +327,13 @@ def run() -> int:
             if not looking and alt:
                 look.write(e.EV_KEY, e.KEY_LEFTALT, 0)
                 alt = False
+                look.syn()
+                # Held a few frames: a press and release in one frame can be missed.
+                look.write(e.EV_KEY, e.ecodes[CENTRE_KEY], 1)
+                centre_up = now + CENTRE_HOLD
+            if centre_up and now >= centre_up:
+                look.write(e.EV_KEY, e.ecodes[CENTRE_KEY], 0)
+                centre_up = 0.0
             look.syn()
         last_look = now
 
