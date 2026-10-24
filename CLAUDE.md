@@ -240,9 +240,12 @@ prints the live count. Since the launch:
   full mags, a Makarov, an RGD-5) has a 3 % chance per respawn for anyone, and Blae always gets it. Blae's 24 h
   cooldown now covers only his helicopter (cargo `combat_pilot`). Inside it he gets a Soviet land
   vehicle (UAZ/Vodnik/GAZ) carrying the outfit's `land_cargo`, which starts no cooldown, and he
-  skips base/camp respawns. Not compiled by a boot yet (Blae was in-game). On the next RPT check
-  for `[DZDS Arrivals] outfit soviet_special_forces/...` with empty notes; the local
-  `vehicle_selftest` also dresses a stand-in survivor in each variant.
+  skips base/camp respawns. Verified live 2026-10-24: 02:27 and 02:56 UTC spawns in the outfit
+  (9/9 worn, empty notes) beside a Little Bird, then an MH-6. At 04:08 a death inside the
+  cooldown gave the outfit plus an ExpansionVodnik "(no cooldown)", and the ledger's LastVehicle
+  stayed at the MH-6. Blae's heli pool is Expansion-framework only (`9204f18`): RedFalcon helis
+  read inputs with SyncedValue, so his VKB sticks stutter in them. The vkb_pad bridge itself
+  forwards in 0.03 ms (median).
 - 2026-10-24 02:00 UTC: Zens Core Mod (3702420204) updated on the Workshop (DIFFERS in
   `zenmodcore.pbo`). `/@3702420204` was renamed to `/@3702420204.old-20261023` over SFTP (Blae
   approved), and the restart re-downloaded it. Drift 66/66 OK. The 02:00 boot shows 0 `SCRIPT (E)`,
