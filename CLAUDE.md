@@ -235,6 +235,10 @@ prints the live count. Since the launch:
   deleted. **After each re-download, delete the `.old-*` folder once a client has joined.**
   17 pruned mods (`enabled: false`) still have `/@<id>` folders at the root. Blae's character was
   reset (`players.db.old-20261023T205644Z`). reset_respawns now uploads before it renames.
+- 2026-10-24 02:00 UTC: Zens Core Mod (3702420204) updated on the Workshop (DIFFERS in
+  `zenmodcore.pbo`). `/@3702420204` was renamed to `/@3702420204.old-20261023` over SFTP (Blae
+  approved), and the restart re-downloaded it. Drift 66/66 OK. The 02:00 boot shows 0 `SCRIPT (E)`,
+  0 decode errors, and World layer started. Delete the `.old-20261023` folder once a client joins.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
