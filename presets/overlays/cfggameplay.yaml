@@ -8,3 +8,12 @@ values:
     ignoreMapOwnership: false        # map UI only with a physical map
     ignoreNavItemsOwnership: false   # compass/GPS info only with the physical item
     displayPlayerPosition: false     # no "you are here"
+  BaseBuildingData:
+    HologramData:
+      disableIsCollidingBBoxCheck: true
+      disableIsCollidingAngleCheck: true
+      disableIsCollidingGPlotCheck: true
+      disableHeightPlacementCheck: true
+      disableIsInTerrainCheck: true
+    ConstructionData:
+      disableIsCollidingCheck: true

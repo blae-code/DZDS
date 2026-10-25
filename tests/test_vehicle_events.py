@@ -14,7 +14,7 @@ def test_events_follow_holders_and_skip_unverified():
     led = WarLedger.new("chernarusplus")
     events, spawns = vehicle_events.build(CFG, led)
     names = {e.get("name") for e in events.findall("event")}
-    assert "DZDS_VehicleIndustry" in names and "DZDS_VehicleRaiders" not in names
+    assert "DZDS_VehicleIndustry" in names and "DZDS_VehicleRaiders" in names and "DZDS_HeliWreck" not in names
     led.s.control["Topolka Dam"] = "Karkas"                       # Rust lose the dam
     _, spawns2 = vehicle_events.build(CFG, led)
     assert len(spawns2["DZDS_VehicleIndustry"]) == len(spawns["DZDS_VehicleIndustry"]) - 2

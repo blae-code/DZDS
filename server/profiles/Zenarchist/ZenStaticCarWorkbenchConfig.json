@@ -1,6 +1,6 @@
 {
     "ConfigVersion": "1.29.1",
-    "MaxAttachmentCount": 4,
+    "MaxAttachmentCount": 6,
     "AttachmentTypes": {
         "TireRepairKit": 0.10000000149011612,
         "Blowtorch": 0.10000000149011612,

@@ -15,18 +15,28 @@ events:
   - name: DZDS_VehicleIndustry
     roles: [industrial, water]
     holders: [Rust]
-    children: [Truck_01_Covered]                    # + KamAZ / ArmA2 tankers once verified
-    nominal: 2
+    children: [Truck_01_Covered, MBM_Apocalypse_Truck, LM_Semi_Truck, CrSk_GAZ_3309_Cargo_Green]
+    nominal: 3
   - name: DZDS_VehicleMilitary
     roles: [airfield, military]
     holders: [Peacekeepers]
-    children: [Offroad_02]                          # + UAZ/MRAP/ambulance once verified
-    nominal: 2
+    children: [Offroad_02, ExpansionUAZ, TP_Apoc_M1025_NoGun]
+    nominal: 3
   - name: DZDS_VehicleRaiders
     roles: [road_junction]
     holders: [Jackals, contested]
-    children: []                                    # dune buggy, UAZ 452, M1025 wreck: verify first
+    children: [MBM_DuneBuggy, TP_Apoc_M1025, TP_Apoc_M1025_NoGun, ExpansionUAZRoofless_Black]
+    nominal: 3
+  - name: DZDS_VehicleAviation
+    roles: [airfield, high_ground]
+    holders: [Peacekeepers, Karkas, contested]
+    children: [ExpansionGyrocopter, ExpansionMh6, EXT_MH6, ExpansionUh1h, EXT_UH1Y]
     nominal: 2
+  - name: DZDS_VehicleSteppe
+    roles: [inland_town, water]
+    holders: [Settlers, contested]
+    children: [Animal_Horse_Brown, Animal_Horse_Chestnut, Animal_Horse_Palomino, Animal_Horse_Black]
+    nominal: 3
   - name: DZDS_HeliWreck
     roles: [airfield]
     holders: [Peacekeepers, contested]

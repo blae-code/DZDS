@@ -796,4 +796,20 @@
         <pos x="3205.8" z="4670.5" a="137.5" />
         <pos x="3294.2" z="4589.5" a="317.5" />
     </event>
+    <event name="DZDS_VehicleRaiders">
+        <pos x="3170.0" z="15250.0" a="0.0" />
+        <pos x="3050.0" z="15250.0" a="180.0" />
+    </event>
+    <event name="DZDS_VehicleAviation">
+        <pos x="12090.0" z="10850.0" a="0.0" />
+        <pos x="11970.0" z="10850.0" a="180.0" />
+        <pos x="2795.8" z="9210.5" a="137.5" />
+        <pos x="2884.2" z="9129.5" a="317.5" />
+    </event>
+    <event name="DZDS_VehicleSteppe">
+        <pos x="3630.0" z="14380.0" a="0.0" />
+        <pos x="3510.0" z="14380.0" a="180.0" />
+        <pos x="7515.8" z="8760.5" a="137.5" />
+        <pos x="7604.2" z="8679.5" a="317.5" />
+    </event>
 </eventposdef>

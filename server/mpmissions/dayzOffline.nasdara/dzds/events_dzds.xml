@@ -19,9 +19,9 @@
         </children>
     </event>
     <event name="DZDS_VehicleIndustry">
-        <nominal>2</nominal>
-        <min>1</min>
-        <max>2</max>
+        <nominal>3</nominal>
+        <min>2</min>
+        <max>3</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -33,9 +33,51 @@
         <active>1</active>
         <children>
             <child lootmax="0" lootmin="0" max="1" min="0" type="Truck_01_Covered" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="MBM_Apocalypse_Truck" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="LM_Semi_Truck" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="CrSk_GAZ_3309_Cargo_Green" />
         </children>
     </event>
     <event name="DZDS_VehicleMilitary">
+        <nominal>3</nominal>
+        <min>2</min>
+        <max>3</max>
+        <lifetime>3888000</lifetime>
+        <restock>0</restock>
+        <saferadius>500</saferadius>
+        <distanceradius>500</distanceradius>
+        <cleanupradius>200</cleanupradius>
+        <flags deletable="0" init_random="0" remove_damaged="1" />
+        <position>fixed</position>
+        <limit>mixed</limit>
+        <active>1</active>
+        <children>
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Offroad_02" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="ExpansionUAZ" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="TP_Apoc_M1025_NoGun" />
+        </children>
+    </event>
+    <event name="DZDS_VehicleRaiders">
+        <nominal>3</nominal>
+        <min>2</min>
+        <max>3</max>
+        <lifetime>3888000</lifetime>
+        <restock>0</restock>
+        <saferadius>500</saferadius>
+        <distanceradius>500</distanceradius>
+        <cleanupradius>200</cleanupradius>
+        <flags deletable="0" init_random="0" remove_damaged="1" />
+        <position>fixed</position>
+        <limit>mixed</limit>
+        <active>1</active>
+        <children>
+            <child lootmax="0" lootmin="0" max="1" min="0" type="MBM_DuneBuggy" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="TP_Apoc_M1025" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="TP_Apoc_M1025_NoGun" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="ExpansionUAZRoofless_Black" />
+        </children>
+    </event>
+    <event name="DZDS_VehicleAviation">
         <nominal>2</nominal>
         <min>1</min>
         <max>2</max>
@@ -49,7 +91,31 @@
         <limit>mixed</limit>
         <active>1</active>
         <children>
-            <child lootmax="0" lootmin="0" max="1" min="0" type="Offroad_02" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="ExpansionGyrocopter" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="ExpansionMh6" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="EXT_MH6" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="ExpansionUh1h" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="EXT_UH1Y" />
+        </children>
+    </event>
+    <event name="DZDS_VehicleSteppe">
+        <nominal>3</nominal>
+        <min>2</min>
+        <max>3</max>
+        <lifetime>3888000</lifetime>
+        <restock>0</restock>
+        <saferadius>500</saferadius>
+        <distanceradius>500</distanceradius>
+        <cleanupradius>200</cleanupradius>
+        <flags deletable="0" init_random="0" remove_damaged="1" />
+        <position>fixed</position>
+        <limit>mixed</limit>
+        <active>1</active>
+        <children>
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_Horse_Brown" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_Horse_Chestnut" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_Horse_Palomino" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_Horse_Black" />
         </children>
     </event>
 </events>

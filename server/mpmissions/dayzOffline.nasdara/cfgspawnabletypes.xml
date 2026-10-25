@@ -5112,4 +5112,556 @@
 	<type name="MK4Optic_Tan">
 		<damage min="0.0" max="0.0" />
 	</type>
+
+	<!-- Wasteland Fleet Spawns (Mad Max Vehicular Combat) -->
+	<type name="MBM_DuneBuggy">
+		<attachments chance="1.00">
+			<item name="MBM_DuneBuggy_wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_DuneBuggy_wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_DuneBuggy_wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_DuneBuggy_wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.40">
+			<item name="CanisterGasoline" chance="0.60" />
+			<item name="Wrench" chance="0.40" />
+		</cargo>
+	</type>
+
+	<type name="TP_Apoc_M1025">
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.60" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Door_1_1" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Door_1_2" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Door_2_1" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Door_2_2" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Hood" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Trunk" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GlowPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.50">
+			<item name="FYG_762_Ammo" chance="0.75" />
+			<item name="CanisterGasoline" chance="0.50" />
+		</cargo>
+	</type>
+
+	<type name="TP_Apoc_M1025_NoGun">
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Offroad_02_Wheel" chance="0.60" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Door_1_1" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Door_1_2" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Door_2_1" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Door_2_2" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Hood" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TP_Apoc_M1025_Trunk" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GlowPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.40">
+			<item name="CanisterGasoline" chance="0.60" />
+			<item name="LugWrench" chance="0.40" />
+		</cargo>
+	</type>
+
+	<type name="MBM_Apocalypse_Truck">
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_Wheel_Front" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_Wheel_Front" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_Wheel_Front" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_Wheel_Front" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_Wheel_Rear" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_Wheel_Rear" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_Wheel_Rear" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_Wheel_Rear" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_doors_driver" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_doors_codriver" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_doors_cargo1" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_doors_trunk" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="MBM_Apocalypse_Truck_doors_trunk1" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TruckBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarRadiator" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GlowPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.50">
+			<item name="CanisterGasoline" chance="0.80" />
+			<item name="LugWrench" chance="0.50" />
+		</cargo>
+	</type>
+
+	<type name="ExpansionUAZ">
+		<attachments chance="1.00">
+			<item name="ExpansionUAZWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorDriver" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorCoDriver" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorCargo1" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorCargo2" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorHood" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarRadiator" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+	</type>
+
+	<type name="ExpansionUAZRoofless_Black">
+		<attachments chance="1.00">
+			<item name="ExpansionUAZWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorDriver_Black" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorCoDriver_Black" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorCargo1_Black" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorCargo2_Black" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUAZDoorHood_Black" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarRadiator" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+	</type>
+
+	<type name="LM_Semi_Truck">
+		<attachments chance="1.00">
+			<item name="LM_Semi_Truck_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="LM_Semi_Truck_Wheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="LM_Semi_Truck_WheelDouble" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="LM_Semi_Truck_WheelDouble" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="LM_Semi_Truck_WheelDouble" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="LM_Semi_Truck_WheelDouble" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="LM_Semi_Truck_Doors_Driver" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="LM_Semi_Truck_Doors_CoDriver" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="LM_Semi_Truck_Doors_Hood" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TruckBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarRadiator" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+	</type>
+
+	<type name="CrSk_GAZ_3309_Cargo_Green">
+		<attachments chance="1.00">
+			<item name="GAZ3309_koleso" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GAZ3309_koleso" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GAZ3309_koleso_double" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GAZ3309_koleso_double" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GAZ3309_dver_1_1_Green" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GAZ3309_dver_2_1_Green" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GAZ3309_kapot_Green" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="GAZ3309_bagazhnik" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="TruckBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="CarRadiator" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.60">
+			<item name="CanisterGasoline" chance="1.00" />
+		</cargo>
+	</type>
+
+	<type name="ExpansionGyrocopter">
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionHelicopterBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.50">
+			<item name="CanisterGasoline" chance="0.80" />
+			<item name="Wrench" chance="0.50" />
+		</cargo>
+	</type>
+
+	<type name="ExpansionMh6">
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionHelicopterBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionIgniterPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionHydraulicHoses" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Expansion_Mh6_Door_1_1" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Expansion_Mh6_Door_1_2" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Expansion_Mh6_Door_2_1" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Expansion_Mh6_Door_2_2" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.50">
+			<item name="CanisterGasoline" chance="0.80" />
+		</cargo>
+	</type>
+
+	<type name="EXT_MH6">
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionHelicopterBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionIgniterPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionHydraulicHoses" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.50">
+			<item name="CanisterGasoline" chance="0.80" />
+		</cargo>
+	</type>
+
+	<type name="ExpansionUh1h">
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionHelicopterBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionIgniterPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionHydraulicHoses" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUh1hDoor_1_1" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUh1hDoor_1_2" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUh1hDoor_2_1" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionUh1hDoor_2_2" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.50">
+			<item name="CanisterGasoline" chance="0.80" />
+		</cargo>
+	</type>
+
+	<type name="EXT_UH1Y">
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HatchbackWheel" chance="0.90" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionHelicopterBattery" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionIgniterPlug" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ExpansionHydraulicHoses" chance="0.85" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="EXT_UH1Y_door_1_1" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="EXT_UH1Y_door_2_1" chance="0.70" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="HeadlightH7" chance="0.75" />
+		</attachments>
+		<cargo chance="0.50">
+			<item name="CanisterGasoline" chance="0.80" />
+		</cargo>
+	</type>
 </spawnabletypes>
