@@ -16,6 +16,7 @@ import datetime as dt
 import json
 import math
 import random
+import secrets
 import sys
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -376,9 +377,51 @@ def handle_api(method: str, path: str, query: dict[str, list[str]], body: dict) 
     return HTTPStatus.NOT_FOUND, {"error": f"Unknown endpoint: {method} {path}"}
 
 
+LOOPBACK_HOSTS = ("127.0.0.1", "localhost", "::1")
+TOKEN_HEADER = "X-DZDS-Token"
+
+
+def make_server(host: str = "127.0.0.1", port: int = 8787) -> ThreadingHTTPServer:
+    """The dashboard server, loopback only, with a per-launch token for state-changing requests.
+
+    The API carries player names and positions and its POSTs rewrite the war ledger, so a web
+    page in the operator's browser must not reach it: Host/Origin are checked against loopback
+    (DNS rebinding), and every POST needs JSON plus the token the served page embeds (CSRF).
+    """
+    if host not in LOOPBACK_HOSTS:
+        raise ValueError(f"the dashboard binds to loopback only, not {host!r}")
+    server = ThreadingHTTPServer((host, port), DashboardHandler)
+    server.dzds_token = secrets.token_urlsafe(24)
+    return server
+
+
 class DashboardHandler(BaseHTTPRequestHandler):
     def log_message(self, fmt: str, *args) -> None:
         pass  # Keep console clean
+
+    def _allowed_hosts(self) -> set[str]:
+        port = self.server.server_address[1]
+        return {f"127.0.0.1:{port}", f"localhost:{port}", f"[::1]:{port}"}
+
+    def _guard(self, post: bool = False) -> bool:
+        """False (and an error already sent) unless the request comes from our own page."""
+        allowed = self._allowed_hosts()
+        if self.headers.get("Host", "") not in allowed:
+            self._send_json(HTTPStatus.FORBIDDEN, {"error": "bad host"})
+            return False
+        origin = self.headers.get("Origin")
+        if origin and urlparse(origin).netloc not in allowed:
+            self._send_json(HTTPStatus.FORBIDDEN, {"error": "bad origin"})
+            return False
+        if post:
+            if not (self.headers.get("Content-Type") or "").startswith("application/json"):
+                self._send_json(HTTPStatus.UNSUPPORTED_MEDIA_TYPE, {"error": "JSON only"})
+                return False
+            token = getattr(self.server, "dzds_token", None)
+            if not token or not secrets.compare_digest(self.headers.get(TOKEN_HEADER, ""), token):
+                self._send_json(HTTPStatus.FORBIDDEN, {"error": "bad token"})
+                return False
+        return True
 
     def _send_json(self, status: int, payload: dict) -> None:
         raw = json.dumps(payload).encode("utf-8")
@@ -390,9 +433,12 @@ class DashboardHandler(BaseHTTPRequestHandler):
         self.wfile.write(raw)
 
     def do_GET(self) -> None:  # noqa: N802
+        if not self._guard():
+            return
         parsed = urlparse(self.path)
         if parsed.path in ("/", "/index.html"):
-            html = UI_HTML_PATH.read_bytes()
+            token = getattr(self.server, "dzds_token", "")
+            html = UI_HTML_PATH.read_text().replace("__DZDS_TOKEN__", token).encode("utf-8")
             self.send_response(HTTPStatus.OK)
             self.send_header("Content-Type", "text/html; charset=utf-8")
             self.send_header("Content-Length", str(len(html)))
@@ -422,6 +468,8 @@ class DashboardHandler(BaseHTTPRequestHandler):
         self._send_json(status, data)
 
     def do_POST(self) -> None:  # noqa: N802
+        if not self._guard(post=True):
+            return
         parsed = urlparse(self.path)
         length = int(self.headers.get("Content-Length") or 0)
         raw = self.rfile.read(length) if length > 0 else b"{}"
@@ -434,7 +482,7 @@ class DashboardHandler(BaseHTTPRequestHandler):
 
 
 def serve(host: str = "127.0.0.1", port: int = 8787) -> None:
-    server = ThreadingHTTPServer((host, port), DashboardHandler)
+    server = make_server(host, port)
     print(ui.banner(
         "WEB TACTICAL COMMAND CENTER",
         subtitle=f"Listening on http://{host}:{port}  │  Press Ctrl+C to stop",

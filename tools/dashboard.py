@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "tools"))
 
-from gamemaster.web import serve  # noqa: E402
+from gamemaster.web import LOOPBACK_HOSTS, serve  # noqa: E402
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -24,6 +24,10 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--port", type=int, default=8787)
     ap.add_argument("--open", action="store_true", help="open dashboard in the default browser")
     args = ap.parse_args(argv)
+    if args.host not in LOOPBACK_HOSTS:
+        print(f"refusing --host {args.host}: the dashboard serves player names and positions and "
+              "binds to loopback only", file=sys.stderr)
+        return 2
     if args.open:
         webbrowser.open(f"http://{args.host}:{args.port}")
     serve(args.host, args.port)

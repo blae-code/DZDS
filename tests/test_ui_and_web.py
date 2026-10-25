@@ -2,9 +2,9 @@
 from __future__ import annotations
 
 import json
+import pytest
 import threading
 import urllib.request
-from http.server import ThreadingHTTPServer
 
 import status as status_mod
 import tui
@@ -142,7 +142,7 @@ def test_web_api_endpoints_and_live_http_roundtrip():
 
     # HTTP Server socket test (direct HTTPConnection to bypass any proxy env vars)
     import http.client
-    srv = ThreadingHTTPServer(("127.0.0.1", 0), web.DashboardHandler)
+    srv = web.make_server("127.0.0.1", 0)
     port = srv.server_address[1]
     t = threading.Thread(target=srv.serve_forever, kwargs={"poll_interval": 0.02}, daemon=True)
     t.start()
@@ -200,3 +200,41 @@ def test_refactored_yaml_cache_and_load_or_new_cross_map(tmp_path):
     assert led_fallback.s.map == "nasdara" and led_fallback.s.turn == 0
     led_initial = WarLedger.load_or_new("chernarusplus", path=fake_ledger, initial=True)
     assert led_initial.s.turn == 0
+
+
+def test_web_rejects_foreign_hosts_origins_and_tokenless_posts():
+    import http.client
+    import dashboard
+    srv = web.make_server("127.0.0.1", 0)
+    port = srv.server_address[1]
+    t = threading.Thread(target=srv.serve_forever, kwargs={"poll_interval": 0.02}, daemon=True)
+    t.start()
+
+    def req(method, path, headers=None, body=None):
+        conn = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
+        conn.request(method, path, body=body, headers=headers or {})
+        r = conn.getresponse()
+        data = r.read()
+        conn.close()
+        return r.status, data
+
+    try:
+        # DNS rebinding: a foreign Host never gets state.
+        assert req("GET", "/api/state", {"Host": "evil.example:%d" % port})[0] == 403
+        assert req("GET", "/api/state", {"Origin": "http://evil.example"})[0] == 403
+        body = json.dumps({"map": "nasdara", "commit": False})
+        json_ct = {"Content-Type": "application/json"}
+        # CSRF: a simple cross-site POST (text/plain) or one without the token is refused.
+        assert req("POST", "/api/simulate-turn", {"Content-Type": "text/plain"}, body)[0] == 415
+        assert req("POST", "/api/simulate-turn", json_ct, body)[0] == 403
+        ok = {**json_ct, web.TOKEN_HEADER: srv.dzds_token}
+        assert req("POST", "/api/simulate-turn", ok, body)[0] == 200
+        # The page embeds the launch token for its own fetches.
+        status, html = req("GET", "/")
+        assert status == 200 and srv.dzds_token.encode() in html and b"__DZDS_TOKEN__" not in html
+    finally:
+        srv.shutdown()
+        srv.server_close()
+    with pytest.raises(ValueError):
+        web.make_server("0.0.0.0", 0)
+    assert dashboard.main(["--host", "0.0.0.0"]) == 2
