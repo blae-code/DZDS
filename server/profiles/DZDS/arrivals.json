@@ -2468,11 +2468,40 @@
                         "USMCJacket_Desert",
                         "USMCPants_Desert",
                         "BoonieHat_Desert",
+                        "BoonieHat_Tan",
+                        "MilitaryCap_Desert",
                         "MilitaryBoots_Beige",
+                        "MilitaryBoots_Brown",
+                        "CombatBoots_Beige",
+                        "CombatBoots_Brown",
                         "M65Jacket_Tan",
+                        "M65Jacket_Khaki",
+                        "M65Jacket_Olive",
+                        "BDUJacket",
+                        "BDUPants",
+                        "OBRJacket_Beige",
+                        "OBRJacket_Olive",
+                        "OBRPants_Beige",
+                        "OBRPants_Olive",
+                        "OBRCap_Beige",
+                        "OBRCap_Olive",
+                        "TacticalShirt_Tan",
+                        "TacticalShirt_Olive",
                         "CargoPants_Beige",
+                        "CargoPants_Green",
                         "AssaultBag_Desert",
-                        "Keffiyeh_LightBrown"
+                        "TortillaBag_Desert",
+                        "CoyoteBag_Desert",
+                        "TacticalGloves_Beige",
+                        "TacticalGloves_Green",
+                        "Keffiyeh_LightBrown",
+                        "Shemag_Brown",
+                        "Shemag_Green",
+                        "MilitaryBelt",
+                        "ChestRigVest_Tan",
+                        "ChestRigVest_Khaki",
+                        "UKAssVest_Desert",
+                        "BallisticHelmet_Desert"
                     ]
                 },
                 {
@@ -2482,7 +2511,9 @@
                     "MaxEach": 1,
                     "Items": [
                         "Canteen",
-                        "WaterBottle"
+                        "WaterBottle",
+                        "SodaCan_Kvass",
+                        "SodaCan_Takola"
                     ]
                 },
                 {
@@ -2491,10 +2522,17 @@
                     "Max": 3,
                     "MaxEach": 2,
                     "Items": [
+                        "TacticalBaconCan",
                         "TunaCan",
                         "SardinesCan",
                         "BakedBeansCan",
-                        "Crackers"
+                        "SpaghettiCan",
+                        "Crackers",
+                        "SaltySticks",
+                        "Zagorky",
+                        "ZagorkyPeanuts",
+                        "HalvaCan",
+                        "SarmaCan"
                     ]
                 },
                 {
@@ -2506,7 +2544,10 @@
                         "BandageDressing",
                         "PainkillerTablets",
                         "CharcoalTablets",
-                        "TetracyclineAntibiotics"
+                        "TetracyclineAntibiotics",
+                        "Morphine",
+                        "Epinephrine",
+                        "IodineTincture"
                     ]
                 },
                 {
@@ -2515,7 +2556,11 @@
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "CombatKnife"
+                        "CombatKnife",
+                        "FangeKnife",
+                        "M9A1_Bayonet",
+                        "AK_Bayonet",
+                        "SKS_Bayonet"
                     ]
                 },
                 {
@@ -2525,8 +2570,14 @@
                     "MaxEach": 1,
                     "Items": [
                         "Compass",
+                        "OrienteeringCompass",
                         "DuctTape",
-                        "Binoculars"
+                        "Binoculars",
+                        "WeaponCleaningKit",
+                        "SewingKit",
+                        "LeatherSewingKit",
+                        "CanOpener",
+                        "Lockpick"
                     ]
                 },
                 {
@@ -2536,7 +2587,15 @@
                     "MaxEach": 1,
                     "Items": [
                         "Flashlight",
-                        "Battery9V"
+                        "Headtorch_Black",
+                        "Battery9V",
+                        "UniversalLight",
+                        "Chemlight_Green",
+                        "Chemlight_Red",
+                        "Roadflare",
+                        "M18SmokeGrenade_Yellow",
+                        "RDG2SmokeGrenade_White",
+                        "NylonKnifeSheath"
                     ]
                 },
                 {
@@ -2546,8 +2605,13 @@
                     "MaxEach": 1,
                     "Items": [
                         "Matchbox",
+                        "PetrolLighter",
                         "Pot",
-                        "Rope"
+                        "FryingPan",
+                        "PortableGasStove",
+                        "SmallGasCanister",
+                        "Rope",
+                        "Tripod"
                     ]
                 },
                 {
@@ -2561,7 +2625,10 @@
                         "Screwdriver",
                         "Pliers",
                         "SparkPlug",
-                        "EpoxyPutty"
+                        "EpoxyPutty",
+                        "LugWrench",
+                        "GlowPlug",
+                        "HeadlightH7_Box"
                     ]
                 }
             ],
@@ -2585,6 +2652,69 @@
                     "SpareMax": 8
                 },
                 {
+                    "WeaponClass": "Glock19",
+                    "MagazineClass": "Mag_Glock_15Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Glock_Tan",
+                    "MagazineClass": "Mag_Glock_15Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Colt1911",
+                    "MagazineClass": "Mag_1911_7Rnd",
+                    "Ammo": "Ammo_45ACP",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "FNX45",
+                    "MagazineClass": "Mag_FNX45_15Rnd",
+                    "Ammo": "Ammo_45ACP",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "P1",
+                    "MagazineClass": "Mag_P1_8Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "CZ61",
+                    "MagazineClass": "Mag_CZ61_20Rnd",
+                    "Ammo": "Ammo_380",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "PM73Rak",
+                    "MagazineClass": "Mag_PM73_15Rnd",
+                    "Ammo": "Ammo_380",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
                     "WeaponClass": "SKS",
                     "MagazineClass": "",
                     "Ammo": "Ammo_762x39",
@@ -2592,6 +2722,24 @@
                     "RoundsMax": 12,
                     "SpareMin": 0,
                     "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "SKS_Desert",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "AKS74U",
+                    "MagazineClass": "Mag_AK74_30Rnd",
+                    "Ammo": "Ammo_545x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
                 }
             ]
         },
@@ -2607,11 +2755,43 @@
                     "MaxEach": 1,
                     "Items": [
                         "WorkingBoots_Brown",
-                        "CargoPants_Green",
+                        "WorkingBoots_Yellow",
+                        "WorkingBoots_Beige",
+                        "WorkingBoots_Grey",
+                        "CargoPants_Grey",
+                        "CargoPants_Black",
+                        "Jeans_Blue",
+                        "Jeans_BlueDark",
+                        "JumpsuitJacket_Blue",
+                        "JumpsuitJacket_Gray",
+                        "JumpsuitPants_Blue",
+                        "JumpsuitPants_Grey",
                         "Hoodie_Grey",
+                        "Hoodie_Blue",
+                        "Hoodie_Brown",
+                        "Shirt_BlueCheck",
+                        "Shirt_RedCheck",
+                        "DenimJacket",
+                        "BomberJacket_Grey",
+                        "QuiltedJacket_Green",
                         "WorkingGloves_Brown",
+                        "WorkingGloves_Yellow",
+                        "WorkingGloves_Beige",
+                        "WorkingGloves_Black",
                         "TaloonBag_Blue",
-                        "BeanieHat_Grey"
+                        "TaloonBag_Orange",
+                        "TaloonBag_Green",
+                        "DuffelBagSmall_Green",
+                        "CanvasBag_Olive",
+                        "BeanieHat_Grey",
+                        "BeanieHat_Brown",
+                        "BaseballCap_Blue",
+                        "BaseballCap_Olive",
+                        "BaseballCap_Camo",
+                        "RadarCap_Brown",
+                        "DustGoggles_Black",
+                        "AviatorGlasses",
+                        "ReflexVest"
                     ]
                 },
                 {
@@ -2621,7 +2801,11 @@
                     "MaxEach": 1,
                     "Items": [
                         "WaterBottle",
-                        "Canteen"
+                        "Canteen",
+                        "SodaCan_Cola",
+                        "SodaCan_Pipsi",
+                        "SodaCan_ZumZam",
+                        "AyranBottle"
                     ]
                 },
                 {
@@ -2631,9 +2815,18 @@
                     "MaxEach": 2,
                     "Items": [
                         "BakedBeansCan",
+                        "SpaghettiCan",
                         "Crackers",
+                        "SpicyCrackers",
+                        "SaltySticks",
+                        "SaltyMix",
+                        "Chips",
                         "Rice",
-                        "BrisketSpread"
+                        "BrisketSpread",
+                        "Lunchmeat",
+                        "PorkCan",
+                        "UnknownFoodCan",
+                        "ZagorkyPeanuts"
                     ]
                 },
                 {
@@ -2644,7 +2837,11 @@
                     "Items": [
                         "BandageDressing",
                         "Rag",
-                        "PainkillerTablets"
+                        "PainkillerTablets",
+                        "VitaminBottle",
+                        "DisinfectantAlcohol",
+                        "CharcoalTablets",
+                        "Splint"
                     ]
                 },
                 {
@@ -2653,7 +2850,10 @@
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "KitchenKnife"
+                        "KitchenKnife",
+                        "SteakKnife",
+                        "Cleaver",
+                        "KukriKnife"
                     ]
                 },
                 {
@@ -2663,9 +2863,16 @@
                     "MaxEach": 1,
                     "Items": [
                         "Wrench",
+                        "PipeWrench",
+                        "LugWrench",
                         "Screwdriver",
                         "Pliers",
-                        "DuctTape"
+                        "Hammer",
+                        "Crowbar",
+                        "Hacksaw",
+                        "HandSaw",
+                        "DuctTape",
+                        "Lockpick"
                     ]
                 },
                 {
@@ -2675,7 +2882,14 @@
                     "MaxEach": 1,
                     "Items": [
                         "CanisterGasoline",
-                        "Flashlight"
+                        "Flashlight",
+                        "Headtorch_Grey",
+                        "Battery9V",
+                        "Roadflare",
+                        "CableReel",
+                        "MetalWire",
+                        "BurlapSack",
+                        "CombinationLock"
                     ]
                 },
                 {
@@ -2686,7 +2900,12 @@
                     "Items": [
                         "PortableGasStove",
                         "SmallGasCanister",
-                        "Matchbox"
+                        "MediumGasCanister",
+                        "PortableGasLamp",
+                        "Matchbox",
+                        "PetrolLighter",
+                        "FryingPan",
+                        "Pot"
                     ]
                 },
                 {
@@ -2697,7 +2916,10 @@
                     "Items": [
                         "TireRepairKit",
                         "SparkPlug",
-                        "EpoxyPutty"
+                        "GlowPlug",
+                        "EpoxyPutty",
+                        "HeadlightH7_Box",
+                        "ElectronicRepairKit"
                     ]
                 }
             ],
@@ -2719,6 +2941,60 @@
                     "RoundsMax": 12,
                     "SpareMin": 0,
                     "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Izh43Shotgun",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_12gaPellets",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "SawedoffIzh18Shotgun",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_12gaSlug",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "R12",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_12gaPellets",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Magnum",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "SawedoffMagnum",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Colt1911",
+                    "MagazineClass": "Mag_1911_7Rnd",
+                    "Ammo": "Ammo_45ACP",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
                 }
             ]
         },
@@ -2735,10 +3011,37 @@
                     "Items": [
                         "TurbanHat_Beige",
                         "TurbanHat_Brown",
+                        "TurbanHat_Black",
+                        "TurbanHat_White",
+                        "TurbanHat_Grey",
+                        "PakolHat_Beige",
+                        "PakolHat_Brown",
+                        "PakolHat_Grey",
+                        "PakolHat_Black",
+                        "PakolHat_White",
                         "Keffiyeh_Brown",
+                        "Keffiyeh_Black",
+                        "Keffiyeh_Red",
+                        "Shemag_White",
                         "HuntingJacket_Desert",
                         "HunterPants_Desert",
-                        "CoyoteBag_Desert"
+                        "HuntingVest_Desert",
+                        "RobeVest_Beige",
+                        "RobeVest_Brown",
+                        "RobeVest_Grey",
+                        "LinenVest_Brown",
+                        "KameezShirt_Beige",
+                        "MensShalwarPants_Beige",
+                        "TraditionalBoots_DarkBrown",
+                        "TraditionalSandalShoes_Brown",
+                        "HikingBoots_Brown",
+                        "JungleBoots_Beige",
+                        "LeatherGloves_Beige",
+                        "DustGoggles_Transparent",
+                        "CoyoteBag_Desert",
+                        "CoyoteBag_Brown",
+                        "HuntingBag",
+                        "CanvasBag_Olive"
                     ]
                 },
                 {
@@ -2748,7 +3051,11 @@
                     "MaxEach": 1,
                     "Items": [
                         "WaterBottle",
-                        "Canteen"
+                        "Canteen",
+                        "Waterskin_Natural",
+                        "AyranBottle",
+                        "SmallGlassBottle_Afza",
+                        "SmallGlassBottle_Jallab"
                     ]
                 },
                 {
@@ -2757,10 +3064,20 @@
                     "Max": 3,
                     "MaxEach": 2,
                     "Items": [
+                        "Achar",
+                        "Ayran",
+                        "Lassi_Mango",
+                        "Lassi_Masala",
+                        "Lassi_Mint",
                         "Pajka",
                         "Pate",
+                        "Honey",
                         "Rice",
-                        "SardinesCan"
+                        "SaltyMix",
+                        "SpicyCrackers",
+                        "SardinesCan",
+                        "HalvaCan",
+                        "SarmaCan"
                     ]
                 },
                 {
@@ -2771,7 +3088,12 @@
                     "Items": [
                         "Rag",
                         "BandageDressing",
-                        "CharcoalTablets"
+                        "CharcoalTablets",
+                        "PurificationTablets",
+                        "IodineTincture",
+                        "TetracyclineAntibiotics",
+                        "PainkillerTablets",
+                        "Splint"
                     ]
                 },
                 {
@@ -2780,7 +3102,10 @@
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "HuntingKnife"
+                        "HuntingKnife",
+                        "Jambiya",
+                        "KukriKnife",
+                        "FangeKnife"
                     ]
                 },
                 {
@@ -2790,8 +3115,12 @@
                     "MaxEach": 1,
                     "Items": [
                         "SewingKit",
+                        "LeatherSewingKit",
                         "Whetstone",
-                        "Compass"
+                        "Compass",
+                        "OrienteeringCompass",
+                        "Binoculars",
+                        "WeaponCleaningKit"
                     ]
                 },
                 {
@@ -2801,7 +3130,15 @@
                     "MaxEach": 1,
                     "Items": [
                         "Hatchet",
-                        "Flashlight"
+                        "Machete",
+                        "Sickle",
+                        "Flashlight",
+                        "PortableGasLamp",
+                        "LeatherKnifeSheath",
+                        "BurlapSack",
+                        "Netting",
+                        "RabbitSnareTrap",
+                        "Hook"
                     ]
                 },
                 {
@@ -2811,8 +3148,14 @@
                     "MaxEach": 1,
                     "Items": [
                         "Pot",
+                        "CeramicPot_Natural",
+                        "CeramicPot_Gray",
+                        "CeramicPot_Black",
+                        "CeramicPot_White",
                         "Matchbox",
-                        "Rope"
+                        "PetrolLighter",
+                        "Rope",
+                        "Tripod"
                     ]
                 },
                 {
@@ -2826,7 +3169,10 @@
                         "Screwdriver",
                         "Pliers",
                         "SparkPlug",
-                        "EpoxyPutty"
+                        "EpoxyPutty",
+                        "LugWrench",
+                        "GlowPlug",
+                        "HeadlightH7_Box"
                     ]
                 }
             ],
@@ -2841,9 +3187,81 @@
                     "SpareMax": 0
                 },
                 {
+                    "WeaponClass": "Mosin9130_Black",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_762x54",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
                     "WeaponClass": "Izh18",
                     "MagazineClass": "",
                     "Ammo": "Ammo_762x39",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "LeeEnfield",
+                    "MagazineClass": "Mag_LeeEnfield_10Rnd",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "CZ527",
+                    "MagazineClass": "Mag_CZ527_5rnd",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "CZ527_Desert",
+                    "MagazineClass": "Mag_CZ527_5rnd",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "SKS_Desert",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "B95",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Winchester70",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Repeater",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_357",
                     "RoundsMin": 6,
                     "RoundsMax": 12,
                     "SpareMin": 0,
@@ -2862,12 +3280,46 @@
                     "Max": 3,
                     "MaxEach": 1,
                     "Items": [
-                        "Hoodie_Grey",
+                        "Hoodie_Black",
+                        "Sweater_Gray",
+                        "Sweater_Blue",
                         "TShirt_Grey",
-                        "Jeans_Blue",
-                        "BeanieHat_Grey",
-                        "TaloonBag_Blue",
-                        "Keffiyeh_Gray"
+                        "TShirt_Black",
+                        "TShirt_White",
+                        "TShirt_Blue",
+                        "Shirt_BlueCheckBright",
+                        "Shirt_WhiteCheck",
+                        "ShortSleeveShirt_Black",
+                        "ShortSleeveShirt_White",
+                        "TrackSuitJacket_Black",
+                        "TrackSuitJacket_Blue",
+                        "BomberJacket_Blue",
+                        "QuiltedJacket_Blue",
+                        "ManSuit_Beige",
+                        "ManSuit_Brown",
+                        "LinenVest_Grey",
+                        "LinenVest_NavyBlue",
+                        "Jeans_Black",
+                        "Jeans_Grey",
+                        "SlacksPants_Beige",
+                        "SlacksPants_Brown",
+                        "TrackSuitPants_Black",
+                        "Sneakers_Black",
+                        "Sneakers_White",
+                        "JoggingShoes_Blue",
+                        "DressShoes_Brown",
+                        "HikingBootsLow_Grey",
+                        "FlatCap_Grey",
+                        "BaseballCap_Red",
+                        "BaseballCap_Black",
+                        "Keffiyeh_Gray",
+                        "Keffiyeh_Blue",
+                        "ThinFramesGlasses",
+                        "ThickFramesGlasses",
+                        "SportGlasses_Black",
+                        "TaloonBag_Violet",
+                        "Slingbag_Gray",
+                        "HipPack_Black"
                     ]
                 },
                 {
@@ -2876,7 +3328,14 @@
                     "Max": 2,
                     "MaxEach": 1,
                     "Items": [
-                        "WaterBottle"
+                        "WaterBottle",
+                        "GlassBottle",
+                        "AyranBottle",
+                        "SmallGlassBottle_Afza",
+                        "SmallGlassBottle_Jallab",
+                        "SodaCan_Takola",
+                        "SodaCan_ZumZam",
+                        "SodaCan_Spite"
                     ]
                 },
                 {
@@ -2886,9 +3345,21 @@
                     "MaxEach": 2,
                     "Items": [
                         "BakedBeansCan",
+                        "SpaghettiCan",
                         "TunaCan",
+                        "SardinesCan",
+                        "PeachesCan",
+                        "SarmaCan",
+                        "HalvaCan",
                         "Crackers",
-                        "Rice"
+                        "SpicyCrackers",
+                        "SaltySticks",
+                        "Chips",
+                        "BoxCerealCrunchin",
+                        "Marmalade",
+                        "PowderedMilk",
+                        "Rice",
+                        "ZagorkyChocolate"
                     ]
                 },
                 {
@@ -2900,7 +3371,12 @@
                         "PainkillerTablets",
                         "BandageDressing",
                         "DisinfectantSpray",
-                        "CharcoalTablets"
+                        "DisinfectantAlcohol",
+                        "CharcoalTablets",
+                        "VitaminBottle",
+                        "TetracyclineAntibiotics",
+                        "Thermometer",
+                        "SurgicalMask"
                     ]
                 },
                 {
@@ -2909,7 +3385,10 @@
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "KitchenKnife"
+                        "KitchenKnife",
+                        "SteakKnife",
+                        "DonerKnife",
+                        "Cleaver"
                     ]
                 },
                 {
@@ -2920,7 +3399,13 @@
                     "Items": [
                         "Flashlight",
                         "Battery9V",
-                        "DuctTape"
+                        "DuctTape",
+                        "Hammer",
+                        "Lockpick",
+                        "OrienteeringCompass",
+                        "AlarmClock_Red",
+                        "AlarmClock_Blue",
+                        "KitchenTimer"
                     ]
                 },
                 {
@@ -2930,7 +3415,14 @@
                     "MaxEach": 1,
                     "Items": [
                         "SewingKit",
-                        "CanOpener"
+                        "CanOpener",
+                        "PetrolLighter",
+                        "Chemlight_White",
+                        "Chemlight_Blue",
+                        "Chemlight_Yellow",
+                        "Megaphone",
+                        "SmallProtectorCase",
+                        "MeatTenderizer"
                     ]
                 },
                 {
@@ -2940,8 +3432,12 @@
                     "MaxEach": 1,
                     "Items": [
                         "PortableGasStove",
+                        "SmallGasCanister",
                         "Matchbox",
-                        "Pot"
+                        "Pot",
+                        "CeramicPot_White",
+                        "CeramicPot_Gray",
+                        "FryingPan"
                     ]
                 },
                 {
@@ -2955,7 +3451,10 @@
                         "Screwdriver",
                         "Pliers",
                         "SparkPlug",
-                        "EpoxyPutty"
+                        "EpoxyPutty",
+                        "LugWrench",
+                        "GlowPlug",
+                        "HeadlightH7_Box"
                     ]
                 }
             ],
@@ -2977,6 +3476,78 @@
                     "RoundsMax": 12,
                     "SpareMin": 0,
                     "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Derringer_Grey",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "MakarovIJ70",
+                    "MagazineClass": "Mag_IJ70_8Rnd",
+                    "Ammo": "Ammo_380",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "MKII",
+                    "MagazineClass": "Mag_MKII_10Rnd",
+                    "Ammo": "Ammo_22",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Luger",
+                    "MagazineClass": "Mag_Luger_8Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "P1",
+                    "MagazineClass": "Mag_P1_8Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Engraved1911",
+                    "MagazineClass": "Mag_1911_7Rnd",
+                    "Ammo": "Ammo_45ACP",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Ruger1022",
+                    "MagazineClass": "Mag_Ruger1022_15Rnd",
+                    "Ammo": "Ammo_22",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Izh18Shotgun",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_12gaPellets",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
                 }
             ]
         },
@@ -2991,13 +3562,26 @@
                     "Max": 3,
                     "MaxEach": 1,
                     "Items": [
+                        "BomberJacket_Olive",
                         "BomberJacket_Brown",
-                        "AviatorGlasses",
+                        "PilotJacket_Brown",
+                        "PilotJacket_Black",
+                        "HikingJacket_Green",
+                        "HikingJacket_Red",
+                        "Raincoat_Green",
+                        "Raincoat_Orange",
+                        "Raincoat_Yellow",
+                        "SportGlasses_Orange",
+                        "CanvasPants_Beige",
                         "CargoPants_Beige",
-                        "HikingBoots_Brown",
+                        "HunterPants_Desert",
+                        "HikingBoots_Black",
+                        "HikingBootsLow_Beige",
                         "BaseballCap_Beige",
+                        "RadarCap_Brown",
                         "WorkingGloves_Brown",
-                        "Raincoat_Green"
+                        "LeatherGloves_Brown",
+                        "AviatorGlasses"
                     ]
                 },
                 {
@@ -3007,7 +3591,9 @@
                     "MaxEach": 1,
                     "Items": [
                         "Canteen",
-                        "WaterBottle"
+                        "WaterBottle",
+                        "Waterskin_Natural",
+                        "FilteringBottle"
                     ]
                 },
                 {
@@ -3019,8 +3605,16 @@
                         "TunaCan",
                         "SardinesCan",
                         "PeachesCan",
+                        "BakedBeansCan",
                         "Crackers",
-                        "PowderedMilk"
+                        "PowderedMilk",
+                        "Honey",
+                        "Marmalade",
+                        "Zagorky",
+                        "ZagorkyChocolate",
+                        "ZagorkyPeanuts",
+                        "HalvaCan",
+                        "SaltyMix"
                     ]
                 },
                 {
@@ -3033,7 +3627,11 @@
                         "PainkillerTablets",
                         "CharcoalTablets",
                         "VitaminBottle",
-                        "IodineTincture"
+                        "IodineTincture",
+                        "DisinfectantAlcohol",
+                        "TetracyclineAntibiotics",
+                        "Epinephrine",
+                        "Splint"
                     ]
                 },
                 {
@@ -3042,7 +3640,9 @@
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "HuntingKnife"
+                        "HuntingKnife",
+                        "KukriKnife",
+                        "FangeKnife"
                     ]
                 },
                 {
@@ -3052,8 +3652,12 @@
                     "MaxEach": 1,
                     "Items": [
                         "Compass",
+                        "OrienteeringCompass",
                         "Binoculars",
-                        "FieldShovel"
+                        "FieldShovel",
+                        "Whetstone",
+                        "WeaponCleaningKit",
+                        "Lockpick"
                     ]
                 },
                 {
@@ -3063,8 +3667,13 @@
                     "MaxEach": 1,
                     "Items": [
                         "Headtorch_Grey",
+                        "Headtorch_Black",
+                        "Flashlight",
                         "Battery9V",
-                        "Hatchet"
+                        "Hatchet",
+                        "Machete",
+                        "PortableGasLamp",
+                        "NylonKnifeSheath"
                     ]
                 },
                 {
@@ -3074,8 +3683,13 @@
                     "MaxEach": 1,
                     "Items": [
                         "Matchbox",
+                        "PetrolLighter",
                         "Pot",
-                        "Rope"
+                        "FryingPan",
+                        "PortableGasStove",
+                        "SmallGasCanister",
+                        "Rope",
+                        "Tripod"
                     ]
                 },
                 {
@@ -3087,7 +3701,9 @@
                         "EpoxyPutty",
                         "DuctTape",
                         "TireRepairKit",
-                        "Pliers"
+                        "Pliers",
+                        "Screwdriver",
+                        "Wrench"
                     ]
                 },
                 {
@@ -3098,7 +3714,13 @@
                     "Items": [
                         "MountainBag_Green",
                         "MountainBag_Orange",
-                        "HuntingBag"
+                        "MountainBag_Blue",
+                        "MountainBag_Red",
+                        "HuntingBag",
+                        "DryBag_Orange",
+                        "DryBag_Yellow",
+                        "DryBag_Green",
+                        "CanvasBag_Olive"
                     ]
                 },
                 {
@@ -3111,7 +3733,12 @@
                         "PurificationTablets",
                         "Heatpack",
                         "RabbitSnareTrap",
-                        "LeatherSewingKit"
+                        "LeatherSewingKit",
+                        "SewingKit",
+                        "Netting",
+                        "BurlapSack",
+                        "CanOpener",
+                        "SmallProtectorCase"
                     ]
                 },
                 {
@@ -3139,7 +3766,9 @@
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "Roadflare"
+                        "Roadflare",
+                        "M18SmokeGrenade_Yellow",
+                        "M18SmokeGrenade_Red"
                     ]
                 }
             ],
@@ -3170,6 +3799,69 @@
                     "RoundsMax": 12,
                     "SpareMin": 0,
                     "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "B95",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Winchester70",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "CZ527",
+                    "MagazineClass": "Mag_CZ527_5rnd",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "LeeEnfield",
+                    "MagazineClass": "Mag_LeeEnfield_10Rnd",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Magnum",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Longhorn",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Deagle",
+                    "MagazineClass": "Mag_Deagle_9rnd",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
                 }
             ]
         },
@@ -3186,11 +3878,24 @@
                     "Items": [
                         "ZSh3PilotHelmet",
                         "PilotkaCap",
+                        "MilitaryBeret_Red",
+                        "MilitaryBeret_TK",
+                        "MilitaryBeret_CDF",
                         "AviatorGlasses",
+                        "TacticalGoggles",
                         "TacticalGloves_Black",
+                        "OMNOGloves_Gray",
                         "USMCJacket_Desert",
                         "USMCPants_Desert",
-                        "MilitaryBoots_Beige"
+                        "BDUJacket",
+                        "BDUPants",
+                        "TacticalShirt_ION_Olive",
+                        "GorkaEJacket_Flat",
+                        "GorkaPants_Flat",
+                        "CombatBoots_Black",
+                        "JungleBoots_Olive",
+                        "BalaclavaMask_Beige",
+                        "Shemag_Brown"
                     ]
                 },
                 {
@@ -3200,7 +3905,8 @@
                     "MaxEach": 1,
                     "Items": [
                         "Canteen",
-                        "WaterBottle"
+                        "WaterBottle",
+                        "FilteringBottle"
                     ]
                 },
                 {
@@ -3209,10 +3915,17 @@
                     "Max": 3,
                     "MaxEach": 2,
                     "Items": [
+                        "TacticalBaconCan",
                         "TunaCan",
+                        "SardinesCan",
                         "BakedBeansCan",
+                        "SpaghettiCan",
                         "Crackers",
-                        "Pajka"
+                        "Pajka",
+                        "Pate",
+                        "Zagorky",
+                        "ZagorkyPeanuts",
+                        "HalvaCan"
                     ]
                 },
                 {
@@ -3225,7 +3938,12 @@
                         "Morphine",
                         "Epinephrine",
                         "TetracyclineAntibiotics",
-                        "Splint"
+                        "Splint",
+                        "PainkillerTablets",
+                        "CharcoalTablets",
+                        "SalineBagIV",
+                        "BloodTestKit",
+                        "IodineTincture"
                     ]
                 },
                 {
@@ -3234,7 +3952,10 @@
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
-                        "CombatKnife"
+                        "CombatKnife",
+                        "FangeKnife",
+                        "M9A1_Bayonet",
+                        "AK_Bayonet"
                     ]
                 },
                 {
@@ -3244,8 +3965,13 @@
                     "MaxEach": 1,
                     "Items": [
                         "Compass",
+                        "OrienteeringCompass",
                         "Binoculars",
-                        "Rangefinder"
+                        "Rangefinder",
+                        "WeaponCleaningKit",
+                        "SewingKit",
+                        "Lockpick",
+                        "NVGHeadstrap"
                     ]
                 },
                 {
@@ -3255,8 +3981,14 @@
                     "MaxEach": 1,
                     "Items": [
                         "Flashlight",
+                        "UniversalLight",
                         "Battery9V",
-                        "Chemlight_Red"
+                        "Chemlight_Red",
+                        "Chemlight_Yellow",
+                        "NylonKnifeSheath",
+                        "PlateCarrierHolster",
+                        "ArmyPouch_Beige",
+                        "ArmyPouch_Black"
                     ]
                 },
                 {
@@ -3266,7 +3998,11 @@
                     "MaxEach": 1,
                     "Items": [
                         "Matchbox",
-                        "Rope"
+                        "PetrolLighter",
+                        "Rope",
+                        "PortableGasStove",
+                        "SmallGasCanister",
+                        "Pot"
                     ]
                 },
                 {
@@ -3278,7 +4014,10 @@
                         "EpoxyPutty",
                         "TireRepairKit",
                         "Screwdriver",
-                        "Pliers"
+                        "Pliers",
+                        "Wrench",
+                        "DuctTape",
+                        "ElectronicRepairKit"
                     ]
                 },
                 {
@@ -3289,7 +4028,13 @@
                     "Items": [
                         "AssaultBag_Desert",
                         "AssaultBag_Ttsko",
-                        "AssaultBag_Black"
+                        "AssaultBag_Black",
+                        "AssaultBag_Green",
+                        "CoyoteBag_Desert",
+                        "CoyoteBag_Brown",
+                        "CoyoteBag_Green",
+                        "TortillaBag_Desert",
+                        "AliceBag_Camo"
                     ]
                 },
                 {
@@ -3298,9 +4043,16 @@
                     "Max": 1,
                     "MaxEach": 1,
                     "Items": [
+                        "UKAssVest_Desert",
                         "UKAssVest_Khaki",
                         "UKAssVest_Olive",
-                        "HighCapacityVest_Olive"
+                        "UKAssVest_Black",
+                        "HighCapacityVest_Olive",
+                        "HighCapacityVest_Black",
+                        "HighCapacityVest_ION",
+                        "ChestRigVest_Tan",
+                        "ChestRigVest_Khaki",
+                        "SmershVest"
                     ]
                 },
                 {
@@ -3313,7 +4065,11 @@
                         "PurificationTablets",
                         "Heatpack",
                         "Headtorch_Black",
-                        "Chemlight_Green"
+                        "Chemlight_Green",
+                        "Chemlight_Blue",
+                        "CanOpener",
+                        "SmallProtectorCase",
+                        "LeatherSewingKit"
                     ]
                 },
                 {
@@ -3333,13 +4089,27 @@
                     "Items": [
                         "M18SmokeGrenade_Green",
                         "M18SmokeGrenade_Red",
-                        "M18SmokeGrenade_Yellow"
+                        "M18SmokeGrenade_Yellow",
+                        "M18SmokeGrenade_Purple",
+                        "M18SmokeGrenade_White",
+                        "RDG2SmokeGrenade_White",
+                        "RDG2SmokeGrenade_Black",
+                        "Roadflare"
                     ]
                 }
             ],
             "Firearms": [
                 {
                     "WeaponClass": "Glock19",
+                    "MagazineClass": "Mag_Glock_15Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Glock_Tan",
                     "MagazineClass": "Mag_Glock_15Rnd",
                     "Ammo": "Ammo_9x19",
                     "RoundsMin": 3,
@@ -3357,8 +4127,71 @@
                     "SpareMax": 8
                 },
                 {
+                    "WeaponClass": "CZ75",
+                    "MagazineClass": "Mag_CZ75_15Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Colt1911",
+                    "MagazineClass": "Mag_1911_7Rnd",
+                    "Ammo": "Ammo_45ACP",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
                     "WeaponClass": "CZ61",
                     "MagazineClass": "Mag_CZ61_20Rnd",
+                    "Ammo": "Ammo_380",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "PM73Rak",
+                    "MagazineClass": "Mag_PM73_25Rnd",
+                    "Ammo": "Ammo_380",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "MP5K",
+                    "MagazineClass": "Mag_MP5_30Rnd",
+                    "Ammo": "Ammo_9x19",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "UMP45",
+                    "MagazineClass": "Mag_UMP_25Rnd",
+                    "Ammo": "Ammo_45ACP",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "AKS74U",
+                    "MagazineClass": "Mag_AK74_30Rnd",
+                    "Ammo": "Ammo_545x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "PP19",
+                    "MagazineClass": "Mag_PP19_64Rnd",
                     "Ammo": "Ammo_380",
                     "RoundsMin": 3,
                     "RoundsMax": 6,
@@ -3557,8 +4390,20 @@
                         "Items": [
                             "TelnyashkaShirt",
                             "Ushanka_Green",
+                            "Ushanka_Black",
                             "PilotkaCap",
-                            "WinterMilitaryCoat_Grey"
+                            "WinterMilitaryCoat_Grey",
+                            "TTsKOJacket_Camo",
+                            "TTSKOPants",
+                            "TTSKOBoots",
+                            "GorkaEJacket_Flat",
+                            "GorkaPants_Flat",
+                            "GorkaEJacket_Summer",
+                            "GorkaPants_Summer",
+                            "MilitaryBoots_Black",
+                            "TacticalGloves_Green",
+                            "BalaclavaMask_Green",
+                            "Ssh68Helmet"
                         ]
                     },
                     {
@@ -3568,7 +4413,8 @@
                         "MaxEach": 1,
                         "Items": [
                             "WaterBottle",
-                            "Canteen"
+                            "Canteen",
+                            "FilteringBottle"
                         ]
                     },
                     {
@@ -3580,7 +4426,13 @@
                             "TacticalBaconCan",
                             "Pajka",
                             "BakedBeansCan",
-                            "Crackers"
+                            "Crackers",
+                            "Zagorky",
+                            "ZagorkyPeanuts",
+                            "HalvaCan",
+                            "SarmaCan",
+                            "BrisketSpread",
+                            "PorkCan"
                         ]
                     },
                     {
@@ -3592,7 +4444,12 @@
                             "Epinephrine",
                             "TetracyclineAntibiotics",
                             "Splint",
-                            "CharcoalTablets"
+                            "CharcoalTablets",
+                            "BandageDressing",
+                            "Morphine",
+                            "PainkillerTablets",
+                            "SalineBagIV",
+                            "IodineTincture"
                         ]
                     },
                     {
@@ -3601,7 +4458,8 @@
                         "Max": 1,
                         "MaxEach": 1,
                         "Items": [
-                            "AK_Bayonet"
+                            "AK_Bayonet",
+                            "CombatKnife"
                         ]
                     },
                     {
@@ -3611,8 +4469,12 @@
                         "MaxEach": 1,
                         "Items": [
                             "Rangefinder",
-                            "DuctTape",
-                            "Flashlight"
+                            "Compass",
+                            "Binoculars",
+                            "WeaponCleaningKit",
+                            "SewingKit",
+                            "Lockpick",
+                            "OrienteeringCompass"
                         ]
                     },
                     {
@@ -3623,7 +4485,14 @@
                         "Items": [
                             "Battery9V",
                             "Headtorch_Black",
-                            "M18SmokeGrenade_Green"
+                            "Flashlight",
+                            "UniversalLight",
+                            "RDG2SmokeGrenade_White",
+                            "RDG2SmokeGrenade_Black",
+                            "M18SmokeGrenade_Green",
+                            "Chemlight_Green",
+                            "Chemlight_Red",
+                            "Roadflare"
                         ]
                     },
                     {
@@ -3633,8 +4502,11 @@
                         "MaxEach": 1,
                         "Items": [
                             "Matchbox",
+                            "PetrolLighter",
                             "Rope",
-                            "PortableGasStove"
+                            "PortableGasStove",
+                            "SmallGasCanister",
+                            "Pot"
                         ]
                     },
                     {
@@ -3646,7 +4518,11 @@
                             "TireRepairKit",
                             "Wrench",
                             "SparkPlug",
-                            "EpoxyPutty"
+                            "EpoxyPutty",
+                            "Screwdriver",
+                            "Pliers",
+                            "LugWrench",
+                            "GlowPlug"
                         ]
                     }
                 ],
@@ -3664,6 +4540,42 @@
                         "WeaponClass": "AKM",
                         "MagazineClass": "Mag_AKM_30Rnd",
                         "Ammo": "Ammo_762x39",
+                        "RoundsMin": 3,
+                        "RoundsMax": 6,
+                        "SpareMin": 4,
+                        "SpareMax": 8
+                    },
+                    {
+                        "WeaponClass": "AK74",
+                        "MagazineClass": "Mag_AK74_30Rnd",
+                        "Ammo": "Ammo_545x39",
+                        "RoundsMin": 3,
+                        "RoundsMax": 6,
+                        "SpareMin": 4,
+                        "SpareMax": 8
+                    },
+                    {
+                        "WeaponClass": "AKS74U",
+                        "MagazineClass": "Mag_AK74_30Rnd",
+                        "Ammo": "Ammo_545x39",
+                        "RoundsMin": 3,
+                        "RoundsMax": 6,
+                        "SpareMin": 4,
+                        "SpareMax": 8
+                    },
+                    {
+                        "WeaponClass": "PP19",
+                        "MagazineClass": "Mag_PP19_64Rnd",
+                        "Ammo": "Ammo_380",
+                        "RoundsMin": 3,
+                        "RoundsMax": 6,
+                        "SpareMin": 4,
+                        "SpareMax": 8
+                    },
+                    {
+                        "WeaponClass": "MakarovIJ70",
+                        "MagazineClass": "Mag_IJ70_8Rnd",
+                        "Ammo": "Ammo_380",
                         "RoundsMin": 3,
                         "RoundsMax": 6,
                         "SpareMin": 4,

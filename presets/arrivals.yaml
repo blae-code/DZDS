@@ -225,69 +225,100 @@ vehicles:
 # rounds, a gun without a magazine with 6-12 loose rounds. Magazine and rounds go in the
 # cargo (an attached magazine never reached the player); the firearm spawns first.
 firearm_health: [0.45, 0.70]
-car_items: &car [TireRepairKit, Wrench, Screwdriver, Pliers, SparkPlug, EpoxyPutty]
+car_items: &car [TireRepairKit, Wrench, Screwdriver, Pliers, SparkPlug, EpoxyPutty, LugWrench, GlowPlug, HeadlightH7_Box]
 archetypes:
   deserter:
     weight: 30
     slots:
-      clothing: { count: [2, 3], items: [USMCJacket_Desert, USMCPants_Desert, BoonieHat_Desert, MilitaryBoots_Beige, M65Jacket_Tan, CargoPants_Beige, AssaultBag_Desert, Keffiyeh_LightBrown] }
-      water:    { count: [1, 2], items: [Canteen, WaterBottle] }
-      food:     { count: [2, 3], max_each: 2, items: [TunaCan, SardinesCan, BakedBeansCan, Crackers] }
-      medical:  { count: [2, 2], items: [BandageDressing, PainkillerTablets, CharcoalTablets, TetracyclineAntibiotics] }
-      knife:    { count: [1, 1], items: [CombatKnife] }
-      tools:    { count: [1, 2], items: [Compass, DuctTape, Binoculars] }
-      extra:    { count: [1, 2], items: [Flashlight, Battery9V] }
-      camp:     { count: [1, 1], items: [Matchbox, Pot, Rope] }
+      clothing: { count: [2, 3], items: [USMCJacket_Desert, USMCPants_Desert, BoonieHat_Desert, BoonieHat_Tan, MilitaryCap_Desert, MilitaryBoots_Beige, MilitaryBoots_Brown, CombatBoots_Beige, CombatBoots_Brown, M65Jacket_Tan, M65Jacket_Khaki, M65Jacket_Olive, BDUJacket, BDUPants, OBRJacket_Beige, OBRJacket_Olive, OBRPants_Beige, OBRPants_Olive, OBRCap_Beige, OBRCap_Olive, TacticalShirt_Tan, TacticalShirt_Olive, CargoPants_Beige, CargoPants_Green, AssaultBag_Desert, TortillaBag_Desert, CoyoteBag_Desert, TacticalGloves_Beige, TacticalGloves_Green, Keffiyeh_LightBrown, Shemag_Brown, Shemag_Green, MilitaryBelt, ChestRigVest_Tan, ChestRigVest_Khaki, UKAssVest_Desert, BallisticHelmet_Desert] }
+      water:    { count: [1, 2], items: [Canteen, WaterBottle, SodaCan_Kvass, SodaCan_Takola] }
+      food:     { count: [2, 3], max_each: 2, items: [TacticalBaconCan, TunaCan, SardinesCan, BakedBeansCan, SpaghettiCan, Crackers, SaltySticks, Zagorky, ZagorkyPeanuts, HalvaCan, SarmaCan] }
+      medical:  { count: [2, 2], items: [BandageDressing, PainkillerTablets, CharcoalTablets, TetracyclineAntibiotics, Morphine, Epinephrine, IodineTincture] }
+      knife:    { count: [1, 1], items: [CombatKnife, FangeKnife, M9A1_Bayonet, AK_Bayonet, SKS_Bayonet] }
+      tools:    { count: [1, 2], items: [Compass, OrienteeringCompass, DuctTape, Binoculars, WeaponCleaningKit, SewingKit, LeatherSewingKit, CanOpener, Lockpick] }
+      extra:    { count: [1, 2], items: [Flashlight, Headtorch_Black, Battery9V, UniversalLight, Chemlight_Green, Chemlight_Red, Roadflare, M18SmokeGrenade_Yellow, RDG2SmokeGrenade_White, NylonKnifeSheath] }
+      camp:     { count: [1, 1], items: [Matchbox, PetrolLighter, Pot, FryingPan, PortableGasStove, SmallGasCanister, Rope, Tripod] }
       car:      { count: [1, 1], items: *car }
     firearms:
       - { weapon: MakarovIJ70, magazine: Mag_IJ70_8Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
       - { weapon: CZ75, magazine: Mag_CZ75_15Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Glock19, magazine: Mag_Glock_15Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Glock_Tan, magazine: Mag_Glock_15Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Colt1911, magazine: Mag_1911_7Rnd, ammo: Ammo_45ACP, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: FNX45, magazine: Mag_FNX45_15Rnd, ammo: Ammo_45ACP, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: P1, magazine: Mag_P1_8Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: CZ61, magazine: Mag_CZ61_20Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: PM73Rak, magazine: Mag_PM73_15Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
       - { weapon: SKS, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
+      - { weapon: SKS_Desert, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
+      - { weapon: AKS74U, magazine: Mag_AK74_30Rnd, ammo: Ammo_545x39, rounds: [3, 6], spare: [4, 8] }
   trucker:
     weight: 25
     slots:
-      clothing: { count: [2, 3], items: [WorkingBoots_Brown, CargoPants_Green, Hoodie_Grey, WorkingGloves_Brown, TaloonBag_Blue, BeanieHat_Grey] }
-      water:    { count: [1, 2], items: [WaterBottle, Canteen] }
-      food:     { count: [2, 3], max_each: 2, items: [BakedBeansCan, Crackers, Rice, BrisketSpread] }
-      medical:  { count: [2, 2], items: [BandageDressing, Rag, PainkillerTablets] }
-      knife:    { count: [1, 1], items: [KitchenKnife] }
-      tools:    { count: [1, 2], items: [Wrench, Screwdriver, Pliers, DuctTape] }
-      extra:    { count: [1, 2], items: [CanisterGasoline, Flashlight] }
-      camp:     { count: [1, 1], items: [PortableGasStove, SmallGasCanister, Matchbox] }
-      car:      { count: [1, 1], items: [TireRepairKit, SparkPlug, EpoxyPutty] }
+      clothing: { count: [2, 3], items: [WorkingBoots_Brown, WorkingBoots_Yellow, WorkingBoots_Beige, WorkingBoots_Grey, CargoPants_Grey, CargoPants_Black, Jeans_Blue, Jeans_BlueDark, JumpsuitJacket_Blue, JumpsuitJacket_Gray, JumpsuitPants_Blue, JumpsuitPants_Grey, Hoodie_Grey, Hoodie_Blue, Hoodie_Brown, Shirt_BlueCheck, Shirt_RedCheck, DenimJacket, BomberJacket_Grey, QuiltedJacket_Green, WorkingGloves_Brown, WorkingGloves_Yellow, WorkingGloves_Beige, WorkingGloves_Black, TaloonBag_Blue, TaloonBag_Orange, TaloonBag_Green, DuffelBagSmall_Green, CanvasBag_Olive, BeanieHat_Grey, BeanieHat_Brown, BaseballCap_Blue, BaseballCap_Olive, BaseballCap_Camo, RadarCap_Brown, DustGoggles_Black, AviatorGlasses, ReflexVest] }
+      water:    { count: [1, 2], items: [WaterBottle, Canteen, SodaCan_Cola, SodaCan_Pipsi, SodaCan_ZumZam, AyranBottle] }
+      food:     { count: [2, 3], max_each: 2, items: [BakedBeansCan, SpaghettiCan, Crackers, SpicyCrackers, SaltySticks, SaltyMix, Chips, Rice, BrisketSpread, Lunchmeat, PorkCan, UnknownFoodCan, ZagorkyPeanuts] }
+      medical:  { count: [2, 2], items: [BandageDressing, Rag, PainkillerTablets, VitaminBottle, DisinfectantAlcohol, CharcoalTablets, Splint] }
+      knife:    { count: [1, 1], items: [KitchenKnife, SteakKnife, Cleaver, KukriKnife] }
+      tools:    { count: [1, 2], items: [Wrench, PipeWrench, LugWrench, Screwdriver, Pliers, Hammer, Crowbar, Hacksaw, HandSaw, DuctTape, Lockpick] }
+      extra:    { count: [1, 2], items: [CanisterGasoline, Flashlight, Headtorch_Grey, Battery9V, Roadflare, CableReel, MetalWire, BurlapSack, CombinationLock] }
+      camp:     { count: [1, 1], items: [PortableGasStove, SmallGasCanister, MediumGasCanister, PortableGasLamp, Matchbox, PetrolLighter, FryingPan, Pot] }
+      car:      { count: [1, 1], items: [TireRepairKit, SparkPlug, GlowPlug, EpoxyPutty, HeadlightH7_Box, ElectronicRepairKit] }
     firearms:
       - { weapon: Mp133Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [6, 12] }
       - { weapon: SawedoffIzh43Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [6, 12] }
+      - { weapon: Izh43Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [6, 12] }
+      - { weapon: SawedoffIzh18Shotgun, magazine: null, ammo: Ammo_12gaSlug, rounds: [6, 12] }
+      - { weapon: R12, magazine: null, ammo: Ammo_12gaPellets, rounds: [6, 12] }
+      - { weapon: Magnum, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+      - { weapon: SawedoffMagnum, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+      - { weapon: Colt1911, magazine: Mag_1911_7Rnd, ammo: Ammo_45ACP, rounds: [3, 6], spare: [4, 8] }
   nomad:
     weight: 25
     slots:
-      clothing: { count: [2, 3], items: [TurbanHat_Beige, TurbanHat_Brown, Keffiyeh_Brown, HuntingJacket_Desert, HunterPants_Desert, CoyoteBag_Desert] }
-      water:    { count: [1, 2], items: [WaterBottle, Canteen] }
-      food:     { count: [2, 3], max_each: 2, items: [Pajka, Pate, Rice, SardinesCan] }
-      medical:  { count: [2, 2], items: [Rag, BandageDressing, CharcoalTablets] }
-      knife:    { count: [1, 1], items: [HuntingKnife] }
-      tools:    { count: [1, 2], items: [SewingKit, Whetstone, Compass] }
-      extra:    { count: [1, 2], items: [Hatchet, Flashlight] }
-      camp:     { count: [1, 1], items: [Pot, Matchbox, Rope] }
+      clothing: { count: [2, 3], items: [TurbanHat_Beige, TurbanHat_Brown, TurbanHat_Black, TurbanHat_White, TurbanHat_Grey, PakolHat_Beige, PakolHat_Brown, PakolHat_Grey, PakolHat_Black, PakolHat_White, Keffiyeh_Brown, Keffiyeh_Black, Keffiyeh_Red, Shemag_White, HuntingJacket_Desert, HunterPants_Desert, HuntingVest_Desert, RobeVest_Beige, RobeVest_Brown, RobeVest_Grey, LinenVest_Brown, KameezShirt_Beige, MensShalwarPants_Beige, TraditionalBoots_DarkBrown, TraditionalSandalShoes_Brown, HikingBoots_Brown, JungleBoots_Beige, LeatherGloves_Beige, DustGoggles_Transparent, CoyoteBag_Desert, CoyoteBag_Brown, HuntingBag, CanvasBag_Olive] }
+      water:    { count: [1, 2], items: [WaterBottle, Canteen, Waterskin_Natural, AyranBottle, SmallGlassBottle_Afza, SmallGlassBottle_Jallab] }
+      food:     { count: [2, 3], max_each: 2, items: [Achar, Ayran, Lassi_Mango, Lassi_Masala, Lassi_Mint, Pajka, Pate, Honey, Rice, SaltyMix, SpicyCrackers, SardinesCan, HalvaCan, SarmaCan] }
+      medical:  { count: [2, 2], items: [Rag, BandageDressing, CharcoalTablets, PurificationTablets, IodineTincture, TetracyclineAntibiotics, PainkillerTablets, Splint] }
+      knife:    { count: [1, 1], items: [HuntingKnife, Jambiya, KukriKnife, FangeKnife] }
+      tools:    { count: [1, 2], items: [SewingKit, LeatherSewingKit, Whetstone, Compass, OrienteeringCompass, Binoculars, WeaponCleaningKit] }
+      extra:    { count: [1, 2], items: [Hatchet, Machete, Sickle, Flashlight, PortableGasLamp, LeatherKnifeSheath, BurlapSack, Netting, RabbitSnareTrap, Hook] }
+      camp:     { count: [1, 1], items: [Pot, CeramicPot_Natural, CeramicPot_Gray, CeramicPot_Black, CeramicPot_White, Matchbox, PetrolLighter, Rope, Tripod] }
       car:      { count: [1, 1], items: *car }
     firearms:
       - { weapon: Mosin9130, magazine: null, ammo: Ammo_762x54, rounds: [6, 12] }
+      - { weapon: Mosin9130_Black, magazine: null, ammo: Ammo_762x54, rounds: [6, 12] }
       - { weapon: Izh18, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
+      - { weapon: LeeEnfield, magazine: Mag_LeeEnfield_10Rnd, ammo: Ammo_308Win, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: CZ527, magazine: Mag_CZ527_5rnd, ammo: Ammo_762x39, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: CZ527_Desert, magazine: Mag_CZ527_5rnd, ammo: Ammo_762x39, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: SKS_Desert, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
+      - { weapon: B95, magazine: null, ammo: Ammo_308Win, rounds: [6, 12] }
+      - { weapon: Winchester70, magazine: null, ammo: Ammo_308Win, rounds: [6, 12] }
+      - { weapon: Repeater, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
   townie:
     weight: 20
     slots:
-      clothing: { count: [2, 3], items: [Hoodie_Grey, TShirt_Grey, Jeans_Blue, BeanieHat_Grey, TaloonBag_Blue, Keffiyeh_Gray] }
-      water:    { count: [1, 2], items: [WaterBottle] }
-      food:     { count: [2, 3], max_each: 2, items: [BakedBeansCan, TunaCan, Crackers, Rice] }
-      medical:  { count: [2, 2], items: [PainkillerTablets, BandageDressing, DisinfectantSpray, CharcoalTablets] }
-      knife:    { count: [1, 1], items: [KitchenKnife] }
-      tools:    { count: [1, 2], items: [Flashlight, Battery9V, DuctTape] }
-      extra:    { count: [1, 2], items: [SewingKit, CanOpener] }
-      camp:     { count: [1, 1], items: [PortableGasStove, Matchbox, Pot] }
+      clothing: { count: [2, 3], items: [Hoodie_Black, Sweater_Gray, Sweater_Blue, TShirt_Grey, TShirt_Black, TShirt_White, TShirt_Blue, Shirt_BlueCheckBright, Shirt_WhiteCheck, ShortSleeveShirt_Black, ShortSleeveShirt_White, TrackSuitJacket_Black, TrackSuitJacket_Blue, BomberJacket_Blue, QuiltedJacket_Blue, ManSuit_Beige, ManSuit_Brown, LinenVest_Grey, LinenVest_NavyBlue, Jeans_Black, Jeans_Grey, SlacksPants_Beige, SlacksPants_Brown, TrackSuitPants_Black, Sneakers_Black, Sneakers_White, JoggingShoes_Blue, DressShoes_Brown, HikingBootsLow_Grey, FlatCap_Grey, BaseballCap_Red, BaseballCap_Black, Keffiyeh_Gray, Keffiyeh_Blue, ThinFramesGlasses, ThickFramesGlasses, SportGlasses_Black, TaloonBag_Violet, Slingbag_Gray, HipPack_Black] }
+      water:    { count: [1, 2], items: [WaterBottle, GlassBottle, AyranBottle, SmallGlassBottle_Afza, SmallGlassBottle_Jallab, SodaCan_Takola, SodaCan_ZumZam, SodaCan_Spite] }
+      food:     { count: [2, 3], max_each: 2, items: [BakedBeansCan, SpaghettiCan, TunaCan, SardinesCan, PeachesCan, SarmaCan, HalvaCan, Crackers, SpicyCrackers, SaltySticks, Chips, BoxCerealCrunchin, Marmalade, PowderedMilk, Rice, ZagorkyChocolate] }
+      medical:  { count: [2, 2], items: [PainkillerTablets, BandageDressing, DisinfectantSpray, DisinfectantAlcohol, CharcoalTablets, VitaminBottle, TetracyclineAntibiotics, Thermometer, SurgicalMask] }
+      knife:    { count: [1, 1], items: [KitchenKnife, SteakKnife, DonerKnife, Cleaver] }
+      tools:    { count: [1, 2], items: [Flashlight, Battery9V, DuctTape, Hammer, Lockpick, OrienteeringCompass, AlarmClock_Red, AlarmClock_Blue, KitchenTimer] }
+      extra:    { count: [1, 2], items: [SewingKit, CanOpener, PetrolLighter, Chemlight_White, Chemlight_Blue, Chemlight_Yellow, Megaphone, SmallProtectorCase, MeatTenderizer] }
+      camp:     { count: [1, 1], items: [PortableGasStove, SmallGasCanister, Matchbox, Pot, CeramicPot_White, CeramicPot_Gray, FryingPan] }
       car:      { count: [1, 1], items: *car }
     firearms:
       - { weapon: Magnum, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
       - { weapon: Derringer_Black, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+      - { weapon: Derringer_Grey, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+      - { weapon: MakarovIJ70, magazine: Mag_IJ70_8Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: MKII, magazine: Mag_MKII_10Rnd, ammo: Ammo_22, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Luger, magazine: Mag_Luger_8Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: P1, magazine: Mag_P1_8Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Engraved1911, magazine: Mag_1911_7Rnd, ammo: Ammo_45ACP, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Ruger1022, magazine: Mag_Ruger1022_15Rnd, ammo: Ammo_22, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Izh18Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [6, 12] }
   # Pilot profiles (Blae, 2026-10-22): an aircraft's cargo is always one of these, a ground
   # vehicle's never is. Same slot rules as above ("car" = airframe field repair), plus a FULL
   # jerrycan (fuel) and signalling (signal), so a pilot who sets down off-field can refuel,
@@ -301,46 +332,61 @@ archetypes:
     aircraft: true
     weight: 60
     slots:
-      clothing: { count: [2, 3], items: [BomberJacket_Brown, AviatorGlasses, CargoPants_Beige, HikingBoots_Brown, BaseballCap_Beige, WorkingGloves_Brown, Raincoat_Green] }
-      pack:     { count: [1, 1], items: [MountainBag_Green, MountainBag_Orange, HuntingBag] }
-      water:    { count: [1, 2], items: [Canteen, WaterBottle] }
-      food:     { count: [2, 3], max_each: 2, items: [TunaCan, SardinesCan, PeachesCan, Crackers, PowderedMilk] }
-      medical:  { count: [2, 3], items: [BandageDressing, PainkillerTablets, CharcoalTablets, VitaminBottle, IodineTincture] }
-      knife:    { count: [1, 1], items: [HuntingKnife] }
-      tools:    { count: [1, 2], items: [Compass, Binoculars, FieldShovel] }
-      survival: { count: [2, 3], items: [FirstAidKit, PurificationTablets, Heatpack, RabbitSnareTrap, LeatherSewingKit] }
+      clothing: { count: [2, 3], items: [BomberJacket_Olive, BomberJacket_Brown, PilotJacket_Brown, PilotJacket_Black, HikingJacket_Green, HikingJacket_Red, Raincoat_Green, Raincoat_Orange, Raincoat_Yellow, SportGlasses_Orange, CanvasPants_Beige, CargoPants_Beige, HunterPants_Desert, HikingBoots_Black, HikingBootsLow_Beige, BaseballCap_Beige, RadarCap_Brown, WorkingGloves_Brown, LeatherGloves_Brown, AviatorGlasses] }
+      pack:     { count: [1, 1], items: [MountainBag_Green, MountainBag_Orange, MountainBag_Blue, MountainBag_Red, HuntingBag, DryBag_Orange, DryBag_Yellow, DryBag_Green, CanvasBag_Olive] }
+      water:    { count: [1, 2], items: [Canteen, WaterBottle, Waterskin_Natural, FilteringBottle] }
+      food:     { count: [2, 3], max_each: 2, items: [TunaCan, SardinesCan, PeachesCan, BakedBeansCan, Crackers, PowderedMilk, Honey, Marmalade, Zagorky, ZagorkyChocolate, ZagorkyPeanuts, HalvaCan, SaltyMix] }
+      medical:  { count: [2, 3], items: [BandageDressing, PainkillerTablets, CharcoalTablets, VitaminBottle, IodineTincture, DisinfectantAlcohol, TetracyclineAntibiotics, Epinephrine, Splint] }
+      knife:    { count: [1, 1], items: [HuntingKnife, KukriKnife, FangeKnife] }
+      tools:    { count: [1, 2], items: [Compass, OrienteeringCompass, Binoculars, FieldShovel, Whetstone, WeaponCleaningKit, Lockpick] }
+      survival: { count: [2, 3], items: [FirstAidKit, PurificationTablets, Heatpack, RabbitSnareTrap, LeatherSewingKit, SewingKit, Netting, BurlapSack, CanOpener, SmallProtectorCase] }
       fishing:  { count: [2, 2], items: [FishingRod, Hook] }
-      extra:    { count: [1, 2], items: [Headtorch_Grey, Battery9V, Hatchet] }
-      camp:     { count: [1, 1], items: [Matchbox, Pot, Rope] }
-      car:      { count: [1, 1], items: [EpoxyPutty, DuctTape, TireRepairKit, Pliers] }
+      extra:    { count: [1, 2], items: [Headtorch_Grey, Headtorch_Black, Flashlight, Battery9V, Hatchet, Machete, PortableGasLamp, NylonKnifeSheath] }
+      camp:     { count: [1, 1], items: [Matchbox, PetrolLighter, Pot, FryingPan, PortableGasStove, SmallGasCanister, Rope, Tripod] }
+      car:      { count: [1, 1], items: [EpoxyPutty, DuctTape, TireRepairKit, Pliers, Screwdriver, Wrench] }
       fuel:     { count: [1, 1], items: [CanisterGasoline] }
-      signal:   { count: [1, 1], items: [Roadflare] }
+      signal:   { count: [1, 1], items: [Roadflare, M18SmokeGrenade_Yellow, M18SmokeGrenade_Red] }
     firearms:
       - { weapon: Repeater, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
       - { weapon: Izh18, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
       - { weapon: Mp133Shotgun, magazine: null, ammo: Ammo_12gaPellets, rounds: [6, 12] }
+      - { weapon: B95, magazine: null, ammo: Ammo_308Win, rounds: [6, 12] }
+      - { weapon: Winchester70, magazine: null, ammo: Ammo_308Win, rounds: [6, 12] }
+      - { weapon: CZ527, magazine: Mag_CZ527_5rnd, ammo: Ammo_762x39, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: LeeEnfield, magazine: Mag_LeeEnfield_10Rnd, ammo: Ammo_308Win, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Magnum, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+      - { weapon: Longhorn, magazine: null, ammo: Ammo_308Win, rounds: [6, 12] }
+      - { weapon: Deagle, magazine: Mag_Deagle_9rnd, ammo: Ammo_357, rounds: [3, 6], spare: [4, 8] }
   combat_pilot:   # downed military aircrew: flight helmet, sidearm or PDW, smoke to mark a LZ
     aircraft: true
     weight: 40
     slots:
-      clothing: { count: [2, 3], items: [ZSh3PilotHelmet, PilotkaCap, AviatorGlasses, TacticalGloves_Black, USMCJacket_Desert, USMCPants_Desert, MilitaryBoots_Beige] }
-      pack:     { count: [1, 1], items: [AssaultBag_Desert, AssaultBag_Ttsko, AssaultBag_Black] }
-      vest:     { count: [1, 1], items: [UKAssVest_Khaki, UKAssVest_Olive, HighCapacityVest_Olive] }
-      water:    { count: [1, 2], items: [Canteen, WaterBottle] }
-      food:     { count: [2, 3], max_each: 2, items: [TunaCan, BakedBeansCan, Crackers, Pajka] }
-      medical:  { count: [2, 3], items: [BandageDressing, Morphine, Epinephrine, TetracyclineAntibiotics, Splint] }
-      knife:    { count: [1, 1], items: [CombatKnife] }
-      tools:    { count: [1, 2], items: [Compass, Binoculars, Rangefinder] }
-      survival: { count: [2, 3], items: [FirstAidKit, PurificationTablets, Heatpack, Headtorch_Black, Chemlight_Green] }
-      extra:    { count: [1, 2], items: [Flashlight, Battery9V, Chemlight_Red] }
-      camp:     { count: [1, 1], items: [Matchbox, Rope] }
-      car:      { count: [1, 1], items: [EpoxyPutty, TireRepairKit, Screwdriver, Pliers] }
+      clothing: { count: [2, 3], items: [ZSh3PilotHelmet, PilotkaCap, MilitaryBeret_Red, MilitaryBeret_TK, MilitaryBeret_CDF, AviatorGlasses, TacticalGoggles, TacticalGloves_Black, OMNOGloves_Gray, USMCJacket_Desert, USMCPants_Desert, BDUJacket, BDUPants, TacticalShirt_ION_Olive, GorkaEJacket_Flat, GorkaPants_Flat, CombatBoots_Black, JungleBoots_Olive, BalaclavaMask_Beige, Shemag_Brown] }
+      pack:     { count: [1, 1], items: [AssaultBag_Desert, AssaultBag_Ttsko, AssaultBag_Black, AssaultBag_Green, CoyoteBag_Desert, CoyoteBag_Brown, CoyoteBag_Green, TortillaBag_Desert, AliceBag_Camo] }
+      vest:     { count: [1, 1], items: [UKAssVest_Desert, UKAssVest_Khaki, UKAssVest_Olive, UKAssVest_Black, HighCapacityVest_Olive, HighCapacityVest_Black, HighCapacityVest_ION, ChestRigVest_Tan, ChestRigVest_Khaki, SmershVest] }
+      water:    { count: [1, 2], items: [Canteen, WaterBottle, FilteringBottle] }
+      food:     { count: [2, 3], max_each: 2, items: [TacticalBaconCan, TunaCan, SardinesCan, BakedBeansCan, SpaghettiCan, Crackers, Pajka, Pate, Zagorky, ZagorkyPeanuts, HalvaCan] }
+      medical:  { count: [2, 3], items: [BandageDressing, Morphine, Epinephrine, TetracyclineAntibiotics, Splint, PainkillerTablets, CharcoalTablets, SalineBagIV, BloodTestKit, IodineTincture] }
+      knife:    { count: [1, 1], items: [CombatKnife, FangeKnife, M9A1_Bayonet, AK_Bayonet] }
+      tools:    { count: [1, 2], items: [Compass, OrienteeringCompass, Binoculars, Rangefinder, WeaponCleaningKit, SewingKit, Lockpick, NVGHeadstrap] }
+      survival: { count: [2, 3], items: [FirstAidKit, PurificationTablets, Heatpack, Headtorch_Black, Chemlight_Green, Chemlight_Blue, CanOpener, SmallProtectorCase, LeatherSewingKit] }
+      extra:    { count: [1, 2], items: [Flashlight, UniversalLight, Battery9V, Chemlight_Red, Chemlight_Yellow, NylonKnifeSheath, PlateCarrierHolster, ArmyPouch_Beige, ArmyPouch_Black] }
+      camp:     { count: [1, 1], items: [Matchbox, PetrolLighter, Rope, PortableGasStove, SmallGasCanister, Pot] }
+      car:      { count: [1, 1], items: [EpoxyPutty, TireRepairKit, Screwdriver, Pliers, Wrench, DuctTape, ElectronicRepairKit] }
       fuel:     { count: [1, 1], items: [CanisterGasoline] }
-      signal:   { count: [1, 1], items: [M18SmokeGrenade_Green, M18SmokeGrenade_Red, M18SmokeGrenade_Yellow] }
+      signal:   { count: [1, 1], items: [M18SmokeGrenade_Green, M18SmokeGrenade_Red, M18SmokeGrenade_Yellow, M18SmokeGrenade_Purple, M18SmokeGrenade_White, RDG2SmokeGrenade_White, RDG2SmokeGrenade_Black, Roadflare] }
     firearms:
       - { weapon: Glock19, magazine: Mag_Glock_15Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Glock_Tan, magazine: Mag_Glock_15Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
       - { weapon: FNX45, magazine: Mag_FNX45_15Rnd, ammo: Ammo_45ACP, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: CZ75, magazine: Mag_CZ75_15Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Colt1911, magazine: Mag_1911_7Rnd, ammo: Ammo_45ACP, rounds: [3, 6], spare: [4, 8] }
       - { weapon: CZ61, magazine: Mag_CZ61_20Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: PM73Rak, magazine: Mag_PM73_25Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: MP5K, magazine: Mag_MP5_30Rnd, ammo: Ammo_9x19, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: UMP45, magazine: Mag_UMP_25Rnd, ammo: Ammo_45ACP, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: AKS74U, magazine: Mag_AK74_30Rnd, ammo: Ammo_545x39, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: PP19, magazine: Mag_PP19_64Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
 
 # Body kit (Blae, 2026-10-15): every new character also gets a PersonalRadio with a 9V battery,
 # tuned to the Settler net and switched OFF, plus one road flare. Index 0 = the first channel
@@ -416,18 +462,22 @@ outfits:
     aircraft_cargo: combat_pilot
     land_cargo:     # same rules as a ground archetype: knife, car and camp items, one worn firearm
       slots:
-        clothing: { count: [2, 3], items: [TelnyashkaShirt, Ushanka_Green, PilotkaCap, WinterMilitaryCoat_Grey] }
-        water:    { count: [1, 2], items: [WaterBottle, Canteen] }
-        food:     { count: [2, 3], max_each: 2, items: [TacticalBaconCan, Pajka, BakedBeansCan, Crackers] }
-        medical:  { count: [2, 2], items: [Epinephrine, TetracyclineAntibiotics, Splint, CharcoalTablets] }
-        knife:    { count: [1, 1], items: [AK_Bayonet] }
-        tools:    { count: [1, 2], items: [Rangefinder, DuctTape, Flashlight] }
-        extra:    { count: [1, 2], items: [Battery9V, Headtorch_Black, M18SmokeGrenade_Green] }
-        camp:     { count: [1, 1], items: [Matchbox, Rope, PortableGasStove] }
-        car:      { count: [1, 1], items: [TireRepairKit, Wrench, SparkPlug, EpoxyPutty] }
+        clothing: { count: [2, 3], items: [TelnyashkaShirt, Ushanka_Green, Ushanka_Black, PilotkaCap, WinterMilitaryCoat_Grey, TTsKOJacket_Camo, TTSKOPants, TTSKOBoots, GorkaEJacket_Flat, GorkaPants_Flat, GorkaEJacket_Summer, GorkaPants_Summer, MilitaryBoots_Black, TacticalGloves_Green, BalaclavaMask_Green, Ssh68Helmet] }
+        water:    { count: [1, 2], items: [WaterBottle, Canteen, FilteringBottle] }
+        food:     { count: [2, 3], max_each: 2, items: [TacticalBaconCan, Pajka, BakedBeansCan, Crackers, Zagorky, ZagorkyPeanuts, HalvaCan, SarmaCan, BrisketSpread, PorkCan] }
+        medical:  { count: [2, 2], items: [Epinephrine, TetracyclineAntibiotics, Splint, CharcoalTablets, BandageDressing, Morphine, PainkillerTablets, SalineBagIV, IodineTincture] }
+        knife:    { count: [1, 1], items: [AK_Bayonet, CombatKnife] }
+        tools:    { count: [1, 2], items: [Rangefinder, Compass, Binoculars, WeaponCleaningKit, SewingKit, Lockpick, OrienteeringCompass] }
+        extra:    { count: [1, 2], items: [Battery9V, Headtorch_Black, Flashlight, UniversalLight, RDG2SmokeGrenade_White, RDG2SmokeGrenade_Black, M18SmokeGrenade_Green, Chemlight_Green, Chemlight_Red, Roadflare] }
+        camp:     { count: [1, 1], items: [Matchbox, PetrolLighter, Rope, PortableGasStove, SmallGasCanister, Pot] }
+        car:      { count: [1, 1], items: [TireRepairKit, Wrench, SparkPlug, EpoxyPutty, Screwdriver, Pliers, LugWrench, GlowPlug] }
       firearms:
         - { weapon: SVD, magazine: Mag_SVD_10Rnd, ammo: Ammo_762x54, rounds: [3, 6], spare: [4, 8] }
         - { weapon: AKM, magazine: Mag_AKM_30Rnd, ammo: Ammo_762x39, rounds: [3, 6], spare: [4, 8] }
+        - { weapon: AK74, magazine: Mag_AK74_30Rnd, ammo: Ammo_545x39, rounds: [3, 6], spare: [4, 8] }
+        - { weapon: AKS74U, magazine: Mag_AK74_30Rnd, ammo: Ammo_545x39, rounds: [3, 6], spare: [4, 8] }
+        - { weapon: PP19, magazine: Mag_PP19_64Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
+        - { weapon: MakarovIJ70, magazine: Mag_IJ70_8Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
 
 # Refugee column (Blae, 2026-10-15): all FIRST arrivals on the same day wake at the same
 # arrival site; the site rotates daily in this order. A "day" starts at this UTC hour

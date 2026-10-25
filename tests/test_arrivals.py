@@ -138,10 +138,23 @@ def test_archetype_weights(built):
     assert pilots == {"bush_pilot": 60.0, "combat_pilot": 40.0}
 
 
-CUTTING = {"CombatKnife", "KitchenKnife", "HuntingKnife"}
-CAR = {"TireRepairKit", "Wrench", "Screwdriver", "Pliers", "SparkPlug", "EpoxyPutty"}
-CAMP = {"Matchbox", "Pot", "PortableGasStove", "SmallGasCanister", "Rope"}
-AIRFRAME = {"EpoxyPutty", "DuctTape", "TireRepairKit", "Pliers", "Screwdriver"}   # a pilot's "car" slot
+CUTTING = {
+    "CombatKnife", "KitchenKnife", "HuntingKnife",
+    "FangeKnife", "M9A1_Bayonet", "AK_Bayonet", "SKS_Bayonet",
+    "SteakKnife", "Cleaver", "KukriKnife", "Jambiya", "DonerKnife",
+}
+CAR = {
+    "TireRepairKit", "Wrench", "Screwdriver", "Pliers", "SparkPlug", "EpoxyPutty",
+    "LugWrench", "GlowPlug", "HeadlightH7_Box", "ElectronicRepairKit",
+}
+CAMP = {
+    "Matchbox", "PetrolLighter", "Pot", "FryingPan", "PortableGasStove",
+    "SmallGasCanister", "MediumGasCanister", "PortableGasLamp", "Rope", "Tripod",
+    "CeramicPot_White", "CeramicPot_Gray", "CeramicPot_Black", "CeramicPot_Natural",
+}
+AIRFRAME = {
+    "EpoxyPutty", "DuctTape", "TireRepairKit", "Pliers", "Screwdriver", "Wrench", "ElectronicRepairKit",
+}   # a pilot's "car" slot
 
 
 def _slot(arch, name):
@@ -557,7 +570,12 @@ def test_init_c_player_never_wakes_on_the_vehicle_spot():
     assert "plan.PlayerPos = plan.CarPos" not in place
 
 
-PACKS = {"MountainBag_Green", "MountainBag_Orange", "HuntingBag", "AssaultBag_Desert", "AssaultBag_Ttsko", "AssaultBag_Black"}
+PACKS = {
+    "MountainBag_Green", "MountainBag_Orange", "MountainBag_Blue", "MountainBag_Red",
+    "HuntingBag", "DryBag_Orange", "DryBag_Yellow", "DryBag_Green", "CanvasBag_Olive",
+    "AssaultBag_Desert", "AssaultBag_Ttsko", "AssaultBag_Black", "AssaultBag_Green",
+    "CoyoteBag_Desert", "CoyoteBag_Brown", "CoyoteBag_Green", "TortillaBag_Desert", "AliceBag_Camo",
+}
 
 
 def test_pilots_carry_a_pack_and_survival_kit(built):

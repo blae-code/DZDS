@@ -162,9 +162,155 @@
       main { padding-top: 18px; }
       .footer { flex-direction: column; }
     }
-    @media (max-width: 380px) {
-      .topbar nav { gap: 8px; }
-      .topbar nav a { font-size: .8rem; }
+    /* Basebuilding & Blueprint Manual */
+    .pbb-schematic {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #68c0d040;
+      background: radial-gradient(circle at 50% 50%, #0d151d 0%, #080b0e 100%);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+      display: block;
+      margin-top: 10px;
+    }
+    .pbb-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 16px 0;
+    }
+    .pbb-filters input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .pbb-filter-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 5px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--muted);
+      font: 600 .82rem ui-monospace, monospace;
+      cursor: pointer;
+      transition: all .15s ease;
+      user-select: none;
+    }
+    .pbb-filter-pill:hover {
+      color: var(--text);
+      border-color: #ffffff35;
+    }
+    #pcat-all:checked ~ .pbb-filters label[for="pcat-all"],
+    #pcat-vanilla:checked ~ .pbb-filters label[for="pcat-vanilla"],
+    #pcat-rag:checked ~ .pbb-filters label[for="pcat-rag"],
+    #pcat-cabin:checked ~ .pbb-filters label[for="pcat-cabin"],
+    #pcat-mmg:checked ~ .pbb-filters label[for="pcat-mmg"],
+    #pcat-utility:checked ~ .pbb-filters label[for="pcat-utility"],
+    #pcat-camp:checked ~ .pbb-filters label[for="pcat-camp"] {
+      background: #d8bd7922;
+      border-color: var(--sand);
+      color: var(--sand);
+      font-weight: 700;
+    }
+    #pcat-vanilla:checked ~ .pbb-grid .pbb-card:not([data-cat="vanilla"]),
+    #pcat-rag:checked ~ .pbb-grid .pbb-card:not([data-cat="rag_modular"]),
+    #pcat-cabin:checked ~ .pbb-grid .pbb-card:not([data-cat="cabin"]),
+    #pcat-mmg:checked ~ .pbb-grid .pbb-card:not([data-cat="mmg_storage"]),
+    #pcat-utility:checked ~ .pbb-grid .pbb-card:not([data-cat="utility_tack"]),
+    #pcat-camp:checked ~ .pbb-grid .pbb-card:not([data-cat="camp"]) {
+      display: none;
+    }
+    .pbb-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .pbb-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .pbb-card h3 {
+      margin-bottom: 2px;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+    .pbb-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin: 8px 0;
+    }
+    .pbb-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font: 600 .78rem ui-monospace, monospace;
+      border: 1px solid var(--line);
+      background: var(--canvas);
+    }
+    .pbb-chip.logs { border-color: #d4af4f66; color: #d4af4f; }
+    .pbb-chip.planks { border-color: #e5b04b66; color: #e5b04b; }
+    .pbb-chip.nails { border-color: #68c0d066; color: #68c0d0; }
+    .pbb-chip.metal { border-color: #c2ccd666; color: #c2ccd6; }
+    .pbb-chip.stones { border-color: #a4ada266; color: #a4ada2; }
+    .pbb-chip.special { border-color: #d4775e66; color: #ff9c8f; }
+
+    .pbb-stages {
+      background: var(--canvas);
+      padding: 10px 12px;
+      border-radius: 6px;
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      font-size: .83rem;
+    }
+    .pbb-stage-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 1px dashed #ffffff10;
+      padding-bottom: 3px;
+    }
+    .pbb-stage-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .pbb-kv {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: .84rem;
+      border-bottom: 1px dashed #ffffff08;
+      padding: 3px 0;
+    }
+    .pbb-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .84rem;
+      margin-top: 10px;
+    }
+    .pbb-table th {
+      text-align: left;
+      font: 700 .76rem ui-monospace, monospace;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .pbb-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid #303a3255;
+    }
+    @media (max-width: 680px) {
+      .pbb-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -175,6 +321,7 @@
       <a href="#join">Join</a>
       <a href="#survive">Survive</a>
       <a href="#world">The world</a>
+      <a href="#basebuilding">Basebuilding</a>
       <a href="#install">Install &amp; Run App</a>
       <a href="/">Command Center ↗</a>
     </nav>
@@ -192,6 +339,7 @@
         <span class="fact">First-person survival</span>
         <span class="fact">Living faction conflict</span>
         <span class="fact">No map fast travel</span>
+        <span class="fact">Complete Basebuilding Guide</span>
         <span class="fact">Installable Offline PWA</span>
       </div>
     </section>
@@ -267,6 +415,793 @@
       </div>
     </section>
 
+    <section id="basebuilding" aria-labelledby="basebuilding-title">
+      <div class="section-heading">
+        <h2 id="basebuilding-title">Basebuilding &amp; Homesteading Field Manual</h2>
+        <p>Every structural recipe, storage system, farming cycle, and vehicle workshop from Vanilla DayZ 1.30 and all active mods on Ad Aspera.</p>
+      </div>
+
+      <!-- SERVER RULES & PERSISTENCE BANNER -->
+      <div class="cards" style="margin-bottom:18px;">
+        <article class="card" style="border-left:3px solid var(--sand);">
+          <h3>Territory Flag Protection &amp; @DZDS Respawn</h3>
+          <p>A raised <code>TerritoryFlag</code> creates a <strong>60 m protection sphere</strong> (Immersive Placing). Placed item lifetimes increase from <strong>24 hours</strong> to <strong>7 days</strong>, and the flag refreshes nearby structures for <strong>40 days</strong>.</p>
+          <p>On death, <code>DZDSBases.c</code> checks for living allies within 1,000 meters. If none are near, your survivor wakes directly beside your compound's nearest raised flag.</p>
+        </article>
+        <article class="card" style="border-left:3px solid var(--green);">
+          <h3>PvE Security, Digital Locks &amp; Integrity</h3>
+          <p>All doors and gates accept native Vanilla 1.30 and RaG <code>DigitalCodeLock</code> (battery-free, auto-locks on close, remembers your code). Infected (<code>PvZmoD</code>) can bash open <em>unlocked</em> doors but cannot breach locked gates.</p>
+          <p>AI faction patrols do not dismantle player bases. Building the RaG Hunting Cabin consumes/ruins 1 Hammer on completion.</p>
+        </article>
+      </div>
+
+      <!-- 4 ARCHITECTURAL BLUEPRINTS -->
+      <div class="card" style="margin-bottom:18px;">
+        <h3 style="color:var(--sand); margin-bottom:4px;">Architectural Blueprints &amp; Structural Schematics</h3>
+        <p style="color:var(--muted); font-size:.9rem; margin-bottom:12px;">Review construction stages, material attachments, and protection envelopes before setting foot in the field.</p>
+        
+        <details open style="margin-bottom:12px;">
+          <summary style="cursor:pointer; font:700 .9rem ui-monospace, monospace; color:var(--text); padding:6px 0;">🏳️ Blueprint 01: Territory Flag Pole &amp; @DZDS Base Respawn (60m Envelope)</summary>
+          <svg class="pbb-schematic" viewBox="0 0 920 370" xmlns="http://www.w3.org/2000/svg">
+            <rect width="920" height="370" fill="#090e13"/>
+            <text x="24" y="32" fill="#68c0d0" font-family="monospace" font-size="12" font-weight="700" letter-spacing="1.5">BLUEPRINT 01 // TERRITORY FLAG POLE &amp; @DZDS BASE RESPAWN ARCHITECTURE</text>
+            <text x="24" y="48" fill="#84909c" font-family="monospace" font-size="10">SOURCE: ImmersivePlacing/PlacementLifetime.json · DZDSBases.c · DayZ 1.30 cfggameplay.json</text>
+            <g transform="translate(30, 70)">
+              <line x1="0" y1="240" x2="280" y2="240" stroke="#dedcd6" stroke-width="2"/>
+              <rect x="130" y="210" width="20" height="50" fill="#b0956b" stroke="#d4af4f" stroke-width="1.5"/>
+              <text x="160" y="235" fill="#d4af4f" font-family="monospace" font-size="10" font-weight="700">STAGE 1: BASE POST</text>
+              <text x="160" y="248" fill="#84909c" font-family="monospace" font-size="9">1× Wooden Log (Drive with Sledge / Pickaxe)</text>
+              <path d="M 60 240 L 110 170 L 170 170 L 220 240 Z" fill="rgba(164, 173, 162, 0.25)" stroke="#a4ada2" stroke-width="1.5"/>
+              <text x="60" y="160" fill="#a4ada2" font-family="monospace" font-size="10" font-weight="700">STAGE 2: STONE SUPPORT</text>
+              <text x="60" y="173" fill="#84909c" font-family="monospace" font-size="9">32× Large Stone + 6× Wooden Log</text>
+              <line x1="140" y1="170" x2="140" y2="20" stroke="#d8bd79" stroke-width="6"/>
+              <circle cx="140" cy="18" r="5" fill="#68c0d0"/>
+              <line x1="143" y1="20" x2="143" y2="170" stroke="#68c0d0" stroke-width="1.2" stroke-dasharray="3,3"/>
+              <polygon points="143,24 210,40 143,58" fill="#db5c4b" stroke="#dedcd6" stroke-width="1"/>
+              <text x="155" y="44" fill="#dedcd6" font-family="monospace" font-size="9" font-weight="700">FLAG_*</text>
+              <text x="160" y="80" fill="#68c0d0" font-family="monospace" font-size="10" font-weight="700">STAGE 3: MAST &amp; PULLEY</text>
+              <text x="160" y="93" fill="#84909c" font-family="monospace" font-size="9">3× Log + 60× Nail + 1× Metal Wire + 1× Rope</text>
+            </g>
+            <g transform="translate(360, 60)">
+              <circle cx="160" cy="140" r="120" fill="rgba(104, 192, 208, 0.04)" stroke="#68c0d0" stroke-width="1.8" stroke-dasharray="6,4"/>
+              <circle cx="160" cy="140" r="45" fill="rgba(98, 189, 123, 0.06)" stroke="#62bd7b" stroke-width="1.2"/>
+              <circle cx="160" cy="140" r="6" fill="#d4af4f" stroke="#dedcd6" stroke-width="1.5"/>
+              <text x="160" y="125" text-anchor="middle" fill="#d4af4f" font-family="monospace" font-size="10" font-weight="700">FLAG POLE</text>
+              <text x="160" y="160" text-anchor="middle" fill="#dedcd6" font-family="monospace" font-size="9">40-Day Refresh</text>
+              <line x1="160" y1="140" x2="280" y2="140" stroke="#68c0d0" stroke-width="1.5"/>
+              <text x="220" y="132" text-anchor="middle" fill="#68c0d0" font-family="monospace" font-size="10" font-weight="700">R = 60 METERS</text>
+              <rect x="300" y="20" width="220" height="90" rx="5" fill="rgba(17, 21, 26, 0.9)" stroke="#68c0d0" stroke-width="1"/>
+              <text x="312" y="40" fill="#68c0d0" font-family="monospace" font-size="11" font-weight="700">IMMERSIVE PLACING RADIUS</text>
+              <text x="312" y="58" fill="#dedcd6" font-family="monospace" font-size="10">Placed Item Lifetime: <tspan fill="#62bd7b" font-weight="700">7 DAYS</tspan></text>
+              <text x="312" y="74" fill="#84909c" font-family="monospace" font-size="10">Outside Flag Radius: <tspan fill="#e05252">24 HOURS</tspan></text>
+              <text x="312" y="90" fill="#e5b04b" font-family="monospace" font-size="9.5">Refreshes: RaG, MMG, Tents &amp; Crates</text>
+              <rect x="300" y="125" width="220" height="120" rx="5" fill="rgba(17, 21, 26, 0.9)" stroke="#62bd7b" stroke-width="1"/>
+              <text x="312" y="145" fill="#62bd7b" font-family="monospace" font-size="11" font-weight="700">@DZDS BASE RESPAWN</text>
+              <text x="312" y="162" fill="#dedcd6" font-family="monospace" font-size="9.5">1. Check online friend proximity (1km)</text>
+              <text x="312" y="177" fill="#dedcd6" font-family="monospace" font-size="9.5">2. If solo: query nearest raised Flag</text>
+              <text x="312" y="192" fill="#d4af4f" font-family="monospace" font-size="9.5" font-weight="700">3. Wake survivor at Flag perimeter</text>
+              <text x="312" y="212" fill="#84909c" font-family="monospace" font-size="9">Hooked via mods/DZDS/DZDSBases.c</text>
+              <text x="312" y="228" fill="#68c0d0" font-family="monospace" font-size="9">War Ledger: Settler Outpost Claim</text>
+            </g>
+          </svg>
+        </details>
+
+        <details style="margin-bottom:12px;">
+          <summary style="cursor:pointer; font:700 .9rem ui-monospace, monospace; color:var(--text); padding:6px 0;">🏡 Blueprint 02: RaG Hunting Cabin Architectural Cutaway &amp; Hearth</summary>
+          <svg class="pbb-schematic" viewBox="0 0 920 370" xmlns="http://www.w3.org/2000/svg">
+            <rect width="920" height="370" fill="#090e13"/>
+            <text x="24" y="32" fill="#d4af4f" font-family="monospace" font-size="12" font-weight="700" letter-spacing="1.5">BLUEPRINT 02 // RaG HUNTING CABIN (rag_hunting_cabin) ARCHITECTURAL ELEVATION</text>
+            <text x="24" y="48" fill="#84909c" font-family="monospace" font-size="10">SOURCE: server/profiles/RaG_Core/Configs/RaG_Hunting_Cabin/RaG_Hunting_Cabin.json</text>
+            <g transform="translate(60, 70)">
+              <line x1="-30" y1="240" x2="520" y2="240" stroke="#dedcd6" stroke-width="2"/>
+              <rect x="0" y="225" width="460" height="15" fill="#303a32" stroke="#d4af4f" stroke-width="1.5"/>
+              <rect x="40" y="110" width="380" height="115" fill="rgba(176, 149, 107, 0.12)" stroke="#b0956b" stroke-width="2"/>
+              <line x1="40" y1="130" x2="420" y2="130" stroke="rgba(176, 149, 107, 0.35)"/>
+              <line x1="40" y1="150" x2="420" y2="150" stroke="rgba(176, 149, 107, 0.35)"/>
+              <line x1="40" y1="170" x2="420" y2="170" stroke="rgba(176, 149, 107, 0.35)"/>
+              <line x1="40" y1="190" x2="420" y2="190" stroke="rgba(176, 149, 107, 0.35)"/>
+              <line x1="40" y1="210" x2="420" y2="210" stroke="rgba(176, 149, 107, 0.35)"/>
+              <polygon points="10,110 230,20 450,110" fill="rgba(212, 175, 79, 0.18)" stroke="#d4af4f" stroke-width="2.5"/>
+              <rect x="330" y="0" width="40" height="110" fill="rgba(164, 173, 162, 0.35)" stroke="#a4ada2" stroke-width="2"/>
+              <text x="350" y="-8" text-anchor="middle" fill="#a4ada2" font-family="monospace" font-size="9" font-weight="700">HEARTH</text>
+              <rect x="70" y="140" width="55" height="85" fill="rgba(219, 92, 75, 0.18)" stroke="#db5c4b" stroke-width="2"/>
+              <circle cx="115" cy="182" r="3" fill="#68c0d0"/>
+              <text x="97" y="132" text-anchor="middle" fill="#db5c4b" font-family="monospace" font-size="9" font-weight="700">LOCKABLE DOOR</text>
+              <rect x="160" y="145" width="45" height="45" fill="rgba(104, 192, 208, 0.15)" stroke="#68c0d0" stroke-width="1.5"/>
+              <line x1="182" y1="145" x2="182" y2="190" stroke="#68c0d0"/>
+              <line x1="160" y1="167" x2="205" y2="167" stroke="#68c0d0"/>
+              <rect x="235" y="145" width="45" height="45" fill="rgba(104, 192, 208, 0.15)" stroke="#68c0d0" stroke-width="1.5"/>
+              <line x1="257" y1="145" x2="257" y2="190" stroke="#68c0d0"/>
+              <line x1="235" y1="167" x2="280" y2="167" stroke="#68c0d0"/>
+            </g>
+            <g transform="translate(580, 65)">
+              <rect x="0" y="0" width="310" height="260" rx="6" fill="rgba(17, 21, 26, 0.92)" stroke="rgba(212, 175, 79, 0.4)" stroke-width="1"/>
+              <text x="16" y="24" fill="#d4af4f" font-family="monospace" font-size="11" font-weight="700">KIT CRAFTING (Step 1)</text>
+              <text x="16" y="42" fill="#dedcd6" font-family="monospace" font-size="10">10× Wooden Plank + 50× Nail → Cabin Kit</text>
+              <text x="16" y="70" fill="#68c0d0" font-family="monospace" font-size="11" font-weight="700">CONSTRUCTION ATTACHMENTS (Step 2)</text>
+              <text x="16" y="88" fill="#dedcd6" font-family="monospace" font-size="10">🪵 20× Wooden Log</text>
+              <text x="16" y="104" fill="#dedcd6" font-family="monospace" font-size="10">🪚 100× Wooden Plank (25 logs sawed)</text>
+              <text x="16" y="120" fill="#dedcd6" font-family="monospace" font-size="10">🔩 99× Nail (~2 boxes)</text>
+              <text x="16" y="136" fill="#dedcd6" font-family="monospace" font-size="10">🪨 32× Large Stone (Mined from boulders)</text>
+              <text x="16" y="162" fill="#e05252" font-family="monospace" font-size="11" font-weight="700">⚠️ TOOL WARNING (RuinHammerAfterBuilt=1)</text>
+              <text x="16" y="180" fill="#ff9c8f" font-family="monospace" font-size="9.5">Constructing the cabin RUINS the Hammer!</text>
+              <text x="16" y="206" fill="#62bd7b" font-family="monospace" font-size="11" font-weight="700">SIGNATURE HOMESTEAD FEATURES</text>
+              <text x="16" y="224" fill="#dedcd6" font-family="monospace" font-size="9.5">✓ 8 Openable Shuttered Windows</text>
+              <text x="16" y="238" fill="#dedcd6" font-family="monospace" font-size="9.5">✓ Built-in Stone Fireplace (3-pot cooking)</text>
+              <text x="16" y="252" fill="#dedcd6" font-family="monospace" font-size="9.5">✓ Wall Switch: Ceiling &amp; Party String Lights</text>
+            </g>
+          </svg>
+        </details>
+
+        <details style="margin-bottom:12px;">
+          <summary style="cursor:pointer; font:700 .9rem ui-monospace, monospace; color:var(--text); padding:6px 0;">📐 Blueprint 03: RaG 21-Kit Modular Snap-Grid Construction</summary>
+          <svg class="pbb-schematic" viewBox="0 0 920 370" xmlns="http://www.w3.org/2000/svg">
+            <rect width="920" height="370" fill="#090e13"/>
+            <text x="24" y="32" fill="#62bd7b" font-family="monospace" font-size="12" font-weight="700" letter-spacing="1.5">BLUEPRINT 03 // RaG MODULAR SNAP-GRID ARCHITECTURE (21 KITS / 37 PARTS)</text>
+            <text x="24" y="48" fill="#84909c" font-family="monospace" font-size="10">SOURCE: server/profiles/RaG_Core/Configs/RaG_BaseBuilding/RaG_BaseBuilding.json</text>
+            <g transform="translate(40, 70)">
+              <rect x="0" y="0" width="180" height="60" rx="4" fill="rgba(98, 189, 123, 0.12)" stroke="#62bd7b" stroke-width="1.5"/>
+              <text x="10" y="22" fill="#62bd7b" font-family="monospace" font-size="11" font-weight="700">UNIVERSAL KIT RECIPE</text>
+              <text x="10" y="38" fill="#dedcd6" font-family="monospace" font-size="10">4× Plank + 10× Nail</text>
+              <text x="10" y="52" fill="#84909c" font-family="monospace" font-size="9">Crafts any of the 21 kits or use Book</text>
+              <rect x="220" y="190" width="120" height="35" fill="rgba(212, 175, 79, 0.15)" stroke="#d4af4f" stroke-width="1.5"/>
+              <text x="280" y="212" text-anchor="middle" fill="#d4af4f" font-family="monospace" font-size="10" font-weight="700">FOUNDATION</text>
+              <text x="280" y="240" text-anchor="middle" fill="#84909c" font-family="monospace" font-size="8.5">4L + 15P + 30N</text>
+              <rect x="220" y="70" width="12" height="120" fill="#b0956b" stroke="#d4af4f"/>
+              <text x="220" y="60" fill="#d4af4f" font-family="monospace" font-size="8.5">PILLAR 1L 5P 5N</text>
+              <rect x="232" y="70" width="108" height="120" fill="rgba(222, 220, 214, 0.05)" stroke="#dedcd6" stroke-width="1.5"/>
+              <text x="286" y="130" text-anchor="middle" fill="#dedcd6" font-family="monospace" font-size="10" font-weight="700">SOLID WALL</text>
+              <text x="286" y="145" text-anchor="middle" fill="#84909c" font-family="monospace" font-size="8.5">4L + 10P + 25N</text>
+              <rect x="360" y="70" width="140" height="120" fill="rgba(219, 92, 75, 0.08)" stroke="#db5c4b" stroke-width="1.5"/>
+              <line x1="430" y1="70" x2="430" y2="190" stroke="#db5c4b" stroke-dasharray="3,3"/>
+              <text x="430" y="125" text-anchor="middle" fill="#db5c4b" font-family="monospace" font-size="10" font-weight="700">DOUBLE VEHICLE GATE</text>
+              <text x="430" y="140" text-anchor="middle" fill="#84909c" font-family="monospace" font-size="8.5">2L + 30P + 40N (DigitalCodeLock)</text>
+              <rect x="220" y="45" width="120" height="25" fill="rgba(104, 192, 208, 0.15)" stroke="#68c0d0" stroke-width="1.5"/>
+              <text x="280" y="62" text-anchor="middle" fill="#68c0d0" font-family="monospace" font-size="9" font-weight="700">CEILING HATCH</text>
+              <polygon points="210,45 280,0 350,45" fill="rgba(212, 175, 79, 0.15)" stroke="#d4af4f" stroke-width="1.5"/>
+              <text x="280" y="30" text-anchor="middle" fill="#d4af4f" font-family="monospace" font-size="8.5" font-weight="700">ANGLED ROOF + GABLES</text>
+              <rect x="520" y="110" width="90" height="80" fill="rgba(176, 149, 107, 0.15)" stroke="#b0956b" stroke-width="1.5"/>
+              <polygon points="515,110 565,85 615,110" fill="rgba(176, 149, 107, 0.25)" stroke="#b0956b"/>
+              <text x="565" y="145" text-anchor="middle" fill="#b0956b" font-family="monospace" font-size="9" font-weight="700">WOOD STORAGE</text>
+              <text x="565" y="160" text-anchor="middle" fill="#84909c" font-family="monospace" font-size="8">1L + 15P + 30N</text>
+            </g>
+            <g transform="translate(680, 65)">
+              <rect x="0" y="0" width="220" height="260" rx="6" fill="rgba(17, 21, 26, 0.92)" stroke="rgba(104, 192, 208, 0.3)" stroke-width="1"/>
+              <text x="14" y="24" fill="#68c0d0" font-family="monospace" font-size="11" font-weight="700">LIVE RAG SERVER RULES</text>
+              <text x="14" y="44" fill="#dedcd6" font-family="monospace" font-size="10">Build Timer: <tspan fill="#62bd7b">8.0 seconds</tspan></text>
+              <text x="14" y="60" fill="#dedcd6" font-family="monospace" font-size="10">Dismantle Timer: <tspan fill="#e5b04b">15.0 seconds</tspan></text>
+              <text x="14" y="76" fill="#dedcd6" font-family="monospace" font-size="10">Book Crafting: <tspan fill="#62bd7b">ENABLED</tspan></text>
+              <text x="14" y="92" fill="#dedcd6" font-family="monospace" font-size="10">Hatch Ladder: <tspan fill="#62bd7b">ENABLED</tspan></text>
+              <text x="14" y="120" fill="#d4af4f" font-family="monospace" font-size="11" font-weight="700">SECURITY &amp; LIGHTING</text>
+              <text x="14" y="138" fill="#dedcd6" font-family="monospace" font-size="9.5">✓ DigitalCodeLock: Battery-Free</text>
+              <text x="14" y="152" fill="#dedcd6" font-family="monospace" font-size="9.5">✓ Auto-Lock on Close: ON</text>
+              <text x="14" y="166" fill="#dedcd6" font-family="monospace" font-size="9.5">✓ Base Raiding: DISABLED (PvE)</text>
+              <text x="14" y="180" fill="#dedcd6" font-family="monospace" font-size="9.5">✓ XmasLights Attach: SUPPORTED</text>
+              <text x="14" y="194" fill="#dedcd6" font-family="monospace" font-size="9.5">✓ Gas Lamp Attach: SUPPORTED</text>
+              <text x="14" y="214" fill="#84909c" font-family="monospace" font-size="9">Replaced BBP for clean snap-points.</text>
+            </g>
+          </svg>
+        </details>
+
+        <details style="margin-bottom:12px;">
+          <summary style="cursor:pointer; font:700 .9rem ui-monospace, monospace; color:var(--text); padding:6px 0;">🏰 Blueprint 04: Vanilla Fence, Gate &amp; 3-Story Watchtower</summary>
+          <svg class="pbb-schematic" viewBox="0 0 920 370" xmlns="http://www.w3.org/2000/svg">
+            <rect width="920" height="370" fill="#090e13"/>
+            <text x="24" y="32" fill="#e5b04b" font-family="monospace" font-size="12" font-weight="700" letter-spacing="1.5">BLUEPRINT 04 // VANILLA DAYZ 1.30 FENCE, GATE &amp; 3-STORY WATCHTOWER</text>
+            <text x="24" y="48" fill="#84909c" font-family="monospace" font-size="10">SOURCE: DayZ 1.30 Vanilla Construction Tables &amp; DZDS Mod Loadout</text>
+            <g transform="translate(40, 70)">
+              <line x1="0" y1="230" x2="340" y2="230" stroke="#dedcd6" stroke-width="2"/>
+              <rect x="30" y="70" width="14" height="160" fill="#b0956b" stroke="#d4af4f" stroke-width="1.5"/>
+              <rect x="280" y="70" width="14" height="160" fill="#b0956b" stroke="#d4af4f" stroke-width="1.5"/>
+              <text x="162" y="250" text-anchor="middle" fill="#d4af4f" font-family="monospace" font-size="9">2× LOGS DRIVEN WITH SHOVEL / PICKAXE</text>
+              <rect x="44" y="150" width="236" height="80" fill="rgba(212, 175, 79, 0.12)" stroke="#d4af4f" stroke-width="1.2"/>
+              <rect x="44" y="70" width="236" height="80" fill="rgba(212, 175, 79, 0.12)" stroke="#d4af4f" stroke-width="1.2"/>
+              <text x="162" y="115" text-anchor="middle" fill="#dedcd6" font-family="monospace" font-size="9.5">UPPER: 5 Planks + 10 Nails (Wood) or 3 Metal + 12 Nails</text>
+              <text x="162" y="195" text-anchor="middle" fill="#dedcd6" font-family="monospace" font-size="9.5">LOWER: 5 Planks + 10 Nails (Wood) or 3 Metal + 12 Nails</text>
+              <circle cx="280" cy="90" r="5" fill="#68c0d0"/>
+              <line x1="280" y1="90" x2="310" y2="90" stroke="#68c0d0" stroke-width="1.5"/>
+              <text x="315" y="94" fill="#68c0d0" font-family="monospace" font-size="9">Metal Wire + Pliers = Gate</text>
+            </g>
+            <g transform="translate(480, 50)">
+              <line x1="0" y1="250" x2="400" y2="250" stroke="#dedcd6" stroke-width="2"/>
+              <rect x="40" y="180" width="200" height="70" fill="rgba(104, 192, 208, 0.08)" stroke="#68c0d0" stroke-width="1.5"/>
+              <text x="140" y="220" text-anchor="middle" fill="#68c0d0" font-family="monospace" font-size="10" font-weight="700">LEVEL 1 (4 Logs + 47 Planks + 90 Nails)</text>
+              <line x1="60" y1="250" x2="110" y2="180" stroke="#dedcd6" stroke-width="2"/>
+              <rect x="40" y="110" width="200" height="70" fill="rgba(104, 192, 208, 0.12)" stroke="#68c0d0" stroke-width="1.5"/>
+              <text x="140" y="150" text-anchor="middle" fill="#68c0d0" font-family="monospace" font-size="10" font-weight="700">LEVEL 2 (4 Logs + 47 Planks + 90 Nails)</text>
+              <line x1="60" y1="180" x2="110" y2="110" stroke="#dedcd6" stroke-width="2"/>
+              <rect x="40" y="40" width="200" height="70" fill="rgba(104, 192, 208, 0.16)" stroke="#68c0d0" stroke-width="1.5"/>
+              <text x="140" y="80" text-anchor="middle" fill="#68c0d0" font-family="monospace" font-size="10" font-weight="700">LEVEL 3 (4 Logs + 42 Planks + 82 Nails)</text>
+              <rect x="255" y="40" width="135" height="210" rx="5" fill="rgba(17, 21, 26, 0.92)" stroke="rgba(222, 220, 214, 0.25)"/>
+              <text x="265" y="65" fill="#e5b04b" font-family="monospace" font-size="11" font-weight="700">3-STORY TOTALS</text>
+              <text x="265" y="88" fill="#dedcd6" font-family="monospace" font-size="10">🪵 12× Logs</text>
+              <text x="265" y="108" fill="#dedcd6" font-family="monospace" font-size="10">🪚 136× Planks</text>
+              <text x="265" y="128" fill="#dedcd6" font-family="monospace" font-size="10">🔩 262× Nails</text>
+              <text x="265" y="148" fill="#84909c" font-family="monospace" font-size="9.5">Boxes: ~4 boxes</text>
+              <text x="265" y="172" fill="#68c0d0" font-family="monospace" font-size="9.5">Attachments:</text>
+              <text x="265" y="188" fill="#dedcd6" font-family="monospace" font-size="9">Up to 9× CamoNet</text>
+              <text x="265" y="202" fill="#dedcd6" font-family="monospace" font-size="9">18× Barbed Wire</text>
+            </g>
+          </svg>
+        </details>
+      </div>
+
+      <!-- 6-STAGE HOMESTEAD PROGRESSION ARC -->
+      <div class="card" style="margin-bottom:18px;">
+        <h3 style="color:var(--sand);">Badlands Homestead Progression Arc</h3>
+        <div class="cards" style="margin-top:10px;">
+          <article class="card" style="border-top:3px solid var(--sand);">
+            <h3>Stage 1: Camp &amp; Cache</h3>
+            <p><strong>First 48 Hours:</strong> Pitch an Improvised Stick/Tarp/Leather Shelter (100 slots), build a 16-stone Camp Oven, and bury a Wooden Crate or Leather Sack stash.</p>
+            <p><code>14 days stash · 45 days shelter</code></p>
+          </article>
+          <article class="card" style="border-top:3px solid var(--sand);">
+            <h3>Stage 2: Home on Wheels</h3>
+            <p><strong>Nomad Rig:</strong> Claim an Apocalypse Truck, Semi Truck, or Loaf Van. When parked, cloak the vehicle with a <code>CamoNet</code> via <code>CarCover</code>.</p>
+            <p><code>Persistent while covered</code></p>
+          </article>
+          <article class="card" style="border-top:3px solid var(--sand);">
+            <h3>Stage 3: Canyon Outpost</h3>
+            <p><strong>Modular Shelter:</strong> Craft the RaG Book or combine 4 Planks + 10 Nails into Foundation, Wall, Door, and Roof kits in protected cliff pockets.</p>
+            <p><code>14 days base · 40 days w/ Flag</code></p>
+          </article>
+          <article class="card" style="border-top:3px solid var(--rust);">
+            <h3>Stage 4: The Cabin</h3>
+            <p><strong>Homestead Milestone:</strong> Construct the lockable log Hunting Cabin with 8 shuttered windows, indoor stone fireplace, and wall-switched lights.</p>
+            <p><code>45 days · 100% refund dismantle</code></p>
+          </article>
+          <article class="card" style="border-top:3px solid var(--green);">
+            <h3>Stage 5: Compound &amp; Garage</h3>
+            <p><strong>Workshops &amp; Storage:</strong> Outfit with MMG Gun Walls, 300-slot Supply Crates, Zens Car Workbench, Horse Stables, and non-rotting Garden Plots.</p>
+            <p><code>10–28 days base · Refreshed by Flag</code></p>
+          </article>
+          <article class="card" style="border-top:3px solid var(--sand);">
+            <h3>Stage 6: Settlement Network</h3>
+            <p><strong>Flag &amp; Respawn:</strong> Raise a Territory Flag (60m Immersive Placing radius) to unlock @DZDS Base Respawn and claim a Frontier Settler garrison.</p>
+            <p><code>40-day Flag · Off-screen protected</code></p>
+          </article>
+        </div>
+      </div>
+
+      <!-- RECIPE EXPLORER & CATEGORIES (PURE CSS FILTERING) -->
+      <div style="margin-bottom:12px;">
+        <input type="radio" name="portal-cat" id="pcat-all" checked>
+        <input type="radio" name="portal-cat" id="pcat-vanilla">
+        <input type="radio" name="portal-cat" id="pcat-rag">
+        <input type="radio" name="portal-cat" id="pcat-cabin">
+        <input type="radio" name="portal-cat" id="pcat-mmg">
+        <input type="radio" name="portal-cat" id="pcat-utility">
+        <input type="radio" name="portal-cat" id="pcat-camp">
+
+        <div class="pbb-filters" aria-label="Basebuilding category filter">
+          <label class="pbb-filter-pill" for="pcat-all">All Recipes (36)</label>
+          <label class="pbb-filter-pill" for="pcat-vanilla">Vanilla 1.30 Structures</label>
+          <label class="pbb-filter-pill" for="pcat-rag">RaG Modular (21 Kits)</label>
+          <label class="pbb-filter-pill" for="pcat-cabin">RaG Hunting Cabin</label>
+          <label class="pbb-filter-pill" for="pcat-mmg">MMG Storage &amp; Furniture</label>
+          <label class="pbb-filter-pill" for="pcat-utility">Workbench, Tack &amp; Trophies</label>
+          <label class="pbb-filter-pill" for="pcat-camp">Camp, Farming &amp; CookZ</label>
+        </div>
+
+        <div class="pbb-grid">
+          <!-- VANILLA RECIPES -->
+          <article class="pbb-card" data-cat="vanilla">
+            <div>
+              <h3>Saw Wooden Planks (4×)</h3>
+              <p><code>WoodenPlank</code> · Vanilla DayZ 1.30</p>
+              <div class="pbb-chip-row"><span class="pbb-chip logs">🪵 1× Wooden Log</span></div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Saw Log:</span><span>1× WoodenLog + HandSaw or Hacksaw → 4× WoodenPlank</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Tools:</span><code>HandSaw / Hacksaw / Axe</code></div>
+              <div class="pbb-kv"><span>Lifetime:</span><span>7 days loose pile</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="vanilla">
+            <div>
+              <h3>Improvised Rope</h3>
+              <p><code>Rope</code> · Vanilla DayZ 1.30</p>
+              <div class="pbb-chip-row"><span class="pbb-chip special">🪢 1× Rope</span></div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Rag Method:</span><span>6× Rag + 6× Rag → 1× Rope</span></div>
+                <div class="pbb-stage-row"><span>Guts Method:</span><span>1× Animal Guts + Knife → 1× Rope</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Tools:</span><code>Knife (for Guts)</code></div>
+              <div class="pbb-kv"><span>Use:</span><span>Kits, Bridles, Flag Poles</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="vanilla">
+            <div>
+              <h3>Vanilla Wooden Fence (Full Wall + Platform)</h3>
+              <p><code>FenceKit -&gt; Fence</code> · Vanilla DayZ 1.30</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 2 Logs</span>
+                <span class="pbb-chip planks">🪚 14 Planks</span>
+                <span class="pbb-chip nails">🔩 28 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Fence Kit:</span><span>2 Sticks + 1 Rope</span></div>
+                <div class="pbb-stage-row"><span>Base Posts:</span><span>2 Wooden Logs (Shovel/Pickaxe)</span></div>
+                <div class="pbb-stage-row"><span>Frames:</span><span>4 Planks + 8 Nails (Lower &amp; Upper)</span></div>
+                <div class="pbb-stage-row"><span>Panels:</span><span>10 Planks + 20 Nails (Lower &amp; Upper)</span></div>
+                <div class="pbb-stage-row"><span>Platform:</span><span>5 Planks + 15 Nails</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Tools:</span><code>Shovel / Pickaxe, Hammer / Hatchet</code></div>
+              <div class="pbb-kv"><span>Lifetime:</span><span>45 days</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="vanilla">
+            <div>
+              <h3>Vanilla Sheet Metal Gate (Lockable)</h3>
+              <p><code>FenceKit -&gt; Fence (Gate)</code> · Vanilla DayZ 1.30</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 2 Logs</span>
+                <span class="pbb-chip planks">🪚 4 Planks</span>
+                <span class="pbb-chip metal">🛡️ 6 Metal</span>
+                <span class="pbb-chip nails">🔩 32 Nails</span>
+                <span class="pbb-chip special">🔌 1 Wire</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Gate Conversion:</span><span>Attach 1× MetalWire to built Fence frames + crimp with Pliers</span></div>
+                <div class="pbb-stage-row"><span>Security:</span><span>Accepts DigitalCodeLock, 4-dial or 3-dial locks</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Tools:</span><code>Pliers (Wire Hinge), Hammer, Shovel</code></div>
+              <div class="pbb-kv"><span>Lifetime:</span><span>45 days</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="vanilla">
+            <div>
+              <h3>Vanilla Watchtower (Full 3-Story Wood Tower)</h3>
+              <p><code>WatchtowerKit -&gt; Watchtower (L1-L3)</code> · Vanilla DayZ 1.30</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 12 Logs</span>
+                <span class="pbb-chip planks">🪚 136 Planks</span>
+                <span class="pbb-chip nails">🔩 262 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Level 1:</span><span>4 Logs + 47 Planks + 90 Nails</span></div>
+                <div class="pbb-stage-row"><span>Level 2:</span><span>4 Logs + 47 Planks + 90 Nails</span></div>
+                <div class="pbb-stage-row"><span>Level 3:</span><span>4 Logs + 42 Planks + 82 Nails</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Tools:</span><code>Shovel/Pickaxe (L1), Hammer (L2/L3)</code></div>
+              <div class="pbb-kv"><span>Lifetime:</span><span>45 days · 9 CamoNets / 18 BarbedWire</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="vanilla">
+            <div>
+              <h3>Territory Flag Pole (@DZDS Base Respawn)</h3>
+              <p><code>TerritoryFlagKit -&gt; TerritoryFlag</code> · Vanilla + @DZDS</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 10 Logs</span>
+                <span class="pbb-chip stones">🪨 32 Stones</span>
+                <span class="pbb-chip nails">🔩 60 Nails</span>
+                <span class="pbb-chip special">🔌 1 Wire</span>
+                <span class="pbb-chip special">🪢 2 Rope</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Stage 1 Base:</span><span>1× Wooden Log (Sledge/Pickaxe)</span></div>
+                <div class="pbb-stage-row"><span>Stage 2 Support:</span><span>32× Stone + 6× Log (Shovel/Pickaxe)</span></div>
+                <div class="pbb-stage-row"><span>Stage 3 Mast:</span><span>3× Log + 60× Nail + 1× Wire + 1× Rope + Flag_*</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Radius:</span><span>60 m (Immersive Placing)</span></div>
+              <div class="pbb-kv"><span>Respawn:</span><span>Wakes player at home on death (DZDSBases.c)</span></div>
+            </div>
+          </article>
+
+          <!-- RaG MODULAR BUILDING RECIPES -->
+          <article class="pbb-card" data-cat="rag_modular">
+            <div>
+              <h3>RaG Basebuilding Book &amp; Universal Kit</h3>
+              <p><code>RaG_BB_Book</code> · RaG_BaseBuilding (@3157695626)</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip planks">🪚 4 Planks</span>
+                <span class="pbb-chip nails">🔩 10 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Kit Crafting:</span><span>4 Planks + 10 Nails crafts any of the 21 kits</span></div>
+                <div class="pbb-stage-row"><span>Book Manual:</span><span>Find RaG_BB_Book in farm/hunting areas</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Timers:</span><span>Build 8s · Dismantle 15s</span></div>
+              <div class="pbb-kv"><span>Features:</span><span>XmasLights, Gas Lamps, DigitalCodeLock</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="rag_modular">
+            <div>
+              <h3>RaG Modular Foundation</h3>
+              <p><code>RaG_BB_FoundationKit</code> · RaG_BaseBuilding</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 4 Logs</span>
+                <span class="pbb-chip planks">🪚 19 Planks</span>
+                <span class="pbb-chip nails">🔩 40 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Kit:</span><span>4 Planks + 10 Nails</span></div>
+                <div class="pbb-stage-row"><span>Foundation:</span><span>4 Logs + 15 Planks + 30 Nails</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Tools:</span><code>Hammer / Hatchet</code></div>
+              <div class="pbb-kv"><span>Use:</span><span>Levels base on steep canyon slopes</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="rag_modular">
+            <div>
+              <h3>RaG Modular Wall &amp; Low Wall</h3>
+              <p><code>RaG_BB_WallKit / Low_WallKit</code> · RaG_BaseBuilding</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 2–4 Logs</span>
+                <span class="pbb-chip planks">🪚 9–14 Planks</span>
+                <span class="pbb-chip nails">🔩 25–35 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Solid Wall:</span><span>4 Logs + 10 Planks + 25 Nails</span></div>
+                <div class="pbb-stage-row"><span>Low Parapet:</span><span>2 Logs + 5 Planks + 15 Nails</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Tools:</span><code>Hammer / Hatchet</code></div>
+              <div class="pbb-kv"><span>Lifetime:</span><span>14 days base (40d w/ Flag)</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="rag_modular">
+            <div>
+              <h3>RaG Modular Door (Wood &amp; Metal)</h3>
+              <p><code>RaG_BB_DoorKit</code> · RaG_BaseBuilding</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 4 Logs</span>
+                <span class="pbb-chip planks">🪚 14–19 Planks</span>
+                <span class="pbb-chip metal">🛡️ 0–5 Metal</span>
+                <span class="pbb-chip nails">🔩 35 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Door Frame:</span><span>4 Logs + 10 Planks + 20 Nails</span></div>
+                <div class="pbb-stage-row"><span>Wood Door:</span><span>5 Planks + 5 Nails</span></div>
+                <div class="pbb-stage-row"><span>Metal Door:</span><span>5 Metal Sheets + 5 Nails</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Lock:</span><span>DigitalCodeLock (AutoLockOnClose=1)</span></div>
+              <div class="pbb-kv"><span>Tools:</span><code>Hammer / Hatchet</code></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="rag_modular">
+            <div>
+              <h3>RaG Double Vehicle Gate</h3>
+              <p><code>RaG_BB_GateKit</code> · RaG_BaseBuilding</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 2 Logs</span>
+                <span class="pbb-chip planks">🪚 34 Planks</span>
+                <span class="pbb-chip nails">🔩 50 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Gate Frame:</span><span>2 Logs + 10 Planks + 20 Nails</span></div>
+                <div class="pbb-stage-row"><span>Left &amp; Right Doors:</span><span>10 Planks + 10 Nails each</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Clearance:</span><span>Fits Apocalypse Truck &amp; Semi</span></div>
+              <div class="pbb-kv"><span>Security:</span><span>DigitalCodeLock / CombinationLock</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="rag_modular">
+            <div>
+              <h3>RaG Roof, Ceiling Hatch &amp; Storage Shed</h3>
+              <p><code>RoofKit / Floor_HatchKit / WoodStorageKit</code></p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 1–4 Logs</span>
+                <span class="pbb-chip planks">🪚 19–29 Planks</span>
+                <span class="pbb-chip nails">🔩 40–45 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Angled Roof:</span><span>4 Logs + 15 Planks + 25 Nails (+ Gables)</span></div>
+                <div class="pbb-stage-row"><span>Hatch + Stairs:</span><span>4 Logs + 20 Planks + 40 Nails (or Ladder)</span></div>
+                <div class="pbb-stage-row"><span>Wood Shed:</span><span>1 Log + 15 Planks + 30 Nails</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Features:</span><span>Ladder support enabled (EnableBuildHatchLadder=1)</span></div>
+              <div class="pbb-kv"><span>Tools:</span><code>Hammer / Hatchet</code></div>
+            </div>
+          </article>
+
+          <!-- RaG HUNTING CABIN -->
+          <article class="pbb-card" data-cat="cabin" style="border:1px solid var(--rust);">
+            <div>
+              <h3 style="color:var(--rust);">RaG Hunting Cabin (Complete Homestead)</h3>
+              <p><code>rag_hunting_cabin_kit -&gt; rag_hunting_cabin</code></p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip logs">🪵 20 Logs</span>
+                <span class="pbb-chip planks">🪚 110 Planks</span>
+                <span class="pbb-chip nails">🔩 149 Nails</span>
+                <span class="pbb-chip stones">🪨 32 Stones</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>1. Cabin Kit:</span><span>10 Planks + 50 Nails</span></div>
+                <div class="pbb-stage-row"><span>2. Structure:</span><span>20 Logs + 100 Planks + 99 Nails + 32 Stones</span></div>
+                <div class="pbb-stage-row"><span>3. Build Tool:</span><span>Hammer (RUINED on completion!)</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Windows:</span><span>8 Openable Shuttered Windows</span></div>
+              <div class="pbb-kv"><span>Hearth:</span><span>Built-in Stone Fireplace (cooking/heating)</span></div>
+              <div class="pbb-kv"><span>Lighting:</span><span>Wall Switch: Ceiling &amp; Party Lights</span></div>
+              <div class="pbb-kv"><span>Refund:</span><span>100% material &amp; kit refund on dismantle</span></div>
+            </div>
+          </article>
+
+          <!-- MMG BASE STORAGE -->
+          <article class="pbb-card" data-cat="mmg_storage">
+            <div>
+              <h3>MMG Craftable Supply Crate (300 Slots)</h3>
+              <p><code>mmg_supplycrate_level1</code> · MMG Base Storage</p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip planks">🪚 10 Planks</span>
+                <span class="pbb-chip nails">🔩 90 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Step 1:</span><span>10 Planks + 40 Nails → Unfinished Crate</span></div>
+                <div class="pbb-stage-row"><span>Step 2:</span><span>Unfinished Crate + 50 Nails → Finished Crate</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Slots:</span><span>300 cargo slots</span></div>
+              <div class="pbb-kv"><span>Attachments:</span><span>Dedicated logs, planks, nails, metal mounts</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="mmg_storage">
+            <div>
+              <h3>MMG Craftable Gun Walls &amp; Gun Rack</h3>
+              <p><code>mmg_gun_wall_wooden / metal / mmg_craftable_gun_rack</code></p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip planks">🪚 10 Planks</span>
+                <span class="pbb-chip metal">🛡️ 5 Metal</span>
+                <span class="pbb-chip nails">🔩 40–45 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Wood Gun Wall:</span><span>10 Planks + 40 Nails (8 Guns + 40 slots)</span></div>
+                <div class="pbb-stage-row"><span>Metal Gun Wall:</span><span>5 Metal + 40 Nails (8 Guns + 40 slots)</span></div>
+                <div class="pbb-stage-row"><span>Gun Rack:</span><span>10 Planks + HandSaw + 45 Nails (6 Guns)</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Dismantle:</span><code>Screwdriver (re-packs into kit)</code></div>
+              <div class="pbb-kv"><span>Lifetime:</span><span>10 days base (40d w/ Flag)</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="mmg_storage">
+            <div>
+              <h3>MMG Furniture &amp; Deployable Lockers</h3>
+              <p><code>mmg_old_table / mmg_wall_shelf / mmg_equipment_locker_*</code></p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip planks">🪚 5 Planks</span>
+                <span class="pbb-chip nails">🔩 45–50 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Old Table:</span><span>5 Planks + 45 Nails (Holds Axe, Sledge, Shovel, 2 Guns)</span></div>
+                <div class="pbb-stage-row"><span>Wall Shelf:</span><span>5 Planks + 50 Nails (2 Guns, 4 Grenades, 1 Pistol)</span></div>
+                <div class="pbb-stage-row"><span>Lockers:</span><span>Found kits (Equipment, TA50, Solo, Safes, Crates)</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Security:</span><span>Lockers accept DigitalCodeLock</span></div>
+              <div class="pbb-kv"><span>Tools:</span><code>Screwdriver to deploy/repack</code></div>
+            </div>
+          </article>
+
+          <!-- UTILITY, TACK & TROPHIES -->
+          <article class="pbb-card" data-cat="utility_tack">
+            <div>
+              <h3>Zens Static Car Workbench (Garage Station)</h3>
+              <p><code>Zen_CarWorkbenchKit -&gt; Zen_CarWorkbench</code></p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip metal">🛡️ 5 Metal</span>
+                <span class="pbb-chip nails">🔩 60 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Workbench Kit:</span><span>60 Nails + 5 Metal Sheets</span></div>
+                <div class="pbb-stage-row"><span>Garage Mounts:</span><span>17 tool &amp; part mounts up to 4 each (Batteries, Radiators, Spark/Glow Plugs, Gasoline, Blowtorch)</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Dismantle:</span><code>Screwdriver (returns kit)</code></div>
+              <div class="pbb-kv"><span>Lifetime:</span><span>28 days persistent</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="utility_tack">
+            <div>
+              <h3>CarCover Vehicle Cloak</h3>
+              <p><code>CarCover</code> · CamoNet Vehicle Wrap</p>
+              <div class="pbb-chip-row"><span class="pbb-chip special">🕸️ 1× CamoNet</span></div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Cover Vehicle:</span><span>Hold CamoNet in hands, look at parked car/truck/heli, hold Cover Vehicle</span></div>
+                <div class="pbb-stage-row"><span>Uncover:</span><span>Interact to uncover → returns CamoNet</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Protection:</span><span>Hides vehicles in canyons &amp; prevents physics drift</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="utility_tack">
+            <div>
+              <h3>Horse Tack &amp; Deployable Stables</h3>
+              <p><code>Horse Expansion + DayZ Horse</code></p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip special">🦌 4–8 Leather</span>
+                <span class="pbb-chip special">🪢 1 Rope</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Horse Saddle:</span><span>8× TannedLeather + LeatherSewingKit</span></div>
+                <div class="pbb-stage-row"><span>Horse Bridle:</span><span>4× TannedLeather + 1× Rope</span></div>
+                <div class="pbb-stage-row"><span>Stable:</span><span>Deploy Stable_dayz_kit (45 days)</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Companions:</span><span>Dog Sheds (dog_shed_small / big) persist 45 days</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="utility_tack">
+            <div>
+              <h3>Doc's Animals Trophies &amp; Skin Rugs</h3>
+              <p><code>Doc's Animals (@2886393751)</code></p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip planks">🪚 2 Planks</span>
+                <span class="pbb-chip nails">🔩 4 Nails</span>
+                <span class="pbb-chip special">🦌 Animal Head / Fish</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Mount Plaque:</span><span>2 Planks + 4 Nails → Mount</span></div>
+                <div class="pbb-stage-row"><span>18 Trophies:</span><span>Mount + Bear, Wolf, Deer, Boar, Bull, Fish, etc.</span></div>
+                <div class="pbb-stage-row"><span>9 Rugs:</span><span>BearSkinRug, WolfSkinRug, DeerSkinRug from pelts</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Lifetime:</span><span>45 days (3,888,000 s)</span></div>
+              <div class="pbb-kv"><span>Decor:</span><span>Mounts on cabin walls, rugs on floor</span></div>
+            </div>
+          </article>
+
+          <!-- CAMP, FARMING & COOKZ -->
+          <article class="pbb-card" data-cat="camp">
+            <div>
+              <h3>Improvised Shelters &amp; Wooden Crates</h3>
+              <p><code>ShelterStick / Tarp / Leather / WoodenCrate</code></p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip special">🌿 54 Sticks</span>
+                <span class="pbb-chip special">🎋 4 Long Sticks</span>
+                <span class="pbb-chip planks">🪚 8 Planks</span>
+                <span class="pbb-chip nails">🔩 16 Nails</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Stick Shelter:</span><span>4 Long Sticks + 50 Sticks (100 slots, natural camo)</span></div>
+                <div class="pbb-stage-row"><span>Wooden Crate:</span><span>8 Planks + 16 Nails (50 slots, buriable stash)</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Buried Stash:</span><span>14 days lifetime with Shovel/Pickaxe</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="camp">
+            <div>
+              <h3>BetterHarvest Non-Rotting Garden Plots</h3>
+              <p><code>GardenPlot</code> · BetterHarvest Config Active</p>
+              <div class="pbb-chip-row"><span class="pbb-chip special">🌱 9 Plant Slots</span></div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Zucchini:</span><span>22m 30s (2 base / 5 fertilized, 8 seeds)</span></div>
+                <div class="pbb-stage-row"><span>Tomato:</span><span>27m 30s (2 base / 5 fertilized, 8 seeds)</span></div>
+                <div class="pbb-stage-row"><span>Cannabis:</span><span>30m 00s (3 base / 6 fertilized)</span></div>
+                <div class="pbb-stage-row"><span>Bell Pepper:</span><span>37m 30s (2 base / 5 fertilized, 12 seeds)</span></div>
+                <div class="pbb-stage-row"><span>Pumpkin:</span><span>47m 30s (2 base / 4 fertilized, 12 seeds)</span></div>
+                <div class="pbb-stage-row"><span>Potato:</span><span>47m 30s (2 base / 5 fertilized)</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Rule:</span><span style="color:var(--green); font-weight:700;">allowPlantSpoilage = 0 (crops NEVER rot on the vine!)</span></div>
+            </div>
+          </article>
+
+          <article class="pbb-card" data-cat="camp">
+            <div>
+              <h3>CookZ Canning, Non-Decaying Cheese &amp; Sausages</h3>
+              <p><code>CookZ (@3302732231)</code></p>
+              <div class="pbb-chip-row">
+                <span class="pbb-chip metal">🛡️ 1 Metal (10 cans)</span>
+                <span class="pbb-chip special">📄 2 Paper (Cookbook)</span>
+              </div>
+              <div class="pbb-stages">
+                <div class="pbb-stage-row"><span>Cookbook:</span><span>2× Paper → Hold in hands to browse all dishes</span></div>
+                <div class="pbb-stage-row"><span>10× Empty Cans:</span><span>1× Metal Sheet + Hacksaw</span></div>
+                <div class="pbb-stage-row"><span>Makeshift Cheese:</span><span>2× Lard + 2× Powdered Milk (NEVER spoils!)</span></div>
+                <div class="pbb-stage-row"><span>Sausages:</span><span>1× Guts + 1× Steak Meat in Pot (NEVER spoils!)</span></div>
+                <div class="pbb-stage-row"><span>Canned Rations:</span><span>Tactical Bacon, Goulash, Mystery Meat sealed in cans</span></div>
+              </div>
+            </div>
+            <div>
+              <div class="pbb-kv"><span>Purge:</span><span>100% Salmonella / Brain / Heavy Metal purged</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- PRUNED & REPLACED MODS REFERENCE TABLE -->
+      <div class="card" style="margin-top:16px;">
+        <h3 style="color:var(--rust);">Pruned &amp; Disabled Mods Reference Guide</h3>
+        <p style="color:var(--muted); font-size:.9rem; margin-bottom:8px;">To prevent confusion with other community servers, the following mods were intentionally pruned or replaced on Ad Aspera:</p>
+        <div style="overflow-x:auto;">
+          <table class="pbb-table">
+            <thead>
+              <tr>
+                <th>Pruned Mod</th>
+                <th>Active Server Replacement</th>
+                <th>Why It Was Replaced</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:#e05252; font-weight:700;">BaseBuildingPlus (BBP)</td>
+                <td style="color:var(--green); font-weight:600;">RaG_BaseBuilding + RaG_Hunting_Cabin</td>
+                <td>Clean snap-grid system (21 kits, 37 parts, 4 Planks + 10 Nails per kit) and signature lockable log Hunting Cabin.</td>
+              </tr>
+              <tr>
+                <td style="color:#e05252; font-weight:700;">BuildAnywhere_v3</td>
+                <td style="color:var(--green); font-weight:600;">Immersive Placing Update + cfggameplay.json</td>
+                <td>BuildAnywhere caused a 1.30.164200 script decode crash; Immersive Placing provides slope placing and 60m flag lifetime boost.</td>
+              </tr>
+              <tr>
+                <td style="color:#e05252; font-weight:700;">Code Lock (legacy)</td>
+                <td style="color:var(--green); font-weight:600;">Vanilla 1.30 DigitalCodeLock + RaG DigitalCodeLock</td>
+                <td>DayZ 1.30 native DigitalCodeLock plus RaG auto-locking, battery-free DigitalCodeLock on all gates and lockers.</td>
+              </tr>
+              <tr>
+                <td style="color:#e05252; font-weight:700;">MuchStuffPack (MSP)</td>
+                <td style="color:var(--green); font-weight:600;">MMG Base Storage</td>
+                <td>Eliminates duplicate item bloat while retaining 7 craftable storage items and 15+ screwdriver-repackable lockers.</td>
+              </tr>
+              <tr>
+                <td style="color:#e05252; font-weight:700;">Leather Crafting (legacy)</td>
+                <td style="color:var(--green); font-weight:600;">Vanilla CraftLeatherBelt + Horse Expansion</td>
+                <td>1.30 native CraftLeatherBelt plus Horse Expansion craftable Saddles (8 Leather) and Bridles (4 Leather).</td>
+              </tr>
+              <tr>
+                <td style="color:#e05252; font-weight:700;">Simple Ammo Crafting</td>
+                <td style="color:var(--green); font-weight:600;">Faction Barter Traders</td>
+                <td>Disabled by design: ammunition is the primary hard barter currency across Ad Aspera's 5 factions.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
     <section id="install" aria-labelledby="install-title">
       <div class="section-heading">
         <h2 id="install-title">Install &amp; run the app (PWA &amp; off-LAN links)</h2>
@@ -276,7 +1211,7 @@
         <article class="card">
           <h3><span class="step">A</span>Install on desktop (Linux, Windows, macOS)</h3>
           <ul>
-            <li><strong>Chrome / Edge / Brave / Vivaldi:</strong> open the <a href="/?view=5">Command Center App &amp; Share tab</a> and click <strong>Install App</strong>, or click the install icon (<code>⊕</code>) in the browser address bar.</li>
+            <li><strong>Chrome / Edge / Brave / Vivaldi:</strong> open the <a href="/?view=6">Command Center App &amp; Share tab</a> and click <strong>Install App</strong>, or click the install icon (<code>⊕</code>) in the browser address bar. You can also plan compounds in the <a href="/?view=5">Interactive Basebuilding Planner</a>.</li>
             <li><strong>Firefox Desktop:</strong> the Service Worker caches the map and guide offline automatically; use <em>PWAsForFirefox</em> or your system WebApp Manager for a dedicated window.</li>
           </ul>
         </article>
@@ -296,7 +1231,7 @@
         </article>
         <article class="card">
           <h3><span class="step">D</span>Off-LAN share links &amp; personal preferences</h3>
-          <p>Players outside the host's LAN can connect using an invite link (<code>/?share=...</code>) created in the <a href="/?view=5">App &amp; Share studio</a> or open a portable single-file snapshot.</p>
+          <p>Players outside the host's LAN can connect using an invite link (<code>/?share=...</code>) created in the <a href="/?view=6">App &amp; Share studio</a> or open a portable single-file snapshot.</p>
           <div class="callout"><strong>Persistent per-player settings:</strong> each visitor gets an isolated profile with their own callsign, theme, map layers, pinned strongholds, custom waypoints, and site field notes saved across sessions.</div>
         </article>
       </div>

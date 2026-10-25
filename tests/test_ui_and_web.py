@@ -172,6 +172,15 @@ def test_web_api_endpoints_and_live_http_roundtrip():
         payload = json.loads(resp2.read().decode("utf-8"))
         assert resp2.status == 200
         assert payload["active_map"] == "nasdara"
+        assert "basebuilding" in payload
+        assert payload["basebuilding"]["server_rules"]["flag_radius_m"] == 60
+
+        conn.request("GET", "/api/basebuilding")
+        resp_bb = conn.getresponse()
+        payload_bb = json.loads(resp_bb.read().decode("utf-8"))
+        assert resp_bb.status == 200
+        assert len(payload_bb["recipes"]) >= 25
+        assert "rag_part_costs" in payload_bb
         conn.close()
 
         conn.request("GET", "/portal/")
@@ -181,6 +190,144 @@ def test_web_api_endpoints_and_live_http_roundtrip():
     finally:
         srv.shutdown()
         srv.server_close()
+
+
+def test_basebuilding_guide_api_and_server_configs():
+    """Verify /api/basebuilding returns complete, accurate data matching live server configs."""
+    code, guide = web.handle_api("GET", "/api/basebuilding", {}, {})
+    assert code == 200
+
+    # 1. Server Rules
+    rules = guide["server_rules"]
+    assert rules["flag_radius_m"] == 60
+    assert rules["unflagged_placed_hours"] == 24
+    assert rules["flagged_placed_days"] == 7
+    assert rules["flag_refresh_days"] == 40
+    assert rules["rag_kit_planks"] == 4
+    assert rules["rag_kit_nails"] == 10
+    assert rules["rag_build_time_s"] == 8.0
+    assert rules["rag_dismantle_time_s"] == 15.0
+    assert rules["cabin_ruin_hammer"] is True
+    assert rules["cabin_refund_materials"] is True
+    assert rules["crop_spoilage_enabled"] is False
+    assert rules["cookz_cheese_decay"] is False
+    assert rules["cookz_sausage_decay"] is False
+
+    # 2. 6-Stage Progression Arc
+    prog = guide["progression"]
+    assert len(prog) == 6
+    assert [p["stage"] for p in prog] == [1, 2, 3, 4, 5, 6]
+    assert any("Shelter" in p["title"] or "Camp" in p["title"] for p in prog)
+    assert any("Cabin" in p["title"] for p in prog)
+    assert any("Flag" in p["summary"] or "Respawn" in p["title"] for p in prog)
+
+    # 3. Recipes catalog across all categories
+    recipes = guide["recipes"]
+    assert len(recipes) >= 25
+    categories = {r["category"] for r in recipes}
+    assert {"vanilla", "rag_modular", "cabin", "mmg_storage", "utility_tack", "camp"}.issubset(categories)
+
+    # Check key specific recipes and material structures
+    by_id = {r["id"]: r for r in recipes}
+    assert "van_fence_wood" in by_id
+    assert "van_gate_metal" in by_id
+    assert "van_watchtower_3lvl" in by_id
+    assert "van_territory_flag" in by_id
+    assert "rag_hunting_cabin_full" in by_id
+    assert "rag_bb_foundation" in by_id
+    assert "rag_bb_gate_double" in by_id
+    assert "mmg_supply_crate" in by_id
+    assert "zen_car_workbench" in by_id
+    assert "farming_betterharvest" in by_id
+    assert "cookz_kitchen" in by_id
+
+    # RaG Hunting Cabin material verification
+    cabin = by_id["rag_hunting_cabin_full"]
+    assert cabin["materials"]["logs"] == 20
+    assert cabin["materials"]["planks"] == 110  # 10 kit + 100 structure
+    assert cabin["materials"]["nails"] == 149   # 50 kit + 99 structure
+    assert cabin["materials"]["stones"] == 32
+
+    # Zens Car Workbench material verification
+    wb = by_id["zen_car_workbench"]
+    assert wb["materials"]["nails"] == 60
+    assert wb["materials"]["metal"] == 5
+
+    # 4. RaG 37 Structural Parts table
+    part_costs = guide["rag_part_costs"]
+    assert len(part_costs) == 37
+    assert "Foundation" in part_costs
+    assert "Wall" in part_costs
+    assert "DoorFrame" in part_costs
+    assert "Door" in part_costs
+    assert "MetalDoor" in part_costs
+    assert "GateFrame" in part_costs
+    assert "GateDoorLeft" in part_costs
+    assert "GateDoorRight" in part_costs
+    assert "AngledRoof" in part_costs
+    assert "AngledRoofEndLeft" in part_costs
+    assert "AngledRoofEndRight" in part_costs
+    assert "HatchFrame" in part_costs
+    assert "HatchDoor" in part_costs
+    assert "HatchStaircase" in part_costs
+    assert "HatchLadder" in part_costs
+    assert "WoodStorageFloor" in part_costs
+
+    # 5. Pruned and replaced mods
+    pruned = guide["pruned_replacements"]
+    pruned_names = [p["pruned_mod"] for p in pruned]
+    assert any("BaseBuildingPlus" in p for p in pruned_names)
+    assert any("BuildAnywhere" in p for p in pruned_names)
+    assert any("Code Lock" in p for p in pruned_names)
+    assert any("MuchStuffPack" in p for p in pruned_names)
+    assert any("Leather Crafting" in p for p in pruned_names)
+    assert any("Simple Ammo Crafting" in p for p in pruned_names)
+
+
+def test_basebuilding_ui_surfaces_and_blueprints():
+    """Verify both web_ui.html (Command Center PWA) and player_portal.html render the basebuilding guide."""
+    # Surface 1: web_ui.html
+    ui_html = web.UI_HTML_PATH.read_text(encoding="utf-8")
+    assert 'id="view-5"' in ui_html
+    assert 'id="nav-tab-build"' in ui_html
+    assert "Basebuilding &amp; Homesteading Field Manual" in ui_html
+    assert "ARCHITECTURAL BLUEPRINT STUDIO" in ui_html
+    assert "COMPOUND BILL-OF-MATERIALS (BOM) PLANNER &amp; CALCULATOR" in ui_html
+    assert "RECIPE CATALOG" in ui_html
+    assert "getBlueprintSvg" in ui_html
+    assert "BLUEPRINT 01 // TERRITORY FLAG POLE" in ui_html
+    assert "BLUEPRINT 02 // RaG HUNTING CABIN" in ui_html
+    assert "BLUEPRINT 03 // RaG MODULAR SNAP-GRID" in ui_html
+    assert "BLUEPRINT 04 // VANILLA DAYZ 1.30 FENCE" in ui_html
+    assert "renderBasebuildingView" in ui_html
+    assert "updateBomQuantity" in ui_html
+    assert "setBomPreset" in ui_html
+
+    # Surface 2: player_portal.html (Survivor's Guide)
+    portal_html = web.PLAYER_PORTAL_HTML_PATH.read_text(encoding="utf-8")
+    assert 'id="basebuilding"' in portal_html
+    assert '<a href="#basebuilding">Basebuilding</a>' in portal_html
+    assert "Basebuilding &amp; Homesteading Field Manual" in portal_html
+    assert "BLUEPRINT 01 // TERRITORY FLAG POLE" in portal_html
+    assert "BLUEPRINT 02 // RaG HUNTING CABIN" in portal_html
+    assert "BLUEPRINT 03 // RaG MODULAR SNAP-GRID" in portal_html
+    assert "BLUEPRINT 04 // VANILLA DAYZ 1.30 FENCE" in portal_html
+    assert 'id="pcat-vanilla"' in portal_html
+    assert 'id="pcat-rag"' in portal_html
+    assert 'id="pcat-cabin"' in portal_html
+    assert 'id="pcat-mmg"' in portal_html
+    assert 'id="pcat-utility"' in portal_html
+    assert 'id="pcat-camp"' in portal_html
+    assert "RaG Hunting Cabin (Complete Homestead)" in portal_html
+    assert "Zens Static Car Workbench (Garage Station)" in portal_html
+    assert "BetterHarvest Non-Rotting Garden Plots" in portal_html
+    assert "CookZ Canning, Non-Decaying Cheese &amp; Sausages" in portal_html
+    assert "BaseBuildingPlus (BBP)" in portal_html
+
+    # Strict Portal Constraints must remain completely unbroken
+    assert "/api/" not in portal_html
+    assert "simulateTurn" not in portal_html
+    assert "<script" not in portal_html
 
 
 def test_refactored_yaml_cache_and_load_or_new_cross_map(tmp_path):
