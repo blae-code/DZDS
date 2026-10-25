@@ -251,6 +251,19 @@ prints the live count. Since the launch:
   `zenmodcore.pbo`). `/@3702420204` was renamed to `/@3702420204.old-20261023` over SFTP (Blae
   approved), and the restart re-downloaded it. Drift 66/66 OK. The 02:00 boot shows 0 `SCRIPT (E)`,
   0 decode errors, and World layer started. Delete the `.old-20261023` folder once a client joins.
+- 2026-10-24: review found three live bugs, fixed in the repo but **not live yet**.
+  (1) `adm.py` read `pos=<x, y, z>`; DayZ writes `<x, z, altitude>`, so every parsed position
+  (GM digest, ledger site pressure, encounter audit) was wrong. (2) AI War Zones turns any faction
+  it doesn't know into West: both teams of both zones were West. `zone_events` now writes the
+  built-in interim factions; @DZDS `DZDSWarZones.c` maps ours and floors War Zones spawns, which
+  were in mid-air (teams fell and looped unconscious: `make encounter-audit` lists STUCK AI).
+  (3) The 10-21 game update replaced `db/types.xml`, wiping the arrival-car lifetime fix
+  (vanilla `lifetime 3` live); `make economy` adopted the new vanilla and re-applies it.
+  To go live: `make cycle` (pushes only content-changed files) and a restart; then build @DZDS,
+  boot it locally (compile check), Blae publishes, the panel re-downloads `/@3815870621`, and
+  set `presets/zone_events.yaml faction_names: custom`. That publish also brings the radio
+  bulletin (`DZDSBulletin.c` postdates the live build). The GM now uses LM Studio's loaded gear
+  (Gemma 4 E4B on POD) instead of the retired Ollama; the dashboard is loopback + token only.
 
 *Everything below in this section is the Chernarus+ history (2026-10-07 → 10-12). Its
 lessons (panel trap, RCON, DZGUI, crash watch) still apply. Its mod counts and map don't.*
