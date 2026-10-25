@@ -4,6 +4,8 @@
 name: chernarusplus
 mission: dayzOffline.chernarusplus
 bounds: [0, 0, 15360, 15360]   # xmin, zmin, xmax, zmax
+zone_radius_m: 400
+zone_radius: {}
 locations:
   Chernogorsk:        [6700, 2500]
   Elektrozavodsk:     [10400, 2200]

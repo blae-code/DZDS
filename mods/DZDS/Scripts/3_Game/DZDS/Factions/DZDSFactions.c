@@ -26,7 +26,7 @@ class eAIFactionDZDSSettlers : eAIFaction
 {
 	void eAIFactionDZDSSettlers()
 	{
-		m_Loadout = "DZDS_Settler";
+		m_Loadout = "DZDS_Settlers";
 	}
 
 	override string GetDisplayName()
@@ -53,7 +53,7 @@ class eAIFactionDZDSPeacekeepers : eAIFaction
 {
 	void eAIFactionDZDSPeacekeepers()
 	{
-		m_Loadout = "DZDS_Peacekeeper";
+		m_Loadout = "DZDS_Peacekeepers";
 		m_IsGuard = true;
 	}
 
@@ -81,7 +81,7 @@ class eAIFactionDZDSJackals : eAIFaction
 {
 	void eAIFactionDZDSJackals()
 	{
-		m_Loadout = "DZDS_Jackal";
+		m_Loadout = "DZDS_Jackals";
 	}
 
 	override string GetDisplayName()

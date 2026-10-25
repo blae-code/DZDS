@@ -45,6 +45,15 @@ def arrival_items(preset: dict, vanilla: set[str], arrival_cfg: dict | None) -> 
             if name not in seen:
                 seen.add(name)
                 out.append({"name": name, "profile": profile})
+    comp = arrival_cfg.get("companion") or {}
+    for part in (comp.get("horse_tack") or []) + (comp.get("dog_vests") or []):
+        if part not in seen:
+            seen.add(part)
+            out.append({"name": part, "profile": rules["part_profile"]})
+    for entity in (comp.get("horse_breeds") or []) + (comp.get("dog_classes") or []):
+        if entity not in seen:
+            seen.add(entity)
+            out.append({"name": entity, "profile": rules["vehicle_profile"]})
     return out
 
 

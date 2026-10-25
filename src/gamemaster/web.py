@@ -360,11 +360,14 @@ class ShareManager:
                 if expires_hours and float(expires_hours) > 0
                 else None
             )
+            base = clean_url or self.active_public_url or ""
             entry = {
                 "id": link_id,
                 "token": token,
                 "label": clean_label,
-                "public_url": clean_url or self.active_public_url,
+                "public_url": base,
+                "app_url": f"{base}/?share={token}" if base else f"/?share={token}",
+                "portal_url": f"{base}/portal?share={token}" if base else f"/portal?share={token}",
                 "created_at": now.strftime("%Y-%m-%dT%H:%M:%SZ"),
                 "expires_at": exp,
                 "default_prefs": _sanitize_prefs({}, default_prefs) if isinstance(default_prefs, dict) else None,

@@ -1210,7 +1210,7 @@
           <div style="font-weight:700; margin-bottom:6px; color:var(--cyan);">💻 Local Server &amp; Host Runbook</div>
           <ul style="padding-left:18px; display:flex; flex-direction:column; gap:6px; color:var(--muted); font-size:12px;">
             <li><code>make dashboard OPEN=1</code> — Start the local server on <code>http://127.0.0.1:8787</code> and open your default browser.</li>
-            <li><code>make dashboard SHARE=1 OPEN=1</code> — Start the server, spawn an instant Cloudflare HTTPS tunnel, and print an off-LAN share link.</li>
+            <li><code>make dashboard SHARE=1 OPEN=1</code> (or <code>tools/dashboard.py --share --open</code>) — Start the server, spawn an instant Cloudflare HTTPS tunnel, and print an off-LAN share link.</li>
             <li><code>make dashboard PORT=8787 PUBLIC_URL=https://my-host.example</code> — Bind custom port or Tailscale Funnel / reverse proxy address.</li>
             <li><strong>Offline Mode:</strong> The Service Worker pre-caches all operational views, maps, and guides. You can launch your installed PWA and review the world even with no internet connection.</li>
           </ul>

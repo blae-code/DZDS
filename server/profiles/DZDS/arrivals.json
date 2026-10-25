@@ -49,6 +49,44 @@
     "RespawnNearPlayersMax": 2000.0,
     "BaseRespawn": 1,
     "BasePlayerOffset": 5.0,
+    "CompanionEnabled": 1,
+    "CompanionChance": 0.5,
+    "CompanionWeightDog": 60.0,
+    "CompanionWeightHorse": 30.0,
+    "CompanionWeightNpc": 10.0,
+    "DogClasses": [
+        "Doggo_Follow1",
+        "Doggo_Follow2",
+        "Doggo_Follow3",
+        "Doggo_Follow4",
+        "Doggo_Follow5"
+    ],
+    "DogVests": [
+        "dog_vest_black",
+        "dog_vest_sheriff",
+        "dog_vest_blackgreen",
+        "dog_collar",
+        "dog_collar_grey"
+    ],
+    "HorseBreeds": [
+        "Animal_Horse_Brown",
+        "Animal_Horse_Chestnut",
+        "Animal_Horse_Chestnut_Light",
+        "Animal_Horse_Palomino",
+        "Animal_Horse_Liver",
+        "Animal_Horse_BuckSkin",
+        "Animal_Horse_Paint",
+        "Animal_Horse_Appaloosa",
+        "Animal_Horse_Gray",
+        "Animal_Horse_Black",
+        "Animal_Horse_Shadow"
+    ],
+    "HorseTack": [
+        "Saddle_Western",
+        "Bridle",
+        "HorseBags",
+        "HorseShoe"
+    ],
     "ArrivalSites": [
         {
             "Name": "East Roadside",
@@ -2450,7 +2488,8 @@
                 "ExpansionUAZRoofless_Black",
                 "ExpansionVodnik",
                 "CrSk_GAZ_3309_Cargo_Green"
-            ]
+            ],
+            "CompanionChance": 1.0
         }
     ],
     "Archetypes": [
@@ -2458,6 +2497,7 @@
             "Name": "deserter",
             "Weight": 30.0,
             "Aircraft": 0,
+            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -2747,6 +2787,7 @@
             "Name": "trucker",
             "Weight": 25.0,
             "Aircraft": 0,
+            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -3002,6 +3043,7 @@
             "Name": "nomad",
             "Weight": 25.0,
             "Aircraft": 0,
+            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -3273,6 +3315,7 @@
             "Name": "townie",
             "Weight": 20.0,
             "Aircraft": 0,
+            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -3555,6 +3598,7 @@
             "Name": "bush_pilot",
             "Weight": 60.0,
             "Aircraft": 1,
+            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -3869,6 +3913,7 @@
             "Name": "combat_pilot",
             "Weight": 40.0,
             "Aircraft": 1,
+            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -4199,6 +4244,413 @@
                     "SpareMax": 8
                 }
             ]
+        },
+        {
+            "Name": "hunter",
+            "Weight": 20.0,
+            "Aircraft": 0,
+            "Horse": 1,
+            "Slots": [
+                {
+                    "Name": "clothing",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "HuntingJacket_Desert",
+                        "HunterPants_Desert",
+                        "HuntingJacket_Autumn",
+                        "HunterPants_Autumn",
+                        "HuntingVest_Desert",
+                        "BoonieHat_Desert",
+                        "PakolHat_Brown",
+                        "PakolHat_Grey",
+                        "HikingBoots_Brown",
+                        "JungleBoots_Beige",
+                        "LeatherGloves_Natural",
+                        "CoyoteBag_Desert",
+                        "HuntingBag"
+                    ]
+                },
+                {
+                    "Name": "water",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Canteen",
+                        "WaterBottle",
+                        "Waterskin_Natural"
+                    ]
+                },
+                {
+                    "Name": "food",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 2,
+                    "Items": [
+                        "HalvaCan",
+                        "Figs",
+                        "Honey",
+                        "Rice",
+                        "Pajka",
+                        "SaltyMix",
+                        "SardinesCan"
+                    ]
+                },
+                {
+                    "Name": "medical",
+                    "Min": 2,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "BandageDressing",
+                        "CharcoalTablets",
+                        "PurificationTablets",
+                        "IodineTincture",
+                        "TetracyclineAntibiotics",
+                        "Splint",
+                        "PainkillerTablets"
+                    ]
+                },
+                {
+                    "Name": "knife",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "HuntingKnife",
+                        "KukriKnife",
+                        "FangeKnife"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Binoculars",
+                        "Rangefinder",
+                        "Compass",
+                        "OrienteeringCompass",
+                        "WeaponCleaningKit",
+                        "Whetstone",
+                        "LeatherSewingKit"
+                    ]
+                },
+                {
+                    "Name": "extra",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "RabbitSnareTrap",
+                        "BearTrap",
+                        "Rope",
+                        "Flashlight",
+                        "PortableGasLamp"
+                    ]
+                },
+                {
+                    "Name": "camp",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Pot",
+                        "CeramicPot_Natural",
+                        "Tripod",
+                        "Matchbox",
+                        "PetrolLighter"
+                    ]
+                },
+                {
+                    "Name": "car",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "TireRepairKit",
+                        "Wrench",
+                        "Pliers",
+                        "Screwdriver",
+                        "EpoxyPutty"
+                    ]
+                }
+            ],
+            "Firearms": [
+                {
+                    "WeaponClass": "CZ527_Desert",
+                    "MagazineClass": "Mag_CZ527_5rnd",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "CZ527",
+                    "MagazineClass": "Mag_CZ527_5rnd",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Mosin9130",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_762x54",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Mosin9130_Black",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_762x54",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Winchester70",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "B95",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Repeater",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Izh18",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                }
+            ]
+        },
+        {
+            "Name": "bedouin",
+            "Weight": 20.0,
+            "Aircraft": 0,
+            "Horse": 1,
+            "Slots": [
+                {
+                    "Name": "clothing",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 1,
+                    "Items": [
+                        "TurbanHat_Beige",
+                        "TurbanHat_Brown",
+                        "TurbanHat_Black",
+                        "TurbanHat_Grey",
+                        "Keffiyeh_Brown",
+                        "Keffiyeh_Black",
+                        "Keffiyeh_LightBrown",
+                        "Shemag_Brown",
+                        "Shemag_White",
+                        "KameezShirt_Beige",
+                        "KameezShirt_Brown",
+                        "KameezShirt_Grey",
+                        "KameezShirt_Olive",
+                        "MensShalwarPants_Beige",
+                        "MensShalwarPants_Brown",
+                        "MensShalwarPants_Grey",
+                        "RobeVest_Beige",
+                        "RobeVest_Brown",
+                        "LinenVest_Brown",
+                        "TraditionalBoots_DarkBrown",
+                        "TraditionalBoots_Beige",
+                        "TraditionalSandalShoes_Brown",
+                        "TraditionalSandalShoes_LightBrown",
+                        "LeatherGloves_Beige",
+                        "DustGoggles_Transparent",
+                        "CoyoteBag_Desert",
+                        "TortillaBag_Desert"
+                    ]
+                },
+                {
+                    "Name": "water",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Waterskin_Natural",
+                        "Canteen",
+                        "WaterBottle",
+                        "SmallGlassBottle_Afza",
+                        "SmallGlassBottle_Jallab"
+                    ]
+                },
+                {
+                    "Name": "food",
+                    "Min": 2,
+                    "Max": 3,
+                    "MaxEach": 2,
+                    "Items": [
+                        "HalvaCan",
+                        "Figs",
+                        "Honey",
+                        "Rice",
+                        "SarmaCan",
+                        "SaltyMix",
+                        "SpicyCrackers",
+                        "Achar"
+                    ]
+                },
+                {
+                    "Name": "medical",
+                    "Min": 2,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "BandageDressing",
+                        "CharcoalTablets",
+                        "PurificationTablets",
+                        "TetracyclineAntibiotics",
+                        "IodineTincture",
+                        "Splint"
+                    ]
+                },
+                {
+                    "Name": "knife",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Jambiya",
+                        "KukriKnife",
+                        "HuntingKnife",
+                        "FangeKnife"
+                    ]
+                },
+                {
+                    "Name": "tools",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Compass",
+                        "OrienteeringCompass",
+                        "Binoculars",
+                        "Whetstone",
+                        "LeatherSewingKit",
+                        "SewingKit"
+                    ]
+                },
+                {
+                    "Name": "extra",
+                    "Min": 1,
+                    "Max": 2,
+                    "MaxEach": 1,
+                    "Items": [
+                        "Rope",
+                        "BurlapSack",
+                        "Netting",
+                        "PetrolLighter",
+                        "PortableGasLamp"
+                    ]
+                },
+                {
+                    "Name": "camp",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "CeramicPot_Natural",
+                        "CeramicPot_Gray",
+                        "Pot",
+                        "Tripod",
+                        "Matchbox"
+                    ]
+                },
+                {
+                    "Name": "car",
+                    "Min": 1,
+                    "Max": 1,
+                    "MaxEach": 1,
+                    "Items": [
+                        "TireRepairKit",
+                        "Wrench",
+                        "Pliers",
+                        "Screwdriver",
+                        "EpoxyPutty"
+                    ]
+                }
+            ],
+            "Firearms": [
+                {
+                    "WeaponClass": "LeeEnfield",
+                    "MagazineClass": "Mag_LeeEnfield_10Rnd",
+                    "Ammo": "Ammo_308Win",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "SKS_Desert",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "Mosin9130",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_762x54",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                },
+                {
+                    "WeaponClass": "CZ527_Desert",
+                    "MagazineClass": "Mag_CZ527_5rnd",
+                    "Ammo": "Ammo_762x39",
+                    "RoundsMin": 3,
+                    "RoundsMax": 6,
+                    "SpareMin": 4,
+                    "SpareMax": 8
+                },
+                {
+                    "WeaponClass": "Repeater",
+                    "MagazineClass": "",
+                    "Ammo": "Ammo_357",
+                    "RoundsMin": 6,
+                    "RoundsMax": 12,
+                    "SpareMin": 0,
+                    "SpareMax": 0
+                }
+            ]
         }
     ],
     "Outfits": [
@@ -4381,6 +4833,7 @@
                 "Name": "soviet_special_forces",
                 "Weight": 0.0,
                 "Aircraft": 0,
+                "Horse": 0,
                 "Slots": [
                     {
                         "Name": "clothing",

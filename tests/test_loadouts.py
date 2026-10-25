@@ -1,3 +1,4 @@
+import re
 import xml.etree.ElementTree as ET
 
 import loadouts
@@ -11,6 +12,15 @@ def test_every_patrol_loadout_name_is_compiled():
     compiled = loadouts.compile_all(CFG)
     for p in patrol_gen.generate("chernarusplus"):
         assert p["Loadout"] in compiled, p["Loadout"]
+
+
+def test_every_faction_m_loadout_is_compiled():
+    compiled = loadouts.compile_all(CFG)
+    src = (loadouts.ROOT / "mods" / "DZDS" / "Scripts" / "3_Game" / "DZDS" / "Factions" / "DZDSFactions.c").read_text()
+    factions_loadouts = re.findall(r'm_Loadout\s*=\s*"([^"]+)";', src)
+    assert len(factions_loadouts) == 5
+    for loadout in factions_loadouts:
+        assert loadout in compiled, f"m_Loadout {loadout} not in compiled loadouts"
 
 
 def test_loadout_structure_matches_expansion_prefab():

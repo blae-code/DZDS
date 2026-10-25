@@ -26,7 +26,7 @@ def control_from_initial(initial: dict[str, list[str]]) -> dict[str, str]:
 
 def build(map_data: dict, control: dict[str, str], locs: dict | None = None) -> list[Zone]:
     locs = locs if locs is not None else map_data["locations"]
-    default = float(map_data["zone_radius_m"])
+    default = float(map_data.get("zone_radius_m", 400))
     overrides = map_data.get("zone_radius") or {}
     out = []
     for site, holder in sorted(control.items()):

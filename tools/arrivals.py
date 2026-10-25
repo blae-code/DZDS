@@ -116,6 +116,7 @@ def _archetype(name: str, a: dict) -> dict:
              "SpareMin": int(f.get("spare", [0, 0])[0]), "SpareMax": int(f.get("spare", [0, 0])[1])}
             for f in a["firearms"]]
     return {"Name": name, "Weight": float(a.get("weight", 0)), "Aircraft": int(bool(a.get("aircraft"))),
+            "Horse": int(bool(a.get("horse"))),
             "Slots": slots, "Firearms": guns}
 
 
@@ -208,6 +209,9 @@ def validate(cfg: dict, types: set[str]) -> None:
         names += [f[k] for f in a["firearms"] for k in ("weapon", "magazine", "ammo") if f.get(k)]
     names += [cfg["trailer"]["class"]] + cfg["trailer"]["parts"] + cfg["nav_kit"]["items"]
     names += cfg.get("fuel_cans", [])
+    comp = cfg.get("companion") or {}
+    for clist in ("dog_classes", "dog_vests", "horse_breeds", "horse_tack"):
+        names += comp.get(clist, [])
     for o in (cfg.get("outfits") or {}).values():
         names += outfit_classnames(o)
     missing = sorted({n for n in names if n not in types})
@@ -297,6 +301,15 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "RespawnNearPlayersMax": float(cfg["respawn_near_players_m"][1]),
         "BaseRespawn": int(bool(cfg["base_respawn"])),
         "BasePlayerOffset": float(cfg["base_player_offset_m"]),
+        "CompanionEnabled": int(bool((cfg.get("companion") or {}).get("enabled", True))),
+        "CompanionChance": float((cfg.get("companion") or {}).get("chance", 0.50)),
+        "CompanionWeightDog": float(((cfg.get("companion") or {}).get("weights") or {}).get("dog", 60.0)),
+        "CompanionWeightHorse": float(((cfg.get("companion") or {}).get("weights") or {}).get("horse", 30.0)),
+        "CompanionWeightNpc": float(((cfg.get("companion") or {}).get("weights") or {}).get("npc", 10.0)),
+        "DogClasses": list((cfg.get("companion") or {}).get("dog_classes") or []),
+        "DogVests": list((cfg.get("companion") or {}).get("dog_vests") or []),
+        "HorseBreeds": list((cfg.get("companion") or {}).get("horse_breeds") or []),
+        "HorseTack": list((cfg.get("companion") or {}).get("horse_tack") or []),
         "ArrivalSites": arrival_points(cfg, map_data, spots),
         "RoadPoints": road,
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"]),
@@ -304,7 +317,8 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
                       "Aircraft": int(v["class"] in cfg.get("aircraft", []))}
                      for v in cfg["vehicles"]],
         "Favored": [{"Id": f["id"], "Name": f["name"], "Vehicles": list(f["vehicles"]),
-                     "Outfit": f.get("outfit") or "", "CooldownVehicles": list(f.get("cooldown_vehicles") or [])}
+                     "Outfit": f.get("outfit") or "", "CooldownVehicles": list(f.get("cooldown_vehicles") or []),
+                     "CompanionChance": float(f.get("companion_chance", 0.0))}
                     for f in cfg.get("favored", [])],
         "Archetypes": archetypes(cfg),
         "Outfits": outfits(cfg),

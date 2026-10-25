@@ -388,6 +388,51 @@ archetypes:
       - { weapon: AKS74U, magazine: Mag_AK74_30Rnd, ammo: Ammo_545x39, rounds: [3, 6], spare: [4, 8] }
       - { weapon: PP19, magazine: Mag_PP19_64Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
 
+  # Horse-mounted archetypes (Blae, 2026-10-24): only these two archetypes start with a horse.
+  # When a companion roll grants a horse, the archetype is drawn from these two.
+  hunter:   # local Nasdara/Takistani mountain and steppe tracker
+    horse: true
+    weight: 20
+    slots:
+      clothing: { count: [2, 3], items: [HuntingJacket_Desert, HunterPants_Desert, HuntingJacket_Autumn, HunterPants_Autumn, HuntingVest_Desert, BoonieHat_Desert, PakolHat_Brown, PakolHat_Grey, HikingBoots_Brown, JungleBoots_Beige, LeatherGloves_Natural, CoyoteBag_Desert, HuntingBag] }
+      water:    { count: [1, 2], items: [Canteen, WaterBottle, Waterskin_Natural] }
+      food:     { count: [2, 3], max_each: 2, items: [HalvaCan, Figs, Honey, Rice, Pajka, SaltyMix, SardinesCan] }
+      medical:  { count: [2, 2], items: [BandageDressing, CharcoalTablets, PurificationTablets, IodineTincture, TetracyclineAntibiotics, Splint, PainkillerTablets] }
+      knife:    { count: [1, 1], items: [HuntingKnife, KukriKnife, FangeKnife] }
+      tools:    { count: [1, 2], items: [Binoculars, Rangefinder, Compass, OrienteeringCompass, WeaponCleaningKit, Whetstone, LeatherSewingKit] }
+      extra:    { count: [1, 2], items: [RabbitSnareTrap, BearTrap, Rope, Flashlight, PortableGasLamp] }
+      camp:     { count: [1, 1], items: [Pot, CeramicPot_Natural, Tripod, Matchbox, PetrolLighter] }
+      car:      { count: [1, 1], items: [TireRepairKit, Wrench, Pliers, Screwdriver, EpoxyPutty] }
+    firearms:
+      - { weapon: CZ527_Desert, magazine: Mag_CZ527_5rnd, ammo: Ammo_762x39, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: CZ527, magazine: Mag_CZ527_5rnd, ammo: Ammo_762x39, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Mosin9130, magazine: null, ammo: Ammo_762x54, rounds: [6, 12] }
+      - { weapon: Mosin9130_Black, magazine: null, ammo: Ammo_762x54, rounds: [6, 12] }
+      - { weapon: Winchester70, magazine: null, ammo: Ammo_308Win, rounds: [6, 12] }
+      - { weapon: B95, magazine: null, ammo: Ammo_308Win, rounds: [6, 12] }
+      - { weapon: Repeater, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+      - { weapon: Izh18, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
+
+  bedouin:  # deep-desert nomad of the Sarman Ghar wastes
+    horse: true
+    weight: 20
+    slots:
+      clothing: { count: [2, 3], items: [TurbanHat_Beige, TurbanHat_Brown, TurbanHat_Black, TurbanHat_Grey, Keffiyeh_Brown, Keffiyeh_Black, Keffiyeh_LightBrown, Shemag_Brown, Shemag_White, KameezShirt_Beige, KameezShirt_Brown, KameezShirt_Grey, KameezShirt_Olive, MensShalwarPants_Beige, MensShalwarPants_Brown, MensShalwarPants_Grey, RobeVest_Beige, RobeVest_Brown, LinenVest_Brown, TraditionalBoots_DarkBrown, TraditionalBoots_Beige, TraditionalSandalShoes_Brown, TraditionalSandalShoes_LightBrown, LeatherGloves_Beige, DustGoggles_Transparent, CoyoteBag_Desert, TortillaBag_Desert] }
+      water:    { count: [1, 2], items: [Waterskin_Natural, Canteen, WaterBottle, SmallGlassBottle_Afza, SmallGlassBottle_Jallab] }
+      food:     { count: [2, 3], max_each: 2, items: [HalvaCan, Figs, Honey, Rice, SarmaCan, SaltyMix, SpicyCrackers, Achar] }
+      medical:  { count: [2, 2], items: [BandageDressing, CharcoalTablets, PurificationTablets, TetracyclineAntibiotics, IodineTincture, Splint] }
+      knife:    { count: [1, 1], items: [Jambiya, KukriKnife, HuntingKnife, FangeKnife] }
+      tools:    { count: [1, 2], items: [Compass, OrienteeringCompass, Binoculars, Whetstone, LeatherSewingKit, SewingKit] }
+      extra:    { count: [1, 2], items: [Rope, BurlapSack, Netting, PetrolLighter, PortableGasLamp] }
+      camp:     { count: [1, 1], items: [CeramicPot_Natural, CeramicPot_Gray, Pot, Tripod, Matchbox] }
+      car:      { count: [1, 1], items: [TireRepairKit, Wrench, Pliers, Screwdriver, EpoxyPutty] }
+    firearms:
+      - { weapon: LeeEnfield, magazine: Mag_LeeEnfield_10Rnd, ammo: Ammo_308Win, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: SKS_Desert, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
+      - { weapon: Mosin9130, magazine: null, ammo: Ammo_762x54, rounds: [6, 12] }
+      - { weapon: CZ527_Desert, magazine: Mag_CZ527_5rnd, ammo: Ammo_762x39, rounds: [3, 6], spare: [4, 8] }
+      - { weapon: Repeater, magazine: null, ammo: Ammo_357, rounds: [6, 12] }
+
 # Body kit (Blae, 2026-10-15): every new character also gets a PersonalRadio with a 9V battery,
 # tuned to the Settler net and switched OFF, plus one road flare. Index 0 = the first channel
 # in vanilla's list; the MHz value is read in-game (Task 19) and printed on the player page.
@@ -436,6 +481,51 @@ favored:
     vehicles: [ExpansionMh6, EXT_MH6, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y]
     outfit: soviet_special_forces
     cooldown_vehicles: [ExpansionUAZCargo_Green, ExpansionUAZ, ExpansionUAZRoofless_Black, ExpansionVodnik, CrSk_GAZ_3309_Cargo_Green]
+    companion_chance: 1.0
+
+# Companions (Blae, 2026-10-24): 50/50 chance for players other than Blae to spawn with a companion
+# on fresh respawn (Blae always starts with one: companion_chance: 1.0).
+# The 50% chance is divided based on thematic rarity:
+#   - Dog companion: 60% relative weight (tamed loyal dog with vest/collar, dogtag, and bone summon item)
+#   - Equipped horse: 30% relative weight (saddled, bridled, horseshoe, horsebags with archetype kit)
+#     Only two archetypes start with a horse: Hunter (local) and Bedouin.
+#   - NPC ally: 10% relative weight (friendly armed settler recruit grouping with the player)
+companion:
+  enabled: true
+  chance: 0.50
+  weights:
+    dog: 60.0
+    horse: 30.0
+    npc: 10.0
+  dog_classes:
+    - Doggo_Follow1
+    - Doggo_Follow2
+    - Doggo_Follow3
+    - Doggo_Follow4
+    - Doggo_Follow5
+  dog_vests:
+    - dog_vest_black
+    - dog_vest_sheriff
+    - dog_vest_blackgreen
+    - dog_collar
+    - dog_collar_grey
+  horse_breeds:
+    - Animal_Horse_Brown
+    - Animal_Horse_Chestnut
+    - Animal_Horse_Chestnut_Light
+    - Animal_Horse_Palomino
+    - Animal_Horse_Liver
+    - Animal_Horse_BuckSkin
+    - Animal_Horse_Paint
+    - Animal_Horse_Appaloosa
+    - Animal_Horse_Gray
+    - Animal_Horse_Black
+    - Animal_Horse_Shadow
+  horse_tack:
+    - Saddle_Western
+    - Bridle
+    - HorseBags
+    - HorseShoe
 
 # Outfits (Blae, 2026-10-23): a starting archetype WORN on the body, instead of the civilian
 # clothes every character otherwise wakes in. A favored player's `outfit` always applies; anyone

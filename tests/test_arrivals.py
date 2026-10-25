@@ -132,10 +132,33 @@ def test_unknown_classname_is_rejected(built):
 
 def test_archetype_weights(built):
     _, _, out = built
-    ground = {a["Name"]: a["Weight"] for a in out["Archetypes"] if not a["Aircraft"]}
+    ground = {a["Name"]: a["Weight"] for a in out["Archetypes"] if not a["Aircraft"] and not a.get("Horse")}
+    horses = {a["Name"]: a["Weight"] for a in out["Archetypes"] if a.get("Horse")}
     pilots = {a["Name"]: a["Weight"] for a in out["Archetypes"] if a["Aircraft"]}
     assert ground == {"deserter": 30.0, "trucker": 25.0, "nomad": 25.0, "townie": 20.0}
+    assert horses == {"hunter": 20.0, "bedouin": 20.0}
     assert pilots == {"bush_pilot": 60.0, "combat_pilot": 40.0}
+
+
+def test_only_two_archetypes_start_with_a_horse(built):
+    """Blae 2026-10-24: only two archetypes start with a horse: Hunter (local) and Bedouin."""
+    _, _, out = built
+    horse_archs = {a["Name"] for a in out["Archetypes"] if a.get("Horse")}
+    assert horse_archs == {"hunter", "bedouin"}
+
+
+def test_companion_settings_and_thematic_rarity(built):
+    """Blae 2026-10-24: 50/50 chance for non-Blae, 100% for Blae, divided by thematic rarity:
+    dog (60%), horse (30%), NPC (10%). Horse arrives equipped with saddle, bridle, bags, shoes."""
+    _, _, out = built
+    assert out["CompanionEnabled"] == 1
+    assert out["CompanionChance"] == 0.50
+    assert out["CompanionWeightDog"] == 60.0
+    assert out["CompanionWeightHorse"] == 30.0
+    assert out["CompanionWeightNpc"] == 10.0
+    assert {"Saddle_Western", "Bridle", "HorseBags", "HorseShoe"} <= set(out["HorseTack"])
+    fav = {f["Id"]: f for f in out["Favored"]}[BLAE_ID]
+    assert fav["CompanionChance"] == 1.0
 
 
 CUTTING = {

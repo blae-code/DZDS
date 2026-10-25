@@ -44,8 +44,8 @@ factions:
       LootingBehaviour: NONE                   # was FOOD (no food looting, 2026-10-12)
       CanBeLooted: true
     loadout:
-      apparel: [hiking gear, hunter jackets, work shirts, canvas backpacks, beanies, work boots]
-      weapons: [CR-527, Blaze, Repeater, double-barrel shotgun, 9mm pistols, SG5-K]
+      apparel: [hunting jackets, hiking jackets, work shirts, hoodies, denim/quilted jackets, jeans, cargo pants, work boots, hiking boots, beanies, caps, hunting/canvas bags]
+      weapons: [CZ527, B95, Repeater, Izh43, Winchester 70, Izh18, MP-133, Ruger 10/22, farm tools, IJ-70]
     spawn_archetypes: [rural farmsteads, player base perimeters, roadside transport trucks]
     holds_roles: [inland_town]
     patrol_templates:
@@ -79,8 +79,8 @@ factions:
       LootingBehaviour: NONE
       CanBeLooted: false   # UN gear isn't free loot; keeps them worth respecting
     loadout:
-      apparel: [UN blue ballistic helmets, blue berets, olive/tan BDUs, combat boots, UN plate carriers]
-      weapons: [M16A2, MP5, FAL, Mosin 91/30 (marksmen), Glock/M9]
+      apparel: [UN blue ballistic helmets, blue berets, BDUs, M65 jackets, combat boots, UN plate carriers, assault packs]
+      weapons: [M16A2, FAL, MP5K, Steyr AUG, FAMAS, M4A1, Mosin 91/30 (marksmen), SVD, Scout, Glock 19, FNX-45]
     spawn_archetypes: [road checkpoints, medical field stations, radar relay towers, cargo airfields]
     holds_roles: [airfield, military]
     patrol_templates:
@@ -117,8 +117,8 @@ factions:
       LootingBehaviour: "WEAPONS|BANDAGES|CLOTHING|UPGRADE"  # strip bodies, but not food
       CanBeLooted: true
     loadout:
-      apparel: [mismatched surplus, leather jackets, gas masks, cargo pants, skull bandanas, improvised chest rigs]
-      weapons: [sawn-off shotgun, BK-133, worn SKS, IJ-70, rare low-durability AKM]
+      apparel: [rider/leather jackets, bomber jackets, gas masks, skull balaclavas, cargo pants, combat boots, bandanas, duffels]
+      weapons: [sawn-off Izh-43, MP-133, worn SKS, sawn-off Mosin, Repeater, CZ61 Skorpion, warlord AKM/AKS-74U, IJ-70, Colt 1911]
     spawn_archetypes: [dry-wash canyon ambushes, highway pileups, hilltop lookout campfires]
     holds_roles: [road_junction]
     patrol_templates:
@@ -154,8 +154,8 @@ factions:
       LootingBehaviour: WEAPONS
       CanBeLooted: true
     loadout:
-      apparel: [ghillie wraps, fur hats, wool sweaters, hunting vests, mountain boots, camo field jackets]
-      weapons: [scoped Mosin, CR-527, Winchester 70, crossbow, revolvers]
+      apparel: [ghillie suits/hoods, hunting jackets, ushanka fur hats, sweaters, hunting vests, mountain boots, hunting packs]
+      weapons: [Mosin 91/30, CZ527, Winchester 70, SSG 82, Repeater, Izh18, elder SVD, hunting knives, Magnum, Deagle]
     spawn_archetypes: [ridge overlooks, mountain caves, stone ruins, canyon passes]
     holds_roles: [high_ground, remote]
     patrol_templates:
@@ -193,8 +193,8 @@ factions:
       LootingBehaviour: DEFAULT
       CanBeLooted: true
     loadout:
-      apparel: [industrial overalls, welder masks, hi-vis armoured vests, hard hats, steel-toe boots]
-      weapons: [Saiga-12, Vaiga, Bizon, modified AK-74, flare guns, wrenches/cleavers]
+      apparel: [hard hats, welding/gas masks, tracksuits, bomber jackets, industrial jumpsuits, cargo pants, steel-toe boots, reflex vests]
+      weapons: [Saiga-12, PP-19 Bizon, AK-74, AKS-74U, AS-VAL, MP-133, industrial tools (pipe wrenches, crowbars), flare guns, IJ-70]
     spawn_archetypes: [contested water wells, railway depots, fuel refineries, power substations]
     holds_roles: [industrial, water]
     patrol_templates:

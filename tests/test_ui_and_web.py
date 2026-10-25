@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import json
 import pytest
+import struct
 import threading
 import urllib.request
 
@@ -385,3 +386,383 @@ def test_web_rejects_foreign_hosts_origins_and_tokenless_posts():
     with pytest.raises(ValueError):
         web.make_server("0.0.0.0", 0)
     assert dashboard.main(["--host", "0.0.0.0"]) == 2
+
+
+def test_pwa_manifest_service_worker_and_generated_icons():
+    """Verify Web App Manifest, Service Worker, and pure-Python generated crisp PNG/SVG icons."""
+    import http.client
+    import struct
+    srv = web.make_server("127.0.0.1", 0)
+    port = srv.server_address[1]
+    t = threading.Thread(target=srv.serve_forever, kwargs={"poll_interval": 0.02}, daemon=True)
+    t.start()
+    try:
+        conn = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
+
+        # 1. Manifest (.webmanifest and .json)
+        for mpath in ("/manifest.webmanifest", "/manifest.json"):
+            conn.request("GET", mpath)
+            r = conn.getresponse()
+            assert r.status == 200
+            assert "application/manifest+json" in r.getheader("Content-Type", "")
+            manifest = json.loads(r.read().decode("utf-8"))
+            assert "Ad Aspera" in manifest["name"]
+            assert manifest["short_name"] == "Ad Aspera"
+            assert manifest["display"] == "standalone"
+            assert manifest["theme_color"] == "#0b0e11"
+            assert manifest["background_color"] == "#0b0e11"
+            assert len(manifest["icons"]) >= 4
+            assert len(manifest["shortcuts"]) >= 3
+            assert any(s["url"].startswith("/?view=0") for s in manifest["shortcuts"])
+            assert any(s["url"].startswith("/?view=5") for s in manifest["shortcuts"])
+            assert any(s["url"].startswith("/portal") for s in manifest["shortcuts"])
+            assert len(manifest["screenshots"]) >= 2
+
+        # 2. Service Worker (/sw.js)
+        conn.request("GET", "/sw.js")
+        sw_resp = conn.getresponse()
+        assert sw_resp.status == 200
+        assert "application/javascript" in sw_resp.getheader("Content-Type", "")
+        assert sw_resp.getheader("Service-Worker-Allowed") == "/"
+        sw_code = sw_resp.read().decode("utf-8")
+        assert "dzds-pwa-" in sw_code
+        assert "/portal" in sw_code
+        assert "/manifest.webmanifest" in sw_code
+        assert "fetch" in sw_code
+
+        # 3. Vector SVG Icon (/icon.svg)
+        conn.request("GET", "/icon.svg")
+        svg_resp = conn.getresponse()
+        assert svg_resp.status == 200
+        assert "image/svg+xml" in svg_resp.getheader("Content-Type", "")
+        svg_body = svg_resp.read().decode("utf-8")
+        assert svg_body.startswith("<svg") and svg_body.strip().endswith("</svg>")
+
+        # 4. Pure-Python Generated Crisp PNG Icons
+        icons_to_test = [
+            ("/icon-192.png", 192, 192),
+            ("/icon-512.png", 512, 512),
+            ("/icon-maskable-512.png", 512, 512),
+            ("/icon-180.png", 180, 180),
+            ("/favicon.ico", 32, 32),
+        ]
+        for ipath, exp_w, exp_h in icons_to_test:
+            conn.request("GET", ipath)
+            iresp = conn.getresponse()
+            assert iresp.status == 200
+            assert iresp.getheader("Content-Type") == "image/png"
+            data = iresp.read()
+            # PNG signature
+            assert data.startswith(b"\x89PNG\r\n\x1a\n")
+            # IHDR width and height at bytes 16..24
+            w, h = struct.unpack(">II", data[16:24])
+            assert (w, h) == (exp_w, exp_h), f"{ipath} expected {exp_w}x{exp_h}, got {w}x{h}"
+
+        conn.close()
+    finally:
+        srv.shutdown()
+        srv.server_close()
+
+
+def test_user_persistent_preferences_api_and_isolation(tmp_path):
+    """Verify UserProfileStore deep sanitization, isolated storage, and HTTP API roundtrip."""
+    store_file = tmp_path / "web_profiles.json"
+    pstore = web.UserProfileStore(store_file)
+
+    # 1. Defaults for new user
+    p_alpha = pstore.get("survivor_alpha")
+    assert p_alpha["callsign"] == "Survivor"
+    assert p_alpha["faction"] == "Settlers"
+    assert p_alpha["theme"] == "obsidian"
+    assert p_alpha["density"] == "standard"
+    assert p_alpha["pinned_sites"] == []
+    assert p_alpha["custom_pins"] == []
+    assert p_alpha["site_notes"] == {}
+
+    # 2. Update with custom pins, site notes, checklist
+    updated_alpha = pstore.update("survivor_alpha", {
+        "callsign": "Delta-Lead",
+        "faction": "Jackals",
+        "theme": "phosphor",
+        "density": "compact",
+        "default_view": 6,
+        "pinned_sites": ["Cement Works", "Settler Haven"],
+        "site_notes": {"Cement Works": "Hidden stash under silo B"},
+        "custom_pins": [
+            {"id": "pin_1", "label": "Extraction LZ", "x": 6400.0, "z": 8200.0, "map": "nasdara", "color": "#ffaa00"}
+        ],
+        "checklist": {"installed_pwa": True, "configured_profile": True},
+    })
+    assert updated_alpha["callsign"] == "Delta-Lead"
+    assert updated_alpha["faction"] == "Jackals"
+    assert updated_alpha["theme"] == "phosphor"
+    assert updated_alpha["density"] == "compact"
+    assert updated_alpha["default_view"] == 6
+    assert updated_alpha["pinned_sites"] == ["Cement Works", "Settler Haven"]
+    assert updated_alpha["site_notes"]["Cement Works"] == "Hidden stash under silo B"
+    assert len(updated_alpha["custom_pins"]) == 1
+    assert updated_alpha["custom_pins"][0]["label"] == "Extraction LZ"
+    assert updated_alpha["checklist"]["installed_pwa"] is True
+    assert updated_alpha["updated_at"] != ""
+
+    # 3. Reload from disk into fresh store instance (persistence check)
+    reloaded_store = web.UserProfileStore(store_file)
+    from_disk = reloaded_store.get("survivor_alpha")
+    assert from_disk["callsign"] == "Delta-Lead"
+    assert from_disk["custom_pins"][0]["label"] == "Extraction LZ"
+
+    # 4. User isolation: survivor_bravo must have separate defaults
+    p_bravo = reloaded_store.get("survivor_bravo")
+    assert p_bravo["callsign"] == "Survivor"
+    assert p_bravo["faction"] == "Settlers"
+    assert p_bravo["pinned_sites"] == []
+    assert p_bravo["site_notes"] == {}
+    assert p_bravo["custom_pins"] == []
+
+    # 5. HTTP API roundtrip via make_server
+    import http.client
+    srv = web.make_server("127.0.0.1", 0, profile_store=reloaded_store)
+    port = srv.server_address[1]
+    t = threading.Thread(target=srv.serve_forever, kwargs={"poll_interval": 0.02}, daemon=True)
+    t.start()
+    try:
+        conn = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
+
+        # GET /api/prefs for survivor_alpha
+        conn.request("GET", "/api/prefs?user=survivor_alpha")
+        r = conn.getresponse()
+        assert r.status == 200
+        data = json.loads(r.read().decode("utf-8"))
+        assert data["user_id"] == "survivor_alpha"
+        assert data["prefs"]["callsign"] == "Delta-Lead"
+
+        # POST /api/prefs to update survivor_bravo
+        post_body = json.dumps({
+            "callsign": "Bravo-Sniper",
+            "faction": "Rust",
+            "theme": "badlands",
+        })
+        headers = {
+            "Content-Type": "application/json",
+            web.TOKEN_HEADER: srv.dzds_token,
+            web.USER_HEADER: "survivor_bravo",
+        }
+        conn.request("POST", "/api/prefs", body=post_body, headers=headers)
+        r2 = conn.getresponse()
+        assert r2.status == 200
+        data2 = json.loads(r2.read().decode("utf-8"))
+        assert data2["saved"] is True
+        assert data2["prefs"]["callsign"] == "Bravo-Sniper"
+        assert data2["prefs"]["faction"] == "Rust"
+
+        # POST /api/prefs with reset
+        conn.request("POST", "/api/prefs", body=json.dumps({"reset": True}), headers=headers)
+        r3 = conn.getresponse()
+        assert r3.status == 200
+        data3 = json.loads(r3.read().decode("utf-8"))
+        assert data3["prefs"]["callsign"] == "Survivor"
+
+        conn.close()
+    finally:
+        srv.shutdown()
+        srv.server_close()
+
+
+def test_share_manager_and_remote_off_lan_access(tmp_path):
+    """Verify off-LAN share links, DNS rebinding bypass with share tokens, and remote sandboxing."""
+    share_file = tmp_path / "share_links.json"
+    smgr = web.ShareManager(share_file)
+
+    # 1. Create a share link
+    link = smgr.create_link(
+        label="Squad Delta Link",
+        public_url="https://tactical.example.com",
+        expires_hours=24,
+    )
+    token = link["token"]
+    assert token and len(token) >= 16
+    assert link["label"] == "Squad Delta Link"
+    assert link["app_url"] == f"https://tactical.example.com/?share={token}"
+    assert link["portal_url"] == f"https://tactical.example.com/portal?share={token}"
+
+    # Validate active token
+    entry = smgr.validate_token(token)
+    assert entry is not None
+    assert entry["id"] == link["id"]
+
+    # 2. HTTP Server integration
+    import http.client
+    srv = web.make_server("127.0.0.1", 0, share_manager=smgr)
+    port = srv.server_address[1]
+    t = threading.Thread(target=srv.serve_forever, kwargs={"poll_interval": 0.02}, daemon=True)
+    t.start()
+    try:
+        # A. Foreign host without share token is blocked by DNS rebinding protection (403)
+        conn_evil = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
+        conn_evil.request("GET", "/api/state?map=nasdara", headers={"Host": "tactical.example.com"})
+        r_evil = conn_evil.getresponse()
+        assert r_evil.status == 403
+        conn_evil.close()
+
+        # B. Foreign host WITH valid share token query param is accepted (200)
+        conn_share = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
+        conn_share.request("GET", f"/api/state?map=nasdara&share={token}", headers={"Host": "tactical.example.com"})
+        r_share = conn_share.getresponse()
+        assert r_share.status == 200
+        state = json.loads(r_share.read().decode("utf-8"))
+        assert state["active_map"] == "nasdara"
+
+        # C. GET / with share token sets cookie and succeeds
+        conn_share.request("GET", f"/?share={token}", headers={"Host": "tactical.example.com"})
+        r_html = conn_share.getresponse()
+        assert r_html.status == 200
+        set_cookie = r_html.getheader("Set-Cookie", "")
+        assert f"dzds_share={token}" in set_cookie
+        r_html.read()
+
+        # D. GET /api/share/status as remote visitor (redacts tokens)
+        conn_share.request("GET", f"/api/share/status?share={token}", headers={"Host": "tactical.example.com"})
+        r_stat = conn_share.getresponse()
+        assert r_stat.status == 200
+        stat_data = json.loads(r_stat.read().decode("utf-8"))
+        assert stat_data["links"] == []  # Non-operator cannot see other tokens
+        assert stat_data["link_count"] >= 1
+
+        # E. Remote visitor simulation is sandboxed and does not touch disk ledger
+        initial_turn = WarLedger.load_or_new("nasdara").s.turn
+        remote_headers = {
+            "Content-Type": "application/json",
+            web.TOKEN_HEADER: srv.dzds_token,
+            web.SHARE_HEADER: token,
+            web.USER_HEADER: "remote_guest_42",
+            "Host": "tactical.example.com",
+        }
+        body = json.dumps({"map": "nasdara", "commit": False})
+        conn_share.request("POST", "/api/simulate-turn", body=body, headers=remote_headers)
+        r_sim = conn_share.getresponse()
+        assert r_sim.status == 200
+        sim_data = json.loads(r_sim.read().decode("utf-8"))
+        assert sim_data["state"]["ledger"]["turn"] >= initial_turn + 1
+        # Disk ledger is unaffected
+        assert WarLedger.load_or_new("nasdara").s.turn == initial_turn
+
+        # F. Remote visitor cannot perform operator-only share mutations
+        conn_share.request("POST", "/api/share/create", body=json.dumps({"label": "Malicious"}), headers=remote_headers)
+        r_forbidden = conn_share.getresponse()
+        assert r_forbidden.status == 403
+
+        # G. Operator can revoke the token, then access is blocked
+        op_headers = {
+            "Content-Type": "application/json",
+            web.TOKEN_HEADER: srv.dzds_token,
+        }
+        conn_local = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
+        conn_local.request("POST", "/api/share/revoke", body=json.dumps({"token": token}), headers=op_headers)
+        r_revoke = conn_local.getresponse()
+        assert r_revoke.status == 200
+        conn_local.close()
+
+        # Subsequent foreign request with revoked token is refused (403)
+        conn_share.request("GET", f"/api/state?map=nasdara&share={token}", headers={"Host": "tactical.example.com"})
+        r_after = conn_share.getresponse()
+        assert r_after.status == 403
+        conn_share.close()
+    finally:
+        srv.shutdown()
+        srv.server_close()
+
+
+def test_portable_html_export_api():
+    """Verify single-file portable HTML export bundle contains offline data and zero network dependencies."""
+    import http.client
+    srv = web.make_server("127.0.0.1", 0)
+    port = srv.server_address[1]
+    t = threading.Thread(target=srv.serve_forever, kwargs={"poll_interval": 0.02}, daemon=True)
+    t.start()
+    try:
+        conn = http.client.HTTPConnection("127.0.0.1", port, timeout=5)
+        conn.request("GET", "/api/export-portable")
+        r = conn.getresponse()
+        assert r.status == 200
+        assert "text/html" in r.getheader("Content-Type", "")
+        cd = r.getheader("Content-Disposition", "")
+        assert 'filename="ad-aspera-nasdara-portable.html"' in cd
+        body = r.read().decode("utf-8")
+        assert len(body) > 30000
+        assert "<!DOCTYPE html>" in body
+        assert "window.__DZDS_PORTABLE_SNAPSHOTS__" in body
+        assert "window.__DZDS_PORTABLE_PREFS__" in body
+        assert "window.__DZDS_PORTABLE_MAP__" in body
+        assert "nasdara" in body
+        assert "chernarusplus" in body
+        assert "Basebuilding &amp; Homesteading Field Manual" in body
+        assert "portable-mode" in body
+        # Self-contained: no external script tags pointing to cdn / remote origins
+        assert "<script src=" not in body.lower()
+        conn.close()
+    finally:
+        srv.shutdown()
+        srv.server_close()
+
+
+def test_in_app_instructions_and_pwa_surfaces():
+    """Verify in-app installation guides, run commands, preferences, and portal constraints."""
+    # Surface 1: web_ui.html (Command Center PWA)
+    ui_html = web.UI_HTML_PATH.read_text(encoding="utf-8")
+    # PWA head tags
+    assert '<meta name="theme-color" content="#0b0e11">' in ui_html
+    assert '<meta name="apple-mobile-web-app-capable" content="yes">' in ui_html
+    assert '<link rel="manifest" href="/manifest.webmanifest' in ui_html
+    assert '<link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png">' in ui_html
+
+    # Topbar controls
+    assert 'id="nav-tab-app"' in ui_html
+    assert 'id="btn-pwa-install"' in ui_html
+    assert 'id="hdr-callsign"' in ui_html
+    assert 'id="pwa-status-pill"' in ui_html
+
+    # View 6 (App & Share Studio)
+    assert 'id="view-6"' in ui_html
+    assert "App, off-LAN sharing &amp; persistent settings" in ui_html
+    assert "PROGRESSIVE WEB APP (PWA) DIAGNOSTICS &amp; INSTALL GUIDE" in ui_html
+    assert "Desktop Chrome / Edge / Brave" in ui_html
+    assert "Apple iOS &amp; iPadOS (Safari)" in ui_html
+    assert "Android (Chrome, Edge, Samsung Internet, Firefox)" in ui_html
+    assert "Firefox Desktop" in ui_html
+    assert "make dashboard OPEN=1" in ui_html
+    assert "make dashboard SHARE=1 OPEN=1" in ui_html
+    assert "tools/dashboard.py --share --open" in ui_html
+    assert "OFF-LAN SHARE LINK STUDIO (SECURE REMOTE ACCESS)" in ui_html
+    assert 'id="share-custom-url-input"' in ui_html
+    assert 'id="share-links-table-wrap"' in ui_html
+    assert "PERSISTENT SURVIVOR PREFERENCES &amp; SETTINGS" in ui_html
+    assert 'id="pref-callsign"' in ui_html
+    assert 'id="pref-faction"' in ui_html
+    assert 'id="pref-launcher"' in ui_html
+    assert 'id="pref-theme"' in ui_html
+    assert 'id="pref-density"' in ui_html
+    assert 'id="pref-default-view"' in ui_html
+
+    # Custom Waypoint Drop Pin Tool
+    assert 'id="btn-drop-pin"' in ui_html
+    assert 'id="lyr-pins"' in ui_html
+    assert 'Personal pins &amp; notes' in ui_html
+
+    # Surface 2: player_portal.html (Survivor's Guide)
+    portal_html = web.PLAYER_PORTAL_HTML_PATH.read_text(encoding="utf-8")
+    assert '<link rel="manifest" href="/manifest.webmanifest"' in portal_html
+    assert '<meta name="theme-color" content="#101412">' in portal_html
+    assert 'id="install"' in portal_html
+    assert '<a href="#install">Install &amp; Run App</a>' in portal_html
+    assert "Install &amp; run the app (PWA &amp; off-LAN links)" in portal_html
+    assert "Install on desktop (Linux, Windows, macOS)" in portal_html
+    assert "Install on mobile (iOS, iPadOS &amp; Android)" in portal_html
+    assert "make dashboard OPEN=1" in portal_html
+    assert "make dashboard SHARE=1 OPEN=1" in portal_html
+    assert "Off-LAN share links &amp; personal preferences" in portal_html
+
+    # Strict Portal Constraints
+    assert "/api/" not in portal_html
+    assert "simulateTurn" not in portal_html
+    assert "<script" not in portal_html
+
