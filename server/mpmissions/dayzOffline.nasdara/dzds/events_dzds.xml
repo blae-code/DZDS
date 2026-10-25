@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <events>
     <event name="DZDS_VehicleFarm">
-        <nominal>3</nominal>
-        <min>2</min>
-        <max>3</max>
+        <nominal>6</nominal>
+        <min>5</min>
+        <max>6</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -19,9 +19,9 @@
         </children>
     </event>
     <event name="DZDS_VehicleIndustry">
-        <nominal>3</nominal>
-        <min>2</min>
-        <max>3</max>
+        <nominal>8</nominal>
+        <min>7</min>
+        <max>8</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -39,9 +39,9 @@
         </children>
     </event>
     <event name="DZDS_VehicleMilitary">
-        <nominal>3</nominal>
-        <min>2</min>
-        <max>3</max>
+        <nominal>8</nominal>
+        <min>7</min>
+        <max>8</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -58,9 +58,9 @@
         </children>
     </event>
     <event name="DZDS_VehicleRaiders">
-        <nominal>3</nominal>
-        <min>2</min>
-        <max>3</max>
+        <nominal>10</nominal>
+        <min>9</min>
+        <max>10</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -78,9 +78,9 @@
         </children>
     </event>
     <event name="DZDS_VehicleAviation">
-        <nominal>2</nominal>
-        <min>1</min>
-        <max>2</max>
+        <nominal>5</nominal>
+        <min>4</min>
+        <max>5</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -99,9 +99,9 @@
         </children>
     </event>
     <event name="DZDS_VehicleSteppe">
-        <nominal>3</nominal>
-        <min>2</min>
-        <max>3</max>
+        <nominal>10</nominal>
+        <min>9</min>
+        <max>10</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>

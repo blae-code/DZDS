@@ -866,3 +866,46 @@ def test_init_c_dresses_the_outfit_instead_of_civilian_clothes():
     test = re.search(r"void OutfitSelfTest\(\).*?\n\t\}", src, re.S).group(0)
     assert "Dress(dummy, o, v)" in test and "ObjectDelete(dummy)" in test
     assert "OutfitSelfTest();" in re.search(r"void VehicleSelfTest\(\).*?\n\t\}", src, re.S).group(0)
+
+
+def test_light_vehicles_are_compiled(built):
+    """Blae 2026-10-25: players not qualifying for full vehicle receive a light vehicle."""
+    cfg, map_data, out = built
+    assert "LightVehicles" in out
+    light = {v["ClassName"] for v in out["LightVehicles"]}
+    # Dirtbikes, mopeds, and horses
+    assert any("Motorbike_01" in name for name in light)
+    assert any("Motorbike_02" in name for name in light)
+    assert any("Animal_Horse" in name for name in light)
+    # Validate types known to mission
+    known = arrivals.known_types(arrivals.mission_dir(map_data))
+    for v in out["LightVehicles"]:
+        assert v["ClassName"] in known
+        for p in v["Parts"]:
+            assert p in known
+
+
+def test_hq_respawn_at_qalat(built):
+    """Blae 2026-10-25: respawns always at Qalat-e Lut player faction HQ."""
+    cfg, map_data, out = built
+    assert out["RespawnAtHq"] == 1
+    assert "HqPoints" in out and len(out["HqPoints"]) >= 8
+    zones = arrivals.exclusion_zones(cfg, map_data)
+    for pt in out["HqPoints"]:
+        assert pt["Name"] == "Qalat-e Lut"
+        assert 14700 <= pt["X"] <= 15000
+        assert 7700 <= pt["Z"] <= 8600
+        assert not arrivals.excluded((pt["X"], pt["Z"]), zones)
+
+
+def test_init_c_light_vehicles_and_hq_logic():
+    src = INIT_C.read_text()
+    plan = re.search(r"RefugeeArrivalPlan Plan\(.*?\n\t\}", src, re.S).group(0)
+    assert "plan.IsLightVehicle = true;" in plan
+    assert "plan.StartsCooldown = false;" in plan
+    assert "PickLightVehicle()" in plan
+    assert "if (m_Config.RespawnAtHq == 1)" in plan
+    assert "placed = PickPoint(m_Config.HqPoints, plan);" in plan
+    deliver = re.search(r"void Deliver\(PlayerBase player, RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
+    assert "DeliverHorse(player, plan);" in deliver
+    assert "DirtBikeHelmet" in deliver

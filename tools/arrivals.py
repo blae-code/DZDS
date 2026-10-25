@@ -204,6 +204,9 @@ def simulate_kit(arch: dict, rng: random.Random) -> list[str]:
 def validate(cfg: dict, types: set[str]) -> None:
     names = [v["class"] for v in cfg["vehicles"]]
     names += [p for v in cfg["vehicles"] for p in v["parts"]]
+    for lv in cfg.get("light_vehicles", []):
+        names.append(lv["class"])
+        names += lv.get("parts", [])
     for a in cfg["archetypes"].values():
         names += [c for s in a["slots"].values() for c in s["items"]]
         names += [f[k] for f in a["firearms"] for k in ("weapon", "magazine", "ammo") if f.get(k)]
@@ -301,6 +304,8 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "RespawnNearPlayersMax": float(cfg["respawn_near_players_m"][1]),
         "BaseRespawn": int(bool(cfg["base_respawn"])),
         "BasePlayerOffset": float(cfg["base_player_offset_m"]),
+        "RespawnAtHq": int(bool(cfg.get("respawn_at_hq", False))),
+        "HqPoints": [point(s, "Qalat-e Lut") for s in cfg.get("hq_points", [])],
         "CompanionEnabled": int(bool((cfg.get("companion") or {}).get("enabled", True))),
         "CompanionChance": float((cfg.get("companion") or {}).get("chance", 0.50)),
         "CompanionWeightDog": float(((cfg.get("companion") or {}).get("weights") or {}).get("dog", 60.0)),
@@ -316,6 +321,9 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
                       "Trailer": int(v["class"] not in cfg["trailer"]["skip"]),
                       "Aircraft": int(v["class"] in cfg.get("aircraft", []))}
                      for v in cfg["vehicles"]],
+        "LightVehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v.get("parts", [])),
+                           "Trailer": 0, "Aircraft": 0}
+                          for v in cfg.get("light_vehicles", [])],
         "Favored": [{"Id": f["id"], "Name": f["name"], "Vehicles": list(f["vehicles"]),
                      "Outfit": f.get("outfit") or "", "CooldownVehicles": list(f.get("cooldown_vehicles") or []),
                      "CompanionChance": float(f.get("companion_chance", 0.0))}

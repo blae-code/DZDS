@@ -4,39 +4,39 @@
 # Positions: a ring around each matching site (radius_m). [test] refine on roads with VPP; CE
 # needs flat, clear ground. Empty `children` = classnames not verified yet -> event skipped.
 # Vanilla classnames are listed; modded ones go in after `make mod-types`.
-defaults: { lifetime: 3888000, restock: 0, saferadius: 500, distanceradius: 500, cleanupradius: 200, radius_m: 60 }
+defaults: { lifetime: 3888000, restock: 0, saferadius: 500, distanceradius: 500, cleanupradius: 200, radius_m: 60, positions_per_site: 6 }
 
 events:
   - name: DZDS_VehicleFarm
     roles: [inland_town]
     holders: [Settlers]
     children: [Hatchback_02, CivilianSedan]          # + Expansion tractor once verified
-    nominal: 3
+    nominal: 6
   - name: DZDS_VehicleIndustry
     roles: [industrial, water]
-    holders: [Rust]
+    holders: [Rust, contested]
     children: [Truck_01_Covered, MBM_Apocalypse_Truck, LM_Semi_Truck, CrSk_GAZ_3309_Cargo_Green]
-    nominal: 3
+    nominal: 8
   - name: DZDS_VehicleMilitary
     roles: [airfield, military]
-    holders: [Peacekeepers]
+    holders: [Peacekeepers, contested]
     children: [Offroad_02, ExpansionUAZ, TP_Apoc_M1025_NoGun]
-    nominal: 3
+    nominal: 8
   - name: DZDS_VehicleRaiders
-    roles: [road_junction]
+    roles: [road_junction, military]
     holders: [Jackals, contested]
     children: [MBM_DuneBuggy, TP_Apoc_M1025, TP_Apoc_M1025_NoGun, ExpansionUAZRoofless_Black]
-    nominal: 3
+    nominal: 10
   - name: DZDS_VehicleAviation
     roles: [airfield, high_ground]
     holders: [Peacekeepers, Karkas, contested]
     children: [ExpansionGyrocopter, ExpansionMh6, EXT_MH6, ExpansionUh1h, EXT_UH1Y]
-    nominal: 2
+    nominal: 5
   - name: DZDS_VehicleSteppe
     roles: [inland_town, water]
     holders: [Settlers, contested]
     children: [Animal_Horse_Brown, Animal_Horse_Chestnut, Animal_Horse_Palomino, Animal_Horse_Black]
-    nominal: 3
+    nominal: 10
   - name: DZDS_HeliWreck
     roles: [airfield]
     holders: [Peacekeepers, contested]

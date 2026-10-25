@@ -159,6 +159,9 @@ class RefugeeArrivalConfig
 	float RespawnNearPlayersMax;   // ...else this close (0 = off, e.g. an older arrivals.json)
 	int BaseRespawn;               // 1 = wake at the raised territory flag nearest the death
 	float BasePlayerOffset;
+	int RespawnAtHq;               // 1 = wake at Qalat-e Lut player faction HQ
+	ref array<ref RefugeeArrivalPoint> HqPoints;
+	ref array<ref RefugeeArrivalVehicle> LightVehicles;
 	int CompanionEnabled;
 	float CompanionChance;
 	float CompanionWeightDog;
@@ -231,8 +234,10 @@ class RefugeeArrivalPlan
 	bool FirstArrival;
 	bool RandomCharacter;
 	bool GrantVehicle;
-	bool StartsCooldown;    // false for a favored player's CooldownVehicles
+	bool StartsCooldown;    // false for a favored player's CooldownVehicles or light vehicles
 	bool AlwaysVehicle;     // favored with CooldownVehicles: base and camp (no vehicle) are skipped
+	bool IsLightVehicle;    // inside cooldown: granted a light personal vehicle (dirtbike, moped, horse)
+	bool IsHorse;           // true if light vehicle is a rideable horse
 	ref RefugeeArrivalOutfit Outfit;
 	bool GrantCompanion;
 	string CompanionType;
@@ -282,6 +287,10 @@ class RefugeeArrivals
 		}
 		if (!m_Config.ArrivalSites)
 			m_Config.ArrivalSites = new array<ref RefugeeArrivalPoint>;
+		if (!m_Config.HqPoints)
+			m_Config.HqPoints = new array<ref RefugeeArrivalPoint>;
+		if (!m_Config.LightVehicles)
+			m_Config.LightVehicles = new array<ref RefugeeArrivalVehicle>;
 
 		m_Ledger = new RefugeeArrivalLedger;
 		if (FileExist(LEDGER))
@@ -591,6 +600,27 @@ class RefugeeArrivals
 		{
 			if (only && only.Find(w.ClassName) < 0)
 				continue;
+			last = w;
+			roll -= w.Weight;
+			if (roll <= 0)
+				return w;
+		}
+		return last;
+	}
+
+	RefugeeArrivalVehicle PickLightVehicle()
+	{
+		if (!m_Config.LightVehicles || m_Config.LightVehicles.Count() == 0)
+			return null;
+		float total = 0;
+		foreach (RefugeeArrivalVehicle v : m_Config.LightVehicles)
+			total += v.Weight;
+		if (total <= 0)
+			return m_Config.LightVehicles[0];
+		float roll = Math.RandomFloat(0, total);
+		RefugeeArrivalVehicle last = m_Config.LightVehicles[m_Config.LightVehicles.Count() - 1];
+		foreach (RefugeeArrivalVehicle w : m_Config.LightVehicles)
+		{
 			last = w;
 			roll -= w.Weight;
 			if (roll <= 0)
@@ -1367,6 +1397,8 @@ class RefugeeArrivals
 		}
 		plan.GrantVehicle = true;
 		plan.StartsCooldown = true;
+		plan.IsLightVehicle = false;
+		plan.IsHorse = false;
 		if (rec && rec.LastVehicle > 0 && NowSeconds() - rec.LastVehicle < m_Config.CooldownHours * 3600)
 			plan.GrantVehicle = false;
 		TStringArray only = FavoredVehicles(plan.Uid);
@@ -1391,17 +1423,40 @@ class RefugeeArrivals
 				only = fav.CooldownVehicles;
 			}
 		}
+		else if (!plan.GrantVehicle)
+		{
+			// Blae 2026-10-25: players who do not qualify for a fully-equipped vehicle receive a
+			// light personal vehicle (dirtbike, moped, horse) with operating supplies.
+			// Starts no cooldown so they always have transport while their cooldown clock ticks.
+			plan.GrantVehicle = true;
+			plan.StartsCooldown = false;
+			plan.IsLightVehicle = true;
+		}
+
 		plan.Outfit = PickOutfit(plan, fav);
 		PickCompanion(plan, fav);
 		if (plan.GrantVehicle)
-			plan.Vehicle = PickVehicle(only);
+		{
+			if (plan.IsLightVehicle)
+			{
+				plan.Vehicle = PickLightVehicle();
+				if (plan.Vehicle && plan.Vehicle.ClassName.Contains("Horse"))
+					plan.IsHorse = true;
+			}
+			else
+			{
+				plan.Vehicle = PickVehicle(only);
+			}
+		}
 
 		// Base and camp give no vehicle, so a player who always gets one skips them.
 		bool baseCamp = !plan.FirstArrival;
 		if (plan.AlwaysVehicle)
 			baseCamp = false;
 		bool placed = false;
-		if (plan.FirstArrival)
+		if (m_Config.RespawnAtHq == 1)
+			placed = PickPoint(m_Config.HqPoints, plan);
+		if (!placed && plan.FirstArrival)
 			placed = PickColumnPoint(plan);
 		if (!placed && !plan.FirstArrival)
 			placed = PickNearPlayers(plan);
@@ -1416,8 +1471,21 @@ class RefugeeArrivals
 		for (int r = 0; r < VEHICLE_REDRAWS && !placed && plan.GrantVehicle; r++)
 		{
 			// A big vehicle (transport helicopter, semi) may fit no spot here: draw another.
-			plan.Vehicle = PickVehicle(only);
-			if (!plan.FirstArrival)
+			if (plan.IsLightVehicle)
+			{
+				plan.Vehicle = PickLightVehicle();
+				if (plan.Vehicle && plan.Vehicle.ClassName.Contains("Horse"))
+					plan.IsHorse = true;
+				else
+					plan.IsHorse = false;
+			}
+			else
+			{
+				plan.Vehicle = PickVehicle(only);
+			}
+			if (m_Config.RespawnAtHq == 1)
+				placed = PickPoint(m_Config.HqPoints, plan);
+			if (!placed && !plan.FirstArrival)
 				placed = PickNearPlayers(plan);
 			if (!placed && !plan.FirstArrival)
 				placed = PickNearDeath(plan, rec);
@@ -1428,7 +1496,10 @@ class RefugeeArrivals
 		{
 			// Every candidate was blocked: still wake on a road, just without a vehicle.
 			plan.GrantVehicle = false;
-			placed = PickPoint(m_Config.RoadPoints, plan);
+			if (m_Config.RespawnAtHq == 1)
+				placed = PickPoint(m_Config.HqPoints, plan);
+			if (!placed)
+				placed = PickPoint(m_Config.RoadPoints, plan);
 		}
 		if (!placed)
 			return null;
@@ -1621,6 +1692,37 @@ class RefugeeArrivals
 		player.GetInventory().CreateInInventory("Apple");
 	}
 
+	void DeliverHorse(PlayerBase player, RefugeeArrivalPlan plan)
+	{
+		string horseCls = plan.Vehicle.ClassName;
+		Horse_Base horse = Horse_Base.Cast(GetGame().CreateObject(horseCls, plan.CarPos, false, false));
+		if (horse)
+		{
+			horse.SetOrientation(plan.CarOri);
+			horse.SetOwnerId(player.GetID());
+			AIGroup grp = GetGame().GetWorld().GetAIWorld().CreateGroup("DZHorseGroupBeh");
+			horse.InitAIAgent(grp);
+			player.setMyHorse(horse);
+			horse.SetWild(false);
+			horse.SetAnimalCmd(AnimalCmd.STAYHERE);
+
+			horse.GetInventory().CreateAttachment("Saddle_Western");
+			horse.GetInventory().CreateAttachment("Bridle");
+			horse.GetInventory().CreateAttachment("HorseShoe");
+			EntityAI bags = horse.GetInventory().CreateAttachment("HorseBags");
+			if (bags)
+			{
+				bags.GetInventory().CreateInInventory("Apple");
+				bags.GetInventory().CreateInInventory("Apple");
+				bags.GetInventory().CreateInInventory("WaterBottle");
+				bags.GetInventory().CreateInInventory("BandageDressing");
+				bags.GetInventory().CreateInInventory("Matchbox");
+				bags.GetInventory().CreateInInventory("HuntingKnife");
+			}
+			Print("[DZDS Arrivals] Delivered light horse " + horseCls + " to " + player.GetIdentity().GetName());
+		}
+	}
+
 	void GiveNpcCompanion(PlayerBase player, vector spawnPos)
 	{
 #ifdef EXPANSIONMODAI
@@ -1682,28 +1784,48 @@ class RefugeeArrivals
 			before = KeepBeside(player, plan.CarPos, plan.PlayerPos, plan.CarOri[0], "before vehicle");
 		if (plan.GrantVehicle)
 		{
-			EntityAI parent = player;
-			int remaining = 1;
-			Object obj = ExpansionItemSpawnHelper.SpawnVehicle(plan.Vehicle.ClassName, player, parent, plan.CarPos, plan.CarOri, remaining, plan.Vehicle.Parts, -1, "ExpansionCarKey");
-			car = CarScript.Cast(obj);
-			if (car)
+			if (plan.IsHorse)
 			{
-				bool aircraft = plan.Vehicle.Aircraft == 1;
-				float fuelCap = car.GetFluidCapacity(CarFluid.FUEL);
-				float fuel = Math.RandomFloatInclusive(m_Config.FuelMin, m_Config.FuelMax);
-				if (aircraft)
-					fuel = Math.RandomFloatInclusive(m_Config.AircraftFuelMin, m_Config.AircraftFuelMax);
-				car.Leak(CarFluid.FUEL, fuelCap * (1 - fuel));
-				car.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.HealthMin, m_Config.HealthMax));
-				int cans = TopUpAttached(car);
-				int items = FillCargo(car, aircraft, OutfitCargo(plan.Outfit, aircraft));
-				Object trailerObj;
-				got = plan.Vehicle.ClassName + " with " + items + " item(s), fuel " + Math.Round(fuel * 100).ToString() + "%, " + cans + " full can(s) attached, " + EmptySlots(car).ToString() + " empty slot(s)" + GiveTrailer(car, plan.Vehicle, trailerObj);
+				DeliverHorse(player, plan);
 				granted = true;
+				got = plan.Vehicle.ClassName + " (equipped horse with saddle, bridle, horseshoe, bags & provisions)";
 			}
 			else
 			{
-				got = "vehicle spawn FAILED (" + plan.Vehicle.ClassName + ")";
+				EntityAI parent = player;
+				int remaining = 1;
+				Object obj = ExpansionItemSpawnHelper.SpawnVehicle(plan.Vehicle.ClassName, player, parent, plan.CarPos, plan.CarOri, remaining, plan.Vehicle.Parts, -1, "ExpansionCarKey");
+				car = CarScript.Cast(obj);
+				if (car)
+				{
+					bool aircraft = plan.Vehicle.Aircraft == 1;
+					float fuelCap = car.GetFluidCapacity(CarFluid.FUEL);
+					float fuel = Math.RandomFloatInclusive(m_Config.FuelMin, m_Config.FuelMax);
+					if (aircraft)
+						fuel = Math.RandomFloatInclusive(m_Config.AircraftFuelMin, m_Config.AircraftFuelMax);
+					car.Leak(CarFluid.FUEL, fuelCap * (1 - fuel));
+					car.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.HealthMin, m_Config.HealthMax));
+					int cans = TopUpAttached(car);
+					int items = FillCargo(car, aircraft, OutfitCargo(plan.Outfit, aircraft));
+					if (plan.IsLightVehicle)
+					{
+						// Operating supplies for light motor vehicles (dirtbike / moped)
+						if (plan.Vehicle.ClassName.Contains("Motorbike_01"))
+							player.GetInventory().CreateInInventory("DirtBikeHelmet_Black");
+						else if (plan.Vehicle.ClassName.Contains("Motorbike_02"))
+							player.GetInventory().CreateInInventory("DirtBikeHelmet_Red");
+						car.GetInventory().CreateInInventory("Wrench");
+						car.GetInventory().CreateInInventory("TireRepairKit");
+						car.GetInventory().CreateInInventory("CanisterGasoline");
+					}
+					Object trailerObj;
+					got = plan.Vehicle.ClassName + " with " + items + " item(s), fuel " + Math.Round(fuel * 100).ToString() + "%, " + cans + " full can(s) attached, " + EmptySlots(car).ToString() + " empty slot(s)" + GiveTrailer(car, plan.Vehicle, trailerObj);
+					granted = true;
+				}
+				else
+				{
+					got = "vehicle spawn FAILED (" + plan.Vehicle.ClassName + ")";
+				}
 			}
 		}
 

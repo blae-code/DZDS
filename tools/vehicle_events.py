@@ -57,11 +57,13 @@ def build(cfg: dict, led: WarLedger) -> tuple[ET.Element, dict[str, list[tuple[f
         for c in ev["children"]:
             ET.SubElement(children, "child", lootmax="0", lootmin="0", max="1", min="0", type=c)
         pts = []
+        k_count = int(d.get("positions_per_site", 6))
         for i, site in enumerate(sites):
             x, z = locs[site][:2]
-            for k in range(2):  # two candidate positions per site
-                a = (i * 2.4 + k * math.pi) % (2 * math.pi)
-                pts.append((round(x + d["radius_m"] * math.cos(a), 1), round(z + d["radius_m"] * math.sin(a), 1),
+            for k in range(k_count):
+                r = d["radius_m"] if k % 2 == 0 else d["radius_m"] * 1.35
+                a = (i * 1.5 + k * (2 * math.pi / k_count)) % (2 * math.pi)
+                pts.append((round(x + r * math.cos(a), 1), round(z + r * math.sin(a), 1),
                             round(math.degrees(a) % 360, 1)))
         spawns[ev["name"]] = pts
     ET.indent(events_root, space="    ")

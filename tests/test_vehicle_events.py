@@ -17,7 +17,7 @@ def test_events_follow_holders_and_skip_unverified():
     assert "DZDS_VehicleIndustry" in names and "DZDS_VehicleRaiders" in names and "DZDS_HeliWreck" not in names
     led.s.control["Topolka Dam"] = "Karkas"                       # Rust lose the dam
     _, spawns2 = vehicle_events.build(CFG, led)
-    assert len(spawns2["DZDS_VehicleIndustry"]) == len(spawns["DZDS_VehicleIndustry"]) - 2
+    assert len(spawns2["DZDS_VehicleIndustry"]) == len(spawns["DZDS_VehicleIndustry"]) - 6
 
 
 def test_mission_merge_is_idempotent_and_coexists_with_types(tmp_path):

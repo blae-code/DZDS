@@ -18,6 +18,25 @@ enabled: true
 cooldown_hours: 24
 random_character_on_respawn: true
 
+# Player Faction HQ Respawn (Blae, 2026-10-25): all player respawns wake at Qalat-e Lut
+# (fortress compound around [14837, 7853] extending to the north road/grid 148 085).
+# When true, overrides random road/near-players/base/camp points with HQ candidate spots.
+respawn_at_hq: true
+hq_points:
+  - [14837.0, 7810.0, 0.0]    # South Gate Staging
+  - [14815.0, 7815.0, 0.0]    # South-West Approach
+  - [14860.0, 7815.0, 0.0]    # South-East Approach
+  - [14885.0, 7850.0, 90.0]   # East Outer Wall
+  - [14885.0, 7880.0, 90.0]   # North-East Perimeter
+  - [14790.0, 7850.0, 270.0]  # West Outer Wall
+  - [14790.0, 7880.0, 270.0]  # North-West Perimeter
+  - [14845.0, 7920.0, 0.0]    # North Tent Outpost
+  - [14865.0, 7970.0, 0.0]    # North Watchtower Staging
+  - [14840.0, 8050.0, 0.0]    # North Desert Road
+  - [14820.0, 8250.0, 0.0]    # North Plateau
+  - [14800.0, 8500.0, 0.0]    # North Grid 148 085 Boundary
+  - [14837.0, 7855.0, 0.0]    # Inner Courtyard
+
 player_offset_m: 9.0            # player wakes this far beside the car, off the road
 fuel: [0.25, 0.5]               # fraction of tank
 vehicle_health: [0.5, 0.7]
@@ -216,6 +235,45 @@ vehicles:
   - class: RFFSHeli_UH1H
     weight: 0.25
     parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, RFFSHeli_UH1H_DriverDoor, RFFSHeli_UH1H_CodriverDoor, RFFSHeli_UH1H_Cargo1, RFFSHeli_UH1H_Cargo2, RFFSHeli_UH1H_Cargo1a, RFFSHeli_UH1H_Cargo2a, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7, HeadlightH7, RFFSHeli_flight_case_red]
+
+# Light Personal Vehicles (Blae, 2026-10-25): players who do not qualify for a fully-equipped
+# vehicle (inside cooldown) receive a light personal vehicle (dirtbike, moped, horse) with
+# enough supplies to use it, so players ALWAYS spawn with a mode of transportation.
+# Receiving a light vehicle does NOT start or reset the 24 h vehicle cooldown.
+light_vehicles:
+  - class: Motorbike_01_Blue
+    weight: 2
+    parts: [Motorbike_01_Wheel_1, Motorbike_01_Wheel_2, SparkPlug]
+  - class: Motorbike_01_Red
+    weight: 2
+    parts: [Motorbike_01_Wheel_1, Motorbike_01_Wheel_2, SparkPlug]
+  - class: Motorbike_01_Yellow
+    weight: 2
+    parts: [Motorbike_01_Wheel_1, Motorbike_01_Wheel_2, SparkPlug]
+  - class: Motorbike_02_Red
+    weight: 2
+    parts: [Motorbike_02_Wheel_1, Motorbike_02_Wheel_2, SparkPlug, Motorbike_02_ShieldFront_Red, Motorbike_02_ShieldLeft_Red, Motorbike_02_ShieldRight_Red]
+  - class: Motorbike_02_Blue
+    weight: 2
+    parts: [Motorbike_02_Wheel_1, Motorbike_02_Wheel_2, SparkPlug, Motorbike_02_ShieldFront_Blue, Motorbike_02_ShieldLeft_Blue, Motorbike_02_ShieldRight_Blue]
+  - class: Motorbike_02_Green
+    weight: 2
+    parts: [Motorbike_02_Wheel_1, Motorbike_02_Wheel_2, SparkPlug, Motorbike_02_ShieldFront_Green, Motorbike_02_ShieldLeft_Green, Motorbike_02_ShieldRight_Green]
+  - class: Motorbike_02_Yellow
+    weight: 2
+    parts: [Motorbike_02_Wheel_1, Motorbike_02_Wheel_2, SparkPlug, Motorbike_02_ShieldFront_Yellow, Motorbike_02_ShieldLeft_Yellow, Motorbike_02_ShieldRight_Yellow]
+  - class: Animal_Horse_Brown
+    weight: 3
+    parts: [Saddle_Western, Bridle, HorseBags, HorseShoe]
+  - class: Animal_Horse_Chestnut
+    weight: 3
+    parts: [Saddle_Western, Bridle, HorseBags, HorseShoe]
+  - class: Animal_Horse_Black
+    weight: 3
+    parts: [Saddle_Western, Bridle, HorseBags, HorseShoe]
+  - class: Animal_Horse_Palomino
+    weight: 3
+    parts: [Saddle_Western, Bridle, HorseBags, HorseShoe]
 
 # Arrival cargo (Blae, 2026-10-15): ONE archetype per car, slots drawn WITHOUT replacement
 # (max_each 1, food 2), ~12-17 items + exactly one themed firearm. Item pools are disjoint

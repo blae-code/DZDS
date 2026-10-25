@@ -4,3 +4,5 @@
 routes:
   nasdara:
     - { from: Cement Works, to: Hilltop Water Station, route: rust_supply_run.json }
+    - { from: North Highway Pileup, to: Northern Dam, route: jackal_highway_raid.json }
+    - { from: Eastern Airfield, to: Northern Town, route: peacekeeper_escort.json }
