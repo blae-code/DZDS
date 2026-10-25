@@ -1,4 +1,5 @@
 """War ledger: player actions change control, strength, standing and diplomacy."""
+import copy
 import datetime as dt
 
 import diplomacy
@@ -96,7 +97,7 @@ def test_claimed_settlement_gets_settler_patrols_and_never_falls_offscreen():
 
 def test_adm_line_feeds_the_ledger():
     line = ('14:10:02 | AI "Hunter" (DEAD) (group=3:"Ridge" faction="DZDSKarkas" '
-            f'pos=<{at("Altar")[0]}, 300.0, {at("Altar")[1]}>) killed by Player "Host" (id=x= pos=<0, 0, 0>) with Mosin')
+            f'pos=<{at("Altar")[0]}, {at("Altar")[1]}, 300.0>) killed by Player "Host" (id=x= pos=<0, 0, 0>) with Mosin')
     ev = parse_line(line)
     led = fresh()
     killer = ev.by_faction or ("Players" if ev.by and ev.by.startswith("Player") else None)
@@ -227,3 +228,10 @@ def test_contested_sites_always_make_a_warzone():
     for _ in _advance(led, 40):
         for site in _contested(led):
             assert zone_events._teams(site, led.s.strength, led.fspec, led.site_roles(site)), (led.s.turn, site)
+
+
+def test_unmapped_factions_are_counted_not_credited():
+    led = WarLedger.load_or_new("nasdara")
+    before = copy.deepcopy(led.s.deaths)
+    led.record_death("West", "DZDSJackals", (8115.3, 5736.0))
+    assert led.s.deaths == before and led.unmapped["West"] == 1

@@ -10,6 +10,7 @@ Usage: tools/encounter_audit.py [ADM files...]   (default: server/profiles/*.ADM
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 from pathlib import Path
 
@@ -53,6 +54,22 @@ def audit(lines: list[str], zs, window_s: int = 300) -> dict[str, dict]:
     return out
 
 
+def stuck_ai(lines: list[str], threshold: int = 10) -> list[dict]:
+    """AI that keep going unconscious: a stuck or broken spawn, not a fight (2026-10-23: War Zones
+    teams spawned in mid-air looped unconscious ~80 times each). Keyed by name + group."""
+    seen: dict[tuple[str, str], dict] = {}
+    for line in lines:
+        ev = parse_line(line)
+        if not ev or not ev.is_ai or ev.kind != "unconscious":
+            continue
+        group = re.search(r"group=(\d+)", line)
+        key = (ev.player, group.group(1) if group else "?")
+        rec = seen.setdefault(key, {"name": ev.player, "group": key[1], "faction": ev.faction,
+                                    "count": 0, "pos": ev.pos})
+        rec["count"] += 1
+    return sorted((r for r in seen.values() if r["count"] >= threshold), key=lambda r: -r["count"])
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("files", nargs="*")
@@ -64,6 +81,11 @@ def main() -> int:
     zs = zmod.build(active.map_data(), led.s.control, led.locations())
     lines = [ln for f in files for ln in f.read_text(errors="replace").splitlines()]
     res = audit(lines, zs, a.window)
+    stuck = stuck_ai(lines)
+    for r in stuck:
+        where = f"{r['pos'][0]:.0f}, {r['pos'][1]:.0f}" if r["pos"] else "?"
+        print(f"STUCK AI: {r['name']} (group {r['group']}, faction {r['faction']}) unconscious "
+              f"{r['count']}x near {where}")
     import ui
     if ui.use_color():
         print(ui.banner("OPEN-COUNTRY ENCOUNTER AUDIT", subtitle=f"{len(files)} ADM log file(s)  │  Target: <= 0.33 outside encounters / session", width=86))

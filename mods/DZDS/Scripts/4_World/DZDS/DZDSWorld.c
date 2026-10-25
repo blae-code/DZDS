@@ -78,6 +78,21 @@ class DZDSWorld
 		return Vector(x, GetGame().SurfaceY(x, z), z);
 	}
 
+	//! The first floor at or below `p`: a building storey, a dam crest or road, else the terrain.
+	//! For mods that spawn at a configured y, which is an estimate and may be in mid-air.
+	static vector Floor(vector p)
+	{
+		float terrain = GetGame().SurfaceY(p[0], p[2]);
+		vector from = Vector(p[0], Math.Max(p[1], terrain) + 1.5, p[2]);
+		vector to = Vector(p[0], terrain - 0.5, p[2]);
+		vector hit;
+		vector normal;
+		int component;
+		if (DayZPhysics.RaycastRV(from, to, hit, normal, component))
+			return hit;
+		return Vector(p[0], terrain, p[2]);
+	}
+
 	static void SpawnMarkers()
 	{
 		string path = DIR + "markers.json";

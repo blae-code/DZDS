@@ -46,25 +46,25 @@
         "CountdownTime": 900,
         "CrateLocations": [
             {
-                "Position": "12030.0 175.6 10850.0",
+                "Position": "12030.0 169.3 10850.0",
                 "Rotation": "0.0 0.0 0.0",
                 "LocationName": "Eastern Airfield",
                 "AISpawnPositions": []
             },
             {
-                "Position": "3570.0 301.5 14380.0",
+                "Position": "3570.0 301.4 14380.0",
                 "Rotation": "0.0 0.0 0.0",
                 "LocationName": "Northern Dam",
                 "AISpawnPositions": []
             },
             {
-                "Position": "8230.0 264.4 5700.0",
+                "Position": "8230.0 261.9 5700.0",
                 "Rotation": "0.0 0.0 0.0",
                 "LocationName": "Southern Barracks",
                 "AISpawnPositions": []
             },
             {
-                "Position": "3250.0 279.9 4630.0",
+                "Position": "3250.0 279.4 4630.0",
                 "Rotation": "0.0 0.0 0.0",
                 "LocationName": "Southwest Base",
                 "AISpawnPositions": []

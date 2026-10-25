@@ -33,7 +33,7 @@ async def test_multipart_response_reassembled():
 
 
 # ---- ADM ----
-HIT = ('14:02:11 | Player "Bob" (id=abc= pos=<6712.3, 301.2, 2510.9>)[HP: 42.5] '
+HIT = ('14:02:11 | Player "Bob" (id=abc= pos=<6712.3, 2510.9, 301.2>)[HP: 42.5] '
        'hit by Infected into Torso(12) for 10.1 damage (MeleeInfected)')
 
 
@@ -100,12 +100,12 @@ def test_delay_bounds(delay):
 
 # ---- Expansion AI faction lines (LogAIHitBy / LogAIKilled) ----
 AI_KILL = ('14:10:02 | AI "Sgt Volkov" (DEAD) (group=12:"East Garrison" faction="East" '
-           'pos=<9512.0, 300.0, 8890.0>) killed by AI "Pvt Hale" (group=7:"West Patrol" '
-           'faction="West" pos=<9480.0, 301.0, 8850.0>) with M4A1 from 52.3 meters')
+           'pos=<9512.0, 8890.0, 300.0>) killed by AI "Pvt Hale" (group=7:"West Patrol" '
+           'faction="West" pos=<9480.0, 8850.0, 301.0>) with M4A1 from 52.3 meters')
 PLAYER_KILLS_AI = ('14:11:00 | AI "Raider" (DEAD) (group=3:"Bandits" faction="Raiders" '
-                   'pos=<6100.0, 300.0, 7700.0>) killed by Player "Host" (id=abc= pos=<6090.0, 300.0, 7690.0>) with SKS')
-AI_HITS_PLAYER = ('14:12:00 | Player "Host" (id=abc= pos=<6100.0, 300.0, 7700.0>)[HP: 70] hit by AI "Raider" '
-                  '(group=3:"Bandits" faction="Raiders" pos=<6150.0, 300.0, 7720.0>) into Torso(12) for 20 damage')
+                   'pos=<6100.0, 7700.0, 300.0>) killed by Player "Host" (id=abc= pos=<6090.0, 7690.0, 300.0>) with SKS')
+AI_HITS_PLAYER = ('14:12:00 | Player "Host" (id=abc= pos=<6100.0, 7700.0, 300.0>)[HP: 70] hit by AI "Raider" '
+                  '(group=3:"Bandits" faction="Raiders" pos=<6150.0, 7720.0, 300.0>) into Torso(12) for 20 damage')
 
 
 def test_parse_ai_faction_kill():
@@ -154,3 +154,13 @@ def test_system_prompt_includes_faction_voices():
     assert set(cfg["faction_voices"]) >= {"The Jackal Cohort", "Karkas Mountain Clan", "The Rust Syndicate"}
     gm = LMStudioGM("http://127.0.0.1:1234", voices=cfg["faction_voices"])
     assert "feed the crows" in gm.system_prompt and "Blue Shield" in gm.system_prompt
+
+
+def test_positions_read_dayz_order_x_z_altitude():
+    """A real live line (2026-10-23): AI by Southern Barracks (8230, 5700) at 250.8 m altitude.
+    DayZ logs pos=<x, z, altitude>; reading it as <x, y, z> put every event near z = 0..400."""
+    ev = parse_line('21:12:25 | AI "Helga" (group=84 faction="West" pos=<8115.3, 5736.0, 250.8>) is unconscious')
+    assert ev.pos == (8115.3, 5736.0)
+    bad = parse_line('21:00:00 | Player "x" (id=a pos=<-340282346638528859811704183484516925440.0, '
+                     '-340282346638528859811704183484516925440.0, 0.0>)[HP: 0] hit by Infected into Torso')
+    assert bad is not None and bad.pos is None

@@ -2,7 +2,7 @@
 
 Vanilla .ADM covers connects, hits (with HP), deaths and positions. With Expansion AI's
 LogAIHitBy / LogAIKilled enabled, AI appear too, with their faction in the prefix:
-    AI "Name" (group=12:"Patrol" faction="East" pos=<x, y, z>)
+    AI "Name" (group=12:"Patrol" faction="East" pos=<x, z, altitude>)
 and players in an Expansion group get ` group=.. faction=".."` before pos=. That's how the
 GM sees faction-vs-faction fighting. Vehicle crashes are still NOT in ADM (needs a server hook).
 """
@@ -18,7 +18,10 @@ log = logging.getLogger(__name__)
 
 _TIME = r"^(?P<time>\d{2}:\d{2}:\d{2})(?:\.\d+)? \| "
 _PLAYER = r'(?P<etype>Player|AI) "(?P<name>[^"]+)"'
-_POS = r"pos=<(?P<x>-?[\d.]+), (?P<y>-?[\d.]+), (?P<z>-?[\d.]+)>"
+# DayZ writes pos=<x, z, altitude>: the second number is the map northing (z here, 0..bounds),
+# the third the height. Read the other way round, every position lands on a band near z = 0..400
+# (it did until 2026-10-24: nearest sites, ledger pressure and the encounter audit were all off).
+_POS = r"pos=<(?P<x>-?[\d.]+), (?P<z>-?[\d.]+), (?P<y>-?[\d.]+)>"
 
 PATTERNS: list[tuple[str, re.Pattern]] = [
     ("connect", re.compile(_TIME + _PLAYER + r".*is connected")),
@@ -66,6 +69,8 @@ def parse_line(line: str) -> AdmEvent | None:
             continue
         g = m.groupdict()
         pos = (float(g["x"]), float(g["z"])) if g.get("x") else None
+        if pos and (abs(pos[0]) > 1e6 or abs(pos[1]) > 1e6):
+            pos = None  # the engine logs -FLT_MAX for a body it can't place
         by = (g.get("by") or "").strip() or None
         faction, by_faction = _factions(line)
         ev = AdmEvent(kind=kind, player=g["name"], time=g["time"], pos=pos,

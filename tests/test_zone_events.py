@@ -9,11 +9,13 @@ CFG = ze.load_cfg()
 MAP = {"zone_radius_m": 400, "locations": {"Base": [1000.0, 1000.0], "Well": [5000.0, 5000.0],
                                            "Camp": [9000.0, 2000.0]}}
 ZS = zones.build(MAP, {"Base": "Peacekeepers", "Well": "contested", "Camp": "Jackals"})
-FACTIONS = {"Peacekeepers": {"custom_faction": "DZDSPeacekeepers", "holds_roles": ["military"],
+FACTIONS = {"Peacekeepers": {"custom_faction": "DZDSPeacekeepers", "interim_faction": "Guards",
+                             "holds_roles": ["military"],
                              "stance": {"Rust": "hostile", "Jackals": "hostile"}},
-            "Rust": {"custom_faction": "DZDSRust", "holds_roles": ["water"],
+            "Rust": {"custom_faction": "DZDSRust", "interim_faction": "Mercenaries", "holds_roles": ["water"],
                      "stance": {"Peacekeepers": "hostile", "Jackals": "hostile"}},
-            "Jackals": {"custom_faction": "DZDSJackals", "holds_roles": ["road_junction"],
+            "Jackals": {"custom_faction": "DZDSJackals", "interim_faction": "Raiders",
+                        "holds_roles": ["road_junction"],
                         "stance": {"Peacekeepers": "hostile", "Rust": "hostile"}}}
 ROLES = {"Base": {"military"}, "Well": {"water"}, "Camp": {"road_junction"}}
 STRENGTH = {"Peacekeepers": 60, "Rust": 70, "Jackals": 50}
@@ -75,7 +77,9 @@ def test_crates_no_markers_and_inside_zones():
 
 
 def test_warzones_one_per_contested_site_with_hostile_dzds_teams():
-    out = ze.warzones(WZ, ZS, STRENGTH, FACTIONS, ROLES, CFG)
+    cfg = copy.deepcopy(CFG)
+    cfg["warzones"]["faction_names"] = "custom"
+    out = ze.warzones(WZ, ZS, STRENGTH, FACTIONS, ROLES, cfg)
     assert out["maxConcurrentZones"] == 1
     z = out["WarZones"][0]
     assert z["zoneName"] == "Well" and z["aTeamFaction"] == "DZDSRust"
@@ -149,3 +153,44 @@ def test_rerun_is_identical():
 
 def test_drop_radius_fits_every_zone():
     assert CFG["airdrop"]["drop_radius_m"] < 400 and CFG["warzones"]["zone_radius_m"] < 400
+
+
+# AI War Zones resolves factions with a switch over Expansion's built-ins and makes anything
+# else West: both teams of both live zones were West on 2026-10-23 (ADM: faction="West" at the
+# Southern Barracks team-B spawn), friendly to each other. War Zones only knows these names.
+WARZONES_KNOWN = {"west", "east", "shamans", "mercenaries", "raiders", "civilian", "passive",
+                  "guards", "brawlers", "invincibleguards"}
+
+
+def test_warzones_use_factions_the_mod_knows_until_dzds_teaches_it_ours():
+    assert CFG["warzones"]["faction_names"] in {"interim", "custom"}
+    out = ze.warzones(WZ, ZS, STRENGTH, FACTIONS, ROLES, CFG)
+    z = out["WarZones"][0]
+    teams = {z["aTeamFaction"], z["bTeamFaction"]}
+    if CFG["warzones"]["faction_names"] == "interim":
+        assert {t.lower() for t in teams} <= WARZONES_KNOWN
+    assert len(teams) == 2                                   # never one faction on both sides
+
+
+def test_shipped_factions_all_have_a_warzones_name():
+    import active
+    for name, spec in active.load_yaml("presets/factions.yaml")["factions"].items():
+        if spec.get("custom_faction"):
+            assert (spec.get("interim_faction") or "").lower() in WARZONES_KNOWN, name
+
+
+def test_ground_prefers_real_samples_then_the_lowest_building():
+    import ground
+    groups = [("Barracks", 100.0, 262.0, 100.0), ("Wall", 150.0, 251.5, 100.0), ("Dam", 2000.0, 400.0, 2000.0)]
+    g = ground.Ground(groups, samples=[(105.0, 100.0, 250.8)])
+    assert g(100.0, 100.0) == 250.8                           # someone stood there
+    assert ground.Ground(groups)(105.0, 100.0) == 251.5       # lowest origin, not the nearest (262)
+    assert g(9000.0, 9000.0) == 0.0
+
+
+def test_adm_samples_read_standing_positions(tmp_path):
+    import ground
+    f = tmp_path / "x.ADM"
+    f.write_text('21:12:25 | AI "Helga" (group=84 faction="West" pos=<8115.3, 5736.0, 250.8>) is unconscious\n'
+                 '21:12:26 | Player "a" (id=x pos=<1.0, 2.0, 3.0>) is connected\n')
+    assert ground.adm_samples([f]) == [(8115.3, 5736.0, 250.8)]

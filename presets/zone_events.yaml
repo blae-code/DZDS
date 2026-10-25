@@ -20,6 +20,10 @@ warzones:
   accuracy: [0.28, 0.48]      # inside rule 5 bounds
   spawn_offset_m: 120         # team spawns this far from the centre, opposite sides
   reset_s: 900
+  # interim = Expansion built-ins (Guards, Raiders, Shamans, Mercenaries). AI War Zones turns any
+  # faction it doesn't know into West, so set `custom` (DZDSJackals...) only once the published
+  # @DZDS includes DZDSWarZones.c ("[DZDS] War Zones factions" in the RPT).
+  faction_names: interim
 convoy:
   min_interval_s: 3600
   max_interval_s: 7200

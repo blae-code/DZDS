@@ -22,6 +22,7 @@ from pathlib import Path
 import yaml
 
 import active
+import ground as ground_mod
 import map_survey
 import zones as zmod
 
@@ -87,6 +88,13 @@ def crates(dynamic: list[dict], zs, cfg: dict, y=FLAT) -> list[dict]:
     return out
 
 
+def team_faction(spec: dict, names: str) -> str:
+    """The faction string War Zones gets. Its code only knows Expansion's built-in factions and
+    turns anything else into West (both teams of every zone were West until 2026-10-24), so our
+    @DZDS classes work only with the @DZDS build that teaches it them (DZDSWarZones.c)."""
+    return spec["custom_faction"] if names == "custom" else spec["interim_faction"]
+
+
 def _teams(site: str, strength: dict, factions: dict, roles: set[str]) -> tuple[str, str] | None:
     fits = sorted((f for f, s in factions.items() if s.get("custom_faction") and roles & set(s.get("holds_roles", []))),
                   key=lambda f: (-strength.get(f, 0), f))
@@ -123,9 +131,11 @@ def warzones(settings: dict, zs, strength: dict, factions: dict, roles: dict, cf
                   "zoneAINoiseInvestigationRange": 300.0,
                   "zoneResetTime": float(w["reset_s"]), "zoneShowOnEnter": 0, "zoneShowOnWin": 0,
                   "zoneEnableAirborneAIAircraft": 0,
-                  "aTeamFaction": factions[a]["custom_faction"], "aTeamLoadout": f"DZDS_{a}",
+                  "aTeamFaction": team_faction(factions[a], w.get("faction_names", "interim")),
+                  "aTeamLoadout": f"DZDS_{a}",
                   "aTeamSpawnPosition": _ring(zn, w["spawn_offset_m"], 0.0, y),
-                  "bTeamFaction": factions[b]["custom_faction"], "bTeamLoadout": f"DZDS_{b}",
+                  "bTeamFaction": team_faction(factions[b], w.get("faction_names", "interim")),
+                  "bTeamLoadout": f"DZDS_{b}",
                   "bTeamSpawnPosition": _ring(zn, w["spawn_offset_m"], math.pi, y)})
         for k, v in z.items():
             if k.startswith("zone") and "Message" in k and isinstance(v, str):
@@ -219,7 +229,7 @@ def main() -> int:
     zs = zmod.build(mp, led.s.control, led.locations())
     groups_file = active.mission_dir() / "mapgrouppos.xml"
     groups = map_survey.load_groups(groups_file) if groups_file.exists() else []
-    y = (lambda x, z: map_survey.ground_y(groups, x, z)) if groups else FLAT
+    y = ground_mod.Ground(groups, ground_mod.adm_samples(sorted(PROFILES.glob("*.ADM"))))
     roles = {s: led.site_roles(s) for s in led.s.control}
     d = a.dry_run
     _rw(PROFILES / "Airdrop" / "AirdropSettings.json", lambda s: airdrop(s, zs, cfg, y), d)

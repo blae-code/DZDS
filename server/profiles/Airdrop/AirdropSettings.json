@@ -245,16 +245,6 @@
     ],
     "DropZones": [
         {
-            "Title": "Player Called",
-            "Location": "RANDOM",
-            "DropType": "RANDOM",
-            "X": 0.0,
-            "Z": 0.0,
-            "Zombies": 10,
-            "Radius": 50,
-            "DropAccuracy": 100
-        },
-        {
             "Title": "Eastern Airfield",
             "Location": "Military",
             "DropType": "RANDOM",

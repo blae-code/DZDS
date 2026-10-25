@@ -13,12 +13,15 @@ from __future__ import annotations
 import copy
 import datetime as dt
 import json
+import logging
 import random
 from collections import Counter
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
 
 import yaml
+
+log = logging.getLogger(__name__)
 
 ROOT = Path(__file__).resolve().parents[2]
 STATE = ROOT / "gm_state" / "war_ledger.json"
@@ -71,6 +74,9 @@ class WarLedger:
         self.convoy_routes = ((load_yaml(convoys) or {}).get("routes") or {}).get(
             state.map) or [] if convoys.exists() else []
         self.fspec = {k: v for k, v in self.factions["factions"].items() if v.get("custom_faction")}
+        # Engine factions seen in deaths that map to no ledger faction (e.g. "West" from a mod
+        # that fell back to a default): counted, never credited, logged once each.
+        self.unmapped: Counter[str] = Counter()
         self.engine_to_name = {}
         for name, spec in self.fspec.items():
             for key in ("custom_faction", "interim_faction"):
@@ -150,6 +156,11 @@ class WarLedger:
         """victim/killer: engine faction names (DZDSJackals, Raiders...) or 'Players'.
         killer_name: the player's name when a player made the kill (for named deeds)."""
         v, k = self.name_of(victim), self.name_of(killer)
+        for engine, mapped in ((victim, v), (killer, k)):
+            if engine and not mapped:
+                if not self.unmapped[engine]:
+                    log.warning("Faction %r maps to no ledger faction; its deaths are not counted", engine)
+                self.unmapped[engine] += 1
         if not v:
             return
         self.s.deaths[v] = self.s.deaths.get(v, 0) + 1

@@ -54,9 +54,9 @@ class Sim:
         x, z = self.locations[loc]
         vx, vz = x + self.rng.uniform(-300, 300), z + self.rng.uniform(-300, 300)
         return (f'AI "{victim} soldier" (DEAD) (group={self.rng.randint(1, 40)}:"{victim} patrol" '
-                f'faction="{victim}" pos=<{vx:.1f}, 200.0, {vz:.1f}>) killed by AI "{killer} soldier" '
+                f'faction="{victim}" pos=<{vx:.1f}, {vz:.1f}, 200.0>) killed by AI "{killer} soldier" '
                 f'(group={self.rng.randint(1, 40)}:"{killer} patrol" faction="{killer}" '
-                f'pos=<{vx + 40:.1f}, 200.0, {vz + 30:.1f}>) with AKM from 45.0 meters')
+                f'pos=<{vx + 40:.1f}, {vz + 30:.1f}, 200.0>) with AKM from 45.0 meters')
 
     def step(self) -> list[str]:
         if self.rng.random() < 0.15:

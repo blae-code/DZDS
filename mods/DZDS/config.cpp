@@ -16,7 +16,10 @@ class CfgPatches
 			"DZT_UtilityTrailer",
 			// Survivor Animations: DZDSSurvivorAnimsAI.c overrides its UpdateSAItemInHandsType for AI,
 			// so it must compile after SA. Drop this line if SA is ever removed.
-			"SurvivorAnims"
+			"SurvivorAnims",
+			// AI War Zones: DZDSWarZones.c overrides its faction and spawn methods, so it must
+			// compile after it. Drop this line (and that file) if War Zones is ever removed.
+			"AIWarZones"
 		};
 	};
 };

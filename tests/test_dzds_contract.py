@@ -101,3 +101,26 @@ def test_survivor_anims_ai_guard():
         assert '"SurvivorAnims"' in required
     else:
         assert "SurvivorAnims" not in required
+
+
+def test_warzones_factions_and_floor_guard():
+    """AI War Zones turns unknown factions into West and spawns at the configured y (2026-10-23:
+    both teams West, AI falling from mid-air). DZDSWarZones.c maps our factions and floors spawns;
+    it needs War Zones compiled first, and must go if War Zones is ever removed (no #ifdef exists)."""
+    mods = yaml.safe_load((ROOT / "config" / "mods.yaml").read_text())
+    wz = [m for m in mods["mods"] if m.get("id") == 3521304609]
+    cfg = (ROOT / "mods" / "DZDS" / "config.cpp").read_text()
+    required = re.search(r"requiredAddons\[\]\s*=\s*\{(.*?)\}", cfg, re.S).group(1)
+    path = ROOT / "mods" / "DZDS" / "Scripts" / "4_World" / "DZDS" / "DZDSWarZones.c"
+    if wz and wz[0].get("enabled"):
+        assert '"AIWarZones"' in required and path.exists()
+        src = path.read_text()
+        assert re.search(r"modded\s+class\s+AIWarZoneInstance\b", src)
+        factions = yaml.safe_load((ROOT / "presets" / "factions.yaml").read_text())["factions"]
+        for spec in factions.values():          # every custom faction has a lowercase case label
+            if spec.get("custom_faction"):
+                c = spec["custom_faction"]
+                assert f'case "{c.lower()}"' in src and f"new eAIFaction{c}()" in src
+        assert "DZDSWorld.Floor(position)" in src
+    else:
+        assert "AIWarZones" not in required and not path.exists()
