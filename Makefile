@@ -103,6 +103,20 @@ diplomacy:
 prepare-restart: war-turn economy diplomacy patrols zone-events vehicle-events front-plan loadouts dzds-profile arrivals overlays calibrate validate
 	@echo "Ready: review git diff, then 'make push' and restart from the GSP panel."
 
+# One restart cycle: mirror the live server, advance the war a turn and regenerate everything,
+# then push ONLY the files whose content changed (tools/cycle.py), never a full mtime-based push.
+# DRY_RUN=1 stops after listing them. Run ~10 min before a scheduled restart; Blae restarts.
+.PHONY: cycle
+cycle:
+	DRY_RUN=0 scripts/sync.sh pull
+	$(ENV) $(PY) tools/cycle.py snapshot
+	@if [ "$(DRY_RUN)" = 1 ]; then cp gm_state/war_ledger.json build/war_ledger.before-dry-run.json; fi
+	$(MAKE) prepare-restart
+	$(ENV) $(PY) tools/cycle.py changed
+	scripts/sync.sh push-files build/changed.txt
+	@if [ "$(DRY_RUN)" = 1 ]; then cp build/war_ledger.before-dry-run.json gm_state/war_ledger.json; \
+	  echo ">> DRY RUN: war ledger restored (no turn taken); server/ holds the regenerated files"; fi
+
 .PHONY: war-status war-turn
 war-status:
 	$(ENV) $(PY) tools/war.py status

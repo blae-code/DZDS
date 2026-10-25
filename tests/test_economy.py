@@ -80,3 +80,20 @@ def test_every_arrival_vehicle_gets_a_lifetime_override():
 def test_no_vanilla_loot_boosts_in_custom_types():
     t = yaml.safe_load((economy.ROOT / "presets" / "types_dzds.yaml").read_text())
     assert t["items"] == []
+
+
+def test_a_game_update_vanilla_file_becomes_the_baseline(tmp_path):
+    """1.30.164200 (2026-10-21) replaced the mission's types.xml: our lifetimes were gone and
+    Bohemia's values changed. The pulled file is adopted as the new baseline, then regenerated."""
+    import economy
+    base = tmp_path / "types.xml.vanilla"
+    cur = tmp_path / "types.xml"
+    base.write_text('<types><type name="CivilianSedan"><lifetime>3</lifetime></type>'
+                    '<type name="Ayran"><nominal>0</nominal></type></types>')
+    over = {"CivilianSedan": 3888000}
+    cur.write_text(base.read_text().replace("<nominal>0<", "<nominal>50<"))
+    assert economy.is_fresh_vanilla(cur, base, over)               # new vanilla, none of ours
+    cur.write_text(cur.read_text().replace("<lifetime>3<", "<lifetime>3888000<"))
+    assert not economy.is_fresh_vanilla(cur, base, over)           # our own output
+    cur.write_text(base.read_text())
+    assert not economy.is_fresh_vanilla(cur, base, over)           # same as the baseline

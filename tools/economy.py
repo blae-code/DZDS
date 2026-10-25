@@ -63,6 +63,22 @@ def types_files(mission: Path) -> list[Path]:
     return files
 
 
+def canonical(path: Path) -> str:
+    return ET.canonicalize(from_file=str(path), strip_text=True)
+
+
+def is_fresh_vanilla(path: Path, baseline: Path, overrides: dict[str, int]) -> bool:
+    """True when `path` is a vanilla types file newer than our baseline: it carries none of our
+    lifetimes and differs from the baseline. A DayZ update replaces the mission's db/types.xml
+    with its own (2026-10-21, 1.30.164200: live had Ayran nominal 50 and vehicle lifetime 3 again),
+    and the pull brings that file down."""
+    root = ET.parse(path).getroot()
+    ours = [t for t in root.findall("type") if t.get("name") in overrides]
+    if not ours or any((t.findtext("lifetime") or "").strip() == str(overrides[t.get("name")]) for t in ours):
+        return False
+    return canonical(path) != canonical(baseline)
+
+
 def process(path: Path, cfg: dict, dry_run: bool) -> Counter | None:
     baseline = path.with_name(path.name + ".vanilla")
     if not path.exists():
@@ -71,6 +87,10 @@ def process(path: Path, cfg: dict, dry_run: bool) -> Counter | None:
     if not baseline.exists() and not dry_run:
         shutil.copy2(path, baseline)
         print(f"  saved pristine baseline {baseline.name} (commit it)")
+    elif baseline.exists() and is_fresh_vanilla(path, baseline, lifetime_overrides(cfg)):
+        print(f"  {path.name} is a newer vanilla file (game update): adopted as {baseline.name} (commit it)")
+        if not dry_run:
+            shutil.copy2(path, baseline)
     tree = ET.parse(baseline if baseline.exists() else path)
     stats: Counter = Counter()
     stats["lifetime"] = apply_lifetimes(tree.getroot(), lifetime_overrides(cfg))
@@ -115,8 +135,14 @@ def main() -> int:
     over = lifetime_overrides(cfg)
     print(f"vanilla economy; script-spawned vehicle lifetime set on {total['lifetime']} type(s) "
           f"for {len(over)} arrival class(es)")
-    if total["lifetime"] < len(over):
-        print("WARNING: an arrival vehicle is in no types file; the CE will not keep it")
+    # Modded arrival vehicles live in dzds/types_dzds.xml (tools/types_gen.py), not here.
+    known = set()
+    for f in [*types_files(mission), *sorted((mission / "dzds").glob("types*.xml"))]:
+        if f.exists():
+            known |= {t.get("name") for t in ET.parse(f).getroot().findall("type")}
+    missing = sorted(set(over) - known)
+    if missing:
+        print(f"WARNING: arrival vehicle(s) in no types file; the CE will not keep them: {', '.join(missing)}")
     if a.dry_run:
         print("(dry run, nothing written)")
         return 0

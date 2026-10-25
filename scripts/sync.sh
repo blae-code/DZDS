@@ -3,6 +3,7 @@
 #
 #   scripts/sync.sh pull            # remote profiles/ + mpmissions/ -> server/
 #   scripts/sync.sh push            # validate -> snapshot remote to backups/ -> upload
+#   scripts/sync.sh push-files LIST # validate -> back up those remote files -> upload exactly them
 #   scripts/sync.sh logs            # pull only *.ADM / *.RPT into server/profiles (for debugging)
 #   scripts/sync.sh push-excludes   # print what push leaves out (everything git ignores under server/)
 #   DRY_RUN=1 scripts/sync.sh push  # show what would change, upload nothing
@@ -67,8 +68,8 @@ pull() {
   mkdir -p "$L_PROFILES" "$l_mission"
   echo ">> Pulling $R_PROFILES and $r_mission"
   run_lftp "
-    mirror --verbose --parallel=4 $(dry_flag) $EXCLUDES '$R_PROFILES' '$L_PROFILES'
-    mirror --verbose --parallel=4 $(dry_flag) $EXCLUDES '$r_mission' '$l_mission'
+    mirror --verbose --no-perms --parallel=4 $(dry_flag) $EXCLUDES '$R_PROFILES' '$L_PROFILES'
+    mirror --verbose --no-perms --parallel=4 $(dry_flag) $EXCLUDES '$r_mission' '$l_mission'
   "
 }
 
@@ -107,6 +108,43 @@ push() {
   echo ">> Done. Restart the server from the GSP panel for changes to take effect."
 }
 
+# Upload exactly the files in LIST (repo-relative paths under server/, one per line), e.g.
+# build/changed.txt from tools/cycle.py. Each remote copy is downloaded to backups/ first.
+push_files() {
+  local list="${1:?usage: sync.sh push-files LIST}"
+  [[ -s "$list" ]] || { echo ">> Nothing to push ($list is empty)"; return 0; }
+  echo ">> Validating local configs"
+  "$ROOT/scripts/validate.sh"
+  local mission; mission="$(active_mission)"
+  local ts dir cmds="" backup="" rel remote rdir
+  ts="$(date -u +%Y%m%dT%H%M%SZ)"; dir="backups/cycle-$ts"
+  while IFS= read -r rel; do
+    [[ -n "$rel" ]] || continue
+    case "$rel" in
+      server/profiles/*) remote="$R_PROFILES/${rel#server/profiles/}" ;;
+      "$L_MISSIONS/$mission/"*) remote="$R_MISSIONS/$mission/${rel#"$L_MISSIONS/$mission/"}" ;;
+      *) echo "refusing $rel: not under server/profiles or the active mission"; exit 2 ;;
+    esac
+    [[ -f "$rel" ]] || { echo "missing local file $rel"; exit 2; }
+    rdir="$(dirname "$remote")"
+    mkdir -p "$dir/$(dirname "$rel")"
+    backup+="get1 -o '$dir/$rel' '$remote'
+"
+    cmds+="mkdir -p -f '$rdir'
+put -O '$rdir' '$rel'
+"
+    echo "  $rel -> $remote"
+  done < "$list"
+  if [[ "$DRY" == "1" ]]; then echo ">> DRY RUN: nothing uploaded"; return 0; fi
+  echo ">> Backing up the remote copies to $dir (files new on the server are skipped)"
+  run_lftp "set cmd:fail-exit no
+$backup" || true
+  read -r -p "Upload $(grep -c . "$list") file(s) to $SFTP_HOST? [y/N] " ans
+  [[ "$ans" =~ ^[Yy]$ ]] || { echo "Aborted."; exit 1; }
+  run_lftp "$cmds"
+  echo ">> Done. Restart the server from the GSP panel for changes to take effect."
+}
+
 logs() {
   mkdir -p "$L_PROFILES"
   run_lftp "mirror --verbose --newer-than=now-1days --include-glob '*.ADM' --include-glob '*.RPT' '$R_PROFILES' '$L_PROFILES'"
@@ -115,6 +153,7 @@ logs() {
 case "${1:-}" in
   pull) pull ;;
   push) push ;;
+  push-files) push_files "${2:-}" ;;
   logs) logs ;;
   push-excludes) runtime_excludes "$L_PROFILES"; runtime_excludes "$L_MISSIONS/$(active_mission)" ;;
   *) sed -n '2,10p' "$0"; exit 1 ;;
