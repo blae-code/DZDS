@@ -1,0 +1,129 @@
+# Which modded items the Central Economy knows, and how many spawn (tools/mod_ce.py, `make mod-ce`).
+#
+# Until 2026-10-24 no mod's types file was registered on Nasdara: no modded item spawned as
+# loot, and crafted or script-spawned modded items had no CE entry at all. Each enabled mod that
+# ships CE files gets an entry here, keyed by Workshop ID (config/mods.yaml).
+#
+#   policy: author   the mod's own values (relaunch spec R3: "modded items at author defaults")
+#           curated  the mod's values, then the filters below
+#           none     nothing registered; `reason` says why
+#   types / spawnabletypes: globs relative to the mod's Workshop folder
+#   exclude: classname globs never registered
+#   nominal_scale: nominal and min multiplied (rounded; an item the author spawns keeps >= 1)
+#   usages: keep only these usage flags (an item left with none is not registered as loot)
+#   min_tier: drop value tiers below this one (Tier1..Tier4)
+#
+# Never registered whatever the policy: classes vanilla types.xml already defines, and classes in
+# our own dzds/types_dzds.xml (arrival vehicles and their parts).
+
+mods:
+  2663169692:
+    name: MMG - Mightys Military Gear
+    # 469 items at author values add 877 to Nasdara's military loot, whose clothing totals 1457
+    # (+60 %). At 0.25 it is ~+30 % (decision 2 in the plan: change the scale to taste).
+    policy: curated
+    types: ["files/types/mmg_types_*.xml"]
+    spawnabletypes: ["files/spawnabletypes/mmg_cfgspawnabletypes.xml"]
+    exclude: ["*ADMIN*", "*Admin*"]
+    usages: [Military, MilitaryWest, MilitaryEast, Police]
+    min_tier: Tier3
+    files_exclude: ["*ADMINGEAR*"]
+    nominal_scale: 0.25
+  3311720441:
+    name: Gas Mask Overhaul
+    policy: curated            # 23 masks at nominal 10 = 230 military gas masks
+    types: ["types.xml"]
+    nominal_scale: 0.2
+  2471347750:
+    name: DayZ-Dog
+    policy: author
+    types: ["types.xml"]
+  3468961047:
+    name: Zens Sleeping Mod
+    policy: author
+    types: ["extras/types.xml"]
+  3210162677:
+    name: MMG Base Storage
+    policy: author
+    types: ["files/MMG_Storage_Types.xml"]
+  3030756548:
+    name: Zens Car Workbench
+    policy: author
+    types: ["types.xml"]
+  2303483532:
+    name: CarCover
+    policy: author             # 3 camo nets spawn; the rest are crafted covers
+    types: ["types.xml"]
+  3004707934:
+    name: Towing Service
+    policy: author             # flatbed parts in Industrial; the truck itself spawns by event (M2)
+    types: ["types and trader files/ALLMAPS_Towing-truck_Types.xml"]
+  3302732231:
+    name: CookZ
+    policy: author             # all nominal 0: crafted dishes need a CE entry to persist
+    types: ["cookz_types.xml"]
+  2886393751:
+    name: Doc's Animals
+    policy: author             # nominal 0: trophies and rugs are crafted
+    types: ["xml/types.xml"]
+  3157695626:
+    name: RaG_BaseBuilding
+    policy: author             # kits are crafted; the building book spawns
+    types: ["types/rag_basebuilding.xml"]
+  3117613872:
+    name: RaG_Hunting_Cabin
+    policy: author
+    types: ["Extras/rag_hunting_cabin.xml"]
+  3295021220:
+    name: DayZ Horse
+    policy: curated            # 135 saddles/bridles/bags on farms, but Nasdara has no horse
+    types: ["types.xml"]       # territory yet (milestone 2): a few, until horses roam
+    nominal_scale: 0.1
+  2651195301:
+    name: Arma 2 Helicopters Remastered
+    policy: author             # parts and covers, nominal 0 (see parts below)
+    types: ["extras/Types/*.xml"]
+  3661300360:
+    name: MBM_ApocalypseTruck
+    policy: author
+    types: ["extra/*.xml"]
+  3485290555:
+    name: LMs Semi Truck & Trailer
+    policy: author
+    types: ["Extra/types.xml"]
+  3737385977:
+    name: TP_Apoc_M1025
+    policy: author
+    types: ["extra/*.xml"]
+  3166659854:
+    name: MBM_DuneBuggy
+    policy: author
+    types: ["extra/*.xml"]
+  3057052159:
+    name: FairPlayAmbulance
+    policy: author
+    types: ["Server Files/*.xml"]
+  3529074158:
+    name: MaharlikaPH_MilitaryPack
+    policy: author
+    types: ["info/van_tank_types.xml"]
+  1818957231:
+    name: "[CrSk] VAZ-2107"
+    policy: author
+    types: ["info/types.xml"]
+  1869021368:
+    name: "[CrSk] BMW 525i E34"
+    policy: curated            # 50 colour-variant body parts at 8 each = 400, and no BMW spawns
+    types: ["info/types.xml"]  # yet (milestone 2): one of each
+    nominal_scale: 0.125
+  3382463948:
+    name: AnimatedDynamicHelicopters
+    policy: none
+    reason: >-
+      Its only types are call-in smoke grenades (air strike, CH-47 supply, CH-47 vehicle) that
+      summon an event wherever they are thrown: events stay inside zones (spec R4). Crash loot
+      is vanilla items.
+  3811085358:
+    name: Simply's Car Trailer
+    policy: none
+    reason: Trailers are disabled (2026-10-17, Expansion AI crash); init.c deletes them.

@@ -24,7 +24,7 @@ import active
 ROOT = active.ROOT
 PRESET = ROOT / "presets" / "economy.yaml"
 ARRIVALS = ROOT / "presets" / "arrivals.yaml"
-SKIP_FOLDERS = {"dzds"}
+SKIP_FOLDERS = {"dzds", "dzds_mods"}   # ours: types_gen.py and mod_ce.py regenerate them
 
 
 def lifetime_overrides(cfg: dict) -> dict[str, int]:

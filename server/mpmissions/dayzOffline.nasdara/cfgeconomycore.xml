@@ -42,4 +42,29 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
         <file name="types_dzds.xml" type="types" />
         <file name="events_dzds.xml" type="events" />
     </ce>
+    <ce folder="dzds_mods">
+        <file name="mmg_mightys_military_gear_types.xml" type="types" />
+        <file name="mmg_mightys_military_gear_spawnabletypes.xml" type="spawnabletypes" />
+        <file name="gas_mask_overhaul_types.xml" type="types" />
+        <file name="dayz_dog_types.xml" type="types" />
+        <file name="zens_sleeping_mod_types.xml" type="types" />
+        <file name="mmg_base_storage_types.xml" type="types" />
+        <file name="zens_car_workbench_types.xml" type="types" />
+        <file name="carcover_types.xml" type="types" />
+        <file name="towing_service_types.xml" type="types" />
+        <file name="cookz_types.xml" type="types" />
+        <file name="doc_s_animals_types.xml" type="types" />
+        <file name="rag_basebuilding_types.xml" type="types" />
+        <file name="rag_hunting_cabin_types.xml" type="types" />
+        <file name="dayz_horse_types.xml" type="types" />
+        <file name="arma_2_helicopters_remastered_types.xml" type="types" />
+        <file name="mbm_apocalypsetruck_types.xml" type="types" />
+        <file name="lms_semi_truck_trailer_types.xml" type="types" />
+        <file name="tp_apoc_m1025_types.xml" type="types" />
+        <file name="mbm_dunebuggy_types.xml" type="types" />
+        <file name="fairplayambulance_types.xml" type="types" />
+        <file name="maharlikaph_militarypack_types.xml" type="types" />
+        <file name="crsk_vaz_2107_types.xml" type="types" />
+        <file name="crsk_bmw_525i_e34_types.xml" type="types" />
+    </ce>
 </economycore>

@@ -88,6 +88,10 @@ arrivals:       # presets/arrivals.yaml + map arrival_sites -> profiles/DZDS/arr
 kan-camps:      # presets/kan_camps.yaml -> KAN camps.json role counts (server STOPPED)
 	$(ENV) $(PY) tools/kan_camps.py
 
+.PHONY: mod-ce
+mod-ce:         # enabled mods' own types/spawnabletypes -> <mission>/dzds_mods (presets/mod_loot.yaml)
+	$(ENV) $(PY) tools/mod_ce.py
+
 .PHONY: economy
 economy:
 	$(ENV) $(PY) tools/economy.py
@@ -100,7 +104,7 @@ diplomacy:
 	$(ENV) $(PY) tools/diplomacy.py
 
 # Everything that should run between restarts, in order, before `make push`.
-prepare-restart: war-turn economy diplomacy patrols zone-events vehicle-events front-plan loadouts dzds-profile arrivals overlays calibrate validate
+prepare-restart: war-turn mod-ce economy diplomacy patrols zone-events vehicle-events front-plan loadouts dzds-profile arrivals overlays calibrate validate
 	@echo "Ready: review git diff, then 'make push' and restart from the GSP panel."
 
 # One restart cycle: mirror the live server, advance the war a turn and regenerate everything,
