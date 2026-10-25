@@ -1,0 +1,21 @@
+{
+    "Version": 5,
+    "EnableRaGDigitalCodeLock": 1,
+    "DigitalCodeLockAutoLockOnClose": 1,
+    "DigitalCodeLockRememberAccess": 1,
+    "DigitalCodeLockOwnerOnlyReset": 1,
+    "DigitalCodeLockOwnerOnlyRemove": 1,
+    "DigitalCodeLockRequireBattery": 0,
+    "DigitalCodeLockEnableRaiding": 0,
+    "DigitalCodeLockEnableVanillaTents": 0,
+    "DigitalCodeLockEnableVanillaFences": 0,
+    "DigitalCodeLockDeleteAfterRaid": 0,
+    "DigitalCodeLockRaidTimeSeconds": 900.0,
+    "DigitalCodeLockRaidIncrements": 5,
+    "DigitalCodeLockRaidToolDamage": 100.0,
+    "DigitalCodeLockRaidTools": [
+        "Hacksaw",
+        "HandSaw"
+    ],
+    "AdminSteamIds": []
+}

@@ -10503,7 +10503,7 @@
         },
         {
             "ClassName": "Asmond_SKS_Old",
-            "ParentClass": "Asmond_SKS_Base",
+            "ParentClass": "SKS",
             "DetectedWeightKg": 3.8499999046325685,
             "DetectedLengthM": 1.059999942779541,
             "DetectedRecoil": 0.9787499904632568,
@@ -12381,6 +12381,728 @@
                     "ModeName": "Single",
                     "DetectedReloadTime": 0.12999999523162843,
                     "DetectedDispersion": 0.008999999612569809,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK101_Desert",
+            "ParentClass": "AK101",
+            "DetectedWeightKg": 3.0769999027252199,
+            "DetectedLengthM": 0.949999988079071,
+            "DetectedRecoil": 0.998075008392334,
+            "DetectedSway": 1.8321186304092408,
+            "DetectedADSSpeed": 0.9636139869689941,
+            "DetectedPrecision": 1.0807700157165528,
+            "DetectedInitSpeedMultiplier": 0.8999999761581421,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.11999999731779099,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "FullAuto",
+                    "DetectedReloadTime": 0.09799999743700028,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK101_Camo",
+            "ParentClass": "AK101",
+            "DetectedWeightKg": 3.0769999027252199,
+            "DetectedLengthM": 0.949999988079071,
+            "DetectedRecoil": 0.998075008392334,
+            "DetectedSway": 1.8321186304092408,
+            "DetectedADSSpeed": 0.9636139869689941,
+            "DetectedPrecision": 1.0807700157165528,
+            "DetectedInitSpeedMultiplier": 0.8999999761581421,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.11999999731779099,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "FullAuto",
+                    "DetectedReloadTime": 0.09799999743700028,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK74_Camo",
+            "ParentClass": "AK74",
+            "DetectedWeightKg": 3.069999933242798,
+            "DetectedLengthM": 0.8500000238418579,
+            "DetectedRecoil": 0.9982500076293945,
+            "DetectedSway": 1.8003123998641968,
+            "DetectedADSSpeed": 0.9777399897575378,
+            "DetectedPrecision": 1.0606999397277833,
+            "DetectedInitSpeedMultiplier": 0.699999988079071,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.11999999731779099,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "FullAuto",
+                    "DetectedReloadTime": 0.09799999743700028,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AKS74U_Camo",
+            "ParentClass": "AKS74U",
+            "DetectedWeightKg": 2.700000047683716,
+            "DetectedLengthM": 0.7099999785423279,
+            "DetectedRecoil": 1.0075000524520875,
+            "DetectedSway": 1.4251632690429688,
+            "DetectedADSSpeed": 1.003999948501587,
+            "DetectedPrecision": 1.028999924659729,
+            "DetectedInitSpeedMultiplier": 0.5699999928474426,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.11999999731779099,
+                    "DetectedDispersion": 0.003000000026077032,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "FullAuto",
+                    "DetectedReloadTime": 0.09799999743700028,
+                    "DetectedDispersion": 0.003000000026077032,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Crossbow_Green",
+            "ParentClass": "Crossbow",
+            "DetectedWeightKg": 2.700000047683716,
+            "DetectedLengthM": 0.9399999976158142,
+            "DetectedRecoil": 1.0075000524520875,
+            "DetectedSway": 1.1737933158874512,
+            "DetectedADSSpeed": 0.9717999696731567,
+            "DetectedPrecision": 1.0749999284744263,
+            "DetectedInitSpeedMultiplier": 1.0,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 5.3333001136779789,
+                    "DetectedDispersion": 0.000750000006519258,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_FAL_Camo",
+            "ParentClass": "FAL",
+            "DetectedWeightKg": 3.700000047683716,
+            "DetectedLengthM": 1.100000023841858,
+            "DetectedRecoil": 0.9825000166893005,
+            "DetectedSway": 1.9500000476837159,
+            "DetectedADSSpeed": 0.9314000010490418,
+            "DetectedPrecision": 1.1169999837875367,
+            "DetectedInitSpeedMultiplier": 0.949999988079071,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.11999999731779099,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "FullAuto",
+                    "DetectedReloadTime": 0.09799999743700028,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_LeeEnfield_Yellow",
+            "ParentClass": "LeeEnfield",
+            "DetectedWeightKg": 4.0,
+            "DetectedLengthM": 1.0,
+            "DetectedRecoil": 0.9750000238418579,
+            "DetectedSway": 1.834299921989441,
+            "DetectedADSSpeed": 0.9399999976158142,
+            "DetectedPrecision": 1.100000023841858,
+            "DetectedInitSpeedMultiplier": 1.0,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 1.0,
+                    "DetectedDispersion": 0.0012000000569969416,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_LeeEnfield_Beige",
+            "ParentClass": "LeeEnfield",
+            "DetectedWeightKg": 4.0,
+            "DetectedLengthM": 1.0,
+            "DetectedRecoil": 0.9750000238418579,
+            "DetectedSway": 1.834299921989441,
+            "DetectedADSSpeed": 0.9399999976158142,
+            "DetectedPrecision": 1.100000023841858,
+            "DetectedInitSpeedMultiplier": 1.0,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 1.0,
+                    "DetectedDispersion": 0.0012000000569969416,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_LeeEnfield_Black",
+            "ParentClass": "LeeEnfield",
+            "DetectedWeightKg": 4.0,
+            "DetectedLengthM": 1.0,
+            "DetectedRecoil": 0.9750000238418579,
+            "DetectedSway": 1.834299921989441,
+            "DetectedADSSpeed": 0.9399999976158142,
+            "DetectedPrecision": 1.100000023841858,
+            "DetectedInitSpeedMultiplier": 1.0,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 1.0,
+                    "DetectedDispersion": 0.0012000000569969416,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Luger_Beige",
+            "ParentClass": "Luger",
+            "DetectedWeightKg": 0.8709999918937683,
+            "DetectedLengthM": 0.20000000298023225,
+            "DetectedRecoil": 1.053225040435791,
+            "DetectedSway": 0.8009999990463257,
+            "DetectedADSSpeed": 1.0883219242095948,
+            "DetectedPrecision": 0.9087100028991699,
+            "DetectedInitSpeedMultiplier": 0.949999988079071,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.12999999523162843,
+                    "DetectedDispersion": 0.0044999998062849049,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Luger_Gold",
+            "ParentClass": "Luger",
+            "DetectedWeightKg": 0.8709999918937683,
+            "DetectedLengthM": 0.20000000298023225,
+            "DetectedRecoil": 1.053225040435791,
+            "DetectedSway": 0.8009999990463257,
+            "DetectedADSSpeed": 1.0883219242095948,
+            "DetectedPrecision": 0.9087100028991699,
+            "DetectedInitSpeedMultiplier": 0.949999988079071,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.12999999523162843,
+                    "DetectedDispersion": 0.0044999998062849049,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP18_Yellow",
+            "ParentClass": "MP18",
+            "DetectedWeightKg": 4.179999828338623,
+            "DetectedLengthM": 0.8149999976158142,
+            "DetectedRecoil": 0.9704999923706055,
+            "DetectedSway": 1.0501999855041505,
+            "DetectedADSSpeed": 0.962660014629364,
+            "DetectedPrecision": 1.0648000240325928,
+            "DetectedInitSpeedMultiplier": 1.2000000476837159,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "FullAuto",
+                    "DetectedReloadTime": 0.125,
+                    "DetectedDispersion": 0.004000000189989805,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP18_Black",
+            "ParentClass": "MP18",
+            "DetectedWeightKg": 4.179999828338623,
+            "DetectedLengthM": 0.8149999976158142,
+            "DetectedRecoil": 0.9704999923706055,
+            "DetectedSway": 1.0501999855041505,
+            "DetectedADSSpeed": 0.962660014629364,
+            "DetectedPrecision": 1.0648000240325928,
+            "DetectedInitSpeedMultiplier": 1.2000000476837159,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "FullAuto",
+                    "DetectedReloadTime": 0.125,
+                    "DetectedDispersion": 0.004000000189989805,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP5K_Wooden",
+            "ParentClass": "MP5K",
+            "DetectedWeightKg": 1.840000033378601,
+            "DetectedLengthM": 0.5600000023841858,
+            "DetectedRecoil": 1.0290000438690186,
+            "DetectedSway": 0.9773267507553101,
+            "DetectedADSSpeed": 1.0404800176620484,
+            "DetectedPrecision": 0.990399956703186,
+            "DetectedInitSpeedMultiplier": 1.0499999523162842,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.11999999731779099,
+                    "DetectedDispersion": 0.003000000026077032,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Burst",
+                    "DetectedReloadTime": 0.06499999761581421,
+                    "DetectedDispersion": 0.003000000026077032,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "FullAuto",
+                    "DetectedReloadTime": 0.06499999761581421,
+                    "DetectedDispersion": 0.003000000026077032,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_SCARH_Camo",
+            "ParentClass": "SCARH",
+            "DetectedWeightKg": 3.700000047683716,
+            "DetectedLengthM": 0.949999988079071,
+            "DetectedRecoil": 0.9825000166893005,
+            "DetectedSway": 1.8593748807907105,
+            "DetectedADSSpeed": 0.9523999691009522,
+            "DetectedPrecision": 1.0870000123977662,
+            "DetectedInitSpeedMultiplier": 0.925000011920929,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.11999999731779099,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "FullAuto",
+                    "DetectedReloadTime": 0.09799999743700028,
+                    "DetectedDispersion": 0.0020000000949949028,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_Scout_Camo",
+            "ParentClass": "Scout",
+            "DetectedWeightKg": 3.0,
+            "DetectedLengthM": 0.9800000190734863,
+            "DetectedRecoil": 1.0,
+            "DetectedSway": 0.8403200507164002,
+            "DetectedADSSpeed": 0.9607999920845032,
+            "DetectedPrecision": 1.0859999656677247,
+            "DetectedInitSpeedMultiplier": 1.149999976158142,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 2.0,
+                    "DetectedDispersion": 0.001500000013038516,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_SKS_Camo",
+            "ParentClass": "Asmond_SKS_Base",
+            "DetectedWeightKg": 3.8499999046325685,
+            "DetectedLengthM": 1.059999942779541,
+            "DetectedRecoil": 0.9787499904632568,
+            "DetectedSway": 1.9500000476837159,
+            "DetectedADSSpeed": 0.9343000054359436,
+            "DetectedPrecision": 1.1104999780654908,
+            "DetectedInitSpeedMultiplier": 1.100000023841858,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "SemiAuto",
+                    "DetectedReloadTime": 0.11999999731779099,
+                    "DetectedDispersion": 0.001500000013038516,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                },
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 0.10000000149011612,
+                    "DetectedDispersion": 0.00019999999494757503,
+                    "RecoilMultiplier": 1.0,
+                    "SwayMultiplier": 1.0,
+                    "ADSMultiplier": 1.0,
+                    "PrecisionMultiplier": 1.0,
+                    "HipFireMultiplier": 1.0
+                }
+            ],
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_SV98_Desert",
+            "ParentClass": "SV98",
+            "DetectedWeightKg": 5.800000190734863,
+            "DetectedLengthM": 1.25,
+            "DetectedRecoil": 0.9300000071525574,
+            "DetectedSway": 1.9500000476837159,
+            "DetectedADSSpeed": 0.8725999593734741,
+            "DetectedPrecision": 1.1679999828338624,
+            "DetectedInitSpeedMultiplier": 1.149999976158142,
+            "RecoilMultiplier": 1.0,
+            "SwayMultiplier": 1.0,
+            "ADSMultiplier": 1.0,
+            "PrecisionMultiplier": 1.0,
+            "HipFireMultiplier": 1.0,
+            "FireModes": [
+                {
+                    "ModeName": "Single",
+                    "DetectedReloadTime": 1.0,
+                    "DetectedDispersion": 0.0005000000237487257,
                     "RecoilMultiplier": 1.0,
                     "SwayMultiplier": 1.0,
                     "ADSMultiplier": 1.0,

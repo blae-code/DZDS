@@ -5933,6 +5933,168 @@
             ],
             "NeedsReview": 1,
             "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticHndgrd_CamoII",
+            "ParentClass": "AK_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.9399999976158142,
+            "Sway": 0.699999988079071,
+            "ADS": 1.0399999618530274,
+            "Precision": 1.2000000476837159,
+            "HipFire": 0.800000011920929,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_PlasticBttstck_CamoII",
+            "ParentClass": "AK_PlasticBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_AKS74UBttstck_Camo",
+            "ParentClass": "AKS74U_Bttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_RailHndgrd_Gold",
+            "ParentClass": "AK_RailHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T3",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.8799999952316284,
+            "Sway": 0.550000011920929,
+            "ADS": 1.059999942779541,
+            "Precision": 1.2999999523162842,
+            "HipFire": 0.699999988079071,
+            "DetectedSlots": [
+                "weaponHandguardAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_AK_FoldingBttstck_Gold",
+            "ParentClass": "AK_FoldingBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockAK"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_FAL_Buttstock_Camo",
+            "ParentClass": "Fal_OeBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockFAL"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP5K_Bttstck_Wooden",
+            "ParentClass": "MP5k_StockBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T2",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.4000000059604645,
+            "Sway": 0.699999988079071,
+            "ADS": 0.9900000095367432,
+            "Precision": 1.100000023841858,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_MP5K_PlasticHndgrd_Wooden",
+            "ParentClass": "MP5_PlasticHndgrd",
+            "Category": "Handguard",
+            "TierKey": "Handguard_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 1.0,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0199999809265137,
+            "Precision": 1.100000023841858,
+            "HipFire": 0.8999999761581421,
+            "DetectedSlots": [
+                "weaponHandguardMP5"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
+        },
+        {
+            "ClassName": "Asmond_SCAR_StockBttstck_Black",
+            "ParentClass": "SCAR_StockBttstck",
+            "Category": "Stock",
+            "TierKey": "Stock_T1",
+            "CustomTierLabel": "Custom",
+            "UseCustomStats": 0,
+            "Recoil": 0.699999988079071,
+            "Sway": 0.8500000238418579,
+            "ADS": 1.0,
+            "Precision": 1.0499999523162842,
+            "HipFire": 1.0,
+            "DetectedSlots": [
+                "weaponButtstockSCAR"
+            ],
+            "NeedsReview": 0,
+            "IsCurrentlyLoaded": 1
         }
     ]
 }

@@ -1,5 +1,5 @@
 {
-    "ModUpdateVersion_Do_Not_Change": 5,
+    "ModUpdateVersion_Do_Not_Change": 6,
     "Notifications": 0,
     "Notification_Display_Time": 10.0,
     "Notification_Title": "[Animated Dynamic Helicopters]",
@@ -17,10 +17,9 @@
     "Volume_Of_Missiles": 1.0,
     "Minimum_Delay_In_Seconds_Until_Next_Event": 3600.0,
     "Maximum_Delay_In_Seconds_Until_Next_Event": 7200.0,
-    "Explanation_Of_Missile_Launcher_Positions_List": "Set Only_Crash_When_Shot_Down to 1 to enable or 0 to disable ( Or true/false ). If enabled, helicopters will only crash when they are either shot down by a player or the missile launcher. The missile launcher will still shoot down a helicopter that has player damage disabled. The following list will be used if valid coordinates are added. You are also able to choose other methods like DayZ Editor or Init or whatever other method you want to add the missile launchers to the map.",
     "Only_Crash_When_Shot_Down": 0,
     "MISSILE_LAUNCHER_POSITIONS_LIST": [
-        "0 0 0"
+        "DEPRECIATED PENDING DELETION, NO LONGER BEING USED. SETUP MISSILE_LAUNCHERS FOR NEW POSITIONS"
     ],
     "Explanation_Of_Crash_Positions_List": "Set Use_Random_Generated_Crash_Sites to 1 to enable or 0 to disable ( Or true/false ). If enabled, helicopter crash sites will be randomly generated instead of using the following list of crash sites. Set Use_World_Generated_Locations to 1 to enable or 0 to disable ( Or true/false ). If enabled, locations will be choosen at random using the WorldGeneratedLocations.json. The following list is of all the possible helicopter crash site positions.",
     "Use_Random_Generated_Crash_Sites": 0,
@@ -28,5 +27,19 @@
     "CRASH_POSITIONS_LIST": [
         "3570.0 301.4 14380.0",
         "8230.0 261.9 5700.0"
+    ],
+    "Explanation_Of_Missile_Launcher_Positions_List": "The following missile launchers will be used if valid coordinates are added. You are also able to set the radius, rate of fire by seconds and targets of each missile launcher separately. For Target_Types: 1 = Dynamic Crash helicopters, 2 = CH-47 Transport, 4 = CH-47 Supplydrop, 8 = player piloted helicopters, 16 = AH-64 Event helicopter. You can set multiple targets by adding together each types # value. For example 31 = all types because 1 + 2 + 4 + 8 + 16 = 31",
+    "MISSILE_LAUNCHERS": [
+        {
+            "Radius": 1000.0,
+            "Rate_Of_Fire_In_Seconds": 15,
+            "Additional_Damage_By_Percentage_Of_Max_Health": 0.25,
+            "Target_Types": 1,
+            "Launcher_Position": [
+                0.0,
+                0.0,
+                0.0
+            ]
+        }
     ]
 }
