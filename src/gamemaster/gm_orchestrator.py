@@ -1,4 +1,4 @@
-"""GM orchestrator: tail .ADM → aggregate events → Gemma (Ollama) → dispatch via RCON.
+"""GM orchestrator: tail .ADM → aggregate events → Gemma (LM Studio) → dispatch via RCON.
 
 Run:  python -m gamemaster.gm_orchestrator   (or `make gm`)
 Dry-run (default, GM_DRY_RUN=1) logs what it would broadcast/spawn without touching RCON.
@@ -8,6 +8,7 @@ from __future__ import annotations
 import asyncio
 import logging
 import os
+import re
 import time
 from collections import Counter, deque
 import sys
@@ -19,7 +20,7 @@ from dotenv import load_dotenv
 from .adm import AdmEvent, HealthTracker, LocalAdmTailer, SftpAdmTailer, parse_line
 from .dispatch import QueueWriter, load_actions, to_commands
 from .ledger import WarLedger
-from .llm import OllamaGM
+from .llm import LMStudioGM
 from .rcon import RconClient
 from .schema import GMPayload, resolve_coords
 
@@ -32,7 +33,7 @@ log = logging.getLogger("gm")
 def load_config() -> dict:
     load_dotenv(ROOT / ".env")
     cfg = yaml.safe_load((ROOT / "config" / "gm.yaml").read_text())
-    map_name = os.environ.get("GM_MAP", cfg.get("map", active.map_name()))
+    map_name = active.map_name()  # GM_MAP or the repo default: one source for every tool
     cfg["map"] = yaml.safe_load((ROOT / "maps" / f"{map_name}.yaml").read_text())
     cfg["dry_run"] = os.environ.get("GM_DRY_RUN", "1") != "0"
     factions = yaml.safe_load((ROOT / "presets" / "factions.yaml").read_text())["factions"]
@@ -46,6 +47,14 @@ def load_config() -> dict:
             if spec.get(key):
                 cfg["faction_names"][spec[key]] = spec.get("display", name).split(" (")[0]
     return cfg
+
+
+_UNSAFE = re.compile(r"[^\w .,'()\-\"]")
+
+
+def safe_name(text: str, limit: int = 40) -> str:
+    """Player-chosen text, reduced to plain characters before it reaches the LLM prompt."""
+    return _UNSAFE.sub("", text or "")[:limit].strip() or "?"
 
 
 class EventAggregator:
@@ -88,16 +97,18 @@ class EventAggregator:
         return ev.kind in self.SIGNIFICANT or bool(ev.tags & self.SIGNIFICANT)
 
     def digest(self, locations: dict[str, list[float]]) -> str:
+        who = safe_name
+
         def nearest(pos):
             if not pos or not locations:
                 return "unknown"
             return min(locations, key=lambda n: (locations[n][0] - pos[0]) ** 2
                                                 + (locations[n][1] - pos[1]) ** 2)
 
-        lines = [f"Players online: {', '.join(sorted(self.online)) or 'none'}"]
+        lines = [f"Players online: {', '.join(who(p) for p in sorted(self.online)) or 'none'}"]
         for p, pos in self.last_pos.items():
             if p in self.online:
-                lines.append(f"- {p} last seen near {nearest(pos)}")
+                lines.append(f"- {who(p)} last seen near {nearest(pos)}")
         if self.faction_kills:
             lines.append("Faction fighting since last report:")
             grouped: Counter[tuple[str, str, str]] = Counter()
@@ -109,9 +120,9 @@ class EventAggregator:
         lines.append("Recent events:")
         for ev in list(self.events)[-25:]:
             extra = f" hp={ev.hp:.0f}" if ev.hp is not None else ""
-            by = f" by {ev.by[:60]}" if ev.by else ""
+            by = f" by {who(ev.by)}" if ev.by else ""
             tags = f" [{','.join(sorted(ev.tags))}]" if ev.tags else ""
-            lines.append(f"{ev.time} {ev.kind} {ev.player}{extra}{by} near {nearest(ev.pos)}{tags}")
+            lines.append(f"{ev.time} {ev.kind} {who(ev.player)}{extra}{by} near {nearest(ev.pos)}{tags}")
         self.events.clear()
         self.faction_kills.clear()
         return "\n".join(lines)
@@ -124,9 +135,9 @@ class Orchestrator:
         self.locations: dict[str, list[float]] = self.map.get("locations", {})
         self.bounds = tuple(self.map["bounds"])
         self.agg = EventAggregator(faction_names=cfg.get("faction_names"))
-        self.gm = OllamaGM(os.environ.get("OLLAMA_URL", "http://127.0.0.1:11434"),
-                           os.environ.get("OLLAMA_MODEL", cfg.get("model", "gemma4:e4b")),
-                           voices=cfg.get("faction_voices"))
+        self.gm = LMStudioGM(os.environ.get("LMSTUDIO_URL", "http://127.0.0.1:1234"),
+                             expect=os.environ.get("GM_LLM_EXPECT", cfg.get("expect_gear", "gemma-4-e4b")),
+                             voices=cfg.get("faction_voices"))
         self.rcon: RconClient | None = None
         # The war ledger: every AI death is recorded against the nearest site; `make war-turn`
         # advances it between restarts. Recent war events open the first digest of a session.

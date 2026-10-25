@@ -15,9 +15,9 @@ Three terminals, no server needed:
 ```bash
 make fake-rcon     # 1: pretend BattlEye RCON; prints every radio broadcast
 make sim           # 2: writes synthetic .ADM lines to gm_state/sim.ADM
-make gm-sim        # 3: GM reads the sim log, asks Ollama, broadcasts to the fake RCON
+make gm-sim        # 3: GM reads the sim log, asks LM Studio, broadcasts to the fake RCON
 ```
-Before that, check Ollama/ROCm and the prompt in isolation:
+Before that, check the LM Studio gear and the prompt in isolation:
 ```bash
 make gm-probe                 # one canned digest → validated JSON + latency
 .venv/bin/python tools/gm_probe.py --runs 5   # consistency check

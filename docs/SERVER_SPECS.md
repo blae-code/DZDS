@@ -49,13 +49,13 @@ Ryzen 7 7800X3D, RX 7900 XTX 24 GB, 32 GB RAM:
 | Running | RAM | VRAM | Verdict |
 |---|---|---|---|
 | DayZ client (heavily modded) | ~10–14 GB | ~8–12 GB | fine |
-| Ollama Gemma 4 E4B (ROCm) | ~1 GB | ~3–3.5 GB | fine (spec §3) |
+| Gemma 4 E4B (LM Studio POD gear) | ~1 GB | ~3–3.5 GB | fine (spec §3) |
 | GM daemon | < 0.5 GB | – | fine |
 | **Local test server** (all mods) | ~11–14 GB | – | **tight**: client + server + OS ≈ 25–30 GB of 32 |
 
 For playtesting with everything enabled, close browsers and other apps. After Tier 1 pruning it's
 comfortable. If you test often with the full list, **64 GB** removes the squeeze. Once the GSP
-runs the server, your PC only runs the client, Ollama and the GM: no constraints.
+runs the server, your PC only runs the client, LM Studio and the GM: no constraints.
 
 ## 4. Measure before you buy (local server, docs/PLAYTEST.md)
 | Measure | How | Target |

@@ -1,6 +1,6 @@
 # GM daemon tuning. Secrets/hosts live in .env; this file is safe to commit.
-map: chernarusplus            # overridden by GM_MAP; loads maps/<map>.yaml
-model: gemma4:e4b             # overridden by OLLAMA_MODEL
+# The map is tools/active.py (GM_MAP or the repo default), like every other tool.
+expect_gear: gemma-4-e4b      # LM Studio model key the loaded gear must match; overridden by GM_LLM_EXPECT
 heartbeat_seconds: 720        # periodic pass (spec: 10–15 min)
 min_seconds_between_passes: 120
 adm_poll_seconds: 5

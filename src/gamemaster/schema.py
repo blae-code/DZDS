@@ -43,9 +43,18 @@ class GMPayload(BaseModel):
         return [a for a in (v or []) if isinstance(a, dict) and a.get("target") in allowed]
 
 
-def json_schema() -> dict:
-    """Schema passed to Ollama's `format` field to constrain generation."""
-    return GMPayload.model_json_schema()
+def json_schema(locations: list[str] | None = None) -> dict:
+    """Schema for LM Studio's `response_format`, constraining generation.
+
+    With `locations`, an action's `location` must be one of them (or null), so the model
+    can't invent a place the map doesn't have.
+    """
+    schema = GMPayload.model_json_schema()
+    if locations:
+        action = schema["$defs"]["WorldAction"]["properties"]
+        action["location"] = {"anyOf": [{"enum": list(locations)}, {"type": "null"}],
+                              "default": None, "title": "Location"}
+    return schema
 
 
 def resolve_coords(action: WorldAction, locations: dict[str, list[float]],

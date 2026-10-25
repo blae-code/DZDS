@@ -94,7 +94,8 @@ before step 1 has run.**
   this machine's client copy; exit 1 on drift, 2 if it could not read the server). Fix: rename
   `/@<id>` aside in the File Manager and restart, so the panel re-downloads it.
 - **Local**: CachyOS host (7800X3D, RX 7900 XTX, 32 GB). Runs the DayZ client under Proton,
-  Ollama (ROCm, `HSA_OVERRIDE_GFX_VERSION=11.0.0`) with Gemma 4 E4B, and the GM daemon.
+  the GM daemon, and the Sovereign stack's headless LM Studio (`127.0.0.1:1234`). The GM uses
+  Gemma 4 E4B (the POD gear) only when it is the loaded gear, and never names a model itself.
 
 ## Repo map
 | Path | Purpose |
@@ -106,7 +107,7 @@ before step 1 has run.**
 | `maps/` | Named coordinates + role assignments per map; `_roles.yaml` defines the roles |
 | `tools/` | Python CLIs: mod string, AI calibration, etc. |
 | `scripts/` | Shell entry points: sync, validate |
-| `src/gamemaster/` | Async GM daemon (ADM tail → Ollama → RCON) |
+| `src/gamemaster/` | Async GM daemon (ADM tail → LM Studio → RCON) |
 
 ## Hard rules
 1. **Validate before deploy.** `make validate` must pass before any push to the server
@@ -323,7 +324,7 @@ make vehicle-events   # vehicle spawns by role + holder (events + cfgeventspawns
 make prepare-restart  # war-turn, economy, diplomacy, patrols, vehicle-events, front-plan, loadouts, dzds-profile, arrivals,
                       # overlays, calibrate, validate
 make fake-rcon / sim / gm-sim   # offline GM loop (three terminals)
-make gm-probe         # one-shot Ollama/prompt check
+make gm-probe         # one-shot LM Studio gear + prompt check (exit 2 = wrong gear)
 scripts/local_server.sh install|mods|start   # optional local dedicated server
 /usr/bin/python3 tools/vkb_pad.py learn|bind   # VKB sticks -> virtual Xbox pad for helis; the
                       # dzds-vkb-pad user service runs it only while DayZ runs (bind: DayZ closed)

@@ -1,7 +1,8 @@
 # DZDS — DayZ PvE Living Sandbox
 
 Tooling and Game Master daemon for a private, persistent DayZ PvE server (GSP-hosted),
-driven from a local CachyOS rig with a local LLM (Gemma 4 E4B via Ollama/ROCm).
+driven from a local CachyOS rig with a local LLM (Gemma 4 E4B on the Sovereign POD gear, served
+by headless LM Studio on loopback).
 
 - **Design spec:** [`docs/SPEC.md`](docs/SPEC.md)
 - **Rules for Claude Code / contributors:** [`CLAUDE.md`](CLAUDE.md)
@@ -35,18 +36,21 @@ git add server && git commit -m "Baseline server config"   # version your live c
 
 ### Without a server (offline)
 ```bash
-make gm-probe                       # Ollama + prompt sanity check
+make gm-probe                       # LM Studio gear + prompt sanity check
 make fake-rcon   # terminal 1
 make sim         # terminal 2
 make gm-sim      # terminal 3: watch radio broadcasts appear in terminal 1
 ```
 
-### Ollama (ROCm) for the GM
-```bash
-sudo pacman -S ollama-rocm
-sudo systemctl edit ollama   # add: [Service]\nEnvironment=HSA_OVERRIDE_GFX_VERSION=11.0.0
-sudo systemctl enable --now ollama
-ollama pull gemma4:e4b       # confirm the exact tag with `ollama list` / ollama.com
+### LM Studio for the GM
+The GM talks to the Sovereign stack's headless LM Studio on `http://127.0.0.1:1234`
+(`LMSTUDIO_URL`, loopback only). The stack keeps exactly one model loaded, so the GM never names
+a model: it reads which gear is loaded and uses it only if its model key matches
+`GM_LLM_EXPECT` (default `gemma-4-e4b`, the POD gear that `pod.fish` loads before a game).
+With any other gear, or none, the GM skips its LLM passes and logs why.
+```fish
+pod.fish          # load the POD gear (Gemma 4 E4B) before playing
+make gm-probe     # prints "gear: sovereign-gear = google/gemma-4-e4b" and a payload
 ```
 
 ## Daily workflow

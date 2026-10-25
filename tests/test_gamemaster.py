@@ -149,8 +149,8 @@ def test_load_config_maps_custom_and_interim_factions():
 
 def test_system_prompt_includes_faction_voices():
     from gamemaster.gm_orchestrator import load_config
-    from gamemaster.llm import OllamaGM
+    from gamemaster.llm import LMStudioGM
     cfg = load_config()
     assert set(cfg["faction_voices"]) >= {"The Jackal Cohort", "Karkas Mountain Clan", "The Rust Syndicate"}
-    gm = OllamaGM("http://x", "m", voices=cfg["faction_voices"])
+    gm = LMStudioGM("http://127.0.0.1:1234", voices=cfg["faction_voices"])
     assert "feed the crows" in gm.system_prompt and "Blue Shield" in gm.system_prompt
