@@ -4,8 +4,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#101412">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Ad Aspera">
   <title>Ad Aspera | Survivor's Guide</title>
-  <link rel="icon" href="data:,">
+  <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials">
+  <link rel="icon" type="image/svg+xml" href="/icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/icon-180.png">
   <style>
     :root {
       color-scheme: dark;
@@ -27,6 +34,14 @@
     * { box-sizing: border-box; }
     body { margin: 0; line-height: 1.6; }
     a { color: var(--sand); }
+    code {
+      padding: 2px 6px;
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      background: var(--canvas);
+      color: var(--text);
+      font: 600 .86rem ui-monospace, monospace;
+    }
     .shell { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
     .topbar {
       min-height: 64px;
@@ -44,7 +59,7 @@
       text-decoration: none;
     }
     .brand span { color: var(--rust); }
-    .topbar nav { display: flex; gap: 20px; }
+    .topbar nav { display: flex; flex-wrap: wrap; gap: 18px; }
     .topbar nav a { color: var(--muted); font-size: .9rem; text-decoration: none; }
     .topbar nav a:hover, .topbar nav a:focus-visible { color: var(--text); }
     main { padding: 32px 0 64px; }
@@ -160,6 +175,8 @@
       <a href="#join">Join</a>
       <a href="#survive">Survive</a>
       <a href="#world">The world</a>
+      <a href="#install">Install &amp; Run App</a>
+      <a href="/">Command Center ↗</a>
     </nav>
   </header>
 
@@ -175,6 +192,7 @@
         <span class="fact">First-person survival</span>
         <span class="fact">Living faction conflict</span>
         <span class="fact">No map fast travel</span>
+        <span class="fact">Installable Offline PWA</span>
       </div>
     </section>
 
@@ -245,6 +263,41 @@
             <li>There is no player-position marker or map fast travel.</li>
             <li>Town names and faction control can change as the war ledger advances.</li>
           </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="install" aria-labelledby="install-title">
+      <div class="section-heading">
+        <h2 id="install-title">Install &amp; run the app (PWA &amp; off-LAN links)</h2>
+        <p>Install Ad Aspera as a standalone desktop or mobile Progressive Web App with offline caching and persistent per-player settings.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <h3><span class="step">A</span>Install on desktop (Linux, Windows, macOS)</h3>
+          <ul>
+            <li><strong>Chrome / Edge / Brave / Vivaldi:</strong> open the <a href="/?view=5">Command Center App &amp; Share tab</a> and click <strong>Install App</strong>, or click the install icon (<code>⊕</code>) in the browser address bar.</li>
+            <li><strong>Firefox Desktop:</strong> the Service Worker caches the map and guide offline automatically; use <em>PWAsForFirefox</em> or your system WebApp Manager for a dedicated window.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3><span class="step">B</span>Install on mobile (iOS, iPadOS &amp; Android)</h3>
+          <ul>
+            <li><strong>iOS &amp; iPadOS (Safari):</strong> tap <strong>Share</strong> (<code>↑</code>) → <strong>Add to Home Screen</strong> → <strong>Add</strong>.</li>
+            <li><strong>Android (Chrome / Firefox / Samsung):</strong> tap <strong>Install App</strong> in the banner or open the browser menu (<code>⋮</code>) → <strong>Install app</strong> / <strong>Add to Home screen</strong>.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3><span class="step">C</span>Run the app from the terminal</h3>
+          <p>From the repository root on the host PC, start the local server or launch an off-LAN tunnel:</p>
+          <div class="server-address">make dashboard OPEN=1</div>
+          <div class="server-address">make dashboard SHARE=1 OPEN=1</div>
+          <p>Or run <code>.venv/bin/python tools/dashboard.py --share --open</code> directly.</p>
+        </article>
+        <article class="card">
+          <h3><span class="step">D</span>Off-LAN share links &amp; personal preferences</h3>
+          <p>Players outside the host's LAN can connect using an invite link (<code>/?share=...</code>) created in the <a href="/?view=5">App &amp; Share studio</a> or open a portable single-file snapshot.</p>
+          <div class="callout"><strong>Persistent per-player settings:</strong> each visitor gets an isolated profile with their own callsign, theme, map layers, pinned strongholds, custom waypoints, and site field notes saved across sessions.</div>
         </article>
       </div>
     </section>

@@ -31,8 +31,8 @@ exclude_radius_m: 500
 exclude_points: []              # extra no-respawn zones [x, z, radius]
 
 # Respawn vehicles (Blae, 2026-10-16: "leverage the more unique and modded vehicles"). Weights
-# sum to 100: ~30 vanilla, ~55 modded cars/vans/trucks, ~12 fun, 3 helicopters (2 small,
-# 1 transport). No armed or attack vehicles. Parts were resolved from each mod's config.bin
+# were set to sum to 100; since the CnG UAZs and ArmA2 trucks went (10-21, 10-23) they sum to
+# 76: 30 vanilla, 43 modded, 3 helicopters (~4 %). No armed or attack vehicles. Parts were resolved from each mod's config.bin
 # (attachment slot -> part class, colour-matched; cargo/camo/keychain slots left empty) and
 # every entry is proven by the local self-test (init.c VehicleSelfTest) before it ships.
 # A vehicle that fits nowhere near the spawn point is re-drawn, so big helicopters are safe.

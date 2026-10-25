@@ -173,8 +173,8 @@ status:          # executive tactical overview (sector map, faction balance, fro
 tui:             # interactive 5-tab Terminal UI command deck
 	$(ENV) $(PY) tools/tui.py
 
-dashboard web:   # launch the Web Tactical Command Center on http://127.0.0.1:8787
-	$(ENV) $(PY) tools/dashboard.py $(if $(PORT),--port $(PORT)) $(if $(OPEN),--open)
+dashboard web:   # launch the Web Tactical Command Center on http://127.0.0.1:8787 (OPEN=1, SHARE=1, PUBLIC_URL=...)
+	$(ENV) $(PY) tools/dashboard.py $(if $(PORT),--port $(PORT)) $(if $(OPEN),--open) $(if $(SHARE),--share) $(if $(PUBLIC_URL),--public-url "$(PUBLIC_URL)")
 
 help:            # show tactical overview and command reference
 	@$(ENV) $(PY) tools/status.py

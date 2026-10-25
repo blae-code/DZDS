@@ -9,18 +9,18 @@ boundary. Mods checked on the Workshop 2026-10-05. **[test]** = confirm on the l
 |---|---|---|
 | **Camp** | tent, fire, a stash | vanilla |
 | **Home on wheels** | loaf van, apocalypse truck, trailer, even a train wagon with barrels on it | docs/VEHICLES.md |
-| **First shelter** | a few walls and a door on a cliff edge | RaG_BaseBuilding / BaseBuildingPlus + BuildAnywhere_v3 |
+| **First shelter** | a few walls and a door on a cliff edge | RaG_BaseBuilding + Immersive Placing |
 | **The cabin** | a lockable hunting cabin with fireplace and lights: the homestead milestone | **RaG_Hunting_Cabin** |
-| **Compound** | multi-tier walls, gates with keypads, watchtowers, lockers, gun racks, a car workbench | BBP/RaG, vanilla DigitalCodeLock (1.30), MMG Base Storage, MuchStuffPack, Zens Car Workbench |
+| **Compound** | multi-tier walls, gates with keypads, watchtowers, lockers, gun racks, a car workbench | RaG, vanilla DigitalCodeLock (1.30), MMG Base Storage, Zens Car Workbench |
 | **Settlement network** | recruited Settlers garrisoning your towers; KAN NPC camps nearby | docs/FACTIONS.md |
 
 ## 2. Systems (one per job, with overlaps flagged)
 | Job | Using | Notes |
 |---|---|---|
-| Modular building | **BaseBuildingPlus** (spec) + **RaG_BaseBuilding** (maintained, 21 kits, snap points) | **PRUNE**: BBP is stale (2025-03); pick one after 1.30 testing |
-| Build on rough terrain | BuildAnywhere_v3 + Immersive Placing Update | |
+| Modular building | **RaG_BaseBuilding** (maintained, 21 kits, snap points) | BaseBuildingPlus pruned 2026-10-07 |
+| Build on rough terrain | Immersive Placing Update | BuildAnywhere_v3 disabled 2026-10-21: 1.30.164200 can't decode its scripts |
 | Locks | **vanilla `DigitalCodeLock`** (1.30, fence gates; Code Lock mod pruned 2026-10-15) | Expansion BaseBuilding stays off: it would add a second code-lock system |
-| Storage & furniture | **MMG Base Storage** (maintained) + MuchStuffPack | **PRUNE**: overlap; MuchStuffPack has 1.28 "fix" forks |
+| Storage & furniture | **MMG Base Storage** (maintained) | MuchStuffPack pruned 2026-10-07 |
 | Vehicle work | **Zens Car Workbench** (60 nails + 5 sheet metal; holds tyres, batteries, plugs, tools) | |
 
 **PvE base safety**: AI don't demolish walls; zombies bash *unlocked* doors (PvZmoD). Your
@@ -56,12 +56,13 @@ Glock). Faction looks come from vanilla clothing plus a few packs:
 classnames with `make mod-types` before writing loadouts.
 
 ## 5. How new items enter the economy
-Each mod ships its own types file. Copy it into the mission (e.g. `mpmissions/<m>/snafu/types.xml`)
-and register it in `cfgeconomycore.xml`. **`make economy` now scales every registered types
-file**, not just vanilla, so modded guns obey the same population and campaign-phase rules.
-After a mod update changes its types file, delete that file's `.vanilla` baseline so the tool
-re-snapshots it. Our own designed items (`presets/types_dzds.yaml`, folder `dzds`) are never
-scaled.
+Each mod ships its own types file, and **as of 2026-10-24 none is registered**: the Nasdara CE
+loads only vanilla `db/types.xml` and our `dzds/` folder, whose modded entries are arrival
+vehicles at nominal 0. So no modded item spawns as loot. Registering them under a per-mod policy
+is milestone 1 of the living-world plan (`make mod-ce`). `make economy` regenerates every
+registered types file from its `.vanilla` baseline, changing only arrival-vehicle lifetimes (no
+scaling since the 2026-10-15 relaunch), and adopts a newer vanilla file a game update leaves
+behind as the new baseline.
 
 ## 6. Considered and off
 | Mod | Why off |

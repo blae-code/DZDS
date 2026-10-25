@@ -208,8 +208,8 @@ prints the live count. Since the launch:
   shovel; combat: survival vest, splint, rangefinder). Respawns now wake within 1 km (else
   2 km) of another living player online, BEFORE base/camp/near-death (Blae: "friend first").
   Base respawn (beside the raised territory flag nearest the death, no car) is in init.c
-  behind `#ifdef DZDS_BASES` and needs the new @DZDS (`DZDSBases.c`). That build is **not
-  published yet**: Blae uploads it, then the server re-downloads `/@3815870621`. Planes: none
+  behind `#ifdef DZDS_BASES` and needs the new @DZDS (`DZDSBases.c`). Published since: live
+  RPTs from 10-23 log `territory flags=0 raised=0`, a line only that block prints. Planes: none
   usable. Expansion's An-2/C-130J are `Vehicle_*` classes at scope 0, and LMs Planes was
   pruned. Deployed `init.c` + `DZDS/arrivals.json` only (a full push would have overwritten
   live quest state); backups in `backups/kits-grouping-20261023T013342Z`. Blae reset again
@@ -271,8 +271,7 @@ and drop sites; food at VANILLA scarcity (no boost, but no AI eating into it eit
 Spatial AI off (`overlays/spatial_ai.yaml`, MaxAI 0); no patrol loots food and none roams
 map-wide (`presets/factions.yaml`, pinned by tests); KAN camp roamers 0
 (`presets/kan_camps.yaml`, `make kan-camps` with the server STOPPED, since the mod rewrites
-camps.json); horde rarer and 120-200 m out (`overlays/zombie_horde.yaml`; its on-screen
-warnings stay). Horde spawn-in-the-open (code override) is deferred until the distance is tested.
+camps.json). The SF Zombie Horde mod and its overlay were pruned on 2026-10-15 (Badlands).
 **RCON is DEFERRED (Blae, 2026-10-07: don't pursue RCON features for now)**, so the GM
 daemon's RCON path stays offline. Findings kept for later: **RCON (26093) gives no reply even with the server's own password** (BattlEye active
 cfg in `/battleye/`, RConPort 26093), while A2S on 26092 answers: a Godlike UDP/port issue,

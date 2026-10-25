@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Launch the Ad Aspera · DZDS Web Tactical Command Center.
+"""Launch the Ad Aspera · DZDS Web Tactical Command Center (PWA + Off-LAN Share Studio).
 
 Usage:
-  tools/dashboard.py [--host 127.0.0.1] [--port 8787] [--open]
+  tools/dashboard.py [--host 127.0.0.1] [--port 8787] [--open] [--share] [--public-url URL]
 """
 from __future__ import annotations
 
@@ -23,6 +23,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--host", default="127.0.0.1")
     ap.add_argument("--port", type=int, default=8787)
     ap.add_argument("--open", action="store_true", help="open dashboard in the default browser")
+    ap.add_argument("--share", action="store_true", help="mint an off-LAN share link and start a live tunnel if available")
+    ap.add_argument("--public-url", default="", help="custom external base URL for off-LAN share links")
     args = ap.parse_args(argv)
     if args.host not in LOOPBACK_HOSTS:
         print(f"refusing --host {args.host}: the dashboard serves player names and positions and "
@@ -30,7 +32,7 @@ def main(argv: list[str] | None = None) -> int:
         return 2
     if args.open:
         webbrowser.open(f"http://{args.host}:{args.port}")
-    serve(args.host, args.port)
+    serve(args.host, args.port, share=args.share, public_url=args.public_url)
     return 0
 
 

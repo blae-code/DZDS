@@ -1,5 +1,10 @@
 # Living World Design: Factional War Over Resources
 
+> **Status 2026-10-24.** Written for Chernarus; the Badlands relaunch spec
+> (`docs/superpowers/specs/2026-10-15-badlands-relaunch-design.md`) overrides it where they
+> disagree: events stay inside zones, loot is vanilla, and convoys run only as a ledger war
+> party (no Nasdara routes are recorded yet). Place names below are Chernarus examples.
+
 Goal (spec pillar 1): the map is never empty or static. Armed factions fight each other over
 fuel, arms, food and medicine whether or not players are watching. Players can stay out of
 it, profit from it, or tip it.

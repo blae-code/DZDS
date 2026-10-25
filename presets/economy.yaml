@@ -1,7 +1,8 @@
 # Economy (Blae, 2026-10-15): PURE VANILLA. Nasdara's db/types.xml exactly as Bohemia ships it:
 # no campaign phases, no population scaling, no loot-follows-control, no hoarding rule.
 # Applied by tools/economy.py (`make economy`), which regenerates types.xml from the pristine
-# db/types.xml.vanilla so the result never drifts. Modded types stay at their authors' defaults.
+# db/types.xml.vanilla so the result never drifts. No modded types file is registered yet
+# (2026-10-24), so modded items don't spawn as loot at all; see docs/BASES_CRAFTING_GEAR.md section 5.
 
 # ---- Lifetime of vehicles our scripts spawn ---------------------------------------------
 # Vanilla vehicle classes have <lifetime>3</lifetime>: the CE spawns cars through events, which

@@ -29,7 +29,7 @@ state: `gm_state/war_ledger.json` (local, not in git).
 ## What players can do, and what happens
 | Player action | Ledger effect | What you see next restart |
 |---|---|---|
-| **Clear a faction site** (e.g. kill 8+ Jackals at Gorka) | Players fight *for the Settlers*: their kills are Settler pressure → site contested → **taken for the Settlers** | Jackal ambush gone; a Settler **farm watch** holds Gorka; radio: "settlers took Gorka" |
+| **Clear a faction site** (e.g. kill 8+ Jackals at Southern Barracks) | Players fight *for the Settlers*: their kills are Settler pressure → site contested → **taken for the Settlers** | Jackal ambush gone; a Settler **farm watch** holds the site; radio: "settlers took Southern Barracks" |
 | **Hunt one faction** | Its strength drops (fewer resources, sites start falling off-screen); its enemies like you more | Its patrols thin; rivals push into its land |
 | **Shoot the UN** | UN standing falls; below −30 → **UN lockdown** for 7 days (UN treat settlers as hostile) | UN checkpoints open fire; quartermaster closed; radio advisory |
 | **Kill tribesmen the others hate** | "Enemy of my enemy": each hostile faction gains standing | Above +40: **Karkas grant passage** / **Rust extend water rights** (timed truces) |
@@ -62,7 +62,7 @@ diplomacy overrides and duration). Tests in `tests/test_ledger.py` pin the *beha
 |---|---|---|
 | **Traders follow control** | open / relocated / closed by who holds their role's sites | `make front-plan` (tools/front_plan.py) |
 | **Quests from the front** | templates instantiate at contested, held, water and raid-target sites; givers at the faction's nearest site; standing gates | presets/quests.yaml, `make front-plan` |
-| **Loot follows control** | Military/Industrial spawn factors from who holds those sites (contested counts half) | presets/economy.yaml `war:`, `make economy` |
+| ~~Loot follows control~~ | Removed 2026-10-15 (Badlands relaunch, spec R3): loot is pure vanilla | |
 | **Physical markers** | @DZDS places a marker object per site by holder at server start (non-persistent) | presets/world.yaml, `make dzds-profile` |
 | **Raids on settlements** | strong, hostile faction → one-restart ONCE raid patrol at a claimed homestead | presets/ledger.yaml `raids:`, `make patrols` |
 | **Named deeds** | the top player at a liberation is named in the war report | presets/ledger.yaml `deeds:` |
