@@ -1,0 +1,75 @@
+{
+    "ConfigVersion": 22,
+    "ID": 101,
+    "Type": 1,
+    "Title": "Blue Shield Charter of Neutrality",
+    "Descriptions": [
+        "Task Force Blue Shield operates under strict United Nations humanitarian rules. Register as an accredited civilian survivor and deliver this dispatch to command.",
+        "Report to Task Force Blue Shield command at Eastern Airfield with the accredited dispatch.",
+        "Charter registered. You are officially accredited with Task Force Blue Shield. The UN Quartermaster is now authorized to trade with you."
+    ],
+    "ObjectiveText": "Deliver the medical status dispatch to the Blue Shield Command at Eastern Airfield.",
+    "FollowUpQuest": -1,
+    "Repeatable": 1,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "ExpansionBanknoteHryvnia",
+            "Amount": 20,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "BandageDressing",
+            "Amount": 2,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        2
+    ],
+    "QuestTurnInIDs": [
+        2
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 101,
+            "ObjectiveType": 5
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 1,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSPeacekeepers": 25
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

@@ -1,0 +1,26 @@
+{
+    "m_Version": 13,
+    "DisplayName": "UN Quartermaster (Task Force Blue Shield)",
+    "MinRequiredReputation": 0,
+    "MaxRequiredReputation": 2147483647,
+    "RequiredFaction": "",
+    "RequiredCompletedQuestID": 101,
+    "TraderIcon": "Medic Box",
+    "Currencies": [
+        "expansionbanknotehryvnia",
+        "ammo_556x45",
+        "ammo_9x19"
+    ],
+    "DisplayCurrencyValue": 1,
+    "DisplayCurrencyName": "",
+    "UseCategoryOrder": 0,
+    "Categories": [
+        "Medical",
+        "Navigation",
+        "Electronics",
+        "Consumables",
+        "Helmets",
+        "Vests"
+    ],
+    "Items": {}
+}

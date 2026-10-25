@@ -182,6 +182,66 @@ class WarLedger:
         self.s.extra_sites[name] = {"pos": [float(pos[0]), float(pos[1])], "roles": roles}
         self.s.control[name] = faction or self.rules["players_fight_for"]
 
+    def record_quest_completion(self, quest_name_or_key: str, player_name: str,
+                                site: str | None = None) -> list[str]:
+        """Record a completed quest contract and apply its world-changing impact."""
+        quests_cfg = load_yaml("presets/quests.yaml")
+        templates = quests_cfg.get("templates") or {}
+        matched_key = None
+        for k, t in templates.items():
+            if k == quest_name_or_key or str(t.get("id")) == str(quest_name_or_key):
+                matched_key = k
+                break
+            if t.get("title") and t["title"].split(":")[0].strip().lower() in quest_name_or_key.lower():
+                matched_key = k
+                break
+        if not matched_key:
+            matched_key = quest_name_or_key if quest_name_or_key in templates else "break_the_siege"
+
+        spec = templates.get(matched_key, {})
+        impact = spec.get("ledger_impact") or {}
+        events = []
+
+        if not site:
+            if spec.get("target") == "contested":
+                contested = [s for s, h in self.s.control.items() if h == "contested"]
+                site = contested[0] if contested else "Northern Dam"
+            elif spec.get("target") == "held_by:Jackals":
+                jackal_sites = [s for s, h in self.s.control.items() if h == "Jackals"]
+                site = jackal_sites[0] if jackal_sites else "North Highway Pileup"
+            else:
+                site = "Settler Haven"
+
+        if "pressure" in impact and site:
+            attacker = self.rules.get("players_fight_for", "Settlers")
+            self.s.pressure.setdefault(site, {})
+            self.s.pressure[site][attacker] = self.s.pressure[site].get(attacker, 0) + int(impact["pressure"])
+            events.append(f"{player_name} applied {impact['pressure']} liberation pressure for the Settlers at {site}")
+
+        for faction, delta in (impact.get("standing") or {}).items():
+            old = self.s.standing.get(faction, 0.0)
+            self.s.standing[faction] = max(-100.0, min(100.0, old + delta))
+
+        for faction, delta in (impact.get("strength") or {}).items():
+            old = self.s.strength.get(faction, 50.0)
+            self.s.strength[faction] = max(0.0, min(100.0, old + delta))
+
+        deed_n = int(impact.get("deeds", 1))
+        if site and player_name:
+            self.s.deeds.setdefault(site, {})
+            self.s.deeds[site][player_name] = self.s.deeds[site].get(player_name, 0) + deed_n
+
+        title = spec.get("title", matched_key).format(site=site)
+        ev_msg = f"{player_name} completed campaign contract '{title}' at {site}"
+        events.append(ev_msg)
+        self.s.history.append({
+            "turn": self.s.turn,
+            "date": dt.date.today().isoformat(),
+            "event": ev_msg,
+        })
+        self.s.history = self.s.history[-200:]
+        return events
+
     # ---- derived views ------------------------------------------------------------------
     def holders(self) -> dict[str, list[str]]:
         """Same shape as factions.yaml initial_control: faction -> sites, plus 'contested'."""

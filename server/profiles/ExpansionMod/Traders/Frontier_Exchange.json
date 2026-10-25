@@ -1,0 +1,30 @@
+{
+    "m_Version": 13,
+    "DisplayName": "Frontier Exchange (Settlers Barter)",
+    "MinRequiredReputation": 0,
+    "MaxRequiredReputation": 2147483647,
+    "RequiredFaction": "DZDSSettlers",
+    "RequiredCompletedQuestID": -1,
+    "TraderIcon": "Deliver",
+    "Currencies": [
+        "nail",
+        "expansionbanknotehryvnia",
+        "ammo_22",
+        "ammo_9x19",
+        "ammo_545x39",
+        "ammo_762x39",
+        "ammo_556x45"
+    ],
+    "DisplayCurrencyValue": 1,
+    "DisplayCurrencyName": "",
+    "UseCategoryOrder": 0,
+    "Categories": [
+        "Food",
+        "Tools",
+        "Supplies",
+        "Backpacks",
+        "Boots_And_Shoes",
+        "Coats_And_Jackets"
+    ],
+    "Items": {}
+}

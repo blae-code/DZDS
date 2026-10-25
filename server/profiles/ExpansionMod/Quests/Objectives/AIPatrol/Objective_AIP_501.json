@@ -1,0 +1,33 @@
+{
+    "ConfigVersion": 28,
+    "ID": 501,
+    "ObjectiveType": 7,
+    "ObjectiveText": "Patrol and clear hostile fighters at Northern Dam",
+    "TimeLimit": -1,
+    "Active": 1,
+    "MaxDistance": -1.0,
+    "MinDistance": -1.0,
+    "AllowedWeapons": [],
+    "AllowedDamageZones": [],
+    "AISpawn": {
+        "Name": "FrontLinePatrol_501",
+        "Persist": 0,
+        "Faction": "West",
+        "Formation": "Vee",
+        "FormationScale": 1.5,
+        "FormationLooseness": 0.0,
+        "Loadout": "BanditLoadout",
+        "Units": [
+            "eAI_SurvivorM_Denis",
+            "eAI_SurvivorM_Elias",
+            "eAI_SurvivorF_Eva"
+        ],
+        "Waypoints": [
+            [
+                3570.0,
+                0.0,
+                14380.0
+            ]
+        ]
+    }
+}

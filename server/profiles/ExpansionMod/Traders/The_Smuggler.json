@@ -1,0 +1,28 @@
+{
+    "m_Version": 13,
+    "DisplayName": "The Smuggler (Black Market Fence)",
+    "MinRequiredReputation": 0,
+    "MaxRequiredReputation": 2147483647,
+    "RequiredFaction": "",
+    "RequiredCompletedQuestID": -1,
+    "TraderIcon": "Pistol",
+    "Currencies": [
+        "ammo_762x39",
+        "ammo_545x39",
+        "ammo_556x45",
+        "ammo_9x19",
+        "ammo_22"
+    ],
+    "DisplayCurrencyValue": 1,
+    "DisplayCurrencyName": "",
+    "UseCategoryOrder": 0,
+    "Categories": [
+        "Weapons",
+        "Optics",
+        "Magazines",
+        "Muzzles",
+        "Locks",
+        "Special"
+    ],
+    "Items": {}
+}

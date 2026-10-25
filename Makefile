@@ -128,9 +128,15 @@ war-status:
 war-turn:
 	$(ENV) $(PY) tools/war.py turn
 
-.PHONY: front-plan
+.PHONY: front-plan campaign quests survival-goals
 front-plan:
 	$(ENV) $(PY) tools/front_plan.py
+
+campaign quests:
+	$(ENV) $(PY) tools/campaign_gen.py
+
+survival-goals:
+	$(ENV) $(PY) tools/survival_goals.py
 
 .PHONY: loadouts loadouts-check
 loadouts:

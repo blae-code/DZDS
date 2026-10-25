@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 303,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Travel to Central Pump Station and secure the intake perimeter.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        6920.0,
+        0.0,
+        7360.0
+    ],
+    "MaxDistance": 35.0,
+    "MarkerName": "Aquifer Defense: Central Pump Security",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

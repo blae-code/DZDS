@@ -27,6 +27,7 @@ PATTERNS: list[tuple[str, re.Pattern]] = [
     ("connect", re.compile(_TIME + _PLAYER + r".*is connected")),
     ("disconnect", re.compile(_TIME + _PLAYER + r".*has been disconnected")),
     ("death", re.compile(_TIME + _PLAYER + r" \(DEAD\)(?:[^<]*?" + _POS + r")?.*?(?:killed by|died)(?P<by>.*)")),
+    ("quest_complete", re.compile(_TIME + _PLAYER + r".*?(?:completed quest|turned in quest) [\"']?(?P<by>[^\"'\n\r]+)[\"']?(?:.*?" + _POS + r")?")),
     ("unconscious", re.compile(_TIME + _PLAYER + r".*?" + _POS + r".*is unconscious")),
     ("hit", re.compile(_TIME + _PLAYER + r".*?" + _POS + r".*?\[HP: (?P<hp>[\d.]+)\] hit by (?P<by>.*)")),
     ("position", re.compile(_TIME + _PLAYER + r".*?" + _POS + r"\)?\s*$")),
@@ -84,6 +85,8 @@ def parse_line(line: str) -> AdmEvent | None:
             ev.tags.add("faction_combat")
         if by and "Infected" in by:
             ev.tags.add("infected")
+        if kind == "quest_complete":
+            ev.tags.add("quest")
         return ev
     return None
 

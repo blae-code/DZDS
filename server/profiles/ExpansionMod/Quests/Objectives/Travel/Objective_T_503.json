@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 503,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Travel to front-line site North Highway Pileup",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        3110.0,
+        0.0,
+        15250.0
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "Target: North Highway Pileup",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

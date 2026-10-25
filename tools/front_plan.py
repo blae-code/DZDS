@@ -36,7 +36,8 @@ def plan_traders(led: WarLedger, traders: dict) -> list[dict]:
                             and (h == faction or (faction == "none" and h != "contested")))
         if faction == "none":
             # the smuggler only needs somewhere nobody is actively fighting over
-            status, site = ("open", preferred) if preferred in candidates else \
+            pref_ok = preferred and t["role"] in led.site_roles(preferred) and led.s.control.get(preferred) != "contested"
+            status, site = ("open", preferred) if pref_ok else \
                            ("relocated", candidates[0]) if candidates else ("closed", None)
         elif preferred and led.s.control.get(preferred) == faction:
             status, site = "open", preferred
@@ -63,11 +64,17 @@ def plan_quests(led: WarLedger, quests: dict) -> list[dict]:
             sites = sorted(raid_targets)
         elif tgt.startswith("held_by:"):
             sites = [s for s, h in led.s.control.items() if h == tgt.split(":", 1)[1]]
+        elif tgt.startswith("role:"):
+            r = tgt.split(":", 1)[1]
+            sites = [s for s in led.s.control.keys() if r in led.site_roles(s)]
         else:
             raise ValueError(f"unknown target {tgt}")
         if q.get("role"):
             sites = [s for s in sites if q["role"] in led.site_roles(s)]
-        giver_sites = [s for s, h in led.s.control.items() if h == q["giver"]]
+        if q["giver"] == "none":
+            giver_sites = [s for s, h in led.s.control.items() if "remote" in led.site_roles(s)] or sorted(led.s.control.keys())[:1]
+        else:
+            giver_sites = [s for s, h in led.s.control.items() if h == q["giver"]]
         if not giver_sites:
             continue  # the giving faction holds nothing: no quest giver exists
         locs = led.locations()
@@ -76,8 +83,19 @@ def plan_quests(led: WarLedger, quests: dict) -> list[dict]:
                 continue
             gx, gz = locs[site][:2]
             giver_at = min(giver_sites, key=lambda s: (locs[s][0] - gx) ** 2 + (locs[s][1] - gz) ** 2)
-            out.append({"quest": qid, "objective": q["objective"], "site": site,
-                        "giver": q["giver"], "giver_site": giver_at, "text": q["text"].format(site=site)})
+            title = q.get("title", qid.replace("_", " ").title()).format(site=site)
+            desc = [d.format(site=site) for d in q.get("descriptions", [q["text"].format(site=site)])]
+            out.append({"quest": qid, "id": q.get("id", 100), "title": title, "objective": q["objective"],
+                        "site": site, "giver": q["giver"], "giver_site": giver_at,
+                        "text": q["text"].format(site=site), "descriptions": desc,
+                        "rewards": q.get("rewards", []),
+                        "reputation_rewards": q.get("reputation_rewards", {}),
+                        "unlocks_trader": q.get("unlocks_trader", ""),
+                        "ledger_impact": q.get("ledger_impact", {}),
+                        "items_required": q.get("items_required", []),
+                        "cancel_on_death": q.get("cancel_on_death", True),
+                        "repeatable": q.get("repeatable", True),
+                        "daily": q.get("daily", False)})
     return out
 
 
@@ -111,6 +129,15 @@ def main() -> int:
         out.parent.mkdir(exist_ok=True)
         out.write_text(json.dumps(plan, indent=2) + "\n")
         print(f"Wrote {out.relative_to(ROOT)}")
+        import campaign_gen
+        c_stats = campaign_gen.compile_campaign(a.map, led, plan, dry_run=False)
+        print(f"  compiled campaign: {c_stats['quests']} quest(s), {c_stats['npcs']} NPC(s), "
+              f"{c_stats['traders']} trader(s), {c_stats['dialogues']} dialogue(s)")
+    else:
+        import campaign_gen
+        c_stats = campaign_gen.compile_campaign(a.map, led, plan, dry_run=True)
+        print(f"  [dry-run] campaign: {c_stats['quests']} quest(s), {c_stats['npcs']} NPC(s), "
+              f"{c_stats['traders']} trader(s), {c_stats['dialogues']} dialogue(s)")
     return 0
 
 

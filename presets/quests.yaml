@@ -1,44 +1,706 @@
 # Quest templates that follow the war (docs/QUESTS.md, docs/WAR_LEDGER.md). tools/front_plan.py
-# instantiates them from the ledger each restart; the Expansion quest JSON writer comes once the
-# local server has generated Expansion's example quest files (exact schema).
+# instantiates them from the ledger each restart, and compiles live Expansion Quests,
+# Objectives, Quest NPCs, Traders, and Dialogues into the server profiles.
 #
 # target: which sites get an instance
 #   contested            sites currently contested
 #   held_by:<Faction>    sites a faction holds
 #   raid_target          settlements the ledger expects to be raided
-# role: optional map role the target site must have (e.g. water)
+#   role:<Role>          sites matching a map role (e.g. role:remote)
+# role: optional map role the target site must have (e.g. water, industrial)
 # giver: faction offering it (its nearest held site hosts the quest giver)
 templates:
   break_the_siege:
+    id: 103
     target: contested
     giver: Settlers
     objective: AIPATROL
+    title: "Break the Siege: {site}"
     text: "Drive the fighters out of {site} so the settlers can move in."
-    ledger_effect: players' kills there count as Settler pressure (liberation)
+    descriptions:
+      - "Hostile fighters have laid siege to {site}. Clear their patrol and secure the area so the settlement network can expand into the sector."
+      - "The hostile forces at {site} are still entrenched. Break their perimeter and drive them out."
+      - "The stronghold at {site} is clear! The Frontier Settlers owe you a profound debt of gratitude. The settlement network claims the ground."
+    rewards:
+      - { ClassName: Ammo_762x39, Amount: 40 }
+      - { ClassName: NailBox, Amount: 1 }
+    reputation_rewards:
+      DZDSSettlers: 25
+    ledger_effect: "players' kills there count as Settler pressure (liberation)"
+    ledger_impact:
+      pressure: 8
+      standing: { Settlers: 10 }
+      deeds: 3
+
   clear_jackal_camp:
+    id: 104
     target: held_by:Jackals
     giver: Settlers
     objective: AICAMP
+    title: "Clear the Jackal Camp: {site}"
     text: "The Jackals at {site} raid our roads. End it."
-  recon_rust_works:
-    target: held_by:Rust
+    descriptions:
+      - "The Jackal Cohort at {site} are ambushing desert convoys and raiding our approach roads. Storm their camp and eliminate their raiders."
+      - "Jackal raiders are still operating out of {site}. Clear their encampment and end their highway raids."
+      - "The Jackal camp is broken and their raiders scattered. The desert roads are safer for everyone thanks to your courage."
+    rewards:
+      - { ClassName: Ammo_545x39, Amount: 60 }
+      - { ClassName: CanOpener, Amount: 1 }
+    reputation_rewards:
+      DZDSSettlers: 25
+      DZDSPeacekeepers: 15
+      DZDSJackals: -20
+    ledger_impact:
+      strength: { Jackals: -4 }
+      standing: { Settlers: 15, Peacekeepers: 10, Jackals: -15 }
+      deeds: 2
+
+  un_intro:
+    id: 101
+    target: held_by:Peacekeepers
     giver: Peacekeepers
-    objective: TRAVEL
-    text: "Get eyes on the Syndicate's works at {site} and report back."
-  aid_convoy_escort:
-    target: held_by:Settlers
-    giver: Peacekeepers
-    objective: AIESCORT
-    text: "Escort the aid convoy to {site}."
+    objective: DELIVERY
+    title: "Blue Shield Charter of Neutrality"
+    text: "Deliver the medical status dispatch to the Blue Shield Command at {site}."
+    descriptions:
+      - "Task Force Blue Shield operates under strict United Nations humanitarian rules. Register as an accredited civilian survivor and deliver this dispatch to command."
+      - "Report to Task Force Blue Shield command at {site} with the accredited dispatch."
+      - "Charter registered. You are officially accredited with Task Force Blue Shield. The UN Quartermaster is now authorized to trade with you."
+    rewards:
+      - { ClassName: ExpansionBanknoteHryvnia, Amount: 20 }
+      - { ClassName: BandageDressing, Amount: 2 }
+    reputation_rewards:
+      DZDSPeacekeepers: 25
+    unlocks_trader: un_quartermaster
+    ledger_impact:
+      standing: { Peacekeepers: 15 }
+
   water_rights:
+    id: 102
     target: held_by:Rust
     role: water
     giver: Rust
     objective: DELIVERY
+    title: "Water Rights Toll: {site}"
     text: "The Syndicate wants payment in kind for water from {site}."
+    descriptions:
+      - "In the Badlands, water is life, and the Syndicate owns the taps. Deliver spark plugs or maintenance parts to secure legal water rights."
+      - "The Syndicate water foreman at {site} is waiting for your maintenance parts."
+      - "Parts check out. Your compound has official water drawing rights. The Rust Syndicate Water Broker will now trade fuel and clean water with you."
     requires_standing: { Rust: -45 }      # the broker won't even talk below this
+    rewards:
+      - { ClassName: WaterBottle, Amount: 1 }
+      - { ClassName: PurificationTablets, Amount: 1 }
+    reputation_rewards:
+      DZDSRust: 30
+    unlocks_trader: rust_broker
+    ledger_impact:
+      standing: { Rust: 20 }
+      strength: { Rust: 2 }
+
+  recon_rust_works:
+    id: 105
+    target: held_by:Rust
+    giver: Peacekeepers
+    objective: TRAVEL
+    title: "Reconnaissance: {site}"
+    text: "Get eyes on the Syndicate's works at {site} and report back."
+    descriptions:
+      - "Observe the Syndicate's heavy works at {site}. We need confirmation of their fuel reserves and defensive emplacements without provoking an armed clash."
+      - "Approach {site} and survey their perimeter positions."
+      - "Good reconnaissance work. Task Force Blue Shield command has updated the tactical sector map."
+    rewards:
+      - { ClassName: Battery9V, Amount: 1 }
+      - { ClassName: ExpansionBanknoteHryvnia, Amount: 10 }
+    reputation_rewards:
+      DZDSPeacekeepers: 15
+    ledger_impact:
+      standing: { Peacekeepers: 10 }
+
+  aid_convoy_escort:
+    id: 106
+    target: held_by:Settlers
+    giver: Peacekeepers
+    objective: AIESCORT
+    title: "Aid Convoy Delivery: {site}"
+    text: "Escort the aid convoy to {site}."
+    descriptions:
+      - "A relief shipment of emergency medical supplies, water purification kits, and baby formula must reach the settlers at {site}. Guard the transport."
+      - "The aid convoy is en route to {site}. Ensure the cargo arrives intact."
+      - "Relief cargo received in full! The settlement will pull through the week. Blue Shield commends your valor."
+    rewards:
+      - { ClassName: ExpansionBanknoteHryvnia, Amount: 25 }
+      - { ClassName: BandageDressing, Amount: 3 }
+    reputation_rewards:
+      DZDSPeacekeepers: 20
+      DZDSSettlers: 15
+    ledger_impact:
+      standing: { Peacekeepers: 15, Settlers: 15 }
+      strength: { Settlers: 3 }
+
   defend_homestead:
+    id: 107
     target: raid_target
     giver: Settlers
     objective: AIPATROL
+    title: "Defend Homestead: {site}"
     text: "Scouts saw raiders heading for {site}. Be there."
+    descriptions:
+      - "Long-range scouts report a hostile war party massing to raid {site}. Intercept them before they breach the perimeter and slaughter the inhabitants!"
+      - "Hostile raiders are closing in on {site}. Defend the homestead at all costs!"
+      - "The raid was crushed! The homestead stands proud and safe. You are a true hero of the Frontier."
+    rewards:
+      - { ClassName: Ammo_762x39, Amount: 60 }
+      - { ClassName: Lockpick, Amount: 1 }
+    reputation_rewards:
+      DZDSSettlers: 35
+    ledger_impact:
+      standing: { Settlers: 25 }
+      deeds: 5
+
+  high_ridge_tribute:
+    id: 108
+    target: held_by:Karkas
+    role: high_ground
+    giver: Karkas
+    objective: DELIVERY
+    title: "High Ridge Rite of Passage: {site}"
+    text: "Bring an offering of wild game and hunting supplies to the Karkas Clan at {site}."
+    descriptions:
+      - "The mountain marksmen of the Karkas Clan hold the high ground. Pay tribute with hunting supplies to prove your honor and earn passage through their ridges."
+      - "Elder Tariq waits on the high ridge at {site} for the hunter's tribute."
+      - "The clan accepts your offering. You walk with the mountain's blessing. Our scouts will hold their fire."
+    rewards:
+      - { ClassName: Compass, Amount: 1 }
+      - { ClassName: Ammo_762x54, Amount: 20 }
+    reputation_rewards:
+      DZDSKarkas: 35
+    ledger_impact:
+      standing: { Karkas: 25 }
+
+  refinery_salvage:
+    id: 109
+    target: held_by:Rust
+    role: industrial
+    giver: Rust
+    objective: COLLECTION
+    title: "Industrial Salvage: {site}"
+    text: "Scavenge critical spark plugs and hardware for the works at {site}."
+    descriptions:
+      - "The refinery pumps and generators at {site} are burning through parts. Bring fresh spark plugs to keep the plant operating."
+      - "Scavenge the required spark plugs and deliver them to {site}."
+      - "Good quality hardware. The generators will keep humming. The Syndicate doesn't forget who keeps the power on."
+    rewards:
+      - { ClassName: Ammo_762x39, Amount: 30 }
+    reputation_rewards:
+      DZDSRust: 20
+    ledger_impact:
+      standing: { Rust: 15 }
+      strength: { Rust: 2 }
+
+  smuggler_cache:
+    id: 110
+    target: role:remote
+    giver: none
+    objective: TRAVEL
+    title: "The Smuggler's Dead Drop: {site}"
+    text: "Recover the clandestine contraband dead-drop coordinates near {site}."
+    descriptions:
+      - "Word on the radio says a locked military crate was dropped in the sands near {site}. Find it before anyone else does."
+      - "Search the perimeter around {site} for the hidden dead-drop container."
+      - "Cache secured. The black market always pays for clean recoveries."
+    rewards:
+      - { ClassName: Lockpick, Amount: 2 }
+      - { ClassName: Ammo_9x19, Amount: 50 }
+    reputation_rewards: {}
+    ledger_impact:
+      deeds: 1
+
+  water_purification:
+    id: 111
+    target: held_by:Settlers
+    giver: Settlers
+    objective: DELIVERY
+    title: "The Cistern of Life: Water Purification"
+    text: "Deliver clean water and purification tablets to the cistern at {site}."
+    descriptions:
+      - "Untreated desert groundwater causes cholera and dehydration in hours. Take purification tablets, boil or treat raw water, and deliver a clean water bottle to the cistern at {site}."
+      - "Deliver clean water and water purification tablets to the settlement cistern at {site}."
+      - "Clean water received in full! The cistern is replenished for arriving refugees. Take these matches and dried apples."
+    items_required:
+      - { class: "WaterBottle", amount: 1 }
+      - { class: "PurificationTablets", amount: 1 }
+    cancel_on_death: true
+    repeatable: true
+    daily: true
+    rewards:
+      - { ClassName: Matchbox, Amount: 1 }
+      - { ClassName: Apple, Amount: 2 }
+      - { ClassName: BandageDressing, Amount: 1 }
+    reputation_rewards:
+      DZDSSettlers: 25
+    ledger_impact:
+      standing: { Settlers: 15 }
+
+  desert_harvest:
+    id: 112
+    target: held_by:Settlers
+    giver: Settlers
+    objective: COLLECTION
+    title: "Desert Harvest: Compound Agriculture"
+    text: "Harvest or collect fresh produce (Tomatoes/Zucchini) to feed the refugees at {site}."
+    descriptions:
+      - "Old world canned food is depleted. We have cultivated irrigation plots in the fortress shadow at {site}. Harvest fresh tomatoes or zucchini to feed our sick."
+      - "Gather fresh crops and deliver them to {site}."
+      - "Fresh vegetables replenish our food reserves. Take these seeds, lime, and a canteen for your homestead."
+    items_required:
+      - { class: "Tomato", amount: 3 }
+    cancel_on_death: true
+    repeatable: true
+    daily: true
+    rewards:
+      - { ClassName: Canteen, Amount: 1 }
+      - { ClassName: TomatoSeeds, Amount: 1 }
+      - { ClassName: GardenLime, Amount: 1 }
+    reputation_rewards:
+      DZDSSettlers: 25
+    ledger_impact:
+      standing: { Settlers: 20 }
+
+  leatherwork_tack:
+    id: 113
+    target: held_by:Settlers
+    giver: Settlers
+    objective: COLLECTION
+    title: "Tanning & Leatherwork: Bedouin Craft"
+    text: "Hunt wild game in the desert scrub and collect pelts for the leathercrafter at {site}."
+    descriptions:
+      - "Synthetic gear rots under badlands sun. Hunt wild boar or deer, skin the pelt, and bring it to {site} for tanning into horse tack and canteens."
+      - "Track wild game in the plains and collect a clean pelt."
+      - "Sturdy hide. With lime and water, this will make water bladders and saddles that last for years. Take this hunting knife and sewing kit."
+    items_required:
+      - { class: "WildboarPelt", amount: 1 }
+    cancel_on_death: true
+    repeatable: true
+    rewards:
+      - { ClassName: HuntingKnife, Amount: 1 }
+      - { ClassName: LeatherSewingKit, Amount: 1 }
+    reputation_rewards:
+      DZDSSettlers: 30
+    ledger_impact:
+      standing: { Settlers: 15 }
+
+  fortify_compound:
+    id: 114
+    target: held_by:Settlers
+    giver: Settlers
+    objective: DELIVERY
+    title: "Fortifying the Sanctuary: Lumber & Nails"
+    text: "Deliver wooden planks and nails to reinforce the barricades at {site}."
+    descriptions:
+      - "Raiders probe our gates every night. We need structural planks and nails to brace watchtowers and block breaches at {site}."
+      - "Deliver construction materials to {site}."
+      - "Gates and platforms are reinforced. Take this whetstone and hand saw for your own shelter."
+    items_required:
+      - { class: "WoodenPlank", amount: 4 }
+      - { class: "NailBox", amount: 1 }
+    cancel_on_death: true
+    repeatable: true
+    rewards:
+      - { ClassName: Whetstone, Amount: 1 }
+      - { ClassName: HandSaw, Amount: 1 }
+      - { ClassName: MetalWire, Amount: 1 }
+    reputation_rewards:
+      DZDSSettlers: 35
+    ledger_impact:
+      standing: { Settlers: 25 }
+
+  comms_relay_grid:
+    id: 115
+    target: role:high_ground
+    giver: Settlers
+    objective: TRAVEL
+    title: "Emergency Broadcast Comms Relay: {site}"
+    text: "Ascend to the high-ground antenna at {site} to calibrate the 87.8 MHz emergency broadcast repeater."
+    descriptions:
+      - "Our 87.8 MHz emergency broadcast transmitter needs clear line of sight. Climb to the high-ground mast at {site} and verify signal synchronization."
+      - "Climb the ridge to {site} and inspect the antenna array."
+      - "Repeater synchronized. Settler emergency broadcasts now cover the entire northern basin. Take these 9V batteries and personal radio."
+    cancel_on_death: true
+    repeatable: true
+    rewards:
+      - { ClassName: PersonalRadio, Amount: 1 }
+      - { ClassName: Battery9V, Amount: 2 }
+    reputation_rewards:
+      DZDSSettlers: 30
+    ledger_impact:
+      standing: { Settlers: 20 }
+
+  medical_relief:
+    id: 116
+    target: held_by:Peacekeepers
+    giver: Peacekeepers
+    objective: DELIVERY
+    title: "UN Field Hospital Relief: {site}"
+    text: "Deliver Tetracycline Antibiotics and Bandages to the Blue Shield field hospital at {site}."
+    descriptions:
+      - "Task Force Blue Shield is operating a humanitarian field hospital at {site}. We urgently need broad-spectrum antibiotics and sterile bandages."
+      - "Deliver antibiotics and bandages to Blue Shield command at {site}."
+      - "Medical supplies cataloged. This will prevent a major cholera outbreak among the displaced civilians."
+    items_required:
+      - { class: "TetracyclineAntibiotics", amount: 1 }
+      - { class: "BandageDressing", amount: 2 }
+    cancel_on_death: true
+    repeatable: true
+    daily: true
+    rewards:
+      - { ClassName: FirstAidKit, Amount: 1 }
+      - { ClassName: Morphine, Amount: 1 }
+      - { ClassName: ExpansionBanknoteHryvnia, Amount: 30 }
+    reputation_rewards:
+      DZDSPeacekeepers: 25
+    ledger_impact:
+      standing: { Peacekeepers: 20 }
+
+
+# ==============================================================================
+# Fixed Story, Survival & Progression Questlines (Stationed at Faction Strongholds)
+# ==============================================================================
+# NPCs are stationed at real lore sites on Nasdara:
+#   NPC 1: Elder Tariq (Settler Elder & Quartermaster) at Qalat-e Lut [14837, 7855]
+#   NPC 2: Capt. Miller (UN Blue Shield Commander) at Eastern Airfield [12030, 10850]
+#   NPC 3: Dr. Al-Mansoor (UN Field Surgeon) at Southwest Base [3250, 4630]
+#   NPC 4: Broker Koval (Rust Syndicate Water Broker) at Hilltop Water Station [8290, 6510]
+#   NPC 5: Elder Soroush (Karkas Clan Patriarch) at Missile Base Ridge [2840, 9170]
+#   NPC 6: Scout Farid (Desert Scout & Trapper) at Settler Haven [7560, 8720]
+
+fixed_npcs:
+  1:
+    name: "Elder Tariq"
+    faction: Settlers
+    role_site: "Qalat-e Lut"
+    position: [14837.0, 0.0, 7855.0]
+    heading: 180.0
+    classname: "ExpansionQuestNPCAIDenis"
+    loadout: "DZDS_Settlers"
+    greeting: "Welcome to Qalat-e Lut. Out here in the badlands, water is life and carelessness is suicide."
+
+  2:
+    name: "Capt. Miller"
+    faction: Peacekeepers
+    role_site: "Eastern Airfield"
+    position: [12030.0, 0.0, 10850.0]
+    heading: 90.0
+    classname: "ExpansionQuestNPCAIElias"
+    loadout: "DZDS_Peacekeepers_officer"
+    greeting: "Task Force Blue Shield. State your business or keep the humanitarian corridor clear."
+
+  3:
+    name: "Dr. Al-Mansoor"
+    faction: Peacekeepers
+    role_site: "Southwest Base"
+    position: [3250.0, 0.0, 4630.0]
+    heading: 0.0
+    classname: "ExpansionQuestNPCAIHassan"
+    loadout: "DZDS_Peacekeepers"
+    greeting: "If you're wounded or feverish, sit down. If you have medical supplies, hand them over."
+
+  4:
+    name: "Broker Koval"
+    faction: Rust
+    role_site: "Hilltop Water Station"
+    position: [8290.0, 0.0, 6510.0]
+    heading: 270.0
+    classname: "ExpansionQuestNPCAIBoris"
+    loadout: "DZDS_Rust_foreman"
+    greeting: "The Syndicate runs the pumps. No fuel, no maintenance, no water. Everything has a price."
+
+  5:
+    name: "Elder Soroush"
+    faction: Karkas
+    role_site: "Missile Base Ridge"
+    position: [2840.0, 0.0, 9170.0]
+    heading: 45.0
+    classname: "ExpansionQuestNPCAIKaito"
+    loadout: "DZDS_Karkas_elder"
+    greeting: "The desert wind strips flesh from bone. Only those who honor the ridge survive."
+
+  6:
+    name: "Scout Farid"
+    faction: Settlers
+    role_site: "Settler Haven"
+    position: [7560.0, 0.0, 8720.0]
+    heading: 135.0
+    classname: "ExpansionQuestNPCAIDenis"
+    loadout: "DZDS_Settlers"
+    greeting: "I watch the north roads. The raiders are always looking for a gap in our lines."
+
+fixed_quests:
+  # ----------------------------------------------------------------------------
+  # Frontier Settlers — Survival & Settlement Fortification (Qalat-e Lut HQ)
+  # ----------------------------------------------------------------------------
+  101:
+    title: "The Well of Qalat: Water Purification"
+    npc_giver: 1
+    npc_turnin: 1
+    follow_up: 102
+    repeatable: true
+    daily: true
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 1 Water Bottle and 1 pack of Purification Tablets to Elder Tariq."
+    items_required:
+      - { class: "WaterBottle", amount: 1 }
+      - { class: "PurificationTablets", amount: 1 }
+    briefing: "Welcome to Qalat-e Lut, traveler. Out here in the badlands, water kills as often as bullets. Untreated groundwater will give you cholera in hours. Take this empty canteen, scavenge purification tablets, and deliver a treated bottle to our cistern."
+    in_progress: "Have you treated the water? Don't drink directly from unverified basins."
+    completion: "Good work. Clean water is the difference between an outpost and a graveyard. Here are some matches and dried fruit for the road."
+    rewards:
+      - { class: "Matchbox", amount: 1 }
+      - { class: "Apple", amount: 2 }
+      - { class: "BandageDressing", amount: 1 }
+    reputation: { DZDSSettlers: 20 }
+
+  102:
+    title: "Desert Harvest: Crops of the Compound"
+    npc_giver: 1
+    npc_turnin: 1
+    follow_up: 103
+    pre_quest: 101
+    repeatable: true
+    daily: true
+    cancel_on_death: true
+    objective_type: COLLECTION
+    objective_text: "Harvest or collect 3 fresh Tomatoes or 2 Zucchini for the settlement."
+    items_required:
+      - { class: "Tomato", amount: 3 }
+    briefing: "Canned rations from the old world are running thin. We cleared soil in the inner fortress shadow for vegetable plots, but we need fresh harvests to sustain our sick. Cultivate or collect fresh produce."
+    in_progress: "The kitchen is waiting. Bring fresh vegetables from the plots."
+    completion: "Fresh food keeps scurvy away. Take these seeds and a canteen. Plant more when you establish your homestead."
+    rewards:
+      - { class: "Canteen", amount: 1 }
+      - { class: "TomatoSeeds", amount: 1 }
+      - { class: "GardenLime", amount: 1 }
+    reputation: { DZDSSettlers: 25 }
+
+  103:
+    title: "Tanning & Leatherwork: Bedouin Craft"
+    npc_giver: 1
+    npc_turnin: 1
+    follow_up: 104
+    pre_quest: 102
+    cancel_on_death: true
+    objective_type: COLLECTION
+    objective_text: "Hunt wild game in the plains and collect 1 Wild Boar or Deer Pelt."
+    items_required:
+      - { class: "WildboarPelt", amount: 1 }
+    briefing: "The desert sun rots nylon and synthetic cloth. The enduring way is cured animal hide. Hunt wild boar or deer in the scrub, skin the pelt, and bring it to our leathercrafter for horse tack and canteens."
+    in_progress: "Track the watering holes at dawn. Bring back a clean pelt."
+    completion: "Sturdy hide. With garden lime and water, this will make saddles and water pouches that last decades. Take this hunting knife and sewing kit."
+    rewards:
+      - { class: "HuntingKnife", amount: 1 }
+      - { class: "LeatherSewingKit", amount: 1 }
+    reputation: { DZDSSettlers: 30 }
+
+  104:
+    title: "Fortifying the Fortress: Planks & Nails"
+    npc_giver: 1
+    npc_turnin: 1
+    follow_up: 105
+    pre_quest: 103
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 4 Wooden Planks and 1 box of Nails to reinforce the south gate."
+    items_required:
+      - { class: "WoodenPlank", amount: 4 }
+      - { class: "NailBox", amount: 1 }
+    briefing: "Jackal raiders probe our south gate every few nights. We need structural lumber and nails to board up breaches and brace the watchtower scaffolding. Deliver building materials to fortify our walls."
+    in_progress: "The carpenter is waiting at the south gate. Bring the lumber and nails."
+    completion: "The south gate is braced. If the raiders hit us tonight, our guards will have cover. Here is a whetstone, wire, and a hand saw for your own shelter."
+    rewards:
+      - { class: "Whetstone", amount: 1 }
+      - { class: "MetalWire", amount: 1 }
+      - { class: "HandSaw", amount: 1 }
+    reputation: { DZDSSettlers: 40 }
+
+  105:
+    title: "Comms Grid Relay: High Ground Calibration"
+    npc_giver: 1
+    npc_turnin: 1
+    pre_quest: 104
+    cancel_on_death: true
+    objective_type: TRAVEL
+    objective_text: "Travel to the high radio tower at North Border Post to inspect the relay."
+    target_site: "North Border Post"
+    target_pos: [2910.0, 0.0, 15740.0]
+    briefing: "Our emergency broadcast repeater on 87.8 MHz needs line of sight across the northern basin. Ascend to the high antenna at North Border Post and ensure the solar relay transmitter is intact."
+    in_progress: "Make the climb to North Border Post. Watch the ridge line for raider marksmen."
+    completion: "Transmitter ping confirmed. The Settler Net now reaches all the way to the southern dunes. Keep these batteries and this personal radio tuned to 87.8 MHz."
+    rewards:
+      - { class: "PersonalRadio", amount: 1 }
+      - { class: "Battery9V", amount: 2 }
+    reputation: { DZDSSettlers: 35 }
+
+  # ----------------------------------------------------------------------------
+  # UN Task Force Blue Shield — Humanitarian & Medical Relief
+  # ----------------------------------------------------------------------------
+  201:
+    title: "Humanitarian Triage: Antibiotics & Bandages"
+    npc_giver: 2
+    npc_turnin: 2
+    follow_up: 202
+    repeatable: true
+    daily: true
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 1 Tetracycline Antibiotics and 2 Bandage Dressings to Capt. Miller."
+    items_required:
+      - { class: "TetracyclineAntibiotics", amount: 1 }
+      - { class: "BandageDressing", amount: 2 }
+    briefing: "Task Force Blue Shield operates the medical field triage at Eastern Airfield. Desert infections and wound sepsis are claiming refugees faster than gunfire. We urgently need antibiotics and sterile dressings."
+    in_progress: "Check field hospital tents and pharmacies. We need those antibiotics."
+    completion: "Supplies logged. This will save lives in the civilian ward. You have earned Task Force scrip and standing."
+    rewards:
+      - { class: "FirstAidKit", amount: 1 }
+      - { class: "Morphine", amount: 1 }
+      - { class: "ExpansionBanknoteHryvnia", amount: 50 }
+    reputation: { DZDSPeacekeepers: 25 }
+
+  202:
+    title: "Downed Falcon: Black Box & Transponder"
+    npc_giver: 2
+    npc_turnin: 2
+    follow_up: 203
+    pre_quest: 201
+    cancel_on_death: true
+    objective_type: TREASUREHUNT
+    objective_text: "Locate the helicopter crash in the western dunes and recover the flight recorder."
+    target_pos: [6500.0, 0.0, 11500.0]
+    briefing: "An unarmed UN aid helicopter went down in the western dunes carrying medical supplies. Raiders are moving toward the crash. Locate the wreckage, retrieve the emergency flight recorder container, and return it safely."
+    in_progress: "Follow the smoke column in the dunes. Recover the black box before scavengers strip it."
+    completion: "Flight recorder secured. The telemetry confirms engine failure, not hostile fire. Excellent work under pressure."
+    rewards:
+      - { class: "SalineBagIV", amount: 1 }
+      - { class: "Compass", amount: 1 }
+      - { class: "ExpansionBanknoteHryvnia", amount: 100 }
+    reputation: { DZDSPeacekeepers: 35 }
+
+  203:
+    title: "Humanitarian Corridor: Safe Passage"
+    npc_giver: 2
+    npc_turnin: 6
+    pre_quest: 202
+    cancel_on_death: true
+    objective_type: TRAVEL
+    objective_text: "Travel along the central route from Eastern Airfield to Settler Haven."
+    target_site: "Settler Haven"
+    target_pos: [7560.0, 0.0, 8720.0]
+    briefing: "We are dispatching relief shipments along the road from Eastern Airfield to Settler Haven. Scout the route ahead of our trucks, verify that the central road is clear of roadblocks, and report to Scout Farid."
+    in_progress: "Move along the highway corridor to Settler Haven."
+    completion: "Corridor verified clear. The UN aid trucks will make delivery by morning. Take these supplies and our thanks."
+    rewards:
+      - { class: "Canteen", amount: 1 }
+      - { class: "ExpansionBanknoteHryvnia", amount: 150 }
+    reputation: { DZDSPeacekeepers: 40, DZDSSettlers: 25 }
+
+  # ----------------------------------------------------------------------------
+  # Rust Syndicate — Resource Leverage & Industrial Maintenance
+  # ----------------------------------------------------------------------------
+  301:
+    title: "The Price of Pumping: Fuel & Spark Plugs"
+    npc_giver: 4
+    npc_turnin: 4
+    follow_up: 302
+    repeatable: true
+    daily: true
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 1 Canister of Gasoline and 1 Spark Plug to Broker Koval."
+    items_required:
+      - { class: "CanisterGasoline", amount: 1 }
+      - { class: "SparkPlug", amount: 1 }
+    briefing: "The Syndicate runs the deep-well turbine pumps at Hilltop Station. Pumping water from four hundred feet takes diesel and electricity. Bring us fuel and a fresh spark plug, and we'll keep the water valves open."
+    in_progress: "The pumps won't turn on prayers. Bring the fuel and the plug."
+    completion: "Fuel tested. The turbine pressure is back up. Here is clean drinking water and medical stims from our stash."
+    rewards:
+      - { class: "WaterBottle", amount: 2 }
+      - { class: "Epinephrine", amount: 1 }
+    reputation: { DZDSRust: 25 }
+
+  302:
+    title: "Scrap & Metalworks: Industrial Armor"
+    npc_giver: 4
+    npc_turnin: 4
+    follow_up: 303
+    pre_quest: 301
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 2 Metal Plates and 1 Pipe Wrench to Broker Koval."
+    items_required:
+      - { class: "MetalPlate", amount: 2 }
+      - { class: "PipeWrench", amount: 1 }
+    briefing: "Sandstorms scour our pump manifolds and vehicle cabs. We need structural metal plates and plumbing wrenches to patch pressure pipes and weld armor on our water tankers. Scavenge the industrial plants."
+    in_progress: "Search Cement Works and machine shops for plate and heavy tools."
+    completion: "Heavy grade steel. Our welders will have the tankers reinforced by nightfall. Take this repair wire and duct tape."
+    rewards:
+      - { class: "DuctTape", amount: 1 }
+      - { class: "MetalWire", amount: 1 }
+    reputation: { DZDSRust: 30 }
+
+  303:
+    title: "Aquifer Defense: Central Pump Security"
+    npc_giver: 4
+    npc_turnin: 4
+    pre_quest: 302
+    cancel_on_death: true
+    objective_type: TRAVEL
+    objective_text: "Travel to Central Pump Station and secure the intake perimeter."
+    target_site: "Central Pump Station"
+    target_pos: [6920.0, 0.0, 7360.0]
+    briefing: "Nomads have been spotted scouting the perimeter fences at Central Pump Station. If someone tosses dynamite into the aquifer head, this entire basin dries up. Get down there and secure the perimeter."
+    in_progress: "Patrol the Central Pump Station perimeter."
+    completion: "Station reported secure. You've earned the Syndicate's trust. Here is a car battery and sharpening kit for your rig."
+    rewards:
+      - { class: "CarBattery", amount: 1 }
+      - { class: "Whetstone", amount: 1 }
+    reputation: { DZDSRust: 45 }
+
+  # ----------------------------------------------------------------------------
+  # Karkas Clan — Wilderness Mastery & Mountain Survival
+  # ----------------------------------------------------------------------------
+  401:
+    title: "Trial of the Sands: High Country Hunt"
+    npc_giver: 5
+    npc_turnin: 5
+    follow_up: 402
+    cancel_on_death: true
+    objective_type: COLLECTION
+    objective_text: "Hunt and collect 2 Steaks of Deer or Cow Meat and 1 Wolf Pelt."
+    items_required:
+      - { class: "DeerSteakMeat", amount: 2 }
+      - { class: "WolfPelt", amount: 1 }
+    briefing: "You town-dwellers live on stale flour and rusted cans. The desert ridges will teach you hunger. If you wish to trade or travel across Karkas ground without being hunted, prove you can take game from the high rocks."
+    in_progress: "The mountain winds carry your scent. Hunt from downwind and bring back meat and pelt."
+    completion: "The kill was clean. You know how to track and keep your belly full in the wild. Take this bone knife and rope. You have Karkas respect."
+    rewards:
+      - { class: "BoneKnife", amount: 1 }
+      - { class: "Rope", amount: 1 }
+    reputation: { DZDSKarkas: 30 }
+
+  402:
+    title: "The Eagle's Nest: Ridge Observation"
+    npc_giver: 5
+    npc_turnin: 5
+    pre_quest: 401
+    cancel_on_death: true
+    objective_type: TRAVEL
+    objective_text: "Climb to the high observation pinnacle on Missile Base Ridge."
+    target_site: "Missile Base Ridge"
+    target_pos: [2840.0, 0.0, 9170.0]
+    briefing: "Ascend to the highest pinnacle above the old rocket silos. Look across the sands and watch where the smoke trails lead. The clan marksmen watch the valley from there. Reach the summit and look upon the badlands."
+    in_progress: "Climb the ridge trail. Mind your footing."
+    completion: "You have stood on the eagle's roost. You now see how the war moves across the sands. Take these binoculars and radio."
+    rewards:
+      - { class: "Binoculars", amount: 1 }
+      - { class: "PersonalRadio", amount: 1 }
+    reputation: { DZDSKarkas: 40 }

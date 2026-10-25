@@ -1,0 +1,75 @@
+{
+    "ConfigVersion": 22,
+    "ID": 604,
+    "Type": 1,
+    "Title": "Break the Siege: Southern Barracks",
+    "Descriptions": [
+        "Hostile fighters have laid siege to Southern Barracks. Clear their patrol and secure the area so the settlement network can expand into the sector.",
+        "The hostile forces at Southern Barracks are still entrenched. Break their perimeter and drive them out.",
+        "The stronghold at Southern Barracks is clear! The Frontier Settlers owe you a profound debt of gratitude. The settlement network claims the ground."
+    ],
+    "ObjectiveText": "Drive the fighters out of Southern Barracks so the settlers can move in.",
+    "FollowUpQuest": -1,
+    "Repeatable": 1,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "Ammo_762x39",
+            "Amount": 40,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "NailBox",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        1
+    ],
+    "QuestTurnInIDs": [
+        1
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 604,
+            "ObjectiveType": 7
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSSettlers": 25
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

@@ -1,0 +1,50 @@
+{
+    "m_Version": 8,
+    "m_TraderID": 2,
+    "m_ClassName": "ExpansionTraderAIDenis",
+    "m_Position": [
+        12040.0,
+        169.62,
+        10860.0
+    ],
+    "m_Orientation": [
+        45.0,
+        0.0,
+        0.0
+    ],
+    "m_LoadoutFile": "DZDS_Peacekeepers",
+    "m_VehicleSpawnPosition": [
+        12050,
+        169.62,
+        10870
+    ],
+    "m_WatercraftSpawnPosition": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "m_AircraftSpawnPosition": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "m_DisplayName": "UN Quartermaster (Task Force Blue Shield)",
+    "m_DisplayIcon": "Medic Box",
+    "m_Faction": "InvincibleObservers",
+    "m_Waypoints": [],
+    "m_EmoteID": 46,
+    "m_EmoteIsStatic": 1,
+    "m_RequiredFaction": "",
+    "m_UseReputation": 0,
+    "m_MinRequiredReputation": 0,
+    "m_MaxRequiredReputation": 2147483647,
+    "m_RequiredCompletedQuestID": 101,
+    "m_IsGlobalTrader": 0,
+    "m_Currencies": [
+        "expansionbanknotehryvnia",
+        "ammo_556x45",
+        "ammo_9x19"
+    ],
+    "m_DisplayCurrencyValue": 1,
+    "m_DisplayCurrencyName": ""
+}

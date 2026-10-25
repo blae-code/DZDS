@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 106,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Escort the aid convoy to Settler Haven.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        7560,
+        248.9,
+        8720
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "Settler Haven",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

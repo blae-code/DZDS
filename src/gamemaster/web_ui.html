@@ -962,6 +962,11 @@
     </div>
 
     <div class="card">
+      <div class="card-title"><span>COMMUNITY SURVIVAL INFRASTRUCTURE & SETTLEMENT PROJECTS (QALAT-E LUT HQ)</span><span id="survival-goals-count-badge" class="badge cyan">5 ACTIVE PROJECTS</span></div>
+      <div id="survival-goals-wrap" class="grid-3" style="margin-top:12px;"></div>
+    </div>
+
+    <div class="card">
       <div class="card-title"><span>LIVE FRONT-LINE QUESTS (TIED TO CURRENT TERRITORY CONTROL)</span><span id="quests-count-badge" class="badge cyan">0 ACTIVE</span></div>
       <div id="quests-table-wrap"></div>
     </div>
@@ -1869,20 +1874,23 @@ async function rollKit(archName) {
 
 function renderFrontPlanView() {
   // Traders
-  const tr = STATE.front_plan.traders;
+  const tr = STATE.front_plan.traders || [];
   document.getElementById('traders-table-wrap').innerHTML = `
     <table class="tactical-table">
-      <thead><tr><th>STATUS</th><th>TRADER</th><th>FACTION</th><th>SITE</th><th>CURRENCIES</th></tr></thead>
+      <thead><tr><th>STATUS</th><th>TRADER</th><th>FACTION</th><th>SITE</th><th>CURRENCIES</th><th>UNLOCK REQUIREMENT</th></tr></thead>
       <tbody>
-        ${tr.map(t => `
+        ${tr.map(t => {
+          const req = t.required_quest && t.required_quest > 0 ? `Quest #${t.required_quest}` : (t.faction && t.faction !== 'none' ? `${t.faction} Standing` : 'Open / Unrestricted');
+          return `
           <tr>
             <td><span class="badge ${t.status}">${t.status}</span></td>
             <td style="font-weight:600;">${t.display}</td>
             <td class="mono" style="color:${factionColor(t.faction)}">${t.faction}</td>
             <td class="mono">${t.site || '—'}</td>
             <td class="mono muted">${(t.currencies || []).join(', ')}</td>
+            <td><span class="pill">${req}</span></td>
           </tr>
-        `).join('')}
+        `}).join('')}
       </tbody>
     </table>
   `;
@@ -1896,23 +1904,70 @@ function renderFrontPlanView() {
     rollKit(archs[0].Name);
   }
 
+  // Survival Goals & Community Infrastructure
+  const sg = STATE.survival_goals || {};
+  const sgProjects = sg.projects || [];
+  const sgCountBadge = document.getElementById('survival-goals-count-badge');
+  if (sgCountBadge) sgCountBadge.textContent = `${sgProjects.length} ACTIVE PROJECTS`;
+  const sgWrap = document.getElementById('survival-goals-wrap');
+  if (sgWrap && sgProjects.length) {
+    sgWrap.innerHTML = sgProjects.map(p => `
+      <div class="card" style="border-left: 3px solid ${p.color}; background: var(--bg-surface); padding: 12px 14px;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+          <div>
+            <div style="font-weight:700; color:var(--text); font-size:0.95rem;">${p.name}</div>
+            <div class="muted" style="font-size:0.75rem;">Category: ${p.category}</div>
+          </div>
+          <span class="badge" style="background:${p.color}22; color:${p.color}; font-weight:700;">${p.percent}%</span>
+        </div>
+        <div style="background:var(--bg-canvas); border-radius:4px; height:8px; overflow:hidden; margin:8px 0; border: 1px solid var(--border-soft);">
+          <div style="background:${p.color}; width:${p.percent}%; height:100%;"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:8px;">
+          <span class="mono">${p.current} / ${p.target} ${p.unit}</span>
+          <span class="muted">${(p.unlocked_perks || []).length} perk tier(s) active</span>
+        </div>
+        <div style="font-size:0.78rem; padding:6px 8px; border-radius:4px; background:var(--bg-canvas); border:1px solid var(--border-soft);">
+          <span style="color:${p.color}; font-weight:600;">Active Perk:</span> ${p.active_perk_text}
+        </div>
+      </div>
+    `).join('');
+  }
+
   // Quests
-  const qs = STATE.front_plan.quests;
+  const qs = STATE.front_plan.quests || [];
+  const npcs = STATE.front_plan.npcs || {};
   document.getElementById('quests-count-badge').textContent = `${qs.length} ACTIVE`;
   document.getElementById('quests-table-wrap').innerHTML = `
     <table class="tactical-table">
-      <thead><tr><th>QUEST ID</th><th>OBJECTIVE</th><th>TARGET SITE</th><th>QUEST GIVER</th><th>GIVER STRONGHOLD</th><th>IN-WORLD BRIEFING</th></tr></thead>
+      <thead><tr><th>CONTRACT & ID</th><th>OBJECTIVE</th><th>TARGET SITE</th><th>GIVER & CONTACT</th><th>REWARDS & REP</th><th>BRIEFING</th></tr></thead>
       <tbody>
-        ${qs.map(q => `
+        ${qs.map(q => {
+          const npc = npcs[q.giver] || {};
+          const contact = npc.name ? `${npc.name} (${q.giver})` : q.giver;
+          const repBadges = Object.entries(q.reputation_rewards || {}).map(([f, n]) => `<span class="pill" style="border-color:${factionColor(f)}; color:${factionColor(f)}">+${n} ${f}</span>`).join(' ');
+          const itemBadges = (q.rewards || []).map(r => `<span class="pill">${r.Amount}x ${r.ClassName}</span>`).join(' ');
+          return `
           <tr>
-            <td class="mono" style="color:var(--cyan); font-weight:700;">${q.quest}</td>
+            <td>
+              <div class="mono" style="color:var(--cyan); font-weight:700;">#${q.id || '—'} ${q.quest}</div>
+              <div style="font-size:12px; color:var(--bone); font-weight:600;">${q.title || ''}</div>
+            </td>
             <td><span class="badge ok">${q.objective}</span></td>
             <td class="mono" style="font-weight:600;">${q.site}</td>
-            <td class="mono" style="color:${factionColor(q.giver)}">${q.giver}</td>
-            <td class="mono">${q.giver_site}</td>
-            <td class="muted">${q.text}</td>
+            <td>
+              <div class="mono" style="color:${factionColor(q.giver)}; font-weight:600;">${contact}</div>
+              <div class="muted" style="font-size:11px;">@ ${q.giver_site}</div>
+            </td>
+            <td>
+              <div style="display:flex; flex-wrap:wrap; gap:4px;">
+                ${itemBadges}
+                ${repBadges}
+              </div>
+            </td>
+            <td class="muted" style="max-width:280px;">${q.text}</td>
           </tr>
-        `).join('')}
+        `}).join('')}
       </tbody>
     </table>
   `;

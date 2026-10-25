@@ -1,0 +1,26 @@
+{
+    "ConfigVersion": 28,
+    "ID": 301,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver 1 Canister of Gasoline and 1 Spark Plug to Broker Koval.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 1,
+            "ClassName": "CanisterGasoline",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 1,
+            "ClassName": "SparkPlug",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 30.0,
+    "MarkerName": "The Price of Pumping: Fuel & Spark Plugs"
+}

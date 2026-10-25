@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 511,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Travel to front-line site Cement Works",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        9730.0,
+        0.0,
+        6390.0
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "Target: Cement Works",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

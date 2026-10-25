@@ -1,0 +1,20 @@
+{
+    "ConfigVersion": 28,
+    "ID": 108,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Bring an offering of wild game and hunting supplies to the Karkas Clan at Missile Base Ridge.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 1,
+            "ClassName": "Ammo_762x54",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 30.0,
+    "MarkerName": "Missile Base Ridge"
+}

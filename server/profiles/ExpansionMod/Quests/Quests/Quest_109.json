@@ -1,0 +1,66 @@
+{
+    "ConfigVersion": 22,
+    "ID": 109,
+    "Type": 1,
+    "Title": "Industrial Salvage: Cement Works",
+    "Descriptions": [
+        "The refinery pumps and generators at Cement Works are burning through parts. Bring fresh spark plugs to keep the plant operating.",
+        "Scavenge the required spark plugs and deliver them to Cement Works.",
+        "Good quality hardware. The generators will keep humming. The Syndicate doesn't forget who keeps the power on."
+    ],
+    "ObjectiveText": "Scavenge critical spark plugs and hardware for the works at Cement Works.",
+    "FollowUpQuest": -1,
+    "Repeatable": 1,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "Ammo_762x39",
+            "Amount": 30,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        7
+    ],
+    "QuestTurnInIDs": [
+        7
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 109,
+            "ObjectiveType": 4
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSRust": 20
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

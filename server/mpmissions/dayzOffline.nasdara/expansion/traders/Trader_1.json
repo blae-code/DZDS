@@ -1,0 +1,54 @@
+{
+    "m_Version": 8,
+    "m_TraderID": 1,
+    "m_ClassName": "ExpansionTraderAIIrena",
+    "m_Position": [
+        7570.0,
+        248.9,
+        8730.0
+    ],
+    "m_Orientation": [
+        45.0,
+        0.0,
+        0.0
+    ],
+    "m_LoadoutFile": "DZDS_Settlers",
+    "m_VehicleSpawnPosition": [
+        7580,
+        248.9,
+        8740
+    ],
+    "m_WatercraftSpawnPosition": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "m_AircraftSpawnPosition": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "m_DisplayName": "Frontier Exchange (Settlers Barter)",
+    "m_DisplayIcon": "Deliver",
+    "m_Faction": "InvincibleObservers",
+    "m_Waypoints": [],
+    "m_EmoteID": 46,
+    "m_EmoteIsStatic": 1,
+    "m_RequiredFaction": "DZDSSettlers",
+    "m_UseReputation": 0,
+    "m_MinRequiredReputation": 0,
+    "m_MaxRequiredReputation": 2147483647,
+    "m_RequiredCompletedQuestID": -1,
+    "m_IsGlobalTrader": 0,
+    "m_Currencies": [
+        "nail",
+        "expansionbanknotehryvnia",
+        "ammo_22",
+        "ammo_9x19",
+        "ammo_545x39",
+        "ammo_762x39",
+        "ammo_556x45"
+    ],
+    "m_DisplayCurrencyValue": 1,
+    "m_DisplayCurrencyName": ""
+}

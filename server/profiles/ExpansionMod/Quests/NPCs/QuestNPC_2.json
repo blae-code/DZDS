@@ -3,27 +3,27 @@
     "ID": 2,
     "ClassName": "ExpansionQuestNPCAIElias",
     "Position": [
-        3192.199951171875,
-        296.7070007324219,
-        6093.31005859375
+        12040.0,
+        169.62,
+        10860.0
     ],
     "Orientation": [
-        145.0,
+        0.0,
         0.0,
         0.0
     ],
-    "NPCName": "Steve",
-    "DefaultNPCText": "What do you want? I am busy...",
+    "NPCName": "Commander Vance",
+    "DefaultNPCText": "Task Force Blue Shield Command. State your identity and business within the demilitarized zone.",
     "Waypoints": [
         [
-            3192.199951171875,
-            296.7070007324219,
-            6093.31005859375
+            12040.0,
+            169.62,
+            10860.0
         ]
     ],
-    "NPCEmoteID": 14,
+    "NPCEmoteID": 46,
     "NPCEmoteIsStatic": 1,
-    "NPCLoadoutFile": "NBCLoadout",
+    "NPCLoadoutFile": "DZDS_Peacekeepers_officer",
     "NPCInteractionEmoteID": 1,
     "NPCQuestCancelEmoteID": 60,
     "NPCQuestStartEmoteID": 58,

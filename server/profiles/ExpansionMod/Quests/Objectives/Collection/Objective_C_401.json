@@ -1,0 +1,25 @@
+{
+    "ConfigVersion": 28,
+    "ID": 401,
+    "ObjectiveType": 4,
+    "ObjectiveText": "Hunt and collect 2 Steaks of Deer or Cow Meat and 1 Wolf Pelt.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 2,
+            "ClassName": "DeerSteakMeat",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 1,
+            "ClassName": "WolfPelt",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "NeedAnyCollection": 0
+}

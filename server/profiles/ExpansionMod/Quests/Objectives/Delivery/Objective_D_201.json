@@ -1,0 +1,26 @@
+{
+    "ConfigVersion": 28,
+    "ID": 201,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver 1 Tetracycline Antibiotics and 2 Bandage Dressings to Capt. Miller.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 1,
+            "ClassName": "TetracyclineAntibiotics",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 2,
+            "ClassName": "BandageDressing",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 30.0,
+    "MarkerName": "Humanitarian Triage: Antibiotics & Bandages"
+}

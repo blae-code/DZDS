@@ -1,0 +1,75 @@
+{
+    "ConfigVersion": 22,
+    "ID": 115,
+    "Type": 1,
+    "Title": "Emergency Broadcast Comms Relay: Missile Base Ridge",
+    "Descriptions": [
+        "Our 87.8 MHz emergency broadcast transmitter needs clear line of sight. Climb to the high-ground mast at Missile Base Ridge and verify signal synchronization.",
+        "Climb the ridge to Missile Base Ridge and inspect the antenna array.",
+        "Repeater synchronized. Settler emergency broadcasts now cover the entire northern basin. Take these 9V batteries and personal radio."
+    ],
+    "ObjectiveText": "Ascend to the high-ground antenna at Missile Base Ridge to calibrate the 87.8 MHz emergency broadcast repeater.",
+    "FollowUpQuest": -1,
+    "Repeatable": 1,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "PersonalRadio",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "Battery9V",
+            "Amount": 2,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        1
+    ],
+    "QuestTurnInIDs": [
+        1
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 115,
+            "ObjectiveType": 3
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSSettlers": 30
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

@@ -1,0 +1,26 @@
+{
+    "ConfigVersion": 28,
+    "ID": 104,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver 4 Wooden Planks and 1 box of Nails to reinforce the south gate.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 4,
+            "ClassName": "WoodenPlank",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 1,
+            "ClassName": "NailBox",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 30.0,
+    "MarkerName": "Fortifying the Fortress: Planks & Nails"
+}

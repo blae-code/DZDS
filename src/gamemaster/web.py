@@ -47,6 +47,7 @@ import active  # noqa: E402
 import arrivals  # noqa: E402
 import dzds_profile  # noqa: E402
 import encounter_audit  # noqa: E402
+import campaign_gen  # noqa: E402
 import front_plan  # noqa: E402
 import modstring  # noqa: E402
 import patrol_gen  # noqa: E402
@@ -55,6 +56,7 @@ import ui  # noqa: E402
 import zones as zmod  # noqa: E402
 from .adm import parse_line  # noqa: E402
 from .ledger import STATE, WarLedger  # noqa: E402
+from . import survival_goals  # noqa: E402
 
 
 PWA_VERSION = "2026.10.24-v2"
@@ -2416,8 +2418,10 @@ class SandboxStore:
             "front_plan": {
                 "traders": traders,
                 "quests": quests,
+                "npcs": campaign_gen.NPC_PROFILES,
                 "currencies": traders_cfg.get("currencies", {}),
             },
+            "survival_goals": survival_goals.get_manager().get_summary(),
             "arrivals": {
                 "cooldown_hours": arrivals_cfg.get("cooldown_hours", 24),
                 "nav_kit": arrivals_cfg.get("nav_kit", {}),
@@ -2627,6 +2631,17 @@ def handle_api(
         return HTTPStatus.OK, STORE.reset_preview(map_name, user_id=uid, is_operator=is_operator)
     if method == "POST" and path == "/api/roll-kit":
         return HTTPStatus.OK, STORE.roll_kit(body.get("archetype"))
+    if method == "GET" and path == "/api/survival-goals":
+        return HTTPStatus.OK, survival_goals.get_manager().get_summary()
+    if method == "POST" and path == "/api/survival-goals/contribute":
+        pid = str(body.get("project_id") or "water_reserves")
+        try:
+            amt = float(body.get("amount") or 10.0)
+        except (ValueError, TypeError):
+            amt = 10.0
+        who = str(body.get("contributor") or "Survivor")
+        res = survival_goals.get_manager().record_contribution(pid, amt, contributor=who)
+        return HTTPStatus.OK, {"status": "ok", "project": res, "summary": survival_goals.get_manager().get_summary()}
 
     # Per-User Persistent Preferences & Settings API
     if method == "GET" and path == "/api/prefs":

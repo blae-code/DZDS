@@ -1,0 +1,139 @@
+# Dynamic Community Survival Goals & Progression Milestones (docs/SPEC.md, docs/LIVING_WORLD.md).
+# Tracked in gm_state/survival_goals.json and displayed on the Web Tactical Command Center & Survivor Portal.
+#
+# Provides collective depth and long-term incentives for players beyond gear collection:
+# players contribute to shared settlement infrastructure at Qalat-e Lut and unlock compound perks.
+
+settlement_projects:
+  water_reserves:
+    id: "water_reserves"
+    name: "Aquifer & Community Water Reserves"
+    category: "Sustenance"
+    target: 500
+    unit: "Liters"
+    initial: 185
+    icon: "water"
+    color: "#68b5e8"
+    description: "Purified water reserves stored in the covered cisterns of Qalat-e Lut fortress."
+    contributing_items:
+      - { class: "WaterBottle", amount: 1, yield: 1 }
+      - { class: "Canteen", amount: 1, yield: 1 }
+      - { class: "PurificationTablets", amount: 1, yield: 10 }
+    perks:
+      tier1: { threshold: 150, name: "Basic Rationing", effect: "Daily water allotment provided at Qalat-e Lut fountain." }
+      tier2: { threshold: 300, name: "Active Cistern Filtration", effect: "Drinking from settlement wells carries 0% cholera or dysentery risk." }
+      tier3: { threshold: 500, name: "Badlands Oasis Network", effect: "Hydration drain reduced across all Settler territory; settlement growth boosted." }
+
+  medical_stockpile:
+    id: "medical_stockpile"
+    name: "Field Clinic & Trauma Reserves"
+    category: "Healthcare"
+    target: 120
+    unit: "Supplies"
+    initial: 42
+    icon: "medical"
+    color: "#e05353"
+    description: "Sterile dressings, broad-spectrum antibiotics, IV blood/saline, and trauma surgical tools."
+    contributing_items:
+      - { class: "BandageDressing", amount: 1, yield: 1 }
+      - { class: "TetracyclineAntibiotics", amount: 1, yield: 2 }
+      - { class: "SalineBagIV", amount: 1, yield: 3 }
+      - { class: "FirstAidKit", amount: 1, yield: 5 }
+    perks:
+      tier1: { threshold: 40, name: "Field Triage", effect: "Wound bleeding duration reduced by 25% near settlements." }
+      tier2: { threshold: 80, name: "Antibiotic Dispensary", effect: "Free sickness treatment available from NPC medics at Qalat-e Lut." }
+      tier3: { threshold: 120, name: "Trauma Ward", effect: "Respawning players start with full blood and immune boost." }
+
+  fortification:
+    id: "fortification"
+    name: "Perimeter Fortifications & Barriers"
+    category: "Defense"
+    target: 200
+    unit: "Materials"
+    initial: 78
+    icon: "shield"
+    color: "#d8bd79"
+    description: "Reinforced gate timber, welded steel plating, sandbag bastions, and watchtower scaffolding."
+    contributing_items:
+      - { class: "WoodenPlank", amount: 1, yield: 1 }
+      - { class: "NailBox", amount: 1, yield: 5 }
+      - { class: "MetalPlate", amount: 1, yield: 3 }
+      - { class: "MetalWire", amount: 1, yield: 2 }
+    perks:
+      tier1: { threshold: 60, name: "South Gate Bastion", effect: "Outer approaches guarded; raider snipers forced back 100 meters." }
+      tier2: { threshold: 130, name: "Perimeter Watchtowers", effect: "Garrison guards equipped with scoped hunting rifles; raider ambush chance halved." }
+      tier3: { threshold: 200, name: "Fortress Citadel", effect: "Jackal raids against Settler Haven and Qalat-e Lut reduced by 60%." }
+
+  fuel_depot:
+    id: "fuel_depot"
+    name: "Settlement Fuel Depot & Generator"
+    category: "Logistics"
+    target: 300
+    unit: "Liters"
+    initial: 110
+    icon: "fuel"
+    color: "#f59e0b"
+    description: "Gasoline and diesel to run the central compound generator and supply vehicle maintenance."
+    contributing_items:
+      - { class: "CanisterGasoline", amount: 1, yield: 20 }
+      - { class: "SparkPlug", amount: 1, yield: 5 }
+      - { class: "CarBattery", amount: 1, yield: 15 }
+    perks:
+      tier1: { threshold: 100, name: "Compound Lighting", effect: "Floodlights illuminate Qalat-e Lut courtyard and gates through the night." }
+      tier2: { threshold: 200, name: "Motor Pool Workshop", effect: "Zens Car Workbench fully stocked; repair tool wear reduced by 50%." }
+      tier3: { threshold: 300, name: "Mechanized Convoy Support", effect: "Arrival vehicles spawn with 80-100% fuel; supply trucks run reliably." }
+
+  comms_grid:
+    id: "comms_grid"
+    name: "Emergency Broadcast Comms Grid"
+    category: "Intelligence"
+    target: 100
+    unit: "% Grid Uptime"
+    initial: 65
+    icon: "radio"
+    color: "#10b981"
+    description: "High-altitude relay repeaters linked to the Settler Net on 87.8 MHz across Nasdara."
+    contributing_items:
+      - { class: "Battery9V", amount: 1, yield: 5 }
+      - { class: "PersonalRadio", amount: 1, yield: 10 }
+    perks:
+      tier1: { threshold: 50, name: "Valley Relay", effect: "Emergency radio broadcasts audible across central towns." }
+      tier2: { threshold: 75, name: "Early Warning Radar", effect: "GM radio broadcasts advance warning of moving raider war parties." }
+      tier3: { threshold: 100, name: "All-Desert Comms", effect: "Clear audio on 87.8 MHz across the entire 16.4 km badlands map." }
+
+# Personal Survival Achievements that persist across character life
+personal_milestones:
+  - id: "desert_nomad"
+    title: "Desert Nomad"
+    category: "Survival"
+    criterion: "Survive 24 real-time hours (4 in-game days) without dying"
+    icon: "clock"
+    reward: "+10% base stamina recovery in desert heat"
+
+  - id: "water_bearer"
+    title: "Water Bearer"
+    category: "Sustenance"
+    criterion: "Purify or deliver 25 liters of clean water to settlements"
+    icon: "droplet"
+    reward: "Permanent +20 reputation with Frontier Settlers and Rust Syndicate"
+
+  - id: "homestead_pioneer"
+    title: "Homestead Pioneer"
+    category: "Construction"
+    criterion: "Build or complete a Hunting Cabin or fortified compound shelter"
+    icon: "home"
+    reward: "Territory flag decay refresh period extended to 50 days"
+
+  - id: "combat_medic"
+    title: "Combat Medic"
+    category: "Healthcare"
+    criterion: "Treat 5 critical injuries or infections with antibiotics / IV bags"
+    icon: "heart"
+    reward: "Permanent +25 reputation with UN Task Force Blue Shield"
+
+  - id: "convoy_interceptor"
+    title: "Highwayman Hunter"
+    category: "Defense"
+    criterion: "Intercept and neutralize an active raider war party"
+    icon: "crosshair"
+    reward: "Unlocks Favored status on arrival vehicle pool"

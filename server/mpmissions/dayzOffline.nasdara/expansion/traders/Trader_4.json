@@ -1,0 +1,52 @@
+{
+    "m_Version": 8,
+    "m_TraderID": 4,
+    "m_ClassName": "ExpansionTraderAIDenis",
+    "m_Position": [
+        14850.0,
+        208.66,
+        7920.0
+    ],
+    "m_Orientation": [
+        45.0,
+        0.0,
+        0.0
+    ],
+    "m_LoadoutFile": "DZDS_Settlers",
+    "m_VehicleSpawnPosition": [
+        14860,
+        208.66,
+        7930
+    ],
+    "m_WatercraftSpawnPosition": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "m_AircraftSpawnPosition": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "m_DisplayName": "The Smuggler (Black Market Fence)",
+    "m_DisplayIcon": "Pistol",
+    "m_Faction": "InvincibleObservers",
+    "m_Waypoints": [],
+    "m_EmoteID": 46,
+    "m_EmoteIsStatic": 1,
+    "m_RequiredFaction": "",
+    "m_UseReputation": 0,
+    "m_MinRequiredReputation": 0,
+    "m_MaxRequiredReputation": 2147483647,
+    "m_RequiredCompletedQuestID": -1,
+    "m_IsGlobalTrader": 0,
+    "m_Currencies": [
+        "ammo_762x39",
+        "ammo_545x39",
+        "ammo_556x45",
+        "ammo_9x19",
+        "ammo_22"
+    ],
+    "m_DisplayCurrencyValue": 1,
+    "m_DisplayCurrencyName": ""
+}

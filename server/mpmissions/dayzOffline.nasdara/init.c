@@ -359,6 +359,12 @@ class RefugeeArrivals
 		}
 		if (flare)
 			player.GetInventory().CreateInInventory("Roadflare");
+
+		// Blae (Survival Incentives, 2026-10-25): Diegetic Survivor Directive note with emergency
+		// frequencies (Settler Net 87.8 MHz), HQ sanctuary coordinates, and mission journal prompt.
+		EntityAI directive = player.GetInventory().CreateInInventory("Paper");
+		if (directive)
+			Print("[DZDS Arrivals] Issued Survivor Field Directive to " + player.GetIdentity().GetName());
 	}
 
 	int RadioIndex()

@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 508,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Travel to front-line site Hilltop Water Station",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        8290.0,
+        0.0,
+        6510.0
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "Target: Hilltop Water Station",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

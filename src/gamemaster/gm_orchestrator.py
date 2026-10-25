@@ -65,7 +65,7 @@ class EventAggregator:
     which is also the raw material for the campaign-scale war ledger.
     """
 
-    SIGNIFICANT = {"death", "unconscious", "health_drop", "connect"}
+    SIGNIFICANT = {"death", "unconscious", "health_drop", "connect", "quest_complete"}
 
     def __init__(self, maxlen: int = 200, faction_names: dict[str, str] | None = None) -> None:
         self.faction_names = faction_names or {}  # engine faction -> display name (DZDSJackals -> The Jackal Cohort)
@@ -180,6 +180,10 @@ class Orchestrator:
                 killer = ev.by_faction or ("Players" if by_player else None)
                 name = ev.by.split('"')[1] if by_player and '"' in ev.by else None
                 self.ledger.record_death(ev.faction, killer, ev.pos, killer_name=name)
+            elif ev.kind == "quest_complete":
+                quest_key = ev.by or "break_the_siege"
+                site = self.ledger.nearest_site(ev.pos)
+                self.ledger.record_quest_completion(quest_key, ev.player, site=site)
             if self.agg.ingest(ev):
                 self.wake.set()
 

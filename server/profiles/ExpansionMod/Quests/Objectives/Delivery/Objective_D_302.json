@@ -1,0 +1,26 @@
+{
+    "ConfigVersion": 28,
+    "ID": 302,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver 2 Metal Plates and 1 Pipe Wrench to Broker Koval.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 2,
+            "ClassName": "MetalPlate",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 1,
+            "ClassName": "PipeWrench",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 30.0,
+    "MarkerName": "Scrap & Metalworks: Industrial Armor"
+}

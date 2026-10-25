@@ -1,0 +1,26 @@
+{
+    "ConfigVersion": 28,
+    "ID": 111,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver clean water and purification tablets to the cistern at Settler Haven.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 1,
+            "ClassName": "WaterBottle",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 1,
+            "ClassName": "PurificationTablets",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 30.0,
+    "MarkerName": "Settler Haven"
+}

@@ -1,0 +1,51 @@
+{
+    "m_Version": 8,
+    "m_TraderID": 3,
+    "m_ClassName": "ExpansionTraderAIIrena",
+    "m_Position": [
+        8300.0,
+        286.32,
+        6520.0
+    ],
+    "m_Orientation": [
+        45.0,
+        0.0,
+        0.0
+    ],
+    "m_LoadoutFile": "DZDS_Rust",
+    "m_VehicleSpawnPosition": [
+        8310,
+        286.32,
+        6530
+    ],
+    "m_WatercraftSpawnPosition": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "m_AircraftSpawnPosition": [
+        0.0,
+        0.0,
+        0.0
+    ],
+    "m_DisplayName": "Rust Syndicate Water & Parts Broker",
+    "m_DisplayIcon": "Car",
+    "m_Faction": "InvincibleObservers",
+    "m_Waypoints": [],
+    "m_EmoteID": 46,
+    "m_EmoteIsStatic": 1,
+    "m_RequiredFaction": "",
+    "m_UseReputation": 0,
+    "m_MinRequiredReputation": 0,
+    "m_MaxRequiredReputation": 2147483647,
+    "m_RequiredCompletedQuestID": 102,
+    "m_IsGlobalTrader": 0,
+    "m_Currencies": [
+        "ammo_762x39",
+        "ammo_545x39",
+        "ammo_9x19",
+        "nail"
+    ],
+    "m_DisplayCurrencyValue": 1,
+    "m_DisplayCurrencyName": ""
+}

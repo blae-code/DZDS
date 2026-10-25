@@ -1,0 +1,223 @@
+{
+    "ID": 5,
+    "NPCIDs": [
+        5
+    ],
+    "TraderIDs": [
+        4
+    ],
+    "TraderClassNames": [],
+    "TraderPositions": [],
+    "TraderPositionRadius": 8.0,
+    "TraderMinKeyMatches": 1,
+    "P2PTraderIDs": [],
+    "AIPatrolID": 0,
+    "AIPatrolSubID": 0,
+    "SpeakerName": "The Smuggler",
+    "ReputationVar": "",
+    "ReputationMax": 0,
+    "ReputationTiers": [],
+    "LocKey": "",
+    "RootNodeID": 1,
+    "GreetingVoiceLineIDs": [
+        "Example_Greeting_1"
+    ],
+    "FarewellVoiceLineIDs": [
+        "Example_Farewell_1"
+    ],
+    "QuestListTexts": [],
+    "NoQuestsTexts": [],
+    "NoQuestsBackTexts": [],
+    "NoQuestsLeaveTexts": [],
+    "NoQuestsVoiceLineIDs": [],
+    "QuestListBackTexts": [],
+    "OfferBackTexts": [],
+    "InProgressBackTexts": [],
+    "TurnInBackTexts": [],
+    "Stages": [],
+    "Nodes": [
+        {
+            "ID": 1,
+            "Type": "STANDARD",
+            "SpeakerText": "Keep it quiet and keep it clean. No factions, no flags out here. Just honest trade.",
+            "SpeakerTextMore": [],
+            "VoiceLineIDs": [],
+            "SpeakerLines": [],
+            "Responses": [
+                {
+                    "Text": "What tasks or contracts do you have available?",
+                    "NextNodeID": 0,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "SHOW_QUEST_LIST",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                },
+                {
+                    "Text": "I'd like to see what goods you have to barter.",
+                    "NextNodeID": 0,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "OPEN_TRADER_MENU",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                },
+                {
+                    "Text": "What is the tactical situation across the Badlands?",
+                    "NextNodeID": 2,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "NONE",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                },
+                {
+                    "Text": "How does your faction view the Frontier Settlers?",
+                    "NextNodeID": 3,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "NONE",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                },
+                {
+                    "Text": "Safe travels.",
+                    "NextNodeID": 0,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "END_CONVERSATION",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                }
+            ]
+        },
+        {
+            "ID": 2,
+            "Type": "STANDARD",
+            "SpeakerText": "I trade with everyone: Settlers, Blue Shield, tribesmen. Gold, ammo, keys. If it's scarce, I find it. Currently: The front lines remain contested across the central desert.",
+            "SpeakerTextMore": [],
+            "VoiceLineIDs": [],
+            "SpeakerLines": [],
+            "Responses": [
+                {
+                    "Text": "Tell me more about how we can work together.",
+                    "NextNodeID": 3,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "NONE",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                },
+                {
+                    "Text": "Back to our discussion.",
+                    "NextNodeID": 1,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "NONE",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                }
+            ]
+        },
+        {
+            "ID": 3,
+            "Type": "STANDARD",
+            "SpeakerText": "I deal in hard currency: ammunition. No questions asked, no allegiances required.",
+            "SpeakerTextMore": [],
+            "VoiceLineIDs": [],
+            "SpeakerLines": [],
+            "Responses": [
+                {
+                    "Text": "Let me see those contracts.",
+                    "NextNodeID": 0,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "SHOW_QUEST_LIST",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                },
+                {
+                    "Text": "Understood. I will keep that in mind.",
+                    "NextNodeID": 1,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "NONE",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                }
+            ]
+        }
+    ]
+}

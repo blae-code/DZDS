@@ -312,6 +312,139 @@
     @media (max-width: 680px) {
       .pbb-grid { grid-template-columns: 1fr; }
     }
+    /* Survival Projects & Missions */
+    .pgoal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .pgoal-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .pgoal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .pgoal-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .pgoal-cat {
+      font-size: .78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .pgoal-pct {
+      font-size: .88rem;
+      font-weight: 800;
+      font-family: ui-monospace, monospace;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: #d8bd7922;
+      color: var(--sand);
+    }
+    .pgoal-bar-wrap {
+      height: 8px;
+      background: var(--canvas);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #ffffff12;
+      margin: 4px 0;
+    }
+    .pgoal-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      transition: width .4s ease;
+    }
+    .pgoal-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: .82rem;
+      font-family: ui-monospace, monospace;
+      color: var(--muted);
+    }
+    .pgoal-perk {
+      font-size: .82rem;
+      padding: 8px 10px;
+      border-radius: 5px;
+      background: var(--panel-soft);
+      border-left: 3px solid var(--sand);
+      color: var(--text);
+      line-height: 1.4;
+    }
+    .pquest-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    @media (max-width: 680px) {
+      .pquest-grid { grid-template-columns: 1fr; }
+    }
+    .pquest-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .pquest-tag-row {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .pquest-tag {
+      font: 700 .75rem ui-monospace, monospace;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+    .ptag-settlers { background: #d8bd7922; color: #d8bd79; border: 1px solid #d8bd7955; }
+    .ptag-peacekeepers { background: #68c0d022; color: #68c0d0; border: 1px solid #68c0d055; }
+    .ptag-rust { background: #d4775e22; color: #d4775e; border: 1px solid #d4775e55; }
+    .ptag-karkas { background: #a4bf9122; color: #a4bf91; border: 1px solid #a4bf9155; }
+    .ptag-daily { background: #ffffff15; color: var(--text); border: 1px solid #ffffff25; }
+    .pquest-desc {
+      font-size: .88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .pquest-req {
+      font-size: .83rem;
+      padding: 6px 10px;
+      border-radius: 4px;
+      background: var(--canvas);
+      border: 1px solid var(--line);
+    }
+    .pquest-reward {
+      font-size: .83rem;
+      color: var(--green);
+      font-weight: 600;
+    }
+    .pquest-death-warning {
+      color: var(--rust);
+      font-size: .78rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
   </style>
 </head>
 <body>
@@ -320,7 +453,9 @@
     <nav aria-label="Guide sections">
       <a href="#join">Join</a>
       <a href="#survive">Survive</a>
-      <a href="#world">The world</a>
+      <a href="#settlement-projects">Settlement Projects</a>
+      <a href="#survival-missions">Survival Missions</a>
+      <a href="#campaign">Campaign &amp; Barter</a>
       <a href="#basebuilding">Basebuilding</a>
       <a href="#install">Install &amp; Run App</a>
       <a href="/">Command Center ↗</a>
@@ -411,6 +546,309 @@
             <li>There is no player-position marker or map fast travel.</li>
             <li>Town names and faction control can change as the war ledger advances.</li>
           </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="settlement-projects" aria-labelledby="projects-title">
+      <div class="section-heading">
+        <h2 id="projects-title">Settlement Survival Projects · Qalat-e Lut Fortress</h2>
+        <p>Survival on Ad Aspera is collective. Contribute gathered supplies to the Frontier Settlers' compound infrastructure at Qalat-e Lut to unlock fortress-wide survival perks.</p>
+      </div>
+
+      <div class="pgoal-grid" id="portal-projects-wrap">
+        <article class="pgoal-card" style="border-left: 3px solid #68b5e8;">
+          <div class="pgoal-header">
+            <div>
+              <div class="pgoal-title">Aquifer &amp; Community Water Reserves</div>
+              <div class="pgoal-cat">Sustenance · Cistern Filtration</div>
+            </div>
+            <span class="pgoal-pct" style="color:#68b5e8;">37%</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); margin:4px 0;">Purified water reserves stored in the deep stone cisterns of Qalat-e Lut fortress.</p>
+          <div class="pgoal-bar-wrap">
+            <div class="pgoal-bar-fill" style="width:37%; background:#68b5e8;"></div>
+          </div>
+          <div class="pgoal-meta">
+            <span>185 / 500 Liters</span>
+            <span>Contribute: Water Bottles, Purification Tablets</span>
+          </div>
+          <div class="pgoal-perk">
+            <strong style="color:#68b5e8;">Active Perk:</strong> Drinking from settlement fountains carries 0% cholera or dysentery risk.
+          </div>
+        </article>
+
+        <article class="pgoal-card" style="border-left: 3px solid #e05353;">
+          <div class="pgoal-header">
+            <div>
+              <div class="pgoal-title">Field Hospital &amp; Trauma Supplies</div>
+              <div class="pgoal-cat">Healthcare · Clinic Reserves</div>
+            </div>
+            <span class="pgoal-pct" style="color:#e05353;">35%</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); margin:4px 0;">Sterile bandages, broad-spectrum antibiotics, IV blood/saline, and emergency surgical gear.</p>
+          <div class="pgoal-bar-wrap">
+            <div class="pgoal-bar-fill" style="width:35%; background:#e05353;"></div>
+          </div>
+          <div class="pgoal-meta">
+            <span>42 / 120 Supplies</span>
+            <span>Contribute: Antibiotics, IV Bags, First Aid Kits</span>
+          </div>
+          <div class="pgoal-perk">
+            <strong style="color:#e05353;">Active Perk:</strong> Wound bleeding duration reduced by 25% near settlement territory.
+          </div>
+        </article>
+
+        <article class="pgoal-card" style="border-left: 3px solid #d8bd79;">
+          <div class="pgoal-header">
+            <div>
+              <div class="pgoal-title">Perimeter Fortifications &amp; Barricades</div>
+              <div class="pgoal-cat">Defense · Citadel Structural Plating</div>
+            </div>
+            <span class="pgoal-pct" style="color:#d8bd79;">39%</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); margin:4px 0;">Reinforced outer gate timbers, welded sheet metal bastions, and elevated sniper platforms.</p>
+          <div class="pgoal-bar-wrap">
+            <div class="pgoal-bar-fill" style="width:39%; background:#d8bd79;"></div>
+          </div>
+          <div class="pgoal-meta">
+            <span>78 / 200 Materials</span>
+            <span>Contribute: Planks, Nails, Metal Plates, Wire</span>
+          </div>
+          <div class="pgoal-perk">
+            <strong style="color:#d8bd79;">Active Perk:</strong> Outer gate reinforced; raider ambushes against Qalat-e Lut forced back 100 meters.
+          </div>
+        </article>
+
+        <article class="pgoal-card" style="border-left: 3px solid #f59e0b;">
+          <div class="pgoal-header">
+            <div>
+              <div class="pgoal-title">Settlement Fuel Depot &amp; Generator</div>
+              <div class="pgoal-cat">Logistics · Compound Energy</div>
+            </div>
+            <span class="pgoal-pct" style="color:#f59e0b;">37%</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); margin:4px 0;">Gasoline and diesel to power perimeter floodlights, maintenance benches, and supply vehicles.</p>
+          <div class="pgoal-bar-wrap">
+            <div class="pgoal-bar-fill" style="width:37%; background:#f59e0b;"></div>
+          </div>
+          <div class="pgoal-meta">
+            <span>110 / 300 Liters</span>
+            <span>Contribute: Gasoline Canisters, Spark Plugs, Batteries</span>
+          </div>
+          <div class="pgoal-perk">
+            <strong style="color:#f59e0b;">Active Perk:</strong> Floodlights illuminate compound gates at night; repair tool degradation halved.
+          </div>
+        </article>
+
+        <article class="pgoal-card" style="border-left: 3px solid #10b981;">
+          <div class="pgoal-header">
+            <div>
+              <div class="pgoal-title">Emergency Broadcast Comms Grid</div>
+              <div class="pgoal-cat">Intelligence · 87.8 MHz Relay Network</div>
+            </div>
+            <span class="pgoal-pct" style="color:#10b981;">65%</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); margin:4px 0;">High-ground repeater antennas synchronized to the Settler Net for real-time tactical warnings.</p>
+          <div class="pgoal-bar-wrap">
+            <div class="pgoal-bar-fill" style="width:65%; background:#10b981;"></div>
+          </div>
+          <div class="pgoal-meta">
+            <span>65% Grid Uptime</span>
+            <span>Contribute: 9V Batteries, Personal Radios</span>
+          </div>
+          <div class="pgoal-perk">
+            <strong style="color:#10b981;">Active Perk:</strong> Clear broadcast signal across all central valleys; raider convoy movements broadcast on radio.
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="survival-missions" aria-labelledby="missions-title">
+      <div class="section-heading">
+        <h2 id="missions-title">Survival Field Directives &amp; Missions</h2>
+        <p>DayZ Expansion Quests integrated with the living war ledger. Visit faction quest givers at their strongholds or check your field journal (<kbd>O</kbd> key).</p>
+      </div>
+
+      <div class="callout" style="border-left-color:var(--rust); margin-bottom:14px;">
+        <strong style="color:#ff9c8f;">⚠️ Hardcore Survival Contract Clause:</strong> All active contracts enforce <code>CancelQuestOnPlayerDeath = 1</code>. If you die in the desert, your active contracts and progress are forfeited. Play smart, conserve medical supplies, and prioritize staying alive.
+      </div>
+
+      <div class="pquest-grid">
+        <article class="pquest-card" style="border-top:3px solid var(--sand);">
+          <div>
+            <div class="pquest-tag-row">
+              <span class="pquest-tag ptag-settlers">Settlers</span>
+              <span class="pquest-tag ptag-daily">Daily</span>
+              <span class="pquest-tag">Delivery</span>
+            </div>
+            <h3 style="margin:8px 0 4px; color:var(--text);">The Well of Qalat: Water Purification</h3>
+            <div style="font-size:.8rem; color:var(--sand); margin-bottom:6px;">Contact: Elder Tariq @ Qalat-e Lut [148 078]</div>
+            <p class="pquest-desc">Untreated badlands groundwater carries cholera and fever. Find purification tablets or boil water, and deliver a clean water bottle to the cistern.</p>
+          </div>
+          <div>
+            <div class="pquest-req"><strong>Required:</strong> 1× WaterBottle + 1× PurificationTablets</div>
+            <div class="pquest-reward" style="margin-top:6px;"><strong>Reward:</strong> Matchbox, Dried Apples, Bandages, +25 Settler Rep</div>
+          </div>
+        </article>
+
+        <article class="pquest-card" style="border-top:3px solid var(--sand);">
+          <div>
+            <div class="pquest-tag-row">
+              <span class="pquest-tag ptag-settlers">Settlers</span>
+              <span class="pquest-tag ptag-daily">Daily</span>
+              <span class="pquest-tag">Collection</span>
+            </div>
+            <h3 style="margin:8px 0 4px; color:var(--text);">Desert Harvest: Compound Agriculture</h3>
+            <div style="font-size:.8rem; color:var(--sand); margin-bottom:6px;">Contact: Elder Tariq @ Qalat-e Lut [148 078]</div>
+            <p class="pquest-desc">Canned rations are depleted. Cultivate irrigation plots or scavenge fresh produce to replenish the communal food reserves.</p>
+          </div>
+          <div>
+            <div class="pquest-req"><strong>Required:</strong> 3× Fresh Tomatoes or 2× Zucchini</div>
+            <div class="pquest-reward" style="margin-top:6px;"><strong>Reward:</strong> Canteen, Tomato Seeds, Garden Lime, +25 Settler Rep</div>
+          </div>
+        </article>
+
+        <article class="pquest-card" style="border-top:3px solid var(--sand);">
+          <div>
+            <div class="pquest-tag-row">
+              <span class="pquest-tag ptag-settlers">Settlers</span>
+              <span class="pquest-tag">Hunting</span>
+            </div>
+            <h3 style="margin:8px 0 4px; color:var(--text);">Tanning &amp; Leatherwork: Bedouin Craft</h3>
+            <div style="font-size:.8rem; color:var(--sand); margin-bottom:6px;">Contact: Elder Tariq @ Qalat-e Lut [148 078]</div>
+            <p class="pquest-desc">Synthetic gear rots under the desert sun. Hunt wild boar or deer in the valley scrub, skin the pelt, and bring it for tanning into saddles and water canteens.</p>
+          </div>
+          <div>
+            <div class="pquest-req"><strong>Required:</strong> 1× Wild Boar Pelt or Deer Pelt</div>
+            <div class="pquest-reward" style="margin-top:6px;"><strong>Reward:</strong> Hunting Knife, Leather Sewing Kit, +30 Settler Rep</div>
+          </div>
+        </article>
+
+        <article class="pquest-card" style="border-top:3px solid var(--sand);">
+          <div>
+            <div class="pquest-tag-row">
+              <span class="pquest-tag ptag-settlers">Settlers</span>
+              <span class="pquest-tag">Construction</span>
+            </div>
+            <h3 style="margin:8px 0 4px; color:var(--text);">Fortifying the Fortress: Lumber &amp; Nails</h3>
+            <div style="font-size:.8rem; color:var(--sand); margin-bottom:6px;">Contact: Elder Tariq @ Qalat-e Lut [148 078]</div>
+            <p class="pquest-desc">Jackal raiders probe our south gate every few nights. Deliver building materials to brace outer barricades and reinforce the watchtowers.</p>
+          </div>
+          <div>
+            <div class="pquest-req"><strong>Required:</strong> 4× Wooden Planks + 1× Nail Box</div>
+            <div class="pquest-reward" style="margin-top:6px;"><strong>Reward:</strong> Whetstone, Metal Wire, Hand Saw, +35 Settler Rep</div>
+          </div>
+        </article>
+
+        <article class="pquest-card" style="border-top:3px solid #68c0d0;">
+          <div>
+            <div class="pquest-tag-row">
+              <span class="pquest-tag ptag-peacekeepers">Peacekeepers</span>
+              <span class="pquest-tag ptag-daily">Daily</span>
+              <span class="pquest-tag">Medical</span>
+            </div>
+            <h3 style="margin:8px 0 4px; color:var(--text);">UN Field Hospital Triage</h3>
+            <div style="font-size:.8rem; color:#68c0d0; margin-bottom:6px;">Contact: Capt. Miller @ Eastern Airfield [120 108]</div>
+            <p class="pquest-desc">Blue Shield operates the civilian refugee field clinic. Desert dysentery and wound infections are critical. Deliver broad-spectrum antibiotics and clean dressings.</p>
+          </div>
+          <div>
+            <div class="pquest-req"><strong>Required:</strong> 1× Tetracycline + 2× Bandage Dressing</div>
+            <div class="pquest-reward" style="margin-top:6px;"><strong>Reward:</strong> First Aid Kit, Morphine, UN Scrip (50 Banknotes), +25 Rep</div>
+          </div>
+        </article>
+
+        <article class="pquest-card" style="border-top:3px solid #68c0d0;">
+          <div>
+            <div class="pquest-tag-row">
+              <span class="pquest-tag ptag-peacekeepers">Peacekeepers</span>
+              <span class="pquest-tag">Investigation</span>
+            </div>
+            <h3 style="margin:8px 0 4px; color:var(--text);">Downed Falcon: Black Box Search &amp; Rescue</h3>
+            <div style="font-size:.8rem; color:#68c0d0; margin-bottom:6px;">Contact: Capt. Miller @ Eastern Airfield [120 108]</div>
+            <p class="pquest-desc">An unarmed UN medical helicopter crashed in the dunes. Locate the coordinates, secure the emergency flight data recorder before raiders loot it, and return it safely.</p>
+          </div>
+          <div>
+            <div class="pquest-req"><strong>Target:</strong> Crash coordinates in Western Dunes [065 115]</div>
+            <div class="pquest-reward" style="margin-top:6px;"><strong>Reward:</strong> Saline Bag IV, Orienteering Compass, UN Scrip (100), +35 Rep</div>
+          </div>
+        </article>
+
+        <article class="pquest-card" style="border-top:3px solid #d4775e;">
+          <div>
+            <div class="pquest-tag-row">
+              <span class="pquest-tag ptag-rust">Rust Syndicate</span>
+              <span class="pquest-tag ptag-daily">Daily</span>
+              <span class="pquest-tag">Logistics</span>
+            </div>
+            <h3 style="margin:8px 0 4px; color:var(--text);">Price of Pumping: Fuel &amp; Spark Plugs</h3>
+            <div style="font-size:.8rem; color:#d4775e; margin-bottom:6px;">Contact: Broker Koval @ Hilltop Water Station [082 065]</div>
+            <p class="pquest-desc">The Syndicate runs deep aquifer turbines. Pumping clean water takes diesel and spark plugs. Deliver fuel and hardware to keep the taps open.</p>
+          </div>
+          <div>
+            <div class="pquest-req"><strong>Required:</strong> 1× Canister Gasoline + 1× Spark Plug</div>
+            <div class="pquest-reward" style="margin-top:6px;"><strong>Reward:</strong> 2× Clean Water Bottles, Epinephrine, +25 Rust Rep</div>
+          </div>
+        </article>
+
+        <article class="pquest-card" style="border-top:3px solid #a4bf91;">
+          <div>
+            <div class="pquest-tag-row">
+              <span class="pquest-tag ptag-karkas">Karkas Clan</span>
+              <span class="pquest-tag">Wilderness</span>
+            </div>
+            <h3 style="margin:8px 0 4px; color:var(--text);">Trial of the Sands: High Ridge Hunt</h3>
+            <div style="font-size:.8rem; color:#a4bf91; margin-bottom:6px;">Contact: Elder Soroush @ Missile Base Ridge [028 091]</div>
+            <p class="pquest-desc">Town-dwellers starve in the rock passes. Prove you understand the hunger of the desert. Take wild game from the high ridges and bring meat and pelt tribute.</p>
+          </div>
+          <div>
+            <div class="pquest-req"><strong>Required:</strong> 2× Steaks of Wild Game + 1× Wolf Pelt</div>
+            <div class="pquest-reward" style="margin-top:6px;"><strong>Reward:</strong> Bone Knife, Rope, +30 Karkas Rep (Counts toward 50 Tolerance)</div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="campaign" aria-labelledby="campaign-title">
+      <div class="section-heading">
+        <h2 id="campaign-title">Living Campaign, Quests &amp; Barter Network</h2>
+        <p>Your actions shift the balance of power. Complete contracts, unlock barter posts, and tip the factional war.</p>
+      </div>
+
+      <div class="cards" style="margin-bottom:18px;">
+        <article class="card" style="border-left:3px solid var(--sand);">
+          <h3>Frontier Settlers &amp; Militia Defense</h3>
+          <p><strong>Primary Contact:</strong> Elder David at <strong>Settler Haven</strong>.</p>
+          <p><strong>Active Contracts:</strong> <em>Break the Siege</em> (liberate contested towns such as Northern Dam or Southern Barracks) and <em>Clear Jackal Camp</em> (wipe highway raiders along the northern roads).</p>
+          <p><strong>Impact:</strong> Player kills and contract completions count as Settler liberation pressure. Clearing a besieged stronghold flips it to Settler control on the next war turn!</p>
+        </article>
+
+        <article class="card" style="border-left:3px solid var(--accent);">
+          <h3>Task Force Blue Shield (UN Peacekeepers)</h3>
+          <p><strong>Primary Contact:</strong> Commander Vance at <strong>Eastern Airfield</strong> / Lieutenant Miller at <strong>Southwest Base</strong>.</p>
+          <p><strong>Active Contracts:</strong> <em>Blue Shield Charter of Neutrality</em> (introductory accreditation), <em>Reconnaissance Patrols</em>, and <em>Humanitarian Aid Escorts</em>.</p>
+          <p><strong>Impact:</strong> Completing the charter quest unlocks the <strong>UN Quartermaster</strong> (medical, navigation, and NBC barter using UN Scrip <code>ExpansionBanknoteHryvnia</code>). Attacking UN personnel drops standing below -30, triggering a 7-day base lockdown.</p>
+        </article>
+
+        <article class="card" style="border-left:3px solid var(--sand);">
+          <h3>Rust Syndicate &amp; Water Rights</h3>
+          <p><strong>Primary Contact:</strong> Foreman Grigori at <strong>Hilltop Water Station</strong> / Overseer Radim at <strong>Cement Works</strong>.</p>
+          <p><strong>Active Contracts:</strong> <em>Water Rights Toll</em> (deliver spark plugs and industrial batteries to secure drawing rights) and <em>Refinery Salvage</em>.</p>
+          <p><strong>Impact:</strong> Unlocks the <strong>Rust Syndicate Water &amp; Vehicle Broker</strong>. Paying tolls keeps fuel and clean water flowing to your compound.</p>
+        </article>
+
+        <article class="card" style="border-left:3px solid var(--accent);">
+          <h3>Karkas Clan &amp; The 50 Tolerance Threshold</h3>
+          <p><strong>Primary Contact:</strong> Elder Tariq on <strong>Missile Base Ridge</strong>.</p>
+          <p><strong>Active Contracts:</strong> <em>High Ridge Rite of Passage</em> (deliver wild game pelts and hunting tribute).</p>
+          <p><strong>Impact:</strong> <code>DZDSTolerance.c</code> monitors your personal Hardline faction reputation. Reaching <strong>50 Reputation</strong> grants safe passage: mountain marksmen will lower their rifles and let you cross the ridges without firing.</p>
+        </article>
+
+        <article class="card" style="border-left:3px solid var(--sand);">
+          <h3>The Smuggler (Desert Caravanserai)</h3>
+          <p><strong>Primary Contact:</strong> The Smuggler at <strong>Eastern Caravanserai</strong>.</p>
+          <p><strong>Active Contracts:</strong> <em>The Smuggler's Dead Drop</em> (recover clandestine desert caches).</p>
+          <p><strong>Impact:</strong> Neutral black market dealing strictly in hard currency: ammunition (<code>Ammo_762x39</code>, <code>Ammo_545x39</code>, <code>Ammo_556x45</code>, <code>Ammo_9x19</code>). Sells weapons, optics, vehicle keys, and lockpicks with no faction questions asked.</p>
         </article>
       </div>
     </section>

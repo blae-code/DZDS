@@ -1,0 +1,76 @@
+{
+    "ConfigVersion": 22,
+    "ID": 106,
+    "Type": 1,
+    "Title": "Aid Convoy Delivery: Settler Haven",
+    "Descriptions": [
+        "A relief shipment of emergency medical supplies, water purification kits, and baby formula must reach the settlers at Settler Haven. Guard the transport.",
+        "The aid convoy is en route to Settler Haven. Ensure the cargo arrives intact.",
+        "Relief cargo received in full! The settlement will pull through the week. Blue Shield commends your valor."
+    ],
+    "ObjectiveText": "Escort the aid convoy to Settler Haven.",
+    "FollowUpQuest": -1,
+    "Repeatable": 1,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "ExpansionBanknoteHryvnia",
+            "Amount": 25,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "BandageDressing",
+            "Amount": 3,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        2
+    ],
+    "QuestTurnInIDs": [
+        2
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 106,
+            "ObjectiveType": 9
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSPeacekeepers": 20,
+        "DZDSSettlers": 15
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}
