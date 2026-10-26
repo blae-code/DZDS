@@ -13,6 +13,12 @@
             "Yaw": 0.0
         },
         {
+            "ClassName": "StaticObj_Misc_HayBale_Packed_Stack",
+            "X": 14852.0,
+            "Z": 7922.0,
+            "Yaw": 0.0
+        },
+        {
             "ClassName": "StaticObj_Misc_Pallets2",
             "X": 8302.0,
             "Z": 6522.0,
