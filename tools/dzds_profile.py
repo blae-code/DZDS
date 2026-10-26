@@ -57,13 +57,29 @@ def build_bulletin(led: WarLedger, traders: list[dict] | None = None,
         open_t = [f"{t['display'].split(' (')[0]} at {t['site']}" for t in traders if t["status"] in ("open", "relocated") and t["site"]]
         if open_t:
             msgs.append("Active barter posts: " + "; ".join(open_t[:3]) + ".")
+
+    # Dynamic cross-faction tactical intercepts
+    for d in (getattr(led.s, "auto_diplomacy", []) or []):
+        why = d.get("why")
+        if why and why not in msgs:
+            msgs.append(f"[DISPATCH] {d.get('from')} - {d.get('to')} directive: {why}.")
+
+    if any(h == "Peacekeepers" for h in led.s.control.values()):
+        msgs.append("[TF BLUE SHIELD] Green Zone status operational. Blue Helmets authorized for triage at Eastern Airfield.")
+    if any(h == "Rust" for h in led.s.control.values()):
+        msgs.append("[SYNDICATE NET] Hilltop Water Station pressure nominal. Unauthorized siphon attempts will draw lethal fire.")
+    if any(h == "Jackals" for h in led.s.control.values()):
+        msgs.append("[JACKAL CB INTERCEPT] Heavy trucks spotted on the northern bitumen. Keep the heavy iron hot.")
+    if any(h == "Karkas" for h in led.s.control.values()):
+        msgs.append("[KARKAS BEACON] High ridges are closed to outsiders. Turn back or draw fire from the heights.")
+
     if not msgs:
         msgs.append(f"Settler Net check-in (Turn {led.s.turn}): Stronghold perimeters holding steady.")
     return {
         "Turn": int(led.s.turn),
         "IntervalSeconds": int(bul_cfg.get("interval_seconds", 600)),
         "Frequency": str(bul_cfg.get("frequency", "87.8 MHz")),
-        "Messages": msgs[:8],
+        "Messages": msgs[:12],
     }
 
 

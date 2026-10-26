@@ -1220,12 +1220,19 @@ def compile_campaign(map_name: str, led: WarLedger, plan: dict,
 
         # In-world spawn if open
         if is_open and site in locs:
-            sx, sz = locs[site][:2]
-            sox, soz = 10.0, 10.0
-            sy = sampler(sx + sox, sz + soz)
-            if sy <= 0.0:
-                sy = 180.0
-            trader_pos = [round(sx + sox, 2), round(sy, 2), round(sz + soz, 2)]
+            npc_id = t_def.get("npc_id", t_def["id"])
+            if npc_id in deployed_npcs:
+                deployed_npcs[npc_id]["trader_id"] = t_def["id"]
+                trader_pos = list(deployed_npcs[npc_id]["pos"])
+                sx, sz = trader_pos[0], trader_pos[2]
+                sy = trader_pos[1]
+            else:
+                sx, sz = locs[site][:2]
+                sox, soz = 10.0, 10.0
+                sy = sampler(sx + sox, sz + soz)
+                if sy <= 0.0:
+                    sy = 180.0
+                trader_pos = [round(sx + sox, 2), round(sy, 2), round(sz + soz, 2)]
 
             trader_spawn = {
                 "m_Version": 8,

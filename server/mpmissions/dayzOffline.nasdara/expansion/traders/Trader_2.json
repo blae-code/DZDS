@@ -3,9 +3,9 @@
     "m_TraderID": 2,
     "m_ClassName": "ExpansionTraderAIDenis",
     "m_Position": [
-        12040.0,
-        169.62,
-        10860.0
+        12030.0,
+        169.35,
+        10850.0
     ],
     "m_Orientation": [
         45.0,
@@ -14,9 +14,9 @@
     ],
     "m_LoadoutFile": "DZDS_Peacekeepers",
     "m_VehicleSpawnPosition": [
-        12050,
-        169.62,
-        10870
+        12050.0,
+        169.35,
+        10870.0
     ],
     "m_WatercraftSpawnPosition": [
         0.0,

@@ -3,9 +3,9 @@
     "m_TraderID": 3,
     "m_ClassName": "ExpansionTraderAIIrena",
     "m_Position": [
-        8300.0,
+        8290.0,
         286.32,
-        6520.0
+        6510.0
     ],
     "m_Orientation": [
         45.0,
@@ -14,9 +14,9 @@
     ],
     "m_LoadoutFile": "DZDS_Rust",
     "m_VehicleSpawnPosition": [
-        8310,
+        8310.0,
         286.32,
-        6530
+        6530.0
     ],
     "m_WatercraftSpawnPosition": [
         0.0,

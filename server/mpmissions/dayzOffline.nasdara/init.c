@@ -2153,6 +2153,8 @@ class CustomMission: MissionServer
 		itemEnt = player.GetInventory().CreateInInventory( "Figs" );
 		itemEnt = player.GetInventory().CreateInInventory( "BandageDressing" );
 		player.SetQuickBarEntityShortcut(itemEnt, 2);
+		itemEnt = player.GetInventory().CreateInInventory( "WaterBottle" );
+		itemEnt = player.GetInventory().CreateInInventory( "PurificationTablets" );
 		
 		player.GetStatWater().Set( 1000 );
 		player.GetStatEnergy().Set( 800 );
