@@ -2,16 +2,16 @@
     "ConfigVersion": 22,
     "ID": 102,
     "Type": 1,
-    "Title": "Water Rights Toll: Hilltop Water Station",
+    "Title": "Desert Harvest: Crops of the Compound",
     "Descriptions": [
-        "In the Badlands, water is life, and the Syndicate owns the taps. Deliver spark plugs or maintenance parts to secure legal water rights.",
-        "The Syndicate water foreman at Hilltop Water Station is waiting for your maintenance parts.",
-        "Parts check out. Your compound has official water drawing rights. The Rust Syndicate Water Broker will now trade fuel and clean water with you."
+        "Canned rations from the old world are running thin. We cleared soil in the inner fortress shadow for vegetable plots, but we need fresh harvests to sustain our sick. Cultivate or collect fresh produce.",
+        "The kitchen is waiting. Bring fresh vegetables from the plots.",
+        "Fresh food keeps scurvy away. Take these seeds and a canteen. Plant more when you establish your homestead."
     ],
-    "ObjectiveText": "The Syndicate wants payment in kind for water from Hilltop Water Station.",
-    "FollowUpQuest": -1,
+    "ObjectiveText": "Harvest or collect 3 fresh Tomatoes or 2 Zucchini for the settlement.",
+    "FollowUpQuest": 103,
     "Repeatable": 1,
-    "IsDailyQuest": 0,
+    "IsDailyQuest": 1,
     "IsWeeklyQuest": 0,
     "CancelQuestOnPlayerDeath": 1,
     "Autocomplete": 0,
@@ -20,7 +20,7 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "WaterBottle",
+            "ClassName": "Canteen",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -29,7 +29,16 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "PurificationTablets",
+            "ClassName": "TomatoSeeds",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "GardenLime",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -44,31 +53,33 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        3
+        1
     ],
     "QuestTurnInIDs": [
-        3
+        1
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
             "ID": 102,
-            "ObjectiveType": 5
+            "ObjectiveType": 4
         }
     ],
     "QuestColor": 0,
     "ReputationReward": 0,
     "ReputationRequirement": -1,
-    "PreQuestIDs": [],
+    "PreQuestIDs": [
+        101
+    ],
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
-    "DeleteQuestItems": 1,
+    "DeleteQuestItems": 0,
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSRust": 30
+        "DZDSSettlers": 25
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

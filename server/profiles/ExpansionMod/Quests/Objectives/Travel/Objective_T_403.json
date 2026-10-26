@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 403,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Travel to Northern Dam and signal the Karkas mountain watchers.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        3570.0,
+        301.37,
+        14380.0
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "Northern Dam",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

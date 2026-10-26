@@ -445,6 +445,71 @@
       align-items: center;
       gap: 4px;
     }
+    .pcomp-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 720px) {
+      .pcomp-grid { grid-template-columns: 1fr; }
+    }
+    .pcomp-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .pcomp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .pcomp-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .pcomp-title {
+      font-size: .8rem;
+      color: var(--sand);
+    }
+    .pcomp-station {
+      font: 600 .78rem ui-monospace, monospace;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+    .pcomp-desc {
+      font-size: .86rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .pcomp-detail-box {
+      font-size: .82rem;
+      padding: 8px 10px;
+      border-radius: 5px;
+      background: var(--canvas);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .pcomp-perks {
+      font-size: .8rem;
+      color: var(--text);
+      line-height: 1.45;
+      padding-left: 16px;
+      margin: 0;
+    }
+    .pcomp-retainer {
+      font: 600 .82rem ui-monospace, monospace;
+      color: #68c0d0;
+    }
   </style>
 </head>
 <body>
@@ -454,6 +519,7 @@
       <a href="#join">Join</a>
       <a href="#survive">Survive</a>
       <a href="#settlement-projects">Settlement Projects</a>
+      <a href="#companions">Companions &amp; Recruits</a>
       <a href="#survival-missions">Survival Missions</a>
       <a href="#campaign">Campaign &amp; Barter</a>
       <a href="#basebuilding">Basebuilding</a>
@@ -664,6 +730,153 @@
       </div>
     </section>
 
+    <section id="companions" aria-labelledby="companions-title">
+      <div class="section-heading">
+        <h2 id="companions-title">Hirable Settler Companions · Qalat-e Lut Garrison</h2>
+        <p>You do not have to brave the Badlands alone. Frontier Settlers have stationed skilled companion specialists across Qalat-e Lut fortress [148 078]. Recruit them into your squad to provide sniper reconnaissance, breach combat defense, emergency medical triage, or heavy salvage transport.</p>
+      </div>
+
+      <div style="background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px 20px; margin-bottom:18px;">
+        <h3 style="margin:0 0 8px; color:var(--sand); font-size:1.02rem;">Squad Command &amp; Enlistment Field Manual</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:12px; font-size:.84rem; line-height:1.45;">
+          <div>
+            <strong style="color:var(--text);">Enlisting in Person:</strong> Walk up to any stationed specialist at Qalat-e Lut with supplies in hand. Look at them and press Interaction (<kbd>F</kbd> / Middle-Click) to recruit.
+          </div>
+          <div>
+            <strong style="color:var(--text);">Squad Command Wheel:</strong> Press <kbd>,</kbd> (comma) or middle mouse button to issue real-time tactical orders: <em>Follow</em>, <em>Hold Post</em>, <em>Cover Me</em>, and <em>Formations</em>.
+          </div>
+          <div>
+            <strong style="color:var(--text);">Vehicle Rides:</strong> Companions automatically take passenger seats in cars, trucks, and helicopters when you get behind the wheel.
+          </div>
+          <div>
+            <strong style="color:var(--text);">Dismiss &amp; Station:</strong> Dismissing a companion releases them to return to Qalat-e Lut, where they resume active guard duty along the fortress walls.
+          </div>
+        </div>
+      </div>
+
+      <div class="pcomp-grid">
+        <!-- Soran the Scout -->
+        <article class="pcomp-card" style="border-left: 3px solid #68c0d0;">
+          <div>
+            <div class="pcomp-header">
+              <div>
+                <div class="pcomp-name">Soran the Scout</div>
+                <div class="pcomp-title">Desert Tracker &amp; Marksman</div>
+                <div class="pcomp-station">Station: North Watchtower Staging [14865, 7970]</div>
+              </div>
+              <span class="pquest-tag ptag-settlers">AVAILABLE</span>
+            </div>
+            <p class="pcomp-desc">
+              Born in the badlands, Soran tracks dust trails and spots raider ambushes well before they close to lethal range. Excellent for long-range reconnaissance, ridge overwatch, and perimeter early warning.
+            </p>
+            <div class="pcomp-detail-box">
+              <div><strong>Primary Armament:</strong> <span class="mono">CZ527 Scoped Carbine (7.62x39)</span></div>
+              <div><strong>Secondary Gear:</strong> Hunting Knife, Binoculars, Desert Camo Outfit</div>
+              <div><strong>Expedition Retainer:</strong> <span class="pcomp-retainer">1x Canteen (Water) + 1x Mag_CZ527_5rnd</span></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Specialist Perks:</div>
+            <ul class="pcomp-perks">
+              <li>+40% threat detection distance in open desert and sand dunes</li>
+              <li>Equipped with high-magnification binoculars for waypoint spotting</li>
+              <li>Silent stalking stance; avoids aggroing roaming infected</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Kaveh the Sentinel -->
+        <article class="pcomp-card" style="border-left: 3px solid #d8bd79;">
+          <div>
+            <div class="pcomp-header">
+              <div>
+                <div class="pcomp-name">Kaveh the Sentinel</div>
+                <div class="pcomp-title">Fortress Guard &amp; Breacher</div>
+                <div class="pcomp-station">Station: South Gate Bastion [14837, 7815]</div>
+              </div>
+              <span class="pquest-tag ptag-settlers">AVAILABLE</span>
+            </div>
+            <p class="pcomp-desc">
+              A hardened fortress sentry who held the outer gates against three Jackal assaults without yielding an inch. A frontline breacher with devastating close-quarters stopping power and heavy armor.
+            </p>
+            <div class="pcomp-detail-box">
+              <div><strong>Primary Armament:</strong> <span class="mono">MP-133 Tactical Shotgun &amp; SKS</span></div>
+              <div><strong>Secondary Gear:</strong> Firefighter Wood Axe, Ballistic Helmet, High-Cap Vest</div>
+              <div><strong>Expedition Retainer:</strong> <span class="pcomp-retainer">1x NailBox + 1x Hatchet</span></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Specialist Perks:</div>
+            <ul class="pcomp-perks">
+              <li>Heavy ballistic armor and helmet reduce incoming bullet damage</li>
+              <li>Devastating buckshot stopping power against close-range rushers</li>
+              <li>Chokepoint defense: anchors doorway and compound breaches</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Dr. Yasmin -->
+        <article class="pcomp-card" style="border-left: 3px solid #68b5e8;">
+          <div>
+            <div class="pcomp-header">
+              <div>
+                <div class="pcomp-name">Dr. Yasmin</div>
+                <div class="pcomp-title">Field Surgeon &amp; Triage Medic</div>
+                <div class="pcomp-station">Station: Courtyard Medical Clinic [14825, 7855]</div>
+              </div>
+              <span class="pquest-tag ptag-settlers">AVAILABLE</span>
+            </div>
+            <p class="pcomp-desc">
+              A seasoned survivor of the regional refugee aid clinics. Yasmin keeps the expedition alive through scorching desert heat, contaminated water sickness, hemorrhagic shock, and gunshot trauma.
+            </p>
+            <div class="pcomp-detail-box">
+              <div><strong>Primary Armament:</strong> <span class="mono">IJ-70 Sidearm &amp; Repeater Carbine</span></div>
+              <div><strong>Secondary Gear:</strong> First Aid Kit, Paramedic Uniform, Trauma Shears</div>
+              <div><strong>Expedition Retainer:</strong> <span class="pcomp-retainer">2x Bandages + 1x SalineBagIV</span></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Specialist Perks:</div>
+            <ul class="pcomp-perks">
+              <li>Carries IV saline bags, epinephrine, and blood test kits for resuscitation</li>
+              <li>Carries emergency tetracycline antibiotics for waterborne cholera</li>
+              <li>Rapid triage: delivers sterile bandages automatically during firefights</li>
+            </ul>
+          </div>
+        </article>
+
+        <!-- Rostam the Scavenger -->
+        <article class="pcomp-card" style="border-left: 3px solid #a4bf91;">
+          <div>
+            <div class="pcomp-header">
+              <div>
+                <div class="pcomp-name">Rostam the Scavenger</div>
+                <div class="pcomp-title">Logistics Runner &amp; Scrapsmith</div>
+                <div class="pcomp-station">Station: West Barracks &amp; Workshop [14790, 7880]</div>
+              </div>
+              <span class="pquest-tag ptag-settlers">AVAILABLE</span>
+            </div>
+            <p class="pcomp-desc">
+              Relentless and strong-backed, Rostam carries massive cargo loads and salvages usable parts from ruined military convoys. Essential for compound construction, heavy base building, and vehicle recovery.
+            </p>
+            <div class="pcomp-detail-box">
+              <div><strong>Primary Armament:</strong> <span class="mono">Izh-43 Shotgun &amp; Ruger 10/22</span></div>
+              <div><strong>Secondary Gear:</strong> Heavy Pickaxe, Crowbar, 80-Slot Mountain Backpack</div>
+              <div><strong>Expedition Retainer:</strong> <span class="pcomp-retainer">1x DuctTape + 2x BakedBeansCan</span></div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Specialist Perks:</div>
+            <ul class="pcomp-perks">
+              <li>Equipped with an 80-slot mountain expedition backpack for loot hauling</li>
+              <li>Stocked with duct tape, metal wire, and mechanical repair tools</li>
+              <li>High stamina efficiency while carrying heavy base-building materials</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <section id="survival-missions" aria-labelledby="missions-title">
       <div class="section-heading">
         <h2 id="missions-title">Survival Field Directives &amp; Missions</h2>
@@ -817,36 +1030,36 @@
 
       <div class="cards" style="margin-bottom:18px;">
         <article class="card" style="border-left:3px solid var(--sand);">
-          <h3>Frontier Settlers &amp; Militia Defense</h3>
-          <p><strong>Primary Contact:</strong> Elder David at <strong>Settler Haven</strong>.</p>
-          <p><strong>Active Contracts:</strong> <em>Break the Siege</em> (liberate contested towns such as Northern Dam or Southern Barracks) and <em>Clear Jackal Camp</em> (wipe highway raiders along the northern roads).</p>
-          <p><strong>Impact:</strong> Player kills and contract completions count as Settler liberation pressure. Clearing a besieged stronghold flips it to Settler control on the next war turn!</p>
+          <h3>Frontier Settlers &amp; Compound Network</h3>
+          <p><strong>Primary Contacts:</strong> <strong>Elder Tariq</strong> at <strong>Qalat-e Lut</strong> fortress [14837, 7855] &amp; <strong>Scout Farid</strong> at <strong>Settler Haven</strong> [7560, 8720].</p>
+          <p><strong>Active Contracts:</strong> <em>The Well of Qalat</em> (water purification &amp; cistern replenishment), <em>Desert Harvest</em> (compound farming), <em>Tanning &amp; Leatherwork</em>, <em>Fortifying the Sanctuary</em>, and front-line contracts (<em>Break the Siege</em> at contested towns).</p>
+          <p><strong>Impact:</strong> Player contract completions count as Settler liberation pressure and build shared infrastructure reserves. Liberating strongholds flips territory to Settler control on the next restart!</p>
         </article>
 
         <article class="card" style="border-left:3px solid var(--accent);">
           <h3>Task Force Blue Shield (UN Peacekeepers)</h3>
-          <p><strong>Primary Contact:</strong> Commander Vance at <strong>Eastern Airfield</strong> / Lieutenant Miller at <strong>Southwest Base</strong>.</p>
-          <p><strong>Active Contracts:</strong> <em>Blue Shield Charter of Neutrality</em> (introductory accreditation), <em>Reconnaissance Patrols</em>, and <em>Humanitarian Aid Escorts</em>.</p>
-          <p><strong>Impact:</strong> Completing the charter quest unlocks the <strong>UN Quartermaster</strong> (medical, navigation, and NBC barter using UN Scrip <code>ExpansionBanknoteHryvnia</code>). Attacking UN personnel drops standing below -30, triggering a 7-day base lockdown.</p>
+          <p><strong>Primary Contacts:</strong> <strong>Capt. Miller</strong> at <strong>Eastern Airfield</strong> [12030, 10850] &amp; <strong>Dr. Al-Mansoor</strong> at <strong>Southwest Base</strong> [3250, 4630].</p>
+          <p><strong>Active Contracts:</strong> <em>Blue Shield Charter of Neutrality</em>, <em>Humanitarian Triage</em> (antibiotics &amp; dressings delivery), <em>Downed Falcon Black Box Recovery</em>, and <em>Aid Convoy Escorts</em>.</p>
+          <p><strong>Impact:</strong> Registering your charter unlocks the <strong>UN Quartermaster</strong> depot (medical, navigation, and NBC barter using UN Scrip <code>ExpansionBanknoteHryvnia</code>). Attacking UN personnel drops standing below -30, triggering a 7-day base lockdown.</p>
         </article>
 
         <article class="card" style="border-left:3px solid var(--sand);">
           <h3>Rust Syndicate &amp; Water Rights</h3>
-          <p><strong>Primary Contact:</strong> Foreman Grigori at <strong>Hilltop Water Station</strong> / Overseer Radim at <strong>Cement Works</strong>.</p>
-          <p><strong>Active Contracts:</strong> <em>Water Rights Toll</em> (deliver spark plugs and industrial batteries to secure drawing rights) and <em>Refinery Salvage</em>.</p>
-          <p><strong>Impact:</strong> Unlocks the <strong>Rust Syndicate Water &amp; Vehicle Broker</strong>. Paying tolls keeps fuel and clean water flowing to your compound.</p>
+          <p><strong>Primary Contact:</strong> <strong>Broker Koval</strong> at <strong>Hilltop Water Station</strong> [8290, 6510].</p>
+          <p><strong>Active Contracts:</strong> <em>The Price of Pumping</em> (fuel canisters &amp; spark plugs), <em>Scrap &amp; Metalworks</em>, <em>Water Rights Toll</em>, and <em>Aquifer Defense</em>.</p>
+          <p><strong>Impact:</strong> Unlocks the <strong>Rust Syndicate Water &amp; Vehicle Broker</strong>. Paying tolls keeps fuel and clean water flowing to your compound and grants safe drawing rights.</p>
         </article>
 
         <article class="card" style="border-left:3px solid var(--accent);">
           <h3>Karkas Clan &amp; The 50 Tolerance Threshold</h3>
-          <p><strong>Primary Contact:</strong> Elder Tariq on <strong>Missile Base Ridge</strong>.</p>
-          <p><strong>Active Contracts:</strong> <em>High Ridge Rite of Passage</em> (deliver wild game pelts and hunting tribute).</p>
-          <p><strong>Impact:</strong> <code>DZDSTolerance.c</code> monitors your personal Hardline faction reputation. Reaching <strong>50 Reputation</strong> grants safe passage: mountain marksmen will lower their rifles and let you cross the ridges without firing.</p>
+          <p><strong>Primary Contact:</strong> <strong>Elder Soroush</strong> on <strong>Missile Base Ridge</strong> [2840, 9170].</p>
+          <p><strong>Active Contracts:</strong> <em>Trial of the Sands</em> (hunting deer steaks &amp; wolf pelt) and <em>The Eagle's Nest</em> (ridge observation climb).</p>
+          <p><strong>Impact:</strong> <code>DZDSTolerance.c</code> monitors your personal Hardline faction reputation. Reaching <strong>50 Reputation</strong> grants safe passage: mountain marksmen will lower their rifles and let you cross the high ridges without firing.</p>
         </article>
 
         <article class="card" style="border-left:3px solid var(--sand);">
-          <h3>The Smuggler (Desert Caravanserai)</h3>
-          <p><strong>Primary Contact:</strong> The Smuggler at <strong>Eastern Caravanserai</strong>.</p>
+          <h3>The Smuggler (Eastern Caravanserai)</h3>
+          <p><strong>Primary Contact:</strong> <strong>The Smuggler</strong> at <strong>Eastern Caravanserai</strong> [14840, 7910].</p>
           <p><strong>Active Contracts:</strong> <em>The Smuggler's Dead Drop</em> (recover clandestine desert caches).</p>
           <p><strong>Impact:</strong> Neutral black market dealing strictly in hard currency: ammunition (<code>Ammo_762x39</code>, <code>Ammo_545x39</code>, <code>Ammo_556x45</code>, <code>Ammo_9x19</code>). Sells weapons, optics, vehicle keys, and lockpicks with no faction questions asked.</p>
         </article>

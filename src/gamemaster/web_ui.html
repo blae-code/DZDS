@@ -962,12 +962,33 @@
     </div>
 
     <div class="card">
+      <div class="card-title"><span>LIVING WORLD NPC CONTACTS & FACTION REPRESENTATIVES</span><span id="npc-count-badge" class="badge cyan">7 ACTIVE CONTACTS</span></div>
+      <div id="npc-contacts-grid" class="grid-3" style="margin-top:12px;"></div>
+    </div>
+
+    <div class="card">
       <div class="card-title"><span>COMMUNITY SURVIVAL INFRASTRUCTURE & SETTLEMENT PROJECTS (QALAT-E LUT HQ)</span><span id="survival-goals-count-badge" class="badge cyan">5 ACTIVE PROJECTS</span></div>
       <div id="survival-goals-wrap" class="grid-3" style="margin-top:12px;"></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><span>LIVE FRONT-LINE QUESTS (TIED TO CURRENT TERRITORY CONTROL)</span><span id="quests-count-badge" class="badge cyan">0 ACTIVE</span></div>
+      <div class="card-title">
+        <span>HIRABLE SETTLER COMPANIONS & QALAT-E LUT GARRISON</span>
+        <span id="companions-count-badge" class="badge cyan">4 SPECIALISTS</span>
+      </div>
+      <div id="companions-grid" class="grid-2" style="margin-top:12px;"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>CAMPAIGN CONTRACTS & PROGRESSION QUESTLINES</span>
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <button class="pill active" id="qfilt-all" onclick="setQuestFilter('all')">ALL (<span id="quests-count-all">0</span>)</button>
+          <button class="pill" id="qfilt-dynamic" onclick="setQuestFilter('dynamic')">DYNAMIC FRONT</button>
+          <button class="pill" id="qfilt-story" onclick="setQuestFilter('story')">STORY ARCS</button>
+          <button class="pill" id="qfilt-community" onclick="setQuestFilter('community')">COMMUNITY GOALS</button>
+        </div>
+      </div>
       <div id="quests-table-wrap"></div>
     </div>
 
@@ -1904,6 +1925,38 @@ function renderFrontPlanView() {
     rollKit(archs[0].Name);
   }
 
+  // NPC Contacts Grid
+  const npcs = STATE.front_plan.npcs || {};
+  const npcWrap = document.getElementById('npc-contacts-grid');
+  const npcBadge = document.getElementById('npc-count-badge');
+  const npcList = Object.values(npcs);
+  if (npcBadge) npcBadge.textContent = `${npcList.length} ACTIVE CONTACTS`;
+  if (npcWrap) {
+    npcWrap.innerHTML = npcList.map(n => {
+      const fc = factionColor(n.faction);
+      const posStr = n.pos ? `[${Math.round(n.pos[0])}, ${Math.round(n.pos[2])}]` : '';
+      return `
+        <div class="card" style="border-left: 3px solid ${fc}; background: var(--bg-surface); padding: 12px 14px;">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
+            <div>
+              <div style="font-weight:700; color:var(--text); font-size:0.95rem;">${n.name}</div>
+              <div class="muted" style="font-size:0.75rem;">${n.title || n.faction}</div>
+            </div>
+            <span class="badge" style="background:${fc}22; color:${fc}; font-weight:700;">${n.faction}</span>
+          </div>
+          <div class="mono muted" style="font-size:0.75rem; margin-bottom:8px;">📍 ${n.role_site} ${posStr}</div>
+          <div class="muted" style="font-size:0.8rem; font-style:italic; margin-bottom:10px; line-height:1.35;">"${n.greeting}"</div>
+          <div style="display:flex; flex-wrap:wrap; gap:4px; font-size:0.72rem;">
+            <span class="pill" style="border-color:var(--cyan); color:var(--cyan);">📜 Quests</span>
+            ${n.id === 1 || n.id === 2 || n.id === 4 || n.id === 7 ? '<span class="pill" style="border-color:var(--f-settlers); color:var(--f-settlers);">⚖ Barter</span>' : ''}
+            <span class="pill">📡 Intel</span>
+            <span class="pill">🏜 Survival Guide</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
   // Survival Goals & Community Infrastructure
   const sg = STATE.survival_goals || {};
   const sgProjects = sg.projects || [];
@@ -1912,65 +1965,84 @@ function renderFrontPlanView() {
   const sgWrap = document.getElementById('survival-goals-wrap');
   if (sgWrap && sgProjects.length) {
     sgWrap.innerHTML = sgProjects.map(p => `
-      <div class="card" style="border-left: 3px solid ${p.color}; background: var(--bg-surface); padding: 12px 14px;">
-        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
-          <div>
-            <div style="font-weight:700; color:var(--text); font-size:0.95rem;">${p.name}</div>
-            <div class="muted" style="font-size:0.75rem;">Category: ${p.category}</div>
+      <div class="card" style="border-left: 3px solid ${p.color}; background: var(--bg-surface); padding: 12px 14px; display:flex; flex-direction:column; justify-content:space-between;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px;">
+            <div>
+              <div style="font-weight:700; color:var(--text); font-size:0.95rem;">${p.name}</div>
+              <div class="muted" style="font-size:0.75rem;">Category: ${p.category}</div>
+            </div>
+            <span class="badge" style="background:${p.color}22; color:${p.color}; font-weight:700;">${p.percent}%</span>
           </div>
-          <span class="badge" style="background:${p.color}22; color:${p.color}; font-weight:700;">${p.percent}%</span>
+          <div style="background:var(--bg-canvas); border-radius:4px; height:8px; overflow:hidden; margin:8px 0; border: 1px solid var(--border-soft);">
+            <div style="background:${p.color}; width:${p.percent}%; height:100%;"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:8px;">
+            <span class="mono">${p.current} / ${p.target} ${p.unit}</span>
+            <span class="muted">${(p.unlocked_perks || []).length} perk tier(s) active</span>
+          </div>
+          <div style="font-size:0.78rem; padding:6px 8px; border-radius:4px; background:var(--bg-canvas); border:1px solid var(--border-soft); margin-bottom:8px;">
+            <span style="color:${p.color}; font-weight:600;">Active:</span> ${p.active_perk_text}
+          </div>
+          ${p.next_perk ? `
+          <div class="muted" style="font-size:0.74rem; margin-bottom:8px;">
+            Next: <span class="mono">${p.next_perk.threshold} ${p.unit}</span> (${p.next_perk.name})
+          </div>` : ''}
         </div>
-        <div style="background:var(--bg-canvas); border-radius:4px; height:8px; overflow:hidden; margin:8px 0; border: 1px solid var(--border-soft);">
-          <div style="background:${p.color}; width:${p.percent}%; height:100%;"></div>
-        </div>
-        <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:8px;">
-          <span class="mono">${p.current} / ${p.target} ${p.unit}</span>
-          <span class="muted">${(p.unlocked_perks || []).length} perk tier(s) active</span>
-        </div>
-        <div style="font-size:0.78rem; padding:6px 8px; border-radius:4px; background:var(--bg-canvas); border:1px solid var(--border-soft);">
-          <span style="color:${p.color}; font-weight:600;">Active Perk:</span> ${p.active_perk_text}
+        <div style="display:flex; justify-content:flex-end; margin-top:6px;">
+          <button class="btn btn-sm" style="font-size:0.72rem; padding:3px 8px;" onclick="contributeProject('${p.id}', 10)">+10 ${p.unit} Sim</button>
         </div>
       </div>
     `).join('');
   }
 
-  // Quests
-  const qs = STATE.front_plan.quests || [];
-  const npcs = STATE.front_plan.npcs || {};
-  document.getElementById('quests-count-badge').textContent = `${qs.length} ACTIVE`;
-  document.getElementById('quests-table-wrap').innerHTML = `
-    <table class="tactical-table">
-      <thead><tr><th>CONTRACT & ID</th><th>OBJECTIVE</th><th>TARGET SITE</th><th>GIVER & CONTACT</th><th>REWARDS & REP</th><th>BRIEFING</th></tr></thead>
-      <tbody>
-        ${qs.map(q => {
-          const npc = npcs[q.giver] || {};
-          const contact = npc.name ? `${npc.name} (${q.giver})` : q.giver;
-          const repBadges = Object.entries(q.reputation_rewards || {}).map(([f, n]) => `<span class="pill" style="border-color:${factionColor(f)}; color:${factionColor(f)}">+${n} ${f}</span>`).join(' ');
-          const itemBadges = (q.rewards || []).map(r => `<span class="pill">${r.Amount}x ${r.ClassName}</span>`).join(' ');
-          return `
-          <tr>
-            <td>
-              <div class="mono" style="color:var(--cyan); font-weight:700;">#${q.id || '—'} ${q.quest}</div>
-              <div style="font-size:12px; color:var(--bone); font-weight:600;">${q.title || ''}</div>
-            </td>
-            <td><span class="badge ok">${q.objective}</span></td>
-            <td class="mono" style="font-weight:600;">${q.site}</td>
-            <td>
-              <div class="mono" style="color:${factionColor(q.giver)}; font-weight:600;">${contact}</div>
-              <div class="muted" style="font-size:11px;">@ ${q.giver_site}</div>
-            </td>
-            <td>
-              <div style="display:flex; flex-wrap:wrap; gap:4px;">
-                ${itemBadges}
-                ${repBadges}
+  // Hirable Companions & Garrison Roster
+  const compData = STATE.companions || {};
+  const roster = compData.roster || [];
+  const compBadge = document.getElementById('companions-count-badge');
+  if (compBadge) compBadge.textContent = `${roster.length} SPECIALISTS (${compData.available_count || 0} READY)`;
+  const compGrid = document.getElementById('companions-grid');
+  if (compGrid && roster.length) {
+    compGrid.innerHTML = roster.map(c => {
+      const isAvail = c.status === 'Available';
+      const statusClass = isAvail ? 'ok' : 'cyan';
+      const costs = (c.retainer_cost || []).map(r => `${r.amount}x ${r.item}`).join(', ');
+      return `
+        <div class="card" style="border-left: 3px solid ${isAvail ? 'var(--ok)' : 'var(--cyan)'}; background: var(--bg-surface); padding: 12px 14px; display:flex; flex-direction:column; justify-content:space-between;">
+          <div>
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
+              <div>
+                <span style="font-weight:700; font-size:0.95rem; color:var(--text);">${c.name}</span>
+                <div class="muted" style="font-size:0.75rem;">${c.title} · <span class="mono">${c.station}</span></div>
               </div>
-            </td>
-            <td class="muted" style="max-width:280px;">${q.text}</td>
-          </tr>
-        `}).join('')}
-      </tbody>
-    </table>
-  `;
+              <span class="badge ${statusClass}">${c.status.toUpperCase()}${c.hired_by ? ` (${c.hired_by})` : ''}</span>
+            </div>
+            <p style="font-size:0.78rem; color:var(--text-dim); margin:4px 0 8px;">${c.description}</p>
+            <div style="font-size:0.75rem; background:rgba(0,0,0,0.2); padding:6px 8px; border-radius:4px; margin-bottom:8px;">
+              <div><strong style="color:var(--text);">Loadout:</strong> <span class="mono">${c.loadout}</span> | <strong style="color:var(--text);">Primary:</strong> ${c.primary_weapon}</div>
+              <div style="margin-top:3px;"><strong style="color:var(--text);">Retainer:</strong> <span class="mono" style="color:var(--cyan);">${costs || 'None'}</span></div>
+            </div>
+            <div style="font-size:0.72rem; color:var(--muted); line-height:1.4;">
+              ${(c.role_perks || []).map(p => `• ${p}`).join('<br>')}
+            </div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.06);">
+            <span class="mono muted" style="font-size:0.7rem;">Coords: [${c.position[0]}, ${c.position[2]}]</span>
+            <div>
+              ${isAvail ? `
+                <button class="btn btn-sm btn-cyan" style="font-size:0.72rem; padding:3px 10px;" onclick="hireCompanion('${c.id}')">Enlist Companion</button>
+              ` : `
+                <button class="btn btn-sm" style="font-size:0.72rem; padding:3px 10px;" onclick="dismissCompanion('${c.id}')">Dismiss to HQ</button>
+              `}
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Quests & Story Arcs
+  renderQuestsTable();
 
   // Vehicles
   const airSet = new Set(STATE.arrivals.aircraft || []);
@@ -1987,6 +2059,174 @@ function renderFrontPlanView() {
       </div>
     `;
   }).join('');
+}
+
+window.currentQuestFilter = window.currentQuestFilter || 'all';
+
+function setQuestFilter(filt) {
+  window.currentQuestFilter = filt;
+  ['all', 'dynamic', 'story', 'community'].forEach(f => {
+    const el = document.getElementById(`qfilt-${f}`);
+    if (el) el.classList.toggle('active', f === filt);
+  });
+  renderQuestsTable();
+}
+
+async function contributeProject(projectId, amount) {
+  try {
+    const res = await fetch('/api/survival-goals/contribute', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({project_id: projectId, amount: amount, contributor: STATE?.user_id || 'Operator'}),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.summary) {
+        STATE.survival_goals = data.summary;
+        renderFrontPlan();
+        toast(`Contributed ${amount} to ${projectId}!`, 'ok');
+      }
+    }
+  } catch (err) {
+    console.error('Failed to contribute to project:', err);
+  }
+}
+
+async function hireCompanion(companionId) {
+  const who = prompt("Enter survivor name for squad enlistment:", STATE?.user_id || "Survivor");
+  if (!who) return;
+  try {
+    const res = await fetch('/api/companions/hire', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({companion_id: companionId, player: who}),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.summary) {
+        STATE.companions = data.summary;
+        renderFrontPlan();
+        toast(`Companion ${companionId} enlisted to ${who}!`, 'ok');
+      }
+    } else {
+      toast('Failed to hire companion', 'err');
+    }
+  } catch (err) {
+    toast(`Hiring error: ${err.message}`, 'err');
+  }
+}
+
+async function dismissCompanion(companionId) {
+  if (!confirm("Dismiss this companion back to Qalat-e Lut garrison?")) return;
+  try {
+    const res = await fetch('/api/companions/dismiss', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({companion_id: companionId, reason: "Returned from expedition"}),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (data.summary) {
+        STATE.companions = data.summary;
+        renderFrontPlan();
+        toast(`Companion ${companionId} returned to Qalat-e Lut!`, 'ok');
+      }
+    } else {
+      toast('Failed to dismiss companion', 'err');
+    }
+  } catch (err) {
+    toast(`Dismissal error: ${err.message}`, 'err');
+  }
+}
+
+function renderQuestsTable() {
+  if (!STATE?.front_plan) return;
+  const npcs = STATE.front_plan.npcs || {};
+  const dynamicQuests = (STATE.front_plan.quests || []).map(q => ({
+    ...q,
+    kind: 'dynamic',
+    is_community: Boolean(q.community_project),
+  }));
+
+  const fixedQuestsRaw = STATE.front_plan.fixed_quests || {};
+  const storyQuests = Object.entries(fixedQuestsRaw).map(([qid, q]) => {
+    const npcId = q.npc_giver || 1;
+    const npc = npcs[String(npcId)] || {};
+    return {
+      id: Number(qid),
+      quest: q.title || `story_${qid}`,
+      title: q.title,
+      kind: 'story',
+      objective: q.objective_type || 'DELIVERY',
+      site: q.target_site || npc.role_site || 'Settler Haven',
+      giver: npc.faction || 'Settlers',
+      giver_site: npc.role_site || 'Qalat-e Lut',
+      contact_name: npc.name || 'Elder Tariq',
+      text: q.briefing || q.objective_text || '',
+      rewards: (q.rewards || []).map(r => ({ Amount: r.amount || 1, ClassName: r.class || 'BandageDressing' })),
+      reputation_rewards: q.reputation || {},
+      community_project: q.community_project,
+      is_community: Boolean(q.community_project),
+    };
+  });
+
+  const allQuests = [...storyQuests, ...dynamicQuests];
+  const countAll = document.getElementById('quests-count-all');
+  if (countAll) countAll.textContent = allQuests.length;
+
+  const filt = window.currentQuestFilter || 'all';
+  const filtered = allQuests.filter(q => {
+    if (filt === 'dynamic') return q.kind === 'dynamic';
+    if (filt === 'story') return q.kind === 'story';
+    if (filt === 'community') return q.is_community;
+    return true;
+  });
+
+  const countBadge = document.getElementById('quests-count-badge');
+  if (countBadge) countBadge.textContent = `${filtered.length} ACTIVE`;
+
+  const wrap = document.getElementById('quests-table-wrap');
+  if (!wrap) return;
+
+  wrap.innerHTML = `
+    <table class="tactical-table">
+      <thead><tr><th>CONTRACT & ID</th><th>TYPE</th><th>OBJECTIVE</th><th>TARGET SITE</th><th>GIVER & CONTACT</th><th>REWARDS & REP</th><th>BRIEFING & IMPACT</th></tr></thead>
+      <tbody>
+        ${filtered.map(q => {
+          const npc = npcs[String(q.npc_giver || q.giver)] || {};
+          const contact = q.contact_name || (npc.name ? `${npc.name} (${q.giver})` : q.giver);
+          const repBadges = Object.entries(q.reputation_rewards || {}).map(([f, n]) => `<span class="pill" style="border-color:${factionColor(f)}; color:${factionColor(f)}">+${n} ${f}</span>`).join(' ');
+          const itemBadges = (q.rewards || []).map(r => `<span class="pill">${r.Amount}x ${r.ClassName}</span>`).join(' ');
+          const commBadge = q.community_project ? `<span class="badge" style="background:#10b98122; color:#10b981;">🏛 ${q.community_project}</span>` : '';
+          const typeBadge = q.kind === 'story' ? '<span class="badge cyan">STORY</span>' : '<span class="badge" style="background:var(--border-dim); color:var(--bone);">FRONT</span>';
+          return `
+          <tr>
+            <td>
+              <div class="mono" style="color:var(--cyan); font-weight:700;">#${q.id || '—'}</div>
+              <div style="font-size:12px; color:var(--bone); font-weight:600;">${q.title || q.quest}</div>
+            </td>
+            <td>${typeBadge}</td>
+            <td><span class="badge ok">${q.objective}</span></td>
+            <td class="mono" style="font-weight:600;">${q.site}</td>
+            <td>
+              <div class="mono" style="color:${factionColor(q.giver)}; font-weight:600;">${contact}</div>
+              <div class="muted" style="font-size:11px;">@ ${q.giver_site}</div>
+            </td>
+            <td>
+              <div style="display:flex; flex-wrap:wrap; gap:4px;">
+                ${itemBadges}
+                ${repBadges}
+              </div>
+            </td>
+            <td class="muted" style="max-width:280px;">
+              <div>${q.text}</div>
+              ${commBadge ? `<div style="margin-top:4px;">${commBadge}</div>` : ''}
+            </td>
+          </tr>
+        `}).join('')}
+      </tbody>
+    </table>
+  `;
 }
 
 function renderModsTable() {

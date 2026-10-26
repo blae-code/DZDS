@@ -1,0 +1,88 @@
+{
+    "ConfigVersion": 22,
+    "ID": 304,
+    "Type": 1,
+    "Title": "Highway Tolls: Jackal Roadblock Sweep",
+    "Descriptions": [
+        "Jackal scavengers have dragged gutted buses across the highway at North Highway Pileup. They are demanding fifty liters of Guzoline for every water tanker passing through. The Syndicate does not pay tolls. Head north, punch through their roadblock, and scatter the scavengers.",
+        "Clear the Jackal roadblock at North Highway Pileup.",
+        "The tankers made it through without coughing up a single liter. The Syndicate remembers who clears its roads. Here is Guzoline and high-grade 7.62 rounds."
+    ],
+    "ObjectiveText": "Travel to North Highway Pileup to break the Jackal extortion toll gate.",
+    "FollowUpQuest": -1,
+    "Repeatable": 0,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "CanisterGasoline",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "Ammo_762x39",
+            "Amount": 40,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "SparkPlug",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        4
+    ],
+    "QuestTurnInIDs": [
+        4
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 304,
+            "ObjectiveType": 3
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [
+        303
+    ],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSRust": 35,
+        "DZDSJackals": -30,
+        "DZDSSettlers": 15
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

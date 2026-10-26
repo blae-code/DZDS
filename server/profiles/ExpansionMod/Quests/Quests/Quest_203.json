@@ -1,0 +1,78 @@
+{
+    "ConfigVersion": 22,
+    "ID": 203,
+    "Type": 1,
+    "Title": "Humanitarian Corridor: Safe Passage",
+    "Descriptions": [
+        "We are dispatching relief shipments along the road from Eastern Airfield to Settler Haven. Scout the route ahead of our trucks, verify that the central road is clear of roadblocks, and report to Scout Farid.",
+        "Move along the highway corridor to Settler Haven.",
+        "Corridor verified clear. The UN aid trucks will make delivery by morning. Take these supplies and our thanks."
+    ],
+    "ObjectiveText": "Travel along the central route from Eastern Airfield to Settler Haven.",
+    "FollowUpQuest": 204,
+    "Repeatable": 0,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "Canteen",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "ExpansionBanknoteHryvnia",
+            "Amount": 150,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        2
+    ],
+    "QuestTurnInIDs": [
+        6
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 203,
+            "ObjectiveType": 3
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [
+        202
+    ],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSPeacekeepers": 40,
+        "DZDSSettlers": 25
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

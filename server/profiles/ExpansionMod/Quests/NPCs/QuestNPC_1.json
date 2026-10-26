@@ -3,22 +3,22 @@
     "ID": 1,
     "ClassName": "ExpansionQuestNPCAIDenis",
     "Position": [
-        7570.0,
-        248.9,
-        8730.0
+        14837.0,
+        208.87,
+        7855.0
     ],
     "Orientation": [
-        0.0,
+        180.0,
         0.0,
         0.0
     ],
-    "NPCName": "Elder David",
-    "DefaultNPCText": "Welcome to Settler Haven, traveler. The frontier is harsh, but we stand together.",
+    "NPCName": "Elder Tariq",
+    "DefaultNPCText": "Welcome to Qalat-e Lut. Out here in the badlands, water is life and carelessness is suicide.",
     "Waypoints": [
         [
-            7570.0,
-            248.9,
-            8730.0
+            14837.0,
+            208.87,
+            7855.0
         ]
     ],
     "NPCEmoteID": 46,

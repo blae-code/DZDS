@@ -7,11 +7,11 @@
     "Active": 1,
     "Position": [
         6920.0,
-        0.0,
+        247.44,
         7360.0
     ],
-    "MaxDistance": 35.0,
-    "MarkerName": "Aquifer Defense: Central Pump Security",
+    "MaxDistance": 40.0,
+    "MarkerName": "Central Pump Station",
     "ShowDistance": 1,
     "TriggerOnEnter": 1,
     "TriggerOnExit": 0

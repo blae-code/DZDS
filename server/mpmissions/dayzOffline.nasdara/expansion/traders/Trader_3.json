@@ -28,7 +28,7 @@
         0.0,
         0.0
     ],
-    "m_DisplayName": "Rust Syndicate Water & Parts Broker",
+    "m_DisplayName": "Rust Syndicate Water Broker",
     "m_DisplayIcon": "Car",
     "m_Faction": "InvincibleObservers",
     "m_Waypoints": [],
@@ -38,7 +38,7 @@
     "m_UseReputation": 0,
     "m_MinRequiredReputation": 0,
     "m_MaxRequiredReputation": 2147483647,
-    "m_RequiredCompletedQuestID": 102,
+    "m_RequiredCompletedQuestID": 504,
     "m_IsGlobalTrader": 0,
     "m_Currencies": [
         "ammo_762x39",

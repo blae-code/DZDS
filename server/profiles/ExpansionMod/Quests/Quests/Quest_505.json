@@ -1,6 +1,6 @@
 {
     "ConfigVersion": 22,
-    "ID": 605,
+    "ID": 505,
     "Type": 1,
     "Title": "Blue Shield Charter of Neutrality",
     "Descriptions": [
@@ -44,16 +44,16 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        6
+        3
     ],
     "QuestTurnInIDs": [
-        6
+        3
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
-            "ID": 605,
+            "ID": 505,
             "ObjectiveType": 5
         }
     ],

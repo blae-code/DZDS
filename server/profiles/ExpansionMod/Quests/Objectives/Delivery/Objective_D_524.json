@@ -1,0 +1,26 @@
+{
+    "ConfigVersion": 28,
+    "ID": 524,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver Tetracycline Antibiotics and Bandages to the Blue Shield field hospital at Southwest Base.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 1,
+            "ClassName": "TetracyclineAntibiotics",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 2,
+            "ClassName": "BandageDressing",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 35.0,
+    "MarkerName": "Southwest Base"
+}

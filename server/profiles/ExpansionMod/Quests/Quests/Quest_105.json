@@ -2,15 +2,15 @@
     "ConfigVersion": 22,
     "ID": 105,
     "Type": 1,
-    "Title": "Reconnaissance: Cement Works",
+    "Title": "Comms Grid Relay: High Ground Calibration",
     "Descriptions": [
-        "Observe the Syndicate's heavy works at Cement Works. We need confirmation of their fuel reserves and defensive emplacements without provoking an armed clash.",
-        "Approach Cement Works and survey their perimeter positions.",
-        "Good reconnaissance work. Task Force Blue Shield command has updated the tactical sector map."
+        "Our emergency broadcast repeater on 87.8 MHz needs line of sight across the northern basin. Ascend to the high antenna at North Border Post and ensure the solar relay transmitter is intact.",
+        "Make the climb to North Border Post. Watch the ridge line for raider marksmen.",
+        "Transmitter ping confirmed. The Settler Net now reaches all the way to the southern dunes. Keep these batteries and this personal radio tuned to 87.8 MHz."
     ],
-    "ObjectiveText": "Get eyes on the Syndicate's works at Cement Works and report back.",
+    "ObjectiveText": "Travel to the high radio tower at North Border Post to inspect the relay.",
     "FollowUpQuest": -1,
-    "Repeatable": 1,
+    "Repeatable": 0,
     "IsDailyQuest": 0,
     "IsWeeklyQuest": 0,
     "CancelQuestOnPlayerDeath": 1,
@@ -20,7 +20,7 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "Battery9V",
+            "ClassName": "PersonalRadio",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -29,8 +29,8 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "ExpansionBanknoteHryvnia",
-            "Amount": 10,
+            "ClassName": "Battery9V",
+            "Amount": 2,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -44,10 +44,10 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        2
+        1
     ],
     "QuestTurnInIDs": [
-        2
+        1
     ],
     "IsAchievement": 0,
     "Objectives": [
@@ -60,7 +60,9 @@
     "QuestColor": 0,
     "ReputationReward": 0,
     "ReputationRequirement": -1,
-    "PreQuestIDs": [],
+    "PreQuestIDs": [
+        104
+    ],
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
@@ -68,7 +70,7 @@
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSPeacekeepers": 15
+        "DZDSSettlers": 35
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

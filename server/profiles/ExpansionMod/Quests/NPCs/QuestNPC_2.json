@@ -3,22 +3,22 @@
     "ID": 2,
     "ClassName": "ExpansionQuestNPCAIElias",
     "Position": [
-        12040.0,
-        169.62,
-        10860.0
+        12030.0,
+        169.35,
+        10850.0
     ],
     "Orientation": [
-        0.0,
+        90.0,
         0.0,
         0.0
     ],
-    "NPCName": "Commander Vance",
-    "DefaultNPCText": "Task Force Blue Shield Command. State your identity and business within the demilitarized zone.",
+    "NPCName": "Capt. Miller",
+    "DefaultNPCText": "Task Force Blue Shield. State your business or keep the humanitarian corridor clear.",
     "Waypoints": [
         [
-            12040.0,
-            169.62,
-            10860.0
+            12030.0,
+            169.35,
+            10850.0
         ]
     ],
     "NPCEmoteID": 46,

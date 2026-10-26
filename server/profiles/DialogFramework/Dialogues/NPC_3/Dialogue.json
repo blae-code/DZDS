@@ -3,9 +3,7 @@
     "NPCIDs": [
         3
     ],
-    "TraderIDs": [
-        3
-    ],
+    "TraderIDs": [],
     "TraderClassNames": [],
     "TraderPositions": [],
     "TraderPositionRadius": 8.0,
@@ -13,7 +11,7 @@
     "P2PTraderIDs": [],
     "AIPatrolID": 0,
     "AIPatrolSubID": 0,
-    "SpeakerName": "Foreman Grigori",
+    "SpeakerName": "Dr. Al-Mansoor",
     "ReputationVar": "",
     "ReputationMax": 0,
     "ReputationTiers": [],
@@ -39,7 +37,7 @@
         {
             "ID": 1,
             "Type": "STANDARD",
-            "SpeakerText": "Syndicate pump head. Water has a price in the Badlands. Keep your hands where I can see them.",
+            "SpeakerText": "If you're wounded or feverish, sit down. If you have medical supplies, hand them over.",
             "SpeakerTextMore": [],
             "VoiceLineIDs": [],
             "SpeakerLines": [],
@@ -53,23 +51,6 @@
                     "ShowWhileQuestID": -1,
                     "ShowWhileQuestState": "",
                     "ActionType": "SHOW_QUEST_LIST",
-                    "RequiredVars": [],
-                    "SetVars": [],
-                    "RequiredItems": [],
-                    "ShowFromHour": -1,
-                    "ShowToHour": -1,
-                    "MaxUses": 0,
-                    "UsesKey": ""
-                },
-                {
-                    "Text": "I'd like to see what goods you have to barter.",
-                    "NextNodeID": 0,
-                    "RequiredQuestID": -1,
-                    "HideAfterQuestID": -1,
-                    "QuestID": -1,
-                    "ShowWhileQuestID": -1,
-                    "ShowWhileQuestState": "",
-                    "ActionType": "OPEN_TRADER_MENU",
                     "RequiredVars": [],
                     "SetVars": [],
                     "RequiredItems": [],
@@ -96,7 +77,24 @@
                     "UsesKey": ""
                 },
                 {
-                    "Text": "How does your faction view the Frontier Settlers?",
+                    "Text": "Can you share any survival advice for this region?",
+                    "NextNodeID": 4,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "NONE",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                },
+                {
+                    "Text": "How does your faction view the other groups in the sector?",
                     "NextNodeID": 3,
                     "RequiredQuestID": -1,
                     "HideAfterQuestID": -1,
@@ -134,20 +132,20 @@
         {
             "ID": 2,
             "Type": "STANDARD",
-            "SpeakerText": "The Rust Syndicate controls the wells, the dams, and the fuel refineries. Out here, nothing runs without our blessing. Currently: The front lines remain contested across the central desert.",
+            "SpeakerText": "I oversee surgical trauma care and disease containment across the western basin. Sepsis, cholera, and gunshot wounds are our daily routine. Currently: The front lines remain contested across the desert basin. Contested strongholds: Northern Dam, Southern Barracks.",
             "SpeakerTextMore": [],
             "VoiceLineIDs": [],
             "SpeakerLines": [],
             "Responses": [
                 {
-                    "Text": "Tell me more about how we can work together.",
-                    "NextNodeID": 3,
+                    "Text": "Let me see the contracts for these sectors.",
+                    "NextNodeID": 0,
                     "RequiredQuestID": -1,
                     "HideAfterQuestID": -1,
                     "QuestID": -1,
                     "ShowWhileQuestID": -1,
                     "ShowWhileQuestState": "",
-                    "ActionType": "NONE",
+                    "ActionType": "SHOW_QUEST_LIST",
                     "RequiredVars": [],
                     "SetVars": [],
                     "RequiredItems": [],
@@ -157,7 +155,7 @@
                     "UsesKey": ""
                 },
                 {
-                    "Text": "Back to our discussion.",
+                    "Text": "Understood. Let us return to other matters.",
                     "NextNodeID": 1,
                     "RequiredQuestID": -1,
                     "HideAfterQuestID": -1,
@@ -178,13 +176,13 @@
         {
             "ID": 3,
             "Type": "STANDARD",
-            "SpeakerText": "Pay your maintenance parts toll to secure water rights. Once verified, our broker will trade fuel and clean water.",
+            "SpeakerText": "Deliver sterile bandages, saline bags, and broad-spectrum antibiotics to support our clinic. Medical service guarantees UN standing. Remember: maintaining 50+ reputation ensures safe conduct and unlocks trusted barter. I treat anyone who doesn't pull a weapon in my triage tent. Even wounded raiders receive treatment if they disarm, though command frowns upon it.",
             "SpeakerTextMore": [],
             "VoiceLineIDs": [],
             "SpeakerLines": [],
             "Responses": [
                 {
-                    "Text": "Let me see those contracts.",
+                    "Text": "How can I earn standing with you?",
                     "NextNodeID": 0,
                     "RequiredQuestID": -1,
                     "HideAfterQuestID": -1,
@@ -201,7 +199,122 @@
                     "UsesKey": ""
                 },
                 {
-                    "Text": "Understood. I will keep that in mind.",
+                    "Text": "Understood. Let us return to other matters.",
+                    "NextNodeID": 1,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "NONE",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                }
+            ]
+        },
+        {
+            "ID": 4,
+            "Type": "STANDARD",
+            "SpeakerText": "Disinfect dirty wounds immediately with alcohol tincture or iodine. Once wound fever sets in, only full courses of Tetracycline will stop the sepsis.",
+            "SpeakerTextMore": [],
+            "VoiceLineIDs": [],
+            "SpeakerLines": [],
+            "Responses": [
+                {
+                    "Text": "Understood. Let us return to other matters.",
+                    "NextNodeID": 1,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "NONE",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                }
+            ]
+        },
+        {
+            "ID": 5,
+            "Type": "STANDARD",
+            "SpeakerText": "Qalat-e Lut Compound Status: Aquifer & Community Water Reserves: 365.0/500 Liters (73.0%); Field Clinic & Trauma Reserves: 42/120 Supplies (35.0%); Perimeter Fortifications & Barriers: 78/200 Materials (39.0%). Delivering water, lumber, and medicine unlocks permanent compound perks.",
+            "SpeakerTextMore": [],
+            "VoiceLineIDs": [],
+            "SpeakerLines": [],
+            "Responses": [
+                {
+                    "Text": "I'm ready to contribute supplies.",
+                    "NextNodeID": 0,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "SHOW_QUEST_LIST",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                },
+                {
+                    "Text": "Understood. Let us return to other matters.",
+                    "NextNodeID": 1,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "NONE",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                }
+            ]
+        },
+        {
+            "ID": 6,
+            "Type": "STANDARD",
+            "SpeakerText": "We have four specialists stationed here at Qalat-e Lut ready to join your squad: Soran the Scout (North Watchtower), Kaveh the Sentinel (South Gate), Dr. Yasmin (Clinic), and Rostam the Scavenger (West Workshop). Bring them provisions or complete their enlistment contracts, and they'll follow your command across the badlands. If dismissed, they return here to defend our walls.",
+            "SpeakerTextMore": [],
+            "VoiceLineIDs": [],
+            "SpeakerLines": [],
+            "Responses": [
+                {
+                    "Text": "Let me see the enlistment contracts.",
+                    "NextNodeID": 0,
+                    "RequiredQuestID": -1,
+                    "HideAfterQuestID": -1,
+                    "QuestID": -1,
+                    "ShowWhileQuestID": -1,
+                    "ShowWhileQuestState": "",
+                    "ActionType": "SHOW_QUEST_LIST",
+                    "RequiredVars": [],
+                    "SetVars": [],
+                    "RequiredItems": [],
+                    "ShowFromHour": -1,
+                    "ShowToHour": -1,
+                    "MaxUses": 0,
+                    "UsesKey": ""
+                },
+                {
+                    "Text": "Understood. Let us return to other matters.",
                     "NextNodeID": 1,
                     "RequiredQuestID": -1,
                     "HideAfterQuestID": -1,

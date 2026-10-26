@@ -2,16 +2,16 @@
     "ConfigVersion": 28,
     "ID": 105,
     "ObjectiveType": 3,
-    "ObjectiveText": "Get eyes on the Syndicate's works at Cement Works and report back.",
+    "ObjectiveText": "Travel to the high radio tower at North Border Post to inspect the relay.",
     "TimeLimit": -1,
     "Active": 1,
     "Position": [
-        9730,
-        154.72,
-        6390
+        2910.0,
+        380.78,
+        15740.0
     ],
-    "MaxDistance": 45.0,
-    "MarkerName": "Cement Works",
+    "MaxDistance": 40.0,
+    "MarkerName": "North Border Post",
     "ShowDistance": 1,
     "TriggerOnEnter": 1,
     "TriggerOnExit": 0

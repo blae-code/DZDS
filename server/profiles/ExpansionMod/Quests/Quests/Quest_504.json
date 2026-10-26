@@ -1,14 +1,14 @@
 {
     "ConfigVersion": 22,
-    "ID": 612,
+    "ID": 504,
     "Type": 1,
-    "Title": "Reconnaissance: Hilltop Water Station",
+    "Title": "Blue Shield Charter of Neutrality",
     "Descriptions": [
-        "Observe the Syndicate's heavy works at Hilltop Water Station. We need confirmation of their fuel reserves and defensive emplacements without provoking an armed clash.",
-        "Approach Hilltop Water Station and survey their perimeter positions.",
-        "Good reconnaissance work. Task Force Blue Shield command has updated the tactical sector map."
+        "Task Force Blue Shield operates under strict United Nations humanitarian rules. Register as an accredited civilian survivor and deliver this dispatch to command.",
+        "Report to Task Force Blue Shield command at Eastern Airfield with the accredited dispatch.",
+        "Charter registered. You are officially accredited with Task Force Blue Shield. The UN Quartermaster is now authorized to trade with you."
     ],
-    "ObjectiveText": "Get eyes on the Syndicate's works at Hilltop Water Station and report back.",
+    "ObjectiveText": "Deliver the medical status dispatch to the Blue Shield Command at Eastern Airfield.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
     "IsDailyQuest": 0,
@@ -20,8 +20,8 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "Battery9V",
-            "Amount": 1,
+            "ClassName": "ExpansionBanknoteHryvnia",
+            "Amount": 20,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -29,8 +29,8 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "ExpansionBanknoteHryvnia",
-            "Amount": 10,
+            "ClassName": "BandageDressing",
+            "Amount": 2,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -44,17 +44,17 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        6
+        2
     ],
     "QuestTurnInIDs": [
-        6
+        2
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
-            "ID": 612,
-            "ObjectiveType": 3
+            "ID": 504,
+            "ObjectiveType": 5
         }
     ],
     "QuestColor": 0,
@@ -64,11 +64,11 @@
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
-    "DeleteQuestItems": 0,
+    "DeleteQuestItems": 1,
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSPeacekeepers": 15
+        "DZDSPeacekeepers": 25
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

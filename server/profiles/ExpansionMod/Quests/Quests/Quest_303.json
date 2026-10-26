@@ -1,0 +1,77 @@
+{
+    "ConfigVersion": 22,
+    "ID": 303,
+    "Type": 1,
+    "Title": "Aquifer Defense: Central Pump Security",
+    "Descriptions": [
+        "Nomads have been spotted scouting the perimeter fences at Central Pump Station. If someone tosses dynamite into the aquifer head, this entire basin dries up. Get down there and secure the perimeter.",
+        "Patrol the Central Pump Station perimeter.",
+        "Station reported secure. You've earned the Syndicate's trust. Here is a car battery and sharpening kit for your rig."
+    ],
+    "ObjectiveText": "Travel to Central Pump Station and secure the intake perimeter.",
+    "FollowUpQuest": 304,
+    "Repeatable": 0,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "CarBattery",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "Whetstone",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        4
+    ],
+    "QuestTurnInIDs": [
+        4
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 303,
+            "ObjectiveType": 3
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [
+        302
+    ],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSRust": 45
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

@@ -20,11 +20,15 @@
     "UseCategoryOrder": 0,
     "Categories": [
         "Food",
+        "Drinks",
         "Tools",
         "Supplies",
         "Backpacks",
         "Boots_And_Shoes",
-        "Coats_And_Jackets"
+        "Coats_And_Jackets",
+        "Gardening",
+        "Fruit_And_Vegetables",
+        "Containers"
     ],
     "Items": {}
 }

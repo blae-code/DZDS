@@ -1,17 +1,17 @@
 {
     "ConfigVersion": 22,
-    "ID": 112,
+    "ID": 107,
     "Type": 1,
-    "Title": "Desert Harvest: Compound Agriculture",
+    "Title": "Enlistment Contract: Fortress Sentinel Kaveh",
     "Descriptions": [
-        "Old world canned food is depleted. We have cultivated irrigation plots in the fortress shadow at Settler Haven. Harvest fresh tomatoes or zucchini to feed our sick.",
-        "Gather fresh crops and deliver them to Settler Haven.",
-        "Fresh vegetables replenish our food reserves. Take these seeds, lime, and a canteen for your homestead."
+        "Kaveh holds the south gate against raider incursions. He's a walking wall with a shotgun. If you want him on an assault expedition, contribute building supplies to reinforce the gate in his absence.",
+        "The gate carpenters need nails and a hatchet before Kaveh can leave his post.",
+        "Muster roll approved. The gate bastions are stocked. Kaveh is waiting at the south gate."
     ],
-    "ObjectiveText": "Harvest or collect fresh produce (Tomatoes/Zucchini) to feed the refugees at Settler Haven.",
+    "ObjectiveText": "Deliver 1 Box of Nails and 1 Hatchet to muster Kaveh the Sentinel.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
-    "IsDailyQuest": 1,
+    "IsDailyQuest": 0,
     "IsWeeklyQuest": 0,
     "CancelQuestOnPlayerDeath": 1,
     "Autocomplete": 0,
@@ -20,7 +20,7 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "Canteen",
+            "ClassName": "Paper",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -29,16 +29,7 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "TomatoSeeds",
-            "Amount": 1,
-            "Attachments": [],
-            "DamagePercent": 0,
-            "HealthPercent": 100,
-            "QuestID": -1,
-            "Chance": 1.0
-        },
-        {
-            "ClassName": "GardenLime",
+            "ClassName": "Ammo_12gaPellets",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -62,8 +53,8 @@
     "Objectives": [
         {
             "ConfigVersion": 28,
-            "ID": 112,
-            "ObjectiveType": 4
+            "ID": 107,
+            "ObjectiveType": 5
         }
     ],
     "QuestColor": 0,
@@ -73,11 +64,11 @@
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
-    "DeleteQuestItems": 0,
+    "DeleteQuestItems": 1,
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSSettlers": 25
+        "DZDSSettlers": 15
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

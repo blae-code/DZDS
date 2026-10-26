@@ -9,7 +9,15 @@
 # Settlers -> Peacekeepers.
 #
 # Examples (commented out; the war ledger / GM will add these as events happen):
-overrides: []
-#  - { from: Karkas, to: Rust, stance: friendly, until: 2026-12-01, why: "truce against the Jackals" }
-#  - { from: Rust, to: Karkas, stance: friendly, until: 2026-12-01, why: "truce against the Jackals" }
-#  - { from: Settlers, to: Peacekeepers, stance: hostile, until: 2026-11-20, why: "UN lockdown after the Balota shooting" }
+overrides:
+  # Task Force Blue Shield Humanitarian Corridor Accord: Settlers & Peacekeepers mutual protection
+  - { from: Settlers, to: Peacekeepers, stance: friendly, why: "UN Blue Shield Humanitarian Corridor Accord" }
+  - { from: Peacekeepers, to: Settlers, stance: friendly, why: "UN Blue Shield Humanitarian Corridor Accord" }
+
+  # Guzoline Pipeline Sabotage Feud: Rust Syndicate & Jackal Cohort active conflict
+  - { from: Rust, to: Jackals, stance: hostile, why: "Guzoline pipeline sabotage feud" }
+  - { from: Jackals, to: Rust, stance: hostile, why: "Guzoline pipeline sabotage feud" }
+
+  # Aquifer Drilling Dispute: Karkas Mountain Clan & Rust Syndicate high-ground friction
+  - { from: Karkas, to: Rust, stance: hostile, why: "Aquifer drilling boundary dispute" }
+  - { from: Rust, to: Karkas, stance: hostile, why: "Aquifer drilling boundary dispute" }

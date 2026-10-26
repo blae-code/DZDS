@@ -2,19 +2,19 @@
     "ConfigVersion": 28,
     "ID": 510,
     "ObjectiveType": 5,
-    "ObjectiveText": "Deliver supplies to Missile Base Ridge",
+    "ObjectiveText": "Bring an offering of wild game and hunting supplies to the Karkas Clan at Missile Base Ridge.",
     "TimeLimit": -1,
     "Active": 1,
     "Collections": [
         {
             "Amount": 1,
-            "ClassName": "WaterBottle",
+            "ClassName": "ExpansionBanknoteHryvnia",
             "QuantityPercent": -1,
             "MinQuantityPercent": -1
         }
     ],
     "ShowDistance": 1,
     "AddItemsToNearbyMarketZone": 0,
-    "MaxDistance": 30.0,
-    "MarkerName": "Target: Missile Base Ridge"
+    "MaxDistance": 35.0,
+    "MarkerName": "Missile Base Ridge"
 }

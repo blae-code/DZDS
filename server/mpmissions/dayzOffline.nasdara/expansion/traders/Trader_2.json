@@ -38,7 +38,7 @@
     "m_UseReputation": 0,
     "m_MinRequiredReputation": 0,
     "m_MaxRequiredReputation": 2147483647,
-    "m_RequiredCompletedQuestID": 101,
+    "m_RequiredCompletedQuestID": 503,
     "m_IsGlobalTrader": 0,
     "m_Currencies": [
         "expansionbanknotehryvnia",

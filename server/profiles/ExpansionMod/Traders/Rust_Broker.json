@@ -1,10 +1,10 @@
 {
     "m_Version": 13,
-    "DisplayName": "Rust Syndicate Water & Parts Broker",
+    "DisplayName": "Rust Syndicate Water Broker",
     "MinRequiredReputation": 0,
     "MaxRequiredReputation": 2147483647,
     "RequiredFaction": "",
-    "RequiredCompletedQuestID": 102,
+    "RequiredCompletedQuestID": 504,
     "TraderIcon": "Car",
     "Currencies": [
         "ammo_762x39",

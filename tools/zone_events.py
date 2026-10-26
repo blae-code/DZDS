@@ -116,8 +116,9 @@ def warzones(settings: dict, zs, strength: dict, factions: dict, roles: dict, cf
     w, out = cfg["warzones"], copy.deepcopy(settings)
     template = copy.deepcopy(settings["WarZones"][0]) if settings.get("WarZones") else {}
     made = []
+    extra = set(w.get("extra_warzones", []))
     for zn in zs:
-        if zn.state != "warzone":
+        if zn.state != "warzone" and zn.name not in extra:
             continue
         teams = _teams(zn.name, strength, factions, roles.get(zn.name, set()))
         if not teams:

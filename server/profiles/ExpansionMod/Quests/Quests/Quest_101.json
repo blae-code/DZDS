@@ -2,16 +2,16 @@
     "ConfigVersion": 22,
     "ID": 101,
     "Type": 1,
-    "Title": "Blue Shield Charter of Neutrality",
+    "Title": "The Well of Qalat: Water Purification",
     "Descriptions": [
-        "Task Force Blue Shield operates under strict United Nations humanitarian rules. Register as an accredited civilian survivor and deliver this dispatch to command.",
-        "Report to Task Force Blue Shield command at Eastern Airfield with the accredited dispatch.",
-        "Charter registered. You are officially accredited with Task Force Blue Shield. The UN Quartermaster is now authorized to trade with you."
+        "Welcome to Qalat-e Lut, traveler. Out here in the badlands, water kills as often as bullets. Untreated groundwater will give you cholera in hours. Take this empty canteen, scavenge purification tablets, and deliver a treated bottle to our cistern.",
+        "Have you treated the water? Don't drink directly from unverified basins.",
+        "Good work. Clean water is the difference between an outpost and a graveyard. Here are some matches and dried fruit for the road."
     ],
-    "ObjectiveText": "Deliver the medical status dispatch to the Blue Shield Command at Eastern Airfield.",
-    "FollowUpQuest": -1,
+    "ObjectiveText": "Deliver 1 Water Bottle and 1 pack of Purification Tablets to Elder Tariq.",
+    "FollowUpQuest": 102,
     "Repeatable": 1,
-    "IsDailyQuest": 0,
+    "IsDailyQuest": 1,
     "IsWeeklyQuest": 0,
     "CancelQuestOnPlayerDeath": 1,
     "Autocomplete": 0,
@@ -20,8 +20,17 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "ExpansionBanknoteHryvnia",
-            "Amount": 20,
+            "ClassName": "Matchbox",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "Apple",
+            "Amount": 2,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -30,7 +39,7 @@
         },
         {
             "ClassName": "BandageDressing",
-            "Amount": 2,
+            "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -44,10 +53,10 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        2
+        1
     ],
     "QuestTurnInIDs": [
-        2
+        1
     ],
     "IsAchievement": 0,
     "Objectives": [
@@ -68,7 +77,7 @@
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSPeacekeepers": 25
+        "DZDSSettlers": 20
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

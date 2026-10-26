@@ -1,0 +1,55 @@
+{
+    "ConfigVersion": 28,
+    "ID": 510,
+    "ObjectiveType": 9,
+    "ObjectiveText": "Escort the aid convoy to Settler Haven.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "MaxDistance": 25.0,
+    "MinDistance": -1.0,
+    "AllowedWeapons": [],
+    "AllowedDamageZones": [],
+    "AISpawn": {
+        "Name": "Escort_Settler_Haven",
+        "Persist": 0,
+        "Faction": "DZDSPeacekeepers",
+        "Formation": "SingleFile",
+        "FormationScale": 1.0,
+        "FormationLooseness": 0.0,
+        "Loadout": "DZDS_Peacekeepers",
+        "Units": [
+            "eAI_SurvivorM_Denis"
+        ],
+        "NumberOfAI": 1,
+        "Behaviour": 0,
+        "Speed": 1.0,
+        "UnderThreatSpeed": 2.0,
+        "CanBeLooted": 0,
+        "UnlimitedReload": 1,
+        "AccuracyMin": 0.4,
+        "AccuracyMax": 0.6,
+        "Headshots": 1,
+        "RespawnTime": -1,
+        "DespawnTime": 120,
+        "MinDistRadius": 50.0,
+        "MaxDistRadius": 1000.0,
+        "DespawnRadius": 1200.0,
+        "Waypoints": [
+            [
+                7560,
+                248.9,
+                8720
+            ]
+        ]
+    },
+    "Positions": [
+        [
+            7560,
+            248.9,
+            8720
+        ]
+    ],
+    "MarkerName": "Settler Haven",
+    "ShowDistance": 1,
+    "CanBeInjured": 1
+}

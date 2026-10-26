@@ -21,6 +21,6 @@
     ],
     "ShowDistance": 1,
     "AddItemsToNearbyMarketZone": 0,
-    "MaxDistance": 30.0,
-    "MarkerName": "Humanitarian Triage: Antibiotics & Bandages"
+    "MaxDistance": 35.0,
+    "MarkerName": "Eastern Airfield"
 }

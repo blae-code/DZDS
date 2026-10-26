@@ -1,17 +1,17 @@
 {
     "ConfigVersion": 22,
-    "ID": 111,
+    "ID": 502,
     "Type": 1,
-    "Title": "The Cistern of Life: Water Purification",
+    "Title": "Break the Siege: Southern Barracks",
     "Descriptions": [
-        "Untreated desert groundwater causes cholera and dehydration in hours. Take purification tablets, boil or treat raw water, and deliver a clean water bottle to the cistern at Settler Haven.",
-        "Deliver clean water and water purification tablets to the settlement cistern at Settler Haven.",
-        "Clean water received in full! The cistern is replenished for arriving refugees. Take these matches and dried apples."
+        "Hostile fighters have laid siege to Southern Barracks. Clear their patrol and secure the area so the settlement network can expand into the sector.",
+        "The hostile forces at Southern Barracks are still entrenched. Break their perimeter and drive them out.",
+        "The stronghold at Southern Barracks is clear! The Frontier Settlers owe you a profound debt of gratitude. The settlement network claims the ground."
     ],
-    "ObjectiveText": "Deliver clean water and purification tablets to the cistern at Settler Haven.",
+    "ObjectiveText": "Drive the fighters out of Southern Barracks so the settlers can move in.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
-    "IsDailyQuest": 1,
+    "IsDailyQuest": 0,
     "IsWeeklyQuest": 0,
     "CancelQuestOnPlayerDeath": 1,
     "Autocomplete": 0,
@@ -20,8 +20,8 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "Matchbox",
-            "Amount": 1,
+            "ClassName": "Ammo_762x39",
+            "Amount": 40,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -29,16 +29,7 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "Apple",
-            "Amount": 2,
-            "Attachments": [],
-            "DamagePercent": 0,
-            "HealthPercent": 100,
-            "QuestID": -1,
-            "Chance": 1.0
-        },
-        {
-            "ClassName": "BandageDressing",
+            "ClassName": "NailBox",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -53,17 +44,17 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        1
+        6
     ],
     "QuestTurnInIDs": [
-        1
+        6
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
-            "ID": 111,
-            "ObjectiveType": 5
+            "ID": 502,
+            "ObjectiveType": 7
         }
     ],
     "QuestColor": 0,
@@ -73,7 +64,7 @@
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
-    "DeleteQuestItems": 1,
+    "DeleteQuestItems": 0,
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {

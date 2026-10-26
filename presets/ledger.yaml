@@ -32,6 +32,11 @@ standing:                   # how each faction regards the players' group (-100.
       days: 7
       event: "UN lockdown: Task Force Blue Shield now treats settlers as hostile near its zones"
       overrides: [{ from: Settlers, to: Peacekeepers, stance: hostile }]
+    - faction: Peacekeepers
+      above: 35
+      days: 14
+      event: "Task Force Blue Shield Joint Humanitarian Defense Accord coordinates escorts with Settler convoys"
+      overrides: [{ from: Settlers, to: Peacekeepers, stance: friendly }, { from: Peacekeepers, to: Settlers, stance: friendly }]
     - faction: Karkas
       above: 40
       days: 14
@@ -42,6 +47,11 @@ standing:                   # how each faction regards the players' group (-100.
       days: 14
       event: "The Rust Syndicate extends water rights to the settlers"
       overrides: [{ from: Settlers, to: Rust, stance: friendly }, { from: Rust, to: Settlers, stance: friendly }]
+    - faction: Jackals
+      below: -70
+      days: 7
+      event: "Jackal Coalition mobilization: raiders launch coordinated assaults against all road convoys"
+      overrides: [{ from: Jackals, to: Settlers, stance: hostile }, { from: Jackals, to: Peacekeepers, stance: hostile }]
     - faction: Settlers
       below: 0
       days: 7

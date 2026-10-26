@@ -187,8 +187,12 @@ class WarLedger:
         """Record a completed quest contract and apply its world-changing impact."""
         quests_cfg = load_yaml("presets/quests.yaml")
         templates = quests_cfg.get("templates") or {}
+        fixed = quests_cfg.get("fixed_quests") or {}
+
+        # Search across templates and fixed story quests
+        all_specs: dict[str, dict] = {**templates, **{str(k): v for k, v in fixed.items()}}
         matched_key = None
-        for k, t in templates.items():
+        for k, t in all_specs.items():
             if k == quest_name_or_key or str(t.get("id")) == str(quest_name_or_key):
                 matched_key = k
                 break
@@ -196,9 +200,9 @@ class WarLedger:
                 matched_key = k
                 break
         if not matched_key:
-            matched_key = quest_name_or_key if quest_name_or_key in templates else "break_the_siege"
+            matched_key = quest_name_or_key if quest_name_or_key in all_specs else "break_the_siege"
 
-        spec = templates.get(matched_key, {})
+        spec = all_specs.get(matched_key, {})
         impact = spec.get("ledger_impact") or {}
         events = []
 
@@ -209,6 +213,16 @@ class WarLedger:
             elif spec.get("target") == "held_by:Jackals":
                 jackal_sites = [s for s, h in self.s.control.items() if h == "Jackals"]
                 site = jackal_sites[0] if jackal_sites else "North Highway Pileup"
+            elif spec.get("target_site"):
+                site = spec["target_site"]
+            elif spec.get("npc_giver") == 1:
+                site = "Qalat-e Lut"
+            elif spec.get("npc_giver") == 2:
+                site = "Eastern Airfield"
+            elif spec.get("npc_giver") == 4:
+                site = "Hilltop Water Station"
+            elif spec.get("npc_giver") == 5:
+                site = "Missile Base Ridge"
             else:
                 site = "Settler Haven"
 
@@ -218,7 +232,15 @@ class WarLedger:
             self.s.pressure[site][attacker] = self.s.pressure[site].get(attacker, 0) + int(impact["pressure"])
             events.append(f"{player_name} applied {impact['pressure']} liberation pressure for the Settlers at {site}")
 
-        for faction, delta in (impact.get("standing") or {}).items():
+        # Standing deltas from ledger_impact or reputation map
+        standing_deltas = dict(impact.get("standing") or {})
+        rep_map = spec.get("reputation") or spec.get("reputation_rewards") or {}
+        for rk, rv in rep_map.items():
+            f_clean = rk.replace("DZDS", "")
+            if f_clean not in standing_deltas:
+                standing_deltas[f_clean] = int(rv * 0.5)
+
+        for faction, delta in standing_deltas.items():
             old = self.s.standing.get(faction, 0.0)
             self.s.standing[faction] = max(-100.0, min(100.0, old + delta))
 
@@ -230,6 +252,18 @@ class WarLedger:
         if site and player_name:
             self.s.deeds.setdefault(site, {})
             self.s.deeds[site][player_name] = self.s.deeds[site].get(player_name, 0) + deed_n
+
+        # Community settlement projects contribution
+        comm_proj = spec.get("community_project")
+        if comm_proj:
+            yield_amt = float(spec.get("yield", 10.0))
+            try:
+                from gamemaster import survival_goals
+                mgr = survival_goals.get_manager()
+                mgr.record_contribution(comm_proj, yield_amt, contributor=player_name)
+                events.append(f"{player_name} contributed {yield_amt} to community project '{comm_proj}'")
+            except Exception:
+                pass
 
         title = spec.get("title", matched_key).format(site=site)
         ev_msg = f"{player_name} completed campaign contract '{title}' at {site}"

@@ -145,3 +145,76 @@ def test_water_rights_and_charter_unlocks():
 
     led.record_quest_completion("un_intro", "Blae", site="Eastern Airfield")
     assert led.s.standing["Peacekeepers"] > initial_pk_standing
+
+
+def test_dialogue_trees_structural_integrity():
+    """Verify that all 7 NPC dialogue trees have complete branching nodes and no broken NextNodeID targets."""
+    dialog_dir = ROOT / "server" / "profiles" / "DialogFramework" / "Dialogues"
+    for npc_id in range(1, 8):
+        dlg_file = dialog_dir / f"NPC_{npc_id}" / "Dialogue.json"
+        assert dlg_file.exists(), f"Dialogue for NPC {npc_id} missing"
+        data = json.loads(dlg_file.read_text())
+        assert data["ID"] == npc_id
+        assert data["RootNodeID"] == 1
+        node_ids = {n["ID"] for n in data["Nodes"]}
+        assert 1 in node_ids
+        assert 2 in node_ids  # Intel
+        assert 3 in node_ids  # Standing & Politics
+        assert 4 in node_ids  # Survival Tips
+
+        # Verify all NextNodeIDs point to 0 (exit) or an existing node in the tree
+        for node in data["Nodes"]:
+            for resp in node["Responses"]:
+                nxt = resp["NextNodeID"]
+                assert nxt == 0 or nxt in node_ids, f"Broken NextNodeID {nxt} in NPC {npc_id} Node {node['ID']}"
+                assert resp["ActionType"] in ("NONE", "SHOW_QUEST_LIST", "OPEN_TRADER_MENU", "END_CONVERSATION")
+
+
+def test_fixed_story_progression_arcs_compiled():
+    """Verify that all fixed story arcs (Settlers, UN, Rust, Karkas) are compiled into quests."""
+    quests_dir = ROOT / "server" / "profiles" / "ExpansionMod" / "Quests" / "Quests"
+    # Settlers arc
+    for qid in [101, 102, 103, 104, 105]:
+        qfile = quests_dir / f"Quest_{qid}.json"
+        assert qfile.exists(), f"Missing story quest {qid}"
+        qdata = json.loads(qfile.read_text())
+        assert qdata["ID"] == qid
+        assert qdata["QuestGiverIDs"] == [1]
+
+    # UN Blue Shield arc
+    for qid in [201, 202, 203]:
+        qfile = quests_dir / f"Quest_{qid}.json"
+        assert qfile.exists(), f"Missing story quest {qid}"
+        qdata = json.loads(qfile.read_text())
+        assert qdata["ID"] == qid
+        assert qdata["QuestGiverIDs"] == [2]
+
+    # Rust Syndicate arc
+    for qid in [301, 302, 303]:
+        qfile = quests_dir / f"Quest_{qid}.json"
+        assert qfile.exists(), f"Missing story quest {qid}"
+        qdata = json.loads(qfile.read_text())
+        assert qdata["ID"] == qid
+        assert qdata["QuestGiverIDs"] == [4]
+
+    # Karkas arc
+    for qid in [401, 402]:
+        qfile = quests_dir / f"Quest_{qid}.json"
+        assert qfile.exists(), f"Missing story quest {qid}"
+        qdata = json.loads(qfile.read_text())
+        assert qdata["ID"] == qid
+        assert qdata["QuestGiverIDs"] == [5]
+
+
+def test_community_quest_completion_advances_survival_goals():
+    """Verify that completing a community project quest advances the SurvivalGoalsManager reserves."""
+    from gamemaster import survival_goals
+    mgr = survival_goals.get_manager()
+    initial_water = mgr.state["projects"]["water_reserves"]["current"]
+
+    led = WarLedger.new("nasdara")
+    events = led.record_quest_completion("water_purification", "Blae", site="Settler Haven")
+
+    assert any("contributed" in e and "water_reserves" in e for e in events)
+    assert mgr.state["projects"]["water_reserves"]["current"] > initial_water
+

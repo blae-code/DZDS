@@ -1732,16 +1732,24 @@ class RefugeeArrivals
 	void GiveNpcCompanion(PlayerBase player, vector spawnPos)
 	{
 #ifdef EXPANSIONMODAI
-		eAIBase ai = eAIBase.Cast(GetGame().CreateObjectEx("SurvivorM_Mirek", spawnPos, ECE_INITAI));
+		TStringArray models = new TStringArray;
+		models.Insert("SurvivorM_Mirek");
+		models.Insert("SurvivorM_Boris");
+		models.Insert("SurvivorF_Eva");
+		models.Insert("SurvivorM_Denis");
+		string charModel = models.GetRandomElement();
+
+		eAIBase ai = eAIBase.Cast(GetGame().CreateObjectEx(charModel, spawnPos, ECE_INITAI));
 		if (ai)
 		{
 			ai.SetFaction(new eAIFactionDZDSSettlers());
+			DZDSCompanionManager.EquipRecruitCompanion(ai);
 			eAIGroup grp = player.GetGroup();
 			if (!grp)
 				grp = eAIGroup.GetGroupByLeader(player);
 			if (grp)
 				grp.AddMember(ai);
-			Print("[DZDS Arrivals] Spawned NPC Settler companion for " + player.GetIdentity().GetName());
+			Print("[DZDS Arrivals] Spawned equipped Settler companion (" + charModel + ") for " + player.GetIdentity().GetName());
 		}
 #endif
 	}
@@ -1883,6 +1891,99 @@ class RefugeeArrivals
 	}
 }
 
+class DZDSCompanionDef
+{
+	string Name;
+	string Title;
+	string EntityClass;
+	string Loadout;
+	vector Position;
+	float Heading;
+	string Station;
+
+	void DZDSCompanionDef(string name, string title, string entityCls, string loadout, vector pos, float heading, string station)
+	{
+		Name = name;
+		Title = title;
+		EntityClass = entityCls;
+		Loadout = loadout;
+		Position = pos;
+		Heading = heading;
+		Station = station;
+	}
+};
+
+class DZDSCompanionManager
+{
+	static ref array<ref DZDSCompanionDef> s_Roster;
+	static ref array<eAIBase> s_StationedAI;
+
+	static void Init()
+	{
+#ifdef EXPANSIONMODAI
+		if (!s_Roster)
+		{
+			s_Roster = new array<ref DZDSCompanionDef>;
+			s_Roster.Insert(new DZDSCompanionDef("Soran the Scout", "Desert Tracker", "SurvivorM_Mirek", "DZDS_Settlers_scout", "14865.0 0.0 7970.0", 0.0, "North Watchtower"));
+			s_Roster.Insert(new DZDSCompanionDef("Kaveh the Sentinel", "Fortress Guard", "SurvivorM_Boris", "DZDS_Settlers_guard", "14837.0 0.0 7815.0", 180.0, "South Gate Bastion"));
+			s_Roster.Insert(new DZDSCompanionDef("Dr. Yasmin", "Field Surgeon", "SurvivorF_Eva", "DZDS_Settlers_medic", "14825.0 0.0 7855.0", 90.0, "Courtyard Clinic"));
+			s_Roster.Insert(new DZDSCompanionDef("Rostam the Scavenger", "Logistics Runner", "SurvivorM_Denis", "DZDS_Settlers_scavenger", "14790.0 0.0 7880.0", 90.0, "West Workshop"));
+		}
+
+		if (!s_StationedAI)
+			s_StationedAI = new array<eAIBase>;
+
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnGarrison, 15000, false);
+#endif
+	}
+
+	static void SpawnGarrison()
+	{
+#ifdef EXPANSIONMODAI
+		if (!s_Roster)
+			return;
+
+		foreach (DZDSCompanionDef def : s_Roster)
+		{
+			eAIBase ai = eAIBase.Cast(GetGame().CreateObjectEx(def.EntityClass, def.Position, ECE_INITAI));
+			if (ai)
+			{
+				vector ori = Vector(def.Heading, 0, 0);
+				ai.SetOrientation(ori);
+				ai.SetFaction(new eAIFactionDZDSSettlers());
+				ExpansionHumanLoadout.Apply(ai, def.Loadout, false);
+
+				s_StationedAI.Insert(ai);
+				Print("[DZDS Companions] Stationed " + def.Name + " (" + def.Title + ") at " + def.Station + " " + def.Position.ToString());
+			}
+		}
+		Print("[DZDS Companions] Spawned " + s_StationedAI.Count() + " hirable companion(s) at Qalat-e Lut.");
+#endif
+	}
+
+	static void EquipRecruitCompanion(eAIBase ai, int variantIndex = -1)
+	{
+#ifdef EXPANSIONMODAI
+		if (!ai)
+			return;
+
+		TStringArray loadouts = new TStringArray;
+		loadouts.Insert("DZDS_Settlers_scout");
+		loadouts.Insert("DZDS_Settlers_guard");
+		loadouts.Insert("DZDS_Settlers_medic");
+		loadouts.Insert("DZDS_Settlers_scavenger");
+
+		string loadout = "DZDS_Settlers";
+		if (variantIndex >= 0 && variantIndex < loadouts.Count())
+			loadout = loadouts[variantIndex];
+		else
+			loadout = loadouts.GetRandomElement();
+
+		ExpansionHumanLoadout.Apply(ai, loadout, false);
+#endif
+	}
+};
+
 class CustomMission: MissionServer
 {
 	ref RefugeeArrivals m_RefugeeArrivals;
@@ -1891,6 +1992,7 @@ class CustomMission: MissionServer
 	override void OnInit()
 	{
 		super.OnInit();
+		DZDSCompanionManager.Init();
 		if (FileExist(RefugeeArrivals.SELFTEST))
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(RunVehicleSelfTest, 60000, false);
 		if (FileExist(RefugeeArrivals.SPOTTEST))

@@ -17,12 +17,14 @@
     "DisplayCurrencyName": "",
     "UseCategoryOrder": 0,
     "Categories": [
-        "Weapons",
+        "Pistols",
+        "Rifles",
+        "Shotguns",
         "Optics",
         "Magazines",
         "Muzzles",
         "Locks",
-        "Special"
+        "Explosives_And_Grenades"
     ],
     "Items": {}
 }

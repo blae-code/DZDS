@@ -1,0 +1,87 @@
+{
+    "ConfigVersion": 22,
+    "ID": 403,
+    "Type": 1,
+    "Title": "Defend the Sacred Runoff: Dam Perimeter",
+    "Descriptions": [
+        "The Rust Syndicate's heavy pumps at Northern Dam choke the rivers that feed the high springs. The iron-heads drill into rock that does not belong to them. Go down to the dam wall, inspect their machinery intake, and mark the southern gate. Let them know the mountain clan is watching.",
+        "Descend to Northern Dam. Stay off the turbine catwalks if the syndicate guards are alert.",
+        "The mountain spirits remember your courage. The clan now knows where the Syndicate draws its pressure. Take this hunting rifle ammunition and tribal rope."
+    ],
+    "ObjectiveText": "Travel to Northern Dam and signal the Karkas mountain watchers.",
+    "FollowUpQuest": -1,
+    "Repeatable": 0,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "Ammo_762x54",
+            "Amount": 30,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "HuntingKnife",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "Rope",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        5
+    ],
+    "QuestTurnInIDs": [
+        5
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 403,
+            "ObjectiveType": 3
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [
+        402
+    ],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSKarkas": 35,
+        "DZDSRust": -25
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

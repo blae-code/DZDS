@@ -1,16 +1,16 @@
 {
     "ConfigVersion": 22,
-    "ID": 604,
+    "ID": 302,
     "Type": 1,
-    "Title": "Break the Siege: Southern Barracks",
+    "Title": "Scrap & Metalworks: Industrial Armor",
     "Descriptions": [
-        "Hostile fighters have laid siege to Southern Barracks. Clear their patrol and secure the area so the settlement network can expand into the sector.",
-        "The hostile forces at Southern Barracks are still entrenched. Break their perimeter and drive them out.",
-        "The stronghold at Southern Barracks is clear! The Frontier Settlers owe you a profound debt of gratitude. The settlement network claims the ground."
+        "Sandstorms scour our pump manifolds and vehicle cabs. We need structural metal plates and plumbing wrenches to patch pressure pipes and weld armor on our water tankers. Scavenge the industrial plants.",
+        "Search Cement Works and machine shops for plate and heavy tools.",
+        "Heavy grade steel. Our welders will have the tankers reinforced by nightfall. Take this repair wire and duct tape."
     ],
-    "ObjectiveText": "Drive the fighters out of Southern Barracks so the settlers can move in.",
-    "FollowUpQuest": -1,
-    "Repeatable": 1,
+    "ObjectiveText": "Deliver 2 Metal Plates and 1 Pipe Wrench to Broker Koval.",
+    "FollowUpQuest": 303,
+    "Repeatable": 0,
     "IsDailyQuest": 0,
     "IsWeeklyQuest": 0,
     "CancelQuestOnPlayerDeath": 1,
@@ -20,8 +20,8 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "Ammo_762x39",
-            "Amount": 40,
+            "ClassName": "DuctTape",
+            "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -29,7 +29,7 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "NailBox",
+            "ClassName": "MetalWire",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -44,31 +44,33 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        1
+        4
     ],
     "QuestTurnInIDs": [
-        1
+        4
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
-            "ID": 604,
-            "ObjectiveType": 7
+            "ID": 302,
+            "ObjectiveType": 5
         }
     ],
     "QuestColor": 0,
     "ReputationReward": 0,
     "ReputationRequirement": -1,
-    "PreQuestIDs": [],
+    "PreQuestIDs": [
+        301
+    ],
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
-    "DeleteQuestItems": 0,
+    "DeleteQuestItems": 1,
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSSettlers": 25
+        "DZDSRust": 30
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

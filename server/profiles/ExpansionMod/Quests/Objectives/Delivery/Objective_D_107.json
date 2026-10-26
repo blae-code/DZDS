@@ -1,0 +1,26 @@
+{
+    "ConfigVersion": 28,
+    "ID": 107,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver 1 Box of Nails and 1 Hatchet to muster Kaveh the Sentinel.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 1,
+            "ClassName": "NailBox",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 1,
+            "ClassName": "Hatchet",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 35.0,
+    "MarkerName": "Qalat-e Lut"
+}

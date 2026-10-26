@@ -1,29 +1,29 @@
 {
     "ConfigVersion": 6,
     "ID": 4,
-    "ClassName": "ExpansionQuestNPCAIDenis",
+    "ClassName": "ExpansionQuestNPCAIBoris",
     "Position": [
-        2846.0,
-        399.18,
-        9176.0
+        8290.0,
+        286.32,
+        6510.0
     ],
     "Orientation": [
-        0.0,
+        270.0,
         0.0,
         0.0
     ],
-    "NPCName": "Elder Tariq",
-    "DefaultNPCText": "The Karkas hold the heights. Only those who honor the mountain walk these ridges unmolested.",
+    "NPCName": "Broker Koval",
+    "DefaultNPCText": "The Syndicate runs the pumps. No fuel, no maintenance, no water. Everything has a price.",
     "Waypoints": [
         [
-            2846.0,
-            399.18,
-            9176.0
+            8290.0,
+            286.32,
+            6510.0
         ]
     ],
     "NPCEmoteID": 46,
     "NPCEmoteIsStatic": 1,
-    "NPCLoadoutFile": "DZDS_Karkas_elder",
+    "NPCLoadoutFile": "DZDS_Rust_foreman",
     "NPCInteractionEmoteID": 1,
     "NPCQuestCancelEmoteID": 60,
     "NPCQuestStartEmoteID": 58,

@@ -1,29 +1,29 @@
 {
     "ConfigVersion": 6,
     "ID": 7,
-    "ClassName": "ExpansionQuestNPCAIDenis",
+    "ClassName": "ExpansionQuestNPCAIElias",
     "Position": [
-        9736.0,
-        154.72,
-        6396.0
+        14840.0,
+        208.66,
+        7910.0
     ],
     "Orientation": [
-        0.0,
+        315.0,
         0.0,
         0.0
     ],
-    "NPCName": "Overseer Radim",
-    "DefaultNPCText": "Syndicate Industrial Works. Scavenge or trade, but don't interfere with the machinery.",
+    "NPCName": "The Smuggler",
+    "DefaultNPCText": "Keep it quiet and keep it clean. No factions, no flags out here. Just honest trade.",
     "Waypoints": [
         [
-            9736.0,
-            154.72,
-            6396.0
+            14840.0,
+            208.66,
+            7910.0
         ]
     ],
     "NPCEmoteID": 46,
     "NPCEmoteIsStatic": 1,
-    "NPCLoadoutFile": "DZDS_Rust",
+    "NPCLoadoutFile": "DZDS_Settlers",
     "NPCInteractionEmoteID": 1,
     "NPCQuestCancelEmoteID": 60,
     "NPCQuestStartEmoteID": 58,

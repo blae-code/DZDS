@@ -1,3 +1,34 @@
 {
-    "Overrides": []
+    "Overrides": [
+        {
+            "From": "DZDSSettlers",
+            "To": "DZDSPeacekeepers",
+            "Friendly": true
+        },
+        {
+            "From": "DZDSPeacekeepers",
+            "To": "DZDSSettlers",
+            "Friendly": true
+        },
+        {
+            "From": "DZDSRust",
+            "To": "DZDSJackals",
+            "Friendly": false
+        },
+        {
+            "From": "DZDSJackals",
+            "To": "DZDSRust",
+            "Friendly": false
+        },
+        {
+            "From": "DZDSKarkas",
+            "To": "DZDSRust",
+            "Friendly": false
+        },
+        {
+            "From": "DZDSRust",
+            "To": "DZDSKarkas",
+            "Friendly": false
+        }
+    ]
 }

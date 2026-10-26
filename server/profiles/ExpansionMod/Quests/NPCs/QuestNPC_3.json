@@ -1,29 +1,29 @@
 {
     "ConfigVersion": 6,
     "ID": 3,
-    "ClassName": "ExpansionQuestNPCAIElias",
+    "ClassName": "ExpansionQuestNPCAIHassan",
     "Position": [
-        8300.0,
-        286.32,
-        6520.0
+        3250.0,
+        279.37,
+        4630.0
     ],
     "Orientation": [
         0.0,
         0.0,
         0.0
     ],
-    "NPCName": "Foreman Grigori",
-    "DefaultNPCText": "Syndicate pump head. Water has a price in the Badlands. Keep your hands where I can see them.",
+    "NPCName": "Dr. Al-Mansoor",
+    "DefaultNPCText": "If you're wounded or feverish, sit down. If you have medical supplies, hand them over.",
     "Waypoints": [
         [
-            8300.0,
-            286.32,
-            6520.0
+            3250.0,
+            279.37,
+            4630.0
         ]
     ],
     "NPCEmoteID": 46,
     "NPCEmoteIsStatic": 1,
-    "NPCLoadoutFile": "DZDS_Rust_foreman",
+    "NPCLoadoutFile": "DZDS_Peacekeepers",
     "NPCInteractionEmoteID": 1,
     "NPCQuestCancelEmoteID": 60,
     "NPCQuestStartEmoteID": 58,

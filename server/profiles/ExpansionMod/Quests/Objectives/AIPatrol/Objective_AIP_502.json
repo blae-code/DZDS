@@ -2,32 +2,59 @@
     "ConfigVersion": 28,
     "ID": 502,
     "ObjectiveType": 7,
-    "ObjectiveText": "Patrol and clear hostile fighters at Southern Barracks",
+    "ObjectiveText": "Drive the fighters out of Southern Barracks so the settlers can move in.",
     "TimeLimit": -1,
     "Active": 1,
-    "MaxDistance": -1.0,
+    "MaxDistance": 250.0,
     "MinDistance": -1.0,
     "AllowedWeapons": [],
     "AllowedDamageZones": [],
     "AISpawn": {
-        "Name": "FrontLinePatrol_502",
+        "Name": "Hostiles_Southern_Barracks",
         "Persist": 0,
-        "Faction": "West",
+        "Faction": "DZDSJackals",
         "Formation": "Vee",
         "FormationScale": 1.5,
         "FormationLooseness": 0.0,
-        "Loadout": "BanditLoadout",
+        "Loadout": "DZDS_Jackals",
         "Units": [
             "eAI_SurvivorM_Denis",
-            "eAI_SurvivorM_Elias",
+            "eAI_SurvivorM_Boris",
             "eAI_SurvivorF_Eva"
         ],
+        "NumberOfAI": 3,
+        "Behaviour": 0,
+        "Speed": 1.0,
+        "UnderThreatSpeed": 2.0,
+        "CanBeLooted": 1,
+        "UnlimitedReload": 1,
+        "SniperProneDistanceThreshold": 100.0,
+        "AccuracyMin": 0.35,
+        "AccuracyMax": 0.55,
+        "Headshots": 1,
+        "RespawnTime": -1,
+        "DespawnTime": 120,
+        "MinDistRadius": 50.0,
+        "MaxDistRadius": 800.0,
+        "DespawnRadius": 1000.0,
         "Waypoints": [
             [
-                8230.0,
-                0.0,
-                5700.0
+                8230,
+                261.92,
+                5700
+            ],
+            [
+                8255,
+                261.92,
+                5720
+            ],
+            [
+                8210,
+                261.92,
+                5730
             ]
         ]
-    }
+    },
+    "MarkerName": "Southern Barracks",
+    "ShowDistance": 1
 }

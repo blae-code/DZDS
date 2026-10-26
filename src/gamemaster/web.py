@@ -57,6 +57,7 @@ import zones as zmod  # noqa: E402
 from .adm import parse_line  # noqa: E402
 from .ledger import STATE, WarLedger  # noqa: E402
 from . import survival_goals  # noqa: E402
+from . import companions  # noqa: E402
 
 
 PWA_VERSION = "2026.10.24-v2"
@@ -2418,10 +2419,12 @@ class SandboxStore:
             "front_plan": {
                 "traders": traders,
                 "quests": quests,
-                "npcs": campaign_gen.NPC_PROFILES,
+                "fixed_quests": quests_cfg.get("fixed_quests", {}),
+                "npcs": campaign_gen.load_npc_profiles(quests_cfg),
                 "currencies": traders_cfg.get("currencies", {}),
             },
             "survival_goals": survival_goals.get_manager().get_summary(),
+            "companions": companions.get_manager().get_summary(),
             "arrivals": {
                 "cooldown_hours": arrivals_cfg.get("cooldown_hours", 24),
                 "nav_kit": arrivals_cfg.get("nav_kit", {}),
@@ -2594,8 +2597,9 @@ def handle_api(
     """Pure dispatcher for API requests (testable without a socket)."""
     pstore = profile_store or PROFILES
     smgr = share_manager or SHARES
-    map_name = (query.get("map") or [body.get("map") or active.map_name()])[0]
-    uid = sanitize_user_id((query.get("user") or [body.get("user_id") or user_id])[0])
+    body_dict = body if isinstance(body, dict) else {}
+    map_name = (query.get("map") or [body_dict.get("map") or active.map_name()])[0]
+    uid = sanitize_user_id((query.get("user") or [body_dict.get("user_id") or user_id])[0])
 
     if method == "GET" and path == "/api/state":
         return HTTPStatus.OK, STORE.build_state(map_name, user_id=uid, is_operator=is_operator)
@@ -2642,6 +2646,27 @@ def handle_api(
         who = str(body.get("contributor") or "Survivor")
         res = survival_goals.get_manager().record_contribution(pid, amt, contributor=who)
         return HTTPStatus.OK, {"status": "ok", "project": res, "summary": survival_goals.get_manager().get_summary()}
+
+    # Hirable Companions & Qalat-e Lut Garrison API
+    if method == "GET" and path == "/api/companions":
+        return HTTPStatus.OK, companions.get_manager().get_summary()
+    if method == "POST" and path == "/api/companions/hire":
+        cid = str(body.get("companion_id") or "soran_scout")
+        who = str(body.get("player") or "Survivor")
+        notes = str(body.get("notes") or "")
+        try:
+            res = companions.get_manager().hire_companion(cid, who, notes=notes)
+            return HTTPStatus.OK, {"status": "ok", "companion": res, "summary": companions.get_manager().get_summary()}
+        except ValueError as e:
+            return HTTPStatus.BAD_REQUEST, {"error": str(e)}
+    if method == "POST" and path == "/api/companions/dismiss":
+        cid = str(body.get("companion_id") or "soran_scout")
+        reason = str(body.get("reason") or "Returned to Qalat-e Lut garrison")
+        try:
+            res = companions.get_manager().dismiss_companion(cid, reason=reason)
+            return HTTPStatus.OK, {"status": "ok", "companion": res, "summary": companions.get_manager().get_summary()}
+        except ValueError as e:
+            return HTTPStatus.BAD_REQUEST, {"error": str(e)}
 
     # Per-User Persistent Preferences & Settings API
     if method == "GET" and path == "/api/prefs":
@@ -2698,6 +2723,9 @@ def handle_api(
         return HTTPStatus.OK, smgr.start_tunnel(port=port, provider=provider, custom_url=custom_url)
 
     return HTTPStatus.NOT_FOUND, {"error": f"Unknown endpoint: {method} {path}"}
+
+
+handle_request = handle_api
 
 
 LOOPBACK_HOSTS = ("127.0.0.1", "localhost", "::1")

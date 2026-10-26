@@ -4,7 +4,7 @@
     "MinRequiredReputation": 0,
     "MaxRequiredReputation": 2147483647,
     "RequiredFaction": "",
-    "RequiredCompletedQuestID": 101,
+    "RequiredCompletedQuestID": 503,
     "TraderIcon": "Medic Box",
     "Currencies": [
         "expansionbanknotehryvnia",
@@ -18,7 +18,9 @@
         "Medical",
         "Navigation",
         "Electronics",
-        "Consumables",
+        "Food",
+        "Drinks",
+        "Kits",
         "Helmets",
         "Vests"
     ],

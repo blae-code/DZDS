@@ -7,11 +7,11 @@
     "Active": 1,
     "Position": [
         7560.0,
-        0.0,
+        248.9,
         8720.0
     ],
-    "MaxDistance": 35.0,
-    "MarkerName": "Humanitarian Corridor: Safe Passage",
+    "MaxDistance": 40.0,
+    "MarkerName": "Settler Haven",
     "ShowDistance": 1,
     "TriggerOnEnter": 1,
     "TriggerOnExit": 0

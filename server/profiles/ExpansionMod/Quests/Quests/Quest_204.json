@@ -1,0 +1,88 @@
+{
+    "ConfigVersion": 22,
+    "ID": 204,
+    "Type": 1,
+    "Title": "Syndicate Recon: Cement Works Infiltration",
+    "Descriptions": [
+        "We have tracked markings from stolen Blue Shield medical convoys to the Rust Syndicate compound at Cement Works. We cannot risk an open ground war, but we need eyes on their storage yard. Infiltrate the perimeter, locate their fuel depot, and report back.",
+        "Infiltrate Cement Works without causing an all-out war. Confirm the location of the stolen crates.",
+        "Intel received. The Syndicate is hoarding fuel and medical surplus just as we suspected. Here is standard-issue 5.56mm ammunition and an emergency first aid kit."
+    ],
+    "ObjectiveText": "Travel to Cement Works to scout the Syndicate fuel depot and verify missing UN relief crates.",
+    "FollowUpQuest": -1,
+    "Repeatable": 0,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "Ammo_556x45",
+            "Amount": 40,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "FirstAidKit",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "ExpansionBanknoteHryvnia",
+            "Amount": 200,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        2
+    ],
+    "QuestTurnInIDs": [
+        2
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 204,
+            "ObjectiveType": 3
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [
+        203
+    ],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSPeacekeepers": 35,
+        "DZDSRust": -25,
+        "DZDSSettlers": 15
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

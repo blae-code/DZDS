@@ -42,7 +42,43 @@ factions:
       - [PainkillerTablets, 0, 1]
       - [Matchbox, 0, 1]
       - [Canteen, 0, 1]
-    variants: {}
+    variants:
+      scout:
+        Headgear: [RadarCap_Brown, BoonieHat_Olive, BeanieHat_Brown]
+        Body:     [HuntingJacket_Brown, QuiltedJacket_Green]
+        Vest:     [HuntingVest]
+        Legs:     [HunterPants_Brown, CargoPants_Green]
+        Feet:     [HikingBoots_Brown]
+        Back:     [HuntingBag]
+        Shoulder: [CZ527, Winchester70]
+        Melee:    [HuntingKnife]
+      guard:
+        Headgear: [BallisticHelmet_Green, GorkaHelmet]
+        Body:     [DenimJacket, BomberJacket_Brown]
+        Vest:     [HighCapacityVest_Olive, PlateCarrierVest_Green]
+        Legs:     [CargoPants_Green, CargoPants_Beige]
+        Feet:     [WorkingBoots_Brown, CombatBoots_Black]
+        Back:     [AssaultBag_Green, TortillaBag_Desert]
+        Shoulder: [Mp133Shotgun, SKS]
+        Melee:    [Hatchet, WoodAxe]
+      medic:
+        Headgear: [RadarCap_Brown, BeanieHat_Green]
+        Body:     [ParamedicJacket_Blue, ParamedicJacket_Crimson]
+        Vest:     [ChestRigVest_Khaki, ReflexVest]
+        Legs:     [ParamedicPants_Blue, ParamedicPants_Crimson]
+        Feet:     [HikingBoots_Black, WorkingBoots_Beige]
+        Back:     [DuffelBagSmall_Green, TaloonBag_Blue]
+        Shoulder: [CZ527, Repeater]
+        Melee:    [KitchenKnife]
+      scavenger:
+        Headgear: [FlatCap_Brown, BeanieHat_Brown]
+        Body:     [Hoodie_Green, QuiltedJacket_Green]
+        Vest:     [HuntingVest]
+        Legs:     [Jeans_Blue, CanvasPants_Beige]
+        Feet:     [WorkingBoots_Brown, Wellies_Brown]
+        Back:     [MountainBag_Green, MountainBag_Blue]
+        Shoulder: [Izh43Shotgun, Mp133Shotgun, Ruger1022]
+        Melee:    [Pickaxe, FieldShovel, Crowbar]
 
   Peacekeepers:
     slots:

@@ -1,29 +1,29 @@
 {
     "ConfigVersion": 6,
     "ID": 5,
-    "ClassName": "ExpansionQuestNPCAIElias",
+    "ClassName": "ExpansionQuestNPCAIKaito",
     "Position": [
-        14850.0,
-        208.66,
-        7920.0
+        2840.0,
+        399.18,
+        9170.0
     ],
     "Orientation": [
-        0.0,
+        45.0,
         0.0,
         0.0
     ],
-    "NPCName": "The Smuggler",
-    "DefaultNPCText": "Keep it quiet and keep it clean. No factions, no flags out here. Just honest trade.",
+    "NPCName": "Elder Soroush",
+    "DefaultNPCText": "The desert wind strips flesh from bone. Only those who honor the ridge survive.",
     "Waypoints": [
         [
-            14850.0,
-            208.66,
-            7920.0
+            2840.0,
+            399.18,
+            9170.0
         ]
     ],
     "NPCEmoteID": 46,
     "NPCEmoteIsStatic": 1,
-    "NPCLoadoutFile": "DZDS_Settlers",
+    "NPCLoadoutFile": "DZDS_Karkas_elder",
     "NPCInteractionEmoteID": 1,
     "NPCQuestCancelEmoteID": 60,
     "NPCQuestStartEmoteID": 58,

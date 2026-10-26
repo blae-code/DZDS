@@ -2,13 +2,13 @@
     "ConfigVersion": 22,
     "ID": 108,
     "Type": 1,
-    "Title": "High Ridge Rite of Passage: Missile Base Ridge",
+    "Title": "Enlistment Contract: Field Medic Dr. Yasmin",
     "Descriptions": [
-        "The mountain marksmen of the Karkas Clan hold the high ground. Pay tribute with hunting supplies to prove your honor and earn passage through their ridges.",
-        "Elder Tariq waits on the high ridge at Missile Base Ridge for the hunter's tribute.",
-        "The clan accepts your offering. You walk with the mountain's blessing. Our scouts will hold their fire."
+        "Dr. Yasmin runs triage in the courtyard clinic. If you want her alongside you in the badlands to treat combat trauma and infections, restock the clinic's emergency reserve first.",
+        "Deliver the medical reserve supplies to the clinic so our patients aren't left stranded.",
+        "Clinic supplies replenished. Dr. Yasmin is cleared for field deployment. Speak with her in the courtyard clinic."
     ],
-    "ObjectiveText": "Bring an offering of wild game and hunting supplies to the Karkas Clan at Missile Base Ridge.",
+    "ObjectiveText": "Deliver 2 Bandages and 1 Saline Bag to muster Dr. Yasmin.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
     "IsDailyQuest": 0,
@@ -20,7 +20,7 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "Compass",
+            "ClassName": "Paper",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -29,8 +29,8 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "Ammo_762x54",
-            "Amount": 20,
+            "ClassName": "PainkillerTablets",
+            "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -44,10 +44,10 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        4
+        1
     ],
     "QuestTurnInIDs": [
-        4
+        1
     ],
     "IsAchievement": 0,
     "Objectives": [
@@ -68,7 +68,7 @@
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSKarkas": 35
+        "DZDSSettlers": 15
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

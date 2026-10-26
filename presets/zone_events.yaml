@@ -24,6 +24,9 @@ warzones:
   # faction it doesn't know into West, so set `custom` (DZDSJackals...) only once the published
   # @DZDS includes DZDSWarZones.c ("[DZDS] War Zones factions" in the RPT).
   faction_names: interim
+  extra_warzones:
+    - "North Highway Pileup"
+    - "Missile Base Ridge"
 convoy:
   min_interval_s: 3600
   max_interval_s: 7200

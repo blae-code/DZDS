@@ -11,7 +11,7 @@
 # giver: faction offering it (its nearest held site hosts the quest giver)
 templates:
   break_the_siege:
-    id: 103
+    id: 501
     target: contested
     giver: Settlers
     objective: AIPATROL
@@ -33,7 +33,7 @@ templates:
       deeds: 3
 
   clear_jackal_camp:
-    id: 104
+    id: 502
     target: held_by:Jackals
     giver: Settlers
     objective: AICAMP
@@ -56,7 +56,7 @@ templates:
       deeds: 2
 
   un_intro:
-    id: 101
+    id: 503
     target: held_by:Peacekeepers
     giver: Peacekeepers
     objective: DELIVERY
@@ -76,7 +76,7 @@ templates:
       standing: { Peacekeepers: 15 }
 
   water_rights:
-    id: 102
+    id: 504
     target: held_by:Rust
     role: water
     giver: Rust
@@ -99,7 +99,7 @@ templates:
       strength: { Rust: 2 }
 
   recon_rust_works:
-    id: 105
+    id: 505
     target: held_by:Rust
     giver: Peacekeepers
     objective: TRAVEL
@@ -118,7 +118,7 @@ templates:
       standing: { Peacekeepers: 10 }
 
   aid_convoy_escort:
-    id: 106
+    id: 506
     target: held_by:Settlers
     giver: Peacekeepers
     objective: AIESCORT
@@ -139,7 +139,7 @@ templates:
       strength: { Settlers: 3 }
 
   defend_homestead:
-    id: 107
+    id: 507
     target: raid_target
     giver: Settlers
     objective: AIPATROL
@@ -159,7 +159,7 @@ templates:
       deeds: 5
 
   high_ridge_tribute:
-    id: 108
+    id: 508
     target: held_by:Karkas
     role: high_ground
     giver: Karkas
@@ -179,7 +179,7 @@ templates:
       standing: { Karkas: 25 }
 
   refinery_salvage:
-    id: 109
+    id: 509
     target: held_by:Rust
     role: industrial
     giver: Rust
@@ -199,7 +199,7 @@ templates:
       strength: { Rust: 2 }
 
   smuggler_cache:
-    id: 110
+    id: 510
     target: role:remote
     giver: none
     objective: TRAVEL
@@ -217,7 +217,7 @@ templates:
       deeds: 1
 
   water_purification:
-    id: 111
+    id: 511
     target: held_by:Settlers
     giver: Settlers
     objective: DELIVERY
@@ -233,6 +233,8 @@ templates:
     cancel_on_death: true
     repeatable: true
     daily: true
+    community_project: "water_reserves"
+    yield: 15
     rewards:
       - { ClassName: Matchbox, Amount: 1 }
       - { ClassName: Apple, Amount: 2 }
@@ -243,7 +245,7 @@ templates:
       standing: { Settlers: 15 }
 
   desert_harvest:
-    id: 112
+    id: 512
     target: held_by:Settlers
     giver: Settlers
     objective: COLLECTION
@@ -258,6 +260,8 @@ templates:
     cancel_on_death: true
     repeatable: true
     daily: true
+    community_project: "water_reserves"
+    yield: 10
     rewards:
       - { ClassName: Canteen, Amount: 1 }
       - { ClassName: TomatoSeeds, Amount: 1 }
@@ -268,7 +272,7 @@ templates:
       standing: { Settlers: 20 }
 
   leatherwork_tack:
-    id: 113
+    id: 513
     target: held_by:Settlers
     giver: Settlers
     objective: COLLECTION
@@ -282,6 +286,8 @@ templates:
       - { class: "WildboarPelt", amount: 1 }
     cancel_on_death: true
     repeatable: true
+    community_project: "fortification"
+    yield: 10
     rewards:
       - { ClassName: HuntingKnife, Amount: 1 }
       - { ClassName: LeatherSewingKit, Amount: 1 }
@@ -291,7 +297,7 @@ templates:
       standing: { Settlers: 15 }
 
   fortify_compound:
-    id: 114
+    id: 514
     target: held_by:Settlers
     giver: Settlers
     objective: DELIVERY
@@ -306,6 +312,8 @@ templates:
       - { class: "NailBox", amount: 1 }
     cancel_on_death: true
     repeatable: true
+    community_project: "fortification"
+    yield: 15
     rewards:
       - { ClassName: Whetstone, Amount: 1 }
       - { ClassName: HandSaw, Amount: 1 }
@@ -316,7 +324,7 @@ templates:
       standing: { Settlers: 25 }
 
   comms_relay_grid:
-    id: 115
+    id: 515
     target: role:high_ground
     giver: Settlers
     objective: TRAVEL
@@ -328,6 +336,8 @@ templates:
       - "Repeater synchronized. Settler emergency broadcasts now cover the entire northern basin. Take these 9V batteries and personal radio."
     cancel_on_death: true
     repeatable: true
+    community_project: "comms_grid"
+    yield: 10
     rewards:
       - { ClassName: PersonalRadio, Amount: 1 }
       - { ClassName: Battery9V, Amount: 2 }
@@ -337,7 +347,7 @@ templates:
       standing: { Settlers: 20 }
 
   medical_relief:
-    id: 116
+    id: 516
     target: held_by:Peacekeepers
     giver: Peacekeepers
     objective: DELIVERY
@@ -353,6 +363,8 @@ templates:
     cancel_on_death: true
     repeatable: true
     daily: true
+    community_project: "medical_stockpile"
+    yield: 8
     rewards:
       - { ClassName: FirstAidKit, Amount: 1 }
       - { ClassName: Morphine, Amount: 1 }
@@ -435,6 +447,16 @@ fixed_npcs:
     loadout: "DZDS_Settlers"
     greeting: "I watch the north roads. The raiders are always looking for a gap in our lines."
 
+  7:
+    name: "The Smuggler"
+    faction: none
+    role_site: "Eastern Caravanserai"
+    position: [14840.0, 0.0, 7910.0]
+    heading: 315.0
+    classname: "ExpansionQuestNPCAIElias"
+    loadout: "DZDS_Settlers"
+    greeting: "Keep it quiet and keep it clean. No factions, no flags out here. Just honest trade."
+
 fixed_quests:
   # ----------------------------------------------------------------------------
   # Frontier Settlers — Survival & Settlement Fortification (Qalat-e Lut HQ)
@@ -447,6 +469,8 @@ fixed_quests:
     repeatable: true
     daily: true
     cancel_on_death: true
+    community_project: "water_reserves"
+    yield: 25
     objective_type: DELIVERY
     objective_text: "Deliver 1 Water Bottle and 1 pack of Purification Tablets to Elder Tariq."
     items_required:
@@ -509,6 +533,8 @@ fixed_quests:
     follow_up: 105
     pre_quest: 103
     cancel_on_death: true
+    community_project: "fortification"
+    yield: 25
     objective_type: DELIVERY
     objective_text: "Deliver 4 Wooden Planks and 1 box of Nails to reinforce the south gate."
     items_required:
@@ -529,6 +555,8 @@ fixed_quests:
     npc_turnin: 1
     pre_quest: 104
     cancel_on_death: true
+    community_project: "comms_grid"
+    yield: 20
     objective_type: TRAVEL
     objective_text: "Travel to the high radio tower at North Border Post to inspect the relay."
     target_site: "North Border Post"
@@ -541,6 +569,82 @@ fixed_quests:
       - { class: "Battery9V", amount: 2 }
     reputation: { DZDSSettlers: 35 }
 
+  106:
+    title: "Enlistment Contract: Desert Scout Soran"
+    npc_giver: 1
+    npc_turnin: 1
+    repeatable: true
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 1 Water Bottle and 1 5-round CZ527 magazine to muster Soran the Scout."
+    items_required:
+      - { class: "WaterBottle", amount: 1 }
+      - { class: "Mag_CZ527_5rnd", amount: 1 }
+    briefing: "Soran is our best long-range tracker. He watches the northern dunes from the watchtower staging. Deliver expedition provisions—a water bottle and spare magazine—and I'll issue your squad enlistment order."
+    in_progress: "Soran needs expedition supplies before he heads into the desert. Bring the water and magazine."
+    completion: "Contract registered. Soran is cleared to join your squad. Find him at the north watchtower staging and tell him you're moving out."
+    rewards:
+      - { class: "Paper", amount: 1 }
+      - { class: "Ammo_762x39", amount: 1 }
+    reputation: { DZDSSettlers: 15 }
+
+  107:
+    title: "Enlistment Contract: Fortress Sentinel Kaveh"
+    npc_giver: 1
+    npc_turnin: 1
+    repeatable: true
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 1 Box of Nails and 1 Hatchet to muster Kaveh the Sentinel."
+    items_required:
+      - { class: "NailBox", amount: 1 }
+      - { class: "Hatchet", amount: 1 }
+    briefing: "Kaveh holds the south gate against raider incursions. He's a walking wall with a shotgun. If you want him on an assault expedition, contribute building supplies to reinforce the gate in his absence."
+    in_progress: "The gate carpenters need nails and a hatchet before Kaveh can leave his post."
+    completion: "Muster roll approved. The gate bastions are stocked. Kaveh is waiting at the south gate."
+    rewards:
+      - { class: "Paper", amount: 1 }
+      - { class: "Ammo_12gaPellets", amount: 1 }
+    reputation: { DZDSSettlers: 15 }
+
+  108:
+    title: "Enlistment Contract: Field Medic Dr. Yasmin"
+    npc_giver: 1
+    npc_turnin: 1
+    repeatable: true
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 2 Bandages and 1 Saline Bag to muster Dr. Yasmin."
+    items_required:
+      - { class: "BandageDressing", amount: 2 }
+      - { class: "SalineBagIV", amount: 1 }
+    briefing: "Dr. Yasmin runs triage in the courtyard clinic. If you want her alongside you in the badlands to treat combat trauma and infections, restock the clinic's emergency reserve first."
+    in_progress: "Deliver the medical reserve supplies to the clinic so our patients aren't left stranded."
+    completion: "Clinic supplies replenished. Dr. Yasmin is cleared for field deployment. Speak with her in the courtyard clinic."
+    rewards:
+      - { class: "Paper", amount: 1 }
+      - { class: "PainkillerTablets", amount: 1 }
+    reputation: { DZDSSettlers: 15 }
+
+  109:
+    title: "Enlistment Contract: Scavenger Rostam"
+    npc_giver: 1
+    npc_turnin: 1
+    repeatable: true
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 1 Duct Tape and 2 Cans of Food to muster Rostam the Scavenger."
+    items_required:
+      - { class: "DuctTape", amount: 1 }
+      - { class: "BakedBeansCan", amount: 2 }
+    briefing: "Rostam works out of the west workshop. With his mountain pack, he can carry half a car wreck on his back. Bring repair tape and food rations for the workshop stockpile to contract him."
+    in_progress: "Rostam needs replacement salvage tape and workshop rations before he packs up."
+    completion: "Workshop order logged. Rostam is ready to haul salvage. Find him at the west depot."
+    rewards:
+      - { class: "Paper", amount: 1 }
+      - { class: "Rope", amount: 1 }
+    reputation: { DZDSSettlers: 15 }
+
   # ----------------------------------------------------------------------------
   # UN Task Force Blue Shield — Humanitarian & Medical Relief
   # ----------------------------------------------------------------------------
@@ -552,6 +656,8 @@ fixed_quests:
     repeatable: true
     daily: true
     cancel_on_death: true
+    community_project: "medical_stockpile"
+    yield: 20
     objective_type: DELIVERY
     objective_text: "Deliver 1 Tetracycline Antibiotics and 2 Bandage Dressings to Capt. Miller."
     items_required:
@@ -590,6 +696,7 @@ fixed_quests:
     npc_giver: 2
     npc_turnin: 6
     pre_quest: 202
+    follow_up: 204
     cancel_on_death: true
     objective_type: TRAVEL
     objective_text: "Travel along the central route from Eastern Airfield to Settler Haven."
@@ -603,6 +710,43 @@ fixed_quests:
       - { class: "ExpansionBanknoteHryvnia", amount: 150 }
     reputation: { DZDSPeacekeepers: 40, DZDSSettlers: 25 }
 
+  204:
+    title: "Syndicate Recon: Cement Works Infiltration"
+    npc_giver: 2
+    npc_turnin: 2
+    pre_quest: 203
+    cancel_on_death: true
+    objective_type: TRAVEL
+    objective_text: "Travel to Cement Works to scout the Syndicate fuel depot and verify missing UN relief crates."
+    target_site: "Cement Works"
+    target_pos: [9730.0, 0.0, 6390.0]
+    briefing: "We have tracked markings from stolen Blue Shield medical convoys to the Rust Syndicate compound at Cement Works. We cannot risk an open ground war, but we need eyes on their storage yard. Infiltrate the perimeter, locate their fuel depot, and report back."
+    in_progress: "Infiltrate Cement Works without causing an all-out war. Confirm the location of the stolen crates."
+    completion: "Intel received. The Syndicate is hoarding fuel and medical surplus just as we suspected. Here is standard-issue 5.56mm ammunition and an emergency first aid kit."
+    rewards:
+      - { class: "Ammo_556x45", amount: 40 }
+      - { class: "FirstAidKit", amount: 1 }
+      - { class: "ExpansionBanknoteHryvnia", amount: 200 }
+    reputation: { DZDSPeacekeepers: 35, DZDSRust: -25, DZDSSettlers: 15 }
+
+  205:
+    title: "Black Box Recovery: High Ridge Crash"
+    npc_giver: 3
+    npc_turnin: 3
+    cancel_on_death: true
+    objective_type: TRAVEL
+    objective_text: "Climb to North Border Post and locate the downed Blue Shield surveillance drone."
+    target_site: "North Border Post"
+    target_pos: [2910.0, 0.0, 15740.0]
+    briefing: "Our high-altitude reconnaissance drone went down near the cliffs of North Border Post. It carries encrypted flight telemetry detailing tribal movements across the basin. Retrieve the flight recorder before Karkas marksmen strip it for wire."
+    in_progress: "Ascend toward North Border Post. Watch the cliffs; Karkas snipers do not warn twice."
+    completion: "Telemetry module recovered intact. The encryption held. Excellent work, survivor. Take these military surgical dressings and sterile saline."
+    rewards:
+      - { class: "SalineBagIV", amount: 1 }
+      - { class: "StartKitIV", amount: 1 }
+      - { class: "Morphine", amount: 2 }
+    reputation: { DZDSPeacekeepers: 30, DZDSKarkas: -15 }
+
   # ----------------------------------------------------------------------------
   # Rust Syndicate — Resource Leverage & Industrial Maintenance
   # ----------------------------------------------------------------------------
@@ -614,6 +758,8 @@ fixed_quests:
     repeatable: true
     daily: true
     cancel_on_death: true
+    community_project: "fuel_depot"
+    yield: 30
     objective_type: DELIVERY
     objective_text: "Deliver 1 Canister of Gasoline and 1 Spark Plug to Broker Koval."
     items_required:
@@ -652,6 +798,7 @@ fixed_quests:
     npc_giver: 4
     npc_turnin: 4
     pre_quest: 302
+    follow_up: 304
     cancel_on_death: true
     objective_type: TRAVEL
     objective_text: "Travel to Central Pump Station and secure the intake perimeter."
@@ -664,6 +811,25 @@ fixed_quests:
       - { class: "CarBattery", amount: 1 }
       - { class: "Whetstone", amount: 1 }
     reputation: { DZDSRust: 45 }
+
+  304:
+    title: "Highway Tolls: Jackal Roadblock Sweep"
+    npc_giver: 4
+    npc_turnin: 4
+    pre_quest: 303
+    cancel_on_death: true
+    objective_type: TRAVEL
+    objective_text: "Travel to North Highway Pileup to break the Jackal extortion toll gate."
+    target_site: "North Highway Pileup"
+    target_pos: [3110.0, 0.0, 15250.0]
+    briefing: "Jackal scavengers have dragged gutted buses across the highway at North Highway Pileup. They are demanding fifty liters of Guzoline for every water tanker passing through. The Syndicate does not pay tolls. Head north, punch through their roadblock, and scatter the scavengers."
+    in_progress: "Clear the Jackal roadblock at North Highway Pileup."
+    completion: "The tankers made it through without coughing up a single liter. The Syndicate remembers who clears its roads. Here is Guzoline and high-grade 7.62 rounds."
+    rewards:
+      - { class: "CanisterGasoline", amount: 1 }
+      - { class: "Ammo_762x39", amount: 40 }
+      - { class: "SparkPlug", amount: 1 }
+    reputation: { DZDSRust: 35, DZDSJackals: -30, DZDSSettlers: 15 }
 
   # ----------------------------------------------------------------------------
   # Karkas Clan — Wilderness Mastery & Mountain Survival
@@ -692,6 +858,7 @@ fixed_quests:
     npc_giver: 5
     npc_turnin: 5
     pre_quest: 401
+    follow_up: 403
     cancel_on_death: true
     objective_type: TRAVEL
     objective_text: "Climb to the high observation pinnacle on Missile Base Ridge."
@@ -704,3 +871,66 @@ fixed_quests:
       - { class: "Binoculars", amount: 1 }
       - { class: "PersonalRadio", amount: 1 }
     reputation: { DZDSKarkas: 40 }
+
+  403:
+    title: "Defend the Sacred Runoff: Dam Perimeter"
+    npc_giver: 5
+    npc_turnin: 5
+    pre_quest: 402
+    cancel_on_death: true
+    objective_type: TRAVEL
+    objective_text: "Travel to Northern Dam and signal the Karkas mountain watchers."
+    target_site: "Northern Dam"
+    target_pos: [3570.0, 0.0, 14380.0]
+    briefing: "The Rust Syndicate's heavy pumps at Northern Dam choke the rivers that feed the high springs. The iron-heads drill into rock that does not belong to them. Go down to the dam wall, inspect their machinery intake, and mark the southern gate. Let them know the mountain clan is watching."
+    in_progress: "Descend to Northern Dam. Stay off the turbine catwalks if the syndicate guards are alert."
+    completion: "The mountain spirits remember your courage. The clan now knows where the Syndicate draws its pressure. Take this hunting rifle ammunition and tribal rope."
+    rewards:
+      - { class: "Ammo_762x54", amount: 30 }
+      - { class: "HuntingKnife", amount: 1 }
+      - { class: "Rope", amount: 1 }
+    reputation: { DZDSKarkas: 35, DZDSRust: -25 }
+
+  # ----------------------------------------------------------------------------
+  # The Smuggler — Neutral Contraband & Cross-Faction Arms Brokerage
+  # ----------------------------------------------------------------------------
+  701:
+    title: "Black Market Munitions: Militia Arms Drop"
+    npc_giver: 7
+    npc_turnin: 7
+    follow_up: 702
+    cancel_on_death: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 1 Box of 5.56x45mm Ammo to The Smuggler."
+    items_required:
+      - { class: "AmmoBox_556x45_20Rnd", amount: 1 }
+    briefing: "I don't ask where you get your brass, friend. Blue Shield supply sergeants sell out the back of their trucks, and Settler militias in Qalat-e Lut are screaming for rifle rounds. Bring me a sealed box of military 5.56 ammunition. I'll make sure it reaches the farmers, and I'll pay you in hard currency."
+    in_progress: "Find military ammunition and bring it to the Caravanserai."
+    completion: "Sealed military surplus. The settlers will sleep a little easier tonight knowing their watchtowers have rounds. Here is your cut."
+    rewards:
+      - { class: "ExpansionBanknoteHryvnia", amount: 250 }
+      - { class: "Lockpick", amount: 2 }
+      - { class: "MilitaryBelt", amount: 1 }
+    reputation: { DZDSSettlers: 35, DZDSPeacekeepers: -15 }
+
+  702:
+    title: "Guzoline Bootlegging: Fuel Siphon"
+    npc_giver: 7
+    npc_turnin: 7
+    pre_quest: 701
+    cancel_on_death: true
+    repeatable: true
+    daily: true
+    objective_type: DELIVERY
+    objective_text: "Deliver 1 full Canister of Gasoline to The Smuggler."
+    items_required:
+      - { class: "CanisterGasoline", amount: 1 }
+    briefing: "The Syndicate runs a monopoly on Guzoline. They choke out any independent driver who won't bow to their water masters. Siphon a full fuel canister from their refinery drums at Cement Works or any abandoned pump, and bring it to me. I've got vehicle mechanics willing to pay top dollar."
+    in_progress: "Fill a jerrycan with gasoline and bring it to the Caravanserai."
+    completion: "Pure, amber fuel. Our buggies will run another week on this. Here are spare vehicle parts and heavy repair wire."
+    rewards:
+      - { class: "SparkPlug", amount: 1 }
+      - { class: "MetalPlate", amount: 2 }
+      - { class: "DuctTape", amount: 1 }
+      - { class: "ExpansionBanknoteHryvnia", amount: 100 }
+    reputation: { DZDSSettlers: 25, DZDSRust: -20 }

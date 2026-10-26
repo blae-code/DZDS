@@ -1,0 +1,20 @@
+{
+    "ConfigVersion": 28,
+    "ID": 701,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver 1 Box of 5.56x45mm Ammo to The Smuggler.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 1,
+            "ClassName": "AmmoBox_556x45_20Rnd",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 35.0,
+    "MarkerName": "Eastern Caravanserai"
+}

@@ -1,14 +1,14 @@
 {
     "ConfigVersion": 22,
-    "ID": 113,
+    "ID": 518,
     "Type": 1,
     "Title": "Tanning & Leatherwork: Bedouin Craft",
     "Descriptions": [
-        "Synthetic gear rots under badlands sun. Hunt wild boar or deer, skin the pelt, and bring it to Settler Haven for tanning into horse tack and canteens.",
+        "Synthetic gear rots under badlands sun. Hunt wild boar or deer, skin the pelt, and bring it to Eastern Caravanserai for tanning into horse tack and canteens.",
         "Track wild game in the plains and collect a clean pelt.",
         "Sturdy hide. With lime and water, this will make water bladders and saddles that last for years. Take this hunting knife and sewing kit."
     ],
-    "ObjectiveText": "Hunt wild game in the desert scrub and collect pelts for the leathercrafter at Settler Haven.",
+    "ObjectiveText": "Hunt wild game in the desert scrub and collect pelts for the leathercrafter at Eastern Caravanserai.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
     "IsDailyQuest": 0,
@@ -53,7 +53,7 @@
     "Objectives": [
         {
             "ConfigVersion": 28,
-            "ID": 113,
+            "ID": 518,
             "ObjectiveType": 4
         }
     ],

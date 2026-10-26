@@ -1,0 +1,60 @@
+{
+    "ConfigVersion": 28,
+    "ID": 1002,
+    "ObjectiveType": 7,
+    "ObjectiveText": "Drive the fighters out of Southern Barracks so the settlers can move in.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "MaxDistance": -1.0,
+    "MinDistance": -1.0,
+    "AllowedWeapons": [],
+    "AllowedDamageZones": [],
+    "AISpawn": {
+        "Name": "Hostiles_Southern_Barracks",
+        "Persist": 0,
+        "Faction": "DZDSJackals",
+        "Formation": "Vee",
+        "FormationScale": 1.5,
+        "FormationLooseness": 0.0,
+        "Loadout": "DZDS_Jackals",
+        "Units": [
+            "eAI_SurvivorM_Denis",
+            "eAI_SurvivorM_Boris",
+            "eAI_SurvivorF_Eva",
+            "eAI_SurvivorM_Mirek"
+        ],
+        "NumberOfAI": 4,
+        "Behaviour": 0,
+        "Speed": 1,
+        "UnderThreatSpeed": 2,
+        "CanBeLooted": 1,
+        "UnlimitedReload": 1,
+        "SniperProneDistanceThreshold": 0.0,
+        "AccuracyMin": 0.28,
+        "AccuracyMax": 0.48,
+        "ThreatDistanceLimit": 300.0,
+        "DamageMultiplier": 1.0,
+        "DamageReceivedMultiplier": 1.0,
+        "MinDistRadius": 50.0,
+        "MaxDistRadius": 400.0,
+        "DespawnTime": 0.0,
+        "RespawnTime": -1.0,
+        "Waypoints": [
+            [
+                8230,
+                261.92,
+                5700
+            ],
+            [
+                8265,
+                261.92,
+                5735
+            ],
+            [
+                8195,
+                261.92,
+                5665
+            ]
+        ]
+    }
+}

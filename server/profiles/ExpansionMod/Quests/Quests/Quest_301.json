@@ -1,0 +1,75 @@
+{
+    "ConfigVersion": 22,
+    "ID": 301,
+    "Type": 1,
+    "Title": "The Price of Pumping: Fuel & Spark Plugs",
+    "Descriptions": [
+        "The Syndicate runs the deep-well turbine pumps at Hilltop Station. Pumping water from four hundred feet takes diesel and electricity. Bring us fuel and a fresh spark plug, and we'll keep the water valves open.",
+        "The pumps won't turn on prayers. Bring the fuel and the plug.",
+        "Fuel tested. The turbine pressure is back up. Here is clean drinking water and medical stims from our stash."
+    ],
+    "ObjectiveText": "Deliver 1 Canister of Gasoline and 1 Spark Plug to Broker Koval.",
+    "FollowUpQuest": 302,
+    "Repeatable": 1,
+    "IsDailyQuest": 1,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "WaterBottle",
+            "Amount": 2,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "Epinephrine",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        4
+    ],
+    "QuestTurnInIDs": [
+        4
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 301,
+            "ObjectiveType": 5
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 1,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSRust": 25
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

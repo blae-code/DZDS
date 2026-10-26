@@ -1,0 +1,85 @@
+{
+    "ConfigVersion": 22,
+    "ID": 701,
+    "Type": 1,
+    "Title": "Black Market Munitions: Militia Arms Drop",
+    "Descriptions": [
+        "I don't ask where you get your brass, friend. Blue Shield supply sergeants sell out the back of their trucks, and Settler militias in Qalat-e Lut are screaming for rifle rounds. Bring me a sealed box of military 5.56 ammunition. I'll make sure it reaches the farmers, and I'll pay you in hard currency.",
+        "Find military ammunition and bring it to the Caravanserai.",
+        "Sealed military surplus. The settlers will sleep a little easier tonight knowing their watchtowers have rounds. Here is your cut."
+    ],
+    "ObjectiveText": "Deliver 1 Box of 5.56x45mm Ammo to The Smuggler.",
+    "FollowUpQuest": 702,
+    "Repeatable": 0,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "ExpansionBanknoteHryvnia",
+            "Amount": 250,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "Lockpick",
+            "Amount": 2,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "MilitaryBelt",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        7
+    ],
+    "QuestTurnInIDs": [
+        7
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 701,
+            "ObjectiveType": 5
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 1,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSSettlers": 35,
+        "DZDSPeacekeepers": -15
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

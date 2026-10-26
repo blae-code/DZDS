@@ -1,14 +1,14 @@
 {
     "ConfigVersion": 22,
-    "ID": 633,
+    "ID": 702,
     "Type": 1,
-    "Title": "UN Field Hospital Relief: Southwest Base",
+    "Title": "Guzoline Bootlegging: Fuel Siphon",
     "Descriptions": [
-        "Task Force Blue Shield is operating a humanitarian field hospital at Southwest Base. We urgently need broad-spectrum antibiotics and sterile bandages.",
-        "Deliver antibiotics and bandages to Blue Shield command at Southwest Base.",
-        "Medical supplies cataloged. This will prevent a major cholera outbreak among the displaced civilians."
+        "The Syndicate runs a monopoly on Guzoline. They choke out any independent driver who won't bow to their water masters. Siphon a full fuel canister from their refinery drums at Cement Works or any abandoned pump, and bring it to me. I've got vehicle mechanics willing to pay top dollar.",
+        "Fill a jerrycan with gasoline and bring it to the Caravanserai.",
+        "Pure, amber fuel. Our buggies will run another week on this. Here are spare vehicle parts and heavy repair wire."
     ],
-    "ObjectiveText": "Deliver Tetracycline Antibiotics and Bandages to the Blue Shield field hospital at Southwest Base.",
+    "ObjectiveText": "Deliver 1 full Canister of Gasoline to The Smuggler.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
     "IsDailyQuest": 1,
@@ -20,7 +20,7 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "FirstAidKit",
+            "ClassName": "SparkPlug",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -29,7 +29,16 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "Morphine",
+            "ClassName": "MetalPlate",
+            "Amount": 2,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "DuctTape",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -39,7 +48,7 @@
         },
         {
             "ClassName": "ExpansionBanknoteHryvnia",
-            "Amount": 30,
+            "Amount": 100,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -53,23 +62,25 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        6
+        7
     ],
     "QuestTurnInIDs": [
-        6
+        7
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
-            "ID": 633,
+            "ID": 702,
             "ObjectiveType": 5
         }
     ],
     "QuestColor": 0,
     "ReputationReward": 0,
     "ReputationRequirement": -1,
-    "PreQuestIDs": [],
+    "PreQuestIDs": [
+        701
+    ],
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
@@ -77,7 +88,8 @@
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSPeacekeepers": 25
+        "DZDSSettlers": 25,
+        "DZDSRust": -20
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

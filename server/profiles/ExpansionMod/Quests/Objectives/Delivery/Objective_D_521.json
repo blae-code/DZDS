@@ -1,0 +1,26 @@
+{
+    "ConfigVersion": 28,
+    "ID": 521,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver wooden planks and nails to reinforce the barricades at Settler Haven.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 4,
+            "ClassName": "WoodenPlank",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 1,
+            "ClassName": "NailBox",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 35.0,
+    "MarkerName": "Settler Haven"
+}

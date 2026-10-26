@@ -2,19 +2,19 @@
     "ConfigVersion": 28,
     "ID": 504,
     "ObjectiveType": 5,
-    "ObjectiveText": "Deliver supplies to Eastern Airfield",
+    "ObjectiveText": "Deliver the medical status dispatch to the Blue Shield Command at Eastern Airfield.",
     "TimeLimit": -1,
     "Active": 1,
     "Collections": [
         {
             "Amount": 1,
-            "ClassName": "WaterBottle",
+            "ClassName": "ExpansionBanknoteHryvnia",
             "QuantityPercent": -1,
             "MinQuantityPercent": -1
         }
     ],
     "ShowDistance": 1,
     "AddItemsToNearbyMarketZone": 0,
-    "MaxDistance": 30.0,
-    "MarkerName": "Target: Eastern Airfield"
+    "MaxDistance": 35.0,
+    "MarkerName": "Eastern Airfield"
 }

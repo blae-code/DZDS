@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 204,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Travel to Cement Works to scout the Syndicate fuel depot and verify missing UN relief crates.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        9730.0,
+        154.72,
+        6390.0
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "Cement Works",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

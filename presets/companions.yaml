@@ -1,0 +1,150 @@
+# ==============================================================================
+# Hirable NPC Companions: Qalat-e Lut Fortress Garrison & Expedition Roster
+# ==============================================================================
+# Single source of truth for specialized settler companions stationed at
+# Qalat-e Lut (Frontier Settlers HQ, [14837, 7855]).
+#
+# Gameplay integration:
+#   1. In-game recruitment: NPCs spawn as eAIFactionDZDSSettlers with
+#      CanRecruitFriendly: 1 (AISettings.json). Walk up and use Expansion's
+#      recruitment interaction to add them to your squad (eAIGroup).
+#   2. Command & control: Use Expansion AI command wheel (Follow, Stay/Hold,
+#      Cover, Move, Formation). Companions board vehicles with the player and
+#      engage hostile tribes (Jackals, Karkas, Rust) and infected.
+#   3. Inventory management: Look at a recruit and open inventory to transfer
+#      gear, weapons, ammunition, or healing supplies.
+#   4. Stationing at Qalat-e Lut: Dismissing a companion returns them to their
+#      assigned post at Qalat-e Lut, reinforcing compound security.
+#   5. Hiring retainers: Players can negotiate contracts directly or through
+#      Elder Tariq's enlistment contracts at the courtyard.
+
+settlement:
+  id: "qalat_e_lut"
+  name: "Qalat-e Lut Fortress"
+  hq_coordinates: [14837.0, 0.0, 7855.0]
+  faction: "DZDSSettlers"
+  max_squad_size: 4
+
+command_guide:
+  recruit_action: "Look at the companion and press the Interaction key (F / Middle Click) to recruit."
+  squad_wheel: "Use the Expansion AI command wheel (default: comma ',' or middle-click) to give orders."
+  orders:
+    - name: "Follow Me"
+      desc: "Companion maintains formation and travels with you on foot or in vehicles."
+    - name: "Hold / Stay Here"
+      desc: "Companion anchors at the target spot to guard a watchtower, gate, or camp."
+    - name: "Cover Me / Attack"
+      desc: "Designates rules of engagement or attacks a specific enemy squad."
+    - name: "Vehicle Travel"
+      desc: "Companion automatically boards passenger seats when you enter a vehicle."
+    - name: "Dismiss / Return"
+      desc: "Dismisses companion from your group; they resume garrison duties at Qalat-e Lut."
+
+companions:
+  soran_scout:
+    id: "soran_scout"
+    name: "Soran the Scout"
+    title: "Desert Tracker & Marksman"
+    gender: "male"
+    entity_class: "SurvivorM_Mirek"
+    loadout: "DZDS_Settlers_scout"
+    position: [14865.0, 0.0, 7970.0]
+    orientation: [0.0, 0.0, 0.0]
+    station: "North Watchtower & Dunes Staging"
+    specialization: "Reconnaissance, Tracking & Precision Fire"
+    description: "Born in the badlands, Soran tracks dust trails and spots raider ambushes well before they close range."
+    bark: "I know every dune between here and the border. Keep your eyes on the ridge."
+    primary_weapon: "CZ527 Scoped Carbine"
+    secondary_weapon: "Hunting Knife & Binoculars"
+    role_perks:
+      - "+40% threat detection distance in desert terrain"
+      - "Equipped with binoculars and compass for waypoint guidance"
+      - "Silent stalking stance in rocky outcroppings"
+    retainer_cost:
+      - item: "Canteen"
+        amount: 1
+        desc: "Purified water canteen"
+      - item: "Mag_CZ527_5rnd"
+        amount: 1
+        desc: "5-round 7.62x39 magazine"
+
+  kaveh_guard:
+    id: "kaveh_guard"
+    name: "Kaveh the Sentinel"
+    title: "Fortress Guard & Breacher"
+    gender: "male"
+    entity_class: "SurvivorM_Boris"
+    loadout: "DZDS_Settlers_guard"
+    position: [14837.0, 0.0, 7815.0]
+    orientation: [180.0, 0.0, 0.0]
+    station: "South Gate Bastion"
+    specialization: "Close-Quarters Defense, Breaching & Riot Suppression"
+    description: "A former compound sentry who defended the outer walls against three Jackal assaults without yielding an inch."
+    bark: "Nobody touches these gates while I draw breath. Let's hit the raiders hard."
+    primary_weapon: "MP-133 Tactical Shotgun & SKS Carbine"
+    secondary_weapon: "Firefighter Wood Axe"
+    role_perks:
+      - "Heavy armor and ballistic headgear protection"
+      - "High stopping power against close-range rushers"
+      - "Fortification guarding: holds chokepoints and doorways"
+    retainer_cost:
+      - item: "NailBox"
+        amount: 1
+        desc: "Box of construction nails"
+      - item: "Hatchet"
+        amount: 1
+        desc: "Woodcutting hatchet"
+
+  yasmin_medic:
+    id: "yasmin_medic"
+    name: "Dr. Yasmin"
+    title: "Field Surgeon & Triage Medic"
+    gender: "female"
+    entity_class: "SurvivorF_Eva"
+    loadout: "DZDS_Settlers_medic"
+    position: [14825.0, 0.0, 7855.0]
+    orientation: [90.0, 0.0, 0.0]
+    station: "Courtyard Medical Clinic"
+    specialization: "Field Trauma, Hemorrhage Control & Disease Treatment"
+    description: "A veteran of the regional refugee aid clinics, Yasmin keeps the expedition alive through desert heat, infections, and bullet wounds."
+    bark: "In this heat, an infected wound will kill you in a day. Stay close and let me patch you."
+    primary_weapon: "IJ-70 Sidearm & Repeater Carbine"
+    secondary_weapon: "First Aid Kit & Scalpel"
+    role_perks:
+      - "Carries IV saline bags, epinephrine, and blood test kits"
+      - "Supplies antibiotics (tetracycline) for waterborne sickness"
+      - "Rapid triage and automatic bandage delivery"
+    retainer_cost:
+      - item: "BandageDressing"
+        amount: 2
+        desc: "Sterile medical bandages"
+      - item: "SalineBagIV"
+        amount: 1
+        desc: "IV saline bag for shock resuscitation"
+
+  rostam_scavenger:
+    id: "rostam_scavenger"
+    name: "Rostam the Scavenger"
+    title: "Logistics Runner & Scrapsmith"
+    gender: "male"
+    entity_class: "SurvivorM_Denis"
+    loadout: "DZDS_Settlers_scavenger"
+    position: [14790.0, 0.0, 7880.0]
+    orientation: [90.0, 0.0, 0.0]
+    station: "West Barracks & Logistics Workshop"
+    specialization: "Cargo Hauling, Resource Salvage & Field Mechanics"
+    description: "Strong-backed and relentless, Rostam carries massive cargo loads and salvages usable parts from ruined military vehicles."
+    bark: "You find the ruins, I'll haul the scrap. Every screw counts for Qalat-e Lut."
+    primary_weapon: "Izh-43 Double Barrel Shotgun & Ruger 10/22"
+    secondary_weapon: "Heavy Pickaxe & Crowbar"
+    role_perks:
+      - "Equipped with 80-slot mountain expedition backpack"
+      - "Carries duct tape, metal wire, and vehicle repair tools"
+      - "High stamina recovery when carrying heavy base materials"
+    retainer_cost:
+      - item: "DuctTape"
+        amount: 1
+        desc: "Roll of heavy-duty duct tape"
+      - item: "BakedBeansCan"
+        amount: 2
+        desc: "Canned food rations"

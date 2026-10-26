@@ -2,13 +2,13 @@
     "ConfigVersion": 22,
     "ID": 106,
     "Type": 1,
-    "Title": "Aid Convoy Delivery: Settler Haven",
+    "Title": "Enlistment Contract: Desert Scout Soran",
     "Descriptions": [
-        "A relief shipment of emergency medical supplies, water purification kits, and baby formula must reach the settlers at Settler Haven. Guard the transport.",
-        "The aid convoy is en route to Settler Haven. Ensure the cargo arrives intact.",
-        "Relief cargo received in full! The settlement will pull through the week. Blue Shield commends your valor."
+        "Soran is our best long-range tracker. He watches the northern dunes from the watchtower staging. Deliver expedition provisions\u2014a water bottle and spare magazine\u2014and I'll issue your squad enlistment order.",
+        "Soran needs expedition supplies before he heads into the desert. Bring the water and magazine.",
+        "Contract registered. Soran is cleared to join your squad. Find him at the north watchtower staging and tell him you're moving out."
     ],
-    "ObjectiveText": "Escort the aid convoy to Settler Haven.",
+    "ObjectiveText": "Deliver 1 Water Bottle and 1 5-round CZ527 magazine to muster Soran the Scout.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
     "IsDailyQuest": 0,
@@ -20,8 +20,8 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "ExpansionBanknoteHryvnia",
-            "Amount": 25,
+            "ClassName": "Paper",
+            "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -29,8 +29,8 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "BandageDressing",
-            "Amount": 3,
+            "ClassName": "Ammo_762x39",
+            "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -44,17 +44,17 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        2
+        1
     ],
     "QuestTurnInIDs": [
-        2
+        1
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
             "ID": 106,
-            "ObjectiveType": 9
+            "ObjectiveType": 5
         }
     ],
     "QuestColor": 0,
@@ -64,11 +64,10 @@
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
-    "DeleteQuestItems": 0,
+    "DeleteQuestItems": 1,
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSPeacekeepers": 20,
         "DZDSSettlers": 15
     },
     "SuppressQuestLogOnCompetion": 0,

@@ -1,14 +1,14 @@
 {
     "ConfigVersion": 22,
-    "ID": 114,
+    "ID": 509,
     "Type": 1,
-    "Title": "Fortifying the Sanctuary: Lumber & Nails",
+    "Title": "Aid Convoy Delivery: Eastern Caravanserai",
     "Descriptions": [
-        "Raiders probe our gates every night. We need structural planks and nails to brace watchtowers and block breaches at Settler Haven.",
-        "Deliver construction materials to Settler Haven.",
-        "Gates and platforms are reinforced. Take this whetstone and hand saw for your own shelter."
+        "A relief shipment of emergency medical supplies, water purification kits, and baby formula must reach the settlers at Eastern Caravanserai. Guard the transport.",
+        "The aid convoy is en route to Eastern Caravanserai. Ensure the cargo arrives intact.",
+        "Relief cargo received in full! The settlement will pull through the week. Blue Shield commends your valor."
     ],
-    "ObjectiveText": "Deliver wooden planks and nails to reinforce the barricades at Settler Haven.",
+    "ObjectiveText": "Escort the aid convoy to Eastern Caravanserai.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
     "IsDailyQuest": 0,
@@ -20,8 +20,8 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "Whetstone",
-            "Amount": 1,
+            "ClassName": "ExpansionBanknoteHryvnia",
+            "Amount": 25,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -29,17 +29,8 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "HandSaw",
-            "Amount": 1,
-            "Attachments": [],
-            "DamagePercent": 0,
-            "HealthPercent": 100,
-            "QuestID": -1,
-            "Chance": 1.0
-        },
-        {
-            "ClassName": "MetalWire",
-            "Amount": 1,
+            "ClassName": "BandageDressing",
+            "Amount": 3,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -53,17 +44,17 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        1
+        2
     ],
     "QuestTurnInIDs": [
-        1
+        2
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
-            "ID": 114,
-            "ObjectiveType": 5
+            "ID": 509,
+            "ObjectiveType": 9
         }
     ],
     "QuestColor": 0,
@@ -73,11 +64,12 @@
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
-    "DeleteQuestItems": 1,
+    "DeleteQuestItems": 0,
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSSettlers": 35
+        "DZDSPeacekeepers": 20,
+        "DZDSSettlers": 15
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

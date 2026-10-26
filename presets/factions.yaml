@@ -256,7 +256,7 @@ initial_control:
     Rust: [Cement Works, Hilltop Water Station]
     Karkas: [Missile Base Ridge]
     Jackals: [North Highway Pileup]        # nomads: one camp, mostly roaming roads
-    Settlers: [Settler Haven]              # the settlement; arrival_sites ring it at 3-5 km
+    Settlers: [Eastern Caravanserai, Settler Haven]  # Eastern Caravanserai (Qalat-e Lut HQ) + Settler Haven
     contested: [Northern Dam, Southern Barracks]
 
 # Global calibration lives in presets/expansion_ai_calibration.yaml (blueprint §4E values).

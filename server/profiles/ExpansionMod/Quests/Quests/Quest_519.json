@@ -1,0 +1,75 @@
+{
+    "ConfigVersion": 22,
+    "ID": 519,
+    "Type": 1,
+    "Title": "Tanning & Leatherwork: Bedouin Craft",
+    "Descriptions": [
+        "Synthetic gear rots under badlands sun. Hunt wild boar or deer, skin the pelt, and bring it to Settler Haven for tanning into horse tack and canteens.",
+        "Track wild game in the plains and collect a clean pelt.",
+        "Sturdy hide. With lime and water, this will make water bladders and saddles that last for years. Take this hunting knife and sewing kit."
+    ],
+    "ObjectiveText": "Hunt wild game in the desert scrub and collect pelts for the leathercrafter at Settler Haven.",
+    "FollowUpQuest": -1,
+    "Repeatable": 1,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "HuntingKnife",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "LeatherSewingKit",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        6
+    ],
+    "QuestTurnInIDs": [
+        6
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 519,
+            "ObjectiveType": 4
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSSettlers": 30
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

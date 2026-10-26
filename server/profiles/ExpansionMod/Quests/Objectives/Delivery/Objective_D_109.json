@@ -1,0 +1,26 @@
+{
+    "ConfigVersion": 28,
+    "ID": 109,
+    "ObjectiveType": 5,
+    "ObjectiveText": "Deliver 1 Duct Tape and 2 Cans of Food to muster Rostam the Scavenger.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 1,
+            "ClassName": "DuctTape",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        },
+        {
+            "Amount": 2,
+            "ClassName": "BakedBeansCan",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "MaxDistance": 35.0,
+    "MarkerName": "Qalat-e Lut"
+}

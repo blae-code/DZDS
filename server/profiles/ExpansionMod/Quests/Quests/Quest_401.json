@@ -1,0 +1,75 @@
+{
+    "ConfigVersion": 22,
+    "ID": 401,
+    "Type": 1,
+    "Title": "Trial of the Sands: High Country Hunt",
+    "Descriptions": [
+        "You town-dwellers live on stale flour and rusted cans. The desert ridges will teach you hunger. If you wish to trade or travel across Karkas ground without being hunted, prove you can take game from the high rocks.",
+        "The mountain winds carry your scent. Hunt from downwind and bring back meat and pelt.",
+        "The kill was clean. You know how to track and keep your belly full in the wild. Take this bone knife and rope. You have Karkas respect."
+    ],
+    "ObjectiveText": "Hunt and collect 2 Steaks of Deer or Cow Meat and 1 Wolf Pelt.",
+    "FollowUpQuest": 402,
+    "Repeatable": 0,
+    "IsDailyQuest": 0,
+    "IsWeeklyQuest": 0,
+    "CancelQuestOnPlayerDeath": 1,
+    "Autocomplete": 0,
+    "IsGroupQuest": 0,
+    "ObjectSetFileName": "",
+    "QuestItems": [],
+    "Rewards": [
+        {
+            "ClassName": "BoneKnife",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "Rope",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        }
+    ],
+    "NeedToSelectReward": 0,
+    "RandomReward": 0,
+    "RandomRewardAmount": -1,
+    "RewardsForGroupOwnerOnly": 1,
+    "RewardBehavior": 0,
+    "QuestGiverIDs": [
+        5
+    ],
+    "QuestTurnInIDs": [
+        5
+    ],
+    "IsAchievement": 0,
+    "Objectives": [
+        {
+            "ConfigVersion": 28,
+            "ID": 401,
+            "ObjectiveType": 4
+        }
+    ],
+    "QuestColor": 0,
+    "ReputationReward": 0,
+    "ReputationRequirement": -1,
+    "PreQuestIDs": [],
+    "RequiredFaction": "",
+    "FactionReward": "",
+    "PlayerNeedQuestItems": 1,
+    "DeleteQuestItems": 0,
+    "SequentialObjectives": 1,
+    "FactionReputationRequirements": {},
+    "FactionReputationRewards": {
+        "DZDSKarkas": 30
+    },
+    "SuppressQuestLogOnCompetion": 0,
+    "Active": 1
+}

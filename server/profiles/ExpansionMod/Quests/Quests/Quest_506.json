@@ -1,17 +1,17 @@
 {
     "ConfigVersion": 22,
-    "ID": 116,
+    "ID": 506,
     "Type": 1,
-    "Title": "UN Field Hospital Relief: Eastern Airfield",
+    "Title": "Water Rights Toll: Hilltop Water Station",
     "Descriptions": [
-        "Task Force Blue Shield is operating a humanitarian field hospital at Eastern Airfield. We urgently need broad-spectrum antibiotics and sterile bandages.",
-        "Deliver antibiotics and bandages to Blue Shield command at Eastern Airfield.",
-        "Medical supplies cataloged. This will prevent a major cholera outbreak among the displaced civilians."
+        "In the Badlands, water is life, and the Syndicate owns the taps. Deliver spark plugs or maintenance parts to secure legal water rights.",
+        "The Syndicate water foreman at Hilltop Water Station is waiting for your maintenance parts.",
+        "Parts check out. Your compound has official water drawing rights. The Rust Syndicate Water Broker will now trade fuel and clean water with you."
     ],
-    "ObjectiveText": "Deliver Tetracycline Antibiotics and Bandages to the Blue Shield field hospital at Eastern Airfield.",
+    "ObjectiveText": "The Syndicate wants payment in kind for water from Hilltop Water Station.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
-    "IsDailyQuest": 1,
+    "IsDailyQuest": 0,
     "IsWeeklyQuest": 0,
     "CancelQuestOnPlayerDeath": 1,
     "Autocomplete": 0,
@@ -20,7 +20,7 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "FirstAidKit",
+            "ClassName": "WaterBottle",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -29,17 +29,8 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "Morphine",
+            "ClassName": "PurificationTablets",
             "Amount": 1,
-            "Attachments": [],
-            "DamagePercent": 0,
-            "HealthPercent": 100,
-            "QuestID": -1,
-            "Chance": 1.0
-        },
-        {
-            "ClassName": "ExpansionBanknoteHryvnia",
-            "Amount": 30,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -53,16 +44,16 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        2
+        4
     ],
     "QuestTurnInIDs": [
-        2
+        4
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
-            "ID": 116,
+            "ID": 506,
             "ObjectiveType": 5
         }
     ],
@@ -77,7 +68,7 @@
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSPeacekeepers": 25
+        "DZDSRust": 30
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

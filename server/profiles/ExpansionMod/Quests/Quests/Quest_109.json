@@ -2,13 +2,13 @@
     "ConfigVersion": 22,
     "ID": 109,
     "Type": 1,
-    "Title": "Industrial Salvage: Cement Works",
+    "Title": "Enlistment Contract: Scavenger Rostam",
     "Descriptions": [
-        "The refinery pumps and generators at Cement Works are burning through parts. Bring fresh spark plugs to keep the plant operating.",
-        "Scavenge the required spark plugs and deliver them to Cement Works.",
-        "Good quality hardware. The generators will keep humming. The Syndicate doesn't forget who keeps the power on."
+        "Rostam works out of the west workshop. With his mountain pack, he can carry half a car wreck on his back. Bring repair tape and food rations for the workshop stockpile to contract him.",
+        "Rostam needs replacement salvage tape and workshop rations before he packs up.",
+        "Workshop order logged. Rostam is ready to haul salvage. Find him at the west depot."
     ],
-    "ObjectiveText": "Scavenge critical spark plugs and hardware for the works at Cement Works.",
+    "ObjectiveText": "Deliver 1 Duct Tape and 2 Cans of Food to muster Rostam the Scavenger.",
     "FollowUpQuest": -1,
     "Repeatable": 1,
     "IsDailyQuest": 0,
@@ -20,8 +20,17 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "Ammo_762x39",
-            "Amount": 30,
+            "ClassName": "Paper",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "Rope",
+            "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -35,17 +44,17 @@
     "RewardsForGroupOwnerOnly": 1,
     "RewardBehavior": 0,
     "QuestGiverIDs": [
-        7
+        1
     ],
     "QuestTurnInIDs": [
-        7
+        1
     ],
     "IsAchievement": 0,
     "Objectives": [
         {
             "ConfigVersion": 28,
             "ID": 109,
-            "ObjectiveType": 4
+            "ObjectiveType": 5
         }
     ],
     "QuestColor": 0,
@@ -55,11 +64,11 @@
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
-    "DeleteQuestItems": 0,
+    "DeleteQuestItems": 1,
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSRust": 20
+        "DZDSSettlers": 15
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

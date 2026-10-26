@@ -3,27 +3,27 @@
     "ID": 6,
     "ClassName": "ExpansionQuestNPCAIDenis",
     "Position": [
-        3256.0,
-        279.37,
-        4636.0
+        7560.0,
+        248.9,
+        8720.0
     ],
     "Orientation": [
-        0.0,
+        135.0,
         0.0,
         0.0
     ],
-    "NPCName": "Lieutenant Miller",
-    "DefaultNPCText": "Blue Shield Field Outpost. We monitor desert movements and coordinate supply runs.",
+    "NPCName": "Scout Farid",
+    "DefaultNPCText": "I watch the north roads. The raiders are always looking for a gap in our lines.",
     "Waypoints": [
         [
-            3256.0,
-            279.37,
-            4636.0
+            7560.0,
+            248.9,
+            8720.0
         ]
     ],
     "NPCEmoteID": 46,
     "NPCEmoteIsStatic": 1,
-    "NPCLoadoutFile": "DZDS_Peacekeepers",
+    "NPCLoadoutFile": "DZDS_Settlers",
     "NPCInteractionEmoteID": 1,
     "NPCQuestCancelEmoteID": 60,
     "NPCQuestStartEmoteID": 58,

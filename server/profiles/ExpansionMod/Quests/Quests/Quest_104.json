@@ -2,15 +2,15 @@
     "ConfigVersion": 22,
     "ID": 104,
     "Type": 1,
-    "Title": "Clear the Jackal Camp: North Highway Pileup",
+    "Title": "Fortifying the Fortress: Planks & Nails",
     "Descriptions": [
-        "The Jackal Cohort at North Highway Pileup are ambushing desert convoys and raiding our approach roads. Storm their camp and eliminate their raiders.",
-        "Jackal raiders are still operating out of North Highway Pileup. Clear their encampment and end their highway raids.",
-        "The Jackal camp is broken and their raiders scattered. The desert roads are safer for everyone thanks to your courage."
+        "Jackal raiders probe our south gate every few nights. We need structural lumber and nails to board up breaches and brace the watchtower scaffolding. Deliver building materials to fortify our walls.",
+        "The carpenter is waiting at the south gate. Bring the lumber and nails.",
+        "The south gate is braced. If the raiders hit us tonight, our guards will have cover. Here is a whetstone, wire, and a hand saw for your own shelter."
     ],
-    "ObjectiveText": "The Jackals at North Highway Pileup raid our roads. End it.",
-    "FollowUpQuest": -1,
-    "Repeatable": 1,
+    "ObjectiveText": "Deliver 4 Wooden Planks and 1 box of Nails to reinforce the south gate.",
+    "FollowUpQuest": 105,
+    "Repeatable": 0,
     "IsDailyQuest": 0,
     "IsWeeklyQuest": 0,
     "CancelQuestOnPlayerDeath": 1,
@@ -20,8 +20,8 @@
     "QuestItems": [],
     "Rewards": [
         {
-            "ClassName": "Ammo_545x39",
-            "Amount": 60,
+            "ClassName": "Whetstone",
+            "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
             "HealthPercent": 100,
@@ -29,7 +29,16 @@
             "Chance": 1.0
         },
         {
-            "ClassName": "CanOpener",
+            "ClassName": "MetalWire",
+            "Amount": 1,
+            "Attachments": [],
+            "DamagePercent": 0,
+            "HealthPercent": 100,
+            "QuestID": -1,
+            "Chance": 1.0
+        },
+        {
+            "ClassName": "HandSaw",
             "Amount": 1,
             "Attachments": [],
             "DamagePercent": 0,
@@ -54,23 +63,23 @@
         {
             "ConfigVersion": 28,
             "ID": 104,
-            "ObjectiveType": 8
+            "ObjectiveType": 5
         }
     ],
     "QuestColor": 0,
     "ReputationReward": 0,
     "ReputationRequirement": -1,
-    "PreQuestIDs": [],
+    "PreQuestIDs": [
+        103
+    ],
     "RequiredFaction": "",
     "FactionReward": "",
     "PlayerNeedQuestItems": 1,
-    "DeleteQuestItems": 0,
+    "DeleteQuestItems": 1,
     "SequentialObjectives": 1,
     "FactionReputationRequirements": {},
     "FactionReputationRewards": {
-        "DZDSSettlers": 25,
-        "DZDSPeacekeepers": 15,
-        "DZDSJackals": -20
+        "DZDSSettlers": 40
     },
     "SuppressQuestLogOnCompetion": 0,
     "Active": 1

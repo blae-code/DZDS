@@ -5,29 +5,30 @@
     "ObjectiveText": "Locate the helicopter crash in the western dunes and recover the flight recorder.",
     "TimeLimit": -1,
     "Active": 1,
-    "ShowDistance": 1,
-    "ContainerName": "ExpansionQuestSeaChest",
-    "DigInStash": 0,
-    "MarkerName": "Emergency Flight Container",
-    "MarkerVisibility": 4,
-    "Positions": [
-        [
-            6500.0,
-            0.0,
-            11500.0
-        ]
+    "Position": [
+        6500.0,
+        284.07,
+        11500.0
     ],
-    "LootItemsAmount": 1,
-    "MaxDistance": 25.0,
-    "Loot": [
+    "MaxDistance": 50.0,
+    "MarkerName": "Eastern Airfield",
+    "ShowDistance": 1,
+    "ContainerClass": "ExpansionSeaChest",
+    "LootItems": [
         {
-            "Name": "SalineBagIV",
-            "Chance": 1.0,
-            "Attachments": [],
-            "QuantityPercent": -1.0,
-            "Max": -1,
-            "Min": 0,
-            "Variants": []
+            "Amount": 1,
+            "ClassName": "SalineBagIV",
+            "Chance": 1.0
+        },
+        {
+            "Amount": 1,
+            "ClassName": "Compass",
+            "Chance": 1.0
+        },
+        {
+            "Amount": 2,
+            "ClassName": "BandageDressing",
+            "Chance": 1.0
         }
     ]
 }

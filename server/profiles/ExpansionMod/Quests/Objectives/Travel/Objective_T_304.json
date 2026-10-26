@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 304,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Travel to North Highway Pileup to break the Jackal extortion toll gate.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        3110.0,
+        378.41,
+        15250.0
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "North Highway Pileup",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}
