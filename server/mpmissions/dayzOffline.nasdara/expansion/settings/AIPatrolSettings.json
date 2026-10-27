@@ -155,6 +155,73 @@
             "ObjectClassName": "",
             "WaypointInterpolation": "",
             "UseRandomWaypointAsStartPoint": false,
+            "Name": "Settlers farm_watch @ Eastern Caravanserai",
+            "Faction": "DZDSSettlers",
+            "NumberOfAI": 2,
+            "NumberOfAIMax": 3,
+            "Waypoints": [
+                [
+                    14875.0,
+                    0.0,
+                    7910.0
+                ],
+                [
+                    14840.0,
+                    0.0,
+                    7945.0
+                ],
+                [
+                    14805.0,
+                    0.0,
+                    7910.0
+                ],
+                [
+                    14840.0,
+                    0.0,
+                    7875.0
+                ]
+            ]
+        },
+        {
+            "Persist": true,
+            "Formation": "File",
+            "FormationScale": 1.5,
+            "FormationLooseness": 0.4,
+            "Loadout": "DZDS_Settlers",
+            "Units": [],
+            "Behaviour": "HALT_OR_LOOP",
+            "LootingBehaviour": "NONE",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": 0.0,
+            "CanBeLooted": true,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": 0.22,
+            "AccuracyMax": 0.38,
+            "ThreatDistanceLimit": 180.0,
+            "NoiseInvestigationDistanceLimit": 80.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": 0,
+            "DamageMultiplier": 1.0,
+            "DamageReceivedMultiplier": 1.0,
+            "HeadshotResistance": 0.0,
+            "CanSpawnInContaminatedArea": false,
+            "CanBeTriggeredByAI": false,
+            "MinDistRadius": -2,
+            "MaxDistRadius": -2,
+            "DespawnRadius": -2,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 20.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": 1800.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": false,
             "Name": "Settlers farm_watch @ Settler Haven",
             "Faction": "DZDSSettlers",
             "NumberOfAI": 2,
@@ -179,6 +246,83 @@
                     7560.0,
                     0.0,
                     8685.0
+                ]
+            ]
+        },
+        {
+            "Persist": false,
+            "Formation": "File",
+            "FormationScale": 1.5,
+            "FormationLooseness": 0.4,
+            "Loadout": "DZDS_Settlers",
+            "Units": [],
+            "Behaviour": "LOOP",
+            "LootingBehaviour": "WEAPONS|BANDAGES|CLOTHING|UPGRADE",
+            "Speed": "WALK",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": 0.0,
+            "CanBeLooted": true,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": 0.22,
+            "AccuracyMax": 0.38,
+            "ThreatDistanceLimit": 180.0,
+            "NoiseInvestigationDistanceLimit": 80.0,
+            "MaxFlankingDistance": -1.0,
+            "EnableFlankingOutsideCombat": 0,
+            "DamageMultiplier": 1.0,
+            "DamageReceivedMultiplier": 1.0,
+            "HeadshotResistance": 0.0,
+            "CanSpawnInContaminatedArea": false,
+            "CanBeTriggeredByAI": false,
+            "MinDistRadius": -2,
+            "MaxDistRadius": -2,
+            "DespawnRadius": -2,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 20.0,
+            "Chance": 0.6,
+            "DespawnTime": -1.0,
+            "RespawnTime": -2.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": false,
+            "Name": "Settlers scavenger_party @ Eastern Caravanserai",
+            "Faction": "DZDSSettlers",
+            "NumberOfAI": 2,
+            "NumberOfAIMax": 4,
+            "Waypoints": [
+                [
+                    14990.0,
+                    0.0,
+                    7910.0
+                ],
+                [
+                    14915.0,
+                    0.0,
+                    8039.9
+                ],
+                [
+                    14765.0,
+                    0.0,
+                    8039.9
+                ],
+                [
+                    14690.0,
+                    0.0,
+                    7910.0
+                ],
+                [
+                    14765.0,
+                    0.0,
+                    7780.1
+                ],
+                [
+                    14915.0,
+                    0.0,
+                    7780.1
                 ]
             ]
         },

@@ -210,11 +210,17 @@ def test_community_quest_completion_advances_survival_goals():
     """Verify that completing a community project quest advances the SurvivalGoalsManager reserves."""
     from gamemaster import survival_goals
     mgr = survival_goals.get_manager()
-    initial_water = mgr.state["projects"]["water_reserves"]["current"]
+    orig = mgr.state["projects"]["water_reserves"]["current"]
+    try:
+        mgr.state["projects"]["water_reserves"]["current"] = 185.0
+        initial_water = mgr.state["projects"]["water_reserves"]["current"]
 
-    led = WarLedger.new("nasdara")
-    events = led.record_quest_completion("water_purification", "Blae", site="Settler Haven")
+        led = WarLedger.new("nasdara")
+        events = led.record_quest_completion("water_purification", "Blae", site="Settler Haven")
 
-    assert any("contributed" in e and "water_reserves" in e for e in events)
-    assert mgr.state["projects"]["water_reserves"]["current"] > initial_water
+        assert any("contributed" in e and "water_reserves" in e for e in events)
+        assert mgr.state["projects"]["water_reserves"]["current"] > initial_water
+    finally:
+        mgr.state["projects"]["water_reserves"]["current"] = orig
+        mgr.save()
 

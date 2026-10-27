@@ -15,7 +15,9 @@ modded class AIWarZoneInstance
 	override void AYSAsetFaction(string faction, eAIBase expansionAI)
 	{
 		eAIFaction f;
-		switch (faction)
+		string fLow = faction;
+		fLow.ToLower();
+		switch (fLow)
 		{
 			case "dzdssettlers":     f = new eAIFactionDZDSSettlers(); break;
 			case "dzdspeacekeepers": f = new eAIFactionDZDSPeacekeepers(); break;

@@ -510,6 +510,91 @@
       font: 600 .82rem ui-monospace, monospace;
       color: #68c0d0;
     }
+    .pveh-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .pveh-card {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .pveh-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    .pveh-title {
+      font-weight: 700;
+      font-size: .95rem;
+      color: var(--text);
+    }
+    .pveh-class {
+      font: 600 .75rem ui-monospace, monospace;
+      color: var(--sand);
+    }
+    .pveh-specs {
+      font-size: .8rem;
+      color: var(--muted);
+      line-height: 1.45;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      background: var(--canvas);
+      padding: 8px 10px;
+      border-radius: 5px;
+      border: 1px solid var(--line);
+    }
+    .pconvoy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .pconvoy-card {
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .psurv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .psurv-card {
+      padding: 16px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .psurv-card h3 {
+      margin: 0;
+      font-size: .95rem;
+      color: var(--text);
+    }
+    .psurv-badge {
+      font: 700 .72rem ui-monospace, monospace;
+      padding: 2px 6px;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
   </style>
 </head>
 <body>
@@ -520,6 +605,7 @@
       <a href="#survive">Survive</a>
       <a href="#settlement-projects">Settlement Projects</a>
       <a href="#companions">Companions &amp; Recruits</a>
+      <a href="#vehicles">Vehicles &amp; Flight</a>
       <a href="#survival-missions">Survival Missions</a>
       <a href="#campaign">Campaign &amp; Barter</a>
       <a href="#basebuilding">Basebuilding</a>
@@ -578,19 +664,108 @@
 
     <section id="survive" aria-labelledby="survive-title">
       <div class="section-heading">
-        <h2 id="survive-title">First days in the sand</h2>
-        <p>Small habits matter more than a marker on a screen.</p>
+        <h2 id="survive-title">Badlands Survival Field Manual · 5 Pillars</h2>
+        <p>Nasdara is a brutal desert sandbox where dehydration, infected wounds, and raider ambushes claim careless survivors in minutes. Master these five operational pillars to endure.</p>
       </div>
-      <div class="cards">
-        <article class="card">
-          <h3>Find your people</h3>
-          <p>First arrivals on the same in-game day wake at the same column site. It rotates daily at 11:00 UTC (06:00 US Central Standard Time).</p>
-          <p>After a death, your next survivor is placed near another living player when possible; otherwise, respawn favors a roadside point near your previous death.</p>
+
+      <div class="psurv-grid">
+        <!-- PILLAR 1: WATER & CHOLERA -->
+        <article class="psurv-card" style="border-top: 3px solid #68b5e8;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>1. Water Purification &amp; Cholera</h3>
+            <span class="psurv-badge" style="background:#68b5e822; color:#68b5e8; border:1px solid #68b5e855;">SUSTENANCE</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); line-height:1.45; margin:0;">
+            Untreated badlands surface water, irrigation canals, and stagnant ponds carry lethal cholera bacteria. Drinking unpurified water induces vomiting, rapid dehydration, and death within minutes.
+          </p>
+          <div class="pcomp-detail-box">
+            <div><strong>Boiling Water:</strong> Boil water in a Cooking Pot, Kettle, or Mess Tin over a campfire or gas stove for 100% sterile water.</div>
+            <div><strong>Chlorine Tablets:</strong> 1x Purification Tablet in a Canteen or Water Bottle instantly sterilizes contaminated water.</div>
+            <div><strong>Cistern Perk:</strong> Fountains inside Qalat-e Lut fortress [148 078] carry <strong>0% cholera risk</strong> thanks to the aquifer project!</div>
+          </div>
         </article>
-        <article class="card">
-          <h3>Tune the Settler net</h3>
-          <p>Your arrival radio is tuned to <strong>87.8 MHz</strong> and starts switched off. Fit its battery, switch it on, and listen for world bulletins.</p>
-          <p>A vehicle is available at most once per 24 hours; a death before that cooldown expires may mean no vehicle on the next life.</p>
+
+        <!-- PILLAR 2: AGRICULTURE & PRESERVATION -->
+        <article class="psurv-card" style="border-top: 3px solid #10b981;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>2. Homestead Farming &amp; Curing</h3>
+            <span class="psurv-badge" style="background:#10b98122; color:#10b981; border:1px solid #10b98155;">AGRICULTURE</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); line-height:1.45; margin:0;">
+            Canned rations are rare in the wastes. Cultivate persistent garden plots and cure wild pelts using active server farming rules:
+          </p>
+          <div class="pcomp-detail-box">
+            <div><strong>Non-Rotting Crops:</strong> BetterHarvest is active with <code>allowPlantSpoilage = 0</code>. Cultivated crops never rot on the vine! Fast growth: Zucchini (22m), Tomatoes (27m).</div>
+            <div><strong>CookZ Non-Decaying Food:</strong> Smoked sausages, cheese wheels, and canned rations never decay (<code>EnableCheeseDecay = 0</code>).</div>
+            <div><strong>Bedouin Tanning:</strong> Combine wild boar/deer pelt + Garden Lime in a water barrel to produce Tanned Leather for Saddles (8x) and Bridles (4x).</div>
+          </div>
+        </article>
+
+        <!-- PILLAR 3: MEDICAL TRIAGE -->
+        <article class="psurv-card" style="border-top: 3px solid #e05353;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>3. Trauma &amp; Infection Triage</h3>
+            <span class="psurv-badge" style="background:#e0535322; color:#e05353; border:1px solid #e0535355;">MEDICAL</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); line-height:1.45; margin:0;">
+            Desert wounds turn septic quickly under the scorching sun. Follow Bohemia's 3-stage infection triage protocol:
+          </p>
+          <div class="pcomp-detail-box">
+            <div><strong>Stage 1 (Dirty Wound):</strong> Disinfect immediately with Alcoholic Tincture, Iodine, or Disinfectant Spray within 15 minutes.</div>
+            <div><strong>Stage 2 (Wound Sepsis):</strong> Blurry vision, fever, and steady health drain. Requires a full course of Tetracycline Antibiotics.</div>
+            <div><strong>Stage 3 (Septic Shock):</strong> Emergency IV SalineBagIV + Epinephrine + repeated Tetracycline required to arrest collapse.</div>
+            <div><strong>Fractures:</strong> Craft a Wooden Splint (4x Wooden Sticks + 1x Bandage or Rag) to mend broken legs in 15 minutes.</div>
+          </div>
+        </article>
+
+        <!-- PILLAR 4: RADIO NET & HEAT -->
+        <article class="psurv-card" style="border-top: 3px solid #d8bd79;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>4. Settler Radio Net 87.8 MHz</h3>
+            <span class="psurv-badge" style="background:#d8bd7922; color:#d8bd79; border:1px solid #d8bd7955;">INTELLIGENCE</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); line-height:1.45; margin:0;">
+            The desert provides zero visual warnings before raider war parties close in. Keep tactical communication active:
+          </p>
+          <div class="pcomp-detail-box">
+            <div><strong>Tune to 87.8 MHz:</strong> Your personal radio is pre-tuned to Settler Net <strong>87.8 MHz</strong>. Install a fresh 9V battery and switch it ON.</div>
+            <div><strong>Automated Bulletins:</strong> Radio broadcasts alert survivors to active dust storms, AI convoy movements, and trade outpost status.</div>
+            <div><strong>Short, Dark Nights:</strong> Nights on Ad Aspera are pitch-black but short (~15–20 minutes real time). Keep flares, headtorches, or campfires ready.</div>
+          </div>
+        </article>
+
+        <!-- PILLAR 5: RESPAWN NETWORK -->
+        <article class="psurv-card" style="border-top: 3px solid #a4bf91;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>5. 5-Tier Respawn Network</h3>
+            <span class="psurv-badge" style="background:#a4bf9122; color:#a4bf91; border:1px solid #a4bf9155;">LOGISTICS</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); line-height:1.45; margin:0;">
+            After death, Ad Aspera routes your next survivor through a smart 5-tier respawn hierarchy:
+          </p>
+          <div class="pcomp-detail-box">
+            <div><strong>1. Qalat-e Lut Fortress HQ:</strong> Primary safe respawn inside the fortress citadel across 13 candidate staging spots (daily column rotates at 11:00 UTC / 06:00 US Central).</div>
+            <div><strong>2. Friend-First Co-op:</strong> When allies are online, respawn places you within 1–2 km of a living player to eliminate lonely desert walks.</div>
+            <div><strong>3. Raised Base Flag:</strong> Wakes directly beside your compound's raised Territory Flag (up to 40-day active refresh).</div>
+            <div><strong>4. Pitched Wilderness Tent:</strong> Wakes beside any pitched tent within 5 km of death.</div>
+            <div><strong>5. Roadside Campfire:</strong> Wakes near your previous death point beside a warming campfire.</div>
+          </div>
+        </article>
+
+        <!-- SPECIAL FORCES OUTFIT -->
+        <article class="psurv-card" style="border-top: 3px solid #ff9c8f;">
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <h3>★ Soviet Special Forces Outfit</h3>
+            <span class="psurv-badge" style="background:#ff9c8f22; color:#ff9c8f; border:1px solid #ff9c8f55;">3% RARE ROLL</span>
+          </div>
+          <p style="font-size:.85rem; color:var(--muted); line-height:1.45; margin:0;">
+            Every random character roll has a <strong>3% chance</strong> (100% for favored host Blae) to spawn dressed in elite Soviet Special Forces gear worn directly on the body:
+          </p>
+          <div class="pcomp-detail-box">
+            <div><strong>Uniform:</strong> TTsKO Camo or Gorka Summer/Flat, Smersh Vest with attached Smersh Bag, Military Belt, Ssh-68 Helmet, Tactical Gloves.</div>
+            <div><strong>Armament:</strong> AKS-74U Carbine or AS Val with 3 full magazines + Makarov IJ-70 sidearm + Combat Knife + RGD-5 Grenade.</div>
+            <div><strong>Expedition Kit:</strong> Canteen, Binoculars, Compass, Morphine, Bandages, and canned Tactical Bacon.</div>
+          </div>
         </article>
       </div>
     </section>
@@ -875,6 +1050,233 @@
           </div>
         </article>
       </div>
+
+      <!-- ANIMAL COMPANIONS & DESERT MOUNTS (DOGS & HORSES) -->
+      <div style="margin-top:28px;">
+        <h3 style="color:var(--sand); margin-bottom:4px; font-size:1.15rem;">Loyal Animal Companions &amp; Badlands Mounts (50% Respawn Roll)</h3>
+        <p style="color:var(--muted); font-size:.88rem; margin-bottom:14px;">
+          Every random character roll has a <strong>50% chance</strong> (100% for favored host Blae) to start accompanied by a loyal animal companion or armed recruit: <strong>60% Dog</strong>, <strong>30% Horse Mount</strong>, and <strong>10% Armed Recruit</strong>.
+        </p>
+        <div class="pcomp-grid">
+          <!-- Tamed Dog Companion -->
+          <article class="pcomp-card" style="border-left: 3px solid #eab308;">
+            <div>
+              <div class="pcomp-header">
+                <div>
+                  <div class="pcomp-name">Loyal Dog Companion</div>
+                  <div class="pcomp-title">DayZ-Dog Framework · 60% Relative Spawn Weight</div>
+                  <div class="pcomp-station">Class: Doggo_Follow1..5 · Vest: dog_vest_* / collar</div>
+                </div>
+                <span class="pquest-tag" style="background:#eab30822; color:#eab308; border:1px solid #eab30855;">50/50 ROLL</span>
+              </div>
+              <p class="pcomp-desc">
+                Your faithful badlands canine follows faithfully across the desert, alerts you to approaching infected or raiders with low growls, and attacks hostile targets on command.
+              </p>
+              <div class="pcomp-detail-box">
+                <div><strong>Tactical Armor &amp; Vests:</strong> Equippable with Ballistic Dog Vests (Black, Sheriff, Camo), Dog Collar, and Dog Tag.</div>
+                <div><strong>Voice &amp; Whistle Commands:</strong> Look at your dog and use interaction keys to command: <em>Follow</em>, <em>Stay</em>, <em>Heel</em>, and <em>Attack</em>.</div>
+                <div><strong>Bone Whistle Summon:</strong> Use the paired bone whistle item in your inventory to summon your dog from long distances.</div>
+                <div><strong>Wild Dog Taming:</strong> Wild badlands dogs can be tamed in the wilderness by offering raw animal bones or steaks.</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Canine Perks:</div>
+              <ul class="pcomp-perks">
+                <li>Detects crouching players and stalking raiders before visual contact</li>
+                <li>Carries small survival items and bandages inside tactical vest pouches</li>
+                <li>Distracts infected and hostile AI during intense firefights</li>
+              </ul>
+            </div>
+          </article>
+
+          <!-- Badlands Steppe Mount -->
+          <article class="pcomp-card" style="border-left: 3px solid #10b981;">
+            <div>
+              <div class="pcomp-header">
+                <div>
+                  <div class="pcomp-name">Badlands Steppe Horse</div>
+                  <div class="pcomp-title">DayZ Horse &amp; Horse Expansion · 30% Relative Spawn Weight</div>
+                  <div class="pcomp-station">11 Breeds: Brown, Chestnut, Palomino, Appaloosa, Shadow</div>
+                </div>
+                <span class="pquest-tag" style="background:#10b98122; color:#10b981; border:1px solid #10b98155;">MOUNT</span>
+              </div>
+              <p class="pcomp-desc">
+                Silent overland mobility across Nasdara's rocky ridgelines, high dunes, and dry valleys. Horses consume zero gasoline, produce zero engine noise, and navigate terrain impassable to vehicles.
+              </p>
+              <div class="pcomp-detail-box">
+                <div><strong>Craftable Tack:</strong> Western Saddle (8x Tanned Leather), Bridle (4x Tanned Leather + Rope), Horse Bags (100 cargo slots), Horseshoes.</div>
+                <div><strong>Riding Controls:</strong> Walk, trot, canter, gallop, and jump over fences. Mounts can swim across rivers and water reservoirs.</div>
+                <div><strong>Hitching &amp; Stables:</strong> Craft <code>Stable_dayz_kit</code> (45-day lifetime) at your compound; tether horses to hitching posts.</div>
+                <div><strong>Care &amp; Stamina:</strong> Feed fresh apples, zucchini, or hay bales; hydrate with fresh water from settlement troughs.</div>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Equestrian Perks:</div>
+              <ul class="pcomp-perks">
+                <li>Zero thermal or audio footprint; slips past raider listening posts</li>
+                <li>100-slot heavy saddlebags for carrying basebuilding materials</li>
+                <li>Double passenger capacity: companion can ride passenger behind the rider</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: VEHICLES, FLIGHT & OVERLAND LOGISTICS -->
+    <section id="vehicles" aria-labelledby="vehicles-title">
+      <div class="section-heading">
+        <h2 id="vehicles-title">Overland Logistics, Fleet &amp; Flight Operations</h2>
+        <p>DayZ-Expansion overland mechanics, 9-aircraft helicopter fleet, Zen's static car workbenches, and automated AI tri-corridor supply convoys across the Badlands.</p>
+      </div>
+
+      <!-- FLEET OVERVIEW & AIRCRAFT RULES -->
+      <div class="cards" style="margin-bottom:18px;">
+        <article class="card" style="border-left:3px solid var(--accent);">
+          <h3>9-Aircraft Helicopter Fleet &amp; Pre-Fitted Kits</h3>
+          <p>
+            Helicopters on Ad Aspera arrive <strong>fully kitted in all attachment slots</strong> (desert camo net, key chain, wrench, and a 100% full gasoline Jerrycan). RedFalcon helis (R22, Little Bird) include the 10x100 flight storage case.
+          </p>
+          <p>
+            Aircraft start with <strong>60% to 90% fuel</strong>. Cargo is pre-stocked with specialized pilot profiles: <code>bush_pilot</code> (fishing rod, hook, snare, shovel, full jerrycan) or <code>combat_pilot</code> (survival vest, splint, rangefinder, full jerrycan).
+          </p>
+          <div class="pcomp-station">Fleet Roster: Little Bird, EXT MH-6, Expansion MH-6, Robinson R22, UH-1Y Venom, UH-1H Iroquois, Mi-8 Hip, Gyrocopter.</div>
+        </article>
+
+        <article class="card" style="border-left:3px solid var(--sand);">
+          <h3>Light Vehicles &amp; 24-Hour Cooldown Fallback</h3>
+          <p>
+            Full-size vehicles carry a <strong>24-hour real-time cooldown</strong> per player to prevent suicide gear farming. If you die within the cooldown window, you will <strong>never be stranded on foot</strong>:
+          </p>
+          <p>
+            Respawn automatically provides a <strong>Light Vehicle</strong>: an Enduro Dirtbike 250N (<code>Motorbike_01</code>), Scout Motorcycle TT650 (<code>Motorbike_02</code>), or a saddled Badlands Steppe Horse with Western Saddle and Bridle!
+          </p>
+          <div class="pcomp-station">Light vehicle spawns do not trigger or extend the 24-hour cooldown timer.</div>
+        </article>
+      </div>
+
+      <!-- MAINTENANCE, CHOP-SHOPS & SECURITY -->
+      <div class="cards" style="margin-bottom:18px;">
+        <article class="card" style="border-left:3px solid var(--green);">
+          <h3>Chop-Shops &amp; Zen's Static Car Workbench</h3>
+          <p>
+            Craft <code>ZenStaticCarWorkbench</code> with <strong>60× Nails + 5× Metal Sheets</strong> at your compound. This industrial workbench repairs ruined vehicle components:
+          </p>
+          <ul>
+            <li>Completely restores ruined engine blocks, radiators, and body panels to pristine condition.</li>
+            <li>Re-trues and vulcanizes damaged vehicle wheels and rims without replacement spares.</li>
+            <li><strong>Radiator Critical Warning:</strong> Radiators must be 100% filled with clean water; running dry in desert heat destroys the engine block in under 90 seconds!</li>
+          </ul>
+        </article>
+
+        <article class="card" style="border-left:3px solid var(--rust);">
+          <h3>Expansion Keys, Lockpicking &amp; Camo Tarps</h3>
+          <p>
+            All vehicles enforce physical security through DayZ-Expansion-Vehicles:
+          </p>
+          <ul>
+            <li><strong>Physical Keys:</strong> Every spawned vehicle pairs with a physical key in your pocket (<code>VehicleRequireKeyToStart = 1</code>). Master key pairing is supported.</li>
+            <li><strong>Lockpicking:</strong> Locked doors can be picked with Lockpicks (10–25% success rate per attempt). Lock cylinders can be replaced.</li>
+            <li><strong>CarCover Tarps:</strong> Deployable camouflage tarps conceal vehicles from aerial reconnaissance and distant snipers.</li>
+            <li><strong>Car-to-Car Towing:</strong> Towing cables allow any working rig to tow immobilized vehicles back to base for repair.</li>
+          </ul>
+        </article>
+      </div>
+
+      <!-- TRI-CORRIDOR AI CONVOYS -->
+      <div class="card" style="margin-bottom:18px;">
+        <h3 style="color:var(--sand); margin-bottom:4px;">Tri-Corridor Automated AI Supply Convoys</h3>
+        <p style="color:var(--muted); font-size:.9rem; margin-bottom:12px;">Three motorized faction convoys navigate active corridors across Nasdara. Ambush them for high-tier loot or escort friendly transports:</p>
+
+        <div class="pconvoy-grid">
+          <!-- Corridor 1: Highway 1 Raid -->
+          <article class="pconvoy-card" style="border-top:3px solid #db5c4b;">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div class="pveh-title">Jackal Highway 1 Raid</div>
+                <span class="psurv-badge" style="background:#db5c4b22; color:#db5c4b; border:1px solid #db5c4b55;">RAIDERS</span>
+              </div>
+              <div class="pveh-class">Route: North Highway Pileup [311 152] → Northern Dam [188 142]</div>
+              <p style="font-size:.85rem; color:var(--muted); margin:6px 0;">Aggressive raider war party patrolling Highway 1 at 55 km/h. Armed with mounted gun trucks targeting lone survivors and refugee columns.</p>
+            </div>
+            <div class="pveh-specs">
+              <div><strong>Formation:</strong> 2× M1025 Apocalypse Gun Trucks + 1× Supply Truck</div>
+              <div><strong>Crew:</strong> Jackal Berserkers &amp; Raider Heavy Gunners</div>
+              <div><strong>Ambush Hotspot:</strong> Highway 1 Overpass Choke [Waypoint 18]</div>
+              <div><strong>Loot:</strong> Military rifles, high-caliber ammo, fuel canisters</div>
+            </div>
+          </article>
+
+          <!-- Corridor 2: Southern Industrial Route -->
+          <article class="pconvoy-card" style="border-top:3px solid #d4775e;">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div class="pveh-title">Rust Syndicate Supply Run</div>
+                <span class="psurv-badge" style="background:#d4775e22; color:#d4775e; border:1px solid #d4775e55;">SYNDICATE</span>
+              </div>
+              <div class="pveh-class">Route: Cement Works [973 063] → Hilltop Water Station [829 065]</div>
+              <p style="font-size:.85rem; color:var(--muted); margin:6px 0;">Heavily armored diesel and water tanker transport escorted by mercenary gun trucks moving industrial supplies at 50 km/h.</p>
+            </div>
+            <div class="pveh-specs">
+              <div><strong>Formation:</strong> 2× M1025 Armored Escorts + 1× Heavy Tanker Truck</div>
+              <div><strong>Crew:</strong> Syndicate Mercenaries &amp; Industrial Drivers</div>
+              <div><strong>Ambush Hotspot:</strong> Pipeline Corridor Narrows [Waypoint 22]</div>
+              <div><strong>Loot:</strong> Diesel canisters, clean water barrels, spark plugs, scrap</div>
+            </div>
+          </article>
+
+          <!-- Corridor 3: Peacekeeper Humanitarian Escort -->
+          <article class="pconvoy-card" style="border-top:3px solid #68c0d0;">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div class="pveh-title">UN Humanitarian Relief Escort</div>
+                <span class="psurv-badge" style="background:#68c0d022; color:#68c0d0; border:1px solid #68c0d055;">PEACEKEEPERS</span>
+              </div>
+              <div class="pveh-class">Route: Eastern Airfield [120 108] → Northern Town [112 148]</div>
+              <p style="font-size:.85rem; color:var(--muted); margin:6px 0;">Task Force Blue Shield relief convoy transporting medical supplies, surgical kits, water purifiers, and humanitarian rations at 45 km/h.</p>
+            </div>
+            <div class="pveh-specs">
+              <div><strong>Formation:</strong> 2× White M1025 Patrol Cars + 1× Medical Supply Truck</div>
+              <div><strong>Crew:</strong> Blue Shield Peacekeeper Sentries &amp; Field Medic</div>
+              <div><strong>Ambush Hotspot:</strong> Wadi Valley Approach [Waypoint 25]</div>
+              <div><strong>Loot:</strong> IV Saline bags, antibiotics, field surgical kits, UN scrip</div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- 5-PHASE MAD MAX WARFARE TIMELINE -->
+      <div class="card">
+        <h3 style="color:var(--sand); margin-bottom:4px;">5-Phase Mad Max Vehicular Progression Arc</h3>
+        <p style="color:var(--muted); font-size:.9rem; margin-bottom:12px;">As the living sandbox advances, vehicular warfare evolves through five escalating phases:</p>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:10px;">
+          <div style="background:var(--canvas); border:1px solid var(--line); border-radius:6px; padding:12px;">
+            <div style="font:700 .8rem ui-monospace, monospace; color:var(--sand);">PHASE 1 // SCAVENGERS</div>
+            <div style="font-size:.82rem; color:var(--text); margin:4px 0; font-weight:600;">Desert Scavengers</div>
+            <div style="font-size:.78rem; color:var(--muted); line-height:1.4;">Civilian sedans, hatchbacks, and trail buggies. Scavenge spark plugs and radiators to escape the dunes.</div>
+          </div>
+          <div style="background:var(--canvas); border:1px solid var(--line); border-radius:6px; padding:12px;">
+            <div style="font:700 .8rem ui-monospace, monospace; color:#db5c4b;">PHASE 2 // RAIDERS</div>
+            <div style="font-size:.82rem; color:var(--text); margin:4px 0; font-weight:600;">Highway Raider Ambush</div>
+            <div style="font-size:.78rem; color:var(--muted); line-height:1.4;">Armored UAZs, Dune Buggies, and roadblock tire spikes along central highway transit arteries.</div>
+          </div>
+          <div style="background:var(--canvas); border:1px solid var(--line); border-radius:6px; padding:12px;">
+            <div style="font:700 .8rem ui-monospace, monospace; color:#d4775e;">PHASE 3 // MECHANIZED</div>
+            <div style="font-size:.82rem; color:var(--text); margin:4px 0; font-weight:600;">Faction Armored Warfare</div>
+            <div style="font-size:.78rem; color:var(--muted); line-height:1.4;">GAZ Vodniks and M1025 Apocalypse Gun Trucks escorting heavy industrial fuel convoys.</div>
+          </div>
+          <div style="background:var(--canvas); border:1px solid var(--line); border-radius:6px; padding:12px;">
+            <div style="font:700 .8rem ui-monospace, monospace; color:#68c0d0;">PHASE 4 // AIR SUPERIORITY</div>
+            <div style="font-size:.82rem; color:var(--text); margin:4px 0; font-weight:600;">Air Superiority &amp; Helis</div>
+            <div style="font-size:.78rem; color:var(--muted); line-height:1.4;">9-helicopter fleet active. Rotary-wing reconnaissance, air drops, and heavy cargo transit.</div>
+          </div>
+          <div style="background:var(--canvas); border:1px solid var(--line); border-radius:6px; padding:12px;">
+            <div style="font:700 .8rem ui-monospace, monospace; color:var(--green);">PHASE 5 // HEGEMONY</div>
+            <div style="font-size:.82rem; color:var(--text); margin:4px 0; font-weight:600;">Total Badlands Hegemony</div>
+            <div style="font-size:.78rem; color:var(--muted); line-height:1.4;">Armored war rigs, battle wagons, and citadel-wide fortress sieges at Qalat-e Lut.</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <section id="survival-missions" aria-labelledby="missions-title">
@@ -1063,6 +1465,56 @@
           <p><strong>Active Contracts:</strong> <em>The Smuggler's Dead Drop</em> (recover clandestine desert caches).</p>
           <p><strong>Impact:</strong> Neutral black market dealing strictly in hard currency: ammunition (<code>Ammo_762x39</code>, <code>Ammo_545x39</code>, <code>Ammo_556x45</code>, <code>Ammo_9x19</code>). Sells weapons, optics, vehicle keys, and lockpicks with no faction questions asked.</p>
         </article>
+      </div>
+
+      <!-- BARTER CURRENCY MATRIX & EXCHANGE TABLE -->
+      <div class="card" style="margin-top:16px;">
+        <h3 style="color:var(--sand); margin-bottom:4px;">Faction Barter Currency Exchange Matrix</h3>
+        <p style="color:var(--muted); font-size:.9rem; margin-bottom:12px;">Physical items are money on Ad Aspera. There are zero virtual ATMs or electronic banking systems:</p>
+        <div style="overflow-x:auto;">
+          <table class="pbb-table">
+            <thead>
+              <tr>
+                <th>Currency Class</th>
+                <th>In-Game Item / Stack</th>
+                <th>Accepted By Traders</th>
+                <th>Relative Valuation &amp; Utility</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="color:#68c0d0; font-weight:700;">Ammunition (Hard Currency)</td>
+                <td><code>Ammo_762x39</code>, <code>Ammo_556x45</code>, <code>Ammo_545x39</code>, <code>Ammo_9x19</code>, <code>Ammo_22</code></td>
+                <td>All Traders (Frontier Exchange, UN, Rust, Smuggler)</td>
+                <td>The universal hard currency of the wastes. 7.62×39 holds highest value; .22 LR holds lowest. Accepted by all traders without faction oaths.</td>
+              </tr>
+              <tr>
+                <td style="color:#d8bd79; font-weight:700;">Builders' Currency (Hardware)</td>
+                <td><code>Nail</code> (Loose &amp; Boxes), <code>WoodenPlank</code></td>
+                <td>Frontier Exchange (Qalat-e Lut &amp; Settler Haven)</td>
+                <td>Essential for compound barricades and tower construction. Settler elders trade tools and farming seeds for raw building supplies.</td>
+              </tr>
+              <tr>
+                <td style="color:#68c0d0; font-weight:700;">UN Humanitarian Scrip</td>
+                <td><code>ExpansionBanknoteHryvnia</code> (UN Aid Vouchers)</td>
+                <td>UN Quartermaster &amp; Frontier Exchange</td>
+                <td>Earned strictly from Task Force Blue Shield medical and escort contracts. Spends on military medical gear, radios, NBC suits, and GPS orienteering gear.</td>
+              </tr>
+              <tr>
+                <td style="color:#d4775e; font-weight:700;">Industrial Hardware &amp; Tolls</td>
+                <td><code>SparkPlug</code>, <code>CarBattery</code>, <code>CanisterGasoline</code></td>
+                <td>Rust Syndicate Water Broker (Hilltop Water Station)</td>
+                <td>Required by the Syndicate to maintain turbine pumps. Paying hardware tolls grants clean water drawing rights and unlocks vehicle repair parts.</td>
+              </tr>
+              <tr>
+                <td style="color:#a4bf91; font-weight:700;">Wilderness Tribute (Pelts &amp; Meat)</td>
+                <td><code>Pelt_Wildboar</code>, <code>Pelt_Deer</code>, <code>Pelt_Wolf</code>, Steaks</td>
+                <td>Karkas Clan (Missile Base Ridge) &amp; Frontier Exchange</td>
+                <td>Tanned pelts and wild game steaks trade for Bedouin tack or build Hardline clan reputation toward the 50 Tolerance ridge crossing threshold.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
 

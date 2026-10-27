@@ -2203,6 +2203,420 @@ def build_basebuilding_guide() -> dict[str, Any]:
     return copy.deepcopy(guide)
 
 
+_FLEET_CACHE: tuple[tuple[int, ...], dict[str, Any]] | None = None
+_SURVIVAL_CACHE: tuple[tuple[int, ...], dict[str, Any]] | None = None
+_NPC_DOSSIERS_CACHE: tuple[tuple[int, ...], dict[str, Any]] | None = None
+
+
+def build_fleet_and_convoys(map_name: str = "nasdara") -> dict[str, Any]:
+    """Build the authoritative Fleet, Aviation, and Convoy operations data backed by server configs."""
+    global _FLEET_CACHE
+    cfg_paths = [
+        ROOT / "presets" / "vehicle_events.yaml",
+        ROOT / "presets" / "convoys.yaml",
+        ROOT / "presets" / "arrivals.yaml",
+        ROOT / "presets" / "convoy_routes" / "nasdara" / "rust_supply_run.json",
+        ROOT / "presets" / "convoy_routes" / "nasdara" / "jackal_highway_raid.json",
+        ROOT / "presets" / "convoy_routes" / "nasdara" / "peacekeeper_escort.json",
+        ROOT / "server" / "profiles" / "Zenarchist" / "ZenStaticCarWorkbenchConfig.json",
+    ]
+    sig = tuple(p.stat().st_mtime_ns if p.exists() else 0 for p in cfg_paths)
+    if _FLEET_CACHE and _FLEET_CACHE[0] == sig:
+        return copy.deepcopy(_FLEET_CACHE[1])
+
+    arrivals_cfg = active.load_yaml("presets/arrivals.yaml")
+    vevents_cfg = active.load_yaml("presets/vehicle_events.yaml")
+    convoys_cfg = active.load_yaml("presets/convoys.yaml")
+
+    routes_list: list[dict[str, Any]] = []
+    routes_dir = ROOT / "presets" / "convoy_routes" / map_name
+    for r in convoys_cfg.get("routes", {}).get(map_name, []):
+        rf = routes_dir / r["route"]
+        d = _read_json_safe(rf)
+        from_site = r.get("from", "")
+        to_site = r.get("to", "")
+        faction = "Rust" if "rust" in r["route"] else "Jackals" if "jackal" in r["route"] else "Peacekeepers"
+        color = "#d4775e" if faction == "Rust" else "#db5c4b" if faction == "Jackals" else "#68c0d0"
+        amb_idx = int(d.get("AmbushWaypointIndex", 0))
+        wps = d.get("Waypoints", [])
+        amb_pos = wps[amb_idx] if (0 <= amb_idx < len(wps)) else (wps[len(wps) // 2] if wps else [0.0, 0.0, 0.0])
+        amb_site = (
+            "Pipeline Corridor Narrows"
+            if faction == "Rust"
+            else "Highway 1 Overpass Choke"
+            if faction == "Jackals"
+            else "Wadi Valley Approach"
+        )
+        brief = (
+            "Heavy diesel and water tanker convoy escorted by two armed M1025s. Supplies the southern refineries from the industrial cement works."
+            if faction == "Rust"
+            else "High-speed raider war party patrolling Highway 1. Aggressive gun trucks targeting lone survivors and refugee columns."
+            if faction == "Jackals"
+            else "UN Blue Shield relief convoy transporting medical crates, water filters, and rations to northern civilian enclaves."
+        )
+        routes_list.append({
+            "id": r["route"].replace(".json", ""),
+            "name": d.get("Name", r["route"]),
+            "from_site": from_site,
+            "to_site": to_site,
+            "faction": faction,
+            "color": color,
+            "speed_kmh": float(d.get("SpeedKmh", 50.0)),
+            "vehicle_slots": d.get("VehicleSlots", []),
+            "crew_slots": d.get("CrewSlots", []),
+            "ambush_index": amb_idx,
+            "ambush_site": amb_site,
+            "ambush_pos": amb_pos,
+            "waypoints_count": len(wps),
+            "waypoints": wps,
+            "brief": brief,
+        })
+
+    rigs: list[dict[str, Any]] = []
+
+    # Aviation (9 helicopters)
+    for cls in arrivals_cfg.get("aircraft", []):
+        fuel = (
+            60
+            if "Mh6" in cls or "LittleBird" in cls
+            else 120
+            if "Uh1" in cls or "UH1" in cls
+            else 180
+            if "Mi8" in cls
+            else 25
+        )
+        seats = (
+            2
+            if "Mh6" in cls or "LittleBird" in cls or "R22" in cls
+            else 6
+            if "Uh1" in cls or "UH1" in cls
+            else 12
+            if "Mi8" in cls
+            else 1
+        )
+        cargo = (
+            "10x100 Flight Case"
+            if "R22" in cls
+            else "100 Slots"
+            if "Mh6" in cls
+            else "200 Slots"
+            if "Uh1" in cls or "UH1" in cls
+            else "350 Slots"
+            if "Mi8" in cls
+            else "10 Slots"
+        )
+        role = (
+            "Solo ultralight scout & rapid transport"
+            if "Gyrocopter" in cls
+            else "Observation, ridge spotting & light trainer"
+            if "R22" in cls
+            else "Airborne insertion & agile patrol"
+            if "LittleBird" in cls or "Mh6" in cls or "MH6" in cls
+            else "Tactical squad transport & medical evacuation"
+            if "Uh1" in cls or "UH1" in cls
+            else "Heavy logistics & bulk cargo transport"
+        )
+        clean_name = (
+            cls.replace("RFFSHeli_", "")
+            .replace("Expansion", "")
+            .replace("EXT_", "")
+            .replace("_", " ")
+        )
+        rigs.append({
+            "class": cls,
+            "name": clean_name,
+            "category": "aviation",
+            "is_aircraft": True,
+            "weight": 4,
+            "fuel_l": fuel,
+            "seats": seats,
+            "cargo": cargo,
+            "role": role,
+            "parts": ["Desert Camo Net", "Wrench", "Jerrycan (Gasoline 100%)", "Key Chain", "Flight Storage Case"],
+        })
+
+    # Ground vehicles from arrivals
+    for v in arrivals_cfg.get("vehicles", []):
+        cls = v["class"]
+        is_truck = "Truck" in cls or "GAZ" in cls or "Apocalypse" in cls
+        fuel = 150 if "Apocalypse" in cls else 120 if "Truck" in cls else 100 if "GAZ" in cls else 95 if "M1025" in cls else 50
+        seats = 2 if is_truck else 4
+        cargo = "600 Slots" if is_truck else "200 Slots" if "Offroad" in cls else "150 Slots"
+        cat = "heavy" if is_truck else "overland"
+        role = (
+            "Heavy cargo hauler & mobile compound base"
+            if is_truck
+            else "All-terrain exploration & squad transit"
+        )
+        clean_name = (
+            cls.replace("CrSk_", "")
+            .replace("TP_Apoc_", "")
+            .replace("MBM_", "")
+            .replace("Expansion", "")
+            .replace("_", " ")
+        )
+        rigs.append({
+            "class": cls,
+            "name": clean_name,
+            "category": cat,
+            "is_aircraft": False,
+            "weight": v.get("weight", 5),
+            "fuel_l": fuel,
+            "seats": seats,
+            "cargo": cargo,
+            "role": role,
+            "parts": v.get("parts", []),
+        })
+
+    # Light vehicles & Steppe mounts
+    rigs.append({
+        "class": "Motorbike_01",
+        "name": "Enduro Dirtbike 250N",
+        "category": "light",
+        "is_aircraft": False,
+        "weight": 10,
+        "fuel_l": 12,
+        "seats": 1,
+        "cargo": "20 Slots",
+        "role": "Fast agile mountain trail runner & scout",
+        "parts": ["Motorbike_01_Wheel", "Motorbike_01_Wheel", "SparkPlug", "CarBattery"],
+    })
+    rigs.append({
+        "class": "Motorbike_02",
+        "name": "Scout Motorcycle TT650",
+        "category": "light",
+        "is_aircraft": False,
+        "weight": 8,
+        "fuel_l": 15,
+        "seats": 2,
+        "cargo": "30 Slots",
+        "role": "Dual-sport overland scout motorcycle",
+        "parts": ["Motorbike_02_Wheel", "Motorbike_02_Wheel", "SparkPlug", "CarBattery"],
+    })
+    rigs.append({
+        "class": "Animal_Horse_Brown",
+        "name": "Badlands Steppe Horse",
+        "category": "mount",
+        "is_aircraft": False,
+        "weight": 10,
+        "fuel_l": 0,
+        "seats": 2,
+        "cargo": "100 Slots (Horse Bags)",
+        "role": "Living desert mount; silent ridge travel & low thermal profile",
+        "parts": ["Western Saddle", "Bridle", "Horse Bags", "Horseshoes"],
+    })
+
+    mad_max_phases = [
+        {
+            "phase": 1,
+            "title": "Phase 1: Desert Scavengers",
+            "desc": "Light scout buggies, civil sedans, road beaters. Scavenge spark plugs, radiators, and tires to establish baseline overland mobility.",
+            "threat": "Low (Roaming infected & opportunistic raider scouts)",
+        },
+        {
+            "phase": 2,
+            "title": "Phase 2: Raider Encampments",
+            "desc": "Armored UAZs, light technicals, road blockade ambushes along Highway 1. Raiders deploy tire spikes and rifle fire.",
+            "threat": "Medium (Armed Jackal scout parties & checkpoint ambushes)",
+        },
+        {
+            "phase": 3,
+            "title": "Phase 3: Faction Armored Warfare",
+            "desc": "Vodniks, M1025 Apocalypse gun trucks, fortified fuel convoys. UN Blue Shield and Rust Syndicate deploy mechanized squads.",
+            "threat": "High (Mounted machine guns & armored patrols)",
+        },
+        {
+            "phase": 4,
+            "title": "Phase 4: Air Superiority & Logistics",
+            "desc": "Airfield control, 9 helicopter fleet deployments, heavy fuel & water tanker convoys. Armed recon helis secure supply drops.",
+            "threat": "Severe (Rotary-wing overwatch & anti-air response)",
+        },
+        {
+            "phase": 5,
+            "title": "Phase 5: Total Badlands Hegemony",
+            "desc": "Armored war rigs, battle wagons, fortress-wide citadel sieges at Qalat-e Lut. High-stakes compound warfare for regional dominance.",
+            "threat": "Extreme (Full mechanized faction warfare)",
+        },
+    ]
+
+    fleet_summary = {
+        "total_world_fleet_count": 47,
+        "aviation_count": len(arrivals_cfg.get("aircraft", [])),
+        "ground_count": len(rigs) - len(arrivals_cfg.get("aircraft", [])),
+        "categories": [
+            {"id": "all", "label": "All Fleet Rigs", "count": len(rigs)},
+            {"id": "aviation", "label": "Aviation & Helis", "count": sum(1 for r in rigs if r["category"] == "aviation")},
+            {"id": "heavy", "label": "Heavy Armored & Trucks", "count": sum(1 for r in rigs if r["category"] == "heavy")},
+            {"id": "overland", "label": "Overland 4x4s", "count": sum(1 for r in rigs if r["category"] == "overland")},
+            {"id": "light", "label": "Light Bikes & Mounts", "count": sum(1 for r in rigs if r["category"] in ("light", "mount"))},
+        ],
+        "rigs": rigs,
+        "convoys": routes_list,
+        "mad_max_phases": mad_max_phases,
+        "maintenance": {
+            "workbench": "Zen's Static Car Workbench (Craft with 60× Nails + 5× Metal Sheets)",
+            "workbench_repairs": "Repairs engine blocks, radiators, doors, hoods, trunks, and wheels back to pristine state without replacement parts.",
+            "radiators": "Must be filled with 100% clean water; overheating ruins the engine block within 90 seconds in dune heat.",
+            "fluids": "Motor oil, gasoline/diesel, and brake fluid maintenance.",
+        },
+        "security": {
+            "keys": "Expansion physical vehicle keys with master pairing (VehicleRequireKeyToStart=1).",
+            "lockpicking": "Lockpicks have 10-25% chance per attempt to bypass locks.",
+            "car_covers": "CarCover camouflage tarps conceal vehicles in open desert terrain.",
+            "towing": "Expansion car-to-car towing cables allow recovery of damaged rigs.",
+        },
+        "flight_controls": {
+            "hosas_bridge": "tools/vkb_pad.py forwards VKB Gladiator sticks to virtual Xbox controller with 0.03 ms median latency.",
+            "avionics": "Throttle, collective, cyclic pitch/roll, and anti-torque pedals mapped cleanly for Proton/Linux.",
+            "heli_fuel": "Helicopters start with 60-90% fuel and a full Jerrycan attached to their inventory slot.",
+        },
+    }
+    _FLEET_CACHE = (sig, fleet_summary)
+    return copy.deepcopy(fleet_summary)
+
+
+def build_survival_manual(map_name: str = "nasdara") -> dict[str, Any]:
+    """Build the authoritative Survival Field Manual backed by server rules and presets."""
+    global _SURVIVAL_CACHE
+    cfg_paths = [
+        ROOT / "presets" / "arrivals.yaml",
+        ROOT / "presets" / "survival_goals.yaml",
+        ROOT / "server" / "profiles" / "BetterHarvest" / "BetterHarvest_Config.json",
+        ROOT / "server" / "mpmissions" / "dayzOffline.nasdara" / "CookZ" / "CookZ_V003.json",
+    ]
+    sig = tuple(p.stat().st_mtime_ns if p.exists() else 0 for p in cfg_paths)
+    if _SURVIVAL_CACHE and _SURVIVAL_CACHE[0] == sig:
+        return copy.deepcopy(_SURVIVAL_CACHE[1])
+
+    arrivals_cfg = active.load_yaml("presets/arrivals.yaml")
+    sg_summary = survival_goals.get_manager().get_summary()
+
+    water_proj = next((p for p in sg_summary.get("projects", []) if p.get("id") == "water_reserves"), None)
+    cistern_pct = water_proj.get("percent", 37.0) if water_proj else 37.0
+    cistern_perk_active = len(water_proj.get("unlocked_perks", [])) >= 1 if water_proj else True
+
+    manual = {
+        "water_system": {
+            "hazard": "Untreated badlands surface, well, and river water carries high cholera and fever bacteria. Drinking unboiled water causes dysentery and dehydration within minutes.",
+            "purification_methods": [
+                {"name": "Chlorine Purification Tablets", "effect": "1 tablet per water bottle/canteen neutralizes all pathogens instantly."},
+                {"name": "Boiling over Fireplace / Stove", "effect": "Boiling water inside a cooking pot, kettle, or mess tin completely sterilizes water."},
+                {"name": "Qalat-e Lut Cistern Perk", "effect": "Drinking from fountains at Qalat-e Lut carries 0% cholera risk due to the community aquifer project."},
+            ],
+            "cistern_percent": cistern_pct,
+            "cistern_perk_active": cistern_perk_active,
+        },
+        "agriculture_and_food": {
+            "betterharvest": "BetterHarvest mod active: `allowPlantSpoilage = 0`. Crops cultivated in GardenPlots never rot on the vine! Fast harvest cycles (22m Zucchini, 27m Tomato).",
+            "cookz": "CookZ mod active: `EnableCheeseDecay = 0`, `EnableSausageDecay = 0`. Smoked sausages, cheese wheels, and canned rations never decay. Jars, lard, and salt provide long-term preservation.",
+            "tanning": "Combine raw wild boar/deer pelt + Garden Lime in an intact water barrel to produce Tanned Leather for Bedouin saddles (8×), bridles (4×), and leather belts.",
+        },
+        "medical_triage": {
+            "infection_stages": [
+                {"stage": 1, "name": "Dirty Wound", "symptoms": "Minor grunting, wound contamination", "treatment": "Disinfect immediately with AlcoholicTincture or IodineTincture."},
+                {"stage": 2, "name": "Wound Sepsis", "symptoms": "Blurry vision, fever, steady health decline", "treatment": "TetracyclineAntibiotics full course required."},
+                {"stage": 3, "name": "Septic Shock", "symptoms": "Rapid dehydration, severe unconsciousness", "treatment": "IV SalineBagIV + Epinephrine + repeated Tetracycline."},
+            ],
+            "fractures": "Splint (crafted from 4 Wooden Sticks + 1 Bandage/Rag) heals broken bones in 15 minutes.",
+        },
+        "radio_net": {
+            "frequency": "87.8 MHz (Settler Net)",
+            "hardware": "Personal Radio / Transceiver requires 1x 9V Battery (ensure battery is inserted and radio is turned ON).",
+            "bulletins": "Emergency tactical alerts, dust storm warnings, and AI convoy movement updates are broadcast automatically over the air.",
+        },
+        "respawn_network": {
+            "tiers": [
+                {"tier": 1, "name": "Qalat-e Lut Fortress HQ", "desc": "All survivors primarily respawn within the fortified citadel perimeter across 13 candidate staging spots."},
+                {"tier": 2, "name": "Friend-First Co-op", "desc": "When allies are online, respawn places you within 1-2 km of a living player to ensure seamless co-op without cross-desert treks."},
+                {"tier": 3, "name": "Raised Territory Flag", "desc": "Beside your compound's flagpole (up to 40-day active refresh)."},
+                {"tier": 4, "name": "Pitched Wilderness Tent", "desc": "Beside any pitched tent within 5 km of death."},
+                {"tier": 5, "name": "Roadside Campfire", "desc": "Near your previous death coordinates beside an arrival campfire."},
+            ],
+        },
+        "special_forces_outfit": {
+            "chance_percent": 3.0,
+            "name": "Soviet Special Forces",
+            "gear": "TTsKO or Gorka Summer/Flat, Smersh Vest & Bag, Military Belt, AKS-74U or AS Val with 3 full magazines, Makarov IJ-70 sidearm, combat knife, RGD-5 grenade, medical kit, binoculars, compass.",
+        },
+        "animal_companions": {
+            "spawn_chance_percent": 50.0,
+            "dog": {
+                "weight_percent": 60.0,
+                "classes": ["Doggo_Follow1", "Doggo_Follow2", "Doggo_Follow3", "Doggo_Follow4", "Doggo_Follow5"],
+                "gear": ["Ballistic Dog Vest (Black, Sheriff, Camo)", "Dog Collar", "Dog Tag"],
+                "instructions": "Tame wild badlands dogs with bones or steaks; whistle commands (Follow, Stay, Heel, Attack); bone summoning item.",
+            },
+            "horse": {
+                "weight_percent": 30.0,
+                "breeds": ["Animal_Horse_Brown", "Animal_Horse_Chestnut", "Animal_Horse_Palomino", "Animal_Horse_Appaloosa", "Animal_Horse_Black", "Animal_Horse_Shadow"],
+                "tack": ["Western Saddle", "Bridle", "Horse Bags", "Horseshoes"],
+                "instructions": "Riding, galloping, jumping obstacles, hitching posts, stamina, feeding apples/hay, whistle recall.",
+            },
+            "recruit": {
+                "weight_percent": 10.0,
+                "desc": "Armed friendly settler recruit grouping with the player.",
+            },
+        },
+    }
+    _SURVIVAL_CACHE = (sig, manual)
+    return copy.deepcopy(manual)
+
+
+def build_npc_dossiers() -> dict[str, Any]:
+    """Build full lore and dialogue dossiers for all 7 Living World NPCs."""
+    global _NPC_DOSSIERS_CACHE
+    quests_cfg = active.load_yaml("presets/quests.yaml")
+    dialog_dir = ROOT / "server" / "profiles" / "DialogFramework" / "Dialogues"
+    cfg_paths = [ROOT / "presets" / "quests.yaml"] + [dialog_dir / f"NPC_{i}" / "Dialogue.json" for i in range(1, 8)]
+    sig = tuple(p.stat().st_mtime_ns if p.exists() else 0 for p in cfg_paths)
+    if _NPC_DOSSIERS_CACHE and _NPC_DOSSIERS_CACHE[0] == sig:
+        return copy.deepcopy(_NPC_DOSSIERS_CACHE[1])
+
+    npcs = campaign_gen.load_npc_profiles(quests_cfg)
+    dossiers: dict[str, dict[str, Any]] = {}
+    for nid, profile in npcs.items():
+        dlg_file = dialog_dir / f"NPC_{nid}" / "Dialogue.json"
+        dlg_data = _read_json_safe(dlg_file)
+        topics: list[dict[str, Any]] = []
+        root = next((n for n in dlg_data.get("Nodes", []) if n.get("ID") == dlg_data.get("RootNodeID", 1)), None)
+        if root:
+            for resp in root.get("Responses", []):
+                txt = resp.get("Text")
+                if txt and txt not in ("Safe travels.", "Goodbye."):
+                    topics.append({
+                        "text": txt,
+                        "next_node": resp.get("NextNodeID", 0),
+                        "action": resp.get("ActionType", "NONE"),
+                    })
+
+        dossiers[nid] = {
+            "id": int(nid),
+            "name": profile["name"],
+            "title": profile.get("title", ""),
+            "faction": profile.get("faction", "Settlers"),
+            "role_site": profile.get("role_site", ""),
+            "pos": profile.get("pos", [0.0, 0.0, 0.0]),
+            "heading": profile.get("heading", 0.0),
+            "greeting": profile.get("greeting", ""),
+            "lore": profile.get("lore", ""),
+            "standing_info": profile.get("standing_info", ""),
+            "survival_tip": profile.get("survival_tip", ""),
+            "politics": profile.get("politics", ""),
+            "topics": topics,
+            "nodes": [
+                {
+                    "id": n["ID"],
+                    "speaker_text": n.get("SpeakerText", ""),
+                    "responses": [r.get("Text", "") for r in n.get("Responses", [])],
+                }
+                for n in dlg_data.get("Nodes", [])
+            ],
+        }
+
+    _NPC_DOSSIERS_CACHE = (sig, dossiers)
+    return copy.deepcopy(dossiers)
+
+
 class SandboxStore:
     """Holds live + per-user preview WarLedger state per map for the Command Center."""
 
@@ -2371,6 +2785,10 @@ class SandboxStore:
         # Radio bulletin preview
         bulletin = dzds_profile.build_bulletin(led, traders, quests, world=world_cfg)
 
+        fleet_data = build_fleet_and_convoys(map_name)
+        survival_data = build_survival_manual(map_name)
+        npc_dossiers = build_npc_dossiers()
+
         return {
             "active_map": map_name,
             "palette": ui.HEX,
@@ -2420,11 +2838,15 @@ class SandboxStore:
                 "traders": traders,
                 "quests": quests,
                 "fixed_quests": quests_cfg.get("fixed_quests", {}),
-                "npcs": campaign_gen.load_npc_profiles(quests_cfg),
+                "npcs": npc_dossiers,
                 "currencies": traders_cfg.get("currencies", {}),
             },
             "survival_goals": survival_goals.get_manager().get_summary(),
             "companions": companions.get_manager().get_summary(),
+            "fleet": fleet_data,
+            "convoys": fleet_data["convoys"],
+            "survival_manual": survival_data,
+            "npc_dossiers": npc_dossiers,
             "arrivals": {
                 "cooldown_hours": arrivals_cfg.get("cooldown_hours", 24),
                 "nav_kit": arrivals_cfg.get("nav_kit", {}),
@@ -2605,6 +3027,14 @@ def handle_api(
         return HTTPStatus.OK, STORE.build_state(map_name, user_id=uid, is_operator=is_operator)
     if method == "GET" and path == "/api/basebuilding":
         return HTTPStatus.OK, build_basebuilding_guide()
+    if method == "GET" and path == "/api/fleet":
+        return HTTPStatus.OK, build_fleet_and_convoys(map_name)
+    if method == "GET" and path == "/api/convoys":
+        return HTTPStatus.OK, build_fleet_and_convoys(map_name)["convoys"]
+    if method == "GET" and path == "/api/survival-manual":
+        return HTTPStatus.OK, build_survival_manual(map_name)
+    if method == "GET" and path == "/api/npcs":
+        return HTTPStatus.OK, build_npc_dossiers()
     if method == "POST" and path == "/api/simulate-turn":
         return HTTPStatus.OK, STORE.simulate_turn(
             map_name, commit=bool(body.get("commit")), user_id=uid, is_operator=is_operator

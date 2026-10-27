@@ -766,3 +766,181 @@ def test_in_app_instructions_and_pwa_surfaces():
     assert "simulateTurn" not in portal_html
     assert "<script" not in portal_html
 
+
+def test_deep_alignment_api_endpoints_and_state():
+    """Verify backend API endpoints and state payloads reflect server systems."""
+    # 1. /api/fleet
+    code, fleet_data = web.handle_api("GET", "/api/fleet", {"map": ["nasdara"]}, {})
+    assert code == 200
+    assert fleet_data["total_world_fleet_count"] >= 47
+    assert fleet_data["aviation_count"] >= 9
+    assert len(fleet_data["rigs"]) >= 47
+    assert len(fleet_data["convoys"]) == 3
+    assert len(fleet_data["mad_max_phases"]) == 5
+    assert "60× Nails + 5× Metal Sheets" in fleet_data["maintenance"]["workbench"]
+    assert "VehicleRequireKeyToStart=1" in fleet_data["security"]["keys"]
+
+    # Verify sample rig structure
+    rig0 = fleet_data["rigs"][0]
+    assert "class" in rig0 and "name" in rig0 and "category" in rig0
+    assert "fuel_l" in rig0 and "parts" in rig0
+
+    # 2. /api/convoys
+    code, convoys = web.handle_api("GET", "/api/convoys", {"map": ["nasdara"]}, {})
+    assert code == 200
+    assert len(convoys) == 3
+    c_ids = [c["id"] for c in convoys]
+    assert "rust_supply_run" in c_ids
+    assert "jackal_highway_raid" in c_ids
+    assert "peacekeeper_escort" in c_ids
+
+    for c in convoys:
+        assert c["from_site"] and c["to_site"]
+        assert c["ambush_site"]
+        assert len(c["ambush_pos"]) == 3
+        assert len(c["waypoints"]) > 10
+
+    # 3. /api/survival-manual
+    code, surv = web.handle_api("GET", "/api/survival-manual", {"map": ["nasdara"]}, {})
+    assert code == 200
+    assert "water_system" in surv
+    assert "agriculture_and_food" in surv
+    assert "medical_triage" in surv
+    assert "radio_net" in surv
+    assert "respawn_network" in surv
+    assert "cholera" in surv["water_system"]["hazard"].lower()
+    assert "87.8 MHz" in surv["radio_net"]["frequency"]
+    assert len(surv["respawn_network"]["tiers"]) == 5
+    assert surv["special_forces_outfit"]["chance_percent"] == 3
+
+    # 4. /api/npcs
+    code, npcs = web.handle_api("GET", "/api/npcs", {}, {})
+    assert code == 200
+    assert len(npcs) == 7
+    assert "1" in npcs
+    assert npcs["1"]["name"] == "Elder Tariq"
+    assert npcs["1"]["role_site"] == "Qalat-e Lut"
+    assert len(npcs["1"]["nodes"]) >= 5
+    assert len(npcs["1"]["topics"]) >= 5
+
+    # 5. /api/state
+    code, state = web.handle_api("GET", "/api/state", {"map": ["nasdara"]}, {})
+    assert code == 200
+    assert "fleet" in state
+    assert "convoys" in state
+    assert "survival_manual" in state
+    assert "npc_dossiers" in state
+    assert state["fleet"]["total_world_fleet_count"] >= 47
+    assert len(state["convoys"]) == 3
+    assert len(state["front_plan"]["npcs"]) == 7
+
+
+def test_deep_alignment_player_portal_content():
+    """Verify player_portal.html static survivor manual matches all server features."""
+    portal_html = web.PLAYER_PORTAL_HTML_PATH.read_text(encoding="utf-8")
+
+    # Strict static portal safety invariants
+    assert "<script" not in portal_html, "player_portal.html must NEVER contain <script> tags"
+    assert "/api/" not in portal_html, "player_portal.html must NEVER contain /api/ references"
+    assert "simulateTurn" not in portal_html, "player_portal.html must NEVER contain simulateTurn"
+
+    # Navigation anchors
+    assert '<a href="#vehicles">Vehicles &amp; Flight</a>' in portal_html
+    assert '<a href="#survive">Survive</a>' in portal_html
+    assert '<a href="#companions">Companions &amp; Recruits</a>' in portal_html
+    assert '<a href="#campaign">Campaign &amp; Barter</a>' in portal_html
+
+    # Vehicles & Aviation Section (#vehicles)
+    assert '<section id="vehicles"' in portal_html
+    assert "Overland Logistics, Fleet &amp; Flight Operations" in portal_html
+    assert "9-Aircraft Helicopter Fleet &amp; Pre-Fitted Kits" in portal_html
+    assert "Zen's Static Car Workbench" in portal_html
+    assert "60× Nails + 5× Metal Sheets" in portal_html
+    assert "Expansion Keys, Lockpicking &amp; Camo Tarps" in portal_html
+    assert "CarCover Tarps" in portal_html
+    assert "Tri-Corridor Automated AI Supply Convoys" in portal_html
+    assert "5-Phase Mad Max Vehicular Progression Arc" in portal_html
+
+    # Survival Field Manual 5 Pillars (#survive)
+    assert '<section id="survive"' in portal_html
+    assert "Badlands Survival Field Manual · 5 Pillars" in portal_html
+    assert "1. Water Purification &amp; Cholera" in portal_html
+    assert "2. Homestead Farming &amp; Curing" in portal_html
+    assert "3. Trauma &amp; Infection Triage" in portal_html
+    assert "4. Settler Radio Net 87.8 MHz" in portal_html
+    assert "5. 5-Tier Respawn Network" in portal_html
+    assert "87.8 MHz" in portal_html
+    assert "Qalat-e Lut Fortress HQ" in portal_html
+    assert "Friend-First Co-op" in portal_html
+    assert "Soviet Special Forces Outfit" in portal_html
+    assert "3% RARE ROLL" in portal_html
+
+    # Companions Section (#companions)
+    assert '<section id="companions"' in portal_html
+    assert "Loyal Animal Companions &amp; Badlands Mounts" in portal_html
+    assert "Loyal Dog Companion" in portal_html
+    assert "Badlands Steppe Horse" in portal_html
+    assert "DayZ-Dog Framework" in portal_html
+    assert "Western Saddle" in portal_html
+
+    # Barter Currency Matrix (#campaign)
+    assert '<section id="campaign"' in portal_html
+    assert "Faction Barter Currency Exchange Matrix" in portal_html
+    assert "Ammunition (Hard Currency)" in portal_html
+    assert "Builders' Currency (Hardware)" in portal_html
+    assert "UN Humanitarian Scrip" in portal_html
+    assert "Industrial Hardware &amp; Tolls" in portal_html
+
+
+def test_deep_alignment_companion_app_ui():
+    """Verify web_ui.html tactical command center contains all interactive modules."""
+    ui_html = web.UI_HTML_PATH.read_text(encoding="utf-8")
+
+    # Layer toggle button
+    assert 'id="lyr-convoys"' in ui_html
+    assert "Tri-Corridor Convoys" in ui_html
+
+    # NPC Dossier Modal Dialog
+    assert 'id="npc-dossier-modal"' in ui_html
+    assert 'id="npc-modal-content"' in ui_html
+    assert 'class="modal-backdrop"' in ui_html
+    assert 'class="modal-dialog"' in ui_html
+
+    # Expedition Survival & Water Calculator
+    assert "EXPEDITION SURVIVAL &amp; WATER REQUIREMENTS CALCULATOR" in ui_html
+    assert 'id="scalc-hours"' in ui_html
+    assert 'id="scalc-party"' in ui_html
+    assert 'id="scalc-transport"' in ui_html
+    assert 'id="scalc-out-water"' in ui_html
+    assert 'id="scalc-out-food"' in ui_html
+    assert 'id="scalc-out-fuel"' in ui_html
+    assert 'id="scalc-out-med"' in ui_html
+    assert 'id="scalc-out-cistern"' in ui_html
+
+    # World Vehicle Fleet, Aviation & Convoys
+    assert "WORLD VEHICLE FLEET, AVIATION &amp; LOGISTICS (47 RIGS)" in ui_html
+    assert 'id="fleet-search"' in ui_html
+    assert 'id="fleet-grid"' in ui_html
+    assert 'id="convoys-grid"' in ui_html
+    assert 'id="fleet-filt-all"' in ui_html
+    assert 'id="fleet-filt-aviation"' in ui_html
+    assert 'id="fleet-filt-heavy"' in ui_html
+    assert 'id="fleet-filt-overland"' in ui_html
+    assert 'id="fleet-filt-light"' in ui_html
+
+    # Chop-Shops & Zen's Workbench
+    assert "CHOP-SHOPS &amp; ZEN'S STATIC CAR WORKBENCH (REPAIR PROTOCOL)" in ui_html
+    assert "60× Nails + 5× Metal Sheets" in ui_html
+
+    # JavaScript Functions & Handlers
+    assert "function updateSurvivalCalc()" in ui_html
+    assert "function setFleetFilter(" in ui_html
+    assert "function filterFleetRigs()" in ui_html
+    assert "function renderFleetAndConvoys()" in ui_html
+    assert "function trackConvoyOnMap(" in ui_html
+    assert "function openNpcDossier(" in ui_html
+    assert "function closeNpcDossier()" in ui_html
+    assert "function trackNpcOnMap(" in ui_html
+    assert "closeNpcDossier()" in ui_html
+
+

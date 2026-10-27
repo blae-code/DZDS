@@ -792,6 +792,40 @@
     .map-hud-bottom { flex-direction: column; align-items: flex-start; gap: 6px; }
     .map-hud-bottom #column-readout { margin-left: 0; }
   }
+
+  /* Interactive Dossier Modal & Interactive Cards */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(4, 7, 10, 0.78);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+  .modal-backdrop[hidden] { display: none !important; }
+  .modal-dialog {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-bright);
+    border-radius: 8px;
+    max-width: 760px;
+    width: 100%;
+    max-height: 88vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
+    overflow: hidden;
+  }
+  .clickable-card {
+    cursor: pointer;
+    transition: transform 0.12s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .clickable-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  }
 </style>
 </head>
 <body>
@@ -869,6 +903,7 @@
               <button class="layer-chip on" id="lyr-patrols" type="button" aria-pressed="true" onclick="toggleLayer('patrols')">Patrol squads</button>
               <button class="layer-chip on" id="lyr-arrivals" type="button" aria-pressed="true" onclick="toggleLayer('arrivals')">Arrival columns & roads</button>
               <button class="layer-chip on" id="lyr-quests" type="button" aria-pressed="true" onclick="toggleLayer('quests')">Quest vectors</button>
+              <button class="layer-chip on" id="lyr-convoys" type="button" aria-pressed="true" onclick="toggleLayer('convoys')">Tri-Corridor Convoys</button>
               <button class="layer-chip" id="lyr-exclusions" type="button" aria-pressed="false" onclick="toggleLayer('exclusions')">Exclusion rings</button>
               <button class="layer-chip on" id="lyr-pins" type="button" aria-pressed="true" onclick="toggleLayer('pins')">Personal pins &amp; notes</button>
             </div>
@@ -962,18 +997,87 @@
     </div>
 
     <div class="card">
-      <div class="card-title"><span>LIVING WORLD NPC CONTACTS & FACTION REPRESENTATIVES</span><span id="npc-count-badge" class="badge cyan">7 ACTIVE CONTACTS</span></div>
+      <div class="card-title">
+        <span>LIVING WORLD NPC CONTACTS &amp; FACTION REPRESENTATIVES</span>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <span class="mono muted" style="font-size:0.75rem;">Click card to open full dossier</span>
+          <span id="npc-count-badge" class="badge cyan">7 ACTIVE CONTACTS</span>
+        </div>
+      </div>
       <div id="npc-contacts-grid" class="grid-3" style="margin-top:12px;"></div>
     </div>
 
     <div class="card">
-      <div class="card-title"><span>COMMUNITY SURVIVAL INFRASTRUCTURE & SETTLEMENT PROJECTS (QALAT-E LUT HQ)</span><span id="survival-goals-count-badge" class="badge cyan">5 ACTIVE PROJECTS</span></div>
+      <div class="card-title"><span>COMMUNITY SURVIVAL INFRASTRUCTURE &amp; SETTLEMENT PROJECTS (QALAT-E LUT HQ)</span><span id="survival-goals-count-badge" class="badge cyan">5 ACTIVE PROJECTS</span></div>
       <div id="survival-goals-wrap" class="grid-3" style="margin-top:12px;"></div>
+    </div>
+
+    <!-- EXPEDITION SURVIVAL & WATER CALCULATOR -->
+    <div class="card">
+      <div class="card-title">
+        <span>EXPEDITION SURVIVAL &amp; WATER REQUIREMENTS CALCULATOR</span>
+        <span class="mono muted">5-Pillar Environmental Triage · Qalat-e Lut Cistern Active</span>
+      </div>
+      <div class="grid-2" style="margin-top:12px; gap:16px;">
+        <div style="display:flex; flex-direction:column; gap:12px; background:var(--bg-canvas); padding:14px; border-radius:6px; border:1px solid var(--border-soft);">
+          <div>
+            <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
+              <label for="scalc-hours" style="font-size:0.8rem; font-weight:700; color:var(--text);">Expedition Duration (Hours in Desert):</label>
+              <span id="scalc-hours-val" class="mono" style="font-weight:700; color:var(--cyan);">6 h</span>
+            </div>
+            <input type="range" id="scalc-hours" min="1" max="24" value="6" step="1" style="width:100%; cursor:pointer;" oninput="updateSurvivalCalc()">
+          </div>
+          <div>
+            <label for="scalc-party" style="font-size:0.8rem; font-weight:700; color:var(--text); display:block; margin-bottom:4px;">Party Size (Active Survivors):</label>
+            <select id="scalc-party" class="tac-input" style="width:100%; padding:6px 10px;" onchange="updateSurvivalCalc()">
+              <option value="1">Solo Survivor (1 Player)</option>
+              <option value="2" selected>Duo Expedition (2 Players / Companion)</option>
+              <option value="3">Trio Squad (3 Players)</option>
+              <option value="4">Full Fireteam (4 Players)</option>
+            </select>
+          </div>
+          <div>
+            <label for="scalc-transport" style="font-size:0.8rem; font-weight:700; color:var(--text); display:block; margin-bottom:4px;">Transport Mode &amp; Overland Logistics:</label>
+            <select id="scalc-transport" class="tac-input" style="width:100%; padding:6px 10px;" onchange="updateSurvivalCalc()">
+              <option value="foot">On Foot / Mount (Zero Fuel Burn)</option>
+              <option value="bike">Enduro Dirtbike 250N (2 L / hr)</option>
+              <option value="overland" selected>Overland 4x4 / M1025 Humvee (5 L / hr)</option>
+              <option value="truck">Heavy Apocalypse Truck (12 L / hr)</option>
+              <option value="heli">Helicopter / Little Bird (25 L / hr)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="background:var(--bg-canvas); padding:14px; border-radius:6px; border:1px solid var(--border-soft); display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
+          <div style="display:flex; flex-direction:column; gap:8px;">
+            <div style="font-size:0.8rem; font-weight:700; color:var(--sand); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:2px;">Calculated Resource Requirements:</div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem; border-bottom:1px solid var(--border-soft); padding-bottom:4px;">
+              <span>💧 Minimum Purified Water:</span>
+              <strong id="scalc-out-water" class="mono" style="color:#68b5e8;">23.0 Liters</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem; border-bottom:1px solid var(--border-soft); padding-bottom:4px;">
+              <span>🥫 Caloric Rations Needed:</span>
+              <strong id="scalc-out-food" class="mono" style="color:var(--text);">10 Cans / Food Units</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem; border-bottom:1px solid var(--border-soft); padding-bottom:4px;">
+              <span>⛽ Fuel Required:</span>
+              <strong id="scalc-out-fuel" class="mono" style="color:#f59e0b;">30.0 Liters</strong>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem; border-bottom:1px solid var(--border-soft); padding-bottom:4px;">
+              <span>🩹 Medical Triage Pack:</span>
+              <span id="scalc-out-med" class="mono" style="color:var(--ok); font-size:0.8rem;">4 Bandages, 2 Saline, 2 Tetra</span>
+            </div>
+          </div>
+          <div style="background:rgba(104, 181, 232, 0.08); border:1px solid rgba(104, 181, 232, 0.25); padding:8px 10px; border-radius:4px; font-size:0.75rem;">
+            <strong style="color:#68b5e8;">Cistern Status:</strong> <span id="scalc-out-cistern">Qalat-e Lut fountains active: 0% cholera risk inside fortress. Untreated wild water carries 100% infection risk!</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="card">
       <div class="card-title">
-        <span>HIRABLE SETTLER COMPANIONS & QALAT-E LUT GARRISON</span>
+        <span>HIRABLE SETTLER COMPANIONS &amp; QALAT-E LUT GARRISON</span>
         <span id="companions-count-badge" class="badge cyan">4 SPECIALISTS</span>
       </div>
       <div id="companions-grid" class="grid-2" style="margin-top:12px;"></div>
@@ -981,7 +1085,7 @@
 
     <div class="card">
       <div class="card-title">
-        <span>CAMPAIGN CONTRACTS & PROGRESSION QUESTLINES</span>
+        <span>CAMPAIGN CONTRACTS &amp; PROGRESSION QUESTLINES</span>
         <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
           <button class="pill active" id="qfilt-all" onclick="setQuestFilter('all')">ALL (<span id="quests-count-all">0</span>)</button>
           <button class="pill" id="qfilt-dynamic" onclick="setQuestFilter('dynamic')">DYNAMIC FRONT</button>
@@ -992,9 +1096,45 @@
       <div id="quests-table-wrap"></div>
     </div>
 
+    <!-- WORLD VEHICLE FLEET, AVIATION & CONVOY OPERATIONS CENTER -->
     <div class="card">
-      <div class="card-title"><span>FAVORED AIRCRAFT & GROUND VEHICLE POOL</span><span class="mono muted">24h Cooldown · Full Attachment Kits</span></div>
-      <div id="vehicles-grid" class="grid-3"></div>
+      <div class="card-title">
+        <span>WORLD VEHICLE FLEET, AVIATION &amp; LOGISTICS (47 RIGS)</span>
+        <div style="display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+          <input type="text" id="fleet-search" class="tac-input" style="padding:2px 8px; font-size:0.75rem; width:160px;" placeholder="Search fleet rigs..." oninput="filterFleetRigs()">
+          <button class="pill active" id="fleet-filt-all" onclick="setFleetFilter('all')">ALL (<span id="fleet-count-all">0</span>)</button>
+          <button class="pill" id="fleet-filt-aviation" onclick="setFleetFilter('aviation')">AVIATION (9)</button>
+          <button class="pill" id="fleet-filt-heavy" onclick="setFleetFilter('heavy')">HEAVY TRUCKS</button>
+          <button class="pill" id="fleet-filt-overland" onclick="setFleetFilter('overland')">OVERLAND 4x4s</button>
+          <button class="pill" id="fleet-filt-light" onclick="setFleetFilter('light')">LIGHT &amp; MOUNTS</button>
+        </div>
+      </div>
+      <div id="fleet-grid" class="grid-3" style="margin-top:12px;"></div>
+    </div>
+
+    <!-- TRI-CORRIDOR AUTOMATED AI CONVOY RADAR -->
+    <div class="card">
+      <div class="card-title">
+        <span>TRI-CORRIDOR AUTOMATED AI CONVOY RADAR</span>
+        <span class="mono muted">Active Tactical Patrols &amp; Ambush Hotspots</span>
+      </div>
+      <div id="convoys-grid" class="grid-3" style="margin-top:12px;"></div>
+    </div>
+
+    <!-- CHOP-SHOPS & REPAIR WORKBENCH GUIDE -->
+    <div class="card" style="border-left: 3px solid var(--f-settlers);">
+      <div class="card-title"><span>CHOP-SHOPS &amp; ZEN'S STATIC CAR WORKBENCH (REPAIR PROTOCOL)</span><span class="mono muted">60× Nails + 5× Metal Sheets</span></div>
+      <div class="grid-3" style="margin-top:8px; font-size:0.82rem; line-height:1.45;">
+        <div>
+          <strong style="color:var(--text);">Full Component Restoration:</strong> Deploy <code>ZenStaticCarWorkbench</code> at your base. Repairs ruined engine blocks, radiators, doors, hoods, and wheels to pristine condition.
+        </div>
+        <div>
+          <strong style="color:#e05353;">Radiator Overheating Warning:</strong> Radiators must be 100% filled with clean water. Running dry in desert heat destroys the engine block within 90 seconds!
+        </div>
+        <div>
+          <strong style="color:var(--cyan);">Physical Keys &amp; Security:</strong> Expansion keys required to start engines (<code>VehicleRequireKeyToStart=1</code>). Lockpicks have a 10-25% bypass chance. Camo tarps conceal parked vehicles.
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1471,7 +1611,7 @@ const DEFAULT_PREFS = {
   always_show_labels: false,
   auto_refresh_sec: 0,
   preferred_archetype: 'bush_pilot',
-  layers: { zones: true, patrols: true, arrivals: true, quests: true, exclusions: false, pins: true },
+  layers: { zones: true, patrols: true, arrivals: true, quests: true, convoys: true, exclusions: false, pins: true },
   camera: {
     nasdara: { x: 8192, z: 8192, zoom: 1.05, selected_site: 'Settler Haven' },
     chernarusplus: { x: 7680, z: 7680, zoom: 1.05, selected_site: '' }
@@ -1502,9 +1642,11 @@ const LAYERS = PREFS.layers || {
   patrols: true,
   arrivals: true,
   quests: true,
+  convoys: true,
   exclusions: false,
   pins: true
 };
+if (LAYERS.convoys === undefined) LAYERS.convoys = true;
 
 let CAM = { x: 8192, z: 8192, zoom: 1.0, dragging: false, lastX: 0, lastY: 0 };
 let RULER = { active: false, p1: null, p2: null };
@@ -1936,7 +2078,7 @@ function renderFrontPlanView() {
       const fc = factionColor(n.faction);
       const posStr = n.pos ? `[${Math.round(n.pos[0])}, ${Math.round(n.pos[2])}]` : '';
       return `
-        <div class="card" style="border-left: 3px solid ${fc}; background: var(--bg-surface); padding: 12px 14px;">
+        <div class="card clickable-card" onclick="openNpcDossier('${n.id}')" title="Click to open full dialogue tree, lore dossier & inventory" style="border-left: 3px solid ${fc}; background: var(--bg-surface); padding: 12px 14px; cursor: pointer; transition: transform 0.15s ease, border-color 0.15s ease;">
           <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
             <div>
               <div style="font-weight:700; color:var(--text); font-size:0.95rem;">${n.name}</div>
@@ -1951,6 +2093,7 @@ function renderFrontPlanView() {
             ${n.id === 1 || n.id === 2 || n.id === 4 || n.id === 7 ? '<span class="pill" style="border-color:var(--f-settlers); color:var(--f-settlers);">⚖ Barter</span>' : ''}
             <span class="pill">📡 Intel</span>
             <span class="pill">🏜 Survival Guide</span>
+            <span class="pill" style="background:rgba(104, 192, 208, 0.15); color:var(--cyan); border-color:var(--cyan);">💬 Dossier &amp; Dialog</span>
           </div>
         </div>
       `;
@@ -2044,21 +2187,11 @@ function renderFrontPlanView() {
   // Quests & Story Arcs
   renderQuestsTable();
 
-  // Vehicles
-  const airSet = new Set(STATE.arrivals.aircraft || []);
-  const vs = STATE.arrivals.vehicles || [];
-  document.getElementById('vehicles-grid').innerHTML = vs.map(v => {
-    const isAir = airSet.has(v.class);
-    return `
-      <div class="card" style="background:var(--bg-canvas); border-left:3px solid ${isAir ? 'var(--cyan)' : 'var(--f-settlers)'};">
-        <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-          <span class="mono" style="font-weight:700;">${isAir ? '🚁 ' : '🚙 '}${v.class}</span>
-          <span class="badge ${isAir ? 'cyan' : 'ok'}">${isAir ? 'AIRCRAFT' : 'GROUND'} · W:${v.weight}</span>
-        </div>
-        <div class="mono muted" style="font-size:10.5px;">${v.parts.length} fitted attachments: ${v.parts.slice(0, 6).join(', ')}${v.parts.length > 6 ? ` (+${v.parts.length - 6})` : ''}</div>
-      </div>
-    `;
-  }).join('');
+  // Expedition Survival & Water Requirements Calculator
+  updateSurvivalCalc();
+
+  // Fleet, Aviation & Convoys
+  renderFleetAndConvoys();
 }
 
 window.currentQuestFilter = window.currentQuestFilter || 'all';
@@ -2083,8 +2216,8 @@ async function contributeProject(projectId, amount) {
       const data = await res.json();
       if (data.summary) {
         STATE.survival_goals = data.summary;
-        renderFrontPlan();
-        toast(`Contributed ${amount} to ${projectId}!`, 'ok');
+        renderFrontPlanView();
+        showToast(`Contributed ${amount} to ${projectId}!`);
       }
     }
   } catch (err) {
@@ -2105,14 +2238,14 @@ async function hireCompanion(companionId) {
       const data = await res.json();
       if (data.summary) {
         STATE.companions = data.summary;
-        renderFrontPlan();
-        toast(`Companion ${companionId} enlisted to ${who}!`, 'ok');
+        renderFrontPlanView();
+        showToast(`Companion ${companionId} enlisted to ${who}!`);
       }
     } else {
-      toast('Failed to hire companion', 'err');
+      showToast('Failed to hire companion');
     }
   } catch (err) {
-    toast(`Hiring error: ${err.message}`, 'err');
+    showToast(`Hiring error: ${err.message}`);
   }
 }
 
@@ -2128,14 +2261,14 @@ async function dismissCompanion(companionId) {
       const data = await res.json();
       if (data.summary) {
         STATE.companions = data.summary;
-        renderFrontPlan();
-        toast(`Companion ${companionId} returned to Qalat-e Lut!`, 'ok');
+        renderFrontPlanView();
+        showToast(`Companion ${companionId} returned to Qalat-e Lut!`);
       }
     } else {
-      toast('Failed to dismiss companion', 'err');
+      showToast('Failed to dismiss companion');
     }
   } catch (err) {
-    toast(`Dismissal error: ${err.message}`, 'err');
+    showToast(`Dismissal error: ${err.message}`);
   }
 }
 
@@ -2227,6 +2360,318 @@ function renderQuestsTable() {
       </tbody>
     </table>
   `;
+}
+
+// ---- Badlands Survival & Resource Calculator -------------------------------------
+function updateSurvivalCalc() {
+  const hoursInput = document.getElementById('scalc-hours');
+  const partyInput = document.getElementById('scalc-party');
+  const transInput = document.getElementById('scalc-transport');
+  if (!hoursInput || !partyInput || !transInput) return;
+
+  const hours = parseInt(hoursInput.value) || 1;
+  const party = parseInt(partyInput.value) || 1;
+  const trans = transInput.value;
+
+  const hoursValEl = document.getElementById('scalc-hours-val');
+  if (hoursValEl) hoursValEl.textContent = `${hours} h`;
+
+  // Water: ~1.4 L/hr enclosed, ~1.9 L/hr open/foot
+  const isEnclosed = trans === 'heli' || trans === 'truck' || trans === 'overland';
+  const waterRate = isEnclosed ? 1.4 : 1.9;
+  const totalWater = (hours * party * waterRate).toFixed(1);
+
+  // Food: ~0.7 rations/hr per survivor
+  const totalFood = Math.max(1, Math.round(hours * party * 0.7));
+
+  // Fuel:
+  const fuelRates = { foot: 0, bike: 2.0, overland: 5.0, truck: 12.0, heli: 25.0 };
+  const fuelRate = fuelRates[trans] !== undefined ? fuelRates[trans] : 5.0;
+  const totalFuel = (hours * fuelRate).toFixed(1);
+
+  // Medical:
+  const bandages = Math.max(2, Math.ceil(party * (hours > 6 ? 2 : 1.5)));
+  const saline = Math.max(1, Math.ceil(party * (hours > 6 ? 1 : 0.5)));
+  const tetra = Math.max(1, Math.ceil(party * 0.75));
+
+  const outWater = document.getElementById('scalc-out-water');
+  if (outWater) outWater.textContent = `${totalWater} Liters`;
+
+  const outFood = document.getElementById('scalc-out-food');
+  if (outFood) outFood.textContent = `${totalFood} Cans / Food Units`;
+
+  const outFuel = document.getElementById('scalc-out-fuel');
+  if (outFuel) outFuel.textContent = `${totalFuel} Liters`;
+
+  const outMed = document.getElementById('scalc-out-med');
+  if (outMed) outMed.textContent = `${bandages} Bandages, ${saline} Saline IVs, ${tetra} Tetracycline / Splints`;
+
+  const outCistern = document.getElementById('scalc-out-cistern');
+  if (outCistern) {
+    outCistern.textContent = 'Qalat-e Lut citadel cisterns active: 0% cholera risk inside fortress. Untreated badlands surface water carries 100% infection risk!';
+  }
+}
+
+// ---- Fleet, Aviation & Convoy Radar Engine ---------------------------------------
+window.currentFleetFilter = window.currentFleetFilter || 'all';
+
+function setFleetFilter(cat) {
+  window.currentFleetFilter = cat;
+  ['all', 'aviation', 'heavy', 'overland', 'light'].forEach(c => {
+    const btn = document.getElementById(`fleet-filt-${c}`);
+    if (btn) btn.classList.toggle('active', c === cat);
+  });
+  renderFleetRigsGrid();
+}
+
+function filterFleetRigs() {
+  renderFleetRigsGrid();
+}
+
+function renderFleetRigsGrid() {
+  const fleetData = STATE?.fleet;
+  const rigs = fleetData?.rigs || [];
+  const searchInput = document.getElementById('fleet-search');
+  const term = (searchInput ? searchInput.value : '').toLowerCase().trim();
+  const filterCat = window.currentFleetFilter || 'all';
+
+  const allCountEl = document.getElementById('fleet-count-all');
+  if (allCountEl) allCountEl.textContent = rigs.length;
+
+  const filtered = rigs.filter(r => {
+    if (filterCat !== 'all' && r.category !== filterCat) return false;
+    if (term) {
+      const matchName = (r.name || '').toLowerCase().includes(term);
+      const matchClass = (r.class || '').toLowerCase().includes(term);
+      const matchRole = (r.role || '').toLowerCase().includes(term);
+      const matchParts = (r.parts || []).some(p => p.toLowerCase().includes(term));
+      if (!matchName && !matchClass && !matchRole && !matchParts) return false;
+    }
+    return true;
+  });
+
+  const fleetGrid = document.getElementById('fleet-grid');
+  if (!fleetGrid) return;
+
+  if (!filtered.length) {
+    fleetGrid.innerHTML = '<div class="muted" style="grid-column: 1/-1; padding: 12px;">No vehicles match the selected category and search criteria.</div>';
+    return;
+  }
+
+  fleetGrid.innerHTML = filtered.map(r => {
+    const isAir = r.is_aircraft || r.category === 'aviation';
+    const borderCol = isAir ? 'var(--cyan)' : r.category === 'heavy' ? 'var(--f-rust)' : r.category === 'overland' ? 'var(--f-settlers)' : 'var(--sand)';
+    const icon = isAir ? '🚁' : r.category === 'heavy' ? '🚛' : r.category === 'overland' ? '🚙' : '🏍';
+    const badgeLabel = isAir ? 'AVIATION' : (r.category || 'GROUND').toUpperCase();
+    return `
+      <div class="card" style="background:var(--bg-canvas); border-left:3px solid ${borderCol}; padding:12px 14px; display:flex; flex-direction:column; justify-content:space-between; gap:8px;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
+            <div style="font-weight:700; color:var(--text); font-size:0.95rem;">${icon} ${r.name}</div>
+            <span class="badge" style="background:${borderCol}22; color:${borderCol}; font-weight:700;">${badgeLabel}</span>
+          </div>
+          <div class="mono muted" style="font-size:0.75rem; margin-bottom:6px;">Class: <code>${r.class}</code> · Seats: ${r.seats} · Cargo: ${r.cargo}</div>
+          <div style="font-size:0.8rem; color:var(--text-dim); margin-bottom:8px; line-height:1.35;">${r.role}</div>
+          <div style="background:rgba(0,0,0,0.25); border:1px solid var(--border-soft); border-radius:4px; padding:6px 8px; font-size:0.75rem;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+              <span class="muted">Fuel Capacity:</span>
+              <span class="mono" style="color:#f59e0b; font-weight:700;">${r.fuel_l} L</span>
+            </div>
+            <div class="mono muted" style="font-size:0.72rem; line-height:1.35;">
+              <strong style="color:var(--text);">Kit:</strong> ${(r.parts || []).join(', ')}
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderConvoysGrid() {
+  const convoys = STATE?.convoys || STATE?.fleet?.convoys || [];
+  const convoysGrid = document.getElementById('convoys-grid');
+  if (!convoysGrid) return;
+
+  if (!convoys.length) {
+    convoysGrid.innerHTML = '<div class="muted" style="grid-column: 1/-1; padding: 12px;">No automated supply convoys detected in current sector telemetry.</div>';
+    return;
+  }
+
+  convoysGrid.innerHTML = convoys.map(c => {
+    const col = c.color || '#f59e0b';
+    const ambushPos = c.ambush_pos || [0, 0, 0];
+    return `
+      <div class="card" style="background:var(--bg-canvas); border-left:3px solid ${col}; padding:14px; display:flex; flex-direction:column; justify-content:space-between; gap:10px;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:4px;">
+            <div style="font-weight:700; color:var(--text); font-size:0.95rem;">🚛 ${c.name}</div>
+            <span class="badge" style="background:${col}22; color:${col}; font-weight:700;">${c.faction.toUpperCase()}</span>
+          </div>
+          <div class="mono muted" style="font-size:0.75rem; margin-bottom:6px;">Route: ${c.from_site} ➔ ${c.to_site}</div>
+          <p style="font-size:0.8rem; color:var(--text-dim); margin-bottom:8px; line-height:1.4;">${c.brief}</p>
+          <div style="background:rgba(0,0,0,0.25); border:1px solid var(--border-soft); border-radius:4px; padding:6px 8px; font-size:0.75rem; display:flex; flex-direction:column; gap:3px;">
+            <div><strong style="color:var(--text);">Vehicles:</strong> <span class="mono">${(c.vehicle_slots || []).join(', ')}</span></div>
+            <div><strong style="color:var(--text);">Escort Crew:</strong> <span class="mono">${(c.crew_slots || []).join(', ')}</span></div>
+            <div><strong style="color:var(--text);">Waypoints:</strong> <span class="mono">${c.waypoints_count || (c.waypoints || []).length} Points · Speed: ${c.speed_kmh} km/h</span></div>
+            <div style="color:#ef4444;"><strong style="color:#ef4444;">Ambush Hotspot:</strong> ${c.ambush_site} (WP #${c.ambush_index})</div>
+          </div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px; padding-top:6px; border-top:1px solid rgba(255,255,255,0.06);">
+          <span class="mono muted" style="font-size:0.7rem;">Ambush: [${Math.round(ambushPos[0])}, ${Math.round(ambushPos[2])}]</span>
+          <button class="btn btn-sm btn-cyan" style="font-size:0.72rem; padding:3px 10px;" onclick="trackConvoyOnMap('${c.id}')">🎯 Track on Map</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderFleetAndConvoys() {
+  renderFleetRigsGrid();
+  renderConvoysGrid();
+}
+
+function trackConvoyOnMap(routeId) {
+  const convoys = STATE?.convoys || STATE?.fleet?.convoys || [];
+  const c = convoys.find(item => item.id === routeId);
+  if (!c) {
+    showToast(`Convoy ${routeId} not found`);
+    return;
+  }
+  switchView(0);
+  if (c.ambush_pos) {
+    CAM.x = c.ambush_pos[0];
+    CAM.z = c.ambush_pos[2];
+  } else if (c.waypoints && c.waypoints.length) {
+    CAM.x = c.waypoints[0][0];
+    CAM.z = c.waypoints[0][2];
+  }
+  CAM.zoom = 1.6;
+  LAYERS.convoys = true;
+  const btn = document.getElementById('lyr-convoys');
+  if (btn) {
+    btn.classList.add('on');
+    btn.setAttribute('aria-pressed', 'true');
+  }
+  drawMap();
+  showToast(`Tracking ${c.name} · Ambush zone focused`);
+}
+
+// ---- NPC Dossier Modal & Dialogue Framework Viewer -------------------------------
+function openNpcDossier(npcId) {
+  const dossiers = STATE?.npc_dossiers || {};
+  const d = dossiers[String(npcId)] || (STATE?.front_plan?.npcs ? STATE.front_plan.npcs[String(npcId)] : null);
+  const modal = document.getElementById('npc-dossier-modal');
+  const content = document.getElementById('npc-modal-content');
+  if (!modal || !content) return;
+
+  if (!d) {
+    showToast(`Dossier not found for NPC #${npcId}`);
+    return;
+  }
+
+  const fc = factionColor(d.faction);
+  const posStr = d.pos ? `[${Math.round(d.pos[0])}, ${Math.round(d.pos[2])}]` : '';
+
+  let nodesHtml = '';
+  if (d.nodes && d.nodes.length) {
+    nodesHtml = `
+      <div style="margin-top:14px;">
+        <div style="font-size:0.8rem; font-weight:700; color:var(--sand); text-transform:uppercase; margin-bottom:8px;">
+          Dialogue Framework Tree (${d.nodes.length} Interactive Nodes):
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          ${d.nodes.map(n => `
+            <div style="background:var(--bg-canvas); border-left:3px solid ${n.id === 1 ? 'var(--cyan)' : 'var(--border-dim)'}; border:1px solid var(--border-soft); border-left-width:3px; padding:10px 12px; border-radius:4px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <span class="mono" style="font-weight:700; font-size:0.75rem; color:${n.id === 1 ? 'var(--cyan)' : 'var(--text)'};">NODE #${n.id}</span>
+                ${n.id === 1 ? '<span class="badge cyan">ROOT GREETING</span>' : ''}
+              </div>
+              <div style="font-size:0.82rem; color:var(--text); margin-bottom:6px; line-height:1.4;">"${n.text}"</div>
+              ${(n.responses && n.responses.length) ? `
+                <div style="font-size:0.75rem; color:var(--muted); line-height:1.35; padding-left:8px; border-left:2px solid var(--border-soft);">
+                  <strong style="color:var(--text-dim);">Survivor Responses:</strong>
+                  ${n.responses.map(r => `
+                    <div style="margin-top:2px;">
+                      ▸ "${r.text}" ${r.next_node ? `<span class="mono muted">➔ Node #${r.next_node}</span>` : ''} ${r.action && r.action !== 'NONE' ? `<span class="badge" style="font-size:0.65rem;">${r.action}</span>` : ''}
+                    </div>
+                  `).join('')}
+                </div>
+              ` : ''}
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  }
+
+  content.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:12px; border-bottom:1px solid var(--border-soft); padding-bottom:10px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <h2 style="margin:0; font-size:1.2rem; color:var(--text);">${d.name}</h2>
+          <span class="badge" style="background:${fc}22; color:${fc}; font-weight:700;">${d.faction}</span>
+        </div>
+        <div class="muted" style="font-size:0.8rem; margin-top:2px;">${d.title} · 📍 ${d.role_site} <span class="mono">${posStr}</span></div>
+      </div>
+      <button class="btn btn-sm" style="font-size:1rem; padding:2px 8px; line-height:1;" onclick="closeNpcDossier()" aria-label="Close dialog">✕</button>
+    </div>
+
+    <div style="font-size:0.85rem; font-style:italic; color:var(--text-dim); background:rgba(0,0,0,0.25); border-left:3px solid ${fc}; padding:10px 12px; border-radius:4px; margin-bottom:12px; line-height:1.4;">
+      "${d.greeting}"
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap:12px; margin-bottom:12px;">
+      <div style="background:var(--bg-canvas); border:1px solid var(--border-soft); padding:10px 12px; border-radius:4px;">
+        <div style="font-size:0.75rem; font-weight:700; color:var(--sand); text-transform:uppercase; margin-bottom:4px;">Faction Lore &amp; Background</div>
+        <div style="font-size:0.8rem; color:var(--muted); line-height:1.4;">${d.lore || 'No background intel registered.'}</div>
+      </div>
+
+      <div style="background:var(--bg-canvas); border:1px solid var(--border-soft); padding:10px 12px; border-radius:4px;">
+        <div style="font-size:0.75rem; font-weight:700; color:var(--cyan); text-transform:uppercase; margin-bottom:4px;">Survival Advice &amp; Tactics</div>
+        <div style="font-size:0.8rem; color:var(--muted); line-height:1.4;">${d.survival_tip || 'Preserve water and carry chlorine tablets.'}</div>
+      </div>
+    </div>
+
+    <div style="background:var(--bg-canvas); border:1px solid var(--border-soft); padding:10px 12px; border-radius:4px; margin-bottom:12px;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+        <span style="font-size:0.75rem; font-weight:700; color:var(--sand); text-transform:uppercase;">Standing &amp; Political Alignment</span>
+        <span class="mono muted" style="font-size:0.72rem;">Faction: ${d.faction}</span>
+      </div>
+      <div style="font-size:0.8rem; color:var(--muted); line-height:1.4; margin-bottom:6px;">${d.standing_info || ''}</div>
+      <div style="font-size:0.8rem; color:var(--muted); line-height:1.4;">${d.politics || ''}</div>
+    </div>
+
+    ${nodesHtml}
+
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-top:16px; padding-top:12px; border-top:1px solid var(--border-soft);">
+      <button class="btn btn-cyan" onclick="trackNpcOnMap(${d.id})">🎯 Locate on Map</button>
+      <button class="btn" onclick="closeNpcDossier()">Close Dossier</button>
+    </div>
+  `;
+
+  modal.hidden = false;
+  modal.style.display = 'flex';
+}
+
+function closeNpcDossier() {
+  const modal = document.getElementById('npc-dossier-modal');
+  if (modal) {
+    modal.hidden = true;
+    modal.style.display = 'none';
+  }
+}
+
+function trackNpcOnMap(npcId) {
+  closeNpcDossier();
+  const dossiers = STATE?.npc_dossiers || {};
+  const d = dossiers[String(npcId)] || (STATE?.front_plan?.npcs ? STATE.front_plan.npcs[String(npcId)] : null);
+  if (!d || !d.pos) return;
+  switchView(0);
+  CAM.x = d.pos[0];
+  CAM.z = d.pos[2];
+  CAM.zoom = 1.8;
+  drawMap();
+  showToast(`Focused camera on ${d.name} @ ${d.role_site}`);
 }
 
 function renderModsTable() {
@@ -3091,6 +3536,62 @@ function drawMap() {
     }
   }
 
+  // 7b. Tri-Corridor Automated AI Supply Convoys
+  if (LAYERS.convoys) {
+    const convoys = STATE.convoys || (STATE.fleet && STATE.fleet.convoys) || [];
+    for (const c of convoys) {
+      const pts = c.waypoints || [];
+      if (pts.length < 2) continue;
+      const cCol = c.color || '#f59e0b';
+
+      ctx.save();
+      ctx.strokeStyle = cCol;
+      ctx.lineWidth = 2.2;
+      ctx.setLineDash([8, 5]);
+      ctx.beginPath();
+      pts.forEach(([wx, , wz], idx) => {
+        const [sx, sy] = worldToScreen(wx, wz, w, h);
+        if (idx === 0) ctx.moveTo(sx, sy);
+        else ctx.lineTo(sx, sy);
+      });
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Start & End markers
+      const [sx0, sy0] = worldToScreen(pts[0][0], pts[0][2], w, h);
+      const [sxN, syN] = worldToScreen(pts[pts.length - 1][0], pts[pts.length - 1][2], w, h);
+      ctx.fillStyle = cCol;
+      ctx.beginPath(); ctx.arc(sx0, sy0, 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(sxN, syN, 4.5, 0, Math.PI * 2); ctx.fill();
+
+      // Ambush Hotspot Marker
+      if (c.ambush_pos) {
+        const [ax, ay] = worldToScreen(c.ambush_pos[0], c.ambush_pos[2], w, h);
+        ctx.strokeStyle = '#ef4444';
+        ctx.fillStyle = 'rgba(239, 68, 68, 0.25)';
+        ctx.lineWidth = 1.8;
+        ctx.beginPath();
+        ctx.arc(ax, ay, 8, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.fillStyle = '#ef4444';
+        ctx.font = '700 10px "JetBrains Mono", monospace';
+        ctx.fillText('⚠ AMBUSH: ' + (c.ambush_site || 'Hotspot'), ax + 11, ay + 3);
+      }
+
+      // Convoy route label at midpoint
+      const midIdx = Math.floor(pts.length / 2);
+      const [mx, my] = worldToScreen(pts[midIdx][0], pts[midIdx][2], w, h);
+      ctx.font = '700 10.5px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#090c0f';
+      ctx.fillText(`🚛 ${c.name}`, mx + 7, my - 5);
+      ctx.fillStyle = cCol;
+      ctx.fillText(`🚛 ${c.name}`, mx + 6, my - 6);
+      ctx.restore();
+    }
+  }
+
   // 8. Locations & 400m Stronghold / Warzone Circles
   const zoneR = STATE.map.zone_radius_m * scale;
   for (const [name, loc] of Object.entries(STATE.map.locations)) {
@@ -3113,6 +3614,17 @@ function drawMap() {
       ctx.restore();
     }
 
+    if (name === 'Settler Haven') {
+      ctx.save();
+      ctx.strokeStyle = '#d8bd79';
+      ctx.fillStyle = 'rgba(216, 189, 121, 0.15)';
+      ctx.lineWidth = 1.6;
+      ctx.beginPath();
+      ctx.arc(sx, sy, 13, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.restore();
+    }
+
     // Center marker reticle
     ctx.fillStyle = loc.holder === 'unheld' ? '#687482' : col;
     ctx.beginPath();
@@ -3128,11 +3640,12 @@ function drawMap() {
     }
 
     if (isSel || CAM.zoom >= 1.8) {
+      const labelText = name === 'Settler Haven' ? 'Settler Haven (Qalat-e Lut)' : name;
       ctx.font = `${isSel ? '700 12px' : '600 11px'} "JetBrains Mono", monospace`;
       ctx.fillStyle = '#090c0f';
-      ctx.fillText(name, sx + 9, sy + 5);
+      ctx.fillText(labelText, sx + 9, sy + 5);
       ctx.fillStyle = isSel ? '#ffffff' : (loc.holder === 'unheld' ? '#9aa6b2' : '#dedcd6');
-      ctx.fillText(name, sx + 8, sy + 4);
+      ctx.fillText(labelText, sx + 8, sy + 4);
     }
   }
 
@@ -3294,6 +3807,7 @@ canvas.addEventListener('wheel', e => {
 
 window.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
+    closeNpcDossier();
     const openPanel = ['locations', 'dossier'].find(name =>
       !document.getElementById(`${name}-panel`).hidden
     );
@@ -3373,6 +3887,14 @@ function applyPreferences() {
 
   renderChecklist();
   renderCustomPinsList();
+
+  ['zones', 'patrols', 'arrivals', 'quests', 'convoys', 'exclusions', 'pins'].forEach(name => {
+    const btn = document.getElementById(`lyr-${name}`);
+    if (btn && LAYERS[name] !== undefined) {
+      btn.classList.toggle('on', !!LAYERS[name]);
+      btn.setAttribute('aria-pressed', String(!!LAYERS[name]));
+    }
+  });
 }
 
 function updatePrefField(key, value) {
@@ -3851,5 +4373,7 @@ loadState().then(() => {
   } catch (err) {}
 });
 </script>
+
+<div id="npc-dossier-modal" class="modal-backdrop" hidden onclick="if(event.target===this)closeNpcDossier()"><div class="modal-dialog" id="npc-modal-content" role="dialog" aria-modal="true"></div></div>
 </body>
 </html>
