@@ -2229,7 +2229,7 @@ class DZDSGeocacheEntry
 	int Id;
 	string Landmark;
 	string Coords;
-	string Container;
+	string ContainerClass;
 	string Danger;
 	ref TStringArray Items;
 };
@@ -2332,9 +2332,9 @@ class DZDSGeocacheManager
 		foreach (DZDSGeocacheEntry cache : s_Config.Geocaches)
 		{
 			vector pos = cache.Coords.ToVector();
-			EntityAI chest = EntityAI.Cast(GetGame().CreateObjectEx(cache.Container, pos, ECE_CREATEPHYSICS));
+			EntityAI chest = EntityAI.Cast(GetGame().CreateObjectEx(cache.ContainerClass, pos, ECE_CREATEPHYSICS));
 			if (!chest)
-				chest = EntityAI.Cast(GetGame().CreateObjectEx(cache.Container, pos, ECE_PLACE_ON_SURFACE));
+				chest = EntityAI.Cast(GetGame().CreateObjectEx(cache.ContainerClass, pos, ECE_PLACE_ON_SURFACE));
 			if (chest)
 			{
 				chest.SetPosition(pos);

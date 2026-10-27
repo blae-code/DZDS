@@ -74,7 +74,7 @@ def compile_geocaches(dry_run: bool = False) -> dict:
             "Id": cid,
             "Landmark": landmark,
             "Coords": pos_str,
-            "Container": container,
+            "ContainerClass": container,
             "Danger": c.get("danger", "Unknown"),
             "Items": items
         })
