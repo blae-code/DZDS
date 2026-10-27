@@ -1846,7 +1846,7 @@ class DZDSCompanionManager
 class DZDSBaseSupplies
 {
 	static const string MARKER_FILE = "$profile:DZDS\\base_supplies_deployed.txt";
-	static const string AIRCRAFT_MARKER_FILE = "$profile:DZDS\\base_aircraft_deployed.txt";
+	static const string AIRCRAFT_MARKER_FILE = "$profile:DZDS\\base_aircraft_v2_deployed.txt";
 
 	static void Init()
 	{
@@ -2001,6 +2001,28 @@ class DZDSBaseSupplies
 		Print("[DZDS Base] Deployed base building supply depot at Qalat-e Lut: 2 SeaChests, 4 WoodenCrates, 2 Barrels, 1 MediumTent, tools, hardware, and materials.");
 	}
 
+	static void ClearLandingPad(vector padPos, vector padOri)
+	{
+		Object blocking;
+		for (int attempts = 0; attempts < 5; attempts++)
+		{
+			blocking = null;
+			if (ExpansionItemSpawnHelper.IsSpawnPositionFree(padPos, padOri, "EXT_Mi8_Civilian", blocking))
+				break;
+			if (!blocking)
+				break;
+			if (blocking.IsKindOf("EXT_Mi8") || blocking.IsKindOf("EXT_MH6") || blocking.IsKindOf("ExpansionMh6") || blocking.IsKindOf("ExpansionUh1h") || blocking.IsKindOf("EXT_UH1Y") || blocking.IsKindOf("ExpansionHelicopterScript"))
+			{
+				Print("[DZDS Base] Deleting old/damaged helicopter at pad " + padPos.ToString() + ": " + blocking.GetType());
+				GetGame().ObjectDelete(blocking);
+			}
+			else
+			{
+				break;
+			}
+		}
+	}
+
 	static void SpawnBaseAircraft()
 	{
 		if (FileExist(AIRCRAFT_MARKER_FILE))
@@ -2009,67 +2031,154 @@ class DZDSBaseSupplies
 			return;
 		}
 
-		Print("[DZDS Base] Deploying heavy aerial transport EXT_Mi8_Civilian and Base Vehicle Depot Chest at Qalat-e Lut...");
+		Print("[DZDS Base] Starting heavy aerial transport deployment and airfield cleanup at Qalat-e Lut...");
 
-		// 1. Vehicle Depot Key & Tools Locker (SeaChest) in courtyard near base workshop
+		// 1. Airfield cleanup: remove old or damaged helicopters from all base landing pads
+		vector pad1 = "14837.0 0.0 7810.0"; // South Gate Staging (Main Helipad)
+		pad1[1] = GetGame().SurfaceY(pad1[0], pad1[2]);
+		vector pad2 = "14860.0 0.0 7815.0"; // South-East Approach
+		pad2[1] = GetGame().SurfaceY(pad2[0], pad2[2]);
+		vector pad3 = "14815.0 0.0 7815.0"; // South-West Approach
+		pad3[1] = GetGame().SurfaceY(pad3[0], pad3[2]);
+
+		ClearLandingPad(pad1, "0.0 0.0 0.0");
+		ClearLandingPad(pad2, "0.0 0.0 0.0");
+		ClearLandingPad(pad3, "0.0 0.0 0.0");
+
+		// 2. Vehicle Depot Key & Tools Locker (SeaChest) in courtyard near base workshop
+		// Reuses existing chest if present to prevent duplicate stacks
 		vector posLocker = "14838.0 0.0 7853.0";
 		posLocker[1] = GetGame().SurfaceY(posLocker[0], posLocker[2]);
-		EntityAI locker = EntityAI.Cast(GetGame().CreateObjectEx("SeaChest", posLocker, ECE_PLACE_ON_SURFACE));
+		Object blockingChest;
+		EntityAI locker = null;
+		if (!ExpansionItemSpawnHelper.IsSpawnPositionFree(posLocker, "0 0 0", "SeaChest", blockingChest))
+		{
+			if (blockingChest && blockingChest.IsKindOf("SeaChest"))
+				locker = EntityAI.Cast(blockingChest);
+		}
+		if (!locker)
+			locker = EntityAI.Cast(GetGame().CreateObjectEx("SeaChest", posLocker, ECE_PLACE_ON_SURFACE));
 
-		// 2. Determine open flat position for Mil Mi-8 heavy transport (18m rotor span)
-		vector heliPos = "14860.0 0.0 7815.0"; // South-East Approach
-		heliPos[1] = GetGame().SurfaceY(heliPos[0], heliPos[2]);
+		// 3. Determine flat landing position for Mil Mi-8 heavy transport (18m rotor span)
+		vector heliPos = pad1;
 		vector heliOri = "0.0 0.0 0.0";
 
 		Object blocking;
 		if (!ExpansionItemSpawnHelper.IsSpawnPositionFree(heliPos, heliOri, "EXT_Mi8_Civilian", blocking))
 		{
-			heliPos = "14815.0 0.0 7815.0"; // South-West Approach fallback
-			heliPos[1] = GetGame().SurfaceY(heliPos[0], heliPos[2]);
+			heliPos = pad2;
 		}
 		if (!ExpansionItemSpawnHelper.IsSpawnPositionFree(heliPos, heliOri, "EXT_Mi8_Civilian", blocking))
 		{
-			heliPos = "14840.0 0.0 8050.0"; // North Desert Road fallback
-			heliPos[1] = GetGame().SurfaceY(heliPos[0], heliPos[2]);
+			heliPos = pad3;
 		}
 
-		// 3. Assemble full aircraft parts
-		ref TStringArray parts = new TStringArray;
-		parts.Insert("ExpansionHelicopterBattery");
-		parts.Insert("HeadlightH7");
-		parts.Insert("ExpansionIgniterPlug");
-		parts.Insert("ExpansionHydraulicHoses");
-		parts.Insert("EXT_Mi8FrontWheel");
-		parts.Insert("EXT_Mi8BackWheel");
-		parts.Insert("EXT_Mi8FrontWheel");
-		parts.Insert("EXT_Mi8BackWheel");
-		parts.Insert("EXT_Mi8Door");
-		parts.Insert("CamoNetDesert");
-		parts.Insert("ExpansionKeyChain_Black");
-		parts.Insert("Wrench");
-		parts.Insert("CanisterGasoline");
-
-		// 4. Spawn EXT_Mi8_Civilian paired to ExpansionCarKey inside the locker
-		EntityAI keyTarget = locker;
+		// 4. Spawn EXT_Mi8_Civilian with NULL player/parts/key to avoid Expansion VM null pointer exceptions
+		EntityAI parent = null;
 		int remaining = 1;
-		Object heliObj = ExpansionItemSpawnHelper.SpawnVehicle("EXT_Mi8_Civilian", null, keyTarget, heliPos, heliOri, remaining, parts, -1, "ExpansionCarKey");
+		bool notAttached = false;
+		Object heliObj = ExpansionItemSpawnHelper.SpawnVehicle("EXT_Mi8_Civilian", null, parent, heliPos, heliOri, remaining, NULL, -1, "", notAttached);
 		CarScript heli = CarScript.Cast(heliObj);
 		if (heli)
 		{
-			float fuelCap = heli.GetFluidCapacity(CarFluid.FUEL);
+			// Explicitly attach flight components directly onto the helicopter
+			ref TStringArray partsToAttach = new TStringArray;
+			partsToAttach.Insert("ExpansionHelicopterBattery");
+			partsToAttach.Insert("ExpansionIgniterPlug");
+			partsToAttach.Insert("ExpansionHydraulicHoses");
+			partsToAttach.Insert("HeadlightH7");
+			partsToAttach.Insert("HeadlightH7");
+			partsToAttach.Insert("EXT_Mi8FrontWheel");
+			partsToAttach.Insert("EXT_Mi8BackWheel");
+			partsToAttach.Insert("EXT_Mi8FrontWheel");
+			partsToAttach.Insert("EXT_Mi8BackWheel");
+			partsToAttach.Insert("EXT_Mi8Door_Civilian");
+			partsToAttach.Insert("EXT_Mi8Door");
+			partsToAttach.Insert("CamoNetDesert");
+
+			int partsAttached = 0;
+			foreach (string partName : partsToAttach)
+			{
+				EntityAI partEntity = heli.GetInventory().CreateAttachment(partName);
+				if (partEntity)
+				{
+					partEntity.SetHealth01("", "", 1.0);
+					partsAttached++;
+				}
+			}
+
+			// Mounted fuel canister in slot if supported
+			EntityAI mountedCan = heli.GetInventory().CreateAttachment("CanisterGasoline");
+			if (mountedCan)
+			{
+				ItemBase mc = ItemBase.Cast(mountedCan);
+				if (mc)
+				{
+					mc.SetLiquidType(LIQUID_GASOLINE);
+					mc.SetQuantityMax();
+				}
+				partsAttached++;
+			}
+
+			// Fuel tank to 100% full capacity
 			heli.Leak(CarFluid.FUEL, 0.0);
 			heli.SetHealth01("", "", 1.0);
-			Print("[DZDS Base] Deployed EXT_Mi8_Civilian at " + heliPos.ToString() + " with full fuel and paired ExpansionCarKey in Base Vehicle Depot Chest");
+
+			// 5. Cargo: Stock helicopter interior with flight tools, spares, jerrycans, survival gear, and admin key
+			if (heli.GetInventory())
+			{
+				// Master Admin Key directly in helicopter cargo (can unlock/start any vehicle)
+				heli.GetInventory().CreateEntityInCargo("ExpansionCarAdminKey");
+				heli.GetInventory().CreateEntityInCargo("ExpansionCarKey");
+				heli.GetInventory().CreateEntityInCargo("ExpansionKeyChain_Black");
+
+				// Aviation Maintenance Tools & Spare Components
+				heli.GetInventory().CreateEntityInCargo("Wrench");
+				heli.GetInventory().CreateEntityInCargo("Screwdriver");
+				heli.GetInventory().CreateEntityInCargo("TireRepairKit");
+				heli.GetInventory().CreateEntityInCargo("ExpansionHelicopterBattery");
+				heli.GetInventory().CreateEntityInCargo("ExpansionIgniterPlug");
+				heli.GetInventory().CreateEntityInCargo("ExpansionHydraulicHoses");
+
+				// 2x Full Jerrycans of Gasoline in cargo
+				for (int j = 0; j < 2; j++)
+				{
+					EntityAI jcan = heli.GetInventory().CreateEntityInCargo("CanisterGasoline");
+					if (jcan)
+					{
+						ItemBase jc = ItemBase.Cast(jcan);
+						if (jc)
+						{
+							jc.SetLiquidType(LIQUID_GASOLINE);
+							jc.SetQuantityMax();
+						}
+					}
+				}
+
+				// Pilot Survival & Navigation Kit
+				heli.GetInventory().CreateEntityInCargo("FirstAidKit");
+				heli.GetInventory().CreateEntityInCargo("Compass");
+				heli.GetInventory().CreateEntityInCargo("Binoculars");
+				heli.GetInventory().CreateEntityInCargo("Hatchet");
+				heli.GetInventory().CreateEntityInCargo("Canteen");
+				heli.GetInventory().CreateEntityInCargo("MRE");
+				EntityAI nvg = heli.GetInventory().CreateEntityInCargo("NVGHeadstrap");
+				EntityAI nvgGoggles = heli.GetInventory().CreateEntityInCargo("NVGoggles");
+				if (nvgGoggles && nvgGoggles.GetInventory())
+					nvgGoggles.GetInventory().CreateAttachment("Battery9V");
+			}
+
+			Print("[DZDS Base] Deployed fully equipped EXT_Mi8_Civilian at " + heliPos.ToString() + " (" + partsAttached.ToString() + " parts attached, 100% fuel, full cargo kit)");
 		}
 		else
 		{
-			Print("[DZDS Base] ERROR: Failed to spawn EXT_Mi8_Civilian");
+			Print("[DZDS Base] ERROR: Failed to spawn EXT_Mi8_Civilian at " + heliPos.ToString());
 		}
 
-		// 5. Stock locker with master/admin keys for all base vehicles, spares, and tools
+		// 6. Stock locker with master/admin keys for all base vehicles, spares, and tools
 		if (locker)
 		{
-			// Admin skeleton keys (unlock/start ANY Expansion vehicle on the server)
+			// Admin skeleton keys (unlock/start ANY Expansion vehicle on the server, solving lost keys)
 			CreateInCargo(locker, "ExpansionCarAdminKey");
 			CreateInCargo(locker, "ExpansionCarAdminKey");
 			CreateInCargo(locker, "ExpansionCarAdminKey");
@@ -2093,11 +2202,24 @@ class DZDSBaseSupplies
 			CreateInCargo(locker, "ExpansionHelicopterBattery");
 			CreateInCargo(locker, "ExpansionIgniterPlug");
 			CreateInCargo(locker, "ExpansionHydraulicHoses");
-			CreateInCargo(locker, "CanisterGasoline", 100);
-			CreateInCargo(locker, "CanisterGasoline", 100);
+
+			// 2x Full Jerrycans in chest
+			for (int f = 0; f < 2; f++)
+			{
+				EntityAI canInLocker = CreateInCargo(locker, "CanisterGasoline");
+				if (canInLocker)
+				{
+					ItemBase lcan = ItemBase.Cast(canInLocker);
+					if (lcan)
+					{
+						lcan.SetLiquidType(LIQUID_GASOLINE);
+						lcan.SetQuantityMax();
+					}
+				}
+			}
 		}
 
-		// 6. Write idempotency marker
+		// 7. Write idempotency marker
 		MakeDirectory("$profile:DZDS");
 		FileHandle fh = OpenFile(AIRCRAFT_MARKER_FILE, FileMode.WRITE);
 		if (fh != 0)
