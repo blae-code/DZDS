@@ -1846,10 +1846,12 @@ class DZDSCompanionManager
 class DZDSBaseSupplies
 {
 	static const string MARKER_FILE = "$profile:DZDS\\base_supplies_deployed.txt";
+	static const string AIRCRAFT_MARKER_FILE = "$profile:DZDS\\base_aircraft_deployed.txt";
 
 	static void Init()
 	{
 		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnBaseSupplies, 12000, false);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnBaseAircraft, 14000, false);
 	}
 
 	static EntityAI CreateInCargo(EntityAI container, string itemClass, int quantity = 0)
@@ -1997,6 +1999,112 @@ class DZDSBaseSupplies
 		EntityAI tent = EntityAI.Cast(GetGame().CreateObjectEx("MediumTent", posTent, ECE_PLACE_ON_SURFACE));
 
 		Print("[DZDS Base] Deployed base building supply depot at Qalat-e Lut: 2 SeaChests, 4 WoodenCrates, 2 Barrels, 1 MediumTent, tools, hardware, and materials.");
+	}
+
+	static void SpawnBaseAircraft()
+	{
+		if (FileExist(AIRCRAFT_MARKER_FILE))
+		{
+			Print("[DZDS Base] Base heavy transport aircraft already deployed (" + AIRCRAFT_MARKER_FILE + " exists). Skipping spawn.");
+			return;
+		}
+
+		Print("[DZDS Base] Deploying heavy aerial transport EXT_Mi8_Civilian and Base Vehicle Depot Chest at Qalat-e Lut...");
+
+		// 1. Vehicle Depot Key & Tools Locker (SeaChest) in courtyard near base workshop
+		vector posLocker = "14838.0 0.0 7853.0";
+		posLocker[1] = GetGame().SurfaceY(posLocker[0], posLocker[2]);
+		EntityAI locker = EntityAI.Cast(GetGame().CreateObjectEx("SeaChest", posLocker, ECE_PLACE_ON_SURFACE));
+
+		// 2. Determine open flat position for Mil Mi-8 heavy transport (18m rotor span)
+		vector heliPos = "14860.0 0.0 7815.0"; // South-East Approach
+		heliPos[1] = GetGame().SurfaceY(heliPos[0], heliPos[2]);
+		vector heliOri = "0.0 0.0 0.0";
+
+		Object blocking;
+		if (!ExpansionItemSpawnHelper.IsSpawnPositionFree(heliPos, heliOri, "EXT_Mi8_Civilian", blocking))
+		{
+			heliPos = "14815.0 0.0 7815.0"; // South-West Approach fallback
+			heliPos[1] = GetGame().SurfaceY(heliPos[0], heliPos[2]);
+		}
+		if (!ExpansionItemSpawnHelper.IsSpawnPositionFree(heliPos, heliOri, "EXT_Mi8_Civilian", blocking))
+		{
+			heliPos = "14840.0 0.0 8050.0"; // North Desert Road fallback
+			heliPos[1] = GetGame().SurfaceY(heliPos[0], heliPos[2]);
+		}
+
+		// 3. Assemble full aircraft parts
+		ref TStringArray parts = new TStringArray;
+		parts.Insert("ExpansionHelicopterBattery");
+		parts.Insert("HeadlightH7");
+		parts.Insert("ExpansionIgniterPlug");
+		parts.Insert("ExpansionHydraulicHoses");
+		parts.Insert("EXT_Mi8FrontWheel");
+		parts.Insert("EXT_Mi8BackWheel");
+		parts.Insert("EXT_Mi8FrontWheel");
+		parts.Insert("EXT_Mi8BackWheel");
+		parts.Insert("EXT_Mi8Door");
+		parts.Insert("CamoNetDesert");
+		parts.Insert("ExpansionKeyChain_Black");
+		parts.Insert("Wrench");
+		parts.Insert("CanisterGasoline");
+
+		// 4. Spawn EXT_Mi8_Civilian paired to ExpansionCarKey inside the locker
+		EntityAI keyTarget = locker;
+		int remaining = 1;
+		Object heliObj = ExpansionItemSpawnHelper.SpawnVehicle("EXT_Mi8_Civilian", null, keyTarget, heliPos, heliOri, remaining, parts, -1, "ExpansionCarKey");
+		CarScript heli = CarScript.Cast(heliObj);
+		if (heli)
+		{
+			float fuelCap = heli.GetFluidCapacity(CarFluid.FUEL);
+			heli.Leak(CarFluid.FUEL, 0.0);
+			heli.SetHealth01("", "", 1.0);
+			Print("[DZDS Base] Deployed EXT_Mi8_Civilian at " + heliPos.ToString() + " with full fuel and paired ExpansionCarKey in Base Vehicle Depot Chest");
+		}
+		else
+		{
+			Print("[DZDS Base] ERROR: Failed to spawn EXT_Mi8_Civilian");
+		}
+
+		// 5. Stock locker with master/admin keys for all base vehicles, spares, and tools
+		if (locker)
+		{
+			// Admin skeleton keys (unlock/start ANY Expansion vehicle on the server)
+			CreateInCargo(locker, "ExpansionCarAdminKey");
+			CreateInCargo(locker, "ExpansionCarAdminKey");
+			CreateInCargo(locker, "ExpansionCarAdminKey");
+
+			// Blank keys & keychains for pairing
+			CreateInCargo(locker, "ExpansionCarKey");
+			CreateInCargo(locker, "ExpansionCarKey");
+			CreateInCargo(locker, "ExpansionCarKey");
+			CreateInCargo(locker, "ExpansionCarKey");
+			CreateInCargo(locker, "ExpansionKeyChain_Black");
+			CreateInCargo(locker, "ExpansionKeyChain_Red");
+
+			// Tools for re-keying and lock service
+			CreateInCargo(locker, "Screwdriver");
+			CreateInCargo(locker, "Screwdriver");
+			CreateInCargo(locker, "Lockpick");
+			CreateInCargo(locker, "Lockpick");
+			CreateInCargo(locker, "Wrench");
+
+			// Spare aviation components & fuel
+			CreateInCargo(locker, "ExpansionHelicopterBattery");
+			CreateInCargo(locker, "ExpansionIgniterPlug");
+			CreateInCargo(locker, "ExpansionHydraulicHoses");
+			CreateInCargo(locker, "CanisterGasoline", 100);
+			CreateInCargo(locker, "CanisterGasoline", 100);
+		}
+
+		// 6. Write idempotency marker
+		MakeDirectory("$profile:DZDS");
+		FileHandle fh = OpenFile(AIRCRAFT_MARKER_FILE, FileMode.WRITE);
+		if (fh != 0)
+		{
+			FPrintln(fh, "deployed");
+			CloseFile(fh);
+		}
 	}
 };
 
@@ -2625,6 +2733,53 @@ class CustomMission: MissionServer
 		if (!m_RefugeeArrivals)
 			m_RefugeeArrivals = new RefugeeArrivals();
 		RefugeeArrivals.GiveStartKit(player, m_RefugeeArrivals.RadioIndex(), m_RefugeeArrivals.Roadflare());
+	}
+
+	override void InvokeConnect(PlayerBase player, PlayerIdentity identity)
+	{
+		super.InvokeConnect(player, identity);
+
+		if (!player || !identity)
+			return;
+
+		if (m_RefugeeArrivals)
+			m_RefugeeArrivals.ApplyLiveResets();
+
+		if (identity.GetId() == "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ=")
+		{
+			if (m_RefugeeArrivals)
+			{
+				RefugeeArrivalRecord rec = m_RefugeeArrivals.FindRecord(identity.GetId());
+				if (rec)
+				{
+					rec.LastVehicle = 0;
+					rec.LastNavKit = 0;
+					rec.HasDeath = 0;
+				}
+			}
+
+			bool hasAdminKey = false;
+			array<EntityAI> items = new array<EntityAI>;
+			player.GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER, items);
+			foreach (EntityAI itm : items)
+			{
+				if (itm && itm.GetType() == "ExpansionCarAdminKey")
+				{
+					hasAdminKey = true;
+					break;
+				}
+			}
+
+			if (!hasAdminKey)
+			{
+				EntityAI adminKey = player.GetInventory().CreateInInventory("ExpansionCarAdminKey");
+				if (!adminKey)
+					GetGame().CreateObjectEx("ExpansionCarAdminKey", player.GetPosition(), ECE_PLACE_ON_SURFACE);
+
+				player.GetInventory().CreateInInventory("ExpansionKeyChain_Black");
+				Print("[DZDS Arrivals] Granted ExpansionCarAdminKey to blae on connect");
+			}
+		}
 	}
 };
 
