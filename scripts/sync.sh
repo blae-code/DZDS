@@ -39,6 +39,7 @@ EXCLUDES="--exclude-glob '*.ADM' --exclude-glob '*.RPT' --exclude-glob '*.log' \
 export LFTP_PASSWORD="$SFTP_PASSWORD"
 run_lftp() {
   lftp -c "
+    set sftp:connect-program 'ssh -F /dev/null -o StrictHostKeyChecking=no'
     set sftp:auto-confirm yes
     set net:max-retries 3
     set net:timeout 20

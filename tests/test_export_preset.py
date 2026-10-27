@@ -35,3 +35,4 @@ def test_generate_xml():
     assert pub_ids is not None
     ids = [elem.text for elem in pub_ids.findall("id")]
     assert ids == ["steam:1559212036", "steam:2545327648"]
+

@@ -2,16 +2,16 @@
     "ConfigVersion": 28,
     "ID": 509,
     "ObjectiveType": 3,
-    "ObjectiveText": "Travel to front-line site Settler Haven",
+    "ObjectiveText": "Get eyes on the Syndicate's works at Northern Dam and report back.",
     "TimeLimit": -1,
     "Active": 1,
     "Position": [
-        7560.0,
-        0.0,
-        8720.0
+        3570,
+        301.37,
+        14380
     ],
     "MaxDistance": 40.0,
-    "MarkerName": "Target: Settler Haven",
+    "MarkerName": "Northern Dam",
     "ShowDistance": 1,
     "TriggerOnEnter": 1,
     "TriggerOnExit": 0

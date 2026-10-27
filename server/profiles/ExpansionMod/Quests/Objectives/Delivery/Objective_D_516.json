@@ -2,25 +2,25 @@
     "ConfigVersion": 28,
     "ID": 516,
     "ObjectiveType": 5,
-    "ObjectiveText": "Deliver Tetracycline Antibiotics and Bandages to the Blue Shield field hospital at Eastern Airfield.",
+    "ObjectiveText": "Deliver clean water and purification tablets to the cistern at Settler Haven.",
     "TimeLimit": -1,
     "Active": 1,
     "Collections": [
         {
             "Amount": 1,
-            "ClassName": "TetracyclineAntibiotics",
+            "ClassName": "WaterBottle",
             "QuantityPercent": -1,
             "MinQuantityPercent": -1
         },
         {
-            "Amount": 2,
-            "ClassName": "BandageDressing",
+            "Amount": 1,
+            "ClassName": "PurificationTablets",
             "QuantityPercent": -1,
             "MinQuantityPercent": -1
         }
     ],
     "ShowDistance": 1,
     "AddItemsToNearbyMarketZone": 0,
-    "MaxDistance": 30.0,
-    "MarkerName": "Eastern Airfield"
+    "MaxDistance": 35.0,
+    "MarkerName": "Settler Haven"
 }

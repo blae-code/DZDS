@@ -5,49 +5,52 @@
     "ObjectiveText": "The Jackals at North Highway Pileup raid our roads. End it.",
     "TimeLimit": -1,
     "Active": 1,
-    "InfectedDeletionRadius": 300.0,
-    "MaxDistance": -1.0,
+    "MaxDistance": 300.0,
     "MinDistance": -1.0,
     "AllowedWeapons": [],
     "AllowedDamageZones": [],
-    "AISpawns": [
-        {
-            "Name": "Camp_North_Highway_Pileup",
-            "Persist": 0,
-            "Faction": "DZDSJackals",
-            "Formation": "RANDOM",
-            "FormationScale": 1.5,
-            "FormationLooseness": 0.0,
-            "Loadout": "DZDS_Jackals",
-            "Units": [
-                "eAI_SurvivorM_Jose",
-                "eAI_SurvivorM_Hassan",
-                "eAI_SurvivorF_Helga",
-                "eAI_SurvivorM_Quinn"
+    "AISpawn": {
+        "Name": "Camp_North_Highway_Pileup",
+        "Persist": 0,
+        "Faction": "DZDSJackals",
+        "Formation": "Column",
+        "FormationScale": 1.0,
+        "FormationLooseness": 0.0,
+        "Loadout": "DZDS_Jackals",
+        "Units": [
+            "eAI_SurvivorM_Denis",
+            "eAI_SurvivorM_Boris",
+            "eAI_SurvivorF_Eva",
+            "eAI_SurvivorM_Hassan"
+        ],
+        "NumberOfAI": 4,
+        "Behaviour": 0,
+        "Speed": 1.0,
+        "UnderThreatSpeed": 2.0,
+        "CanBeLooted": 1,
+        "UnlimitedReload": 1,
+        "AccuracyMin": 0.3,
+        "AccuracyMax": 0.5,
+        "Headshots": 1,
+        "RespawnTime": -1,
+        "DespawnTime": 120,
+        "MinDistRadius": 40.0,
+        "MaxDistRadius": 600.0,
+        "DespawnRadius": 800.0,
+        "Waypoints": [
+            [
+                3110,
+                378.41,
+                15250
             ],
-            "NumberOfAI": 4,
-            "Behaviour": 0,
-            "Speed": 1,
-            "UnderThreatSpeed": 2,
-            "CanBeLooted": 1,
-            "UnlimitedReload": 1,
-            "SniperProneDistanceThreshold": 0.0,
-            "AccuracyMin": 0.28,
-            "AccuracyMax": 0.48,
-            "ThreatDistanceLimit": 300.0,
-            "DamageMultiplier": 1.0,
-            "DamageReceivedMultiplier": 1.0,
-            "MinDistRadius": 50.0,
-            "MaxDistRadius": 400.0,
-            "DespawnTime": 0.0,
-            "RespawnTime": -1.0,
-            "Waypoints": [
-                [
-                    3110,
-                    378.41,
-                    15250
-                ]
+            [
+                3125,
+                378.41,
+                15235
             ]
-        }
-    ]
+        ]
+    },
+    "InfectedCamp": 0,
+    "MarkerName": "North Highway Pileup",
+    "ShowDistance": 1
 }

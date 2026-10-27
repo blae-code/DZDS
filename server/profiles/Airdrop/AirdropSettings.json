@@ -255,16 +255,6 @@
             "DropAccuracy": 100
         },
         {
-            "Title": "Northern Dam",
-            "Location": "Military",
-            "DropType": "RANDOM",
-            "X": 3570.0,
-            "Z": 14380.0,
-            "Zombies": 6,
-            "Radius": 120,
-            "DropAccuracy": 100
-        },
-        {
             "Title": "Southern Barracks",
             "Location": "Military",
             "DropType": "RANDOM",

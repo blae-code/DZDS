@@ -2,13 +2,13 @@
     "ConfigVersion": 28,
     "ID": 513,
     "ObjectiveType": 4,
-    "ObjectiveText": "Harvest or collect fresh produce (Tomatoes/Zucchini) to feed the refugees at Settler Haven.",
+    "ObjectiveText": "Scavenge critical spark plugs and hardware for the works at Cement Works.",
     "TimeLimit": -1,
     "Active": 1,
     "Collections": [
         {
-            "Amount": 3,
-            "ClassName": "Tomato",
+            "Amount": 1,
+            "ClassName": "SparkPlug",
             "QuantityPercent": -1,
             "MinQuantityPercent": -1
         }

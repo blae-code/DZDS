@@ -52,12 +52,6 @@
                 "AISpawnPositions": []
             },
             {
-                "Position": "3570.0 301.4 14380.0",
-                "Rotation": "0.0 0.0 0.0",
-                "LocationName": "Northern Dam",
-                "AISpawnPositions": []
-            },
-            {
                 "Position": "8230.0 261.9 5700.0",
                 "Rotation": "0.0 0.0 0.0",
                 "LocationName": "Southern Barracks",
