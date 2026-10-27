@@ -23,7 +23,7 @@
             "eAI_SurvivorF_Eva"
         ],
         "NumberOfAI": 3,
-        "Behaviour": 0,
+        "Behaviour": "ALTERNATE",
         "Speed": 1.0,
         "UnderThreatSpeed": 2.0,
         "CanBeLooted": 1,

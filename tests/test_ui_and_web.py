@@ -946,7 +946,7 @@ def test_api_geocaches_endpoint():
     assert len(caches) == 20
     assert caches[0]["Id"] == 1
     assert "Landmark" in caches[0]
-    assert "Pos" in caches[0]
+    assert "Coords" in caches[0] or "Pos" in caches[0]
 
 
 

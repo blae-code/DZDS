@@ -73,7 +73,7 @@ def compile_geocaches(dry_run: bool = False) -> dict:
         compiled.append({
             "Id": cid,
             "Landmark": landmark,
-            "Pos": pos_str,
+            "Coords": pos_str,
             "Container": container,
             "Danger": c.get("danger", "Unknown"),
             "Items": items

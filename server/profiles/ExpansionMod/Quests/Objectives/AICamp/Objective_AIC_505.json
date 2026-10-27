@@ -24,7 +24,7 @@
             "eAI_SurvivorM_Hassan"
         ],
         "NumberOfAI": 4,
-        "Behaviour": 0,
+        "Behaviour": "HALT",
         "Speed": 1.0,
         "UnderThreatSpeed": 2.0,
         "CanBeLooted": 1,

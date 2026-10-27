@@ -24,7 +24,7 @@
             "eAI_SurvivorM_Mirek"
         ],
         "NumberOfAI": 4,
-        "Behaviour": 0,
+        "Behaviour": "ALTERNATE",
         "Speed": 1,
         "UnderThreatSpeed": 2,
         "CanBeLooted": 1,

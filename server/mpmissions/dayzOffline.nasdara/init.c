@@ -2228,7 +2228,7 @@ class DZDSGeocacheEntry
 {
 	int Id;
 	string Landmark;
-	string Pos;
+	string Coords;
 	string Container;
 	string Danger;
 	ref TStringArray Items;
@@ -2331,7 +2331,7 @@ class DZDSGeocacheManager
 		int count = 0;
 		foreach (DZDSGeocacheEntry cache : s_Config.Geocaches)
 		{
-			vector pos = cache.Pos.ToVector();
+			vector pos = cache.Coords.ToVector();
 			EntityAI chest = EntityAI.Cast(GetGame().CreateObjectEx(cache.Container, pos, ECE_CREATEPHYSICS));
 			if (!chest)
 				chest = EntityAI.Cast(GetGame().CreateObjectEx(cache.Container, pos, ECE_PLACE_ON_SURFACE));
@@ -2426,7 +2426,7 @@ class DZDSGeocacheManager
 			if (idx >= 0 && idx < s_Config.Geocaches.Count())
 			{
 				DZDSGeocacheEntry entry = s_Config.Geocaches.Get(idx);
-				manifest = manifest + "  [" + (i + 1).ToString() + "] " + entry.Landmark + " -> Grid: " + entry.Pos + " | Hazard: " + entry.Danger + "\n";
+				manifest = manifest + "  [" + (i + 1).ToString() + "] " + entry.Landmark + " -> Grid: " + entry.Coords + " | Hazard: " + entry.Danger + "\n";
 			}
 		}
 		Print(manifest);

@@ -3599,7 +3599,7 @@ function drawMap() {
   if (LAYERS.geocaches) {
     const caches = STATE.geocaches || [];
     for (const gc of caches) {
-      const posStr = gc.Pos || gc.pos || '';
+      const posStr = gc.Coords || gc.Pos || gc.pos || '';
       if (!posStr) continue;
       const parts = posStr.split(' ').map(Number);
       if (parts.length < 3) continue;
