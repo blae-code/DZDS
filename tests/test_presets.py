@@ -211,7 +211,7 @@ PRUNED_BADLANDS = {
     2874589934: "DayZ-Dynamic-AI-Addon",       # Spatial AI already at MaxAI 0
     2792984177: "DayZ-Expansion-Missions",     # every feature off
     2147610525: "Armored Vehicle Pack", 1912237302: "IRP-Land-Rover-Defender-110",
-    2757080411: "Crocos Quadbike", 2298127647: "Arma 2 Clothing Pack",
+    2298127647: "Arma 2 Clothing Pack",
     2074403068: "Unknown Ghillie Mod", 2361330944: "InventoryInCar",
     3115714092: "HypeTrain",  # Blae, 2026-10-15: ditched (rail on Nasdara unverifiable)
     1646187754: "Code Lock",  # Blae, 2026-10-15: vanilla 1.30 DigitalCodeLock instead; broke RaG compile

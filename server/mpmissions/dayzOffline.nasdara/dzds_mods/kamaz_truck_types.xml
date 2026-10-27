@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types>
+    <type name="Kamaz">
+        <nominal>1</nominal>
+        <lifetime>28800</lifetime>
+        <restock>0</restock>
+        <min>1</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehicles" />
+    </type>
+    <type name="KamazCargo">
+        <nominal>1</nominal>
+        <lifetime>28800</lifetime>
+        <restock>0</restock>
+        <min>1</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehicles" />
+    </type>
+    <type name="KamazCovered">
+        <nominal>1</nominal>
+        <lifetime>28800</lifetime>
+        <restock>0</restock>
+        <min>1</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehicles" />
+    </type>
+    <type name="KamazFuel">
+        <nominal>1</nominal>
+        <lifetime>28800</lifetime>
+        <restock>0</restock>
+        <min>1</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehicles" />
+    </type>
+    <type name="Kamaz_Wheel">
+        <nominal>16</nominal>
+        <lifetime>10800</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehiclesparts" />
+        <usage name="Industrial" />
+        <value name="Tier2" />
+        <value name="Tier3" />
+    </type>
+    <type name="Kamaz_Wheel_Double">
+        <nominal>16</nominal>
+        <lifetime>10800</lifetime>
+        <restock>1800</restock>
+        <min>8</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehiclesparts" />
+        <usage name="Industrial" />
+        <value name="Tier2" />
+        <value name="Tier3" />
+    </type>
+    <type name="KamazDoors_Driver">
+        <nominal>4</nominal>
+        <lifetime>10800</lifetime>
+        <restock>1800</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehiclesparts" />
+        <usage name="Industrial" />
+        <value name="Tier2" />
+        <value name="Tier3" />
+    </type>
+    <type name="KamazDoors_CoDriver">
+        <nominal>4</nominal>
+        <lifetime>10800</lifetime>
+        <restock>1800</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehiclesparts" />
+        <usage name="Industrial" />
+        <value name="Tier2" />
+        <value name="Tier3" />
+    </type>
+    <type name="KamazDoors_Cargo">
+        <nominal>4</nominal>
+        <lifetime>10800</lifetime>
+        <restock>1800</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehiclesparts" />
+        <usage name="Industrial" />
+        <value name="Tier2" />
+        <value name="Tier3" />
+    </type>
+    <type name="KamazDoors_Hood">
+        <nominal>4</nominal>
+        <lifetime>10800</lifetime>
+        <restock>1800</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="vehiclesparts" />
+        <usage name="Industrial" />
+        <value name="Tier2" />
+        <value name="Tier3" />
+    </type>
+</types>

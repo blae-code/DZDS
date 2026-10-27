@@ -149,3 +149,23 @@ mods:
     name: DayZ-Expansion-Weapons
     policy: author
     types: ["expansion_ce/*.xml", "types.xml"]
+  3672471146:
+    name: BS Patrol Helicopter
+    policy: none
+    reason: Autonomous patrol event; wreckage spawns dynamic loot crates on destruction.
+  3822030484:
+    name: A Beautiful Motorbike Passenger
+    policy: none
+    reason: Animation and passenger script mod for vanilla motorbikes; no new items.
+  2757080411:
+    name: Crocos Quadbike
+    policy: author
+    types: ["XML/*.xml", "types.xml"]
+  1895398348:
+    name: Kamaz_Truck
+    policy: author
+    types: ["*.xml", "types.xml"]
+  2314102677:
+    name: WickedRV
+    policy: author
+    types: ["*.xml", "types.xml"]
