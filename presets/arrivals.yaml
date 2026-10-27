@@ -237,7 +237,7 @@ vehicles:
     parts: [RFFSHeli_aviation_battery, RFFSHeli_igniter_plug, RFFSHeli_hydraulic_hoses, RFFSHeli_wiring_harness, RFFSHeli_UH1H_DriverDoor, RFFSHeli_UH1H_CodriverDoor, RFFSHeli_UH1H_Cargo1, RFFSHeli_UH1H_Cargo2, RFFSHeli_UH1H_Cargo1a, RFFSHeli_UH1H_Cargo2a, HatchbackWheel, HatchbackWheel, HatchbackWheel, HatchbackWheel, HeadlightH7, HeadlightH7, RFFSHeli_flight_case_red]
 
 # Light Personal Vehicles (Blae, 2026-10-25): players who do not qualify for a fully-equipped
-# vehicle (inside cooldown) receive a light personal vehicle (dirtbike, moped, horse) with
+# vehicle (inside cooldown) receive a light personal vehicle (dirtbike, moped) with
 # enough supplies to use it, so players ALWAYS spawn with a mode of transportation.
 # Receiving a light vehicle does NOT start or reset the 24 h vehicle cooldown.
 light_vehicles:
@@ -262,18 +262,6 @@ light_vehicles:
   - class: Motorbike_02_Yellow
     weight: 2
     parts: [Motorbike_02_Wheel_1, Motorbike_02_Wheel_2, SparkPlug, Motorbike_02_ShieldFront_Yellow, Motorbike_02_ShieldLeft_Yellow, Motorbike_02_ShieldRight_Yellow]
-  - class: Animal_Horse_Brown
-    weight: 3
-    parts: [Saddle_Western, Bridle, HorseBags, HorseShoe]
-  - class: Animal_Horse_Chestnut
-    weight: 3
-    parts: [Saddle_Western, Bridle, HorseBags, HorseShoe]
-  - class: Animal_Horse_Black
-    weight: 3
-    parts: [Saddle_Western, Bridle, HorseBags, HorseShoe]
-  - class: Animal_Horse_Palomino
-    weight: 3
-    parts: [Saddle_Western, Bridle, HorseBags, HorseShoe]
 
 # Arrival cargo (Blae, 2026-10-15): ONE archetype per car, slots drawn WITHOUT replacement
 # (max_each 1, food 2), ~12-17 items + exactly one themed firearm. Item pools are disjoint
@@ -446,11 +434,11 @@ archetypes:
       - { weapon: AKS74U, magazine: Mag_AK74_30Rnd, ammo: Ammo_545x39, rounds: [3, 6], spare: [4, 8] }
       - { weapon: PP19, magazine: Mag_PP19_64Rnd, ammo: Ammo_380, rounds: [3, 6], spare: [4, 8] }
 
-  # Horse-mounted archetypes (Blae, 2026-10-24): only these two archetypes start with a horse.
-  # When a companion roll grants a horse, the archetype is drawn from these two.
+  # Hunter and Bedouin used to be the horse-mounted archetypes (Blae, 2026-10-24). Horses were
+  # removed 2026-10-27 (DayZ Horse pruned), so both are ordinary vehicle-cargo archetypes now,
+  # at half their old weight each so the four original archetypes still dominate.
   hunter:   # local Nasdara/Takistani mountain and steppe tracker
-    horse: true
-    weight: 20
+    weight: 10
     slots:
       clothing: { count: [2, 3], items: [HuntingJacket_Desert, HunterPants_Desert, HuntingJacket_Autumn, HunterPants_Autumn, HuntingVest_Desert, BoonieHat_Desert, PakolHat_Brown, PakolHat_Grey, HikingBoots_Brown, JungleBoots_Beige, LeatherGloves_Natural, CoyoteBag_Desert, HuntingBag] }
       water:    { count: [1, 2], items: [Canteen, WaterBottle, Waterskin_Natural] }
@@ -472,8 +460,7 @@ archetypes:
       - { weapon: Izh18, magazine: null, ammo: Ammo_762x39, rounds: [6, 12] }
 
   bedouin:  # deep-desert nomad of the Sarman Ghar wastes
-    horse: true
-    weight: 20
+    weight: 10
     slots:
       clothing: { count: [2, 3], items: [TurbanHat_Beige, TurbanHat_Brown, TurbanHat_Black, TurbanHat_Grey, Keffiyeh_Brown, Keffiyeh_Black, Keffiyeh_LightBrown, Shemag_Brown, Shemag_White, KameezShirt_Beige, KameezShirt_Brown, KameezShirt_Grey, KameezShirt_Olive, MensShalwarPants_Beige, MensShalwarPants_Brown, MensShalwarPants_Grey, RobeVest_Beige, RobeVest_Brown, LinenVest_Brown, TraditionalBoots_DarkBrown, TraditionalBoots_Beige, TraditionalSandalShoes_Brown, TraditionalSandalShoes_LightBrown, LeatherGloves_Beige, DustGoggles_Transparent, CoyoteBag_Desert, TortillaBag_Desert] }
       water:    { count: [1, 2], items: [Waterskin_Natural, Canteen, WaterBottle, SmallGlassBottle_Afza, SmallGlassBottle_Jallab] }
@@ -539,51 +526,16 @@ favored:
     vehicles: [ExpansionMh6, EXT_MH6, ExpansionUh1h, EXT_Mi8_Civilian, EXT_UH1Y]
     outfit: soviet_special_forces
     cooldown_vehicles: [ExpansionUAZCargo_Green, ExpansionUAZ, ExpansionUAZRoofless_Black, ExpansionVodnik, CrSk_GAZ_3309_Cargo_Green]
-    companion_chance: 1.0
+    companion_chance: 0.10
 
-# Companions (Blae, 2026-10-24): 50/50 chance for players other than Blae to spawn with a companion
-# on fresh respawn (Blae always starts with one: companion_chance: 1.0).
-# The 50% chance is divided based on thematic rarity:
-#   - Dog companion: 60% relative weight (tamed loyal dog with vest/collar, dogtag, and bone summon item)
-#   - Equipped horse: 30% relative weight (saddled, bridled, horseshoe, horsebags with archetype kit)
-#     Only two archetypes start with a horse: Hunter (local) and Bedouin.
-#   - NPC ally: 10% relative weight (friendly armed settler recruit grouping with the player)
+# Companions (Blae, 2026-10-24; dog and horse removed 2026-10-27 with their mods): a fresh
+# respawn may bring a friendly armed Settler recruit (Expansion AI) who groups with the player.
+# The old roll was 50% x (dog 60 / horse 30 / NPC 10), so the NPC rate was 5%; it stays 5%
+# for everyone, and 10% for Blae (was 100% x 10%). Raise it only against the AI budget
+# (docs/LIVING_WORLD.md section 5): every recruit is a simulated player.
 companion:
   enabled: true
-  chance: 0.50
-  weights:
-    dog: 60.0
-    horse: 30.0
-    npc: 10.0
-  dog_classes:
-    - Doggo_Follow1
-    - Doggo_Follow2
-    - Doggo_Follow3
-    - Doggo_Follow4
-    - Doggo_Follow5
-  dog_vests:
-    - dog_vest_black
-    - dog_vest_sheriff
-    - dog_vest_blackgreen
-    - dog_collar
-    - dog_collar_grey
-  horse_breeds:
-    - Animal_Horse_Brown
-    - Animal_Horse_Chestnut
-    - Animal_Horse_Chestnut_Light
-    - Animal_Horse_Palomino
-    - Animal_Horse_Liver
-    - Animal_Horse_BuckSkin
-    - Animal_Horse_Paint
-    - Animal_Horse_Appaloosa
-    - Animal_Horse_Gray
-    - Animal_Horse_Black
-    - Animal_Horse_Shadow
-  horse_tack:
-    - Saddle_Western
-    - Bridle
-    - HorseBags
-    - HorseShoe
+  chance: 0.05
 
 # Outfits (Blae, 2026-10-23): a starting archetype WORN on the body, instead of the civilian
 # clothes every character otherwise wakes in. A favored player's `outfit` always applies; anyone

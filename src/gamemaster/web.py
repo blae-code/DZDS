@@ -2538,23 +2538,11 @@ def build_survival_manual(map_name: str = "nasdara") -> dict[str, Any]:
             "name": "Soviet Special Forces",
             "gear": "TTsKO or Gorka Summer/Flat, Smersh Vest & Bag, Military Belt, AKS-74U or AS Val with 3 full magazines, Makarov IJ-70 sidearm, combat knife, RGD-5 grenade, medical kit, binoculars, compass.",
         },
-        "animal_companions": {
-            "spawn_chance_percent": 50.0,
-            "dog": {
-                "weight_percent": 60.0,
-                "classes": ["Doggo_Follow1", "Doggo_Follow2", "Doggo_Follow3", "Doggo_Follow4", "Doggo_Follow5"],
-                "gear": ["Ballistic Dog Vest (Black, Sheriff, Camo)", "Dog Collar", "Dog Tag"],
-                "instructions": "Tame wild badlands dogs with bones or steaks; whistle commands (Follow, Stay, Heel, Attack); bone summoning item.",
-            },
-            "horse": {
-                "weight_percent": 30.0,
-                "breeds": ["Animal_Horse_Brown", "Animal_Horse_Chestnut", "Animal_Horse_Palomino", "Animal_Horse_Appaloosa", "Animal_Horse_Black", "Animal_Horse_Shadow"],
-                "tack": ["Western Saddle", "Bridle", "Horse Bags", "Horseshoes"],
-                "instructions": "Riding, galloping, jumping obstacles, hitching posts, stamina, feeding apples/hay, whistle recall.",
-            },
+        "settler_recruits": {
+            "spawn_chance_percent": 5.0,
+            "favored_host_chance_percent": 10.0,
             "recruit": {
-                "weight_percent": 10.0,
-                "desc": "Armed friendly settler recruit grouping with the player.",
+                "desc": "Armed friendly settler recruit grouping with the player upon arrival; follows command wheel orders and provides fire support.",
             },
         },
     }

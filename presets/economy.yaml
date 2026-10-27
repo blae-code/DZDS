@@ -13,5 +13,15 @@
 script_vehicle_lifetime: 3888000
 
 # ---- globals.xml ----------------------------------------------------------------------
-# Vanilla values kept. The tool can set any EXISTING <var name="..."> here.
-globals: {}
+# Central Economy periodic maintenance and gear respawning:
+# - RestartSpawn = 100: on server restart/maintenance, evaluate missing loot and respawn gear to nominal
+# - RespawnAttempt / RespawnLimit / RespawnTypes: maintain a responsive CE respawn pipeline
+# - CleanupLifetimeRuined = 300: clean up ruined items in 5 minutes
+# - CleanupLifetimeDefault = 45: clean up dropped debris quickly
+globals:
+  RestartSpawn: 100
+  RespawnAttempt: 4
+  RespawnLimit: 30
+  RespawnTypes: 20
+  CleanupLifetimeRuined: 300
+  CleanupLifetimeDefault: 45

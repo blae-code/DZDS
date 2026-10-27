@@ -34,10 +34,6 @@ mods:
     policy: curated            # 23 masks at nominal 10 = 230 military gas masks
     types: ["types.xml"]
     nominal_scale: 0.2
-  2471347750:
-    name: DayZ-Dog
-    policy: author
-    types: ["types.xml"]
   3468961047:
     name: Zens Sleeping Mod
     policy: author
@@ -74,11 +70,6 @@ mods:
     name: RaG_Hunting_Cabin
     policy: author
     types: ["Extras/rag_hunting_cabin.xml"]
-  3295021220:
-    name: DayZ Horse
-    policy: curated            # 135 saddles/bridles/bags on farms, but Nasdara has no horse
-    types: ["types.xml"]       # territory yet (milestone 2): a few, until horses roam
-    nominal_scale: 0.1
   2651195301:
     name: Arma 2 Helicopters Remastered
     policy: author             # parts and covers, nominal 0 (see parts below)

@@ -46,7 +46,6 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
         <file name="mmg_mightys_military_gear_types.xml" type="types" />
         <file name="mmg_mightys_military_gear_spawnabletypes.xml" type="spawnabletypes" />
         <file name="gas_mask_overhaul_types.xml" type="types" />
-        <file name="dayz_dog_types.xml" type="types" />
         <file name="zens_sleeping_mod_types.xml" type="types" />
         <file name="mmg_base_storage_types.xml" type="types" />
         <file name="zens_car_workbench_types.xml" type="types" />
@@ -56,7 +55,6 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
         <file name="doc_s_animals_types.xml" type="types" />
         <file name="rag_basebuilding_types.xml" type="types" />
         <file name="rag_hunting_cabin_types.xml" type="types" />
-        <file name="dayz_horse_types.xml" type="types" />
         <file name="arma_2_helicopters_remastered_types.xml" type="types" />
         <file name="mbm_apocalypsetruck_types.xml" type="types" />
         <file name="lms_semi_truck_trailer_types.xml" type="types" />

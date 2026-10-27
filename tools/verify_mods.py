@@ -32,7 +32,8 @@ DAYZ_APP = 221100
 def fetch(ids: list[int]) -> dict[str, dict]:
     form = {"itemcount": str(len(ids))}
     form.update({f"publishedfileids[{i}]": str(x) for i, x in enumerate(ids)})
-    req = urllib.request.Request(API, data=urllib.parse.urlencode(form).encode())
+    req = urllib.request.Request(API, data=urllib.parse.urlencode(form).encode(),
+                                 headers={"User-Agent": "DayZ-Server-Admin/1.0"})
     with urllib.request.urlopen(req, timeout=30) as r:
         details = json.load(r)["response"]["publishedfiledetails"]
     return {d["publishedfileid"]: d for d in details}

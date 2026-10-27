@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <addons-presets>
-  <last-update>2026-10-27T03:24:23.0000000Z</last-update>
+  <last-update>2026-10-27T15:39:09.0000000Z</last-update>
   <published-ids>
     <id>steam:1559212036</id>
     <id>steam:2545327648</id>
@@ -26,7 +26,6 @@
     <id>steam:3114410963</id>
     <id>steam:2924719512</id>
     <id>steam:3753472356</id>
-    <id>steam:2471347750</id>
     <id>steam:3783303198</id>
     <id>steam:3767910705</id>
     <id>steam:3406196859</id>
@@ -39,8 +38,6 @@
     <id>steam:3661300360</id>
     <id>steam:3485290555</id>
     <id>steam:3811085358</id>
-    <id>steam:3295021220</id>
-    <id>steam:3297432307</id>
     <id>steam:3737385977</id>
     <id>steam:3529074158</id>
     <id>steam:3166659854</id>

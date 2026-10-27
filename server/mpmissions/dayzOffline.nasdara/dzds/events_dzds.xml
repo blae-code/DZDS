@@ -99,9 +99,9 @@
         </children>
     </event>
     <event name="DZDS_VehicleSteppe">
-        <nominal>10</nominal>
-        <min>9</min>
-        <max>10</max>
+        <nominal>6</nominal>
+        <min>5</min>
+        <max>6</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -112,10 +112,9 @@
         <limit>mixed</limit>
         <active>1</active>
         <children>
-            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_Horse_Brown" />
-            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_Horse_Chestnut" />
-            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_Horse_Palomino" />
-            <child lootmax="0" lootmin="0" max="1" min="0" type="Animal_Horse_Black" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_01_Blue" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_01_Red" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_01_Yellow" />
         </children>
     </event>
 </events>

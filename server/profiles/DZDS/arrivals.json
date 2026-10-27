@@ -131,43 +131,7 @@
         }
     ],
     "CompanionEnabled": 1,
-    "CompanionChance": 0.5,
-    "CompanionWeightDog": 60.0,
-    "CompanionWeightHorse": 30.0,
-    "CompanionWeightNpc": 10.0,
-    "DogClasses": [
-        "Doggo_Follow1",
-        "Doggo_Follow2",
-        "Doggo_Follow3",
-        "Doggo_Follow4",
-        "Doggo_Follow5"
-    ],
-    "DogVests": [
-        "dog_vest_black",
-        "dog_vest_sheriff",
-        "dog_vest_blackgreen",
-        "dog_collar",
-        "dog_collar_grey"
-    ],
-    "HorseBreeds": [
-        "Animal_Horse_Brown",
-        "Animal_Horse_Chestnut",
-        "Animal_Horse_Chestnut_Light",
-        "Animal_Horse_Palomino",
-        "Animal_Horse_Liver",
-        "Animal_Horse_BuckSkin",
-        "Animal_Horse_Paint",
-        "Animal_Horse_Appaloosa",
-        "Animal_Horse_Gray",
-        "Animal_Horse_Black",
-        "Animal_Horse_Shadow"
-    ],
-    "HorseTack": [
-        "Saddle_Western",
-        "Bridle",
-        "HorseBags",
-        "HorseShoe"
-    ],
+    "CompanionChance": 0.05,
     "ArrivalSites": [
         {
             "Name": "East Roadside",
@@ -2640,54 +2604,6 @@
             ],
             "Trailer": 0,
             "Aircraft": 0
-        },
-        {
-            "ClassName": "Animal_Horse_Brown",
-            "Weight": 3.0,
-            "Parts": [
-                "Saddle_Western",
-                "Bridle",
-                "HorseBags",
-                "HorseShoe"
-            ],
-            "Trailer": 0,
-            "Aircraft": 0
-        },
-        {
-            "ClassName": "Animal_Horse_Chestnut",
-            "Weight": 3.0,
-            "Parts": [
-                "Saddle_Western",
-                "Bridle",
-                "HorseBags",
-                "HorseShoe"
-            ],
-            "Trailer": 0,
-            "Aircraft": 0
-        },
-        {
-            "ClassName": "Animal_Horse_Black",
-            "Weight": 3.0,
-            "Parts": [
-                "Saddle_Western",
-                "Bridle",
-                "HorseBags",
-                "HorseShoe"
-            ],
-            "Trailer": 0,
-            "Aircraft": 0
-        },
-        {
-            "ClassName": "Animal_Horse_Palomino",
-            "Weight": 3.0,
-            "Parts": [
-                "Saddle_Western",
-                "Bridle",
-                "HorseBags",
-                "HorseShoe"
-            ],
-            "Trailer": 0,
-            "Aircraft": 0
         }
     ],
     "Favored": [
@@ -2709,7 +2625,7 @@
                 "ExpansionVodnik",
                 "CrSk_GAZ_3309_Cargo_Green"
             ],
-            "CompanionChance": 1.0
+            "CompanionChance": 0.1
         }
     ],
     "Archetypes": [
@@ -2717,7 +2633,6 @@
             "Name": "deserter",
             "Weight": 30.0,
             "Aircraft": 0,
-            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -3007,7 +2922,6 @@
             "Name": "trucker",
             "Weight": 25.0,
             "Aircraft": 0,
-            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -3263,7 +3177,6 @@
             "Name": "nomad",
             "Weight": 25.0,
             "Aircraft": 0,
-            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -3535,7 +3448,6 @@
             "Name": "townie",
             "Weight": 20.0,
             "Aircraft": 0,
-            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -3818,7 +3730,6 @@
             "Name": "bush_pilot",
             "Weight": 60.0,
             "Aircraft": 1,
-            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -4133,7 +4044,6 @@
             "Name": "combat_pilot",
             "Weight": 40.0,
             "Aircraft": 1,
-            "Horse": 0,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -4467,9 +4377,8 @@
         },
         {
             "Name": "hunter",
-            "Weight": 20.0,
+            "Weight": 10.0,
             "Aircraft": 0,
-            "Horse": 1,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -4676,9 +4585,8 @@
         },
         {
             "Name": "bedouin",
-            "Weight": 20.0,
+            "Weight": 10.0,
             "Aircraft": 0,
-            "Horse": 1,
             "Slots": [
                 {
                     "Name": "clothing",
@@ -5053,7 +4961,6 @@
                 "Name": "soviet_special_forces",
                 "Weight": 0.0,
                 "Aircraft": 0,
-                "Horse": 0,
                 "Slots": [
                     {
                         "Name": "clothing",

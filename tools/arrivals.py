@@ -116,7 +116,6 @@ def _archetype(name: str, a: dict) -> dict:
              "SpareMin": int(f.get("spare", [0, 0])[0]), "SpareMax": int(f.get("spare", [0, 0])[1])}
             for f in a["firearms"]]
     return {"Name": name, "Weight": float(a.get("weight", 0)), "Aircraft": int(bool(a.get("aircraft"))),
-            "Horse": int(bool(a.get("horse"))),
             "Slots": slots, "Firearms": guns}
 
 
@@ -213,8 +212,9 @@ def validate(cfg: dict, types: set[str]) -> None:
     names += [cfg["trailer"]["class"]] + cfg["trailer"]["parts"] + cfg["nav_kit"]["items"]
     names += cfg.get("fuel_cans", [])
     comp = cfg.get("companion") or {}
-    for clist in ("dog_classes", "dog_vests", "horse_breeds", "horse_tack"):
-        names += comp.get(clist, [])
+    removed = sorted(k for k in comp if k.startswith(("dog_", "horse_")))
+    if removed or {"dog", "horse"} & set(comp.get("weights") or {}):
+        raise SystemExit(f"dog/horse companions were removed 2026-10-27 (mods pruned): {removed or 'weights'}")
     for o in (cfg.get("outfits") or {}).values():
         names += outfit_classnames(o)
     missing = sorted({n for n in names if n not in types})
@@ -307,14 +307,7 @@ def build(cfg: dict, map_data: dict, mission: Path) -> dict:
         "RespawnAtHq": int(bool(cfg.get("respawn_at_hq", False))),
         "HqPoints": [point(s, "Qalat-e Lut") for s in cfg.get("hq_points", [])],
         "CompanionEnabled": int(bool((cfg.get("companion") or {}).get("enabled", True))),
-        "CompanionChance": float((cfg.get("companion") or {}).get("chance", 0.50)),
-        "CompanionWeightDog": float(((cfg.get("companion") or {}).get("weights") or {}).get("dog", 60.0)),
-        "CompanionWeightHorse": float(((cfg.get("companion") or {}).get("weights") or {}).get("horse", 30.0)),
-        "CompanionWeightNpc": float(((cfg.get("companion") or {}).get("weights") or {}).get("npc", 10.0)),
-        "DogClasses": list((cfg.get("companion") or {}).get("dog_classes") or []),
-        "DogVests": list((cfg.get("companion") or {}).get("dog_vests") or []),
-        "HorseBreeds": list((cfg.get("companion") or {}).get("horse_breeds") or []),
-        "HorseTack": list((cfg.get("companion") or {}).get("horse_tack") or []),
+        "CompanionChance": float((cfg.get("companion") or {}).get("chance", 0.05)),
         "ArrivalSites": arrival_points(cfg, map_data, spots),
         "RoadPoints": road,
         "Vehicles": [{"ClassName": v["class"], "Weight": float(v["weight"]), "Parts": list(v["parts"]),

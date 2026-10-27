@@ -1051,71 +1051,39 @@
         </article>
       </div>
 
-      <!-- ANIMAL COMPANIONS & DESERT MOUNTS (DOGS & HORSES) -->
+      <!-- SETTLER RECRUITS & COMPANIONS (EXPANSION AI) -->
       <div style="margin-top:28px;">
-        <h3 style="color:var(--sand); margin-bottom:4px; font-size:1.15rem;">Loyal Animal Companions &amp; Badlands Mounts (50% Respawn Roll)</h3>
+        <h3 style="color:var(--sand); margin-bottom:4px; font-size:1.15rem;">Frontier Settler Companions &amp; Recruits (Expansion AI)</h3>
         <p style="color:var(--muted); font-size:.88rem; margin-bottom:14px;">
-          Every random character roll has a <strong>50% chance</strong> (100% for favored host Blae) to start accompanied by a loyal animal companion or armed recruit: <strong>60% Dog</strong>, <strong>30% Horse Mount</strong>, and <strong>10% Armed Recruit</strong>.
+          Dog and horse companion mods were pruned on 2026-10-27 to preserve server memory and CPU budgets on the 12 GB RAM dedicated host. Fresh respawns feature a <strong>5% chance</strong> (10% for favored host Blae) to spawn accompanied by an armed Settler recruit grouping with the player, in addition to the four hirable fortress specialists at Qalat-e Lut.
         </p>
         <div class="pcomp-grid">
-          <!-- Tamed Dog Companion -->
-          <article class="pcomp-card" style="border-left: 3px solid #eab308;">
-            <div>
-              <div class="pcomp-header">
-                <div>
-                  <div class="pcomp-name">Loyal Dog Companion</div>
-                  <div class="pcomp-title">DayZ-Dog Framework · 60% Relative Spawn Weight</div>
-                  <div class="pcomp-station">Class: Doggo_Follow1..5 · Vest: dog_vest_* / collar</div>
-                </div>
-                <span class="pquest-tag" style="background:#eab30822; color:#eab308; border:1px solid #eab30855;">50/50 ROLL</span>
-              </div>
-              <p class="pcomp-desc">
-                Your faithful badlands canine follows faithfully across the desert, alerts you to approaching infected or raiders with low growls, and attacks hostile targets on command.
-              </p>
-              <div class="pcomp-detail-box">
-                <div><strong>Tactical Armor &amp; Vests:</strong> Equippable with Ballistic Dog Vests (Black, Sheriff, Camo), Dog Collar, and Dog Tag.</div>
-                <div><strong>Voice &amp; Whistle Commands:</strong> Look at your dog and use interaction keys to command: <em>Follow</em>, <em>Stay</em>, <em>Heel</em>, and <em>Attack</em>.</div>
-                <div><strong>Bone Whistle Summon:</strong> Use the paired bone whistle item in your inventory to summon your dog from long distances.</div>
-                <div><strong>Wild Dog Taming:</strong> Wild badlands dogs can be tamed in the wilderness by offering raw animal bones or steaks.</div>
-              </div>
-            </div>
-            <div>
-              <div style="font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Canine Perks:</div>
-              <ul class="pcomp-perks">
-                <li>Detects crouching players and stalking raiders before visual contact</li>
-                <li>Carries small survival items and bandages inside tactical vest pouches</li>
-                <li>Distracts infected and hostile AI during intense firefights</li>
-              </ul>
-            </div>
-          </article>
-
-          <!-- Badlands Steppe Mount -->
+          <!-- Settler Squad Recruit -->
           <article class="pcomp-card" style="border-left: 3px solid #10b981;">
             <div>
               <div class="pcomp-header">
                 <div>
-                  <div class="pcomp-name">Badlands Steppe Horse</div>
-                  <div class="pcomp-title">DayZ Horse &amp; Horse Expansion · 30% Relative Spawn Weight</div>
-                  <div class="pcomp-station">11 Breeds: Brown, Chestnut, Palomino, Appaloosa, Shadow</div>
+                  <div class="pcomp-name">Frontier Settler Recruit</div>
+                  <div class="pcomp-title">Expansion AI Framework · Respawn Squad Ally</div>
+                  <div class="pcomp-station">Class: eAIFactionDZDSSettlers · Qalat-e Lut Loadouts</div>
                 </div>
-                <span class="pquest-tag" style="background:#10b98122; color:#10b981; border:1px solid #10b98155;">MOUNT</span>
+                <span class="pquest-tag" style="background:#10b98122; color:#10b981; border:1px solid #10b98155;">RECRUIT</span>
               </div>
               <p class="pcomp-desc">
-                Silent overland mobility across Nasdara's rocky ridgelines, high dunes, and dry valleys. Horses consume zero gasoline, produce zero engine noise, and navigate terrain impassable to vehicles.
+                An armed survivor from the Frontier Settlers settlement network who joins your group immediately upon arrival. Recruits follow formation, provide fire support against hostile factions, and board passenger seats in vehicles.
               </p>
               <div class="pcomp-detail-box">
-                <div><strong>Craftable Tack:</strong> Western Saddle (8x Tanned Leather), Bridle (4x Tanned Leather + Rope), Horse Bags (100 cargo slots), Horseshoes.</div>
-                <div><strong>Riding Controls:</strong> Walk, trot, canter, gallop, and jump over fences. Mounts can swim across rivers and water reservoirs.</div>
-                <div><strong>Hitching &amp; Stables:</strong> Craft <code>Stable_dayz_kit</code> (45-day lifetime) at your compound; tether horses to hitching posts.</div>
-                <div><strong>Care &amp; Stamina:</strong> Feed fresh apples, zucchini, or hay bales; hydrate with fresh water from settlement troughs.</div>
+                <div><strong>Squad Command Wheel:</strong> Use the Expansion AI command key (default comma <code>,</code>) to issue orders: <em>Follow Me</em>, <em>Hold / Stay</em>, <em>Cover / Attack</em>, and <em>Vehicle Travel</em>.</div>
+                <div><strong>Shared Inventory:</strong> Interact directly with the recruit to supply them with spare ammunition, medical kits, bandages, and food.</div>
+                <div><strong>Stationing &amp; Dismissal:</strong> Dismissed recruits return to Qalat-e Lut to bolster fortress defense.</div>
               </div>
             </div>
             <div>
-              <div style="font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Equestrian Perks:</div>
+              <div style="font-size:.78rem; font-weight:700; color:var(--muted); text-transform:uppercase; margin-bottom:4px;">Recruit Perks:</div>
               <ul class="pcomp-perks">
-                <li>Zero thermal or audio footprint; slips past raider listening posts</li>
-                <li>100-slot heavy saddlebags for carrying basebuilding materials</li>
-                <li>Double passenger capacity: companion can ride passenger behind the rider</li>
+                <li>Immediate tactical fire support in remote badlands ambushes</li>
+                <li>Operates vehicle passenger weapon seats and scans perimeter</li>
+                <li>Zero additional mod memory overhead (uses existing Expansion AI core)</li>
               </ul>
             </div>
           </article>

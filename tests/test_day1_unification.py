@@ -241,3 +241,58 @@ def test_warzone_events_contained_to_designated_fronts(day1_assets):
         assert z.get("aTeamFaction"), "Warzone must specify aTeamFaction"
         assert z.get("bTeamFaction"), "Warzone must specify bTeamFaction"
         assert z["aTeamFaction"] != z["bTeamFaction"], "Warzone teams must belong to opposing factions"
+
+
+# ==============================================================================
+# 5. Base Building Starting Supplies at Qalat-e Lut
+# ==============================================================================
+
+def test_base_building_starting_supplies_in_init_c():
+    """Qalat-e Lut fortress player base must have containers, materials, and tools initialized."""
+    src = INIT_C.read_text()
+    assert "class DZDSBaseSupplies" in src
+    assert "DZDSBaseSupplies.Init();" in src
+
+    # Containers
+    assert '"SeaChest"' in src
+    assert '"WoodenCrate"' in src
+    assert '"Barrel_Blue"' in src
+    assert '"Barrel_Green"' in src
+    assert '"MediumTent"' in src
+
+    # Materials
+    assert '"NailBox"' in src
+    assert '"WoodenPlank"' in src
+    assert '"MetalPlate"' in src
+    assert '"MetalWire"' in src
+    assert '"BarbedWire"' in src
+    assert '"Rope"' in src
+    assert '"DuctTape"' in src
+    assert '"EpoxyPutty"' in src
+    assert '"CamoNetDesert"' in src
+
+    # Tools
+    assert '"Hatchet"' in src
+    assert '"WoodAxe"' in src
+    assert '"HandSaw"' in src
+    assert '"Hacksaw"' in src
+    assert '"Hammer"' in src
+    assert '"SledgeHammer"' in src
+    assert '"Shovel"' in src
+    assert '"FieldShovel"' in src
+    assert '"Pliers"' in src
+    assert '"Screwdriver"' in src
+    assert '"Wrench"' in src
+    assert '"Pickaxe"' in src
+    assert '"Crowbar"' in src
+    assert '"Whetstone"' in src
+    assert '"WeaponCleaningKit"' in src
+
+    # Base Kits & Code Locks
+    assert '"FenceKit"' in src
+    assert '"WatchtowerKit"' in src
+    assert '"TerritoryFlagKit"' in src
+    assert '"DigitalCodeLock"' in src
+    assert '"Zen_CarWorkbenchKit"' in src
+    assert '"rag_hunting_cabin_kit"' in src
+

@@ -35,8 +35,8 @@ events:
   - name: DZDS_VehicleSteppe
     roles: [inland_town, water]
     holders: [Settlers, contested]
-    children: [Animal_Horse_Brown, Animal_Horse_Chestnut, Animal_Horse_Palomino, Animal_Horse_Black]
-    nominal: 10
+    children: [Motorbike_01_Blue, Motorbike_01_Red, Motorbike_01_Yellow]   # horses removed 2026-10-27
+    nominal: 6
   - name: DZDS_HeliWreck
     roles: [airfield]
     holders: [Peacekeepers, contested]

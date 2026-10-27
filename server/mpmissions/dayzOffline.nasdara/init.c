@@ -95,7 +95,6 @@ class RefugeeArrivalArchetype
 	string Name;
 	float Weight;
 	int Aircraft;         // 1 = pilot profile: only for aircraft, which only get these
-	int Horse;            // 1 = horse profile: only for horses (hunter & bedouin)
 	ref array<ref RefugeeArrivalSlot> Slots;
 	ref array<ref RefugeeArrivalFirearm> Firearms;
 }
@@ -164,13 +163,6 @@ class RefugeeArrivalConfig
 	ref array<ref RefugeeArrivalVehicle> LightVehicles;
 	int CompanionEnabled;
 	float CompanionChance;
-	float CompanionWeightDog;
-	float CompanionWeightHorse;
-	float CompanionWeightNpc;
-	ref TStringArray DogClasses;
-	ref TStringArray DogVests;
-	ref TStringArray HorseBreeds;
-	ref TStringArray HorseTack;
 	float FuelMin;
 	float FuelMax;
 	float AircraftFuelMin;
@@ -236,12 +228,10 @@ class RefugeeArrivalPlan
 	bool GrantVehicle;
 	bool StartsCooldown;    // false for a favored player's CooldownVehicles or light vehicles
 	bool AlwaysVehicle;     // favored with CooldownVehicles: base and camp (no vehicle) are skipped
-	bool IsLightVehicle;    // inside cooldown: granted a light personal vehicle (dirtbike, moped, horse)
-	bool IsHorse;           // true if light vehicle is a rideable horse
+	bool IsLightVehicle;    // inside cooldown: granted a light personal vehicle (dirtbike, moped)
 	ref RefugeeArrivalOutfit Outfit;
 	bool GrantCompanion;
 	string CompanionType;
-	string HorseArchetype;
 	bool AtCamp;
 	bool AtBase;
 	string Where;
@@ -645,7 +635,7 @@ class RefugeeArrivals
 		float total = 0;
 		foreach (RefugeeArrivalArchetype a : m_Config.Archetypes)
 		{
-			if (a.Horse == 0 && a.Aircraft == want)
+			if (a.Aircraft == want)
 				total += a.Weight;
 		}
 		bool any = total <= 0;
@@ -660,7 +650,7 @@ class RefugeeArrivals
 		RefugeeArrivalArchetype last = m_Config.Archetypes[m_Config.Archetypes.Count() - 1];
 		foreach (RefugeeArrivalArchetype b : m_Config.Archetypes)
 		{
-			if (!any && (b.Horse != 0 || b.Aircraft != want))
+			if (!any && b.Aircraft != want)
 				continue;
 			last = b;
 			roll -= b.Weight;
@@ -668,29 +658,6 @@ class RefugeeArrivals
 				return b;
 		}
 		return last;
-	}
-
-	// Horse mounts: draw among archetypes configured with Horse = 1 (hunter & bedouin).
-	RefugeeArrivalArchetype PickHorseArchetype()
-	{
-		float total = 0;
-		foreach (RefugeeArrivalArchetype a : m_Config.Archetypes)
-		{
-			if (a.Horse == 1)
-				total += a.Weight;
-		}
-		if (total <= 0)
-			return FindArchetype("hunter");
-		float roll = Math.RandomFloat(0, total);
-		foreach (RefugeeArrivalArchetype b : m_Config.Archetypes)
-		{
-			if (b.Horse != 1)
-				continue;
-			roll -= b.Weight;
-			if (roll <= 0)
-				return b;
-		}
-		return FindArchetype("hunter");
 	}
 
 	// Kit the cargo can't take (small cargo: gyrocopter, tractor) lands on the ground beside
@@ -1327,15 +1294,12 @@ class RefugeeArrivals
 		Print("[DZDS Arrivals] live reset: cleared cooldowns for " + n.ToString() + " of " + req.Ids.Count().ToString() + " player(s)");
 	}
 
-	// Blae 2026-10-24: 50/50 chance for non-Blae players to spawn with a companion
-	// (Blae always starts with one: CompanionChance = 1.0).
-	// Divided by thematic rarity: Dog (most common), Horse (medium), NPC (rarest).
-	// When a horse rolls: only hunter or bedouin archetypes start with a horse.
+	// A respawn may bring a Settler recruit (Expansion AI): CompanionChance, or the favored
+	// player's own. Dog and horse companions were removed 2026-10-27 with their mods.
 	void PickCompanion(RefugeeArrivalPlan plan, RefugeeArrivalFavored fav)
 	{
 		plan.GrantCompanion = false;
 		plan.CompanionType = "";
-		plan.HorseArchetype = "";
 		if (m_Config.CompanionEnabled != 1)
 			return;
 
@@ -1350,35 +1314,9 @@ class RefugeeArrivals
 		if (roll >= chance)
 			return;
 
+		// Dog and horse companions were removed 2026-10-27 with their mods: only the Settler recruit.
 		plan.GrantCompanion = true;
-		float totalW = m_Config.CompanionWeightDog + m_Config.CompanionWeightHorse + m_Config.CompanionWeightNpc;
-		if (totalW <= 0)
-		{
-			plan.CompanionType = "dog";
-			return;
-		}
-
-		float wRoll = Math.RandomFloat(0, totalW);
-		if (wRoll <= m_Config.CompanionWeightDog)
-		{
-			plan.CompanionType = "dog";
-		}
-		else if (wRoll <= (m_Config.CompanionWeightDog + m_Config.CompanionWeightHorse))
-		{
-			plan.CompanionType = "horse";
-			RefugeeArrivalArchetype horseArch = PickHorseArchetype();
-			if (horseArch)
-				plan.HorseArchetype = horseArch.Name;
-			else
-				plan.HorseArchetype = "hunter";
-
-			if (!plan.AlwaysVehicle)
-				plan.GrantVehicle = false;
-		}
-		else
-		{
-			plan.CompanionType = "npc";
-		}
+		plan.CompanionType = "npc";
 	}
 
 	RefugeeArrivalPlan Plan(PlayerIdentity identity)
@@ -1404,7 +1342,6 @@ class RefugeeArrivals
 		plan.GrantVehicle = true;
 		plan.StartsCooldown = true;
 		plan.IsLightVehicle = false;
-		plan.IsHorse = false;
 		if (rec && rec.LastVehicle > 0 && NowSeconds() - rec.LastVehicle < m_Config.CooldownHours * 3600)
 			plan.GrantVehicle = false;
 		TStringArray only = FavoredVehicles(plan.Uid);
@@ -1432,7 +1369,7 @@ class RefugeeArrivals
 		else if (!plan.GrantVehicle)
 		{
 			// Blae 2026-10-25: players who do not qualify for a fully-equipped vehicle receive a
-			// light personal vehicle (dirtbike, moped, horse) with operating supplies.
+			// light personal vehicle (dirtbike, moped) with operating supplies.
 			// Starts no cooldown so they always have transport while their cooldown clock ticks.
 			plan.GrantVehicle = true;
 			plan.StartsCooldown = false;
@@ -1446,8 +1383,6 @@ class RefugeeArrivals
 			if (plan.IsLightVehicle)
 			{
 				plan.Vehicle = PickLightVehicle();
-				if (plan.Vehicle && plan.Vehicle.ClassName.Contains("Horse"))
-					plan.IsHorse = true;
 			}
 			else
 			{
@@ -1480,10 +1415,6 @@ class RefugeeArrivals
 			if (plan.IsLightVehicle)
 			{
 				plan.Vehicle = PickLightVehicle();
-				if (plan.Vehicle && plan.Vehicle.ClassName.Contains("Horse"))
-					plan.IsHorse = true;
-				else
-					plan.IsHorse = false;
 			}
 			else
 			{
@@ -1566,169 +1497,6 @@ class RefugeeArrivals
 			Print("[DZDS Arrivals] player back beside the vehicle" + moved);
 	}
 
-	static EntityAI CreateInHorseBags(EntityAI horse, EntityAI bags, string cls)
-	{
-		EntityAI item = null;
-		if (bags && bags.GetInventory() && bags.GetInventory().GetCargo())
-			item = bags.GetInventory().CreateEntityInCargo(cls);
-		if (!item && horse && horse.GetInventory() && horse.GetInventory().GetCargo())
-			item = horse.GetInventory().CreateEntityInCargo(cls);
-		if (!item && horse)
-		{
-			vector pos = horse.GetPosition() + Vector(Math.RandomFloatInclusive(-1.5, 1.5), 0, Math.RandomFloatInclusive(-1.5, 1.5));
-			pos[1] = GetGame().SurfaceY(pos[0], pos[2]);
-			item = EntityAI.Cast(GetGame().CreateObjectEx(cls, pos, ECE_PLACE_ON_SURFACE));
-		}
-		return item;
-	}
-
-	void GiveHorseRounds(EntityAI horse, EntityAI bags, string cls, int rounds, TStringArray got)
-	{
-		if (rounds <= 0)
-			return;
-		Magazine m = Magazine.Cast(CreateInHorseBags(horse, bags, cls));
-		if (!m)
-			return;
-		m.ServerSetAmmoCount(rounds);
-		got.Insert(cls + " x" + rounds);
-	}
-
-	void FillHorseCargo(EntityAI horse, EntityAI bags, RefugeeArrivalArchetype a)
-	{
-		if (!horse || !a)
-			return;
-		RefugeeArrivalFirearm f = a.Firearms.GetRandomElement();
-		TStringArray got = new TStringArray;
-		EntityAI gun = CreateInHorseBags(horse, bags, f.WeaponClass);
-		if (gun)
-		{
-			gun.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.FirearmHealthMin, m_Config.FirearmHealthMax));
-			int rounds = Math.RandomIntInclusive(f.RoundsMin, f.RoundsMax);
-			if (f.MagazineClass != "")
-			{
-				GiveHorseRounds(horse, bags, f.MagazineClass, rounds, got);
-				rounds = Math.RandomIntInclusive(f.SpareMin, f.SpareMax);
-			}
-			GiveHorseRounds(horse, bags, f.Ammo, rounds, got);
-		}
-		int added = 0;
-		foreach (RefugeeArrivalSlot s : a.Slots)
-		{
-			TStringArray pool = new TStringArray;
-			pool.Copy(s.Items);
-			map<string, int> used = new map<string, int>;
-			int want = Math.RandomIntInclusive(s.Min, s.Max);
-			for (int i = 0; i < want && pool.Count() > 0; i++)
-			{
-				int idx = Math.RandomInt(0, pool.Count());
-				string cls = pool[idx];
-				EntityAI item = CreateInHorseBags(horse, bags, cls);
-				if (item)
-				{
-					item.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.ItemHealthMin, m_Config.ItemHealthMax));
-					TopUp(item);
-					added++;
-					got.Insert(cls);
-				}
-				used.Set(cls, used.Get(cls) + 1);
-				if (used.Get(cls) >= s.MaxEach)
-					pool.Remove(idx);
-			}
-		}
-		Print("[DZDS Arrivals] horse bags kit " + a.Name + ": " + added + " item(s) " + got.ToString());
-	}
-
-	void GiveDogCompanion(PlayerBase player, vector spawnPos)
-	{
-		string dogCls = "Doggo_Follow1";
-		if (m_Config.DogClasses && m_Config.DogClasses.Count() > 0)
-			dogCls = m_Config.DogClasses.GetRandomElement();
-
-		Dayz_Doggo dog = Dayz_Doggo.Cast(GetGame().CreateObject(dogCls, spawnPos, false, false));
-		if (dog)
-		{
-			AIGroup grp = GetGame().GetWorld().GetAIWorld().CreateGroup("DZDogGroupBeh");
-			dog.InitAIAgent(grp);
-			dog.SetOwnerId(player.GetID());
-			player.setMyDog(dog);
-			dog.SetDoggoCmd(DoggoCmd.FOLLOW);
-
-			if (m_Config.DogVests && m_Config.DogVests.Count() > 0)
-			{
-				string vest = m_Config.DogVests.GetRandomElement();
-				dog.GetInventory().CreateAttachment(vest);
-			}
-			Print("[DZDS Arrivals] Spawned dog companion " + dogCls + " for " + player.GetIdentity().GetName());
-		}
-		player.GetInventory().CreateInInventory("Dogtag_Survivor");
-		player.GetInventory().CreateInInventory("Bone");
-	}
-
-	void GiveHorseCompanion(PlayerBase player, RefugeeArrivalPlan plan, vector spawnPos)
-	{
-		string horseCls = "Animal_Horse_Brown";
-		if (m_Config.HorseBreeds && m_Config.HorseBreeds.Count() > 0)
-			horseCls = m_Config.HorseBreeds.GetRandomElement();
-
-		Horse_Base horse = Horse_Base.Cast(GetGame().CreateObject(horseCls, spawnPos, false, false));
-		if (horse)
-		{
-			horse.SetOrientation(player.GetOrientation());
-			horse.SetOwnerId(player.GetID());
-			AIGroup grp = GetGame().GetWorld().GetAIWorld().CreateGroup("DZHorseGroupBeh");
-			horse.InitAIAgent(grp);
-			player.setMyHorse(horse);
-			horse.SetWild(false);
-			horse.SetAnimalCmd(AnimalCmd.STAYHERE);
-
-			horse.GetInventory().CreateAttachment("Saddle_Western");
-			horse.GetInventory().CreateAttachment("Bridle");
-			horse.GetInventory().CreateAttachment("HorseShoe");
-			EntityAI bags = horse.GetInventory().CreateAttachment("HorseBags");
-
-			string archName = plan.HorseArchetype;
-			if (archName == "")
-				archName = "hunter";
-			RefugeeArrivalArchetype a = FindArchetype(archName);
-			if (a && bags)
-				FillHorseCargo(horse, bags, a);
-
-			Print("[DZDS Arrivals] Spawned equipped horse " + horseCls + " with " + archName + " kit for " + player.GetIdentity().GetName());
-		}
-		player.GetInventory().CreateInInventory("Apple");
-	}
-
-	void DeliverHorse(PlayerBase player, RefugeeArrivalPlan plan)
-	{
-		string horseCls = plan.Vehicle.ClassName;
-		Horse_Base horse = Horse_Base.Cast(GetGame().CreateObject(horseCls, plan.CarPos, false, false));
-		if (horse)
-		{
-			horse.SetOrientation(plan.CarOri);
-			horse.SetOwnerId(player.GetID());
-			AIGroup grp = GetGame().GetWorld().GetAIWorld().CreateGroup("DZHorseGroupBeh");
-			horse.InitAIAgent(grp);
-			player.setMyHorse(horse);
-			horse.SetWild(false);
-			horse.SetAnimalCmd(AnimalCmd.STAYHERE);
-
-			horse.GetInventory().CreateAttachment("Saddle_Western");
-			horse.GetInventory().CreateAttachment("Bridle");
-			horse.GetInventory().CreateAttachment("HorseShoe");
-			EntityAI bags = horse.GetInventory().CreateAttachment("HorseBags");
-			if (bags)
-			{
-				bags.GetInventory().CreateInInventory("Apple");
-				bags.GetInventory().CreateInInventory("Apple");
-				bags.GetInventory().CreateInInventory("WaterBottle");
-				bags.GetInventory().CreateInInventory("BandageDressing");
-				bags.GetInventory().CreateInInventory("Matchbox");
-				bags.GetInventory().CreateInInventory("HuntingKnife");
-			}
-			Print("[DZDS Arrivals] Delivered light horse " + horseCls + " to " + player.GetIdentity().GetName());
-		}
-	}
-
 	void GiveNpcCompanion(PlayerBase player, vector spawnPos)
 	{
 #ifdef EXPANSIONMODAI
@@ -1762,17 +1530,7 @@ class RefugeeArrivals
 		vector pPos = player.GetPosition();
 		vector spawnPos = BesideSpot(pPos, player.GetOrientation()[0], 2.5);
 
-		if (plan.CompanionType == "dog")
-		{
-			GiveDogCompanion(player, spawnPos);
-			return "companion (dog)";
-		}
-		else if (plan.CompanionType == "horse")
-		{
-			GiveHorseCompanion(player, plan, spawnPos);
-			return "companion (horse: " + plan.HorseArchetype + ")";
-		}
-		else if (plan.CompanionType == "npc")
+		if (plan.CompanionType == "npc")
 		{
 			GiveNpcCompanion(player, spawnPos);
 			return "companion (npc recruit)";
@@ -1798,48 +1556,39 @@ class RefugeeArrivals
 			before = KeepBeside(player, plan.CarPos, plan.PlayerPos, plan.CarOri[0], "before vehicle");
 		if (plan.GrantVehicle)
 		{
-			if (plan.IsHorse)
+			EntityAI parent = player;
+			int remaining = 1;
+			Object obj = ExpansionItemSpawnHelper.SpawnVehicle(plan.Vehicle.ClassName, player, parent, plan.CarPos, plan.CarOri, remaining, plan.Vehicle.Parts, -1, "ExpansionCarKey");
+			car = CarScript.Cast(obj);
+			if (car)
 			{
-				DeliverHorse(player, plan);
+				bool aircraft = plan.Vehicle.Aircraft == 1;
+				float fuelCap = car.GetFluidCapacity(CarFluid.FUEL);
+				float fuel = Math.RandomFloatInclusive(m_Config.FuelMin, m_Config.FuelMax);
+				if (aircraft)
+					fuel = Math.RandomFloatInclusive(m_Config.AircraftFuelMin, m_Config.AircraftFuelMax);
+				car.Leak(CarFluid.FUEL, fuelCap * (1 - fuel));
+				car.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.HealthMin, m_Config.HealthMax));
+				int cans = TopUpAttached(car);
+				int items = FillCargo(car, aircraft, OutfitCargo(plan.Outfit, aircraft));
+				if (plan.IsLightVehicle)
+				{
+					// Operating supplies for light motor vehicles (dirtbike / moped)
+					if (plan.Vehicle.ClassName.Contains("Motorbike_01"))
+						player.GetInventory().CreateInInventory("DirtBikeHelmet_Black");
+					else if (plan.Vehicle.ClassName.Contains("Motorbike_02"))
+						player.GetInventory().CreateInInventory("DirtBikeHelmet_Red");
+					car.GetInventory().CreateInInventory("Wrench");
+					car.GetInventory().CreateInInventory("TireRepairKit");
+					car.GetInventory().CreateInInventory("CanisterGasoline");
+				}
+				Object trailerObj;
+				got = plan.Vehicle.ClassName + " with " + items + " item(s), fuel " + Math.Round(fuel * 100).ToString() + "%, " + cans + " full can(s) attached, " + EmptySlots(car).ToString() + " empty slot(s)" + GiveTrailer(car, plan.Vehicle, trailerObj);
 				granted = true;
-				got = plan.Vehicle.ClassName + " (equipped horse with saddle, bridle, horseshoe, bags & provisions)";
 			}
 			else
 			{
-				EntityAI parent = player;
-				int remaining = 1;
-				Object obj = ExpansionItemSpawnHelper.SpawnVehicle(plan.Vehicle.ClassName, player, parent, plan.CarPos, plan.CarOri, remaining, plan.Vehicle.Parts, -1, "ExpansionCarKey");
-				car = CarScript.Cast(obj);
-				if (car)
-				{
-					bool aircraft = plan.Vehicle.Aircraft == 1;
-					float fuelCap = car.GetFluidCapacity(CarFluid.FUEL);
-					float fuel = Math.RandomFloatInclusive(m_Config.FuelMin, m_Config.FuelMax);
-					if (aircraft)
-						fuel = Math.RandomFloatInclusive(m_Config.AircraftFuelMin, m_Config.AircraftFuelMax);
-					car.Leak(CarFluid.FUEL, fuelCap * (1 - fuel));
-					car.SetHealth01("", "", Math.RandomFloatInclusive(m_Config.HealthMin, m_Config.HealthMax));
-					int cans = TopUpAttached(car);
-					int items = FillCargo(car, aircraft, OutfitCargo(plan.Outfit, aircraft));
-					if (plan.IsLightVehicle)
-					{
-						// Operating supplies for light motor vehicles (dirtbike / moped)
-						if (plan.Vehicle.ClassName.Contains("Motorbike_01"))
-							player.GetInventory().CreateInInventory("DirtBikeHelmet_Black");
-						else if (plan.Vehicle.ClassName.Contains("Motorbike_02"))
-							player.GetInventory().CreateInInventory("DirtBikeHelmet_Red");
-						car.GetInventory().CreateInInventory("Wrench");
-						car.GetInventory().CreateInInventory("TireRepairKit");
-						car.GetInventory().CreateInInventory("CanisterGasoline");
-					}
-					Object trailerObj;
-					got = plan.Vehicle.ClassName + " with " + items + " item(s), fuel " + Math.Round(fuel * 100).ToString() + "%, " + cans + " full can(s) attached, " + EmptySlots(car).ToString() + " empty slot(s)" + GiveTrailer(car, plan.Vehicle, trailerObj);
-					granted = true;
-				}
-				else
-				{
-					got = "vehicle spawn FAILED (" + plan.Vehicle.ClassName + ")";
-				}
+				got = "vehicle spawn FAILED (" + plan.Vehicle.ClassName + ")";
 			}
 		}
 
@@ -1984,6 +1733,168 @@ class DZDSCompanionManager
 	}
 };
 
+// ===================================================================================
+// DZDS Player Base Starting Supplies (Qalat-e Lut Fortress, [14837, 7855])
+// Deploys base building containers, materials, kits, and tools for fresh starts.
+// Checks existing objects on boot to prevent duplicating across server restarts.
+// ===================================================================================
+class DZDSBaseSupplies
+{
+	static const string MARKER_FILE = "$profile:DZDS\\base_supplies_deployed.txt";
+
+	static void Init()
+	{
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(SpawnBaseSupplies, 12000, false);
+	}
+
+	static EntityAI CreateInCargo(EntityAI container, string itemClass, int quantity = 0)
+	{
+		if (!container || !container.GetInventory())
+			return null;
+		EntityAI item = container.GetInventory().CreateInInventory(itemClass);
+		if (!item && container.GetInventory().GetCargo())
+			item = container.GetInventory().CreateEntityInCargo(itemClass);
+		if (!item)
+			return null;
+		if (quantity > 0)
+		{
+			ItemBase ib = ItemBase.Cast(item);
+			if (ib)
+				ib.SetQuantity(quantity);
+		}
+		return item;
+	}
+
+	static void SpawnBaseSupplies()
+	{
+		// Idempotency: check marker file to prevent restart duplication
+		if (FileExist(MARKER_FILE))
+		{
+			Print("[DZDS Base] Base building supplies already deployed (" + MARKER_FILE + " exists). Skipping spawn.");
+			return;
+		}
+
+		Print("[DZDS Base] Deploying fresh start base building supplies at Qalat-e Lut courtyard...");
+
+		MakeDirectory("$profile:DZDS");
+		FileHandle fh = OpenFile(MARKER_FILE, FileMode.WRITE);
+		if (fh != 0)
+		{
+			FPrintln(fh, "deployed");
+			CloseFile(fh);
+		}
+
+		// 1. Tool Chest (SeaChest 1) - Carpentry, Construction & Vehicle Maintenance Tools
+		vector posChest1 = "14835.0 0.0 7853.0";
+		posChest1[1] = GetGame().SurfaceY(posChest1[0], posChest1[2]);
+		EntityAI toolChest = EntityAI.Cast(GetGame().CreateObjectEx("SeaChest", posChest1, ECE_PLACE_ON_SURFACE));
+		if (toolChest)
+		{
+			CreateInCargo(toolChest, "Hatchet");
+			CreateInCargo(toolChest, "Hatchet");
+			CreateInCargo(toolChest, "WoodAxe");
+			CreateInCargo(toolChest, "HandSaw");
+			CreateInCargo(toolChest, "Hacksaw");
+			CreateInCargo(toolChest, "Hammer");
+			CreateInCargo(toolChest, "Hammer");
+			CreateInCargo(toolChest, "SledgeHammer");
+			CreateInCargo(toolChest, "Shovel");
+			CreateInCargo(toolChest, "FieldShovel");
+			CreateInCargo(toolChest, "Pliers");
+			CreateInCargo(toolChest, "Pliers");
+			CreateInCargo(toolChest, "Screwdriver");
+			CreateInCargo(toolChest, "Screwdriver");
+			CreateInCargo(toolChest, "Wrench");
+			CreateInCargo(toolChest, "Wrench");
+			CreateInCargo(toolChest, "Pickaxe");
+			CreateInCargo(toolChest, "Crowbar");
+			CreateInCargo(toolChest, "Whetstone");
+			CreateInCargo(toolChest, "Whetstone");
+			CreateInCargo(toolChest, "WeaponCleaningKit");
+			CreateInCargo(toolChest, "WeaponCleaningKit");
+			CreateInCargo(toolChest, "DuctTape");
+			CreateInCargo(toolChest, "DuctTape");
+			CreateInCargo(toolChest, "EpoxyPutty");
+			CreateInCargo(toolChest, "EpoxyPutty");
+		}
+
+		// 2. Hardware & Kits Chest (SeaChest 2) - Fasteners, Locks, Base Kits & Blueprints
+		vector posChest2 = "14836.5 0.0 7853.0";
+		posChest2[1] = GetGame().SurfaceY(posChest2[0], posChest2[2]);
+		EntityAI hardwareChest = EntityAI.Cast(GetGame().CreateObjectEx("SeaChest", posChest2, ECE_PLACE_ON_SURFACE));
+		if (hardwareChest)
+		{
+			for (int n = 0; n < 8; n++)
+				CreateInCargo(hardwareChest, "NailBox");
+			CreateInCargo(hardwareChest, "FenceKit");
+			CreateInCargo(hardwareChest, "FenceKit");
+			CreateInCargo(hardwareChest, "FenceKit");
+			CreateInCargo(hardwareChest, "FenceKit");
+			CreateInCargo(hardwareChest, "WatchtowerKit");
+			CreateInCargo(hardwareChest, "WatchtowerKit");
+			CreateInCargo(hardwareChest, "TerritoryFlagKit");
+			CreateInCargo(hardwareChest, "Flag_DayZ");
+			CreateInCargo(hardwareChest, "DigitalCodeLock");
+			CreateInCargo(hardwareChest, "DigitalCodeLock");
+			CreateInCargo(hardwareChest, "DigitalCodeLock");
+			CreateInCargo(hardwareChest, "DigitalCodeLock");
+			CreateInCargo(hardwareChest, "Zen_CarWorkbenchKit");
+			CreateInCargo(hardwareChest, "rag_hunting_cabin_kit");
+			CreateInCargo(hardwareChest, "MetalWire");
+			CreateInCargo(hardwareChest, "MetalWire");
+			CreateInCargo(hardwareChest, "BarbedWire");
+			CreateInCargo(hardwareChest, "BarbedWire");
+			CreateInCargo(hardwareChest, "Rope");
+			CreateInCargo(hardwareChest, "Rope");
+			CreateInCargo(hardwareChest, "CamoNetDesert");
+			CreateInCargo(hardwareChest, "CamoNetDesert");
+		}
+
+		// 3. Materials Crates (WoodenCrate x4) - Pre-cut Planks & Sheet Metal
+		for (int c = 0; c < 4; c++)
+		{
+			vector posCrate = Vector(14835.0 + (c * 1.5), 0.0, 7856.5);
+			posCrate[1] = GetGame().SurfaceY(posCrate[0], posCrate[2]);
+			EntityAI crate = EntityAI.Cast(GetGame().CreateObjectEx("WoodenCrate", posCrate, ECE_PLACE_ON_SURFACE));
+			if (crate)
+			{
+				CreateInCargo(crate, "WoodenPlank", 20);
+				CreateInCargo(crate, "WoodenPlank", 20);
+				CreateInCargo(crate, "MetalPlate", 10);
+				CreateInCargo(crate, "NailBox");
+			}
+		}
+
+		// 4. Fluid & Storage Barrels
+		vector posBarrel1 = "14838.0 0.0 7853.0";
+		posBarrel1[1] = GetGame().SurfaceY(posBarrel1[0], posBarrel1[2]);
+		EntityAI barrel1 = EntityAI.Cast(GetGame().CreateObjectEx("Barrel_Blue", posBarrel1, ECE_PLACE_ON_SURFACE));
+		if (barrel1)
+		{
+			CreateInCargo(barrel1, "WoodenPlank", 20);
+			CreateInCargo(barrel1, "MetalPlate", 10);
+			CreateInCargo(barrel1, "Rope");
+		}
+
+		vector posBarrel2 = "14839.5 0.0 7853.0";
+		posBarrel2[1] = GetGame().SurfaceY(posBarrel2[0], posBarrel2[2]);
+		EntityAI barrel2 = EntityAI.Cast(GetGame().CreateObjectEx("Barrel_Green", posBarrel2, ECE_PLACE_ON_SURFACE));
+		if (barrel2)
+		{
+			CreateInCargo(barrel2, "WoodenPlank", 20);
+			CreateInCargo(barrel2, "MetalPlate", 10);
+			CreateInCargo(barrel2, "Rope");
+		}
+
+		// 5. Temporary Compound Shelter
+		vector posTent = "14833.0 0.0 7855.0";
+		posTent[1] = GetGame().SurfaceY(posTent[0], posTent[2]);
+		EntityAI tent = EntityAI.Cast(GetGame().CreateObjectEx("MediumTent", posTent, ECE_PLACE_ON_SURFACE));
+
+		Print("[DZDS Base] Deployed base building supply depot at Qalat-e Lut: 2 SeaChests, 4 WoodenCrates, 2 Barrels, 1 MediumTent, tools, hardware, and materials.");
+	}
+};
+
 class CustomMission: MissionServer
 {
 	ref RefugeeArrivals m_RefugeeArrivals;
@@ -1993,6 +1904,7 @@ class CustomMission: MissionServer
 	{
 		super.OnInit();
 		DZDSCompanionManager.Init();
+		DZDSBaseSupplies.Init();
 		if (FileExist(RefugeeArrivals.SELFTEST))
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(RunVehicleSelfTest, 60000, false);
 		if (FileExist(RefugeeArrivals.SPOTTEST))

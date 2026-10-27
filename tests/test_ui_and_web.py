@@ -877,11 +877,11 @@ def test_deep_alignment_player_portal_content():
 
     # Companions Section (#companions)
     assert '<section id="companions"' in portal_html
-    assert "Loyal Animal Companions &amp; Badlands Mounts" in portal_html
-    assert "Loyal Dog Companion" in portal_html
-    assert "Badlands Steppe Horse" in portal_html
-    assert "DayZ-Dog Framework" in portal_html
-    assert "Western Saddle" in portal_html
+    assert "Frontier Settler Companions &amp; Recruits" in portal_html
+    assert "Soran the Scout" in portal_html
+    assert "Kaveh the Sentinel" in portal_html
+    assert "Dr. Yasmin" in portal_html
+    assert "Rostam the Scavenger" in portal_html
 
     # Barter Currency Matrix (#campaign)
     assert '<section id="campaign"' in portal_html

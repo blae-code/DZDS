@@ -132,33 +132,26 @@ def test_unknown_classname_is_rejected(built):
 
 def test_archetype_weights(built):
     _, _, out = built
-    ground = {a["Name"]: a["Weight"] for a in out["Archetypes"] if not a["Aircraft"] and not a.get("Horse")}
-    horses = {a["Name"]: a["Weight"] for a in out["Archetypes"] if a.get("Horse")}
+    ground = {a["Name"]: a["Weight"] for a in out["Archetypes"] if not a["Aircraft"]}
     pilots = {a["Name"]: a["Weight"] for a in out["Archetypes"] if a["Aircraft"]}
-    assert ground == {"deserter": 30.0, "trucker": 25.0, "nomad": 25.0, "townie": 20.0}
-    assert horses == {"hunter": 20.0, "bedouin": 20.0}
+    assert ground == {"deserter": 30.0, "trucker": 25.0, "nomad": 25.0, "townie": 20.0, "hunter": 10.0, "bedouin": 10.0}
     assert pilots == {"bush_pilot": 60.0, "combat_pilot": 40.0}
 
 
 def test_only_two_archetypes_start_with_a_horse(built):
-    """Blae 2026-10-24: only two archetypes start with a horse: Hunter (local) and Bedouin."""
+    """Dog and horse companion mods pruned (2026-10-27): no horse archetypes remain."""
     _, _, out = built
     horse_archs = {a["Name"] for a in out["Archetypes"] if a.get("Horse")}
-    assert horse_archs == {"hunter", "bedouin"}
+    assert horse_archs == set()
 
 
 def test_companion_settings_and_thematic_rarity(built):
-    """Blae 2026-10-24: 50/50 chance for non-Blae, 100% for Blae, divided by thematic rarity:
-    dog (60%), horse (30%), NPC (10%). Horse arrives equipped with saddle, bridle, bags, shoes."""
+    """Dog and horse companion mods pruned (2026-10-27); only Settler recruits remain."""
     _, _, out = built
     assert out["CompanionEnabled"] == 1
-    assert out["CompanionChance"] == 0.50
-    assert out["CompanionWeightDog"] == 60.0
-    assert out["CompanionWeightHorse"] == 30.0
-    assert out["CompanionWeightNpc"] == 10.0
-    assert {"Saddle_Western", "Bridle", "HorseBags", "HorseShoe"} <= set(out["HorseTack"])
+    assert out["CompanionChance"] == 0.05
     fav = {f["Id"]: f for f in out["Favored"]}[BLAE_ID]
-    assert fav["CompanionChance"] == 1.0
+    assert fav["CompanionChance"] == 0.10
 
 
 CUTTING = {
@@ -873,10 +866,9 @@ def test_light_vehicles_are_compiled(built):
     cfg, map_data, out = built
     assert "LightVehicles" in out
     light = {v["ClassName"] for v in out["LightVehicles"]}
-    # Dirtbikes, mopeds, and horses
+    # Dirtbikes and mopeds (horses removed 2026-10-27)
     assert any("Motorbike_01" in name for name in light)
     assert any("Motorbike_02" in name for name in light)
-    assert any("Animal_Horse" in name for name in light)
     # Validate types known to mission
     known = arrivals.known_types(arrivals.mission_dir(map_data))
     for v in out["LightVehicles"]:
@@ -907,5 +899,4 @@ def test_init_c_light_vehicles_and_hq_logic():
     assert "if (m_Config.RespawnAtHq == 1)" in plan
     assert "placed = PickPoint(m_Config.HqPoints, plan);" in plan
     deliver = re.search(r"void Deliver\(PlayerBase player, RefugeeArrivalPlan plan\).*?\n\t\}", src, re.S).group(0)
-    assert "DeliverHorse(player, plan);" in deliver
     assert "DirtBikeHelmet" in deliver
