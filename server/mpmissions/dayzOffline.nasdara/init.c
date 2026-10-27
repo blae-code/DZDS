@@ -2734,53 +2734,6 @@ class CustomMission: MissionServer
 			m_RefugeeArrivals = new RefugeeArrivals();
 		RefugeeArrivals.GiveStartKit(player, m_RefugeeArrivals.RadioIndex(), m_RefugeeArrivals.Roadflare());
 	}
-
-	override void InvokeConnect(PlayerBase player, PlayerIdentity identity)
-	{
-		super.InvokeConnect(player, identity);
-
-		if (!player || !identity)
-			return;
-
-		if (m_RefugeeArrivals)
-			m_RefugeeArrivals.ApplyLiveResets();
-
-		if (identity.GetId() == "eEbDg86Qv3w5T_ZJj-9b9BriMPuvigsufukc_oCLOAQ=")
-		{
-			if (m_RefugeeArrivals)
-			{
-				RefugeeArrivalRecord rec = m_RefugeeArrivals.FindRecord(identity.GetId());
-				if (rec)
-				{
-					rec.LastVehicle = 0;
-					rec.LastNavKit = 0;
-					rec.HasDeath = 0;
-				}
-			}
-
-			bool hasAdminKey = false;
-			array<EntityAI> items = new array<EntityAI>;
-			player.GetInventory().EnumerateInventory(InventoryTraversalType.PREORDER, items);
-			foreach (EntityAI itm : items)
-			{
-				if (itm && itm.GetType() == "ExpansionCarAdminKey")
-				{
-					hasAdminKey = true;
-					break;
-				}
-			}
-
-			if (!hasAdminKey)
-			{
-				EntityAI adminKey = player.GetInventory().CreateInInventory("ExpansionCarAdminKey");
-				if (!adminKey)
-					GetGame().CreateObjectEx("ExpansionCarAdminKey", player.GetPosition(), ECE_PLACE_ON_SURFACE);
-
-				player.GetInventory().CreateInInventory("ExpansionKeyChain_Black");
-				Print("[DZDS Arrivals] Granted ExpansionCarAdminKey to blae on connect");
-			}
-		}
-	}
 };
 
 Mission CreateCustomMission(string path)
