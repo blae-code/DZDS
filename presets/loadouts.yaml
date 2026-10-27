@@ -13,14 +13,14 @@ health: [0.55, 0.9]          # worn, lived-in gear
 factions:
   Settlers:
     slots:
-      Headgear: [BeanieHat_Brown, BeanieHat_Green, BaseballCap_Blue, BaseballCap_Olive, BaseballCap_Beige, RadarCap_Brown, FlatCap_Brown, FlatCap_Grey]
+      Headgear: [BeanieHat_Brown, BeanieHat_Green, BaseballCap_Blue, BaseballCap_Olive, BaseballCap_Beige, RadarCap_Brown, FlatCap_Brown, FlatCap_Grey, Slouch_Hat_Brown, Shemagh_Brown, Shemagh_Tan]
       Body:     [HuntingJacket_Brown, HikingJacket_Blue, Shirt_BlueCheck, Shirt_GreenCheck, Shirt_RedCheck, Hoodie_Green, DenimJacket, JumpsuitJacket_Blue, QuiltedJacket_Green, BomberJacket_Brown]
       Vest:     [HuntingVest, ReflexVest]
       Gloves:   [WorkingGloves_Brown, WorkingGloves_Beige, WorkingGloves_Yellow, WoolGlovesFingerless_Green]
       Hips:     [CivilianBelt, LeatherBelt_Brown]
       Legs:     [Jeans_Blue, Jeans_BlueDark, Jeans_Grey, CargoPants_Beige, CargoPants_Green, HunterPants_Brown, CanvasPants_Beige, JumpsuitPants_Blue]
       Feet:     [WorkingBoots_Brown, WorkingBoots_Beige, WorkingBoots_Yellow, HikingBoots_Brown, HikingBoots_Black, Wellies_Brown]
-      Back:     [HuntingBag, TaloonBag_Blue, TaloonBag_Green, TaloonBag_Orange, CanvasBag_Olive, DuffelBagSmall_Green]
+      Back:     [HuntingBag, TaloonBag_Blue, TaloonBag_Green, TaloonBag_Orange, CanvasBag_Olive, DuffelBagSmall_Green, Canvas_Backpack_Brown]
       Shoulder: [CZ527, B95, Repeater, Izh43Shotgun, Winchester70, Izh18, Izh18Shotgun, Mp133Shotgun, Ruger1022]
       Melee:    [Hatchet, Pitchfork, FarmingHoe, Pickaxe, WoodAxe, FieldShovel, Shovel, Sickle, KitchenKnife]
     cargo:
@@ -44,12 +44,12 @@ factions:
       - [Canteen, 0, 1]
     variants:
       scout:
-        Headgear: [RadarCap_Brown, BoonieHat_Olive, BeanieHat_Brown]
+        Headgear: [RadarCap_Brown, BoonieHat_Olive, BeanieHat_Brown, Slouch_Hat_Brown]
         Body:     [HuntingJacket_Brown, QuiltedJacket_Green]
         Vest:     [HuntingVest]
         Legs:     [HunterPants_Brown, CargoPants_Green]
         Feet:     [HikingBoots_Brown]
-        Back:     [HuntingBag]
+        Back:     [HuntingBag, Canvas_Backpack_Brown]
         Shoulder: [CZ527, Winchester70]
         Melee:    [HuntingKnife]
       guard:
@@ -58,7 +58,7 @@ factions:
         Vest:     [HighCapacityVest_Olive, PlateCarrierVest_Green]
         Legs:     [CargoPants_Green, CargoPants_Beige]
         Feet:     [WorkingBoots_Brown, CombatBoots_Black]
-        Back:     [AssaultBag_Green, TortillaBag_Desert]
+        Back:     [AssaultBag_Green, TortillaBag_Desert, Canvas_Backpack_Brown]
         Shoulder: [Mp133Shotgun, SKS]
         Melee:    [Hatchet, WoodAxe]
       medic:
@@ -67,16 +67,16 @@ factions:
         Vest:     [ChestRigVest_Khaki, ReflexVest]
         Legs:     [ParamedicPants_Blue, ParamedicPants_Crimson]
         Feet:     [HikingBoots_Black, WorkingBoots_Beige]
-        Back:     [DuffelBagSmall_Green, TaloonBag_Blue]
+        Back:     [DuffelBagSmall_Green, TaloonBag_Blue, Canvas_Backpack_Brown]
         Shoulder: [CZ527, Repeater]
         Melee:    [KitchenKnife]
       scavenger:
-        Headgear: [FlatCap_Brown, BeanieHat_Brown]
+        Headgear: [FlatCap_Brown, BeanieHat_Brown, Slouch_Hat_Brown]
         Body:     [Hoodie_Green, QuiltedJacket_Green]
         Vest:     [HuntingVest]
         Legs:     [Jeans_Blue, CanvasPants_Beige]
         Feet:     [WorkingBoots_Brown, Wellies_Brown]
-        Back:     [MountainBag_Green, MountainBag_Blue]
+        Back:     [MountainBag_Green, MountainBag_Blue, Canvas_Backpack_Brown]
         Shoulder: [Izh43Shotgun, Mp133Shotgun, Ruger1022]
         Melee:    [Pickaxe, FieldShovel, Crowbar]
 
@@ -91,7 +91,7 @@ factions:
       Legs:     [BDUPants, CargoPants_Green, CargoPants_Beige, USMCPants_Desert]
       Feet:     [CombatBoots_Black, CombatBoots_Green, JungleBoots_Olive, MilitaryBoots_Beige]
       Back:     [AssaultBag_Green, AssaultBag_Black, TortillaBag_Desert, AliceBag_Camo]
-      Shoulder: [M16A2, FAL, MP5K, Aug, AugShort, FAMAS, M4A1]
+      Shoulder: [M16A2, FAL, MP5K, Aug, AugShort, FAMAS, M4A1, Expansion_M79]
       Melee:    [CombatKnife, M9A1_Bayonet]
     cargo:
       - [Mag_STANAG_30Rnd, 2, 3]
@@ -109,6 +109,8 @@ factions:
       - [Ammo_45ACP, 1, 2]
       - [Ammo_545x39, 1, 2]
       - [Ammo_762x54, 1, 2]
+      - [Ammo_Expansion_M203_HE, 0, 1]
+      - [Ammo_Expansion_M203_Smoke_White, 0, 1]
       - [Glock19, 0, 1]
       - [Mag_Glock_15Rnd, 1, 2]
       - [FNX45, 0, 1]
@@ -132,15 +134,15 @@ factions:
 
   Jackals:
     slots:
-      Headgear: [Bandana_Blackpattern, Bandana_Redpattern, BaseballCap_Camo, BeanieHat_Black, DirtBikeHelmet_Black]
-      Mask:     [GasMask, BalaclavaMask_Black, BalaclavaMask_Blackskull, Shemag_Brown]
+      Headgear: [Bandana_Blackpattern, Bandana_Redpattern, BaseballCap_Camo, BeanieHat_Black, DirtBikeHelmet_Black, Shemagh_Tan, Shemagh_Brown, Shemagh_Black]
+      Mask:     [GasMask, BalaclavaMask_Black, BalaclavaMask_Blackskull, Shemag_Brown, Shemagh_Face_Tan, Shemagh_Face_Brown]
       Body:     [RidersJacket_Black, BomberJacket_Black, QuiltedJacket_Black, LeatherJacket_Black, TacticalShirt_Tan, DenimJacket]
       Vest:     [ChestHolster, HuntingVest, ReflexVest, ChestRigVest_Tan]
       Gloves:   [WorkingGloves_Black, TacticalGloves_Black]
       Hips:     [CivilianBelt, LeatherBelt_Black]
       Legs:     [CargoPants_Black, Jeans_Black, BDUPants, CargoPants_Beige]
       Feet:     [MilitaryBoots_Black, WorkingBoots_Grey, CombatBoots_Black, JungleBoots_Beige]
-      Back:     [DuffelBagSmall_Camo, TaloonBag_Orange, AssaultBag_Black, CoyoteBag_Brown]
+      Back:     [DuffelBagSmall_Camo, TaloonBag_Orange, AssaultBag_Black, CoyoteBag_Brown, Canvas_Backpack_Brown]
       Shoulder: [SawedoffIzh43Shotgun, Mp133Shotgun, SKS, SawedoffMosin9130, Repeater, CZ61]
       Melee:    [Machete, BaseballBat, KukriKnife]
     cargo:
@@ -159,6 +161,10 @@ factions:
       - [Ammo_380, 1, 2]
       - [Ammo_45ACP, 0, 1]
       - [Ammo_545x39, 0, 2]
+      - [BreachingCharge, 0, 1]
+      - [BreachingChargeTimer, 0, 1]
+      - [TireRepairKit, 0, 1]
+      - [Wrench, 0, 1]
       - [Lockpick, 0, 1]
       - [DuctTape, 0, 1]
       - [Roadflare, 0, 1]
@@ -169,20 +175,24 @@ factions:
         Headgear: [GorkaHelmet, BallisticHelmet_Green]
         Body:     [M65Jacket_Tan, GorkaEJacket_Flat]
         Vest:     [PlateCarrierVest, HighCapacityVest_Black]
-        Shoulder: [AKM, AKS74U]
+        Shoulder: [AKM, AKS74U, Expansion_LAW, Expansion_M79]
         Melee:    [KukriKnife, CombatKnife]
+        extra_cargo:
+          - [BreachingCharge, 1, 1]
+          - [BreachingChargeTimer, 1, 1]
+          - [Ammo_Expansion_M203_HE, 1, 2]
 
   Karkas:
     slots:
-      Headgear: [Ushanka_Black, Ushanka_Green, GhillieHood_Woodland, RadarCap_Brown]
-      Mask:     [BalaclavaMask_Green, Shemag_Green]
+      Headgear: [Ushanka_Black, Ushanka_Green, GhillieHood_Woodland, RadarCap_Brown, Slouch_Hat_Brown, Shemagh_Brown]
+      Mask:     [BalaclavaMask_Green, Shemag_Green, Shemagh_Face_Brown]
       Body:     [GhillieTop_Woodland, HuntingJacket_Autumn, HuntingJacket_Brown, M65Jacket_Olive, Sweater_Green]
       Vest:     [HuntingVest, ChestRigVest_Khaki]
       Gloves:   [LeatherGloves_Brown, LeatherGloves_Beige, WoolGlovesFingerless_Green]
       Hips:     [LeatherBelt_Brown]
       Legs:     [HunterPants_Autumn, HunterPants_Brown, CanvasPants_Grey]
       Feet:     [HikingBoots_Brown, MilitaryBoots_Brown, CombatBoots_Brown, TraditionalBoots_DarkBrown]
-      Back:     [HuntingBag, CoyoteBag_Brown, MountainBag_Green]
+      Back:     [HuntingBag, CoyoteBag_Brown, MountainBag_Green, Canvas_Backpack_Brown]
       Shoulder: [Mosin9130, CZ527, Winchester70, SSG82, Repeater, Izh18]
       Melee:    [HuntingKnife, KukriKnife, FangeKnife, Hatchet]
     cargo:
@@ -221,7 +231,7 @@ factions:
       Legs:     [CargoPants_Grey, CargoPants_Black, JumpsuitPants_Blue, JumpsuitPants_Grey]
       Feet:     [WorkingBoots_Yellow, WorkingBoots_Grey, WorkingBoots_Brown, WorkingBoots_Beige]
       Back:     [DuffelBagSmall_Green, TaloonBag_Green, AssaultBag_Black]
-      Shoulder: [Saiga, PP19, AK74, AKS74U, ASVAL, Mp133Shotgun]
+      Shoulder: [Saiga, PP19, AK74, AKS74U, ASVAL, Mp133Shotgun, AKM, Expansion_LAW]
       Melee:    [PipeWrench, Crowbar, Hammer, Hacksaw, Wrench, Cleaver]
     cargo:
       - [Flaregun, 0, 1]
@@ -238,6 +248,10 @@ factions:
       - [Ammo_380, 1, 2]
       - [Ammo_545x39, 1, 2]
       - [Ammo_9x39, 1, 2]
+      - [BreachingChargeHeavy, 0, 1]
+      - [BreachingChargeTimer, 0, 1]
+      - [Wrench, 0, 1]
+      - [Screwdriver, 0, 1]
       - [ElectronicRepairKit, 0, 1]
       - [EpoxyPutty, 0, 1]
       - [DuctTape, 0, 1]
@@ -247,5 +261,9 @@ factions:
         Headgear: [ConstructionHelmet_White, BallisticHelmet_Black]
         Body:     [JumpsuitJacket_Gray, BomberJacket_Black]
         Vest:     [PlateCarrierVest, HighCapacityVest_Black]
-        Shoulder: [AK74, Saiga, AKS74U]
+        Shoulder: [AK74, Saiga, AKS74U, Expansion_LAW]
         Melee:    [PipeWrench, Crowbar]
+        extra_cargo:
+          - [BreachingChargeHeavy, 1, 1]
+          - [BreachingChargeTimer, 1, 1]
+          - [Wrench, 1, 1]

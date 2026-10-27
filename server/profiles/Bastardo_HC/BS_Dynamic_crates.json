@@ -52,6 +52,12 @@
                 "AISpawnPositions": []
             },
             {
+                "Position": "6920.0 247.4 7360.0",
+                "Rotation": "0.0 0.0 0.0",
+                "LocationName": "Central Pump Station",
+                "AISpawnPositions": []
+            },
+            {
                 "Position": "12030.0 169.3 10850.0",
                 "Rotation": "0.0 0.0 0.0",
                 "LocationName": "Eastern Airfield",
@@ -64,9 +70,27 @@
                 "AISpawnPositions": []
             },
             {
+                "Position": "9880.0 157.1 4090.0",
+                "Rotation": "0.0 0.0 0.0",
+                "LocationName": "Lake Town",
+                "AISpawnPositions": []
+            },
+            {
                 "Position": "3570.0 301.4 14380.0",
                 "Rotation": "0.0 0.0 0.0",
                 "LocationName": "Northern Dam",
+                "AISpawnPositions": []
+            },
+            {
+                "Position": "9280.0 202.1 11850.0",
+                "Rotation": "0.0 0.0 0.0",
+                "LocationName": "Northern Town",
+                "AISpawnPositions": []
+            },
+            {
+                "Position": "9180.0 167.0 4420.0",
+                "Rotation": "0.0 0.0 0.0",
+                "LocationName": "South Cement Plant",
                 "AISpawnPositions": []
             },
             {

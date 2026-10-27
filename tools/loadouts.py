@@ -58,17 +58,30 @@ def compile_all(cfg: dict) -> dict[str, dict]:
     for faction, spec in cfg["factions"].items():
         out[f"DZDS_{faction}"] = build_loadout(spec["slots"], spec.get("cargo", []), cfg["health"])
         for variant, overrides in (spec.get("variants") or {}).items():
-            out[f"DZDS_{faction}_{variant}"] = build_loadout({**spec["slots"], **overrides},
-                                                             spec.get("cargo", []), cfg["health"])
+            slots = {k: v for k, v in spec["slots"].items()}
+            cargo = list(spec.get("cargo", []))
+            for k, v in overrides.items():
+                if k == "cargo":
+                    cargo = list(v)
+                elif k == "extra_cargo":
+                    cargo = cargo + list(v)
+                else:
+                    slots[k] = v
+            out[f"DZDS_{faction}_{variant}"] = build_loadout(slots, cargo, cfg["health"])
     return out
 
 
 def classnames(cfg: dict) -> set[str]:
     names = set()
     for spec in cfg["factions"].values():
-        for slot_items in [*spec["slots"].values(), *[v for var in (spec.get("variants") or {}).values()
-                                                      for v in var.values()]]:
+        for slot_items in spec["slots"].values():
             names.update(slot_items)
+        for var in (spec.get("variants") or {}).values():
+            for k, v in var.items():
+                if k in ("cargo", "extra_cargo"):
+                    names.update(c[0] for c in v)
+                else:
+                    names.update(v)
         names.update(c[0] for c in spec.get("cargo", []))
     return names
 
@@ -76,12 +89,25 @@ def classnames(cfg: dict) -> set[str]:
 def known_types(mission: Path) -> set[str]:
     sys.path.insert(0, str(ROOT / "tools"))
     from arrivals import _types_in_file
-    from economy import types_files
     found: set[str] = set()
-    for f in types_files(mission):
-        src = f.with_name(f.name + ".vanilla") if f.with_name(f.name + ".vanilla").exists() else f
-        if src.exists():
-            found |= _types_in_file(src)
+    main_types = mission / "db" / "types.xml"
+    if (mission / "db" / "types.xml.vanilla").exists():
+        main_types = mission / "db" / "types.xml.vanilla"
+    if main_types.exists():
+        found |= _types_in_file(main_types)
+
+    core = mission / "cfgeconomycore.xml"
+    if core.exists():
+        try:
+            for ce in ET.parse(core).getroot().iter("ce"):
+                folder = ce.get("folder", "")
+                for f in ce.findall("file"):
+                    if f.get("type") == "types":
+                        tf = mission / folder / f.get("name")
+                        if tf.exists():
+                            found |= _types_in_file(tf)
+        except Exception:
+            pass
     return found
 
 

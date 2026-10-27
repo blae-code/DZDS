@@ -7,6 +7,12 @@
             "Yaw": 0.0
         },
         {
+            "ClassName": "StaticObj_ShellCrater2_Small",
+            "X": 6932.0,
+            "Z": 7372.0,
+            "Yaw": 0.0
+        },
+        {
             "ClassName": "StaticObj_Mil_HBarrier_4m",
             "X": 12042.0,
             "Z": 10862.0,
@@ -25,9 +31,21 @@
             "Yaw": 0.0
         },
         {
+            "ClassName": "StaticObj_Mil_HBarrier_4m",
+            "X": 9892.0,
+            "Z": 4102.0,
+            "Yaw": 0.0
+        },
+        {
             "ClassName": "StaticObj_Forest_DeerSkeleton_Skull",
             "X": 2852.0,
             "Z": 9182.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Forest_DeerSkeleton_Skull",
+            "X": 2922.0,
+            "Z": 15752.0,
             "Yaw": 0.0
         },
         {
@@ -43,9 +61,27 @@
             "Yaw": 0.0
         },
         {
+            "ClassName": "StaticObj_ShellCrater2_Small",
+            "X": 9292.0,
+            "Z": 11862.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_HayBale_Packed_Stack",
+            "X": 10452.0,
+            "Z": 8042.0,
+            "Yaw": 0.0
+        },
+        {
             "ClassName": "StaticObj_Misc_HayBale_Packed_Stack",
             "X": 7572.0,
             "Z": 8732.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_Pallets2",
+            "X": 9192.0,
+            "Z": 4432.0,
             "Yaw": 0.0
         },
         {
@@ -58,6 +94,12 @@
             "ClassName": "StaticObj_Mil_HBarrier_4m",
             "X": 3262.0,
             "Z": 4642.0,
+            "Yaw": 0.0
+        },
+        {
+            "ClassName": "StaticObj_Misc_TirePile",
+            "X": 3802.0,
+            "Z": 11102.0,
             "Yaw": 0.0
         }
     ]

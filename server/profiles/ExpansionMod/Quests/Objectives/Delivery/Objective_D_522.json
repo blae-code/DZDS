@@ -2,19 +2,19 @@
     "ConfigVersion": 28,
     "ID": 522,
     "ObjectiveType": 5,
-    "ObjectiveText": "Deliver clean water and purification tablets to the cistern at Eastern Caravanserai.",
+    "ObjectiveText": "Deliver wooden planks and nails to reinforce the barricades at Settler Haven.",
     "TimeLimit": -1,
     "Active": 1,
     "Collections": [
         {
-            "Amount": 1,
-            "ClassName": "WaterBottle",
+            "Amount": 4,
+            "ClassName": "WoodenPlank",
             "QuantityPercent": -1,
             "MinQuantityPercent": -1
         },
         {
             "Amount": 1,
-            "ClassName": "PurificationTablets",
+            "ClassName": "NailBox",
             "QuantityPercent": -1,
             "MinQuantityPercent": -1
         }
@@ -22,5 +22,5 @@
     "ShowDistance": 1,
     "AddItemsToNearbyMarketZone": 0,
     "MaxDistance": 35.0,
-    "MarkerName": "Eastern Caravanserai"
+    "MarkerName": "Settler Haven"
 }

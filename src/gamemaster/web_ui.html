@@ -904,6 +904,7 @@
               <button class="layer-chip on" id="lyr-arrivals" type="button" aria-pressed="true" onclick="toggleLayer('arrivals')">Arrival columns & roads</button>
               <button class="layer-chip on" id="lyr-quests" type="button" aria-pressed="true" onclick="toggleLayer('quests')">Quest vectors</button>
               <button class="layer-chip on" id="lyr-convoys" type="button" aria-pressed="true" onclick="toggleLayer('convoys')">Tri-Corridor Convoys</button>
+              <button class="layer-chip on" id="lyr-geocaches" type="button" aria-pressed="true" onclick="toggleLayer('geocaches')">Geocaches (20 stashes)</button>
               <button class="layer-chip" id="lyr-exclusions" type="button" aria-pressed="false" onclick="toggleLayer('exclusions')">Exclusion rings</button>
               <button class="layer-chip on" id="lyr-pins" type="button" aria-pressed="true" onclick="toggleLayer('pins')">Personal pins &amp; notes</button>
             </div>
@@ -1643,10 +1644,12 @@ const LAYERS = PREFS.layers || {
   arrivals: true,
   quests: true,
   convoys: true,
+  geocaches: true,
   exclusions: false,
   pins: true
 };
 if (LAYERS.convoys === undefined) LAYERS.convoys = true;
+if (LAYERS.geocaches === undefined) LAYERS.geocaches = true;
 
 let CAM = { x: 8192, z: 8192, zoom: 1.0, dragging: false, lastX: 0, lastY: 0 };
 let RULER = { active: false, p1: null, p2: null };
@@ -3588,6 +3591,47 @@ function drawMap() {
       ctx.fillText(`🚛 ${c.name}`, mx + 7, my - 5);
       ctx.fillStyle = cCol;
       ctx.fillText(`🚛 ${c.name}`, mx + 6, my - 6);
+      ctx.restore();
+    }
+  }
+
+  // Geocache stashes layer
+  if (LAYERS.geocaches) {
+    const caches = STATE.geocaches || [];
+    for (const gc of caches) {
+      const posStr = gc.Pos || gc.pos || '';
+      if (!posStr) continue;
+      const parts = posStr.split(' ').map(Number);
+      if (parts.length < 3) continue;
+      const [gx, gy, gz] = parts;
+      const [sx, sy] = worldToScreen(gx, gz, w, h);
+      if (sx < -20 || sx > w + 20 || sy < -20 || sy > h + 20) continue;
+
+      ctx.save();
+      ctx.fillStyle = '#f59e0b';
+      ctx.strokeStyle = '#78350f';
+      ctx.lineWidth = 1.5;
+      ctx.shadowColor = '#fbbf24';
+      ctx.shadowBlur = 6;
+
+      ctx.beginPath();
+      const sz = 6.5;
+      ctx.moveTo(sx, sy - sz);
+      ctx.lineTo(sx + sz, sy);
+      ctx.lineTo(sx, sy + sz);
+      ctx.lineTo(sx - sz, sy);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+
+      if (CAM.zoom >= 0.65) {
+        ctx.shadowBlur = 0;
+        ctx.font = '700 9.5px "JetBrains Mono", monospace';
+        ctx.fillStyle = '#090c0f';
+        ctx.fillText(`◆ GEO #${gc.Id || gc.id}`, sx + sz + 4, sy + 3);
+        ctx.fillStyle = '#fde68a';
+        ctx.fillText(`◆ GEO #${gc.Id || gc.id}`, sx + sz + 3, sy + 2);
+      }
       ctx.restore();
     }
   }

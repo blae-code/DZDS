@@ -185,7 +185,11 @@ def main(argv: list[str] | None = None) -> int:
     mods = {int(m["id"]): m for m in active.load_yaml("config/mods.yaml")["mods"]}
     mission = active.mission_dir()
     reserved = names_in(mission / "db" / "types.xml.vanilla") | names_in(mission / "dzds" / "types_dzds.xml")
-    results = build(preset, mods, workshop_dir(), reserved)
+    ws = workshop_dir()
+    if not ws.is_dir():
+        print(f"  Workshop content dir {ws} not found. Preserving existing {FOLDER}/ files.")
+        return 0
+    results = build(preset, mods, ws, reserved)
 
     out_dir = mission / FOLDER
     files: list[tuple[str, str]] = []

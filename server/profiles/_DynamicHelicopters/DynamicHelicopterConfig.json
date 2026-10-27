@@ -25,7 +25,9 @@
     "Use_Random_Generated_Crash_Sites": 0,
     "Use_World_Generated_Locations": 0,
     "CRASH_POSITIONS_LIST": [
+        "6920.0 247.4 7360.0",
         "3570.0 301.4 14380.0",
+        "9280.0 202.1 11850.0",
         "8230.0 261.9 5700.0"
     ],
     "Explanation_Of_Missile_Launcher_Positions_List": "The following missile launchers will be used if valid coordinates are added. You are also able to set the radius, rate of fire by seconds and targets of each missile launcher separately. For Target_Types: 1 = Dynamic Crash helicopters, 2 = CH-47 Transport, 4 = CH-47 Supplydrop, 8 = player piloted helicopters, 16 = AH-64 Event helicopter. You can set multiple targets by adding together each types # value. For example 31 = all types because 1 + 2 + 4 + 8 + 16 = 31",

@@ -5941,4 +5941,167 @@
 			<item name="CanisterGasoline" chance="0.80" />
 		</cargo>
 	</type>
+
+	<!-- Sci-Fi & Prototype Advanced Weaponry -->
+	<type name="ER7_Gauss">
+		<attachments chance="1.00">
+			<item name="ER7_Scope" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ER7_Gauss_Battery" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="ER7_Gauss_Magazine" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="Erapulsar_Exoskeleton">
+		<attachments chance="1.00">
+			<item name="Erapulsar_Exoskeleton_Battery" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_FutureMachineGun_Dark">
+		<attachments chance="1.00">
+			<item name="SFF_FutureMachineGun_Mag_Dark" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_BioSniper_Dark">
+		<attachments chance="1.00">
+			<item name="SFF_BioSniper_Scope_Dark" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SFF_BioSniper_Mag_Dark" chance="1.00" />
+		</attachments>
+		<attachments chance="0.75">
+			<item name="SFF_BioSniper_Supp_Dark" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_BioSniper_Light">
+		<attachments chance="1.00">
+			<item name="SFF_BioSniper_Scope_Light" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SFF_BioSniper_Mag_Light" chance="1.00" />
+		</attachments>
+		<attachments chance="0.75">
+			<item name="SFF_BioSniper_Supp_Light" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_BioRifle_Dark">
+		<attachments chance="1.00">
+			<item name="SFF_BioRifle_Optic_Dark" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SFF_BioRifle_Mag_Dark" chance="1.00" />
+		</attachments>
+		<attachments chance="0.75">
+			<item name="SFF_BioRifle_Supp" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_BioRifle_Light">
+		<attachments chance="1.00">
+			<item name="SFF_BioRifle_Optic_Light" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SFF_BioRifle_Mag_Light" chance="1.00" />
+		</attachments>
+		<attachments chance="0.75">
+			<item name="SFF_BioRifle_Supp" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_ProXRifle_Dark">
+		<attachments chance="1.00">
+			<item name="SFF_ProXRifle_Scope_Dark" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SFF_ProXRifle_Mag_Dark" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_ProXRifle_Light">
+		<attachments chance="1.00">
+			<item name="SFF_ProXRifle_Scope_Light" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SFF_ProXRifle_Mag_Light" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_ProXShotgun_Dark">
+		<attachments chance="1.00">
+			<item name="SFF_ProXShotGun_Mag" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_ProXShotgun_Light">
+		<attachments chance="1.00">
+			<item name="SFF_ProXShotGun_Mag" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_ProXSniper_Dark">
+		<attachments chance="1.00">
+			<item name="SFF_ProXSniper_Scope_Dark" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SFF_ProXSniper_Mag_Dark" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_ProXSniper_Light">
+		<attachments chance="1.00">
+			<item name="SFF_ProXSniper_Scope_Light" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SFF_ProXSniper_Mag_Light" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_FutureSniper_Dark">
+		<attachments chance="1.00">
+			<item name="SFF_FutureSniper_Scope_Dark" chance="1.00" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="SFF_FutureSniper_Mag" chance="1.00" />
+		</attachments>
+		<attachments chance="0.75">
+			<item name="SFF_FutureSniper_Suppressor" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_BioPistol_Dark">
+		<attachments chance="1.00">
+			<item name="SFF_BioPistol_Mag_Dark" chance="1.00" />
+		</attachments>
+		<attachments chance="0.75">
+			<item name="SFF_BioPistol_Supp_Dark" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_BioPistol_Light">
+		<attachments chance="1.00">
+			<item name="SFF_BioPistol_Mag_Light" chance="1.00" />
+		</attachments>
+		<attachments chance="0.75">
+			<item name="SFF_BioPistol_Supp_Light" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_ProXPistol_Dark">
+		<attachments chance="1.00">
+			<item name="SFF_ProXPistol_Mag_Dark" chance="1.00" />
+		</attachments>
+	</type>
+
+	<type name="SFF_ProXPistol_Light">
+		<attachments chance="1.00">
+			<item name="SFF_ProXPistol_Mag_Light" chance="1.00" />
+		</attachments>
+	</type>
 </spawnabletypes>

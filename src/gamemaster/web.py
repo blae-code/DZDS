@@ -905,6 +905,25 @@ def _read_json_safe(path: Path, default: dict[str, Any] | None = None) -> dict[s
     return copy.deepcopy(default) if default else {}
 
 
+def build_geocaches_data() -> list[dict]:
+    """Load the 20 handcrafted geocache stashes with coordinates, containers, and items."""
+    out = ROOT / "server" / "profiles" / "DZDS" / "geocaches.json"
+    if out.exists():
+        try:
+            data = json.loads(out.read_text(encoding="utf-8"))
+            return data.get("Geocaches", [])
+        except Exception:
+            pass
+    preset = ROOT / "presets" / "geocaches.yaml"
+    if preset.exists():
+        try:
+            data = active.load_yaml(preset)
+            return data.get("geocaches", [])
+        except Exception:
+            pass
+    return []
+
+
 def build_basebuilding_guide() -> dict[str, Any]:
     """Build the authoritative Basebuilding & Homesteading guide backed by live server configs."""
     global _BASEBUILDING_CACHE
@@ -2878,6 +2897,7 @@ class SandboxStore:
                 },
             },
             "basebuilding": build_basebuilding_guide(),
+            "geocaches": build_geocaches_data(),
         }
 
     def simulate_turn(
@@ -3023,6 +3043,8 @@ def handle_api(
         return HTTPStatus.OK, build_survival_manual(map_name)
     if method == "GET" and path == "/api/npcs":
         return HTTPStatus.OK, build_npc_dossiers()
+    if method == "GET" and path == "/api/geocaches":
+        return HTTPStatus.OK, {"Geocaches": build_geocaches_data()}
     if method == "POST" and path == "/api/simulate-turn":
         return HTTPStatus.OK, STORE.simulate_turn(
             map_name, commit=bool(body.get("commit")), user_id=uid, is_operator=is_operator

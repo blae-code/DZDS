@@ -131,7 +131,7 @@ def warzones(settings: dict, zs, strength: dict, factions: dict, roles: dict, cf
                   "zoneAIMaxAccuracy": w["accuracy"][1], "zoneAIThreatDetectionRange": 300.0,
                   "zoneAINoiseInvestigationRange": 300.0,
                   "zoneResetTime": float(w["reset_s"]), "zoneShowOnEnter": 0, "zoneShowOnWin": 0,
-                  "zoneEnableAirborneAIAircraft": 0,
+                  "zoneEnableAirborneAIAircraft": 1 if w.get("enable_airborne_ai", True) else 0,
                   "aTeamFaction": team_faction(factions[a], w.get("faction_names", "interim")),
                   "aTeamLoadout": f"DZDS_{a}",
                   "aTeamSpawnPosition": _ring(zn, w["spawn_offset_m"], 0.0, y),

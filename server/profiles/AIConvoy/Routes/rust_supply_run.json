@@ -1,6 +1,6 @@
 {
     "Name": "Rust Supply Run",
-    "Enabled": 1,
+    "Enabled": 0,
     "SpeedKmh": 50.0,
     "VehicleCount": 3,
     "VehicleSlots": [

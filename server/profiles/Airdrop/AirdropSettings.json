@@ -245,6 +245,16 @@
     ],
     "DropZones": [
         {
+            "Title": "Central Pump Station",
+            "Location": "Military",
+            "DropType": "RANDOM",
+            "X": 6920.0,
+            "Z": 7360.0,
+            "Zombies": 10,
+            "Radius": 120,
+            "DropAccuracy": 100
+        },
+        {
             "Title": "Eastern Airfield",
             "Location": "Military",
             "DropType": "RANDOM",
@@ -255,11 +265,31 @@
             "DropAccuracy": 100
         },
         {
+            "Title": "Lake Town",
+            "Location": "Military",
+            "DropType": "RANDOM",
+            "X": 9880.0,
+            "Z": 4090.0,
+            "Zombies": 10,
+            "Radius": 120,
+            "DropAccuracy": 100
+        },
+        {
             "Title": "Northern Dam",
             "Location": "Military",
             "DropType": "RANDOM",
             "X": 3570.0,
             "Z": 14380.0,
+            "Zombies": 10,
+            "Radius": 120,
+            "DropAccuracy": 100
+        },
+        {
+            "Title": "Northern Town",
+            "Location": "Military",
+            "DropType": "RANDOM",
+            "X": 9280.0,
+            "Z": 11850.0,
             "Zombies": 10,
             "Radius": 120,
             "DropAccuracy": 100

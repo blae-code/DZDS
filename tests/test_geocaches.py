@@ -70,3 +70,4 @@ def test_init_c_integrates_geocache_manager():
     assert "DZDSGeocacheManager.Init();" in content
     assert "DZDSGeocacheManager.AssignGeocaches(" in content
     assert "GPSReceiver" in content
+

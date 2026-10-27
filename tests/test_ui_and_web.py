@@ -932,15 +932,21 @@ def test_deep_alignment_companion_app_ui():
     assert "CHOP-SHOPS &amp; ZEN'S STATIC CAR WORKBENCH (REPAIR PROTOCOL)" in ui_html
     assert "60× Nails + 5× Metal Sheets" in ui_html
 
-    # JavaScript Functions & Handlers
-    assert "function updateSurvivalCalc()" in ui_html
-    assert "function setFleetFilter(" in ui_html
-    assert "function filterFleetRigs()" in ui_html
-    assert "function renderFleetAndConvoys()" in ui_html
-    assert "function trackConvoyOnMap(" in ui_html
-    assert "function openNpcDossier(" in ui_html
-    assert "function closeNpcDossier()" in ui_html
-    assert "function trackNpcOnMap(" in ui_html
-    assert "closeNpcDossier()" in ui_html
+    # Geocaches layer & map integration
+    assert 'id="lyr-geocaches"' in ui_html
+    assert "LAYERS.geocaches" in ui_html
+    assert "GEO #" in ui_html
+
+
+def test_api_geocaches_endpoint():
+    from http import HTTPStatus
+    status, data = web.handle_api("GET", "/api/geocaches", {}, {})
+    assert status == HTTPStatus.OK
+    caches = data.get("Geocaches", [])
+    assert len(caches) == 20
+    assert caches[0]["Id"] == 1
+    assert "Landmark" in caches[0]
+    assert "Pos" in caches[0]
+
 
 

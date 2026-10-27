@@ -83,9 +83,12 @@ gm-probe:
 overlays:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/apply_overlays.py
 
-.PHONY: arrivals
+.PHONY: arrivals geocaches
 arrivals:       # presets/arrivals.yaml + map arrival_sites -> profiles/DZDS/arrivals.json (init.c)
 	$(ENV) $(PY) tools/arrivals.py
+
+geocaches:      # presets/geocaches.yaml -> profiles/DZDS/geocaches.json (init.c)
+	$(ENV) $(PY) tools/geocaches.py
 
 .PHONY: kan-camps
 kan-camps:      # presets/kan_camps.yaml -> KAN camps.json role counts (server STOPPED)
@@ -107,7 +110,7 @@ diplomacy:
 	$(ENV) $(PY) tools/diplomacy.py
 
 # Everything that should run between restarts, in order, before `make push`.
-prepare-restart: war-turn mod-ce economy diplomacy patrols zone-events vehicle-events front-plan loadouts dzds-profile arrivals overlays calibrate validate
+prepare-restart: war-turn mod-ce economy diplomacy patrols zone-events vehicle-events front-plan loadouts dzds-profile arrivals geocaches overlays calibrate validate
 	@echo "Ready: review git diff, then 'make push' and restart from the GSP panel."
 
 # One restart cycle: mirror the live server, advance the war a turn and regenerate everything,

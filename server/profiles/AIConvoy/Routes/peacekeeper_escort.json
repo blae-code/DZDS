@@ -1,6 +1,6 @@
 {
     "Name": "Peacekeeper Escort",
-    "Enabled": 1,
+    "Enabled": 0,
     "SpeedKmh": 45.0,
     "VehicleCount": 3,
     "VehicleSlots": [
