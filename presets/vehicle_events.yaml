@@ -10,33 +10,33 @@ events:
   - name: DZDS_VehicleFarm
     roles: [inland_town]
     holders: [Settlers]
-    children: [Hatchback_02, CivilianSedan]          # + Expansion tractor once verified
-    nominal: 6
+    children: [Hatchback_02, CivilianSedan]
+    nominal: 10
   - name: DZDS_VehicleIndustry
     roles: [industrial, water]
     holders: [Rust, contested]
-    children: [Truck_01_Covered, MBM_Apocalypse_Truck, LM_Semi_Truck, CrSk_GAZ_3309_Cargo_Green]
-    nominal: 8
+    children: [Truck_01_Covered, MBM_Apocalypse_Truck, LM_Semi_Truck, CrSk_GAZ_3309_Cargo_Green, Kamaz, KamazCargo, KamazCovered, KamazFuel, WickedRV]
+    nominal: 14
   - name: DZDS_VehicleMilitary
     roles: [airfield, military]
     holders: [Peacekeepers, contested]
-    children: [Offroad_02, ExpansionUAZ, TP_Apoc_M1025_NoGun]
-    nominal: 8
+    children: [Offroad_02, ExpansionUAZ, TP_Apoc_M1025_NoGun, TP_Apoc_M1025]
+    nominal: 14
   - name: DZDS_VehicleRaiders
     roles: [road_junction, military]
     holders: [Jackals, contested]
-    children: [MBM_DuneBuggy, TP_Apoc_M1025, TP_Apoc_M1025_NoGun, ExpansionUAZRoofless_Black]
-    nominal: 10
+    children: [MBM_DuneBuggy, TP_Apoc_M1025, TP_Apoc_M1025_NoGun, ExpansionUAZRoofless_Black, Croco_QuadBike_Black, Croco_QuadBike_Green, Motorbike_02_Red]
+    nominal: 16
   - name: DZDS_VehicleAviation
     roles: [airfield, high_ground]
     holders: [Peacekeepers, Karkas, contested]
     children: [ExpansionGyrocopter, ExpansionMh6, EXT_MH6, ExpansionUh1h, EXT_UH1Y]
-    nominal: 5
+    nominal: 6
   - name: DZDS_VehicleSteppe
     roles: [inland_town, water]
     holders: [Settlers, contested]
-    children: [Motorbike_01_Blue, Motorbike_01_Red, Motorbike_01_Yellow]   # horses removed 2026-10-27
-    nominal: 6
+    children: [Motorbike_01_Blue, Motorbike_01_Red, Motorbike_01_Yellow, Motorbike_02_Red, Motorbike_02_Blue, Motorbike_02_Green, Motorbike_02_Yellow, Croco_QuadBike, Croco_QuadBike_Green, Croco_QuadBike_Black, Croco_QuadBike_Red, Croco_QuadBike_Yellow, Croco_QuadBike_Grey]
+    nominal: 14
   - name: DZDS_HeliWreck
     roles: [airfield]
     holders: [Peacekeepers, contested]

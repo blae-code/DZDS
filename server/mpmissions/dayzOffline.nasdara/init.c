@@ -229,6 +229,7 @@ class RefugeeArrivalPlan
 	bool StartsCooldown;    // false for a favored player's CooldownVehicles or light vehicles
 	bool AlwaysVehicle;     // favored with CooldownVehicles: base and camp (no vehicle) are skipped
 	bool IsLightVehicle;    // inside cooldown: granted a light personal vehicle (dirtbike, moped)
+	ref RefugeeArrivalArchetype Archetype;
 	ref RefugeeArrivalOutfit Outfit;
 	bool GrantCompanion;
 	string CompanionType;
@@ -487,7 +488,14 @@ class RefugeeArrivals
 		}
 		if (!item)
 			return null;
-		item.SetHealth01("", "", Math.RandomFloatInclusive(o.HealthMin, o.HealthMax));
+		float hMin = 0.55;
+		float hMax = 0.90;
+		if (o)
+		{
+			hMin = o.HealthMin;
+			hMax = o.HealthMax;
+		}
+		item.SetHealth01("", "", Math.RandomFloatInclusive(hMin, hMax));
 		Bottle_Base bottle = Bottle_Base.Cast(item);
 		if (bottle)
 		{
@@ -495,6 +503,84 @@ class RefugeeArrivals
 			bottle.SetQuantityMax();
 		}
 		return item;
+	}
+
+	// Lightly equip a player on respawn (inside rare vehicle cooldown) according to their archetype.
+	string EquipLightArchetype(PlayerBase p, RefugeeArrivalArchetype a)
+	{
+		if (!p || !a)
+			return "no light archetype";
+
+		p.RemoveAllItems();
+		TStringArray notes = new TStringArray;
+
+		foreach (RefugeeArrivalSlot slot : a.Slots)
+		{
+			if (slot.Name == "clothing" && slot.Items && slot.Items.Count() > 0)
+			{
+				string top = "";
+				string pants = "";
+				string shoes = "";
+				string hat = "";
+				foreach (string cls : slot.Items)
+				{
+					string clsLower = cls;
+					clsLower.ToLower();
+					if (top == "" && (clsLower.Contains("jacket") || clsLower.Contains("shirt") || clsLower.Contains("vest")))
+						top = cls;
+					else if (pants == "" && (clsLower.Contains("pants") || clsLower.Contains("shalwar")))
+						pants = cls;
+					else if (shoes == "" && (clsLower.Contains("boots") || clsLower.Contains("shoes")))
+						shoes = cls;
+					else if (hat == "" && (clsLower.Contains("hat") || clsLower.Contains("cap") || clsLower.Contains("shemag") || clsLower.Contains("keffiyeh")))
+						hat = cls;
+				}
+				if (top != "") DressItem(p, top, null, notes);
+				if (pants != "") DressItem(p, pants, null, notes);
+				if (shoes != "") DressItem(p, shoes, null, notes);
+				if (hat != "") DressItem(p, hat, null, notes);
+			}
+			else if (slot.Name == "water" && slot.Items && slot.Items.Count() > 0)
+			{
+				string wItem = slot.Items.GetRandomElement();
+				EntityAI wObj = DressItem(p, wItem, null, notes);
+				Bottle_Base bottle = Bottle_Base.Cast(wObj);
+				if (bottle)
+				{
+					bottle.SetLiquidType(LIQUID_WATER);
+					bottle.SetQuantityMax();
+				}
+			}
+			else if (slot.Name == "food" && slot.Items && slot.Items.Count() > 0)
+			{
+				DressItem(p, slot.Items.GetRandomElement(), null, notes);
+			}
+			else if (slot.Name == "medical" && slot.Items && slot.Items.Count() > 0)
+			{
+				DressItem(p, "BandageDressing", null, notes);
+			}
+			else if (slot.Name == "knife" && slot.Items && slot.Items.Count() > 0)
+			{
+				DressItem(p, slot.Items.GetRandomElement(), null, notes);
+			}
+		}
+
+		if (a.Firearms && a.Firearms.Count() > 0)
+		{
+			RefugeeArrivalFirearm f = a.Firearms.GetRandomElement();
+			if (f && f.WeaponClass != "")
+			{
+				EntityAI gun = DressItem(p, f.WeaponClass, null, notes);
+				if (gun && f.MagazineClass != "")
+				{
+					Magazine mag = Magazine.Cast(DressItem(p, f.MagazineClass, null, notes));
+					if (mag)
+						mag.ServerSetAmmoCount(f.RoundsMax);
+				}
+			}
+		}
+
+		return "light archetype " + a.Name + " equipped: " + notes.ToString();
 	}
 
 	// Each attachment on its carrier; one that won't fit there goes into the inventory instead.
@@ -1363,19 +1449,21 @@ class RefugeeArrivals
 			{
 				plan.GrantVehicle = true;
 				plan.StartsCooldown = false;
+				plan.IsLightVehicle = true;
 				only = fav.CooldownVehicles;
 			}
 		}
 		else if (!plan.GrantVehicle)
 		{
 			// Blae 2026-10-25: players who do not qualify for a fully-equipped vehicle receive a
-			// light personal vehicle (dirtbike, moped) with operating supplies.
+			// light personal vehicle (dirtbike, moped, ATV) with operating supplies.
 			// Starts no cooldown so they always have transport while their cooldown clock ticks.
 			plan.GrantVehicle = true;
 			plan.StartsCooldown = false;
 			plan.IsLightVehicle = true;
 		}
 
+		plan.Archetype = PickArchetype(false);
 		plan.Outfit = PickOutfit(plan, fav);
 		PickCompanion(plan, fav);
 		if (plan.GrantVehicle)
@@ -1431,7 +1519,7 @@ class RefugeeArrivals
 		}
 		if (!placed && plan.GrantVehicle)
 		{
-			// Every candidate was blocked: still wake on a road, just without a vehicle.
+			// Every candidate was blocked: still wake at HQ/road, just without a vehicle.
 			plan.GrantVehicle = false;
 			if (m_Config.RespawnAtHq == 1)
 				placed = PickPoint(m_Config.HqPoints, plan);
@@ -1439,7 +1527,20 @@ class RefugeeArrivals
 				placed = PickPoint(m_Config.RoadPoints, plan);
 		}
 		if (!placed)
-			return null;
+		{
+			if (m_Config.RespawnAtHq == 1)
+			{
+				plan.PlayerPos = Vector(14837.0, GetGame().SurfaceY(14837.0, 7855.0), 7855.0);
+				plan.CarPos = BesideSpot(plan.PlayerPos, 0, m_Config.PlayerOffset);
+				plan.CarOri = "0 0 0";
+				plan.Where = "Qalat-e Lut HQ";
+				placed = true;
+			}
+			else
+			{
+				return null;
+			}
+		}
 
 		PlacePlayer(plan);
 		return plan;
@@ -1573,11 +1674,13 @@ class RefugeeArrivals
 				int items = FillCargo(car, aircraft, OutfitCargo(plan.Outfit, aircraft));
 				if (plan.IsLightVehicle)
 				{
-					// Operating supplies for light motor vehicles (dirtbike / moped)
+					// Operating supplies for light motor vehicles (dirtbike / moped / atv)
 					if (plan.Vehicle.ClassName.Contains("Motorbike_01"))
 						player.GetInventory().CreateInInventory("DirtBikeHelmet_Black");
 					else if (plan.Vehicle.ClassName.Contains("Motorbike_02"))
 						player.GetInventory().CreateInInventory("DirtBikeHelmet_Red");
+					else if (plan.Vehicle.ClassName.Contains("Croco_QuadBike"))
+						player.GetInventory().CreateInInventory("DirtBikeHelmet_Khaki");
 					car.GetInventory().CreateInInventory("Wrench");
 					car.GetInventory().CreateInInventory("TireRepairKit");
 					car.GetInventory().CreateInInventory("CanisterGasoline");
@@ -1895,6 +1998,230 @@ class DZDSBaseSupplies
 	}
 };
 
+// ===================================================================================
+// DZDS Base Recon & NPC Raid Defense System (Qalat-e Lut Citadel, [14837, 7855])
+// NPC factions do not know where Player HQ is initially.
+// If hostile scouts/patrols enter recon radius (< 1200m), discovery triggers.
+// Once discovered, hostile factions organize periodic assault raids against Qalat-e Lut.
+// ===================================================================================
+class DZDSFactionRecon
+{
+	string FactionName;
+	string DisplayName;
+	string Loadout;
+	int Discovered;
+	int DiscoveredTime;
+	int LastRaidTime;
+	int RaidCount;
+
+	void DZDSFactionRecon(string fName, string dName, string loadout)
+	{
+		FactionName = fName;
+		DisplayName = dName;
+		Loadout = loadout;
+		Discovered = 0;
+		DiscoveredTime = 0;
+		LastRaidTime = 0;
+		RaidCount = 0;
+	}
+};
+
+class DZDSBaseReconData
+{
+	int BaseDiscovered;
+	ref array<ref DZDSFactionRecon> Factions;
+};
+
+class DZDSBaseDefense
+{
+	static const string RECON_FILE = "$profile:DZDS\\base_recon.json";
+	static const vector HQ_POS = "14837.0 0.0 7855.0";
+	static const float RECON_RADIUS = 1200.0;
+	static const int RAID_INTERVAL = 1800; // 30 minutes between raid waves
+	static const int FIRST_RAID_DELAY = 180; // First raid arrives 3 minutes after discovery
+
+	static ref DZDSBaseReconData s_Data;
+
+	static void Init()
+	{
+		s_Data = new DZDSBaseReconData;
+		s_Data.Factions = new array<ref DZDSFactionRecon>;
+
+		if (FileExist(RECON_FILE))
+		{
+			JsonFileLoader<DZDSBaseReconData>.JsonLoadFile(RECON_FILE, s_Data);
+		}
+
+		if (!s_Data.Factions || s_Data.Factions.Count() == 0)
+		{
+			s_Data.BaseDiscovered = 0;
+			s_Data.Factions = new array<ref DZDSFactionRecon>;
+			s_Data.Factions.Insert(new DZDSFactionRecon("DZDSJackals", "The Jackal Cohort", "DZDS_Jackals"));
+			s_Data.Factions.Insert(new DZDSFactionRecon("DZDSRust", "The Rust Syndicate", "DZDS_Rust"));
+			s_Data.Factions.Insert(new DZDSFactionRecon("DZDSKarkas", "Karkas Mountain Clan", "DZDS_Karkas"));
+			Save();
+		}
+
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CheckRecon, 30000, true);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(CheckRaids, 60000, true);
+		Print("[DZDS Base Defense] System online. Qalat-e Lut discovered status: " + s_Data.BaseDiscovered);
+	}
+
+	static void Save()
+	{
+		MakeDirectory("$profile:DZDS");
+		JsonFileLoader<DZDSBaseReconData>.JsonSaveFile(RECON_FILE, s_Data);
+	}
+
+	static DZDSFactionRecon FindFaction(string name)
+	{
+		if (!s_Data || !s_Data.Factions)
+			return null;
+		foreach (DZDSFactionRecon f : s_Data.Factions)
+		{
+			if (f.FactionName == name)
+				return f;
+		}
+		return null;
+	}
+
+	static void CheckRecon()
+	{
+#ifdef EXPANSIONMODAI
+		if (!s_Data)
+			return;
+
+		vector hq = HQ_POS;
+		hq[1] = GetGame().SurfaceY(hq[0], hq[2]);
+
+		array<Man> survivors = new array<Man>;
+		GetGame().GetPlayers(survivors);
+
+		foreach (Man survivor : survivors)
+		{
+			eAIBase ai = eAIBase.Cast(survivor);
+			if (!ai || !ai.IsAlive())
+				continue;
+
+			if (vector.Distance(ai.GetPosition(), hq) > RECON_RADIUS)
+				continue;
+
+			eAIFaction faction = ai.GetFaction();
+			if (!faction)
+				continue;
+
+			string fName = faction.GetName();
+			DZDSFactionRecon rec = FindFaction(fName);
+			if (rec && rec.Discovered == 0)
+			{
+				rec.Discovered = 1;
+				rec.DiscoveredTime = GetGame().GetTime() / 1000;
+				rec.LastRaidTime = rec.DiscoveredTime - (RAID_INTERVAL - FIRST_RAID_DELAY);
+				s_Data.BaseDiscovered = 1;
+				Save();
+
+				string alertMsg = "INTERCEPTED TRANSMISSION (87.8 MHz): Hostile " + rec.DisplayName + " scout spotted Qalat-e Lut! Citadel position compromised!";
+				Print("[DZDS Base Defense] " + alertMsg);
+			}
+		}
+#endif
+	}
+
+	static void CheckRaids()
+	{
+#ifdef EXPANSIONMODAI
+		if (!s_Data || s_Data.BaseDiscovered == 0)
+			return;
+
+		int now = GetGame().GetTime() / 1000;
+		foreach (DZDSFactionRecon f : s_Data.Factions)
+		{
+			if (f.Discovered == 1 && (now - f.LastRaidTime) >= RAID_INTERVAL)
+			{
+				LaunchRaid(f);
+				f.LastRaidTime = now;
+				f.RaidCount++;
+				Save();
+				break;
+			}
+		}
+#endif
+	}
+
+	static void LaunchRaid(DZDSFactionRecon f)
+	{
+#ifdef EXPANSIONMODAI
+		if (!f)
+			return;
+
+		TVectorArray approaches = new TVectorArray;
+		approaches.Insert("14885.0 0.0 7750.0"); // South approach road
+		approaches.Insert("14720.0 0.0 7800.0"); // West canyon trail
+		approaches.Insert("14840.0 0.0 8050.0"); // North road
+
+		vector spawnPos = approaches.GetRandomElement();
+		spawnPos[1] = GetGame().SurfaceY(spawnPos[0], spawnPos[2]);
+
+		string warn = "DEFENSE ALERT (87.8 MHz): Hostile assault party from " + f.DisplayName + " storming Qalat-e Lut!";
+		Print("[DZDS Base Defense] " + warn);
+
+		eAIGroup raidGroup = null;
+		for (int i = 0; i < 4; i++)
+		{
+			vector p = spawnPos;
+			p[0] = p[0] + Math.RandomFloatInclusive(-6, 6);
+			p[2] = p[2] + Math.RandomFloatInclusive(-6, 6);
+			p[1] = GetGame().SurfaceY(p[0], p[2]);
+
+			string model = "SurvivorM_Mirek";
+			if (i % 2 == 1) model = "SurvivorM_Boris";
+
+			eAIBase raider = eAIBase.Cast(GetGame().CreateObjectEx(model, p, ECE_INITAI));
+			if (raider)
+			{
+				if (f.FactionName == "DZDSJackals")
+					raider.SetFaction(new eAIFactionDZDSJackals());
+				else if (f.FactionName == "DZDSRust")
+					raider.SetFaction(new eAIFactionDZDSRust());
+				else if (f.FactionName == "DZDSKarkas")
+					raider.SetFaction(new eAIFactionDZDSKarkas());
+
+				string loadout = f.Loadout;
+				if (i == 0)
+				{
+					if (f.FactionName == "DZDSJackals") loadout = "DZDS_Jackals_warlord";
+					else if (f.FactionName == "DZDSRust") loadout = "DZDS_Rust_foreman";
+				}
+				ExpansionHumanLoadout.Apply(raider, loadout, false);
+
+				if (i == 0)
+				{
+					raider.GetInventory().CreateInInventory("BreachingCharge");
+					raider.GetInventory().CreateInInventory("BreachingChargeTimer");
+				}
+
+				if (!raidGroup)
+					raidGroup = raider.GetGroup();
+				else
+					raidGroup.AddMember(raider);
+			}
+		}
+
+		if (raidGroup)
+		{
+			vector gatePos = "14837.0 0.0 7815.0";
+			gatePos[1] = GetGame().SurfaceY(gatePos[0], gatePos[2]);
+			vector yardPos = HQ_POS;
+			yardPos[1] = GetGame().SurfaceY(yardPos[0], yardPos[2]);
+
+			raidGroup.AddWaypoint(gatePos);
+			raidGroup.AddWaypoint(yardPos);
+			Print("[DZDS Base Defense] Dispatched 4 raiders targeting Qalat-e Lut from " + spawnPos.ToString());
+		}
+#endif
+	}
+};
+
 class CustomMission: MissionServer
 {
 	ref RefugeeArrivals m_RefugeeArrivals;
@@ -1905,6 +2232,7 @@ class CustomMission: MissionServer
 		super.OnInit();
 		DZDSCompanionManager.Init();
 		DZDSBaseSupplies.Init();
+		DZDSBaseDefense.Init();
 		if (FileExist(RefugeeArrivals.SELFTEST))
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(RunVehicleSelfTest, 60000, false);
 		if (FileExist(RefugeeArrivals.SPOTTEST))
@@ -2003,6 +2331,10 @@ class CustomMission: MissionServer
 			if (m_ArrivalPlan.RandomCharacter)
 				characterName = GetGame().CreateRandomPlayer();
 		}
+		else
+		{
+			pos = Vector(14837.0, GetGame().SurfaceY(14837.0, 7855.0), 7855.0);
+		}
 
 		Entity playerEnt;
 		playerEnt = GetGame().CreatePlayer( identity, characterName, pos, 0, "NONE" );
@@ -2020,10 +2352,18 @@ class CustomMission: MissionServer
 			m_RefugeeArrivals = new RefugeeArrivals();
 		if (m_ArrivalPlan)
 		{
-			if (m_ArrivalPlan.Outfit)
+			if (m_ArrivalPlan.Outfit && !m_ArrivalPlan.IsLightVehicle)
 			{
 				// Blae 2026-10-23: an outfit (Soviet Special Forces) instead of the civilian clothes.
 				Print("[DZDS Arrivals] " + m_RefugeeArrivals.Dress(player, m_ArrivalPlan.Outfit));
+				player.GetStatWater().Set( 1000 );
+				player.GetStatEnergy().Set( 800 );
+				RefugeeArrivals.GiveStartKit(player, m_RefugeeArrivals.RadioIndex(), m_RefugeeArrivals.Roadflare());
+				return;
+			}
+			else if (m_ArrivalPlan.IsLightVehicle && m_ArrivalPlan.Archetype)
+			{
+				Print("[DZDS Arrivals] " + m_RefugeeArrivals.EquipLightArchetype(player, m_ArrivalPlan.Archetype));
 				player.GetStatWater().Set( 1000 );
 				player.GetStatEnergy().Set( 800 );
 				RefugeeArrivals.GiveStartKit(player, m_RefugeeArrivals.RadioIndex(), m_RefugeeArrivals.Roadflare());

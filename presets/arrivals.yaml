@@ -262,6 +262,24 @@ light_vehicles:
   - class: Motorbike_02_Yellow
     weight: 2
     parts: [Motorbike_02_Wheel_1, Motorbike_02_Wheel_2, SparkPlug, Motorbike_02_ShieldFront_Yellow, Motorbike_02_ShieldLeft_Yellow, Motorbike_02_ShieldRight_Yellow]
+  - class: Croco_QuadBike
+    weight: 2.5
+    parts: [Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, SparkPlug, CarBattery]
+  - class: Croco_QuadBike_Green
+    weight: 2.5
+    parts: [Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, SparkPlug, CarBattery]
+  - class: Croco_QuadBike_Black
+    weight: 2.5
+    parts: [Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, SparkPlug, CarBattery]
+  - class: Croco_QuadBike_Red
+    weight: 2
+    parts: [Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, SparkPlug, CarBattery]
+  - class: Croco_QuadBike_Yellow
+    weight: 2
+    parts: [Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, SparkPlug, CarBattery]
+  - class: Croco_QuadBike_Grey
+    weight: 2
+    parts: [Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, Croco_QuadBike_Wheel, SparkPlug, CarBattery]
 
 # Arrival cargo (Blae, 2026-10-15): ONE archetype per car, slots drawn WITHOUT replacement
 # (max_each 1, food 2), ~12-17 items + exactly one themed firearm. Item pools are disjoint
@@ -276,7 +294,7 @@ archetypes:
   deserter:
     weight: 30
     slots:
-      clothing: { count: [2, 3], items: [USMCJacket_Desert, USMCPants_Desert, BoonieHat_Desert, BoonieHat_Tan, MilitaryCap_Desert, MilitaryBoots_Beige, MilitaryBoots_Brown, CombatBoots_Beige, CombatBoots_Brown, M65Jacket_Tan, M65Jacket_Khaki, M65Jacket_Olive, BDUJacket, BDUPants, OBRJacket_Beige, OBRJacket_Olive, OBRPants_Beige, OBRPants_Olive, OBRCap_Beige, OBRCap_Olive, TacticalShirt_Tan, TacticalShirt_Olive, CargoPants_Beige, CargoPants_Green, AssaultBag_Desert, TortillaBag_Desert, CoyoteBag_Desert, TacticalGloves_Beige, TacticalGloves_Green, Keffiyeh_LightBrown, Shemag_Brown, Shemag_Green, MilitaryBelt, ChestRigVest_Tan, ChestRigVest_Khaki, UKAssVest_Desert, BallisticHelmet_Desert] }
+      clothing: { count: [2, 3], items: [USMCJacket_Desert, USMCPants_Desert, BoonieHat_Desert, BoonieHat_Tan, MilitaryCap_Desert, MilitaryBoots_Beige, MilitaryBoots_Brown, CombatBoots_Beige, CombatBoots_Brown, M65Jacket_Tan, M65Jacket_Khaki, M65Jacket_Olive, BDUJacket, BDUPants, OBRJacket_Beige, OBRJacket_Olive, OBRPants_Beige, OBRPants_Olive, OBRCap_Beige, OBRCap_Olive, TacticalShirt_Tan, TacticalShirt_Olive, CargoPants_Beige, CargoPants_Green, AssaultBag_Desert, TortillaBag_Desert, CoyoteBag_Desert, TacticalGloves_Beige, TacticalGloves_Green, Shemagh_Tan, Shemagh_Brown, Shemagh_Face_Tan, Canvas_Backpack_Brown, Keffiyeh_LightBrown, Shemag_Brown, Shemag_Green, MilitaryBelt, ChestRigVest_Tan, ChestRigVest_Khaki, UKAssVest_Desert, BallisticHelmet_Desert] }
       water:    { count: [1, 2], items: [Canteen, WaterBottle, SodaCan_Kvass, SodaCan_Takola] }
       food:     { count: [2, 3], max_each: 2, items: [TacticalBaconCan, TunaCan, SardinesCan, BakedBeansCan, SpaghettiCan, Crackers, SaltySticks, Zagorky, ZagorkyPeanuts, HalvaCan, SarmaCan] }
       medical:  { count: [2, 2], items: [BandageDressing, PainkillerTablets, CharcoalTablets, TetracyclineAntibiotics, Morphine, Epinephrine, IodineTincture] }

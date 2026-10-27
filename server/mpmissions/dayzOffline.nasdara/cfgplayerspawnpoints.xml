@@ -129,6 +129,7 @@
                 Be aware that this is only checked on player log in, so it will not swap for as long as nobody is logging in.
             -->
             <group name="AllSpawnpoints" lifetime="0">
+                <pos x="14837.0" z="7855.0" />
                 <pos x="14069.808594" z="13083.109375" />
                 <pos x="13571.811523" z="12821.112305" />
                 <pos x="13400.915039" z="11966.529297" />
@@ -281,6 +282,7 @@
                 Be aware that this is only checked on player log in, so it will not swap for as long as nobody is logging in.
             -->
             <group name="AllSpawnpoints" lifetime="0">
+                <pos x="14837.0" z="7855.0" />
                 <pos x="14069.808594" z="13083.109375" />
                 <pos x="13571.811523" z="12821.112305" />
                 <pos x="13400.915039" z="11966.529297" />
@@ -433,6 +435,7 @@
                 Be aware that this is only checked on player log in, so it will not swap for as long as nobody is logging in.
             -->
             <group name="AllSpawnpoints" lifetime="0">
+                <pos x="14837.0" z="7855.0" />
                 <pos x="14069.808594" z="13083.109375" />
                 <pos x="13571.811523" z="12821.112305" />
                 <pos x="13400.915039" z="11966.529297" />

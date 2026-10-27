@@ -4412,6 +4412,283 @@
 			<item name="Motorbike_02_ShieldRight_Yellow" chance="1.0" />
 		</attachments>
 	</type>
+	<!-- Croco Quadbikes -->
+	<type name="Croco_QuadBike">
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="CarBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Croco_QuadBike_Black">
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="CarBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Croco_QuadBike_Green">
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="CarBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Croco_QuadBike_Red">
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="CarBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Croco_QuadBike_Yellow">
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="CarBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="Croco_QuadBike_Grey">
+		<attachments chance="1.00">
+			<item name="SparkPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="CarBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Croco_QuadBike_Wheel" chance="1.0" />
+		</attachments>
+	</type>
+	<!-- Kamaz Heavy Trucks -->
+	<type name="Kamaz">
+		<attachments chance="0.90">
+			<item name="GlowPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="TruckBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel_Double" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel_Double" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Driver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_CoDriver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Hood" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="KamazCargo">
+		<attachments chance="0.90">
+			<item name="GlowPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="TruckBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel_Double" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel_Double" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Driver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_CoDriver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Cargo" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Hood" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="KamazCovered">
+		<attachments chance="0.90">
+			<item name="GlowPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="TruckBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel_Double" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel_Double" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Driver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_CoDriver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Cargo" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Hood" chance="1.0" />
+		</attachments>
+	</type>
+	<type name="KamazFuel">
+		<attachments chance="0.90">
+			<item name="GlowPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="TruckBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel_Double" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="Kamaz_Wheel_Double" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Driver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_CoDriver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="KamazDoors_Hood" chance="1.0" />
+		</attachments>
+	</type>
+	<!-- WickedRV Motorhome Mobile Base -->
+	<type name="WickedRV">
+		<attachments chance="0.90">
+			<item name="SparkPlug" chance="1.0" />
+		</attachments>
+		<attachments chance="0.90">
+			<item name="CarBattery" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="WickedRV_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="WickedRV_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="WickedRV_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="WickedRV_Wheel" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="WickedRV_Doors_Driver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="WickedRV_Doors_Codriver" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="WickedRV_Doors_Cargo1" chance="1.0" />
+		</attachments>
+		<attachments chance="1.00">
+			<item name="WickedRV_Doors_Hood" chance="1.0" />
+		</attachments>
+	</type>
 	<type name="CivilianSedan">
 		<attachments chance="1.00">
 			<item name="CivSedanWheel" chance="0.80" />

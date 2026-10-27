@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <events>
     <event name="DZDS_VehicleFarm">
-        <nominal>6</nominal>
-        <min>5</min>
-        <max>6</max>
+        <nominal>10</nominal>
+        <min>9</min>
+        <max>10</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -19,9 +19,9 @@
         </children>
     </event>
     <event name="DZDS_VehicleIndustry">
-        <nominal>8</nominal>
-        <min>7</min>
-        <max>8</max>
+        <nominal>14</nominal>
+        <min>13</min>
+        <max>14</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -36,12 +36,17 @@
             <child lootmax="0" lootmin="0" max="1" min="0" type="MBM_Apocalypse_Truck" />
             <child lootmax="0" lootmin="0" max="1" min="0" type="LM_Semi_Truck" />
             <child lootmax="0" lootmin="0" max="1" min="0" type="CrSk_GAZ_3309_Cargo_Green" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Kamaz" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="KamazCargo" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="KamazCovered" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="KamazFuel" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="WickedRV" />
         </children>
     </event>
     <event name="DZDS_VehicleMilitary">
-        <nominal>8</nominal>
-        <min>7</min>
-        <max>8</max>
+        <nominal>14</nominal>
+        <min>13</min>
+        <max>14</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -55,12 +60,13 @@
             <child lootmax="0" lootmin="0" max="1" min="0" type="Offroad_02" />
             <child lootmax="0" lootmin="0" max="1" min="0" type="ExpansionUAZ" />
             <child lootmax="0" lootmin="0" max="1" min="0" type="TP_Apoc_M1025_NoGun" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="TP_Apoc_M1025" />
         </children>
     </event>
     <event name="DZDS_VehicleRaiders">
-        <nominal>10</nominal>
-        <min>9</min>
-        <max>10</max>
+        <nominal>16</nominal>
+        <min>15</min>
+        <max>16</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -75,12 +81,15 @@
             <child lootmax="0" lootmin="0" max="1" min="0" type="TP_Apoc_M1025" />
             <child lootmax="0" lootmin="0" max="1" min="0" type="TP_Apoc_M1025_NoGun" />
             <child lootmax="0" lootmin="0" max="1" min="0" type="ExpansionUAZRoofless_Black" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Croco_QuadBike_Black" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Croco_QuadBike_Green" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_02_Red" />
         </children>
     </event>
     <event name="DZDS_VehicleAviation">
-        <nominal>5</nominal>
-        <min>4</min>
-        <max>5</max>
+        <nominal>6</nominal>
+        <min>5</min>
+        <max>6</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -99,9 +108,9 @@
         </children>
     </event>
     <event name="DZDS_VehicleSteppe">
-        <nominal>6</nominal>
-        <min>5</min>
-        <max>6</max>
+        <nominal>14</nominal>
+        <min>13</min>
+        <max>14</max>
         <lifetime>3888000</lifetime>
         <restock>0</restock>
         <saferadius>500</saferadius>
@@ -115,6 +124,16 @@
             <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_01_Blue" />
             <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_01_Red" />
             <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_01_Yellow" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_02_Red" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_02_Blue" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_02_Green" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Motorbike_02_Yellow" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Croco_QuadBike" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Croco_QuadBike_Green" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Croco_QuadBike_Black" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Croco_QuadBike_Red" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Croco_QuadBike_Yellow" />
+            <child lootmax="0" lootmin="0" max="1" min="0" type="Croco_QuadBike_Grey" />
         </children>
     </event>
 </events>

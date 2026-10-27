@@ -1,6 +1,6 @@
 {
     "Name": "Jackal Highway Raid",
-    "Enabled": 0,
+    "Enabled": 1,
     "SpeedKmh": 55.0,
     "VehicleCount": 3,
     "VehicleSlots": [

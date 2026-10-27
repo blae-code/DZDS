@@ -2604,6 +2604,90 @@
             ],
             "Trailer": 0,
             "Aircraft": 0
+        },
+        {
+            "ClassName": "Croco_QuadBike",
+            "Weight": 2.5,
+            "Parts": [
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "SparkPlug",
+                "CarBattery"
+            ],
+            "Trailer": 0,
+            "Aircraft": 0
+        },
+        {
+            "ClassName": "Croco_QuadBike_Green",
+            "Weight": 2.5,
+            "Parts": [
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "SparkPlug",
+                "CarBattery"
+            ],
+            "Trailer": 0,
+            "Aircraft": 0
+        },
+        {
+            "ClassName": "Croco_QuadBike_Black",
+            "Weight": 2.5,
+            "Parts": [
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "SparkPlug",
+                "CarBattery"
+            ],
+            "Trailer": 0,
+            "Aircraft": 0
+        },
+        {
+            "ClassName": "Croco_QuadBike_Red",
+            "Weight": 2.0,
+            "Parts": [
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "SparkPlug",
+                "CarBattery"
+            ],
+            "Trailer": 0,
+            "Aircraft": 0
+        },
+        {
+            "ClassName": "Croco_QuadBike_Yellow",
+            "Weight": 2.0,
+            "Parts": [
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "SparkPlug",
+                "CarBattery"
+            ],
+            "Trailer": 0,
+            "Aircraft": 0
+        },
+        {
+            "ClassName": "Croco_QuadBike_Grey",
+            "Weight": 2.0,
+            "Parts": [
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "Croco_QuadBike_Wheel",
+                "SparkPlug",
+                "CarBattery"
+            ],
+            "Trailer": 0,
+            "Aircraft": 0
         }
     ],
     "Favored": [
@@ -2669,6 +2753,10 @@
                         "CoyoteBag_Desert",
                         "TacticalGloves_Beige",
                         "TacticalGloves_Green",
+                        "Shemagh_Tan",
+                        "Shemagh_Brown",
+                        "Shemagh_Face_Tan",
+                        "Canvas_Backpack_Brown",
                         "Keffiyeh_LightBrown",
                         "Shemag_Brown",
                         "Shemag_Green",

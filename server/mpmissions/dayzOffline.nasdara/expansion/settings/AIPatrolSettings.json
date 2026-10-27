@@ -1784,6 +1784,73 @@
                     6475.0
                 ]
             ]
+        },
+        {
+            "Persist": false,
+            "Formation": "RANDOM",
+            "FormationScale": 1.5,
+            "FormationLooseness": 0.9,
+            "Loadout": "DZDS_Jackals",
+            "Units": [],
+            "Behaviour": "LOOP",
+            "LootingBehaviour": "WEAPONS|BANDAGES|CLOTHING|UPGRADE",
+            "Speed": "JOG",
+            "UnderThreatSpeed": "SPRINT",
+            "DefaultStance": "STANDING",
+            "DefaultLookAngle": 0.0,
+            "CanBeLooted": true,
+            "LootDropOnDeath": "",
+            "UnlimitedReload": 0,
+            "SniperProneDistanceThreshold": 0.0,
+            "AccuracyMin": 0.24,
+            "AccuracyMax": 0.40,
+            "ThreatDistanceLimit": 220.0,
+            "NoiseInvestigationDistanceLimit": 300.0,
+            "MaxFlankingDistance": 250.0,
+            "EnableFlankingOutsideCombat": 1,
+            "DamageMultiplier": 1.0,
+            "DamageReceivedMultiplier": 1.0,
+            "HeadshotResistance": 0.0,
+            "CanSpawnInContaminatedArea": false,
+            "CanBeTriggeredByAI": true,
+            "MinDistRadius": -2,
+            "MaxDistRadius": -2,
+            "DespawnRadius": -2,
+            "MinSpreadRadius": 1.0,
+            "MaxSpreadRadius": 20.0,
+            "Chance": 1.0,
+            "DespawnTime": -1.0,
+            "RespawnTime": 1800.0,
+            "LoadBalancingCategory": "",
+            "ObjectClassName": "",
+            "WaypointInterpolation": "",
+            "UseRandomWaypointAsStartPoint": false,
+            "Name": "Jackals scout @ Eastern Foothills",
+            "Faction": "DZDSJackals",
+            "NumberOfAI": 2,
+            "NumberOfAIMax": 3,
+            "Waypoints": [
+                [
+                    14200.0,
+                    0.0,
+                    7400.0
+                ],
+                [
+                    14550.0,
+                    0.0,
+                    7700.0
+                ],
+                [
+                    14300.0,
+                    0.0,
+                    8000.0
+                ],
+                [
+                    14000.0,
+                    0.0,
+                    7650.0
+                ]
+            ]
         }
     ]
 }

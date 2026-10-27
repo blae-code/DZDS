@@ -47,10 +47,15 @@ def _types_in_file(path: Path) -> set[str]:
 
 def known_types(mission: Path) -> set[str]:
     """Vanilla types plus our own types file (tools/types_gen.py registers modded respawn
-    vehicles and parts there; run `make types` before `make arrivals`)."""
+    vehicles and parts there; run `make types` before `make arrivals`). Also includes
+    all modded types declared in dzds_mods/."""
     names: set[str] = set()
     for f in (mission / "db" / "types.xml", mission / "dzds" / "types_dzds.xml"):
         if f.exists():
+            names |= _types_in_file(f)
+    mods_dir = mission / "dzds_mods"
+    if mods_dir.is_dir():
+        for f in mods_dir.glob("*.xml"):
             names |= _types_in_file(f)
     return names
 
@@ -248,7 +253,8 @@ def validate(cfg: dict, types: set[str]) -> None:
         if f.get("outfit") and f["outfit"] not in (cfg.get("outfits") or {}):
             raise SystemExit(f"favored {f['name']}: no outfit named {f['outfit']!r}")
         cooldown = set(f.get("cooldown_vehicles") or [])
-        stray = cooldown - {v["class"] for v in cfg["vehicles"]}
+        all_allowed_vehicles = {v["class"] for v in cfg["vehicles"]} | {v["class"] for v in cfg.get("light_vehicles", [])}
+        stray = cooldown - all_allowed_vehicles
         if stray:
             raise SystemExit(f"favored {f['name']} cooldown_vehicles names no configured vehicle: {sorted(stray)}")
         if cooldown & set(cfg.get("aircraft", [])):
