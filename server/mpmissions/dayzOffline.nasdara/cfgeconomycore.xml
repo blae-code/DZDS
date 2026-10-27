@@ -51,8 +51,10 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
         <file name="crsk_vaz_2107_types.xml" type="types" />
         <file name="crocos_quadbike_types.xml" type="types" />
         <file name="dayz_expansion_weapons_types.xml" type="types" />
+        <file name="erapulsar_exoskeleton_types.xml" type="types" />
         <file name="fairplayambulance_types.xml" type="types" />
         <file name="gas_mask_overhaul_types.xml" type="types" />
+        <file name="grw_er7_gauss_types.xml" type="types" />
         <file name="kamaz_truck_types.xml" type="types" />
         <file name="lms_semi_truck_trailer_types.xml" type="types" />
         <file name="maharlikaph_militarypack_types.xml" type="types" />
@@ -63,6 +65,7 @@ Do not forget to add attribute act="car", if root class represents moveable vehi
         <file name="mmg_mightys_military_gear_types.xml" type="types" />
         <file name="rag_basebuilding_types.xml" type="types" />
         <file name="rag_hunting_cabin_types.xml" type="types" />
+        <file name="sci_fi_firearms_types.xml" type="types" />
         <file name="towing_service_types.xml" type="types" />
         <file name="tp_apoc_m1025_types.xml" type="types" />
         <file name="wickedrv_types.xml" type="types" />

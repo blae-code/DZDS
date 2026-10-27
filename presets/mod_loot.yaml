@@ -169,3 +169,15 @@ mods:
     name: WickedRV
     policy: author
     types: ["*.xml", "types.xml"]
+  2307022759:
+    name: GRW ER7 Gauss Rifle
+    policy: author
+    types: ["er7_types.xml", "Types/*.xml", "types.xml"]
+  3026787414:
+    name: Sci-Fi Firearms
+    policy: author
+    types: ["types.xml", "*.xml"]
+  2006514197:
+    name: Erapulsar_Exoskeleton
+    policy: author
+    types: ["*.xml", "types.xml"]

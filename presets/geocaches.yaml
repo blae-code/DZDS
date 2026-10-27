@@ -1,0 +1,253 @@
+# Nasdara Geocaching Secret Stashes (20 Authentic World Sites)
+# Designed for the Nasdara Badlands. Coordinates are exact world coordinates verified against mapgrouppos.xml.
+# Stashes contain rare sci-fi prototype technology, electromagnetic railguns, powered exoskeletons,
+# energy blades, and heavy ordnance not available in ordinary loot and not carried by NPCs.
+
+geocaches:
+  - id: 1
+    landmark: "Missile Base Ridge - Rocket Storage Silo"
+    pos: "2781.9 404.3 9229.3"
+    container: "SeaChest"
+    danger: "Karkas Clan Sniper Outpost"
+    items:
+      - "ER7_Gauss"
+      - "ER7_Scope"
+      - "ER7_Gauss_Magazine"
+      - "ER7_Gauss_Battery"
+      - "Ammo_ER7RFW"
+      - "Ammo_ER7RFW"
+
+  - id: 2
+    landmark: "North Border Pass - Subterranean Tunnel Bunker"
+    pos: "2873.9 380.8 15817.7"
+    container: "SeaChest"
+    danger: "Border Guard Fortification / Heavy Ambush Zone"
+    items:
+      - "Erapulsar_Exoskeleton"
+      - "Erapulsar_Exoskeleton_Battery"
+      - "BreachingChargeHeavy"
+      - "BreachingChargeRadioRemote"
+
+  - id: 3
+    landmark: "Northern Dam - Kirov Turbine Generator Hall"
+    pos: "3746.7 299.1 14244.1"
+    container: "SeaChest"
+    danger: "Jackal Raider Convoy Corridor"
+    items:
+      - "SFF_FutureMachineGun_Dark"
+      - "SFF_FutureMachineGun_Mag_Dark"
+      - "SFF_FutureMachineGun_Mag_Dark"
+      - "SFF_ProXGrenade_Dark"
+      - "SFF_Katana_Yellow"
+
+  - id: 4
+    landmark: "Northern Dam - Subterranean Outlet Sump"
+    pos: "3553.5 301.5 14420.3"
+    container: "WoodenCrate"
+    danger: "Flooded Industrial Drainage Tunnel"
+    items:
+      - "SFF_BioRifle_Dark"
+      - "SFF_BioRifle_Mag_Dark"
+      - "SFF_BioRifle_Mag_Dark"
+      - "SFF_BioRifle_Optic_Dark"
+      - "SFF_BioRifle_Supp"
+      - "SFF_Ammo_BioRound"
+
+  - id: 5
+    landmark: "Western Range - Sub-Level Defense Bunker"
+    pos: "4584.3 265.4 10884.1"
+    container: "SeaChest"
+    danger: "Karkas Clan Hunting Ground"
+    items:
+      - "SFF_BioSniper_Dark"
+      - "SFF_BioSniper_Mag_Dark"
+      - "SFF_BioSniper_Scope_Dark"
+      - "SFF_BioSniper_Supp_Dark"
+      - "SFF_Ammo_BioRound"
+
+  - id: 6
+    landmark: "Central Highway - Subterranean Maintenance Chamber"
+    pos: "5528.4 243.3 5641.0"
+    container: "SeaChest"
+    danger: "Rust Syndicate Smuggler Crossway"
+    items:
+      - "Expansion_LAW"
+      - "ExpansionRPG7"
+      - "ExpansionAmmoRPG"
+      - "ExpansionAmmoRPG"
+      - "Rangefinder"
+      - "Battery9V"
+
+  - id: 7
+    landmark: "High Mountain Ridge - Signal Tower TC6 Mast"
+    pos: "5879.1 409.0 7132.3"
+    container: "SmallProtectorCase"
+    danger: "Extreme Elevation (409m), Sniper Exposure"
+    items:
+      - "NVGHeadstrap"
+      - "NVGoggles"
+      - "Battery9V"
+      - "SFF_FutureSniper_Dark"
+      - "SFF_FutureSniper_Mag"
+      - "SFF_FutureSniper_Scope_Dark"
+
+  - id: 8
+    landmark: "Northwest Oil Basin - Extraction Rig Derrick-01"
+    pos: "6588.9 250.0 10400.2"
+    container: "WoodenCrate"
+    danger: "Toxic Sludge Basin, Jackal Scavengers"
+    items:
+      - "SFF_ProXRifle_Dark"
+      - "SFF_ProXRifle_Mag_Dark"
+      - "SFF_ProXRifle_Scope_Dark"
+      - "SFF_Ammo_ProXRifle"
+      - "SFF_Katana_Blue"
+
+  - id: 9
+    landmark: "Central Oasis - Hardened Concrete Bunker"
+    pos: "7381.8 263.3 7383.1"
+    container: "SeaChest"
+    danger: "Contested Water Zone (Jackal / Settler Warfront)"
+    items:
+      - "Erapulsar_Exoskeleton"
+      - "Erapulsar_Exoskeleton_Battery"
+      - "SFF_ProXShotgun_Dark"
+      - "SFF_ProXShotGun_Mag"
+      - "SFF_Ammo_ProXShotgun"
+
+  - id: 10
+    landmark: "Southern Dunes - Ancient Crypt Sarcophagus"
+    pos: "8814.9 163.5 5049.6"
+    container: "WoodenCrate"
+    danger: "Desolate Dunes, Dehydration Hazard"
+    items:
+      - "SFF_Katana_Green"
+      - "SFF_Katana_Yellow"
+      - "SFF_BioPistol_Dark"
+      - "SFF_BioPistol_Mag_Dark"
+      - "SFF_BioPistol_Supp_Dark"
+      - "SFF_Ammo_BioRound"
+
+  - id: 11
+    landmark: "South Cement Works - Industrial Silo Gantry"
+    pos: "8957.1 194.2 4081.4"
+    container: "SeaChest"
+    danger: "Rust Syndicate Heavy Refinery Patrols"
+    items:
+      - "BreachingChargeHeavy"
+      - "BreachingChargeRadioRemote"
+      - "Expansion_M79"
+      - "Ammo_40mm_Explosive"
+      - "SFF_ProXGrenade_Dark"
+
+  - id: 12
+    landmark: "South Industrial Pass - Tunnel Bunker Cell"
+    pos: "9414.4 151.5 4373.5"
+    container: "SeaChest"
+    danger: "Rust Syndicate Checkpoint"
+    items:
+      - "ER7_Gauss"
+      - "ER7_Gauss_Battery"
+      - "ER7_Gauss_Magazine"
+      - "ER7_Scope"
+      - "Ammo_ER7RFW"
+
+  - id: 13
+    landmark: "Tajbeg Palace - Ancient Citadel Sub-Level"
+    pos: "10089.1 195.9 8236.6"
+    container: "SeaChest"
+    danger: "Palace Ruins Active War Zone"
+    items:
+      - "Erapulsar_Exoskeleton"
+      - "Erapulsar_Exoskeleton_Battery"
+      - "MMG_MK_V_Armor_black"
+      - "MMG_tactical_pouch_black"
+
+  - id: 14
+    landmark: "Southern Signal Station - Relay Bunker"
+    pos: "10408.6 215.1 3835.6"
+    container: "SmallProtectorCase"
+    danger: "Militarized Radio Tower"
+    items:
+      - "SFF_ProXSniper_Dark"
+      - "SFF_ProXSniper_Mag_Dark"
+      - "SFF_ProXSniper_Scope_Dark"
+      - "SFF_Ammo_ProXSniper"
+      - "Rangefinder"
+      - "Battery9V"
+
+  - id: 15
+    landmark: "Central Salt Flats - Derelict Derrick Sump"
+    pos: "10430.2 162.7 7172.7"
+    container: "WoodenCrate"
+    danger: "Open Salt Flat Basin, Vehicle Convoy Raids"
+    items:
+      - "Expansion_LAW"
+      - "SFF_FutureMachineGun_Dark"
+      - "SFF_FutureMachineGun_Mag_Dark"
+      - "SFF_ProXGrenade_Light"
+
+  - id: 16
+    landmark: "Southern Air Base - Hardened HQ Armory Bunker"
+    pos: "10768.2 167.7 3506.6"
+    container: "SeaChest"
+    danger: "Southern Airfield Perimeter"
+    items:
+      - "SFF_ProXRifle_Dark"
+      - "SFF_ProXRifle_Mag_Dark"
+      - "SFF_ProXRifle_Scope_Dark"
+      - "BreachingChargeHeavy"
+      - "BreachingChargeRadioRemote"
+
+  - id: 17
+    landmark: "Northeastern Mountain - Radar Mast TC6 Apex"
+    pos: "11647.1 465.7 13192.1"
+    container: "SmallProtectorCase"
+    danger: "Highest Mountain Peak (465m), Cliff Edge"
+    items:
+      - "NVGHeadstrap"
+      - "NVGoggles"
+      - "Battery9V"
+      - "ER7_Gauss"
+      - "ER7_Scope"
+      - "ER7_Gauss_Battery"
+      - "Ammo_ER7RFW"
+
+  - id: 18
+    landmark: "Eastern Airfield - Primary Radar Dome Annex"
+    pos: "11736.4 192.3 10607.4"
+    container: "SmallProtectorCase"
+    danger: "Peacekeeper Radar Perimeter"
+    items:
+      - "SFF_BioSniper_Dark"
+      - "SFF_BioSniper_Mag_Dark"
+      - "SFF_BioSniper_Scope_Dark"
+      - "NVGHeadstrap"
+      - "NVGoggles"
+      - "Battery9V"
+
+  - id: 19
+    landmark: "Eastern Airfield - Hardened Test Hangar"
+    pos: "12031.6 175.6 10846.4"
+    container: "SeaChest"
+    danger: "Peacekeeper Heavy Armour Zone"
+    items:
+      - "SFF_ProXShotgun_Dark"
+      - "SFF_ProXShotGun_Mag"
+      - "SFF_Ammo_ProXShotgun"
+      - "BreachingChargeHeavy"
+      - "Expansion_M79"
+      - "Ammo_40mm_Explosive"
+
+  - id: 20
+    landmark: "Eastern Caravanserai - Fortified Cellar"
+    pos: "14836.9 209.0 7853.2"
+    container: "SeaChest"
+    danger: "Settler Sanctuary Depot (Deep Storage)"
+    items:
+      - "Erapulsar_Exoskeleton"
+      - "Erapulsar_Exoskeleton_Battery"
+      - "ER7_Gauss"
+      - "ER7_Gauss_Battery"
+      - "ER7_Gauss_Magazine"
+      - "Ammo_ER7RFW"

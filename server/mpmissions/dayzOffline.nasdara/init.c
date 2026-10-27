@@ -356,6 +356,8 @@ class RefugeeArrivals
 		EntityAI directive = player.GetInventory().CreateInInventory("Paper");
 		if (directive)
 			Print("[DZDS Arrivals] Issued Survivor Field Directive to " + player.GetIdentity().GetName());
+
+		DZDSGeocacheManager.AssignGeocaches(player);
 	}
 
 	int RadioIndex()
@@ -2222,6 +2224,215 @@ class DZDSBaseDefense
 	}
 };
 
+class DZDSGeocacheEntry
+{
+	int Id;
+	string Landmark;
+	string Pos;
+	string Container;
+	string Danger;
+	ref TStringArray Items;
+};
+
+class DZDSGeocacheConfig
+{
+	ref array<ref DZDSGeocacheEntry> Geocaches;
+};
+
+class DZDSPlayerGeocacheRecord
+{
+	string PlayerId;
+	string PlayerName;
+	ref TIntArray AssignedCaches;
+	int AssignedTime;
+
+	void DZDSPlayerGeocacheRecord(string id = "", string name = "")
+	{
+		PlayerId = id;
+		PlayerName = name;
+		AssignedCaches = new TIntArray;
+		AssignedTime = 0;
+	}
+};
+
+class DZDSGeocacheLedger
+{
+	ref array<ref DZDSPlayerGeocacheRecord> Players;
+};
+
+class DZDSGeocacheManager
+{
+	static const string CONFIG_FILE = "$profile:DZDS\\geocaches.json";
+	static const string LEDGER_FILE = "$profile:DZDS\\geocache_ledger.json";
+	static const string MARKER_FILE = "$profile:DZDS\\geocaches_deployed.txt";
+
+	static ref DZDSGeocacheConfig s_Config;
+	static ref DZDSGeocacheLedger s_Ledger;
+	static bool s_SpawnedThisSession = false;
+
+	static void Init()
+	{
+		s_Config = new DZDSGeocacheConfig;
+		s_Config.Geocaches = new array<ref DZDSGeocacheEntry>;
+
+		if (FileExist(CONFIG_FILE))
+		{
+			JsonFileLoader<DZDSGeocacheConfig>.JsonLoadFile(CONFIG_FILE, s_Config);
+		}
+
+		s_Ledger = new DZDSGeocacheLedger;
+		s_Ledger.Players = new array<ref DZDSPlayerGeocacheRecord>;
+
+		if (FileExist(LEDGER_FILE))
+		{
+			JsonFileLoader<DZDSGeocacheLedger>.JsonLoadFile(LEDGER_FILE, s_Ledger);
+		}
+
+		if (!s_Ledger.Players)
+			s_Ledger.Players = new array<ref DZDSPlayerGeocacheRecord>;
+
+		Print("[DZDS Geocache] Loaded " + s_Config.Geocaches.Count().ToString() + " cache sites from " + CONFIG_FILE);
+		GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(DeployCaches, 15000, false);
+	}
+
+	static void SaveLedger()
+	{
+		MakeDirectory("$profile:DZDS");
+		JsonFileLoader<DZDSGeocacheLedger>.JsonSaveFile(LEDGER_FILE, s_Ledger);
+	}
+
+	static DZDSPlayerGeocacheRecord FindPlayerRecord(string uid)
+	{
+		if (!s_Ledger || !s_Ledger.Players)
+			return null;
+		foreach (DZDSPlayerGeocacheRecord rec : s_Ledger.Players)
+		{
+			if (rec.PlayerId == uid)
+				return rec;
+		}
+		return null;
+	}
+
+	static void DeployCaches()
+	{
+		if (s_SpawnedThisSession)
+			return;
+		s_SpawnedThisSession = true;
+
+		if (FileExist(MARKER_FILE))
+		{
+			Print("[DZDS Geocache] Geocache world stashes already deployed (" + MARKER_FILE + " exists). Skipping world spawn.");
+			return;
+		}
+
+		if (!s_Config || !s_Config.Geocaches)
+			return;
+
+		int count = 0;
+		foreach (DZDSGeocacheEntry cache : s_Config.Geocaches)
+		{
+			vector pos = cache.Pos.ToVector();
+			EntityAI chest = EntityAI.Cast(GetGame().CreateObjectEx(cache.Container, pos, ECE_CREATEPHYSICS));
+			if (!chest)
+				chest = EntityAI.Cast(GetGame().CreateObjectEx(cache.Container, pos, ECE_PLACE_ON_SURFACE));
+			if (chest)
+			{
+				chest.SetPosition(pos);
+				foreach (string itemCls : cache.Items)
+				{
+					EntityAI item = chest.GetInventory().CreateInInventory(itemCls);
+					if (!item && chest.GetInventory().GetCargo())
+						item = chest.GetInventory().CreateEntityInCargo(itemCls);
+
+					if (item)
+					{
+						if (itemCls == "ER7_Gauss")
+							item.GetInventory().CreateAttachment("ER7_Gauss_Battery");
+						else if (itemCls == "Erapulsar_Exoskeleton")
+							item.GetInventory().CreateAttachment("Erapulsar_Exoskeleton_Battery");
+						else if (itemCls == "NVGoggles" || itemCls == "Rangefinder")
+							item.GetInventory().CreateAttachment("Battery9V");
+					}
+				}
+				count++;
+			}
+		}
+
+		FileHandle f = OpenFile(MARKER_FILE, FileMode.WRITE);
+		if (f != 0)
+		{
+			FPrintln(f, "Deployed " + count.ToString() + " geocache containers on Nasdara.");
+			CloseFile(f);
+		}
+		Print("[DZDS Geocache] Deployed " + count.ToString() + " persistent geocache containers across Nasdara.");
+	}
+
+	static void AssignGeocaches(PlayerBase player)
+	{
+		if (!player || !player.GetIdentity())
+			return;
+
+		string uid = player.GetIdentity().GetId();
+		string name = player.GetIdentity().GetName();
+
+		// Give GPS Receiver with 9V battery
+		EntityAI gps = player.GetInventory().CreateInInventory("GPSReceiver");
+		if (!gps)
+			gps = player.GetHumanInventory().CreateInHands("GPSReceiver");
+		if (!gps)
+			gps = EntityAI.Cast(GetGame().CreateObjectEx("GPSReceiver", player.GetPosition(), ECE_PLACE_ON_SURFACE));
+		if (gps)
+			gps.GetInventory().CreateAttachment("Battery9V");
+
+		// Give ZenNote / Paper manifest
+		EntityAI note = player.GetInventory().CreateInInventory("ZenNote");
+		if (!note)
+			note = player.GetInventory().CreateInInventory("Paper");
+
+		if (!s_Config || !s_Config.Geocaches || s_Config.Geocaches.Count() == 0)
+			return;
+
+		DZDSPlayerGeocacheRecord rec = FindPlayerRecord(uid);
+		int now = RefugeeArrivals.NowSeconds();
+		if (!rec)
+		{
+			rec = new DZDSPlayerGeocacheRecord(uid, name);
+			s_Ledger.Players.Insert(rec);
+		}
+
+		// Roll 3 distinct random geocaches from the 20 sites if not already assigned
+		if (!rec.AssignedCaches || rec.AssignedCaches.Count() == 0)
+		{
+			rec.AssignedCaches = new TIntArray;
+			int total = s_Config.Geocaches.Count();
+			int targetCount = 3;
+			if (targetCount > total)
+				targetCount = total;
+
+			while (rec.AssignedCaches.Count() < targetCount)
+			{
+				int pick = Math.RandomInt(0, total);
+				if (rec.AssignedCaches.Find(pick) == -1)
+					rec.AssignedCaches.Insert(pick);
+			}
+			rec.AssignedTime = now;
+			SaveLedger();
+		}
+
+		string manifest = "[DZDS Geocache] Manifest issued to " + name + " (" + uid + "):\n";
+		for (int i = 0; i < rec.AssignedCaches.Count(); i++)
+		{
+			int idx = rec.AssignedCaches.Get(i);
+			if (idx >= 0 && idx < s_Config.Geocaches.Count())
+			{
+				DZDSGeocacheEntry entry = s_Config.Geocaches.Get(idx);
+				manifest = manifest + "  [" + (i + 1).ToString() + "] " + entry.Landmark + " -> Grid: " + entry.Pos + " | Hazard: " + entry.Danger + "\n";
+			}
+		}
+		Print(manifest);
+	}
+};
+
 class CustomMission: MissionServer
 {
 	ref RefugeeArrivals m_RefugeeArrivals;
@@ -2233,6 +2444,7 @@ class CustomMission: MissionServer
 		DZDSCompanionManager.Init();
 		DZDSBaseSupplies.Init();
 		DZDSBaseDefense.Init();
+		DZDSGeocacheManager.Init();
 		if (FileExist(RefugeeArrivals.SELFTEST))
 			GetGame().GetCallQueue(CALL_CATEGORY_GAMEPLAY).CallLater(RunVehicleSelfTest, 60000, false);
 		if (FileExist(RefugeeArrivals.SPOTTEST))
