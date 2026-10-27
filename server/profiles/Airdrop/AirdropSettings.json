@@ -250,7 +250,17 @@
             "DropType": "RANDOM",
             "X": 12030.0,
             "Z": 10850.0,
-            "Zombies": 6,
+            "Zombies": 10,
+            "Radius": 120,
+            "DropAccuracy": 100
+        },
+        {
+            "Title": "Northern Dam",
+            "Location": "Military",
+            "DropType": "RANDOM",
+            "X": 3570.0,
+            "Z": 14380.0,
+            "Zombies": 10,
             "Radius": 120,
             "DropAccuracy": 100
         },
@@ -260,7 +270,7 @@
             "DropType": "RANDOM",
             "X": 8230.0,
             "Z": 5700.0,
-            "Zombies": 6,
+            "Zombies": 10,
             "Radius": 120,
             "DropAccuracy": 100
         },
@@ -270,7 +280,7 @@
             "DropType": "RANDOM",
             "X": 3250.0,
             "Z": 4630.0,
-            "Zombies": 6,
+            "Zombies": 10,
             "Radius": 120,
             "DropAccuracy": 100
         }

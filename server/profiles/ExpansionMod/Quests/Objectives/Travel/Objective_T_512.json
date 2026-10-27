@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 512,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Get eyes on the Syndicate's works at Hilltop Water Station and report back.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        8290,
+        286.32,
+        6510
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "Hilltop Water Station",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

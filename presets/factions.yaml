@@ -122,10 +122,12 @@ factions:
     spawn_archetypes: [dry-wash canyon ambushes, highway pileups, hilltop lookout campfires]
     holds_roles: [road_junction]
     patrol_templates:
-      raid_party: { at: contested, kind: roam, size: [4, 7], chance: 0.8, persist: false, respawn: -2 }
-      ambush:     { at: contested, kind: ambush, size: [3, 5], chance: 0.7, persist: false, respawn: 2700,
-                    behaviour: { Behaviour: HALT, DefaultStance: CROUCHED, EnableFlankingOutsideCombat: 0 } }
-      camp_guard: { at: held, kind: garrison, size: [2, 3], chance: 1.0, persist: true, respawn: 2400 }
+      raid_party:     { at: contested, kind: roam, size: [4, 7], chance: 0.8, persist: false, respawn: -2 }
+      ambush:         { at: contested, kind: ambush, size: [3, 5], chance: 0.8, persist: false, respawn: 2400,
+                        behaviour: { Behaviour: HALT, DefaultStance: CROUCHED, EnableFlankingOutsideCombat: 0 } }
+      highway_patrol: { at: held, kind: perimeter, size: [3, 5], chance: 0.8, persist: false, respawn: 2400,
+                        behaviour: { Behaviour: LOOP, Speed: JOG } }
+      camp_guard:     { at: held, kind: garrison, size: [2, 3], chance: 1.0, persist: true, respawn: 2400 }
     radio_voice:
       tone: jeering, predatory, slang-heavy; laughter and engine noise in the background
       sample: "Vultures on the ridge, light up that supply truck! Leave the blue helmets for the rotters!"
@@ -249,6 +251,8 @@ initial_control:
     Settlers: [Vybor, Novodmitrovsk]
     contested: [Stary Sobor, Severograd, Krasnostav]
 
+  # Nasdara (maps/nasdara.yaml): compact strongholds + 2 warzones (spec §4.1). Picked 2026-10-15,
+  # approved by Blae 2026-10-15; names are placeholders until he renames them.
   # Nasdara (maps/nasdara.yaml): compact strongholds + 2 warzones (spec §4.1). Picked 2026-10-15,
   # approved by Blae 2026-10-15; names are placeholders until he renames them.
   nasdara:

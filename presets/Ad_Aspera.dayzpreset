@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <addons-presets>
-  <last-update>2026-10-27T15:39:09.0000000Z</last-update>
+  <last-update>2026-10-27T17:12:55.0000000Z</last-update>
   <published-ids>
     <id>steam:1559212036</id>
     <id>steam:2545327648</id>
     <id>steam:2291785308</id>
     <id>steam:3702420204</id>
     <id>steam:3556131153</id>
-    <id>steam:2918418331</id>
     <id>steam:2792982069</id>
     <id>steam:3815870621</id>
     <id>steam:3521304609</id>
@@ -29,7 +28,7 @@
     <id>steam:3783303198</id>
     <id>steam:3767910705</id>
     <id>steam:3406196859</id>
-    <id>steam:2886393751</id>
+    <id>steam:2857994912</id>
     <id>steam:3321340470</id>
     <id>steam:3627848296</id>
     <id>steam:2116157322</id>
@@ -37,7 +36,6 @@
     <id>steam:2651195301</id>
     <id>steam:3661300360</id>
     <id>steam:3485290555</id>
-    <id>steam:3811085358</id>
     <id>steam:3737385977</id>
     <id>steam:3529074158</id>
     <id>steam:3166659854</id>
@@ -47,7 +45,6 @@
     <id>steam:2303483532</id>
     <id>steam:1818957231</id>
     <id>steam:1756237462</id>
-    <id>steam:1869021368</id>
     <id>steam:2692979668</id>
     <id>steam:3157695626</id>
     <id>steam:3117613872</id>
@@ -55,9 +52,11 @@
     <id>steam:3030756548</id>
     <id>steam:3043440124</id>
     <id>steam:3302732231</id>
+    <id>steam:2952286825</id>
     <id>steam:3322252091</id>
     <id>steam:3640419203</id>
     <id>steam:2663169692</id>
+    <id>steam:1797720064</id>
     <id>steam:3311720441</id>
     <id>steam:3788057652</id>
     <id>steam:3767837404</id>

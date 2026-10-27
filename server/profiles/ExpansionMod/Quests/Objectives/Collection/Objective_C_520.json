@@ -2,13 +2,13 @@
     "ConfigVersion": 28,
     "ID": 520,
     "ObjectiveType": 4,
-    "ObjectiveText": "Hunt wild game in the desert scrub and collect pelts for the leathercrafter at Settler Haven.",
+    "ObjectiveText": "Scavenge critical spark plugs and hardware for the works at South Cement Plant.",
     "TimeLimit": -1,
     "Active": 1,
     "Collections": [
         {
             "Amount": 1,
-            "ClassName": "WildboarPelt",
+            "ClassName": "SparkPlug",
             "QuantityPercent": -1,
             "MinQuantityPercent": -1
         }

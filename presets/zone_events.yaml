@@ -4,22 +4,22 @@ airdrop:
   interval_minutes: 180       # Airdrop-Upgraded Controls.Interval (was 60: one an hour, anywhere)
   variance_minutes: 30
   drop_radius_m: 120          # must stay below every zone radius
-  zombies: 6
+  zombies: 10
   stronghold_holders: [Peacekeepers]   # UN strongholds also receive (rarer) drops
 heli:
-  min_delay_s: 3600
-  max_delay_s: 7200
+  min_delay_s: 1800
+  max_delay_s: 3600
   max_helicopters: 1
 crates:
-  refresh_s: 3600
-  active: 1
-  holders: [Peacekeepers]     # military strongholds also host hacked crates
+  refresh_s: 1800
+  active: 2
+  holders: [Peacekeepers, Rust]     # military strongholds also host hacked crates
 warzones:
-  zone_radius_m: 150
-  ai_max: 6
+  zone_radius_m: 180
+  ai_max: 8
   accuracy: [0.28, 0.48]      # inside rule 5 bounds
-  spawn_offset_m: 120         # team spawns this far from the centre, opposite sides
-  reset_s: 900
+  spawn_offset_m: 130         # team spawns this far from the centre, opposite sides
+  reset_s: 600
   # interim = Expansion built-ins (Guards, Raiders, Shamans, Mercenaries). AI War Zones turns any
   # faction it doesn't know into West, so set `custom` (DZDSJackals...) only once the published
   # @DZDS includes DZDSWarZones.c ("[DZDS] War Zones factions" in the RPT).
@@ -28,5 +28,5 @@ warzones:
     - "North Highway Pileup"
     - "Missile Base Ridge"
 convoy:
-  min_interval_s: 3600
-  max_interval_s: 7200
+  min_interval_s: 1200
+  max_interval_s: 2400

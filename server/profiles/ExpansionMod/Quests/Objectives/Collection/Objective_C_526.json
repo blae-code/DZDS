@@ -1,0 +1,19 @@
+{
+    "ConfigVersion": 28,
+    "ID": 526,
+    "ObjectiveType": 4,
+    "ObjectiveText": "Harvest or collect fresh produce (Tomatoes/Zucchini) to feed the refugees at Palace Town.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Collections": [
+        {
+            "Amount": 3,
+            "ClassName": "Tomato",
+            "QuantityPercent": -1,
+            "MinQuantityPercent": -1
+        }
+    ],
+    "ShowDistance": 1,
+    "AddItemsToNearbyMarketZone": 0,
+    "NeedAnyCollection": 0
+}

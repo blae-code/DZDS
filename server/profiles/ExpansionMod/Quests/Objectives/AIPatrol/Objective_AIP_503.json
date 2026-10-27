@@ -1,0 +1,60 @@
+{
+    "ConfigVersion": 28,
+    "ID": 503,
+    "ObjectiveType": 7,
+    "ObjectiveText": "Drive the fighters out of Northern Town so the settlers can move in.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "MaxDistance": 250.0,
+    "MinDistance": -1.0,
+    "AllowedWeapons": [],
+    "AllowedDamageZones": [],
+    "AISpawn": {
+        "Name": "Hostiles_Northern_Town",
+        "Persist": 0,
+        "Faction": "DZDSJackals",
+        "Formation": "Vee",
+        "FormationScale": 1.5,
+        "FormationLooseness": 0.0,
+        "Loadout": "DZDS_Jackals",
+        "Units": [
+            "eAI_SurvivorM_Denis",
+            "eAI_SurvivorM_Boris",
+            "eAI_SurvivorF_Eva"
+        ],
+        "NumberOfAI": 3,
+        "Behaviour": 0,
+        "Speed": 1.0,
+        "UnderThreatSpeed": 2.0,
+        "CanBeLooted": 1,
+        "UnlimitedReload": 1,
+        "SniperProneDistanceThreshold": 100.0,
+        "AccuracyMin": 0.35,
+        "AccuracyMax": 0.55,
+        "Headshots": 1,
+        "RespawnTime": -1,
+        "DespawnTime": 120,
+        "MinDistRadius": 50.0,
+        "MaxDistRadius": 800.0,
+        "DespawnRadius": 1000.0,
+        "Waypoints": [
+            [
+                9280,
+                202.11,
+                11850
+            ],
+            [
+                9305,
+                202.11,
+                11870
+            ],
+            [
+                9260,
+                202.11,
+                11880
+            ]
+        ]
+    },
+    "MarkerName": "Northern Town",
+    "ShowDistance": 1
+}

@@ -65,7 +65,7 @@ players_fight_for: Settlers
 # The war party (spec §4.3): the ONLY thing that moves through open country. Each turn,
 # with `chance`, ONE movement is picked from the candidates (raid / offensive / convoy).
 war_party:
-  chance: 0.35
+  chance: 0.85
   min_strength: 40          # a faction needs this much fight left to go on the offensive
   size: [4, 6]
 

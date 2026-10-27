@@ -15,8 +15,8 @@
     "Altitude_Tolerance_By_Percentage": 0.5,
     "Volume_Of_Helicopters": 1.0,
     "Volume_Of_Missiles": 1.0,
-    "Minimum_Delay_In_Seconds_Until_Next_Event": 3600.0,
-    "Maximum_Delay_In_Seconds_Until_Next_Event": 7200.0,
+    "Minimum_Delay_In_Seconds_Until_Next_Event": 1800.0,
+    "Maximum_Delay_In_Seconds_Until_Next_Event": 3600.0,
     "Only_Crash_When_Shot_Down": 0,
     "MISSILE_LAUNCHER_POSITIONS_LIST": [
         "DEPRECIATED PENDING DELETION, NO LONGER BEING USED. SETUP MISSILE_LAUNCHERS FOR NEW POSITIONS"
@@ -25,6 +25,7 @@
     "Use_Random_Generated_Crash_Sites": 0,
     "Use_World_Generated_Locations": 0,
     "CRASH_POSITIONS_LIST": [
+        "3570.0 301.4 14380.0",
         "8230.0 261.9 5700.0"
     ],
     "Explanation_Of_Missile_Launcher_Positions_List": "The following missile launchers will be used if valid coordinates are added. You are also able to set the radius, rate of fire by seconds and targets of each missile launcher separately. For Target_Types: 1 = Dynamic Crash helicopters, 2 = CH-47 Transport, 4 = CH-47 Supplydrop, 8 = player piloted helicopters, 16 = AH-64 Event helicopter. You can set multiple targets by adding together each types # value. For example 31 = all types because 1 + 2 + 4 + 8 + 16 = 31",

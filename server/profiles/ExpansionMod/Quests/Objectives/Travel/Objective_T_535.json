@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 535,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Ascend to the high-ground antenna at North Border Post to calibrate the 87.8 MHz emergency broadcast repeater.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        2910,
+        380.78,
+        15740
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "North Border Post",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

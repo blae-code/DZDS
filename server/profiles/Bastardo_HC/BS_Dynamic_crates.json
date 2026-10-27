@@ -6,9 +6,9 @@
         "UseBasicMapMarker": 0,
         "UseVPPMapMarker": 0,
         "StaticSpawns": 0,
-        "ActiveCrateCount": 1,
+        "ActiveCrateCount": 2,
         "AutoRefresh": 1,
-        "RefreshInterval": 3600,
+        "RefreshInterval": 1800,
         "CrateType": "BS_Hacked_Crate",
         "LootCategoriesToUse": [
             "DefaultArmaments",
@@ -46,9 +46,27 @@
         "CountdownTime": 900,
         "CrateLocations": [
             {
+                "Position": "9730.0 154.7 6390.0",
+                "Rotation": "0.0 0.0 0.0",
+                "LocationName": "Cement Works",
+                "AISpawnPositions": []
+            },
+            {
                 "Position": "12030.0 169.3 10850.0",
                 "Rotation": "0.0 0.0 0.0",
                 "LocationName": "Eastern Airfield",
+                "AISpawnPositions": []
+            },
+            {
+                "Position": "8290.0 286.3 6510.0",
+                "Rotation": "0.0 0.0 0.0",
+                "LocationName": "Hilltop Water Station",
+                "AISpawnPositions": []
+            },
+            {
+                "Position": "3570.0 301.4 14380.0",
+                "Rotation": "0.0 0.0 0.0",
+                "LocationName": "Northern Dam",
                 "AISpawnPositions": []
             },
             {

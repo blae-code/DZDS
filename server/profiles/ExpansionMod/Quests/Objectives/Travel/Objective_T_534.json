@@ -1,0 +1,18 @@
+{
+    "ConfigVersion": 28,
+    "ID": 534,
+    "ObjectiveType": 3,
+    "ObjectiveText": "Ascend to the high-ground antenna at Missile Base Ridge to calibrate the 87.8 MHz emergency broadcast repeater.",
+    "TimeLimit": -1,
+    "Active": 1,
+    "Position": [
+        2840,
+        399.18,
+        9170
+    ],
+    "MaxDistance": 40.0,
+    "MarkerName": "Missile Base Ridge",
+    "ShowDistance": 1,
+    "TriggerOnEnter": 1,
+    "TriggerOnExit": 0
+}

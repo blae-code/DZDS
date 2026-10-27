@@ -2,7 +2,7 @@
     "ConfigVersion": 28,
     "ID": 510,
     "ObjectiveType": 5,
-    "ObjectiveText": "Bring an offering of wild game and hunting supplies to the Karkas Clan at Missile Base Ridge.",
+    "ObjectiveText": "The Syndicate wants payment in kind for water from Hilltop Water Station.",
     "TimeLimit": -1,
     "Active": 1,
     "Collections": [
@@ -16,5 +16,5 @@
     "ShowDistance": 1,
     "AddItemsToNearbyMarketZone": 0,
     "MaxDistance": 35.0,
-    "MarkerName": "Missile Base Ridge"
+    "MarkerName": "Hilltop Water Station"
 }
