@@ -200,6 +200,22 @@ def find_sticks():
     return found
 
 
+def add_missing_sticks(sticks: dict, sel, find=find_sticks) -> list[str]:
+    """Discover any stick not held yet and register it. The sticks can enumerate a moment after
+    the game starts (or re-enumerate), so this is retried while either is missing. Returns the
+    names newly added."""
+    import selectors
+    added = []
+    for key, dev in find().items():
+        if key in sticks:
+            dev.close()
+            continue
+        sticks[key] = dev
+        sel.register(dev, selectors.EVENT_READ)
+        added.append(key)
+    return added
+
+
 def make_pad():
     from evdev import AbsInfo, UInput, ecodes as e
     stick = AbsInfo(0, -32768, PAD_MAX, 16, 128, 0)
@@ -238,37 +254,47 @@ def run() -> int:
     last_look = time.monotonic()
     sel = selectors.DefaultSelector()
     last_check = 0.0
+    warned = False
     print("vkb_pad: waiting for", GAME, flush=True)
     while True:
         now = time.monotonic()
         if now - last_check >= 2:
             last_check = now
             running = game_running()
-            if running and not sticks:
-                sticks = find_sticks()
-                for d in sticks.values():
-                    sel.register(d, selectors.EVENT_READ)
-                if RIGHT not in sticks:
-                    print("vkb_pad: right stick not found", flush=True)
+            if running and (RIGHT not in sticks or LEFT not in sticks):
+                added = add_missing_sticks(sticks, sel)
+                if added:
+                    print("vkb_pad: found", ", ".join(added), flush=True)
+                if RIGHT not in sticks and not warned:
+                    print("vkb_pad: right stick not found, retrying", flush=True)
+                    warned = True
             if running and pad is None and RIGHT in sticks:
                 pad = make_pad()
                 look = make_look()
+                warned = False
                 print("vkb_pad: virtual pad up for", ", ".join(sticks), flush=True)
-            if not running and pad is not None:
-                pad.close()
-                pad = None
-                if alt or centre_up:
-                    look.write(e.EV_KEY, e.KEY_LEFTALT, 0)
-                    look.write(e.EV_KEY, e.ecodes[CENTRE_KEY], 0)
-                    look.syn()
-                    alt = False
-                    centre_up = 0.0
-                look.close()
-                look = None
+            if not running and (pad is not None or sticks):
+                if pad is not None:
+                    pad.close()
+                    pad = None
+                if look is not None:
+                    if alt or centre_up:
+                        look.write(e.EV_KEY, e.KEY_LEFTALT, 0)
+                        look.write(e.EV_KEY, e.ecodes[CENTRE_KEY], 0)
+                        look.syn()
+                    look.close()
+                    look = None
+                alt = False
+                centre_up = 0.0
+                view = [0.0, 0.0]
                 for d in sticks.values():
-                    sel.unregister(d)
+                    try:
+                        sel.unregister(d)
+                    except (KeyError, ValueError):
+                        pass
                     d.close()
                 sticks = {}
+                warned = False
                 print("vkb_pad: game closed, pad removed", flush=True)
         if not sticks:
             time.sleep(1)

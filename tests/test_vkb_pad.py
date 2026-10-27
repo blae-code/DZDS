@@ -117,3 +117,32 @@ def test_mini_stick_y_is_flipped_and_x_is_not():
     assert vkb_pad.look_axis(1023, vertical=True, y_sign=1) == full
     assert vkb_pad.look_axis(512, vertical=True) == 0.0
 
+
+
+class _Dev:
+    closed = False
+
+    def close(self):
+        self.closed = True
+
+
+class _Sel:
+    def __init__(self):
+        self.registered = []
+
+    def register(self, dev, _events):
+        self.registered.append(dev)
+
+
+def test_a_stick_that_enumerates_late_is_picked_up_not_stuck_missing():
+    """2026-10-26: the left stick alone was found at game start and the right was never
+    retried, so no pad was ever made. Missing sticks must be added on later checks."""
+    left, right = _Dev(), _Dev()
+    sticks, sel = {}, _Sel()
+    assert vkb_pad.add_missing_sticks(sticks, sel, find=lambda: {vkb_pad.LEFT: left}) == [vkb_pad.LEFT]
+    both = {vkb_pad.LEFT: _Dev(), vkb_pad.RIGHT: right}
+    assert vkb_pad.add_missing_sticks(sticks, sel, find=lambda: both) == [vkb_pad.RIGHT]
+    assert sticks == {vkb_pad.LEFT: left, vkb_pad.RIGHT: right}
+    assert sel.registered == [left, right]
+    assert both[vkb_pad.LEFT].closed        # the duplicate handle is released, not leaked
+    assert vkb_pad.add_missing_sticks(sticks, sel, find=lambda: both) == []
