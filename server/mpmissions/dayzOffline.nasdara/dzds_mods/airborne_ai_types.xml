@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<types>
+    <type name="AYSA_antiAirQuadLauncher">
+        <nominal>2</nominal>
+        <lifetime>14400</lifetime>
+        <restock>3600</restock>
+        <min>1</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>250</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="weapons" />
+        <usage name="Military" />
+        <value name="Tier3" />
+        <value name="Tier4" />
+    </type>
+    <type name="AYSA_missileMag">
+        <nominal>4</nominal>
+        <lifetime>14400</lifetime>
+        <restock>1800</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>120</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="weapons" />
+        <usage name="Military" />
+        <value name="Tier3" />
+        <value name="Tier4" />
+    </type>
+    <type name="AYSA_antiAirMissile">
+        <nominal>8</nominal>
+        <lifetime>14400</lifetime>
+        <restock>1800</restock>
+        <min>3</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="weapons" />
+        <usage name="Military" />
+        <value name="Tier3" />
+        <value name="Tier4" />
+    </type>
+    <type name="AYSA_seekerScope">
+        <nominal>3</nominal>
+        <lifetime>14400</lifetime>
+        <restock>1800</restock>
+        <min>1</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>100</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="weapons" />
+        <usage name="Military" />
+        <value name="Tier3" />
+        <value name="Tier4" />
+    </type>
+    <type name="AYSA_greenFlareAmmo">
+        <nominal>4</nominal>
+        <lifetime>14400</lifetime>
+        <restock>1800</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>80</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="weapons" />
+        <usage name="Military" />
+        <value name="Tier2" />
+        <value name="Tier3" />
+        <value name="Tier4" />
+    </type>
+    <type name="AYSA_redFlareAmmo">
+        <nominal>4</nominal>
+        <lifetime>14400</lifetime>
+        <restock>1800</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>80</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="weapons" />
+        <usage name="Military" />
+        <value name="Tier2" />
+        <value name="Tier3" />
+        <value name="Tier4" />
+    </type>
+    <type name="AYSA_blueFlareAmmo">
+        <nominal>4</nominal>
+        <lifetime>14400</lifetime>
+        <restock>1800</restock>
+        <min>2</min>
+        <quantmin>-1</quantmin>
+        <quantmax>-1</quantmax>
+        <cost>80</cost>
+        <flags count_in_cargo="0" count_in_hoarder="0" count_in_map="1" count_in_player="0" crafted="0" deloot="0" />
+        <category name="weapons" />
+        <usage name="Military" />
+        <value name="Tier2" />
+        <value name="Tier3" />
+        <value name="Tier4" />
+    </type>
+</types>

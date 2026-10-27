@@ -60,8 +60,8 @@ mods:
     types: ["cookz_types.xml"]
   2886393751:
     name: Doc's Animals
-    policy: author             # nominal 0: trophies and rugs are crafted
-    types: ["xml/types.xml"]
+    policy: none
+    reason: PRUNED 2026-10-27 (Blae); removed animal companions and taxidermy.
   3157695626:
     name: RaG_BaseBuilding
     policy: author             # kits are crafted; the building book spawns
@@ -104,9 +104,8 @@ mods:
     types: ["info/types.xml"]
   1869021368:
     name: "[CrSk] BMW 525i E34"
-    policy: curated            # 50 colour-variant body parts at 8 each = 400, and no BMW spawns
-    types: ["info/types.xml"]  # yet (milestone 2): one of each
-    nominal_scale: 0.125
+    policy: none
+    reason: PRUNED 2026-10-27 (Blae); removed in favor of military vehicles.
   3382463948:
     name: AnimatedDynamicHelicopters
     policy: none
@@ -118,3 +117,35 @@ mods:
     name: Simply's Car Trailer
     policy: none
     reason: Trailers are disabled (2026-10-17, Expansion AI crash); init.c deletes them.
+  2857994912:
+    name: Zens Notes
+    policy: author
+    types: ["types.xml"]
+  2952286825:
+    name: CarryBarrel
+    policy: none
+    reason: QoL interaction mod; uses vanilla barrels, ships no new items.
+  1797720064:
+    name: WindstridesClothingPack
+    policy: author
+    types: ["Types.xml", "types.xml", "Extras/Types.xml"]
+  3472298147:
+    name: Airborne AI
+    policy: author
+    types: ["extras/*.xml", "types.xml"]
+  2912241382:
+    name: Admirals Parachute Mod
+    policy: none
+    reason: Parachutes equipped by Airborne AI dynamically; no map loot spawning.
+  3753969009:
+    name: BS Patrol Tank
+    policy: none
+    reason: Autonomous patrol event; wreckage spawns dynamic loot crates on destruction.
+  1827241477:
+    name: Breachingcharge
+    policy: author
+    types: ["types.xml", "Templates/*.xml"]
+  2792985069:
+    name: DayZ-Expansion-Weapons
+    policy: author
+    types: ["expansion_ce/*.xml", "types.xml"]
