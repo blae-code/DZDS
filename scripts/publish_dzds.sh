@@ -48,4 +48,6 @@ echo
 echo "Run (logs in as you; Steam Guard may ask for a code). It knocks your desktop Steam client"
 echo "offline (one session per account): use Steam > Go Online, or restart Steam, afterwards."
 echo "  ~/steamcmd/steamcmd.sh +login <your steam username> +workshop_build_item $VDF +quit"
-[[ "$id" == "0" ]] && echo "Then: scripts/publish_dzds.sh --record"
+if [[ "$id" == "0" ]]; then
+  echo "Then: scripts/publish_dzds.sh --record"
+fi

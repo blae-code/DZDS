@@ -156,9 +156,12 @@ dzds-profile:
 vehicle-events:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/vehicle_events.py
 
-.PHONY: mod-drift
+.PHONY: mod-drift clean-server
 mod-drift:
 	set -a; [ -f .env ] && source .env; set +a; $(PY) tools/mod_drift.py $(if $(ALL),--all)
+
+clean-server:   # survey/free space on remote server (DRY RUN; APPLY=1, ALL_SAFE=1 to execute)
+	$(ENV) $(PY) tools/clean_server.py $(if $(APPLY),--apply) $(if $(ALL_SAFE),--all-safe) $(if $(CORES),--cores) $(if $(STALE),--stale) $(if $(FRESH_START),--fresh-start) $(if $(DISABLED_MODS),--disabled-mods) $(if $(CRASH_DUMPS),--crash-dumps) $(if $(OLD_LOGS),--old-logs)
 
 .PHONY: reset-respawns
 reset-respawns:   # server STOPPED: clear arrivals cooldowns + reset characters (DRY_RUN=1, YES=1, PLAYER=blae); LIVE=1 PLAYER=..: running server, cooldowns only

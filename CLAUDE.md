@@ -247,6 +247,10 @@ prints the live count. Since the launch:
   stayed at the MH-6. Blae's heli pool is Expansion-framework only (`9204f18`): RedFalcon helis
   read inputs with SyncedValue, so his VKB sticks stutter in them. The vkb_pad bridge itself
   forwards in 0.03 ms (median).
+- 2026-10-26: server disk hit ~78 GB near its 70 GB quota; 11 Linux kernel core dump files
+  (`core.*` from engine crashes, 59.64 GB) were deleted over SFTP. `tools/clean_server.py`
+  added with dry-run safety and per-category pruning (cores, stale updates, fresh-start
+  snapshots, disabled mods, crash dumps, old logs) and `make clean-server` target in Makefile.
 - 2026-10-24 02:00 UTC: Zens Core Mod (3702420204) updated on the Workshop (DIFFERS in
   `zenmodcore.pbo`). `/@3702420204` was renamed to `/@3702420204.old-20261023` over SFTP (Blae
   approved), and the restart re-downloaded it. Drift 66/66 OK. The 02:00 boot shows 0 `SCRIPT (E)`,
