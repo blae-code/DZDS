@@ -29,6 +29,9 @@ modstring:
 panel-mods:
 	$(PY) tools/modstring.py panel --write
 
+preset:
+	$(PY) tools/export_preset.py
+
 # Put the Additional Mods line on the clipboard (Wayland).
 panel-copy: panel-mods
 	wl-copy -n < config/panel_additional_mods.txt

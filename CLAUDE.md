@@ -247,6 +247,11 @@ prints the live count. Since the launch:
   stayed at the MH-6. Blae's heli pool is Expansion-framework only (`9204f18`): RedFalcon helis
   read inputs with SyncedValue, so his VKB sticks stutter in them. The vkb_pad bridge itself
   forwards in 0.03 ms (median).
+- 2026-10-26 (later): player connect crash (SIGABRT in DayZServer kick 115 VE_MISSING_MOD buffer
+  overflow when a player joined with 0 mods loaded against 66 server mods). core.649 (8.99 GB)
+  pruned over SFTP; steamProtocolMaxDataSize = 16384 added to serverDZ.cfg so A2S_RULES Steam query
+  can supply the full 66-mod list without truncation; tools/export_preset.py added to generate
+  Ad_Aspera_Preset.html and Ad_Aspera.dayzpreset for one-click launcher import.
 - 2026-10-26: server disk hit ~78 GB near its 70 GB quota; 11 Linux kernel core dump files
   (`core.*` from engine crashes, 59.64 GB) were deleted over SFTP. `tools/clean_server.py`
   added with dry-run safety and per-category pruning (cores, stale updates, fresh-start
