@@ -204,6 +204,7 @@ class RefugeeArrivalLedger
 class RefugeeArrivalReset
 {
 	ref TStringArray Ids;
+	string Vehicle;
 }
 
 // Local spot check (plane parking, 2026-10-16): candidate spots and the classes to fit.
@@ -260,6 +261,7 @@ class RefugeeArrivals
 
 	ref RefugeeArrivalConfig m_Config;
 	ref RefugeeArrivalLedger m_Ledger;
+	string m_OverrideVehicle;
 
 	void RefugeeArrivals()
 	{
@@ -408,6 +410,16 @@ class RefugeeArrivals
 	// The favored player's vehicle list, or null for everyone else.
 	TStringArray FavoredVehicles(string uid)
 	{
+		if (m_OverrideVehicle != "")
+		{
+			string veh = m_OverrideVehicle;
+			m_OverrideVehicle = "";
+			TStringArray oneTime = new TStringArray;
+			oneTime.Insert(veh);
+			Print("[DZDS Arrivals] Applying one-time vehicle override for " + uid + ": " + veh);
+			return oneTime;
+		}
+
 		foreach (RefugeeArrivalFavored f : m_Config.Favored)
 		{
 			if (f.Id == uid && f.Vehicles && f.Vehicles.Count() > 0)
@@ -1364,6 +1376,11 @@ class RefugeeArrivals
 		RefugeeArrivalReset req = new RefugeeArrivalReset;
 		JsonFileLoader<RefugeeArrivalReset>.JsonLoadFile(RESET, req);
 		DeleteFile(RESET);
+		if (req.Vehicle && req.Vehicle != "")
+		{
+			m_OverrideVehicle = req.Vehicle;
+			Print("[DZDS Arrivals] live reset: vehicle override set to " + m_OverrideVehicle);
+		}
 		if (!req.Ids)
 			return;
 		int n = 0;

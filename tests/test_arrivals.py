@@ -705,15 +705,17 @@ def test_random_character_is_plain_ifs():
 SOVIET_LAND = {"ExpansionUAZCargo_Green", "ExpansionUAZ", "ExpansionUAZRoofless_Black", "ExpansionVodnik",
                "CrSk_GAZ_3309_Cargo_Green"}
 # Body slot -> the classes that fill it, across the outfit's variants.
+# Refactored for desert deployment: breathable boonie hats / red beret, dust shemaghs,
+# lightweight combat shirts / BDU, ventilated canvas jungle boots, open-chest Smersh.
 SSF_SLOTS = {
-    "headgear": {"Ssh68Helmet", "MilitaryBeret_Red"},
-    "mask": {"BalaclavaMask_Green", "BalaclavaMask_Beige"},
-    "body": {"TTsKOJacket_Camo", "GorkaEJacket_Summer", "GorkaEJacket_Flat"},
-    "legs": {"TTSKOPants", "GorkaPants_Summer", "GorkaPants_Flat"},
-    "feet": {"TTSKOBoots", "MilitaryBoots_Black", "MilitaryBoots_Brown"},
-    "gloves": {"TacticalGloves_Green", "TacticalGloves_Beige"},
+    "headgear": {"BoonieHat_Dubok", "BoonieHat_Tan", "MilitaryBeret_Red"},
+    "mask": {"Shemag_Brown", "Shemag_Green", "Shemag_White"},
+    "body": {"TTsKOJacket_Camo", "TacticalShirt_Tan", "TacticalShirt_Olive"},
+    "legs": {"TTSKOPants", "CargoPants_Beige", "BDUPants"},
+    "feet": {"JungleBoots_Beige", "CombatBoots_Beige", "JungleBoots_Olive"},
+    "gloves": {"TacticalGloves_Beige", "OMNOGloves_Gray"},
     "vest": {"SmershVest"},
-    "back": {"AssaultBag_Ttsko"},
+    "back": {"AssaultBag_Ttsko", "AssaultBag_Desert"},
     "belt": {"MilitaryBelt"},
 }
 
@@ -738,7 +740,7 @@ def test_soviet_special_forces_is_rare_and_a_full_uniform(built):
     ssf = _ssf(out)
     assert ssf["Chance"] == 0.03
     assert 0.5 <= ssf["HealthMin"] <= ssf["HealthMax"] <= 1
-    assert {v["Name"] for v in ssf["Variants"]} == {"ttsko", "gorka_summer", "gorka_flat"}
+    assert {v["Name"] for v in ssf["Variants"]} == {"ttsko", "afganka_desert", "spetsnaz_recon"}
     for v in ssf["Variants"]:
         worn = [w["ClassName"] for w in v["Worn"]]
         for slot, classes in SSF_SLOTS.items():

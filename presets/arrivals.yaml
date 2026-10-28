@@ -425,10 +425,10 @@ archetypes:
     aircraft: true
     weight: 40
     slots:
-      clothing: { count: [2, 3], items: [ZSh3PilotHelmet, PilotkaCap, MilitaryBeret_Red, MilitaryBeret_TK, MilitaryBeret_CDF, AviatorGlasses, TacticalGoggles, TacticalGloves_Black, OMNOGloves_Gray, USMCJacket_Desert, USMCPants_Desert, BDUJacket, BDUPants, TacticalShirt_ION_Olive, GorkaEJacket_Flat, GorkaPants_Flat, CombatBoots_Black, JungleBoots_Olive, BalaclavaMask_Beige, Shemag_Brown] }
+      clothing: { count: [2, 3], items: [ZSh3PilotHelmet, PilotkaCap, MilitaryBeret_Red, MilitaryBeret_TK, MilitaryBeret_CDF, BoonieHat_Dubok, BoonieHat_Tan, AviatorGlasses, TacticalGoggles, TacticalGloves_Black, OMNOGloves_Gray, TacticalGloves_Beige, USMCJacket_Desert, USMCPants_Desert, BDUJacket, BDUPants, TacticalShirt_ION_Olive, TacticalShirt_Tan, TacticalShirt_Olive, CombatBoots_Black, JungleBoots_Olive, JungleBoots_Beige, Shemag_Brown, Shemag_Green] }
       pack:     { count: [1, 1], items: [AssaultBag_Desert, AssaultBag_Ttsko, AssaultBag_Black, AssaultBag_Green, CoyoteBag_Desert, CoyoteBag_Brown, CoyoteBag_Green, TortillaBag_Desert, AliceBag_Camo] }
       vest:     { count: [1, 1], items: [UKAssVest_Desert, UKAssVest_Khaki, UKAssVest_Olive, UKAssVest_Black, HighCapacityVest_Olive, HighCapacityVest_Black, HighCapacityVest_ION, ChestRigVest_Tan, ChestRigVest_Khaki, SmershVest] }
-      water:    { count: [1, 2], items: [Canteen, WaterBottle, FilteringBottle] }
+      water:    { count: [2, 3], items: [Canteen, WaterBottle, FilteringBottle] }
       food:     { count: [2, 3], max_each: 2, items: [TacticalBaconCan, TunaCan, SardinesCan, BakedBeansCan, SpaghettiCan, Crackers, Pajka, Pate, Zagorky, ZagorkyPeanuts, HalvaCan] }
       medical:  { count: [2, 3], items: [BandageDressing, Morphine, Epinephrine, TetracyclineAntibiotics, Splint, PainkillerTablets, CharcoalTablets, SalineBagIV, BloodTestKit, IodineTincture] }
       knife:    { count: [1, 1], items: [CombatKnife, FangeKnife, M9A1_Bayonet, AK_Bayonet] }
@@ -568,11 +568,14 @@ outfits:
   soviet_special_forces:
     chance: 0.03
     health: [0.7, 1.0]
+    # Arid / Desert refactor: low-insulation tactical gear to prevent heat stroke under the desert sun.
+    # Wears breathable boonie hats / red beret, dust shemaghs, lightweight combat shirts / BDU,
+    # ventilated canvas jungle boots, and open-chest Smersh harness.
     variants:
-      ttsko:        [Ssh68Helmet, BalaclavaMask_Green, TTsKOJacket_Camo, TTSKOPants, TTSKOBoots, TacticalGloves_Green, {class: SmershVest, attach: [SmershBag]}, AssaultBag_Ttsko, MilitaryBelt]
-      gorka_summer: [MilitaryBeret_Red, BalaclavaMask_Green, GorkaEJacket_Summer, GorkaPants_Summer, MilitaryBoots_Black, TacticalGloves_Green, {class: SmershVest, attach: [SmershBag]}, AssaultBag_Ttsko, MilitaryBelt]
-      gorka_flat:   [MilitaryBeret_Red, BalaclavaMask_Beige, GorkaEJacket_Flat, GorkaPants_Flat, MilitaryBoots_Brown, TacticalGloves_Beige, {class: SmershVest, attach: [SmershBag]}, AssaultBag_Ttsko, MilitaryBelt]
-    carried: [CombatKnife, Compass, Binoculars, BandageDressing, BandageDressing, Morphine, Canteen, TacticalBaconCan, TacticalBaconCan, RGD5Grenade, M18SmokeGrenade_White]
+      ttsko:          [BoonieHat_Dubok, Shemag_Brown, TTsKOJacket_Camo, TTSKOPants, JungleBoots_Beige, TacticalGloves_Beige, {class: SmershVest, attach: [SmershBag]}, AssaultBag_Ttsko, MilitaryBelt]
+      afganka_desert: [BoonieHat_Tan, Shemag_Green, TacticalShirt_Tan, CargoPants_Beige, CombatBoots_Beige, TacticalGloves_Beige, {class: SmershVest, attach: [SmershBag]}, AssaultBag_Desert, MilitaryBelt]
+      spetsnaz_recon: [MilitaryBeret_Red, Shemag_White, TacticalShirt_Olive, BDUPants, JungleBoots_Olive, OMNOGloves_Gray, {class: SmershVest, attach: [SmershBag]}, AssaultBag_Desert, MilitaryBelt]
+    carried: [CombatKnife, Compass, Binoculars, BandageDressing, BandageDressing, Morphine, Epinephrine, Canteen, WaterBottle, PurificationTablets, TacticalBaconCan, TacticalBaconCan, RGD5Grenade, M18SmokeGrenade_White]
     primary:
       - { weapon: AKS74U, attach: [AKS74U_Bttstck], magazine: Mag_AK74_30Rnd, magazines: 3, rounds: 30 }
       - { weapon: ASVAL, attach: [], magazine: Mag_VAL_20Rnd, magazines: 3, rounds: 20 }   # rail takes western optics only
@@ -580,10 +583,10 @@ outfits:
     aircraft_cargo: combat_pilot
     land_cargo:     # same rules as a ground archetype: knife, car and camp items, one worn firearm
       slots:
-        clothing: { count: [2, 3], items: [TelnyashkaShirt, Ushanka_Green, Ushanka_Black, PilotkaCap, WinterMilitaryCoat_Grey, TTsKOJacket_Camo, TTSKOPants, TTSKOBoots, GorkaEJacket_Flat, GorkaPants_Flat, GorkaEJacket_Summer, GorkaPants_Summer, MilitaryBoots_Black, TacticalGloves_Green, BalaclavaMask_Green, Ssh68Helmet] }
+        clothing: { count: [2, 3], items: [TelnyashkaShirt, PilotkaCap, BoonieHat_Dubok, BoonieHat_Tan, MilitaryBeret_Red, TacticalShirt_Tan, TacticalShirt_Olive, BDUJacket, BDUPants, CargoPants_Beige, CargoPants_Green, JungleBoots_Beige, JungleBoots_Olive, CombatBoots_Beige, TacticalGloves_Beige, OMNOGloves_Gray, Shemag_Brown, Shemag_Green, AviatorGlasses, TacticalGoggles] }
         water:    { count: [1, 2], items: [WaterBottle, Canteen, FilteringBottle] }
         food:     { count: [2, 3], max_each: 2, items: [TacticalBaconCan, Pajka, BakedBeansCan, Crackers, Zagorky, ZagorkyPeanuts, HalvaCan, SarmaCan, BrisketSpread, PorkCan] }
-        medical:  { count: [2, 2], items: [Epinephrine, TetracyclineAntibiotics, Splint, CharcoalTablets, BandageDressing, Morphine, PainkillerTablets, SalineBagIV, IodineTincture] }
+        medical:  { count: [2, 2], items: [Epinephrine, SalineBagIV, TetracyclineAntibiotics, Splint, CharcoalTablets, BandageDressing, Morphine, PainkillerTablets, IodineTincture] }
         knife:    { count: [1, 1], items: [AK_Bayonet, CombatKnife] }
         tools:    { count: [1, 2], items: [Rangefinder, Compass, Binoculars, WeaponCleaningKit, SewingKit, Lockpick, OrienteeringCompass] }
         extra:    { count: [1, 2], items: [Battery9V, Headtorch_Black, Flashlight, UniversalLight, RDG2SmokeGrenade_White, RDG2SmokeGrenade_Black, M18SmokeGrenade_Green, Chemlight_Green, Chemlight_Red, Roadflare] }

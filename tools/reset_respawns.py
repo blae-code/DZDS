@@ -79,18 +79,21 @@ def resolve_player(arg: str) -> str:
     return arg
 
 
-def live_request(ids: list[str]) -> dict:
+def live_request(ids: list[str], vehicle: str = "") -> dict:
     """The reset_cooldowns.json init.c reads (class RefugeeArrivalReset)."""
-    return {"Ids": list(ids)}
+    req = {"Ids": list(ids)}
+    if vehicle:
+        req["Vehicle"] = vehicle
+    return req
 
 
-async def apply_live(dry_run: bool, uid: str) -> int:
+async def apply_live(dry_run: bool, uid: str, vehicle: str = "") -> int:
     import asyncssh
 
     env = os.environ
     ledger_path, _ = remote_paths()
     target = ledger_path.rsplit("/", 1)[0] + "/reset_cooldowns.json"
-    body = json.dumps(live_request([uid]), indent=4)
+    body = json.dumps(live_request([uid], vehicle), indent=4)
     print(f"live reset: {target} -> {body.replace(chr(10), ' ')}")
     if dry_run:
         print("DRY_RUN: nothing changed on the server")
@@ -202,6 +205,7 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--dry-run", action="store_true", help="show what would change, change nothing")
     ap.add_argument("--yes", action="store_true", help="don't prompt before writing")
     ap.add_argument("--player", help="only this player: identity id, or a `favored` name from arrivals.yaml")
+    ap.add_argument("--vehicle", default="", help="override next vehicle spawned on live reset (e.g. EXT_MH6)")
     ap.add_argument("--live", action="store_true", help="server running: clear PLAYER's cooldowns at the next spawn")
     args = ap.parse_args(argv)
     only = resolve_player(args.player) if args.player else None
@@ -209,7 +213,7 @@ def main(argv: list[str] | None = None) -> int:
         if not only:
             print("--live needs --player")
             return 2
-        return asyncio.run(apply_live(args.dry_run, only))
+        return asyncio.run(apply_live(args.dry_run, only, args.vehicle))
 
     host = os.environ.get("RCON_HOST")
     port = int(os.environ.get("QUERY_PORT") or QUERY_PORT)

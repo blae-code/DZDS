@@ -171,7 +171,7 @@ clean-server:   # survey/free space on remote server (DRY RUN; APPLY=1, ALL_SAFE
 
 .PHONY: reset-respawns
 reset-respawns:   # server STOPPED: clear arrivals cooldowns + reset characters (DRY_RUN=1, YES=1, PLAYER=blae); LIVE=1 PLAYER=..: running server, cooldowns only
-	$(ENV) $(PY) tools/reset_respawns.py $(if $(DRY_RUN),--dry-run) $(if $(YES),--yes) $(if $(PLAYER),--player "$(PLAYER)") $(if $(LIVE),--live)
+	$(ENV) $(PY) tools/reset_respawns.py $(if $(DRY_RUN),--dry-run) $(if $(YES),--yes) $(if $(PLAYER),--player "$(PLAYER)") $(if $(LIVE),--live) $(if $(VEHICLE),--vehicle "$(VEHICLE)")
 
 .PHONY: specs
 specs:

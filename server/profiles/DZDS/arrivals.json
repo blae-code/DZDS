@@ -4144,27 +4144,31 @@
                         "MilitaryBeret_Red",
                         "MilitaryBeret_TK",
                         "MilitaryBeret_CDF",
+                        "BoonieHat_Dubok",
+                        "BoonieHat_Tan",
                         "AviatorGlasses",
                         "TacticalGoggles",
                         "TacticalGloves_Black",
                         "OMNOGloves_Gray",
+                        "TacticalGloves_Beige",
                         "USMCJacket_Desert",
                         "USMCPants_Desert",
                         "BDUJacket",
                         "BDUPants",
                         "TacticalShirt_ION_Olive",
-                        "GorkaEJacket_Flat",
-                        "GorkaPants_Flat",
+                        "TacticalShirt_Tan",
+                        "TacticalShirt_Olive",
                         "CombatBoots_Black",
                         "JungleBoots_Olive",
-                        "BalaclavaMask_Beige",
-                        "Shemag_Brown"
+                        "JungleBoots_Beige",
+                        "Shemag_Brown",
+                        "Shemag_Green"
                     ]
                 },
                 {
                     "Name": "water",
-                    "Min": 1,
-                    "Max": 2,
+                    "Min": 2,
+                    "Max": 3,
                     "MaxEach": 1,
                     "Items": [
                         "Canteen",
@@ -4880,11 +4884,11 @@
                     "Name": "ttsko",
                     "Worn": [
                         {
-                            "ClassName": "Ssh68Helmet",
+                            "ClassName": "BoonieHat_Dubok",
                             "Attach": []
                         },
                         {
-                            "ClassName": "BalaclavaMask_Green",
+                            "ClassName": "Shemag_Brown",
                             "Attach": []
                         },
                         {
@@ -4896,93 +4900,7 @@
                             "Attach": []
                         },
                         {
-                            "ClassName": "TTSKOBoots",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "TacticalGloves_Green",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "SmershVest",
-                            "Attach": [
-                                "SmershBag"
-                            ]
-                        },
-                        {
-                            "ClassName": "AssaultBag_Ttsko",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "MilitaryBelt",
-                            "Attach": []
-                        }
-                    ]
-                },
-                {
-                    "Name": "gorka_summer",
-                    "Worn": [
-                        {
-                            "ClassName": "MilitaryBeret_Red",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "BalaclavaMask_Green",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "GorkaEJacket_Summer",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "GorkaPants_Summer",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "MilitaryBoots_Black",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "TacticalGloves_Green",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "SmershVest",
-                            "Attach": [
-                                "SmershBag"
-                            ]
-                        },
-                        {
-                            "ClassName": "AssaultBag_Ttsko",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "MilitaryBelt",
-                            "Attach": []
-                        }
-                    ]
-                },
-                {
-                    "Name": "gorka_flat",
-                    "Worn": [
-                        {
-                            "ClassName": "MilitaryBeret_Red",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "BalaclavaMask_Beige",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "GorkaEJacket_Flat",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "GorkaPants_Flat",
-                            "Attach": []
-                        },
-                        {
-                            "ClassName": "MilitaryBoots_Brown",
+                            "ClassName": "JungleBoots_Beige",
                             "Attach": []
                         },
                         {
@@ -5004,6 +4922,92 @@
                             "Attach": []
                         }
                     ]
+                },
+                {
+                    "Name": "afganka_desert",
+                    "Worn": [
+                        {
+                            "ClassName": "BoonieHat_Tan",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "Shemag_Green",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "TacticalShirt_Tan",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "CargoPants_Beige",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "CombatBoots_Beige",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "TacticalGloves_Beige",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "SmershVest",
+                            "Attach": [
+                                "SmershBag"
+                            ]
+                        },
+                        {
+                            "ClassName": "AssaultBag_Desert",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "MilitaryBelt",
+                            "Attach": []
+                        }
+                    ]
+                },
+                {
+                    "Name": "spetsnaz_recon",
+                    "Worn": [
+                        {
+                            "ClassName": "MilitaryBeret_Red",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "Shemag_White",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "TacticalShirt_Olive",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "BDUPants",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "JungleBoots_Olive",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "OMNOGloves_Gray",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "SmershVest",
+                            "Attach": [
+                                "SmershBag"
+                            ]
+                        },
+                        {
+                            "ClassName": "AssaultBag_Desert",
+                            "Attach": []
+                        },
+                        {
+                            "ClassName": "MilitaryBelt",
+                            "Attach": []
+                        }
+                    ]
                 }
             ],
             "Carried": [
@@ -5013,7 +5017,10 @@
                 "BandageDressing",
                 "BandageDressing",
                 "Morphine",
+                "Epinephrine",
                 "Canteen",
+                "WaterBottle",
+                "PurificationTablets",
                 "TacticalBaconCan",
                 "TacticalBaconCan",
                 "RGD5Grenade",
@@ -5057,21 +5064,25 @@
                         "MaxEach": 1,
                         "Items": [
                             "TelnyashkaShirt",
-                            "Ushanka_Green",
-                            "Ushanka_Black",
                             "PilotkaCap",
-                            "WinterMilitaryCoat_Grey",
-                            "TTsKOJacket_Camo",
-                            "TTSKOPants",
-                            "TTSKOBoots",
-                            "GorkaEJacket_Flat",
-                            "GorkaPants_Flat",
-                            "GorkaEJacket_Summer",
-                            "GorkaPants_Summer",
-                            "MilitaryBoots_Black",
-                            "TacticalGloves_Green",
-                            "BalaclavaMask_Green",
-                            "Ssh68Helmet"
+                            "BoonieHat_Dubok",
+                            "BoonieHat_Tan",
+                            "MilitaryBeret_Red",
+                            "TacticalShirt_Tan",
+                            "TacticalShirt_Olive",
+                            "BDUJacket",
+                            "BDUPants",
+                            "CargoPants_Beige",
+                            "CargoPants_Green",
+                            "JungleBoots_Beige",
+                            "JungleBoots_Olive",
+                            "CombatBoots_Beige",
+                            "TacticalGloves_Beige",
+                            "OMNOGloves_Gray",
+                            "Shemag_Brown",
+                            "Shemag_Green",
+                            "AviatorGlasses",
+                            "TacticalGoggles"
                         ]
                     },
                     {
@@ -5110,13 +5121,13 @@
                         "MaxEach": 1,
                         "Items": [
                             "Epinephrine",
+                            "SalineBagIV",
                             "TetracyclineAntibiotics",
                             "Splint",
                             "CharcoalTablets",
                             "BandageDressing",
                             "Morphine",
                             "PainkillerTablets",
-                            "SalineBagIV",
                             "IodineTincture"
                         ]
                     },
